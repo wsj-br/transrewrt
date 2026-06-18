@@ -12,16 +12,17 @@
 
 Yapay zekâ destekli metin aracı: çoklu yapay zekâ sağlayıcılarını (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI ve yerel Ollama) kullanarak diller arasında çevirin, farklı stillerde yeniden yazın ve özel istemlerle dönüştürün - Masaüstü uygulaması (Electron) veya kendi barındırılan web uygulaması (Docker) olarak çalışır.
 
-- **Çevir** - otomatik kaynak algılama ile onlarca dil arasında
-- **Yeniden yaz** - dilbilgisi düzeltme, anlaşılırlığı iyileştirme, resmi/resmi olmayan, kısaltma, uzatma, teknik
-- **Dönüştür** - özel AI istemleri; her istem için isteğe bağlı hedef diliyle birlikte istemleri oluşturun ve yönetin
-- **Geçmiş** - girdi/çıktı metni, filtreleme ve dışa aktarma ile tam yürütme geçmişi
-- **Kolay & Gelişmiş** - Kolay mod (varsayılan): sağlayıcıya özel önceden ayarlanmış seçenekler (**Ücretsiz (OpenRouter)**, **Standart**, **Gelişmiş**, **Teknik**; yalnızca seçili sağlayıcı için eşleme olan önceden ayarlanmış seçenekler görünür) ve model kimliklerini seçmeden kullanım; Gelişmiş mod: yapılandırılmış sağlayıcılarınızdan gelen tüm model listesi
-- **Modeller ve maliyet** - maliyet ve kullanım panoları (Özet, Modele göre, Tüm Çağrılar) ve dışa aktarma özelliği; OpenRouter gerçek harcamaları gösterir, diğer sağlayıcılar tahmini değerler kullanır
-- **Kullanıcı Arayüzü (UI)** - çok dilli arayüz (30+ dil, RTL desteği), yazı tipleri, ...
+- **Çevir** - düzinelerce dil arasında, otomatik kaynak algılama ile
+- **Yeniden yazma** - dilbilgisini düzelt, netliği geliştir, resmi/gayriresmi, kısalt, genişlet, teknik
+- **Dönüştür** - özel yapay zeka istekleri; istekler oluştur ve yönet, istek başına isteğe bağlı hedef dil
+- **Sözlük** - dil çifti başına kaynak/hedef terim çiftlerini depola ve çeviri sırasında uygula, böylece seçilen terimler tutarlı kalır; Ayarlar'da terimleri yönet (ekle/düzenle/sil, CSV/XLSX içe aktarma ve şablon dışa aktarma)
+- **Geçmiş** - giriş/çıkış metni, filtreleme ve dışa aktarma ile tam yürütme geçmişi
+- **Kolay ve Gelişmiş** - Kolay mod (varsayılan): sağlayıcı başına küratörlü ön ayarlar (**Ücretsiz (OpenRouter)**, **Standart**, **Gelişmiş**, **Teknik**; yalnızca seçilen sağlayıcı için eşlemesi olan ön ayarlar görünür) model kimliklerini seçmeden; Gelişmiş mod: yapılandırılmış sağlayıcılarınızdan tam model listesi
+- **Modeller ve maliyet** - maliyet ve kullanım panoları (Özet, Modele Göre, Tüm Aramalar) dışa aktarma ile; OpenRouter gerçek harcamayı gösterir, diğer sağlayıcılar tahminleri kullanır
+- **Arayüz** - çok dilli arayüz (30'dan fazla dil, RTL desteği), yazı tipleri, ...
 - **Web modu** - yönetici rolleriyle çok kullanıcılı destek
 - **Masaüstü** - Windows ve Linux için Electron uygulaması
-- **Kendi barındırma** - amd64 & arm64 için Docker görüntüsü (Raspberry Pi uyumlu)
+- **Self-hosted** - amd64 ve arm64 (Raspberry Pi uyumlu) için Docker görüntüsü
 
 Kurulduktan sonra tüm özelliklerin tam bir kılavuzu için [**Kullanıcı Kılavuzu**](USER-GUIDE.tr.md) bölümüne bakın.
 

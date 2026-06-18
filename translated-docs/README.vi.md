@@ -13,15 +13,16 @@
 Công cụ văn bản được hỗ trợ bởi AI: dịch giữa các ngôn ngữ, viết lại theo các phong cách khác nhau và chuyển đổi bằng lời nhắc tùy chỉnh - sử dụng nhiều nhà cung cấp AI (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI và Ollama cục bộ). Chạy dưới dạng ứng dụng máy tính để bàn (Electron) hoặc ứng dụng web tự lưu trữ (Docker).
 
 - **Dịch** - giữa hàng chục ngôn ngữ, với khả năng tự động phát hiện ngôn ngữ nguồn
-- **Viết lại** - sửa ngữ pháp, cải thiện độ rõ ràng, chuyển đổi trang trọng/thân mật, rút gọn, mở rộng, kỹ thuật
-- **Chuyển đổi** - lời nhắc AI tùy chỉnh; tạo và quản lý lời nhắc, ngôn ngữ đích tùy chọn cho từng lời nhắc
-- **Lịch sử** - lịch sử thực thi đầy đủ với văn bản đầu vào/đầu ra, bộ lọc và chức năng xuất
-- **Dễ & Nâng cao** - Chế độ Dễ (mặc định): các thiết lập sẵn được chọn lọc theo từng nhà cung cấp (**Miễn phí (OpenRouter)**, **Tiêu chuẩn**, **Nâng cao**, **Kỹ thuật**; chỉ hiển thị các thiết lập sẵn có ánh xạ với nhà cung cấp đã chọn), không cần chọn ID mô hình; Chế độ Nâng cao: danh sách đầy đủ các mô hình từ các nhà cung cấp bạn đã cấu hình
-- **Mô hình và chi phí** - bảng điều khiển chi phí và sử dụng (Tóm tắt, Theo mô hình, Tất cả các cuộc gọi) có chức năng xuất; OpenRouter hiển thị số tiền đã chi thực tế, các nhà cung cấp khác sử dụng ước tính
-- **Giao diện người dùng (UI)** - giao diện đa ngôn ngữ (hơn 30 ngôn ngữ, hỗ trợ RTL), phông chữ, ...
-- **Chế độ Web** - hỗ trợ nhiều người dùng với các vai trò quản trị viên
-- **Máy tính để bàn** - Ứng dụng Electron cho Windows và Linux
-- **Tự lưu trữ** - Hình ảnh Docker cho amd64 & arm64 (sẵn sàng dùng với Raspberry Pi)
+- **Chỉnh sửa lại** - sửa ngữ pháp, cải thiện rõ ràng, trang trọng/thân mật, rút gọn, mở rộng, kỹ thuật
+- **Chuyển đổi** - lời nhắc AI tùy chỉnh; tạo và quản lý lời nhắc, ngôn ngữ đích tùy chọn cho mỗi lời nhắc
+- **Từ điển** - lưu trữ các cặp thuật ngữ nguồn/đích cho mỗi cặp ngôn ngữ và áp dụng chúng trong quá trình dịch để các thuật ngữ đã chọn luôn nhất quán; quản lý thuật ngữ trong Cài đặt (thêm/chỉnh sửa/xóa, nhập CSV/XLSX và xuất mẫu)
+- **Lịch sử** - lịch sử thực thi đầy đủ với văn bản đầu vào/đầu ra, lọc và xuất
+- **Dễ dàng & Nâng cao** - Chế độ Dễ dàng (mặc định): các cài đặt sẵn được tuyển chọn cho mỗi nhà cung cấp (**Miễn phí (OpenRouter)**, **Tiêu chuẩn**, **Nâng cao**, **Kỹ thuật**; chỉ hiển thị các cài đặt sẵn có ánh xạ cho nhà cung cấp đã chọn) mà không cần chọn ID mô hình; Chế độ Nâng cao: danh sách đầy đủ các mô hình từ các nhà cung cấp đã cấu hình của bạn
+- **Mô hình & Chi phí** - bảng điều khiển chi phí và mức sử dụng (Tóm tắt, Theo Mô hình, Tất cả Cuộc gọi) với tùy chọn xuất; OpenRouter hiển thị chi phí thực tế, các nhà cung cấp khác sử dụng ước tính
+- **Giao diện người dùng** - giao diện đa ngôn ngữ (hơn 30 ngôn ngữ, hỗ trợ RTL), phông chữ, ...
+- **Chế độ Web** - hỗ trợ đa người dùng với các vai trò quản trị viên
+- **Ứng dụng Desktop** - ứng dụng Electron cho Windows và Linux
+- **Tự lưu trữ** - ảnh Docker cho amd64 & arm64 (sẵn sàng cho Raspberry Pi)
 
 Sau khi cài đặt, hãy xem [**Hướng dẫn Người dùng**](USER-GUIDE.vi.md) để được hướng dẫn chi tiết về tất cả các tính năng.
 

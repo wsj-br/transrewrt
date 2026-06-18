@@ -11446,12 +11446,6 @@
       "th": "คำศัพท์ในภาษาต้นฉบับ…",
       "uk": "Термін вихідною мовою…"
     },
-    "locations": [
-      {
-        "file": "src/renderer/components/GlossaryAddModal.tsx",
-        "line": 118
-      }
-    ],
     "models": {
       "ar": "google/gemini-2.5-flash-lite",
       "hr": "google/gemini-2.5-flash-lite",
@@ -11489,7 +11483,13 @@
       "tr": "google/gemini-2.5-flash-lite",
       "th": "google/gemini-2.5-flash-lite",
       "uk": "google/gemini-2.5-flash-lite"
-    }
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/GlossaryAddModal.tsx",
+        "line": 118
+      }
+    ]
   },
   "7223e91d": {
     "source": "Target term",
@@ -11620,12 +11620,6 @@
       "th": "คำศัพท์ในภาษาปลายทาง…",
       "uk": "Термін цільовою мовою…"
     },
-    "locations": [
-      {
-        "file": "src/renderer/components/GlossaryAddModal.tsx",
-        "line": 127
-      }
-    ],
     "models": {
       "ar": "google/gemini-2.5-flash-lite",
       "hr": "google/gemini-2.5-flash-lite",
@@ -11663,7 +11657,13 @@
       "tr": "google/gemini-2.5-flash-lite",
       "th": "google/gemini-2.5-flash-lite",
       "uk": "google/gemini-2.5-flash-lite"
-    }
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/GlossaryAddModal.tsx",
+        "line": 127
+      }
+    ]
   },
   "c16fb509": {
     "source": "Manage glossary",
@@ -11883,12 +11883,6 @@
       "th": "กำลังบันทึก…",
       "uk": "Збереження…"
     },
-    "locations": [
-      {
-        "file": "src/renderer/components/GlossaryAddModal.tsx",
-        "line": 148
-      }
-    ],
     "models": {
       "ar": "google/gemini-2.5-flash-lite",
       "hr": "google/gemini-2.5-flash-lite",
@@ -11926,7 +11920,13 @@
       "tr": "google/gemini-2.5-flash-lite",
       "th": "google/gemini-2.5-flash-lite",
       "uk": "google/gemini-2.5-flash-lite"
-    }
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/GlossaryAddModal.tsx",
+        "line": 148
+      }
+    ]
   },
   "c9cc8cce": {
     "source": "Save",

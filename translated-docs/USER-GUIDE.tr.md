@@ -49,50 +49,52 @@ Bu kılavuz, uygulama yüklendikten ve çalıştırıldıktan sonra nasıl kulla
   - [Araç çubuğu](#toolbar)
   - [Girdi ve çıktı panelleri](#input-and-output-panels)
 - [Çevir](#translate)
-  - [Çeviri metni](#translate-text)
+  - [Metni çevir](#translate-text)
   - [Dil seçimi](#language-selection)
-  - [Yardımcı çeviri ayarları](#helpful-translation-settings)
-  - [Çevirinizi iyileştirme](#refining-translation)
+  - [Faydalı çeviri ayarları](#helpful-translation-settings)
+  - [Çevirinizi iyileştirme](#refining-your-translation)
+  - [Sözlüğü kullanma](#using-the-glossary)
 - [Yeniden yazma](#rewrite)
-- [Dönüştür](#transform)
-  - [Mevcut bir isteği çalıştır](#run-an-existing-prompt)
+- [Dönüştürme](#transform)
+  - [Mevcut bir isteği çalıştırma](#run-an-existing-prompt)
   - [Henüz isteğiniz yoksa](#if-you-have-no-prompts-yet)
-  - [Hızlı bir istek oluştur](#create-a-prompt-quickly)
-  - [Bir isteği düzenle](#edit-a-prompt)
-  - [Kullanımdan önce bir isteği test et](#test-a-prompt-before-using-it)
+  - [Hızlı bir istek oluşturma](#create-a-prompt-quickly)
+  - [Bir isteği düzenleme](#edit-a-prompt)
+  - [Kullanmadan önce bir isteği test etme](#test-a-prompt-before-using-it)
 - [Pano](#dashboard)
-  - [Verileri filtrele](#filter-the-data)
+  - [Verileri filtreleme](#filter-the-data)
   - [Pano sekmeleri](#dashboard-tabs)
-  - [Verileri dışa aktar](#export-data)
-  - [Bir model için saklanan kayıtları sil](#delete-stored-records-for-a-model)
+  - [Veri dışa aktarma](#export-data)
+  - [Bir model için depolanan kayıtları silme](#delete-stored-records-for-a-model)
 - [Geçmiş](#history)
-  - [Geçmişi filtrele](#filter-the-history)
-  - [Geçmiş verilerini dışa aktar](#export-history-data)
+  - [Geçmişi filtreleme](#filter-the-history)
+  - [Geçmiş verilerini dışa aktarma](#export-history-data)
 - [Ayarlar](#settings)
   - [Genel ayarlar](#general-settings)
   - [Modeller](#models)
   - [Diller](#languages)
   - [Maliyet takibi](#cost-tracking)
-  - [Dönüştür (ayarlar sekmesi)](#transform-settings-tab)
+  - [Dönüştürme (ayarlar sekmesi)](#transform-settings-tab)
+  - [Sözlük (ayarlar sekmesi)](#glossary-settings-tab)
   - [Kullanıcılar](#users)
   - [API yapılandırması](#api-config)
   - [Hakkında](#about)
 - [Yaygın sorunlar](#common-issues)
-  - [Uygulama metni çeviremiyor, yeniden yazamıyor veya dönüştüremiyor](#the-app-will-not-translate-rewrite-or-transform-text)
+  - [Uygulama metni çevirmeyecek, yeniden yazmayacak veya dönüştürmeyecek](#the-app-will-not-translate-rewrite-or-transform-text)
   - [Model listesi boş](#the-model-list-is-empty)
   - [Sonuç çok yavaş veya çok pahalı](#the-result-is-too-slow-or-too-expensive)
   - [Arayüz yanlış dilde](#the-interface-is-in-the-wrong-language)
   - [Metin çok küçük veya okunması zor](#the-text-is-too-small-or-hard-to-read)
   - [Pano Özeti boş görünüyor](#dashboard-summary-looks-empty)
-  - [Maliyet "mevcut değil" gösteriyor veya yanlış görünüyor](#cost-shows-not-available-or-seems-wrong)
-  - [Toplam maliyet sağlayıcı fatura ile eşleşmiyor](#total-cost-does-not-match-my-provider-bill)
-  - [Geçmiş sayfası yan menüden kayboldu](#the-history-page-is-missing-from-the-sidebar)
-  - [Web uygulaması: beklenmedik şekilde giriş sayfasına yönlendirildi](#web-app-redirected-to-the-login-page-unexpectedly)
-  - [Web yöneticisi: parolayı unuttum veya kaybettim](#web-admin-forgot-or-lost-a-password)
-  - [Pano diğer kullanıcılar için veri göstermiyor (web)](#dashboard-shows-no-data-for-other-users-web)
+  - [Maliyet "kullanılamıyor" gösteriyor veya yanlış görünüyor](#cost-shows-not-available-or-seems-wrong)
+  - [Toplam maliyet sağlayıcı faturamla eşleşmiyor](#total-cost-does-not-match-my-provider-bill)
+  - [Geçmiş sayfası kenar çubuğunda eksik](#the-history-page-is-missing-from-the-sidebar)
+  - [Web uygulaması: beklenmedik bir şekilde oturum açma sayfasına yönlendirildi](#web-app-redirected-to-the-login-page-unexpectedly)
+  - [Web yöneticisi: parola unutuldu veya kaybedildi](#web-admin-forgot-or-lost-a-password)
+  - [Pano, diğer kullanıcılar için veri göstermiyor (web)](#dashboard-shows-no-data-for-other-users-web)
   - [Bir isteği değiştirdim ve düzenlemeleri kaybettim](#i-changed-a-prompt-and-lost-the-edits)
 - [Hızlı ipuçları](#quick-tips)
-- [Feragatname](#disclaimer)
+- [Yasal Uyarı](#disclaimer)
 - [Lisans](#license)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -297,6 +299,27 @@ Başarılı bir çeviriden sonra, **Ekle…** ve sürüm açılır menüsü çı
 1. **Ekle…** — çıktıdaki metin seçilmeden, aynı girdi için farklı kelimelerle başka bir tam çeviri alın. Model, zaten sahip olduğunuz her sürümü alır, böylece yeni kelimeler hepsinden farklı olabilir. En fazla **beş** sürüm saklayabilir ve sürüm açılır menüsünde bunlar arasında geçiş yapabilirsiniz. Metin seçildiğinde, **Ekle…** seçiminiz yakınında kelime alternatiflerini açar (sağ tıklama ile aynı). Seçim olmadan, **Ekle…** beş sürüme ulaştığınızda devre dışı kalır; bir seçim ile, yine de beş sürümde çalışır (sadece kelime alternatifleri, sürüm 5'i günceller). Tam bir yeniden ifade işlemi devam ederken, iptal etmek için **Durdur Çevir** butonuna tıklayın; çıktı, yeniden ifade işlemi başladığında aktif olan sürüme döner.
 2. **Kelime alternatifleri** — çıktıda bir veya daha fazla kelimeyi veya kısa bir ifadeyi seçin (eğer sadece bir kelimenin bir kısmını seçerseniz, uygulama seçimi tam kelimelere genişletir), ardından sağ tıklayın veya **Ekle…** butonuna tıklayın. Seçiminiz yakınında kısa bir alternatif listesi görünür; birine tıklayarak onu değiştirebilirsiniz. Her seçenek, seçiminizden biraz daha geniş bir aralığı değiştirebilir (örneğin, bitişik bir edat veya tanım) böylece cümle gramatik kalır. Beşten az sürümünüz varsa, düzenlenmiş çıktı yeni bir sürüm olarak kaydedilir; beş sürümde, yalnızca **sürüm 5** güncellenir. Seçim olmadan sağ tıklamak hiçbir şey yapmaz. Çıktıyı değiştirmeden iptal etmek için **Esc** tuşuna basın veya liste dışında bir yere tıklayın.
 3. **Maliyetler** — her tam **Ekle…** (seçim yok) ve her kelime-alternatif isteği modeli tekrar kullanır ve kullanım maliyetine ekleyebilir (normal bir çeviri çalışmasıyla aynı).
+
+<br/>
+
+<a id="using-the-glossary"></a>
+### Sözlüğü kullanma
+
+Bir **sözlük**, belirli bir dil çifti için kaynak/hedef terim çiftlerinin bir listesidir. Sözlük açık olduğunda, Transrewrt tercih ettiğiniz kelimenin çeviriler boyunca tutarlı kalmasını sağlamak için eşleşen terimleri modele gönderir (örneğin, her zaman aynı şekilde çevrilmesi gereken bir ürün adı, marka terimi veya iş unvanı).
+
+Bunu **Çevir** sayfasında kullanmak için:
+
+1. Giriş panelindeki **Sözlük** anahtarını açın (otomatik çalıştırma ve otomatik kopyalama anahtarlarının yanında).
+2. **Kaynak** ve **Hedef** dillerinizi seçin ve her zamanki gibi çevirin. O dil çifti için kaydedilen terimler otomatik olarak uygulanır.
+3. Uçuş sırasında yeni bir çift yakalamak için, **Ekle** ( **Kaynak:** dil seçicisinin yanında) düğmesine tıklayın. Diyalog, mevcut dillerinizle önceden doldurulmuş olarak gelir, bu nedenle yalnızca **kaynak terim** ve **hedef terim** alanlarını doldurmanız gerekir.
+4. Tüm terimlerinizi gözden geçirmek için çıktı altbilgisindeki **Sözlük** bağlantısını (veya diyalog içindeki **Sözlüğü yönet** bağlantısını) kullanarak [**Ayarlar** > **Sözlük**](#glossary-settings) bölümüne gidin.
+
+Terimleri [**Ayarlar** > **Sözlük**](#glossary-settings) sekmesinde ekler, düzenler, içe aktarır ve dışa aktarırsınız — aşağıya bakın.
+
+<br/>
+
+> ℹ️ **NOT**<br/>
+> Sözlük terimleri **dil çiftine** göre eşleştirilir, bu nedenle İngilizce → Fransızca için kaydedilen bir terim, İngilizce → Almanca çevirisi yaparken uygulanmaz. Kaynak olarak **Dili Algıla** ile sözlük kullanılamaz, çünkü terimleri eşleştirmek için belirli bir kaynak dil gereklidir.
 
 [--------------------------------------------------------------------------------------------------------------------------]: #
 
@@ -555,6 +578,7 @@ Kullanılabilir sekmeler, platforma ve rolünüze göre değişir:
   | Diller        |   evet   |     evet     |        evet         |                                              |
   | Maliyet Takibi    |   evet   |     evet     |         -          |                                              |
   | Dönüştür        |   evet   |     evet     |        evet         | Dönüştürme istemlerinin toplu içe/dışa aktarımı      |
+  | Sözlük         |   evet   |     evet     |        evet         | Çeviri sırasında uygulanan terim çiftleri        |
   | Kullanıcılar            |    -    |     evet     |         -          |                                              |
   | API Yapılandırması       |   evet   |     evet     |         -          |                                              |
   | Hakkında            |   evet   |     evet     |        evet         |                                              |
@@ -703,6 +727,27 @@ Maliyet bilgilerini yönetmek için **Ayarlar** > **Maliyet Takibi**'ni kullanı
 - bir dosyadan istem içeri aktarın
 - yedekleme veya paylaşım için istemleri dışa aktarın
 - örnek istemleri istem listesine yükleyin
+
+<br/>
+
+<a id="glossary-settings"></a>
+### Sözlük (ayarlar sekmesi)
+
+Çeviri sırasında uygulanan terim çiftlerini yönetmek için **Ayarlar** > **Sözlük** seçeneğini kullanın (bkz. [Sözlüğü kullanma](#using-the-glossary)). Her terimin bir **kaynak dil**, **hedef dil**, **kaynak terim** ve **hedef terim** vardır.
+
+Şunları yapabilirsiniz:
+
+- **Terim ekle** — tablonun altındaki satırı doldurun (dilleri seçin, kaynak ve hedef terimleri yazın) ve **+** düğmesine tıklayın.
+- **Terim bul** — listeyi **Kaynak dil**, **Hedef dil** veya serbest **metin** ile filtreleyin; sıfırlamak için **Filtreleri temizle**'ye tıklayın.
+- **Terim sil** — satırındaki çöp kutusu simgesine tıklayın.
+- **İçe Aktar** — terimleri bir `.csv`, `.xlsx` veya `.xls` dosyasından yükleyin. Dosya `source_language`, `target_language`, `source_text` ve `target_text` sütunlarına sahip olmalıdır.
+- **CSV'yi Dışa Aktar** / **XLSX'i Dışa Aktar** — yedekleme veya paylaşım için tüm terimlerinizi indirin.
+- **Şablon CSV** / **Şablon XLSX** — doldurup içe aktarmak için doğru sütun başlıklarına sahip boş bir dosya indirin.
+
+<br/>
+
+> ℹ️ **NOT**<br/>
+> **Masaüstü uygulamasında**, sözlük yerel olarak saklanır. **Web sürümünde**, her kullanıcının kendi sözlüğü vardır, bu nedenle terimleriniz diğer kullanıcıları etkilemez.
 
 <br/>
 

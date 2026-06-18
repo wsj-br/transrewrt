@@ -52,14 +52,15 @@ Questa guida spiega come utilizzare l'app una volta installata ed eseguita. Per 
   - [Traduci testo](#translate-text)
   - [Selezione lingua](#language-selection)
   - [Impostazioni di traduzione utili](#helpful-translation-settings)
-  - [Affina la tua traduzione](#refining-translation)
+  - [Perfezionamento della traduzione](#refining-your-translation)
+  - [Utilizzo del glossario](#using-the-glossary)
 - [Riscrittura](#rewrite)
-- [Trasforma](#transform)
-  - [Esegui un prompt esistente](#run-an-existing-prompt)
+- [Trasformazione](#transform)
+  - [Esecuzione di un prompt esistente](#run-an-existing-prompt)
   - [Se non hai ancora prompt](#if-you-have-no-prompts-yet)
-  - [Crea un prompt rapidamente](#create-a-prompt-quickly)
+  - [Crea rapidamente un prompt](#create-a-prompt-quickly)
   - [Modifica un prompt](#edit-a-prompt)
-  - [Testa un prompt prima di usarlo](#test-a-prompt-before-using-it)
+  - [Testa un prompt prima di utilizzarlo](#test-a-prompt-before-using-it)
 - [Dashboard](#dashboard)
   - [Filtra i dati](#filter-the-data)
   - [Schede della dashboard](#dashboard-tabs)
@@ -67,32 +68,33 @@ Questa guida spiega come utilizzare l'app una volta installata ed eseguita. Per 
   - [Elimina record memorizzati per un modello](#delete-stored-records-for-a-model)
 - [Cronologia](#history)
   - [Filtra la cronologia](#filter-the-history)
-  - [Esporta dati della cronologia](#export-history-data)
+  - [Esporta dati cronologia](#export-history-data)
 - [Impostazioni](#settings)
   - [Impostazioni generali](#general-settings)
   - [Modelli](#models)
   - [Lingue](#languages)
   - [Tracciamento dei costi](#cost-tracking)
   - [Trasforma (scheda impostazioni)](#transform-settings-tab)
+  - [Glossario (scheda impostazioni)](#glossary-settings-tab)
   - [Utenti](#users)
   - [Configurazione API](#api-config)
   - [Informazioni](#about)
 - [Problemi comuni](#common-issues)
-  - [L'app non traduce, riscrive o trasforma il testo](#the-app-will-not-translate-rewrite-or-transform-text)
+  - [L'app non traduce, riscrive o trasforma testo](#the-app-will-not-translate-rewrite-or-transform-text)
   - [L'elenco dei modelli è vuoto](#the-model-list-is-empty)
   - [Il risultato è troppo lento o troppo costoso](#the-result-is-too-slow-or-too-expensive)
   - [L'interfaccia è nella lingua sbagliata](#the-interface-is-in-the-wrong-language)
   - [Il testo è troppo piccolo o difficile da leggere](#the-text-is-too-small-or-hard-to-read)
-  - [Il riepilogo della dashboard sembra vuoto](#dashboard-summary-looks-empty)
+  - [Riepilogo dashboard vuoto](#dashboard-summary-looks-empty)
   - [Il costo mostra "non disponibile" o sembra errato](#cost-shows-not-available-or-seems-wrong)
   - [Il costo totale non corrisponde alla fattura del mio provider](#total-cost-does-not-match-my-provider-bill)
   - [La pagina Cronologia manca dalla barra laterale](#the-history-page-is-missing-from-the-sidebar)
-  - [Web app: reindirizzato alla pagina di accesso inaspettatamente](#web-app-redirected-to-the-login-page-unexpectedly)
-  - [Web admin: password dimenticata o persa](#web-admin-forgot-or-lost-a-password)
+  - [App web: reindirizzato inaspettatamente alla pagina di accesso](#web-app-redirected-to-the-login-page-unexpectedly)
+  - [Amministrazione web: password dimenticata o persa](#web-admin-forgot-or-lost-a-password)
   - [La dashboard non mostra dati per altri utenti (web)](#dashboard-shows-no-data-for-other-users-web)
   - [Ho modificato un prompt e ho perso le modifiche](#i-changed-a-prompt-and-lost-the-edits)
 - [Suggerimenti rapidi](#quick-tips)
-- [Dichiarazione di non responsabilità](#disclaimer)
+- [Disclaimer](#disclaimer)
 - [Licenza](#license)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -297,6 +299,27 @@ Dopo una traduzione riuscita, **Aggiungi una riformulazione…** e il menu a dis
 1. **Aggiungi una riformulazione…** — senza testo selezionato nell'output, ottieni un'altra traduzione completa dello stesso input con una formulazione diversa. Il modello riceve ogni versione che hai già, quindi la nuova formulazione può differire da tutte le altre. Puoi memorizzare fino a **cinque** versioni e passare tra di esse nel menu a discesa delle versioni. Con testo selezionato, **Aggiungi una riformulazione…** apre alternative di parole vicino alla selezione (stesso comportamento del clic destro). Senza una selezione, **Aggiungi una riformulazione…** è disabilitato una volta raggiunte cinque versioni; con una selezione, funziona comunque a cinque versioni (solo alternative di parole, aggiornando la versione 5). Mentre una riformulazione completa è in esecuzione, fai clic su **Interrompi Traduzione** per annullare; l'output torna alla versione che era attiva quando è iniziata la riformulazione.
 2. **Alternative di parole** — seleziona una o più parole o una breve frase nell'output (se selezioni solo parte di una parola, l'app espande la selezione a parole complete), quindi fai clic destro o clicca su **Aggiungi una riformulazione…**. Un breve elenco di alternative appare vicino alla selezione; fai clic su una per sostituirla. Ogni opzione può sostituire un intervallo leggermente più ampio della tua selezione (ad esempio una preposizione o un articolo adiacente) in modo che la frase rimanga grammaticale. Se hai meno di cinque versioni, l'output modificato viene salvato come una nuova versione; a cinque versioni, solo **versione 5** viene aggiornata. Fare clic destro senza selezione non fa nulla. Premi **Esc** o fai clic al di fuori dell'elenco per annullare senza modificare l'output.
 3. **Costi** — ogni **Aggiungi una riformulazione…** completo (senza selezione) e ogni richiesta di alternativa di parole utilizza nuovamente il modello e può aumentare il costo di utilizzo (stesso comportamento di una normale esecuzione di traduzione).
+
+<br/>
+
+<a id="using-the-glossary"></a>
+### Utilizzo del glossario
+
+Un **glossario** è un elenco di coppie di termini di origine/destinazione per una specifica coppia di lingue. Quando il glossario è attivo, Transrewrt invia i termini corrispondenti al modello in modo che la tua formulazione preferita rimanga coerente nelle traduzioni (ad esempio, un nome di prodotto, un termine di marca o un titolo di lavoro che dovrebbe sempre essere tradotto allo stesso modo).
+
+Per utilizzarlo nella pagina **Traduci**:
+
+1. Attiva l'interruttore **Glossario** nel pannello di input (accanto agli interruttori di esecuzione automatica e copia automatica).
+2. Scegli le lingue **Da** e **A** e traduci come al solito. I termini salvati per quella coppia di lingue vengono applicati automaticamente.
+3. Per acquisire una nuova coppia al volo, fai clic su **Aggiungi al glossario** (accanto al selettore della lingua **Da:**). La finestra di dialogo è precompilata con le tue lingue correnti, quindi devi solo compilare il **termine di origine** e il **termine di destinazione**.
+4. Utilizza il link **Glossario** nel piè di pagina dell'output (o il link **Gestisci glossario** all'interno della finestra di dialogo) per accedere a [**Impostazioni** > **Glossario**](#glossary-settings) e rivedere tutti i tuoi termini.
+
+Aggiungi, modifica, importa ed esporta termini nella scheda [**Impostazioni** > **Glossario**](#glossary-settings) — vedi sotto.
+
+<br/>
+
+> ℹ️ **NOTA**<br/>
+> I termini del glossario vengono confrontati per **coppia di lingue**, quindi un termine salvato per Inglese → Francese non viene applicato quando si traduce Inglese → Tedesco. Il glossario non può essere utilizzato con **Rileva lingua** come origine, poiché è necessaria una lingua di origine specifica per confrontare i termini.
 
 [--------------------------------------------------------------------------------------------------------------------------]: #
 
@@ -555,6 +578,7 @@ Le schede disponibili dipendono dalla piattaforma e dal tuo ruolo:
   | Lingue        |   sì   |     sì     |        sì         |                                              |
   | Monitoraggio costi    |   sì   |     sì     |         -          |                                              |
   | Trasforma        |   sì   |     sì     |        sì         | Importazione/esportazione massiva di prompt di trasformazione      |
+  | Glossario        |   sì   |     sì     |        sì         | Coppie di termini applicate durante la traduzione |
   | Utenti            |    -    |     sì     |         -          |                                              |
   | Configurazione API       |   sì   |     sì     |         -          |                                              |
   | Informazioni            |   sì   |     sì     |        sì         |                                              |
@@ -704,6 +728,27 @@ Puoi:
 - importare prompt da un file
 - esportare prompt per il backup o da condividere
 - caricare prompt di esempio nell'elenco dei prompt
+
+<br/>
+
+<a id="glossary-settings"></a>
+### Glossario (scheda impostazioni)
+
+Usa **Impostazioni** > **Glossario** per gestire le coppie di termini applicate durante la traduzione (vedi [Utilizzo del glossario](#using-the-glossary)). Ogni termine ha una **lingua di origine**, una **lingua di destinazione**, un **termine di origine** e un **termine di destinazione**.
+
+Puoi:
+
+- **Aggiungi un termine** — compila la riga in fondo alla tabella (scegli le lingue, digita i termini di origine e destinazione) e fai clic sul pulsante **+**.
+- **Trova termini** — filtra l'elenco per **Lingua di origine**, **Lingua di destinazione** o **testo** libero; fai clic su **Cancella filtri** per reimpostare.
+- **Elimina un termine** — fai clic sull'icona del cestino nella sua riga.
+- **Importa** — carica termini da un file `.csv`, `.xlsx` o `.xls`. Il file deve contenere le colonne `source_language`, `target_language`, `source_text` e `target_text`.
+- **Esporta CSV** / **Esporta XLSX** — scarica tutti i tuoi termini per backup o condivisione.
+- **Modello CSV** / **Modello XLSX** — scarica un file vuoto con le intestazioni di colonna corrette da compilare e importare.
+
+<br/>
+
+> ℹ️ **NOTA**<br/>
+> Nell'**app desktop**, il glossario viene archiviato localmente. Nella **versione web**, ogni utente ha il proprio glossario, quindi i tuoi termini non influiscono sugli altri utenti.
 
 <br/>
 

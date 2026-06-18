@@ -12,16 +12,17 @@
 
 Ferramenta de texto com IA: traduza entre idiomas, reescreva em diferentes estilos e transforme com prompts personalizados — usando múltiplos provedores de IA (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI e Ollama local). Funciona como aplicativo desktop (Electron) ou aplicativo web autohospedado (Docker).
 
-- **Traduzir** - entre dezenas de idiomas, com detecção automática da origem
-- **Reescrever** - corrigir gramática, melhorar clareza, formal/informal, encurtar, expandir, técnico
-- **Transformar** - prompts personalizados de IA; criar e gerenciar prompts, idioma de destino opcional por prompt
-- **Histórico** - histórico completo de execuções com texto de entrada/saída, filtros e exportação
-- **Fácil e Avançado** - Modo Fácil (padrão): predefinições selecionadas por provedor (**Grátis (OpenRouter)**, **Padrão**, **Avançado**, **Técnico**; somente predefinições com mapeamento para o provedor selecionado são exibidas), sem necessidade de escolher IDs de modelo; Modo Avançado: lista completa de modelos dos provedores configurados
-- **Modelos e custo** - painéis de custo e uso (Resumo, Por Modelo, Todas as chamadas) com opção de exportação; o OpenRouter mostra o valor real gasto, outros provedores usam estimativas
-- **Interface do usuário (UI)** - interface multilíngue (30+ idiomas, suporte a RTL), fontes, ...
-- **Modo Web** - suporte a múltiplos usuários com funções de administrador
-- **Desktop** - Aplicativo Electron para Windows e Linux
-- **Autohospedado** - Imagem Docker para amd64 e arm64 (pronto para Raspberry Pi)
+- **Traduzir** - entre dezenas de idiomas, com detecção automática de origem
+- **Reescrita** - corrigir gramática, melhorar clareza, formal/informal, encurtar, expandir, técnico
+- **Transformar** - prompts de IA personalizados; criar e gerenciar prompts, idioma de destino opcional por prompt
+- **Glossário** - armazenar pares de termos de origem/destino por par de idiomas e aplicá-los durante a tradução para que os termos escolhidos permaneçam consistentes; gerenciar termos em Configurações (adicionar/editar/excluir, importação CSV/XLSX e exportação de modelo)
+- **Histórico** - histórico completo de execução com texto de entrada/saída, filtragem e exportação
+- **Fácil e Avançado** - Modo Fácil (padrão): predefinições selecionadas por provedor (**Grátis (OpenRouter)**, **Padrão**, **Avançado**, **Técnico**; apenas predefinições com um mapeamento para o provedor selecionado aparecem) sem escolher IDs de modelo; Modo Avançado: lista completa de modelos dos seus provedores configurados
+- **Modelos e custo** - painéis de custo e uso (Resumo, Por Modelo, Todas as Chamadas) com exportação; OpenRouter mostra gastos reais, outros provedores usam estimativas
+- **Interface** - interface multilíngue (mais de 30 idiomas, suporte a RTL), fontes, ...
+- **Modo Web** - suporte multiusuário com funções de administrador
+- **Desktop** - aplicativo Electron para Windows e Linux
+- **Auto-hospedado** - imagem Docker para amd64 e arm64 (pronto para Raspberry Pi)
 
 Uma vez instalado, consulte o [**Guia do Usuário**](USER-GUIDE.pt-BR.md) para obter um guia completo de todos os recursos.
 

@@ -51,18 +51,19 @@ Den här guiden förklarar hur du använder appen när den är installerad och i
 - [Översätt](#translate)
   - [Översätt text](#translate-text)
   - [Språkval](#language-selection)
-  - [Hjälpsamma översättningsinställningar](#helpful-translation-settings)
-  - [Förfina din översättning](#refining-translation)
+  - [Användbara inställningar för översättning](#helpful-translation-settings)
+  - [Förfina din översättning](#refining-your-translation)
+  - [Använda ordlistan](#using-the-glossary)
 - [Omskrivning](#rewrite)
 - [Transformera](#transform)
   - [Kör en befintlig prompt](#run-an-existing-prompt)
-  - [Om du inte har några prompts än](#if-you-have-no-prompts-yet)
+  - [Om du inte har några prompter än](#if-you-have-no-prompts-yet)
   - [Skapa en prompt snabbt](#create-a-prompt-quickly)
   - [Redigera en prompt](#edit-a-prompt)
   - [Testa en prompt innan du använder den](#test-a-prompt-before-using-it)
 - [Instrumentpanel](#dashboard)
-  - [Filtrera datan](#filter-the-data)
-  - [Instrumentpanelflikar](#dashboard-tabs)
+  - [Filtrera data](#filter-the-data)
+  - [Instrumentpanelens flikar](#dashboard-tabs)
   - [Exportera data](#export-data)
   - [Ta bort lagrade poster för en modell](#delete-stored-records-for-a-model)
 - [Historik](#history)
@@ -74,24 +75,25 @@ Den här guiden förklarar hur du använder appen när den är installerad och i
   - [Språk](#languages)
   - [Kostnadsspårning](#cost-tracking)
   - [Transformera (inställningsflik)](#transform-settings-tab)
+  - [Ordlista (inställningsflik)](#glossary-settings-tab)
   - [Användare](#users)
   - [API-konfiguration](#api-config)
   - [Om](#about)
 - [Vanliga problem](#common-issues)
-  - [Appen översätter, omskriver eller transformerar inte text](#the-app-will-not-translate-rewrite-or-transform-text)
+  - [Appen översätter, skriver om eller transformerar inte text](#the-app-will-not-translate-rewrite-or-transform-text)
   - [Modellistan är tom](#the-model-list-is-empty)
   - [Resultatet är för långsamt eller för dyrt](#the-result-is-too-slow-or-too-expensive)
   - [Gränssnittet är på fel språk](#the-interface-is-in-the-wrong-language)
   - [Texten är för liten eller svår att läsa](#the-text-is-too-small-or-hard-to-read)
   - [Instrumentpanelens sammanfattning ser tom ut](#dashboard-summary-looks-empty)
-  - [Kostnaden visar "inte tillgänglig" eller verkar fel](#cost-shows-not-available-or-seems-wrong)
-  - [Totalkostnaden stämmer inte överens med min leverantörs faktura](#total-cost-does-not-match-my-provider-bill)
+  - [Kostnad visar "inte tillgänglig" eller verkar felaktig](#cost-shows-not-available-or-seems-wrong)
+  - [Totalkostnad matchar inte min leverantörsfaktura](#total-cost-does-not-match-my-provider-bill)
   - [Historiksidan saknas i sidofältet](#the-history-page-is-missing-from-the-sidebar)
   - [Webbapp: omdirigerad till inloggningssidan oväntat](#web-app-redirected-to-the-login-page-unexpectedly)
-  - [Webbadmin: glömt eller förlorat ett lösenord](#web-admin-forgot-or-lost-a-password)
+  - [Webbadmin: glömt eller tappat bort ett lösenord](#web-admin-forgot-or-lost-a-password)
   - [Instrumentpanelen visar inga data för andra användare (webb)](#dashboard-shows-no-data-for-other-users-web)
-  - [Jag ändrade en prompt och förlorade redigeringarna](#i-changed-a-prompt-and-lost-the-edits)
-- [Snabba tips](#quick-tips)
+  - [Jag ändrade en prompt och förlorade ändringarna](#i-changed-a-prompt-and-lost-the-edits)
+- [Snabbtips](#quick-tips)
 - [Ansvarsfriskrivning](#disclaimer)
 - [Licens](#license)
 
@@ -297,6 +299,27 @@ Efter en lyckad översättning visas **Överskriv…** och versionsrullgardinsme
 1. **Överskriv…** — med ingen text vald i utdata, få en annan fullständig översättning av samma inmatning med olika formuleringar. Modellen får varje version du redan har så den nya formuleringen kan skilja sig från alla. Du kan spara upp till **fem** versioner och växla mellan dem i versionsrullgardinsmenyn. Med text vald öppnar **Överskriv…** ordalternativ nära valet (samma som högerklick). Utan ett val är **Överskriv…** inaktiverat när du når fem versioner; med ett val fungerar det fortfarande vid fem versioner (endast ordalternativ, uppdaterar version 5). När en fullständig omformulering pågår, klicka på **Stoppa översättning** för att avbryta; utdata återgår till den version som var aktiv när omformuleringen startade.
 2. **Ordalternativ** — välj ett eller flera ord eller en kort fras i utdata (om du endast väljer en del av ett ord, utökar appen valet till hela ord), klicka sedan med höger musknapp eller klicka på **Överskriv…**. En kort lista med alternativ visas nära valet; klicka på ett för att ersätta det. Varje alternativ kan ersätta ett något bredare spann än ditt val (till exempel en angränsande preposition eller artikel) så att meningen förblir grammatisk. Om du har färre än fem versioner sparas den redigerade utdata som en ny version; vid fem versioner uppdateras endast **version 5**. Högerklicka utan val gör ingenting. Tryck på **Esc** eller klicka utanför listan för att avbryta utan att ändra utdata.
 3. **Kostnader** — varje fullständig **Överskriv…** (ingen val) och varje begäran om ordalternativ använder modellen igen och kan öka användningskostnaden (samma som en normal översättningskörning).
+
+<br/>
+
+<a id="using-the-glossary"></a>
+### Använda ordlistan
+
+En **ordlista** är en lista över käll-/måltermpar för ett specifikt språkpar. När ordlistan är på skickar Transrewrt matchande termer till modellen så att din föredragna formulering förblir konsekvent över översättningar (till exempel ett produktnamn, en varumärketerm eller en jobbtitel som alltid bör översättas på samma sätt).
+
+Så här använder du den på sidan **Översätt**:
+
+1. Slå på omkopplaren **Ordlista** i inmatningspanelen (bredvid omkopplarna för automatisk körning och automatisk kopiering).
+2. Välj dina språk **Från** och **Till** och översätt som vanligt. Termer som sparats för det språkparet tillämpas automatiskt.
+3. För att fånga ett nytt par direkt, klicka på **Lägg till i ordlista** (bredvid språkväljaren **Från:**). Dialogrutan är förifylld med dina aktuella språk så att du bara behöver fylla i **källterm** och **målterm**.
+4. Använd länken **Ordlista** i sidfoten för utdata (eller länken **Hantera ordlista** inuti dialogrutan) för att hoppa till [**Inställningar** > **Ordlista**](#glossary-settings) och granska alla dina termer.
+
+Du lägger till, redigerar, importerar och exporterar termer i fliken [**Inställningar** > **Ordlista**](#glossary-settings) — se nedan.
+
+<br/>
+
+> ℹ️ **NOTERA**<br/>
+> Ordlistetermer matchas per **språkpar**, så en term som sparats för engelska → franska tillämpas inte vid översättning av engelska → tyska. Ordlistan kan inte användas med **Identifiera språk** som källa, eftersom ett specifikt källspråk behövs för att matcha termer.
 
 [--------------------------------------------------------------------------------------------------------------------------]: #
 
@@ -555,6 +578,7 @@ De tillgängliga flikarna beror på plattformen och din roll:
   | Språk        |   ja   |     ja     |        ja         |                                              |
   | Kostnadsöversikt    |   ja   |     ja     |         -          |                                              |
   | Transformera        |   ja   |     ja     |        ja         | Massimport/export av omvandlingsprompts      |
+  | Ordlista         |   ja   |     ja     |        ja         | Termpar tillämpade under översättning        |
   | Användare            |    -    |     ja     |         -          |                                              |
   | API-konfiguration       |   ja   |     ja     |         -          |                                              |
   | Om            |   ja   |     ja     |        ja         |                                              |
@@ -704,6 +728,27 @@ Du kan:
 - importera prompts från en fil
 - exportera prompts för säkerhetskopiering eller delning
 - läsa in exempelfrågor till promptlistan
+
+<br/>
+
+<a id="glossary-settings"></a>
+### Ordlista (inställningsflik)
+
+Använd **Inställningar** > **Ordlista** för att hantera termpar som används vid översättning (se [Använda ordlistan](#using-the-glossary)). Varje term har ett **källspråk**, **målspråk**, **källterm** och **målterm**.
+
+Du kan:
+
+- **Lägg till en term** — fyll i raden längst ner i tabellen (välj språken, skriv in käll- och målspråkstermerna) och klicka på **+**-knappen.
+- **Hitta termer** — filtrera listan efter **Källspråk**, **Målspråk** eller fritt **text**; klicka på **Rensa filter** för att återställa.
+- **Ta bort en term** — klicka på papperskorgsikonen i dess rad.
+- **Importera** — ladda termer från en `.csv`, `.xlsx` eller `.xls`-fil. Filen bör ha kolumnerna `source_language`, `target_language`, `source_text` och `target_text`.
+- **Exportera CSV** / **Exportera XLSX** — ladda ner alla dina termer för säkerhetskopiering eller delning.
+- **Mall CSV** / **Mall XLSX** — ladda ner en tom fil med korrekta kolumnrubriker att fylla i och importera.
+
+<br/>
+
+> ℹ️ **OBS**<br/>
+> I **skrivbordsappen** lagras ordlistan lokalt. I **webbversionen** har varje användare sin egen ordlista, så dina termer påverkar inte andra användare.
 
 <br/>
 

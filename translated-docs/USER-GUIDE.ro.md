@@ -50,49 +50,51 @@ Acest ghid explică cum să utilizați aplicația după ce aceasta a fost instal
   - [Panourile de intrare și ieșire](#input-and-output-panels)
 - [Traducere](#translate)
   - [Traducere text](#translate-text)
-  - [Selecția limbii](#language-selection)
+  - [Selecție limbă](#language-selection)
   - [Setări utile pentru traducere](#helpful-translation-settings)
-  - [Îmbunătățirea traducerii](#refining-translation)
+  - [Rafinarea traducerii dvs.](#refining-your-translation)
+  - [Utilizarea glosarului](#using-the-glossary)
 - [Reescriere](#rewrite)
 - [Transformare](#transform)
-  - [Rulați un prompt existent](#run-an-existing-prompt)
+  - [Rularea unui prompt existent](#run-an-existing-prompt)
   - [Dacă nu aveți încă prompturi](#if-you-have-no-prompts-yet)
-  - [Creați un prompt rapid](#create-a-prompt-quickly)
-  - [Editare prompt](#edit-a-prompt)
-  - [Testați un prompt înainte de a-l folosi](#test-a-prompt-before-using-it)
+  - [Crearea rapidă a unui prompt](#create-a-prompt-quickly)
+  - [Editarea unui prompt](#edit-a-prompt)
+  - [Testarea unui prompt înainte de utilizare](#test-a-prompt-before-using-it)
 - [Tablou de bord](#dashboard)
-  - [Filtrează datele](#filter-the-data)
-  - [Tab-uri tabloului de bord](#dashboard-tabs)
-  - [Exportă date](#export-data)
-  - [Șterge înregistrările stocate pentru un model](#delete-stored-records-for-a-model)
+  - [Filtrarea datelor](#filter-the-data)
+  - [Tab-uri tablou de bord](#dashboard-tabs)
+  - [Exportarea datelor](#export-data)
+  - [Ștergerea înregistrărilor stocate pentru un model](#delete-stored-records-for-a-model)
 - [Istoric](#history)
-  - [Filtrează istoricul](#filter-the-history)
-  - [Exportă datele istoricului](#export-history-data)
+  - [Filtrarea istoricului](#filter-the-history)
+  - [Exportarea datelor istoricului](#export-history-data)
 - [Setări](#settings)
   - [Setări generale](#general-settings)
   - [Modele](#models)
   - [Limbi](#languages)
   - [Urmărirea costurilor](#cost-tracking)
   - [Transformare (tab setări)](#transform-settings-tab)
+  - [Glosar (tab setări)](#glossary-settings-tab)
   - [Utilizatori](#users)
   - [Configurare API](#api-config)
   - [Despre](#about)
 - [Probleme comune](#common-issues)
-  - [Aplicația nu va traduce, reescrie sau transforma textul](#the-app-will-not-translate-rewrite-or-transform-text)
-  - [Lista modelului este goală](#the-model-list-is-empty)
-  - [Rezultatul este prea lent sau prea scump](#the-result-is-too-slow-or-too-expensive)
+  - [Aplicația nu va traduce, rescrie sau transforma textul](#the-app-will-not-translate-rewrite-or-transform-text)
+  - [Lista de modele este goală](#the-model-list-is-empty)
+  - [Rezultatul este prea lent sau prea costisitor](#the-result-is-too-slow-or-too-expensive)
   - [Interfața este în limba greșită](#the-interface-is-in-the-wrong-language)
   - [Textul este prea mic sau greu de citit](#the-text-is-too-small-or-hard-to-read)
   - [Sumarul tabloului de bord pare gol](#dashboard-summary-looks-empty)
-  - [Costul arată "nu este disponibil" sau pare greșit](#cost-shows-not-available-or-seems-wrong)
-  - [Costul total nu se potrivește cu factura furnizorului meu](#total-cost-does-not-match-my-provider-bill)
+  - [Costul afișează „indisponibil” sau pare incorect](#cost-shows-not-available-or-seems-wrong)
+  - [Costul total nu corespunde facturii furnizorului meu](#total-cost-does-not-match-my-provider-bill)
   - [Pagina Istoric lipsește din bara laterală](#the-history-page-is-missing-from-the-sidebar)
-  - [Aplicație web: redirecționat către pagina de autentificare neașteptat](#web-app-redirected-to-the-login-page-unexpectedly)
-  - [Admin web: am uitat sau am pierdut o parolă](#web-admin-forgot-or-lost-a-password)
-  - [Tabloul de bord nu arată date pentru alți utilizatori (web)](#dashboard-shows-no-data-for-other-users-web)
-  - [Am schimbat un prompt și am pierdut modificările](#i-changed-a-prompt-and-lost-the-edits)
+  - [Aplicație web: redirecționat neașteptat la pagina de autentificare](#web-app-redirected-to-the-login-page-unexpectedly)
+  - [Admin web: parolă uitată sau pierdută](#web-admin-forgot-or-lost-a-password)
+  - [Tabloul de bord nu afișează date pentru alți utilizatori (web)](#dashboard-shows-no-data-for-other-users-web)
+  - [Am modificat un prompt și am pierdut modificările](#i-changed-a-prompt-and-lost-the-edits)
 - [Sfaturi rapide](#quick-tips)
-- [Declinare de responsabilitate](#disclaimer)
+- [Disclaimer](#disclaimer)
 - [Licență](#license)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -297,6 +299,27 @@ După o traducere reușită, **Reformulare…** și dropdown-ul versiunii apar �
 1. **Reformulare…** — fără text selectat în ieșire, obții o altă traducere completă a aceleași intrări cu o formulare diferită. Modelul primește fiecare versiune pe care o ai deja, astfel încât noua formulare să poată diferi de toate acestea. Poți stoca până la **cinci** versiuni și să comuți între ele în dropdown-ul versiunii. Cu text selectat, **Reformulare…** deschide alternative de cuvinte aproape de selecție (la fel ca un clic dreapta). Fără o selecție, **Reformulare…** este dezactivat odată ce atingi cinci versiuni; cu o selecție, funcționează în continuare la cinci versiuni (doar alternative de cuvinte, actualizând versiunea 5). În timp ce o reformulare completă este în curs de desfășurare, apasă **Oprește Traducerea** pentru a anula; ieșirea revine la versiunea care era activă când a început reformularea.
 2. **Alternative de cuvinte** — selectează unul sau mai multe cuvinte sau o frază scurtă în ieșire (dacă selectezi doar o parte a unui cuvânt, aplicația extinde selecția la cuvinte complete), apoi fă clic dreapta sau apasă **Reformulare…**. O listă scurtă de alternative apare aproape de selecție; apasă una pentru a o înlocui. Fiecare opțiune poate înlocui un interval ușor mai larg decât selecția ta (de exemplu, o prepoziție sau un articol adiacent) astfel încât propoziția să rămână gramatical corectă. Dacă ai mai puțin de cinci versiuni, ieșirea editată este salvată ca o nouă versiune; la cinci versiuni, doar **versiunea 5** este actualizată. Fă clic dreapta fără selecție nu face nimic. Apasă **Esc** sau fă clic în afara listei pentru a anula fără a schimba ieșirea.
 3. **Costuri** — fiecare **Reformulare…** completă (fără selecție) și fiecare cerere de alternativă de cuvinte folosește din nou modelul și poate adăuga la costul de utilizare (la fel ca o execuție normală de traducere).
+
+<br/>
+
+<a id="using-the-glossary"></a>
+### Utilizarea glosarului
+
+Un **glosar** este o listă de perechi de termeni sursă/țintă pentru o anumită pereche de limbi. Când glosarul este activat, Transrewrt trimite termenii corespunzători către model, astfel încât formularea dvs. preferată să rămână consecventă în traduceri (de exemplu, un nume de produs, un termen de marcă sau un titlu de post care ar trebui întotdeauna tradus la fel).
+
+Pentru a-l utiliza pe pagina **Traducere**:
+
+1. Activați comutatorul **Glosar** în panoul de intrare (lângă comutatoarele de execuție automată și copiere automată).
+2. Alegeți limbile **De la** și **La** și traduceți ca de obicei. Termenii salvați pentru acea pereche de limbi sunt aplicați automat.
+3. Pentru a captura o pereche nouă din mers, faceți clic pe **Adaugă în glosar** (lângă selectorul de limbă **De la:**). Dialogul este precompletat cu limbile dvs. curente, astfel încât doar să completați **termenul sursă** și **termenul țintă**.
+4. Utilizați linkul **Glosar** din subsolul ieșirii (sau linkul **Gestionare glosar** din interiorul dialogului) pentru a sări la [**Setări** > **Glosar**](#glossary-settings) și a revizui toți termenii dvs.
+
+Adăugați, editați, importați și exportați termeni în tab-ul [**Setări** > **Glosar**](#glossary-settings) — vedeți mai jos.
+
+<br/>
+
+> ℹ️ **NOTĂ**<br/>
+> Termenii din glosar sunt potriviți **pe pereche de limbi**, deci un termen salvat pentru Engleză → Franceză nu este aplicat la traducerea din Engleză → Germană. Glosarul nu poate fi utilizat cu **Detectare limbă** ca sursă, deoarece este necesară o limbă sursă specifică pentru a potrivi termenii.
 
 [--------------------------------------------------------------------------------------------------------------------------]: #
 
@@ -555,6 +578,7 @@ Filele disponibile depind de platformă și de rolul dvs.:
   | Limbi            |   da    |     da      |           da             |                                              |
   | Urmărire costuri |   da    |     da      |           -              |                                              |
   | Transformare     |   da    |     da      |           da             | Import/export în bloc al solicitărilor de transformare      |
+  | Glosar           |   da   |     da      |        da          | Perechi de termeni aplicate în timpul traducerii |
   | Utilizatori      |   -     |     da      |           -              |                                              |
   | Configurare API  |   da    |     da      |           -              |                                              |
   | Despre           |   da    |     da      |           da             |                                              |
@@ -704,6 +728,27 @@ Puteți:
 - importa prompturi dintr-un fișier
 - exporta prompturi pentru backup sau partajare
 - încărcați exemple de prompturi în lista de prompturi
+
+<br/>
+
+<a id="glossary-settings"></a>
+### Glosar (tab setări)
+
+Utilizați **Setări** > **Glosar** pentru a gestiona perechile de termeni aplicate în timpul traducerii (consultați [Utilizarea glosarului](#using-the-glossary)). Fiecare termen are o **limbă sursă**, o **limbă țintă**, un **termen sursă** și un **termen țintă**.
+
+Puteți:
+
+- **Adăugare termen** — completați rândul din partea de jos a tabelului (alegeți limbile, introduceți termenii sursă și țintă) și faceți clic pe butonul **+**.
+- **Găsire termeni** — filtrați lista după **Limba sursă**, **Limba țintă** sau **text** liber; faceți clic pe **Șterge filtrele** pentru a reseta.
+- **Ștergere termen** — faceți clic pe pictograma coșului de gunoi de pe rândul acestuia.
+- **Import** — încărcați termeni dintr-un fișier `.csv`, `.xlsx` sau `.xls`. Fișierul ar trebui să aibă coloanele `source_language`, `target_language`, `source_text` și `target_text`.
+- **Export CSV** / **Export XLSX** — descărcați toți termenii dvs. pentru backup sau partajare.
+- **Șablon CSV** / **Șablon XLSX** — descărcați un fișier gol cu antetele corecte ale coloanelor pentru a le completa și a le importa.
+
+<br/>
+
+> ℹ️ **NOTĂ**<br/>
+> În **aplicația desktop**, glosarul este stocat local. În **versiunea web**, fiecare utilizator are propriul glosar, astfel încât termenii dvs. nu afectează alți utilizatori.
 
 <br/>
 

@@ -12,16 +12,17 @@
 
 AI-gestuurde teksttool: vertalen tussen talen, herschrijven in verschillende stijlen en transformeren met aangepaste prompts - met gebruik van meerdere AI-providers (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI en lokaal Ollama). Werkt als desktopapp (Electron) of als zelfgehoste webapp (Docker).
 
-- **Vertalen** - tussen tientallen talen, met automatische herkenning van de bron
-- **Herschrijven** - grammatica verbeteren, duidelijkheid verbeteren, formeler/informeel, verkorten, uitbreiden, technisch
+- **Vertalen** - tussen tientallen talen, met automatische bronherkenning
+- **Herschrijven** - grammatica corrigeren, duidelijkheid verbeteren, formeel/informeel, verkorten, uitbreiden, technisch
 - **Transformeren** - aangepaste AI-prompts; prompts aanmaken en beheren, optionele doeltaal per prompt
+- **Woordenlijst** - bron/doelterm-paren per taalpaar opslaan en toepassen tijdens het vertalen zodat gekozen termen consistent blijven; termen beheren in Instellingen (toevoegen/bewerken/verwijderen, CSV/XLSX importeren en sjabloon exporteren)
 - **Geschiedenis** - volledige uitvoeringsgeschiedenis met invoer/uitvoertekst, filteren en exporteren
-- **Eenvoudig & Geavanceerd** - Eenvoudige modus (standaard): geselecteerde voorinstellingen per leverancier (**Gratis (OpenRouter)**, **Standaard**, **Geavanceerd**, **Technisch**; alleen voorinstellingen met een koppeling voor de geselecteerde leverancier worden weergegeven), zonder model-ID’s te hoeven kiezen; Geavanceerde modus: volledige modellenlijst van uw geconfigureerde leveranciers
-- **Modellen en kosten** - kosten- en gebruiksdashboards (Samenvatting, Op model, Alle oproepen) met exportmogelijkheid; OpenRouter toont de daadwerkelijke uitgaven, andere leveranciers gebruiken schattingen
-- **Gebruikersinterface** - meertalige interface (30+ talen, ondersteuning voor RTL), lettertypen, ...
+- **Eenvoudig & Geavanceerd** - Eenvoudige modus (standaard): samengestelde presets per provider (**Gratis (OpenRouter)**, **Standaard**, **Geavanceerd**, **Technisch**; alleen presets met een koppeling voor de geselecteerde provider worden weergegeven) zonder model-ID's te kiezen; Geavanceerde modus: volledige lijst met modellen van uw geconfigureerde providers
+- **Modellen & kosten** - kosten- en gebruiksdashboards (Samenvatting, Per model, Alle gesprekken) met export; OpenRouter toont werkelijke uitgaven, andere providers gebruiken schattingen
+- **UI** - meertalige interface (30+ talen, RTL-ondersteuning), lettertypen, ...
 - **Webmodus** - ondersteuning voor meerdere gebruikers met beheerdersrollen
-- **Bureaublad** - Electron-app voor Windows en Linux
-- **Zelf gehost** - Docker-image voor amd64 & arm64 (klaar voor Raspberry Pi)
+- **Desktop** - Electron-app voor Windows en Linux
+- **Self-hosted** - Docker-image voor amd64 & arm64 (klaar voor Raspberry Pi)
 
 Nadat u het hebt geïnstalleerd, raadpleeg de [**Gebruikershandleiding**](USER-GUIDE.nl.md) voor een volledige uitleg van alle functies.
 

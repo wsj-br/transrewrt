@@ -51,43 +51,45 @@ Ovaj vodič objašnjava kako koristiti aplikaciju nakon što je instalirana i po
 - [Prijevod](#translate)
   - [Prevedi tekst](#translate-text)
   - [Odabir jezika](#language-selection)
-  - [Pomoćne postavke prevođenja](#helpful-translation-settings)
-  - [Usavršavanje vašeg prijevoda](#refining-translation)
+  - [Korisni jezični dodaci](#helpful-translation-settings)
+  - [Dotjerivanje prijevoda](#refining-your-translation)
+  - [Korištenje rječnika](#using-the-glossary)
 - [Prepisivanje](#rewrite)
 - [Transformacija](#transform)
-  - [Pokreni postojeći upit](#run-an-existing-prompt)
-  - [Ako još nemate upite](#if-you-have-no-prompts-yet)
-  - [Brzo stvori upit](#create-a-prompt-quickly)
-  - [Uredi upit](#edit-a-prompt)
-  - [Testiraj upit prije korištenja](#test-a-prompt-before-using-it)
+  - [Pokretanje postojećeg upita](#run-an-existing-prompt)
+  - [Ako još nemate upita](#if-you-have-no-prompts-yet)
+  - [Brzo stvaranje upita](#create-a-prompt-quickly)
+  - [Uređivanje upita](#edit-a-prompt)
+  - [Testiranje upita prije korištenja](#test-a-prompt-before-using-it)
 - [Nadzorna ploča](#dashboard)
-  - [Filtar podataka](#filter-the-data)
+  - [Filtriranje podataka](#filter-the-data)
   - [Kartice nadzorne ploče](#dashboard-tabs)
-  - [Izvezi podatke](#export-data)
-  - [Izbriši pohranjene zapise za model](#delete-stored-records-for-a-model)
+  - [Izvoz podataka](#export-data)
+  - [Brisanje pohranjenih zapisa za model](#delete-stored-records-for-a-model)
 - [Povijest](#history)
-  - [Filtar povijesti](#filter-the-history)
-  - [Izvezi podatke povijesti](#export-history-data)
+  - [Filtriranje povijesti](#filter-the-history)
+  - [Izvoz podataka povijesti](#export-history-data)
 - [Postavke](#settings)
   - [Opće postavke](#general-settings)
   - [Modeli](#models)
   - [Jezici](#languages)
   - [Praćenje troškova](#cost-tracking)
   - [Transformacija (kartica postavki)](#transform-settings-tab)
+  - [Rječnik (kartica postavki)](#glossary-settings-tab)
   - [Korisnici](#users)
   - [API konfiguracija](#api-config)
   - [O programu](#about)
 - [Uobičajeni problemi](#common-issues)
-  - [Aplikacija ne prevodi, ne prepisuje ili ne transformira tekst](#the-app-will-not-translate-rewrite-or-transform-text)
-  - [Popis modela je prazan](#the-model-list-is-empty)
-  - [Rezultat je prespor ili preskup](#the-result-is-too-slow-or-too-expensive)
+  - [Aplikacija neće prevesti, prepisati ili transformirati tekst](#the-app-will-not-translate-rewrite-or-transform-text)
+  - [Lista modela je prazna](#the-model-list-is-empty)
+  - [Rezultat je prespor ili previše skup](#the-result-is-too-slow-or-too-expensive)
   - [Sučelje je na pogrešnom jeziku](#the-interface-is-in-the-wrong-language)
-  - [Tekst je premalen ili teško čitljiv](#the-text-is-too-small-or-hard-to-read)
-  - [Sažetak nadzorne ploče izgleda prazan](#dashboard-summary-looks-empty)
-  - [Trošak prikazuje "nije dostupno" ili se čini pogrešnim](#cost-shows-not-available-or-seems-wrong)
-  - [Ukupni trošak se ne podudara s računom mog davatelja](#total-cost-does-not-match-my-provider-bill)
-  - [Stranica Povijest nedostaje iz bočne trake](#the-history-page-is-missing-from-the-sidebar)
-  - [Web aplikacija: neočekivano preusmjerena na stranicu za prijavu](#web-app-redirected-to-the-login-page-unexpectedly)
+  - [Tekst je premalen ili ga je teško čitati](#the-text-is-too-small-or-hard-to-read)
+  - [Sažetak nadzorne ploče je prazan](#dashboard-summary-looks-empty)
+  - [Trošak prikazuje "nedostupno" ili se čini pogrešan](#cost-shows-not-available-or-seems-wrong)
+  - [Ukupni trošak se ne podudara s mojim računom davatelja usluga](#total-cost-does-not-match-my-provider-bill)
+  - [Stranica Povijest nedostaje s bočne trake](#the-history-page-is-missing-from-the-sidebar)
+  - [Web aplikacija: neočekivano preusmjeren na stranicu za prijavu](#web-app-redirected-to-the-login-page-unexpectedly)
   - [Web administrator: zaboravljena ili izgubljena lozinka](#web-admin-forgot-or-lost-a-password)
   - [Nadzorna ploča ne prikazuje podatke za druge korisnike (web)](#dashboard-shows-no-data-for-other-users-web)
   - [Promijenio sam upit i izgubio izmjene](#i-changed-a-prompt-and-lost-the-edits)
@@ -297,6 +299,27 @@ Nakon uspješnog prijevoda, **Preformuliraj…** i padajući izbornik verzija po
 1. **Preformuliraj…** — bez odabranog teksta u izlazu, dobijate još jedan puni prijevod istog unosa s drugačijim riječima. Model prima svaku verziju koju već imate tako da se nova formulacija može razlikovati od svih njih. Možete pohraniti do **pet** verzija i prelaziti između njih u padajućem izborniku verzija. Kada je tekst odabran, **Preformuliraj…** otvara alternative za riječi blizu odabira (isto kao desni klik). Bez odabira, **Preformuliraj…** je onemogućen kada dosegnete pet verzija; s odabirom, i dalje radi na pet verzija (samo alternativne riječi, ažurira verziju 5). Dok se puni preformuliranje izvršava, kliknite **Zaustavi Prevod** da otkažete; izlaz se vraća na verziju koja je bila aktivna kada je preformuliranje započelo.
 2. **Alternativne riječi** — odaberite jednu ili više riječi ili kratku frazu u izlazu (ako odaberete samo dio riječi, aplikacija proširuje odabir na cijele riječi), zatim desni klik ili kliknite **Preformuliraj…**. Kratki popis alternativa pojavljuje se blizu odabira; kliknite jednu da je zamijenite. Svaka opcija može zamijeniti nešto širi raspon od vašeg odabira (na primjer, susjedna prijedloga ili član) tako da rečenica ostane gramatička. Ako imate manje od pet verzija, uređeni izlaz se sprema kao nova verzija; pri pet verzija, samo se **verzija 5** ažurira. Desni klik bez odabira ne radi ništa. Pritisnite **Esc** ili kliknite izvan popisa da otkažete bez promjene izlaza.
 3. **Troškovi** — svaki puni **Preformuliraj…** (bez odabira) i svaki zahtjev za alternativama riječi ponovno koristi model i može povećati trošak korištenja (isto kao normalno prevođenje).
+
+<br/>
+
+<a id="using-the-glossary"></a>
+### Korištenje rječnika
+
+A **rječnik** je popis parova izvornih/ciljnih pojmova za određeni jezični par. Kada je rječnik uključen, Transrewrt šalje podudarne pojmove modelu kako bi vaša željena terminologija ostala dosljedna u prijevodima (na primjer, naziv proizvoda, naziv robne marke ili naziv radnog mjesta koji se uvijek treba prevesti na isti način).
+
+Da biste ga koristili na stranici **Prevedi**:
+
+1. Uključite prekidač **Rječnik** u ulaznoj ploči (pored prekidača za automatsko izvršavanje i automatsko kopiranje).
+2. Odaberite svoje jezike **Iz** i **Na** te prevedite kao i obično. Pojmovi spremljeni za taj jezični par automatski se primjenjuju.
+3. Da biste uhvatili novi par u letu, kliknite **Dodaj u rječnik** (pored odabira jezika **Iz:**). Dijaloški okvir je predpopunjen vašim trenutnim jezicima tako da samo trebate unijeti **izvorni pojam** i **ciljni pojam**.
+4. Upotrijebite poveznicu **Rječnik** u podnožju izlaza (ili poveznicu **Upravljanje rječnikom** unutar dijaloškog okvira) da biste skočili na [**Postavke** > **Rječnik**](#glossary-settings) i pregledali sve svoje pojmove.
+
+Pojmove dodajete, uređujete, uvozite i izvozite na kartici [**Postavke** > **Rječnik**](#glossary-settings) — pogledajte dolje.
+
+<br/>
+
+> ℹ️ **NAPOMENA**<br/>
+> Pojmovi rječnika podudaraju se po **jezičnom paru**, tako da se pojam spremljen za engleski → francuski ne primjenjuje prilikom prevođenja s engleskog → njemačkog. Rječnik se ne može koristiti s opcijom **Otkrij jezik** kao izvorom, jer je potreban određeni izvorni jezik za podudaranje pojmova.
 
 [--------------------------------------------------------------------------------------------------------------------------]: #
 
@@ -555,6 +578,7 @@ Dostupne kartice ovise o platformi i vašoj ulozi:
   | Jezici         |   da   |     da     |        da         | |
   | Praćenje troškova     |   da   |     da     |         -          | |
   | Transformacija         |   da   |     da     |        da         | Grupni uvoz/izvoz transformacijskih upita |
+  | Rječnik         |   da   |     da     |        da         | Parovi pojmova primijenjeni tijekom prijevoda        |
   | Korisnici             |    -    |     da     |         -          | |
   | API konfiguracija        |   da   |     da     |         -          | |
   | O programu             |   da   |     da     |        da         | |
@@ -704,6 +728,27 @@ Možete:
 - uvesti upite iz datoteke
 - izvesti upite za sigurnosnu kopiju ili dijeljenje
 - učitati uzorke upita na popis upita
+
+<br/>
+
+<a id="glossary-settings"></a>
+### Rječnik (kartica postavki)
+
+Upotrijebite **Postavke** > **Rječnik** za upravljanje parovima pojmova koji se primjenjuju tijekom prijevoda (pogledajte [Korištenje rječnika](#using-the-glossary)). Svaki pojam ima **izvorni jezik**, **ciljni jezik**, **izvorni pojam** i **ciljni pojam**.
+
+Možete:
+
+- **Dodaj pojam** — ispunite redak na dnu tablice (odaberite jezike, upišite izvorni i ciljni pojam) i kliknite gumb **+**.
+- **Pronađi pojmove** — filtrirajte popis prema **izvornom jeziku**, **ciljnom jeziku** ili slobodnom **tekstu**; kliknite **Očisti filtre** za poništavanje.
+- **Izbriši pojam** — kliknite ikonu kante za smeće u njegovom retku.
+- **Uvoz** — učitajte pojmove iz datoteke `.csv`, `.xlsx` ili `.xls`. Datoteka treba imati stupce `source_language`, `target_language`, `source_text` i `target_text`.
+- **Izvoz CSV** / **Izvoz XLSX** — preuzmite sve svoje pojmove za sigurnosnu kopiju ili dijeljenje.
+- **Predložak CSV** / **Predložak XLSX** — preuzmite praznu datoteku s ispravnim zaglavljima stupaca za popunjavanje i uvoz.
+
+<br/>
+
+> ℹ️ **NAPOMENA**<br/>
+> U **desktop aplikaciji**, rječnik se pohranjuje lokalno. U **web verziji**, svaki korisnik ima svoj rječnik, tako da vaši pojmovi ne utječu na druge korisnike.
 
 <br/>
 

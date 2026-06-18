@@ -49,31 +49,33 @@ Ten przewodnik wyjaśnia, jak korzystać z aplikacji po jej zainstalowaniu i uru
   - [Pasek narzędzi](#toolbar)
   - [Panele wejścia i wyjścia](#input-and-output-panels)
 - [Tłumaczenie](#translate)
-  - [Tłumacz tekst](#translate-text)
+  - [Tłumaczenie tekstu](#translate-text)
   - [Wybór języka](#language-selection)
   - [Przydatne ustawienia tłumaczenia](#helpful-translation-settings)
-  - [Udoskonalanie tłumaczenia](#refining-translation)
+  - [Dopracowywanie tłumaczenia](#refining-your-translation)
+  - [Korzystanie ze słownika](#using-the-glossary)
 - [Przeróbka](#rewrite)
 - [Transformacja](#transform)
   - [Uruchom istniejący monit](#run-an-existing-prompt)
-  - [Jeśli nie masz jeszcze monitów](#if-you-have-no-prompts-yet)
-  - [Utwórz monit szybko](#create-a-prompt-quickly)
-  - [Edytuj monit](#edit-a-prompt)
-  - [Testuj monit przed użyciem](#test-a-prompt-before-using-it)
+  - [Jeśli nie masz jeszcze żadnych monitów](#if-you-have-no-prompts-yet)
+  - [Szybkie tworzenie monitu](#create-a-prompt-quickly)
+  - [Edytowanie monitu](#edit-a-prompt)
+  - [Testowanie monitu przed użyciem](#test-a-prompt-before-using-it)
 - [Panel](#dashboard)
-  - [Filtruj dane](#filter-the-data)
+  - [Filtrowanie danych](#filter-the-data)
   - [Zakładki panelu](#dashboard-tabs)
-  - [Eksportuj dane](#export-data)
-  - [Usuń zapisane rekordy dla modelu](#delete-stored-records-for-a-model)
+  - [Eksportowanie danych](#export-data)
+  - [Usuwanie zapisanych rekordów dla modelu](#delete-stored-records-for-a-model)
 - [Historia](#history)
-  - [Filtruj historię](#filter-the-history)
-  - [Eksportuj dane historii](#export-history-data)
+  - [Filtrowanie historii](#filter-the-history)
+  - [Eksportowanie danych historii](#export-history-data)
 - [Ustawienia](#settings)
   - [Ustawienia ogólne](#general-settings)
   - [Modele](#models)
   - [Języki](#languages)
   - [Śledzenie kosztów](#cost-tracking)
   - [Transformacja (zakładka ustawień)](#transform-settings-tab)
+  - [Słownik (zakładka ustawień)](#glossary-settings-tab)
   - [Użytkownicy](#users)
   - [Konfiguracja API](#api-config)
   - [O aplikacji](#about)
@@ -81,15 +83,15 @@ Ten przewodnik wyjaśnia, jak korzystać z aplikacji po jej zainstalowaniu i uru
   - [Aplikacja nie tłumaczy, nie przerabia ani nie transformuje tekstu](#the-app-will-not-translate-rewrite-or-transform-text)
   - [Lista modeli jest pusta](#the-model-list-is-empty)
   - [Wynik jest zbyt wolny lub zbyt drogi](#the-result-is-too-slow-or-too-expensive)
-  - [Interfejs jest w niewłaściwym języku](#the-interface-is-in-the-wrong-language)
-  - [Tekst jest zbyt mały lub trudny do odczytania](#the-text-is-too-small-or-hard-to-read)
+  - [Interfejs jest w złym języku](#the-interface-is-in-the-wrong-language)
+  - [Tekst jest za mały lub trudny do odczytania](#the-text-is-too-small-or-hard-to-read)
   - [Podsumowanie panelu wygląda na puste](#dashboard-summary-looks-empty)
-  - [Koszt pokazuje "niedostępne" lub wydaje się błędny](#cost-shows-not-available-or-seems-wrong)
-  - [Całkowity koszt nie zgadza się z rachunkiem mojego dostawcy](#total-cost-does-not-match-my-provider-bill)
-  - [Strona historii brakuje w pasku bocznym](#the-history-page-is-missing-from-the-sidebar)
-  - [Aplikacja internetowa: nieoczekiwanie przekierowano na stronę logowania](#web-app-redirected-to-the-login-page-unexpectedly)
-  - [Administrator internetowy: zapomniałem lub zgubiłem hasło](#web-admin-forgot-or-lost-a-password)
-  - [Panel nie pokazuje danych dla innych użytkowników (web)](#dashboard-shows-no-data-for-other-users-web)
+  - [Koszt pokazuje „niedostępny” lub wydaje się nieprawidłowy](#cost-shows-not-available-or-seems-wrong)
+  - [Całkowity koszt nie zgadza się z moim rachunkiem od dostawcy](#total-cost-does-not-match-my-provider-bill)
+  - [Strona Historia brakuje na pasku bocznym](#the-history-page-is-missing-from-the-sidebar)
+  - [Aplikacja internetowa: nieoczekiwane przekierowanie do strony logowania](#web-app-redirected-to-the-login-page-unexpectedly)
+  - [Panel administratora: zapomniane lub utracone hasło](#web-admin-forgot-or-lost-a-password)
+  - [Panel nie pokazuje danych dla innych użytkowników (sieć)](#dashboard-shows-no-data-for-other-users-web)
   - [Zmieniłem monit i straciłem edycje](#i-changed-a-prompt-and-lost-the-edits)
 - [Szybkie wskazówki](#quick-tips)
 - [Zastrzeżenie](#disclaimer)
@@ -297,6 +299,27 @@ Po udanym tłumaczeniu, **Przeformułuj…** oraz rozwijane menu wersji pojawiaj
 1. **Przeformułuj…** — bez zaznaczonego tekstu w wyjściu, uzyskaj pełne tłumaczenie tego samego wejścia z innym sformułowaniem. Model otrzymuje każdą wersję, którą już masz, więc nowe sformułowanie może różnić się od wszystkich. Możesz przechowywać do **pięciu** wersji i przełączać się między nimi w rozwijanym menu wersji. Przy zaznaczonym tekście, **Przeformułuj…** otwiera alternatywy słów w pobliżu zaznaczenia (tak jak kliknięcie prawym przyciskiem myszy). Bez zaznaczenia, **Przeformułuj…** jest wyłączone, gdy osiągniesz pięć wersji; przy zaznaczeniu nadal działa przy pięciu wersjach (tylko alternatywy słów, aktualizując wersję 5). Gdy pełne przeformułowanie jest w toku, kliknij **Zatrzymaj Tłumaczenie**, aby anulować; wyjście wraca do wersji, która była aktywna, gdy rozpoczęło się przeformułowanie.
 2. **Alternatywy słów** — zaznacz jedno lub więcej słów lub krótką frazę w wyjściu (jeśli zaznaczysz tylko część słowa, aplikacja rozszerza zaznaczenie do pełnych słów), a następnie kliknij prawym przyciskiem myszy lub kliknij **Przeformułuj…**. Krótka lista alternatyw pojawia się w pobliżu zaznaczenia; kliknij jedną, aby ją zastąpić. Każda opcja może zastąpić nieco szerszy zakres niż twoje zaznaczenie (na przykład sąsiedni przyimek lub artykuł), aby zdanie pozostało gramatyczne. Jeśli masz mniej niż pięć wersji, edytowane wyjście jest zapisywane jako nowa wersja; przy pięciu wersjach, tylko **wersja 5** jest aktualizowana. Kliknięcie prawym przyciskiem myszy bez zaznaczenia nic nie robi. Naciśnij **Esc** lub kliknij poza listą, aby anulować bez zmiany wyjścia.
 3. **Koszty** — każde pełne **Przeformułuj…** (bez zaznaczenia) i każde żądanie alternatywy słów ponownie wykorzystuje model i może zwiększyć koszt użytkowania (tak jak normalne uruchomienie tłumaczenia).
+
+<br/>
+
+<a id="using-the-glossary"></a>
+### Korzystanie ze słownika
+
+**Słownik** to lista par terminów źródłowych i docelowych dla konkretnej pary językowej. Gdy słownik jest włączony, Transrewrt wysyła pasujące terminy do modelu, dzięki czemu preferowane przez Ciebie słownictwo pozostaje spójne w tłumaczeniach (na przykład nazwa produktu, termin marki lub stanowisko, które zawsze powinno być tłumaczone w ten sam sposób).
+
+Aby z niego skorzystać na stronie **Tłumaczenie**:
+
+1. Włącz przełącznik **Słownik** w panelu wejściowym (obok przełączników automatycznego wykonywania i automatycznego kopiowania).
+2. Wybierz języki **Z** i **Do** oraz tłumacz jak zwykle. Zapisane terminy dla tej pary językowej są stosowane automatycznie.
+3. Aby przechwycić nową parę w locie, kliknij **Dodaj do słownika** (obok selektora języka **Z:**). Okno dialogowe jest wstępnie wypełnione Twoimi aktualnymi językami, więc musisz tylko wypełnić **termin źródłowy** i **termin docelowy**.
+4. Użyj linku **Słownik** w stopce wyjściowej (lub linku **Zarządzaj słownikiem** w oknie dialogowym), aby przejść do [**Ustawienia** > **Słownik**](#glossary-settings) i przejrzeć wszystkie swoje terminy.
+
+Terminy dodajesz, edytujesz, importujesz i eksportujesz w zakładce [**Ustawienia** > **Słownik**](#glossary-settings) — patrz poniżej.
+
+<br/>
+
+> ℹ️ **UWAGA**<br/>
+> Terminy słownika są dopasowywane według **pary językowej**, więc termin zapisany dla angielskiego → francuskiego nie jest stosowany podczas tłumaczenia z angielskiego na niemiecki. Słownik nie może być używany z opcją **Wykryj język** jako źródłem, ponieważ do dopasowania terminów potrzebny jest konkretny język źródłowy.
 
 [--------------------------------------------------------------------------------------------------------------------------]: #
 
@@ -555,6 +578,7 @@ Dostępne karty zależą od platformy i Twojej roli:
   | Języki           |   tak   |     tak     |        tak         |                                              |
   | Śledzenie kosztów    |   tak   |     tak     |         -          |                                              |
   | Przekształć        |   tak   |     tak     |        tak         | Masowy import/eksport zachęt przekształceń      |
+  | Słownik         |   tak   |     tak     |        tak         | Pary terminów zastosowane podczas tłumaczenia        |
   | Użytkownicy            |    -    |     tak     |         -          |                                              |
   | Konfiguracja API       |   tak   |     tak     |         -          |                                              |
   | O programie            |   tak   |     tak     |        tak         |                                              |
@@ -704,6 +728,27 @@ Możesz:
 - importować podpowiedzi z pliku
 - eksportować podpowiedzi w celu tworzenia kopii zapasowych lub udostępniania
 - załadować przykładowe zachęty do listy podpowiedzi
+
+<br/>
+
+<a id="glossary-settings"></a>
+### Słownik (zakładka ustawień)
+
+Użyj **Ustawienia** > **Słownik**, aby zarządzać parami terminów stosowanymi podczas tłumaczenia (patrz [Korzystanie ze słownika](#using-the-glossary)). Każdy termin ma **język źródłowy**, **język docelowy**, **termin źródłowy** i **termin docelowy**.
+
+Możesz:
+
+- **Dodaj termin** — wypełnij wiersz na dole tabeli (wybierz języki, wpisz terminy źródłowy i docelowy) i kliknij przycisk **+**.
+- **Znajdź terminy** — filtruj listę według **języka źródłowego**, **języka docelowego** lub **tekstu**; kliknij **Wyczyść filtry**, aby zresetować.
+- **Usuń termin** — kliknij ikonę kosza na śmieci w jego wierszu.
+- **Importuj** — załaduj terminy z pliku `.csv`, `.xlsx` lub `.xls`. Plik powinien zawierać kolumny `source_language`, `target_language`, `source_text` i `target_text`.
+- **Eksportuj CSV** / **Eksportuj XLSX** — pobierz wszystkie swoje terminy w celu wykonania kopii zapasowej lub udostępnienia.
+- **Szablon CSV** / **Szablon XLSX** — pobierz pusty plik z poprawnymi nagłówkami kolumn do wypełnienia i zaimportowania.
+
+<br/>
+
+> ℹ️ **UWAGA**<br/>
+> W **aplikacji desktopowej** słownik jest przechowywany lokalnie. W **wersji internetowej** każdy użytkownik ma swój własny słownik, więc Twoje terminy nie wpływają na innych użytkowników.
 
 <br/>
 

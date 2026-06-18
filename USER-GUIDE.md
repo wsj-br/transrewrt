@@ -55,7 +55,8 @@ This guide explains how to use the app once it is installed and running. For ins
   - [Translate text](#translate-text)
   - [Language selection](#language-selection)
   - [Helpful translation settings](#helpful-translation-settings)
-  - [Refining your translation](#refining-translation)
+  - [Refining your translation](#refining-your-translation)
+  - [Using the glossary](#using-the-glossary)
 - [Rewrite](#rewrite)
 - [Transform](#transform)
   - [Run an existing prompt](#run-an-existing-prompt)
@@ -77,6 +78,7 @@ This guide explains how to use the app once it is installed and running. For ins
   - [Languages](#languages)
   - [Cost tracking](#cost-tracking)
   - [Transform (settings tab)](#transform-settings-tab)
+  - [Glossary (settings tab)](#glossary-settings-tab)
   - [Users](#users)
   - [API config](#api-config)
   - [About](#about)
@@ -301,6 +303,27 @@ After a successful translation, **Rephrase…** and the version dropdown appear 
 1. **Rephrase…** — with no text selected in the output, get another full translation of the same input with different wording. The model receives every version you already have so the new wording can differ from all of them. You can store up to **five** versions and switch between them in the version dropdown. With text selected, **Rephrase…** opens word alternatives near the selection (same as right-click). Without a selection, **Rephrase…** is disabled once you reach five versions; with a selection, it still works at five versions (word alternatives only, updating version 5). While a full rephrase is running, click **Stop Translate** to cancel; the output returns to the version that was active when the rephrase started.
 2. **Word alternatives** — select one or more words or a short phrase in the output (if you select only part of a word, the app expands the selection to full words), then right-click or click **Rephrase…**. A short list of alternatives appears near the selection; click one to replace it. Each option may replace a slightly wider span than your selection (for example an adjacent preposition or article) so the sentence stays grammatical. If you have fewer than five versions, the edited output is saved as a new version; at five versions, only **version 5** is updated. Right-click with no selection does nothing. Press **Esc** or click outside the list to cancel without changing the output.
 3. **Costs** — each full **Rephrase…** (no selection) and each word-alternative request uses the model again and may add to usage cost (same as a normal translate run).
+
+<br/>
+
+<a id="using-the-glossary"></a>
+### Using the glossary
+
+A **glossary** is a list of source/target term pairs for a specific language pair. When the glossary is on, Transrewrt sends the matching terms to the model so your preferred wording stays consistent across translations (for example a product name, a brand term, or a job title that should always be translated the same way).
+
+To use it on the **Translate** page:
+
+1. Turn on the **Glossary** switch in the input panel (next to the auto-execute and auto-copy switches).
+2. Choose your **From** and **To** languages and translate as usual. Terms saved for that language pair are applied automatically.
+3. To capture a new pair on the fly, click **Add to Glossary** (next to the **From:** language selector). The dialog is pre-filled with your current languages so you only fill in the **source term** and **target term**.
+4. Use the **Glossary** link in the output footer (or the **Manage glossary** link inside the dialog) to jump to [**Settings** > **Glossary**](#glossary-settings) and review all your terms.
+
+You add, edit, import, and export terms in the [**Settings** > **Glossary**](#glossary-settings) tab — see below.
+
+<br/>
+
+> ℹ️ **NOTE**<br/>
+> Glossary terms are matched by **language pair**, so a term saved for English → French is not applied when translating English → German. The glossary cannot be used with **Detect Language** as the source, because a specific source language is needed to match terms.
 
 [--------------------------------------------------------------------------------------------------------------------------]: #
 
@@ -561,6 +584,7 @@ The available tabs depend on the platform and your role:
   | Languages        |   yes   |     yes     |        yes         |                                              |
   | Cost Tracking    |   yes   |     yes     |         -          |                                              |
   | Transform        |   yes   |     yes     |        yes         | Bulk import/export of transform prompts      |
+  | Glossary         |   yes   |     yes     |        yes         | Term pairs applied during translation        |
   | Users            |    -    |     yes     |         -          |                                              |
   | API Config       |   yes   |     yes     |         -          |                                              |
   | About            |   yes   |     yes     |        yes         |                                              |
@@ -716,6 +740,27 @@ You can:
 - import prompts from a file
 - export prompts for backup or sharing
 - load sample prompts to the prompt list
+
+<br/>
+
+<a id="glossary-settings"></a>
+### Glossary (settings tab)
+
+Use **Settings** > **Glossary** to manage the term pairs applied during translation (see [Using the glossary](#using-the-glossary)). Each term has a **source language**, **target language**, **source term**, and **target term**.
+
+You can:
+
+- **Add a term** — fill in the row at the bottom of the table (pick the languages, type the source and target terms) and click the **+** button.
+- **Find terms** — filter the list by **Source language**, **Target language**, or free **text**; click **Clear filters** to reset.
+- **Delete a term** — click the trash-bin icon on its row.
+- **Import** — load terms from a `.csv`, `.xlsx`, or `.xls` file. The file should have the columns `source_language`, `target_language`, `source_text`, and `target_text`.
+- **Export CSV** / **Export XLSX** — download all your terms for backup or sharing.
+- **Template CSV** / **Template XLSX** — download an empty file with the correct column headers to fill in and import.
+
+<br/>
+
+> ℹ️ **NOTE**<br/>
+> In the **desktop app**, the glossary is stored locally. In the **web version**, each user has their own glossary, so your terms do not affect other users.
 
 <br/>
 

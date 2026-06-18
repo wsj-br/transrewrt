@@ -13,15 +13,16 @@
 Instrument text AI: traduce între limbi, rescrie în stiluri diferite și transformă cu prompturi personalizate – utilizând mai mulți furnizori de AI (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI și Ollama local). Rulează ca aplicație desktop (Electron) sau aplicație web auto-găzduită (Docker).
 
 - **Traducere** - între zeci de limbi, cu detectare automată a sursei
-- **Rescriere** - corectarea gramaticii, îmbunătățirea clarității, stil formal/informal, scurtare, extindere, conținut tehnic
-- **Transformare** - prompturi personalizate AI; creare și gestionare prompturi, limbă destinație opțională pentru fiecare prompt
-- **Istoric** - istoric complet al execuțiilor cu text de intrare/ieșire, filtrare și export
-- **Ușor & Avansat** - Mod ușor (implicit): setări predefinite selectate pentru fiecare furnizor (**Gratuit (OpenRouter)**, **Standard**, **Avansat**, **Tehnic**; apar doar setările predefinite care au o corespondență pentru furnizorul selectat), fără alegerea ID-urilor de model; Mod avansat: listă completă de modele din furnizorii configurați
-- **Modele & cost** - tablouri de bord pentru cost și utilizare (Rezumat, După model, Toate apelurile) cu opțiune de export; OpenRouter afișează cheltuielile reale, ceilalți furnizori utilizează estimări
-- **Interfață utilizator (UI)** - interfață multilingvă (peste 30 de limbi, suport RTL), fonturi, ...
-- **Mod web** - suport pentru mai mulți utilizatori cu roluri de administrator
-- **Desktop** - Aplicație Electron pentru Windows și Linux
-- **Auto-găzduit** - Imagine Docker pentru amd64 și arm64 (pregătită pentru Raspberry Pi)
+- **Reescriere** - corectare gramaticală, îmbunătățire claritate, formal/informal, scurtare, extindere, tehnic
+- **Transformare** - prompturi AI personalizate; creați și gestionați prompturi, limbă țintă opțională per prompt
+- **Glosar** - stocați perechi termen sursă/țintă per pereche de limbi și aplicați-le în timpul traducerii, astfel încât termenii aleși să rămână constanți; gestionați termenii în Setări (adăugare/editare/ștergere, import CSV/XLSX și export șablon)
+- **Istoric** - istoric complet de execuție cu text de intrare/ieșire, filtrare și export
+- **Ușor și Avansat** - Mod Ușor (implicit): presetări curate per furnizor (**Gratuit (OpenRouter)**, **Standard**, **Avansat**, **Tehnic**; apar doar presetările cu o mapare pentru furnizorul selectat) fără a alege ID-uri de model; Mod Avansat: listă completă de modele de la furnizorii dvs. configurați
+- **Modele și cost** - tablouri de bord pentru costuri și utilizare (Sumar, După model, Toate apelurile) cu export; OpenRouter afișează cheltuielile reale, alți furnizori folosesc estimări
+- **Interfață** - interfață multilingvă (peste 30 de limbi, suport RTL), fonturi, ...
+- **Mod Web** - suport multi-utilizator cu roluri de administrator
+- **Desktop** - aplicație Electron pentru Windows și Linux
+- **Auto-găzduit** - imagine Docker pentru amd64 și arm64 (pregătit pentru Raspberry Pi)
 
 Odată instalat, consultați [**Ghidul utilizatorului**](USER-GUIDE.ro.md) pentru o prezentare completă a tuturor funcțiilor.
 

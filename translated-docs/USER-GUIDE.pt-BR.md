@@ -51,29 +51,31 @@ Este guia explica como usar o aplicativo após instalado e em execução. Para a
 - [Traduzir](#translate)
   - [Traduzir texto](#translate-text)
   - [Seleção de idioma](#language-selection)
-  - [Configurações de tradução úteis](#helpful-translation-settings)
-  - [Aprimorando sua tradução](#refining-translation)
+  - [Configurações úteis de tradução](#helpful-translation-settings)
+  - [Refinar sua tradução](#refining-your-translation)
+  - [Usando o glossário](#using-the-glossary)
 - [Reescrita](#rewrite)
 - [Transformar](#transform)
   - [Executar um prompt existente](#run-an-existing-prompt)
-  - [Se você ainda não tiver prompts](#if-you-have-no-prompts-yet)
+  - [Se você ainda não tem prompts](#if-you-have-no-prompts-yet)
   - [Criar um prompt rapidamente](#create-a-prompt-quickly)
   - [Editar um prompt](#edit-a-prompt)
   - [Testar um prompt antes de usá-lo](#test-a-prompt-before-using-it)
 - [Painel](#dashboard)
   - [Filtrar os dados](#filter-the-data)
-  - [Guias do painel](#dashboard-tabs)
+  - [Abas do painel](#dashboard-tabs)
   - [Exportar dados](#export-data)
   - [Excluir registros armazenados para um modelo](#delete-stored-records-for-a-model)
 - [Histórico](#history)
   - [Filtrar o histórico](#filter-the-history)
   - [Exportar dados do histórico](#export-history-data)
 - [Configurações](#settings)
-  - [Configurações gerais](#general-settings)
+  - [Configurações Gerais](#general-settings)
   - [Modelos](#models)
   - [Idiomas](#languages)
-  - [Rastreamento de custos](#cost-tracking)
-  - [Transformar (guia de configurações)](#transform-settings-tab)
+  - [Rastreamento de Custos](#cost-tracking)
+  - [Transformar (aba de configurações)](#transform-settings-tab)
+  - [Glossário (aba de configurações)](#glossary-settings-tab)
   - [Usuários](#users)
   - [Configuração da API](#api-config)
   - [Sobre](#about)
@@ -83,16 +85,16 @@ Este guia explica como usar o aplicativo após instalado e em execução. Para a
   - [O resultado é muito lento ou muito caro](#the-result-is-too-slow-or-too-expensive)
   - [A interface está no idioma errado](#the-interface-is-in-the-wrong-language)
   - [O texto é muito pequeno ou difícil de ler](#the-text-is-too-small-or-hard-to-read)
-  - [O resumo do painel parece vazio](#dashboard-summary-looks-empty)
-  - [O custo mostra "não disponível" ou parece errado](#cost-shows-not-available-or-seems-wrong)
-  - [O custo total não corresponde à fatura do meu provedor](#total-cost-does-not-match-my-provider-bill)
-  - [A página de histórico está faltando na barra lateral](#the-history-page-is-missing-from-the-sidebar)
-  - [Aplicativo web: redirecionado para a página de login inesperadamente](#web-app-redirected-to-the-login-page-unexpectedly)
-  - [Admin web: esqueci ou perdi uma senha](#web-admin-forgot-or-lost-a-password)
-  - [O painel não mostra dados para outros usuários (web)](#dashboard-shows-no-data-for-other-users-web)
-  - [Eu mudei um prompt e perdi as edições](#i-changed-a-prompt-and-lost-the-edits)
+  - [Resumo do Painel parece vazio](#dashboard-summary-looks-empty)
+  - [Custo mostra "não disponível" ou parece incorreto](#cost-shows-not-available-or-seems-wrong)
+  - [Custo Total não corresponde à minha fatura do provedor](#total-cost-does-not-match-my-provider-bill)
+  - [A página Histórico está faltando na barra lateral](#the-history-page-is-missing-from-the-sidebar)
+  - [Aplicativo Web: redirecionado inesperadamente para a página de login](#web-app-redirected-to-the-login-page-unexpectedly)
+  - [Admin Web: senha esquecida ou perdida](#web-admin-forgot-or-lost-a-password)
+  - [Painel não mostra dados para outros usuários (web)](#dashboard-shows-no-data-for-other-users-web)
+  - [Mudei um prompt e perdi as edições](#i-changed-a-prompt-and-lost-the-edits)
 - [Dicas rápidas](#quick-tips)
-- [Isenção de responsabilidade](#disclaimer)
+- [Aviso Legal](#disclaimer)
 - [Licença](#license)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -297,6 +299,27 @@ Após uma tradução bem-sucedida, **Reescrever…** e o menu suspenso de versõ
 1. **Reescrever…** — sem nenhum texto selecionado na saída, obtenha outra tradução completa da mesma entrada com palavras diferentes. O modelo recebe todas as versões que você já possui para que a nova redação possa diferir de todas elas. Você pode armazenar até **cinco** versões e alternar entre elas no menu suspenso de versões. Com texto selecionado, **Reescrever…** abre alternativas de palavras perto da seleção (o mesmo que clicar com o botão direito). Sem seleção, **Reescrever…** é desativado ao atingir cinco versões; com seleção, ele ainda funciona em cinco versões (apenas alternativas de palavras, atualizando a versão 5). Enquanto uma reescrita completa estiver em execução, clique em **Parar tradução** para cancelar; a saída retorna à versão que estava ativa quando a reescrita começou.
 2. **Alternativas de palavras** — selecione uma ou mais palavras ou uma frase curta na saída (se você selecionar apenas parte de uma palavra, o app expande a seleção para palavras inteiras), depois clique com o botão direito ou em **Reescrever…**. Uma lista curta de alternativas aparece perto da seleção; clique em uma para substituí-la. Cada opção pode substituir um trecho ligeiramente maior que sua seleção (por exemplo, uma preposição ou artigo adjacente) para que a frase permaneça gramatical. Se você tiver menos de cinco versões, a saída editada é salva como uma nova versão; em cinco versões, apenas a **versão 5** é atualizada. Clicar com o botão direito sem seleção não faz nada. Pressione **Esc** ou clique fora da lista para cancelar sem alterar a saída.
 3. **Custos** — cada **Reescrever…** completo (sem seleção) e cada solicitação de alternativa de palavras usa o modelo novamente e pode aumentar o custo de uso (o mesmo que uma execução normal de tradução).
+
+<br/>
+
+<a id="using-the-glossary"></a>
+### Usando o glossário
+
+Um **glossário** é uma lista de pares de termos de origem/destino para um par de idiomas específico. Quando o glossário está ativado, o Transrewrt envia os termos correspondentes para o modelo, para que sua redação preferida permaneça consistente nas traduções (por exemplo, um nome de produto, um termo de marca ou um cargo que deve ser sempre traduzido da mesma forma).
+
+Para usá-lo na página **Traduzir**:
+
+1. Ative o interruptor **Glossário** no painel de entrada (ao lado dos interruptores de execução automática e cópia automática).
+2. Escolha seus idiomas de **Origem** e **Destino** e traduza normalmente. Os termos salvos para esse par de idiomas são aplicados automaticamente.
+3. Para capturar um novo par rapidamente, clique em **Adicionar ao Glossário** (ao lado do seletor de idioma **De:**). A caixa de diálogo é pré-preenchida com seus idiomas atuais, para que você preencha apenas o **termo de origem** e o **termo de destino**.
+4. Use o link **Glossário** no rodapé da saída (ou o link **Gerenciar glossário** dentro da caixa de diálogo) para ir para [**Configurações** > **Glossário**](#glossary-settings) e revisar todos os seus termos.
+
+Você adiciona, edita, importa e exporta termos na aba [**Configurações** > **Glossário**](#glossary-settings) — veja abaixo.
+
+<br/>
+
+> ℹ️ **NOTA**<br/>
+> Os termos do glossário são correspondidos por **par de idiomas**, portanto, um termo salvo para Inglês → Francês não é aplicado ao traduzir Inglês → Alemão. O glossário não pode ser usado com **Detectar idioma** como origem, pois um idioma de origem específico é necessário para corresponder aos termos.
 
 [--------------------------------------------------------------------------------------------------------------------------]: #
 
@@ -555,6 +578,7 @@ As guias disponíveis dependem da plataforma e da sua função:
   | Idiomas         |   sim   |     sim     |        sim         | |
   | Rastreamento de Custo     |   sim   |     sim     |         -          | |
   | Transformar         |   sim   |     sim     |        sim         | Importação/exportação em massa de prompts de transformação |
+  | Glossário        |   sim   |     sim     |        sim         | Pares de termos aplicados durante a tradução        |
   | Usuários             |    -    |     sim     |         -          | |
   | Configuração de API        |   sim   |     sim     |         -          | |
   | Sobre             |   sim   |     sim     |        sim         | |
@@ -704,6 +728,27 @@ Você pode:
 - importar prompts de um arquivo
 - exportar prompts para backup ou compartilhamento
 - carregar prompts de exemplo para a lista de prompts
+
+<br/>
+
+<a id="glossary-settings"></a>
+### Glossário (aba de configurações)
+
+Use **Configurações** > **Glossário** para gerenciar os pares de termos aplicados durante a tradução (consulte [Usando o glossário](#using-the-glossary)). Cada termo tem um **idioma de origem**, **idioma de destino**, **termo de origem** e **termo de destino**.
+
+Você pode:
+
+- **Adicionar um termo** — preencha a linha na parte inferior da tabela (escolha os idiomas, digite os termos de origem e destino) e clique no botão **+**.
+- **Encontrar termos** — filtre a lista por **idioma de origem**, **idioma de destino** ou **texto** livre; clique em **Limpar filtros** para redefinir.
+- **Excluir um termo** — clique no ícone de lixeira na linha correspondente.
+- **Importar** — carregue termos de um arquivo `.csv`, `.xlsx` ou `.xls`. O arquivo deve ter as colunas `source_language`, `target_language`, `source_text` e `target_text`.
+- **Exportar CSV** / **Exportar XLSX** — baixe todos os seus termos para backup ou compartilhamento.
+- **Modelo CSV** / **Modelo XLSX** — baixe um arquivo vazio com os cabeçalhos de coluna corretos para preencher e importar.
+
+<br/>
+
+> ℹ️ **OBSERVAÇÃO**<br/>
+> No **aplicativo para desktop**, o glossário é armazenado localmente. Na **versão web**, cada usuário tem seu próprio glossário, portanto, seus termos não afetam outros usuários.
 
 <br/>
 

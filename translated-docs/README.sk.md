@@ -12,16 +12,17 @@
 
 Nástroj na spracovanie textu s využitím umelej inteligencie: preklad medzi jazykmi, prepis v rôznych štýloch a transformácia pomocou vlastných výziev – s využitím viacerých poskytovateľov AI (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI a lokálny Ollama). Spúšťa sa ako desktopová aplikácia (Electron) alebo ako samostatne hostovaná webová aplikácia (Docker).
 
-- **Preložiť** – medzi desiatkami jazykov s automatickým zistením zdrojového jazyka
-- **Prepísať** – opraviť gramatiku, zlepšiť zrozumiteľnosť, formálny/neformálny štýl, skrátiť, rozšíriť, technický obsah
-- **Transformovať** – vlastné výzvy pre umelú inteligenciu; vytváranie a správa výziev, voliteľný cieľový jazyk pre každú výzvu
-- **História** – kompletná histórija vykonaní vrátane vstupného a výstupného textu, filtrovania a exportu
-- **Jednoduchý & Pokročilý** - Jednoduchý režim (predvolené): vybrané predvoľby podľa poskytovateľa (**Zdarma (OpenRouter)**, **Štandardný**, **Pokročilý**, **Technický**; zobrazia sa len predvoľby s mapovaním pre vybraného poskytovateľa) bez výberu ID modelu; Pokročilý režim: kompletný zoznam modelov z vašich nakonfigurovaných poskytovateľov
-- **Modely a náklady** - informačné panely o nákladoch a využití (Zhrnutie, Podľa modelu, Všetky volania) s možnosťou exportu; OpenRouter zobrazuje skutočné výdavky, iní poskytovatelia používajú odhady
-- **UI** - viacjazyčné rozhranie (30+ jazykov, podpora RTL), písma, ...
-- **Webový režim** - podpora viacerých používateľov s rolami správcu
-- **Desktop** - Electron aplikácia pre Windows a Linux
-- **Samostatne hostované** - Docker obraz pre amd64 a arm64 (pripravené pre Raspberry Pi)
+- **Preložiť** - medzi desiatkami jazykov s automatickou detekciou zdroja
+- **Prepísať** - opraviť gramatiku, zlepšiť jasnosť, formálne/neformálne, skrátiť, rozšíriť, technické
+- **Transformovať** - vlastné výzvy AI; vytvárať a spravovať výzvy, voliteľný cieľový jazyk na výzvu
+- **Slovník** - ukladať páry zdrojových/cieľových termínov na pár jazykov a aplikovať ich počas prekladu, aby vybrané termíny zostali konzistentné; spravovať termíny v Nastaveniach (pridať/upraviť/odstrániť, import CSV/XLSX a export šablóny)
+- **História** - úplná história vykonávania so vstupným/výstupným textom, filtrovaním a exportom
+- **Jednoduché & Pokročilé** - Jednoduchý režim (predvolený): spravované predvoľby na poskytovateľa (**Zadarmo (OpenRouter)**, **Štandardné**, **Pokročilé**, **Technické**; zobrazia sa iba predvoľby s mapovaním pre vybraného poskytovateľa) bez výberu ID modelov; Pokročilý režim: úplný zoznam modelov od vašich nakonfigurovaných poskytovateľov
+- **Modely & náklady** - dashboardy nákladov a využitia (Súhrn, Podľa modelu, Všetky hovory) s exportom; OpenRouter zobrazuje skutočné výdavky, iní poskytovatelia používajú odhady
+- **UI** - viacjazyčné rozhranie (30+ jazykov, podpora RTL), fonty, ...
+- **Webový režim** - podpora viacerých používateľov s rolami administrátora
+- **Desktop** - aplikácia Electron pre Windows a Linux
+- **Vlastné hostenie** - obraz Docker pre amd64 & arm64 (pripravené pre Raspberry Pi)
 
 Po nainštalovaní si pozrite [**Používateľskú príručku**](USER-GUIDE.sk.md) pre podrobný prehľad všetkých funkcií.
 

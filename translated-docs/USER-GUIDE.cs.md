@@ -52,21 +52,22 @@ Tato příručka vysvětluje, jak aplikaci používat po její instalaci a spuš
   - [Přeložit text](#translate-text)
   - [Výběr jazyka](#language-selection)
   - [Užitečná nastavení překladu](#helpful-translation-settings)
-  - [Vylepšení vašeho překladu](#refining-translation)
+  - [Zpřesnění překladu](#refining-your-translation)
+  - [Použití slovníku](#using-the-glossary)
 - [Přepis](#rewrite)
 - [Transformace](#transform)
   - [Spustit existující výzvu](#run-an-existing-prompt)
-  - [Pokud zatím nemáte žádné výzvy](#if-you-have-no-prompts-yet)
-  - [Rychlé vytvoření výzvy](#create-a-prompt-quickly)
+  - [Pokud ještě nemáte žádné výzvy](#if-you-have-no-prompts-yet)
+  - [Rychle vytvořit výzvu](#create-a-prompt-quickly)
   - [Upravit výzvu](#edit-a-prompt)
   - [Otestovat výzvu před použitím](#test-a-prompt-before-using-it)
 - [Nástěnka](#dashboard)
-  - [Filtrujte data](#filter-the-data)
-  - [Karty na nástěnce](#dashboard-tabs)
+  - [Filtrovat data](#filter-the-data)
+  - [Karty nástěnky](#dashboard-tabs)
   - [Exportovat data](#export-data)
   - [Smazat uložené záznamy pro model](#delete-stored-records-for-a-model)
 - [Historie](#history)
-  - [Filtrujte historii](#filter-the-history)
+  - [Filtrovat historii](#filter-the-history)
   - [Exportovat data historie](#export-history-data)
 - [Nastavení](#settings)
   - [Obecná nastavení](#general-settings)
@@ -74,23 +75,24 @@ Tato příručka vysvětluje, jak aplikaci používat po její instalaci a spuš
   - [Jazyky](#languages)
   - [Sledování nákladů](#cost-tracking)
   - [Transformace (karta nastavení)](#transform-settings-tab)
+  - [Slovník (karta nastavení)](#glossary-settings-tab)
   - [Uživatelé](#users)
   - [Konfigurace API](#api-config)
   - [O aplikaci](#about)
 - [Běžné problémy](#common-issues)
-  - [Aplikace nepřekládá, nepřepisuje ani netransformuje text](#the-app-will-not-translate-rewrite-or-transform-text)
+  - [Aplikace nebude překládat, přepisovat ani transformovat text](#the-app-will-not-translate-rewrite-or-transform-text)
   - [Seznam modelů je prázdný](#the-model-list-is-empty)
   - [Výsledek je příliš pomalý nebo příliš drahý](#the-result-is-too-slow-or-too-expensive)
-  - [Rozhraní je v nesprávném jazyce](#the-interface-is-in-the-wrong-language)
-  - [Text je příliš malý nebo těžko čitelný](#the-text-is-too-small-or-hard-to-read)
-  - [Souhrn na nástěnce vypadá prázdně](#dashboard-summary-looks-empty)
-  - [Náklady ukazují "nedostupné" nebo se zdají být nesprávné](#cost-shows-not-available-or-seems-wrong)
-  - [Celkové náklady se neshodují s fakturou mého poskytovatele](#total-cost-does-not-match-my-provider-bill)
+  - [Rozhraní je ve špatném jazyce](#the-interface-is-in-the-wrong-language)
+  - [Text je příliš malý nebo špatně čitelný](#the-text-is-too-small-or-hard-to-read)
+  - [Souhrn nástěnky je prázdný](#dashboard-summary-looks-empty)
+  - [Náklady zobrazují "nedostupné" nebo se zdají být nesprávné](#cost-shows-not-available-or-seems-wrong)
+  - [Celkové náklady neodpovídají mé faktuře od poskytovatele](#total-cost-does-not-match-my-provider-bill)
   - [Stránka Historie chybí v postranním panelu](#the-history-page-is-missing-from-the-sidebar)
-  - [Webová aplikace: neočekávaně přesměrována na přihlašovací stránku](#web-app-redirected-to-the-login-page-unexpectedly)
-  - [Webový administrátor: zapomněl nebo ztratil heslo](#web-admin-forgot-or-lost-a-password)
-  - [Nástěnka nezobrazuje žádná data pro ostatní uživatele (web)](#dashboard-shows-no-data-for-other-users-web)
-  - [Změnil jsem výzvu a ztratil úpravy](#i-changed-a-prompt-and-lost-the-edits)
+  - [Webová aplikace: neočekávaně přesměrován na přihlašovací stránku](#web-app-redirected-to-the-login-page-unexpectedly)
+  - [Webový administrátor: zapomenuté nebo ztracené heslo](#web-admin-forgot-or-lost-a-password)
+  - [Nástěnka nezobrazuje žádná data pro jiné uživatele (web)](#dashboard-shows-no-data-for-other-users-web)
+  - [Změnil jsem výzvu a ztratil jsem úpravy](#i-changed-a-prompt-and-lost-the-edits)
 - [Rychlé tipy](#quick-tips)
 - [Zřeknutí se odpovědnosti](#disclaimer)
 - [Licence](#license)
@@ -297,6 +299,27 @@ Po úspěšném překladu se **Přefrázovat…** a rozbalovací nabídka verzí
 1. **Přefrázovat…** — pokud není v výstupu vybrán žádný text, získejte další plný překlad stejného vstupu s jinými slovy. Model obdrží každou verzi, kterou již máte, takže nová slova se mohou lišit od všech ostatních. Můžete uložit až **pět** verzí a přepínat mezi nimi v rozbalovací nabídce verzí. Pokud je text vybrán, **Přefrázovat…** otevře alternativy slov blízko výběru (stejně jako pravé kliknutí). Bez výběru je **Přefrázovat…** zakázáno, jakmile dosáhnete pěti verzí; s výběrem to stále funguje na pěti verzích (pouze alternativy slov, aktualizace verze 5). Když probíhá plné přefrázování, klikněte na **Zastavit překlad**, abyste zrušili; výstup se vrátí k verzi, která byla aktivní, když přefrázování začalo.
 2. **Alternativy slov** — vyberte jedno nebo více slov nebo krátkou frázi ve výstupu (pokud vyberete pouze část slova, aplikace rozšíří výběr na celá slova), poté klikněte pravým tlačítkem nebo klikněte na **Přefrázovat…**. Krátký seznam alternativ se objeví blízko výběru; klikněte na jednu, abyste ji nahradili. Každá možnost může nahradit mírně širší rozsah než váš výběr (například sousední předložku nebo článek), takže věta zůstává gramatická. Pokud máte méně než pět verzí, upravený výstup je uložen jako nová verze; při pěti verzích je aktualizována pouze **verze 5**. Pravé kliknutí bez výběru nic nedělá. Stiskněte **Esc** nebo klikněte mimo seznam, abyste zrušili bez změny výstupu.
 3. **Náklady** — každé plné **Přefrázovat…** (bez výběru) a každá žádost o alternativu slov znovu využívá model a může přidat k nákladům na použití (stejně jako běžný překlad).
+
+<br/>
+
+<a id="using-the-glossary"></a>
+### Použití slovníku
+
+**Slovník** je seznam párů zdrojových a cílových termínů pro konkrétní jazykový pár. Když je slovník zapnutý, Transrewrt odešle odpovídající termíny do modelu, takže vaše preferované znění zůstane konzistentní napříč překlady (například název produktu, značkový termín nebo název pozice, který by měl být vždy přeložen stejně).
+
+Chcete-li jej použít na stránce **Přeložit**:
+
+1. Zapněte přepínač **Slovník** v panelu vstupu (vedle přepínačů automatického spuštění a automatického kopírování).
+2. Vyberte své jazyky **Z** a **Do** a překládejte jako obvykle. Termíny uložené pro daný jazykový pár se aplikují automaticky.
+3. Chcete-li zachytit nový pár za běhu, klikněte na **Přidat do slovníku** (vedle výběru jazyka **Z:**). Dialogové okno bude předvyplněno vašimi aktuálními jazyky, takže vyplníte pouze **zdrojový termín** a **cílový termín**.
+4. Použijte odkaz **Slovník** v zápatí výstupu (nebo odkaz **Spravovat slovník** uvnitř dialogového okna) pro přechod na [**Nastavení** > **Slovník**](#glossary-settings) a zkontrolujte všechny své termíny.
+
+Termíny přidáváte, upravujete, importujete a exportujete na kartě [**Nastavení** > **Slovník**](#glossary-settings) — viz níže.
+
+<br/>
+
+> ℹ️ **POZNÁMKA**<br/>
+> Termíny slovníku se shodují podle **jazykového páru**, takže termín uložený pro angličtinu → francouzštinu se neaplikuje při překladu angličtiny → němčiny. Slovník nelze použít s možností **Detekovat jazyk** jako zdrojem, protože pro shodu termínů je vyžadován konkrétní zdrojový jazyk.
 
 [--------------------------------------------------------------------------------------------------------------------------]: #
 
@@ -555,6 +578,7 @@ Dostupné karty závisí na platformě a vaší roli:
   | Jazyky         |   ano   |     ano     |        ano         | |
   | Sledování nákladů     |   ano   |     ano     |         -          | |
   | Transformovat         |   ano   |     ano     |        ano         | Hromadný import/export transformačních výzev |
+  | Slovník         |   ano   |     ano     |        ano         | Pár termínů aplikovaný během překladu        |
   | Uživatelé             |    -    |     ano     |         -          | |
   | Nastavení API        |   ano   |     ano     |         -          | |
   | O aplikaci             |   ano   |     ano     |        ano         | |
@@ -704,6 +728,27 @@ Můžete:
 - importovat výzvy ze souboru
 - exportovat výzvy pro zálohování nebo sdílení
 - načíst ukázkové výzvy do seznamu výzev
+
+<br/>
+
+<a id="glossary-settings"></a>
+### Slovník (karta nastavení)
+
+Pomocí **Nastavení** > **Slovník** spravujte páry termínů používané během překladu (viz [Použití slovníku](#using-the-glossary)). Každý termín má **zdrojový jazyk**, **cílový jazyk**, **zdrojový termín** a **cílový termín**.
+
+Můžete:
+
+- **Přidat termín** — vyplňte řádek ve spodní části tabulky (vyberte jazyky, zadejte zdrojový a cílový termín) a klikněte na tlačítko **+**.
+- **Najít termíny** — filtrujte seznam podle **zdrojového jazyka**, **cílového jazyka** nebo volného **textu**; kliknutím na **Vymazat filtry** resetujte.
+- **Smazat termín** — klikněte na ikonu popelnice v jeho řádku.
+- **Importovat** — načtěte termíny ze souboru `.csv`, `.xlsx` nebo `.xls`. Soubor by měl mít sloupce `source_language`, `target_language`, `source_text` a `target_text`.
+- **Exportovat CSV** / **Exportovat XLSX** — stáhněte všechny své termíny pro zálohování nebo sdílení.
+- **Šablona CSV** / **Šablona XLSX** — stáhněte prázdný soubor se správnými záhlavími sloupců, které vyplníte a naimportujete.
+
+<br/>
+
+> ℹ️ **POZNÁMKA**<br/>
+> V **desktopové aplikaci** je slovník uložen lokálně. Ve **webové verzi** má každý uživatel svůj vlastní slovník, takže vaše termíny neovlivňují ostatní uživatele.
 
 <br/>
 

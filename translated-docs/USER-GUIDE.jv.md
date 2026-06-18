@@ -50,49 +50,51 @@ Pandhuan iki nerangake carane nggunakake aplikasi sawise diinstal lan dijalanake
   - [Panel input lan output](#input-and-output-panels)
 - [Terjemahake](#translate)
   - [Terjemahake teks](#translate-text)
-  - [Pilih bahasa](#language-selection)
-  - [Pengaturan terjemahan sing penting](#helpful-translation-settings)
-  - [Nglengkapi terjemahanmu](#refining-translation)
+  - [Pilihan basa](#language-selection)
+  - [Setelan terjemahan sing migunani](#helpful-translation-settings)
+  - [Nyaring terjemahanmu](#refining-your-translation)
+  - [Nggunakake glosarium](#using-the-glossary)
 - [Transrewrt](#rewrite)
 - [Transformasi](#transform)
-  - [Njaluk prompt sing wis ana](#run-an-existing-prompt)
-  - [Yen sampeyan durung duwe prompt](#if-you-have-no-prompts-yet)
+  - [Njalanke prompt sing wis ana](#run-an-existing-prompt)
+  - [Yen durung duwe prompt](#if-you-have-no-prompts-yet)
   - [Gawé prompt kanthi cepet](#create-a-prompt-quickly)
   - [Sunting prompt](#edit-a-prompt)
-  - [Tes prompt sadurunge digunakake](#test-a-prompt-before-using-it)
+  - [Tes prompt sadurung digunakake](#test-a-prompt-before-using-it)
 - [Dashboard](#dashboard)
   - [Filter data](#filter-the-data)
-  - [Tab dashboard](#dashboard-tabs)
+  - [Tab Dashboard](#dashboard-tabs)
   - [Ekspor data](#export-data)
-  - [Hapus catatan sing disimpen kanggo model](#delete-stored-records-for-a-model)
+  - [Hapus rekaman sing disimpen kanggo model](#delete-stored-records-for-a-model)
 - [Sejarah](#history)
-  - [Filter sejarah](#filter-the-history)
-  - [Ekspor data sejarah](#export-history-data)
+  - [Filter sajarah](#filter-the-history)
+  - [Ekspor data sajarah](#export-history-data)
 - [Pengaturan](#settings)
   - [Pengaturan umum](#general-settings)
   - [Model](#models)
-  - [Bahasa](#languages)
+  - [Basa](#languages)
   - [Pelacakan biaya](#cost-tracking)
-  - [Transformasi (tab pengaturan)](#transform-settings-tab)
+  - [Transformasi (tab setelan)](#transform-settings-tab)
+  - [Glosarium (tab setelan)](#glossary-settings-tab)
   - [Pengguna](#users)
   - [Konfigurasi API](#api-config)
   - [Ngenani](#about)
 - [Masalah umum](#common-issues)
-  - [Aplikasi ora bisa nerjemahake, transrewrt, utawa transformasi teks](#the-app-will-not-translate-rewrite-or-transform-text)
-  - [Daftar model kosong](#the-model-list-is-empty)
-  - [Hasil terlalu alon utawa terlalu larang](#the-result-is-too-slow-or-too-expensive)
-  - [Antarmuka nganggo basa sing salah](#the-interface-is-in-the-wrong-language)
-  - [Teks terlalu cilik utawa angel diwaca](#the-text-is-too-small-or-hard-to-read)
-  - [Ringkasan Dashboard katon kosong](#dashboard-summary-looks-empty)
-  - [Biaya nuduhake "ora tersedia" utawa katon salah](#cost-shows-not-available-or-seems-wrong)
-  - [Total biaya ora cocog karo tagihan penyedia](#total-cost-does-not-match-my-provider-bill)
-  - [Halaman Sejarah ilang saka sidebar](#the-history-page-is-missing-from-the-sidebar)
-  - [Aplikasi web: dialihake menyang halaman login kanthi ora dikarepake](#web-app-redirected-to-the-login-page-unexpectedly)
+  - [Aplikasi ora bakal nerjemahake, nulis ulang, utawa ngowahi teks](#the-app-will-not-translate-rewrite-or-transform-text)
+  - [Dhaptar model kosong](#the-model-list-is-empty)
+  - [Asil kakehan alon utawa larang](#the-result-is-too-slow-or-too-expensive)
+  - [Antarmuka ing basa sing salah](#the-interface-is-in-the-wrong-language)
+  - [Teks kakehan cilik utawa angel diwaca](#the-text-is-too-small-or-hard-to-read)
+  - [Ringkesan Dashboard katon kosong](#dashboard-summary-looks-empty)
+  - [Biaya nuduhake "ora kasedhiya" utawa katon salah](#cost-shows-not-available-or-seems-wrong)
+  - [Total biaya ora cocog karo tagihan panyedhakku](#total-cost-does-not-match-my-provider-bill)
+  - [Kaca Sejarah ilang saka sidebar](#the-history-page-is-missing-from-the-sidebar)
+  - [Aplikasi web: dialihake menyang kaca login kanthi ora dikarepke](#web-app-redirected-to-the-login-page-unexpectedly)
   - [Admin web: lali utawa ilang sandi](#web-admin-forgot-or-lost-a-password)
-  - [Dashboard ora nuduhake data kanggo pengguna liyane (web)](#dashboard-shows-no-data-for-other-users-web)
-  - [Aku ngganti prompt lan ilang suntingan](#i-changed-a-prompt-and-lost-the-edits)
+  - [Dashboard nuduhake ora ana data kanggo pangguna liyane (web)](#dashboard-shows-no-data-for-other-users-web)
+  - [Aku ngowahi prompt lan ilang suntingan](#i-changed-a-prompt-and-lost-the-edits)
 - [Tips cepet](#quick-tips)
-- [Pernyataan](#disclaimer)
+- [Sanggahan](#disclaimer)
 - [Lisènsi](#license)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -297,6 +299,27 @@ Sawise terjemahan sukses, **Rephrase…** lan dropdown versi muncul ing header o
 1. **Rephrase…** — tanpa teks sing dipilih ing output, entuk terjemahan lengkap liyane saka input sing padha kanthi wording sing beda. Model nampa saben versi sing wis sampeyan duwe supaya wording anyar bisa beda saka kabeh. Sampeyan bisa nyimpen nganti **lima** versi lan ganti antarane versi kasebut ing dropdown versi. Kanthi teks sing dipilih, **Rephrase…** mbukak alternatif tembung cedhak pilihan (sama kaya klik-tengen). Tanpa pilihan, **Rephrase…** dinonaktifake sawise sampeyan tekan lima versi; kanthi pilihan, isih bisa digunakake ing lima versi (alternatif tembung wae, nganyari versi 5). Nalika rephrase lengkap lagi mlaku, klik **Mandheg Terjemah** kanggo mbatalake; output bali menyang versi sing aktif nalika rephrase diwiwiti.
 2. **Alternatif tembung** — pilih siji utawa luwih tembung utawa frasa cekak ing output (yen sampeyan mung milih bagean saka tembung, aplikasi bakal ngembangake pilihan dadi tembung lengkap), banjur klik-tengen utawa klik **Rephrase…**. Dhaptar cekak alternatif muncul cedhak pilihan; klik siji kanggo ngganti. Saben pilihan bisa ngganti rentang sing luwih jembar tinimbang pilihan sampeyan (contone, preposisi utawa artikel sing cedhak) supaya ukara tetep gramatikal. Yen sampeyan duwe kurang saka lima versi, output sing diedit disimpen minangka versi anyar; ing lima versi, mung **versi 5** sing diupdate. Klik-tengen tanpa pilihan ora nindakake apa-apa. Pencet **Esc** utawa klik ing njaba dhaptar kanggo mbatalake tanpa ngganti output.
 3. **Biaya** — saben **Rephrase…** lengkap (tanpa pilihan) lan saben permintaan alternatif tembung nggunakake model maneh lan bisa nambah biaya panggunaan (sama kaya jalur terjemahan normal).
+
+<br/>
+
+<a id="using-the-glossary"></a>
+### Nggunakake glosarium
+
+A **glosarium** iku dhaptar pasangan istilah sumber/target kanggo pasangan basa tartamtu. Nalika glosarium aktif, Transrewrt ngirim istilah sing cocog menyang model supaya tembung pilihanmu tetep konsisten ing terjemahan (contone jeneng produk, istilah merek, utawa jabatan sing kudu tansah diterjemahake kanthi cara sing padha).
+
+Kanggo nggunakake ing kaca **Terjemahake**:
+
+1. Uripake saklar **Glosarium** ing panel input (samping saklar otomatis-leksanani lan otomatis-salin).
+2. Pilih basa **Saka** lan **Menyang** lan terjemahake kaya biasane. Istilah sing disimpen kanggo pasangan basa kasebut ditrapake kanthi otomatis.
+3. Kanggo njupuk pasangan anyar kanthi cepet, klik **Tambah menyang Glosarium** (samping pamilih basa **Saka:**). Dialog wis diisi kanthi basa saiki supaya sampeyan mung ngisi **istilah sumber** lan **istilah target**.
+4. Gunakake link **Glosarium** ing footer output (utawa link **Kelola glosarium** ing njero dialog) kanggo pindhah menyang [**Pengaturan** > **Glosarium**](#glossary-settings) lan mriksa kabeh istilahmu.
+
+Sampeyan nambah, nyunting, ngimpor, lan ngekspor istilah ing tab [**Pengaturan** > **Glosarium**](#glossary-settings) — delengen ing ngisor iki.
+
+<br/>
+
+> ℹ️ **CATETAN**<br/>
+> Istilah glosarium dicocokake miturut **pasangan basa**, dadi istilah sing disimpen kanggo Inggris → Prancis ora ditrapake nalika nerjemahake Inggris → Jerman. Glosarium ora bisa digunakake karo **Deteksi Basa** minangka sumber, amarga basa sumber tartamtu dibutuhake kanggo nyocokake istilah.
 
 [--------------------------------------------------------------------------------------------------------------------------]: #
 
@@ -555,6 +578,7 @@ Tab sing tersedia gumantung marang platform lan peran sampeyan:
   | Basa        |   ya   |     ya     |        ya         |                                              |
   | Pelacakan Biaya    |   ya   |     ya     |         -          |                                              |
   | Ubah        |   ya   |     ya     |        ya         | Impor/ekspor massal prompt transformasi      |
+  | Glosarium        |   ya   |     ya     |        ya         | Pasangan istilah ditrapake nalika nerjemahake        |
   | Pangguna            |    -    |     ya     |         -          |                                              |
   | Konfigurasi API       |   ya   |     ya     |         -          |                                              |
   | Tentang            |   ya   |     ya     |        ya         |                                              |
@@ -704,6 +728,27 @@ Sampeyan bisa:
 - ngimpor prompt saka file
 - mengekspor prompt kanggo cadangan utawa dibagi
 - muat contoh prompt menyang dhaptar prompt
+
+<br/>
+
+<a id="glossary-settings"></a>
+### Glosarium (tab setelan)
+
+Ginakaké **Pengaturan** > **Glosarium** kanggo ngatur pasangan istilah sing ditrapaké nalika nerjemahaké (pirsani [Nggunakaké glosarium](#using-the-glossary)). Saben istilah duwé **basa sumber**, **basa target**, **istilah sumber**, lan **istilah target**.
+
+Sampeyan bisa:
+
+- **Tambah istilah** — isi baris ing ngisor tabel (pilih basa, ketik istilah sumber lan target) banjur klik tombol **+**.
+- **Goleki istilah** — filter dhaptar miturut **Basa sumber**, **Basa target**, utawa **teks** bebas; klik **Busak filter** kanggo ngreset.
+- **Hapus istilah** — klik ikon tong sampah ing barisé.
+- **Impor** — muat istilah saka file `.csv`, `.xlsx`, utawa `.xls`. File kasebut kudu duwé kolom `source_language`, `target_language`, `source_text`, lan `target_text`.
+- **Ekspor CSV** / **Ekspor XLSX** — undhuh kabèh istilahmu kanggo cadangan utawa nuduhaké.
+- **Templat CSV** / **Templat XLSX** — undhuh file kosong kanthi judhul kolom sing bener kanggo diisi lan diimpor.
+
+<br/>
+
+> ℹ️ **CATETAN**<br/>
+> Ing **aplikasi desktop**, glosarium disimpen sacara lokal. Ing **versi web**, saben panganggo duwé glosarium dhéwé, mula istilahmu ora mengaruhi panganggo liyané.
 
 <br/>
 

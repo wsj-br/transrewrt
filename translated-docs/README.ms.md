@@ -12,16 +12,17 @@
 
 Alat teks bertenaga AI: terjemah antara bahasa, tulis semula dalam gaya berbeza, dan transformasi dengan prompt tersuai — menggunakan pelbagai penyedia AI (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, dan Ollama tempatan). Berjalan sebagai aplikasi desktop (Electron) atau aplikasi web yang dihos sendiri (Docker).
 
-- **Terjemahkan** - antara puluhan bahasa, dengan pengesanan sumber automatik
-- **Tulis semula** - betulkan tatabahasa, tingkatkan kejelasan, formal/tidak formal, ringkaskan, kembangkan, teknikal
-- **Transformasikan** - arahan AI tersuai; cipta dan urus arahan, bahasa sasaran pilihan mengikut arahan
-- **Sejarah** - sejarah pelaksanaan penuh dengan teks input/output, penapisan, dan eksport
-- **Mudah & Lanjutan** - Mod Mudah (lalai): tetapan prapasang terpilih mengikut penyedia (**Percuma (OpenRouter)**, **Piawai**, **Lanjutan**, **Teknikal**; hanya tetapan prapasang dengan pemetaan untuk penyedia terpilih yang dipaparkan) tanpa memilih ID model; Mod Lanjutan: senarai penuh model daripada penyedia yang telah dikonfigurasikan
-- **Model & kos** - papan pemuka kos dan penggunaan (Ringkasan, Mengikut Model, Semua Panggilan) dengan fungsi eksport; OpenRouter menunjukkan perbelanjaan sebenar, penyedia lain menggunakan anggaran
+- **Terjemah** - antara berpuluh-puluh bahasa, dengan pengesanan sumber automatik
+- **Menulis semula** - betulkan tatabahasa, tingkatkan kejelasan, formal/informal, pendekkan, panjangkan, teknikal
+- **Transformasi** - arahan AI tersuai; cipta dan urus arahan, bahasa sasaran pilihan setiap arahan
+- **Glosari** - simpan pasangan istilah sumber/sasaran setiap pasangan bahasa dan gunakannya semasa terjemahan supaya istilah yang dipilih kekal konsisten; urus istilah dalam Tetapan (tambah/edit/padam, import CSV/XLSX dan eksport templat)
+- **Sejarah** - sejarah pelaksanaan penuh dengan teks input/output, penapisan dan eksport
+- **Mudah & Lanjutan** - Mod Mudah (lalai): pratetapan yang dikurasi setiap pembekal (**Percuma (OpenRouter)**, **Standard**, **Lanjutan**, **Teknikal**; hanya pratetapan dengan pemetaan untuk pembekal yang dipilih akan muncul) tanpa memilih ID model; Mod Lanjutan: senarai model penuh daripada pembekal anda yang dikonfigurasikan
+- **Model & kos** - papan pemuka kos dan penggunaan (Ringkasan, Mengikut Model, Semua Panggilan) dengan eksport; OpenRouter menunjukkan perbelanjaan sebenar, pembekal lain menggunakan anggaran
 - **UI** - antara muka pelbagai bahasa (30+ bahasa, sokongan RTL), fon, ...
-- **Mod Web** - sokongan pengguna pelbagai dengan peranan pentadbir
-- **Desktop** - Aplikasi Electron untuk Windows dan Linux
-- **Swasta** - Imej Docker untuk amd64 & arm64 (sedia untuk Raspberry Pi)
+- **Mod Web** - sokongan berbilang pengguna dengan peranan admin
+- **Desktop** - apl Electron untuk Windows dan Linux
+- **Dihos sendiri** - imej Docker untuk amd64 & arm64 (sedia untuk Raspberry Pi)
 
 Selepas dipasang, rujuk [**Panduan Pengguna**](USER-GUIDE.ms.md) untuk penerangan lengkap semua ciri.
 

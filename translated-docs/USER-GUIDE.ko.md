@@ -48,17 +48,18 @@ Transrewrt는 텍스트 작업을 다음 세 가지 주요 방식으로 지원�
   - [툴바](#toolbar)
   - [입력 및 출력 패널](#input-and-output-panels)
 - [번역](#translate)
-  - [번역 텍스트](#translate-text)
+  - [텍스트 번역](#translate-text)
   - [언어 선택](#language-selection)
   - [유용한 번역 설정](#helpful-translation-settings)
-  - [번역 다듬기](#refining-translation)
+  - [번역 개선](#refining-your-translation)
+  - [용어집 사용](#using-the-glossary)
 - [다시 쓰기](#rewrite)
 - [변환](#transform)
   - [기존 프롬프트 실행](#run-an-existing-prompt)
-  - [프롬프트가 아직 없는 경우](#if-you-have-no-prompts-yet)
-  - [프롬프트를 빠르게 생성](#create-a-prompt-quickly)
+  - [아직 프롬프트가 없는 경우](#if-you-have-no-prompts-yet)
+  - [프롬프트 빠르게 만들기](#create-a-prompt-quickly)
   - [프롬프트 편집](#edit-a-prompt)
-  - [사용하기 전에 프롬프트 테스트](#test-a-prompt-before-using-it)
+  - [사용 전 프롬프트 테스트](#test-a-prompt-before-using-it)
 - [대시보드](#dashboard)
   - [데이터 필터링](#filter-the-data)
   - [대시보드 탭](#dashboard-tabs)
@@ -73,25 +74,26 @@ Transrewrt는 텍스트 작업을 다음 세 가지 주요 방식으로 지원�
   - [언어](#languages)
   - [비용 추적](#cost-tracking)
   - [변환 (설정 탭)](#transform-settings-tab)
+  - [용어집 (설정 탭)](#glossary-settings-tab)
   - [사용자](#users)
   - [API 구성](#api-config)
   - [정보](#about)
 - [일반적인 문제](#common-issues)
-  - [앱이 텍스트를 번역, 다시 쓰기 또는 변환하지 않음](#the-app-will-not-translate-rewrite-or-transform-text)
+  - [앱에서 텍스트를 번역, 다시 쓰기 또는 변환할 수 없음](#the-app-will-not-translate-rewrite-or-transform-text)
   - [모델 목록이 비어 있음](#the-model-list-is-empty)
-  - [결과가 너무 느리거나 비용이 너무 비쌈](#the-result-is-too-slow-or-too-expensive)
-  - [인터페이스가 잘못된 언어로 되어 있음](#the-interface-is-in-the-wrong-language)
+  - [결과가 너무 느리거나 너무 비쌈](#the-result-is-too-slow-or-too-expensive)
+  - [인터페이스 언어가 잘못됨](#the-interface-is-in-the-wrong-language)
   - [텍스트가 너무 작거나 읽기 어려움](#the-text-is-too-small-or-hard-to-read)
   - [대시보드 요약이 비어 있음](#dashboard-summary-looks-empty)
-  - [비용이 "사용 가능하지 않음" 또는 잘못된 것처럼 보임](#cost-shows-not-available-or-seems-wrong)
-  - [총 비용이 내 공급자 청구서와 일치하지 않음](#total-cost-does-not-match-my-provider-bill)
-  - [사이드바에서 기록 페이지가 없음](#the-history-page-is-missing-from-the-sidebar)
+  - [비용이 "사용 불가"로 표시되거나 잘못된 것 같음](#cost-shows-not-available-or-seems-wrong)
+  - [총 비용이 공급자 청구서와 일치하지 않음](#total-cost-does-not-match-my-provider-bill)
+  - [기록 페이지가 사이드바에 없음](#the-history-page-is-missing-from-the-sidebar)
   - [웹 앱: 예기치 않게 로그인 페이지로 리디렉션됨](#web-app-redirected-to-the-login-page-unexpectedly)
-  - [웹 관리자: 비밀번호를 잊어버리거나 분실함](#web-admin-forgot-or-lost-a-password)
-  - [대시보드에 다른 사용자에 대한 데이터가 없음 (웹)](#dashboard-shows-no-data-for-other-users-web)
-  - [프롬프트를 변경하고 편집 내용을 잃어버림](#i-changed-a-prompt-and-lost-the-edits)
+  - [웹 관리자: 비밀번호를 잊었거나 분실함](#web-admin-forgot-or-lost-a-password)
+  - [대시보드에 다른 사용자의 데이터가 표시되지 않음 (웹)](#dashboard-shows-no-data-for-other-users-web)
+  - [프롬프트를 변경했는데 편집 내용이 사라짐](#i-changed-a-prompt-and-lost-the-edits)
 - [빠른 팁](#quick-tips)
-- [면책 조항](#disclaimer)
+- [고지 사항](#disclaimer)
 - [라이선스](#license)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -296,6 +298,27 @@ Transrewrt를 처음 사용하는 경우 다음 순서를 따르세요:
 1. **Rephrase…** — 출력에서 텍스트가 선택되지 않은 경우, 동일한 입력에 대해 다른 단어로 전체 번역을 다시 얻습니다. 모델은 이미 가지고 있는 모든 버전을 수신하므로 새로운 단어는 그 중 어느 것과도 다를 수 있습니다. 최대 **다섯** 개의 버전을 저장하고 버전 드롭다운에서 전환할 수 있습니다. 텍스트가 선택된 경우, **Rephrase…** 는 선택 근처에 단어 대안을 엽니다 (우클릭과 동일). 선택이 없는 경우, **Rephrase…** 는 다섯 개의 버전에 도달하면 비활성화됩니다; 선택이 있는 경우, 여전히 다섯 개의 버전에서 작동합니다 (단어 대안만, 버전 5 업데이트). 전체 재구성이 실행되는 동안, **Stop Translate**를 클릭하여 취소할 수 있습니다; 출력은 재구성이 시작될 때 활성 상태였던 버전으로 돌아갑니다.
 2. **단어 대안** — 출력에서 하나 이상의 단어 또는 짧은 구문을 선택합니다 (단어의 일부만 선택하면, 앱이 선택을 전체 단어로 확장합니다), 그런 다음 우클릭하거나 **Rephrase…** 를 클릭합니다. 선택 근처에 대안의 짧은 목록이 나타나며, 하나를 클릭하여 교체합니다. 각 옵션은 선택보다 약간 더 넓은 범위를 교체할 수 있습니다 (예: 인접한 전치사나 관사) 그래서 문장이 문법적으로 유지됩니다. 다섯 개의 버전이 없는 경우, 편집된 출력은 새로운 버전으로 저장됩니다; 다섯 개의 버전에서, 오직 **version 5**만 업데이트됩니다. 선택 없이 우클릭하면 아무 것도 하지 않습니다. **Esc**를 누르거나 목록 외부를 클릭하여 출력을 변경하지 않고 취소합니다.
 3. **비용** — 각 전체 **Rephrase…** (선택 없음) 및 각 단어 대안 요청은 모델을 다시 사용하며 사용 비용을 추가할 수 있습니다 (정상 번역 실행과 동일).
+
+<br/>
+
+<a id="using-the-glossary"></a>
+### 용어집 사용
+
+**용어집**은 특정 언어 쌍에 대한 소스/대상 용어 쌍 목록입니다. 용어집이 켜져 있으면 Transrewrt는 모델에 일치하는 용어를 보내어 기본 설정 단어를 번역 전반에 걸쳐 일관되게 유지합니다 (예: 항상 동일하게 번역되어야 하는 제품 이름, 브랜드 용어 또는 직책).
+
+**번역** 페이지에서 사용하려면:
+
+1. 입력 패널에서 **용어집** 스위치를 켭니다 (자동 실행 및 자동 복사 스위치 옆).
+2. **원본** 및 **대상** 언어를 선택하고 평소처럼 번역합니다. 해당 언어 쌍에 대해 저장된 용어가 자동으로 적용됩니다.
+3. 즉석에서 새 쌍을 캡처하려면 **용어집에 추가**를 클릭합니다 (**원본:** 언어 선택기 옆). 대화 상자가 현재 언어로 미리 채워져 있으므로 **소스 용어**와 **대상 용어**만 입력하면 됩니다.
+4. 출력 바닥글의 **용어집** 링크 (또는 대화 상자 안의 **용어집 관리** 링크)를 사용하여 [**설정** > **용어집**](#glossary-settings)으로 이동하여 모든 용어를 검토합니다.
+
+용어는 [**설정** > **용어집**](#glossary-settings) 탭에서 추가, 편집, 가져오기 및 내보낼 수 있습니다. 아래를 참조하세요.
+
+<br/>
+
+> ℹ️ **참고**<br/>
+> 용어집 용어는 **언어 쌍**별로 일치하므로 영어 → 프랑스어에 대해 저장된 용어는 영어 → 독일어로 번역할 때 적용되지 않습니다. 특정 소스 언어가 용어와 일치해야 하므로 **언어 감지**를 소스로 사용하여 용어집을 사용할 수 없습니다.
 
 [--------------------------------------------------------------------------------------------------------------------------]: #
 
@@ -554,6 +577,7 @@ Transrewrt를 처음 사용하는 경우 다음 순서를 따르세요:
   | 언어 |   예   |     예     |        예         |                                              |
   | 비용 추적 |   예   |     예     |         -          |                                              |
   | 변환 |   예   |     예     |        예         | 변환 프롬프트의 일괄 내보내기/가져오기 |
+  | 용어집         |   예   |     예     |        예         | 번역 중 적용된 용어 쌍        |
   | 사용자 |    -    |     예     |         -          |                                              |
   | API 설정 |   예   |     예     |         -          |                                              |
   | 정보 |   예   |     예     |        예         |                                              |
@@ -703,6 +727,27 @@ Transrewrt를 처음 사용하는 경우 다음 순서를 따르세요:
 - 파일에서 프롬프트 가져오기
 - 백업 또는 공유를 위해 프롬프트 내보내기
 - 프롬프트 목록에 샘플 프롬프트 불러오기
+
+<br/>
+
+<a id="glossary-settings"></a>
+### 용어집 (설정 탭)
+
+번역 중에 적용되는 용어 쌍을 관리하려면 **설정** > **용어집**을(를) 사용하세요([용어집 사용](#using-the-glossary) 참조). 각 용어에는 **소스 언어**, **대상 언어**, **소스 용어**, **대상 용어**가 있습니다.
+
+다음 작업을 수행할 수 있습니다.
+
+- **용어 추가** — 테이블 하단의 행을 채우고(언어 선택, 소스 및 대상 용어 입력) **+** 버튼을 클릭합니다.
+- **용어 찾기** — **소스 언어**, **대상 언어** 또는 **텍스트**로 목록을 필터링합니다. **필터 지우기**를 클릭하여 재설정합니다.
+- **용어 삭제** — 해당 행의 휴지통 아이콘을 클릭합니다.
+- **가져오기** — `.csv`, `.xlsx` 또는 `.xls` 파일에서 용어를 로드합니다. 파일에는 `source_language`, `target_language`, `source_text`, `target_text` 열이 있어야 합니다.
+- **CSV 내보내기** / **XLSX 내보내기** — 백업 또는 공유를 위해 모든 용어를 다운로드합니다.
+- **CSV 템플릿** / **XLSX 템플릿** — 채워서 가져올 올바른 열 헤더가 있는 빈 파일을 다운로드합니다.
+
+<br/>
+
+> ℹ️ **참고**<br/>
+> **데스크톱 앱**에서는 용어집이 로컬에 저장됩니다. **웹 버전**에서는 각 사용자마다 고유한 용어집이 있으므로 사용자의 용어가 다른 사용자에게 영향을 미치지 않습니다.
 
 <br/>
 

@@ -12,16 +12,17 @@
 
 Mesterséges intelligencián alapuló szövegeszköz: fordítás több tucat nyelv között, átírás különböző stílusokban, és átalakítás egyéni parancsokkal – több MI-szolgáltatót használva (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI és helyi Ollama). Asztali alkalmazásként (Electron) vagy önállóan üzemeltethető webalkalmazásként (Docker) futtatható.
 
-- **Fordítás** – tucatnyi nyelv között, automatikus forrásnyelv-felismeréssel
-- **Átírás** – helyesírás-javítás, tisztaság javítása, formális/formálisabb stílus, rövidítés, bővítés, technikai szöveg
-- **Átalakítás** – egyéni AI-parancsok; parancsok létrehozása és kezelése, opcionális cél nyelv parancsonként
-- **Előzmények** – teljes végrehajtási előzmények bemeneti/kimeneti szöveggel, szűréssel és exportálással
-- **Egyszerű és Haladó** - Egyszerű mód (alapértelmezett): gondosan válogatott előbeállítások szolgáltatónként (**Ingyenes (OpenRouter)**, **Standard**, **Haladó**, **Műszaki**; csak a kiválasztott szolgáltatóhoz tartozó előbeállítások jelennek meg) modellazonosítók kiválasztása nélkül; Haladó mód: teljes modell lista a konfigurált szolgáltatóidtól
-- **Modellek és költség** - költség- és használati irányítópultok (Összegzés, Modell szerint, Összes hívás) exportálással; az OpenRouter a tényleges kiadásokat mutatja, más szolgáltatók becsléseket használnak
-- **Felhasználói felület** - többnyelvű felület (30+ nyelv, RTL támogatás), betűtípusok, ...
-- **Web mód** - többfelhasználós támogatás adminisztrátori szerepekkel
-- **Asztali alkalmazás** - Electron alkalmazás Windows és Linux rendszerekhez
-- **Saját kiszolgálón futtatható** - Docker kép amd64 és arm64 architektúrákhoz (Raspberry Pi-kompatibilis)
+- **Fordítás** - több tucat nyelv között, automatikus forrásfelismeréssel
+- **Átírás** - helyesírás javítása, érthetőség javítása, formális/informális, rövidítés, bővítés, technikai
+- **Átalakítás** - egyéni AI kérések; kérések létrehozása és kezelése, opcionális célnyelv kérésenként
+- **Szószedet** - forrás/cél kifejezés párok tárolása nyelvi páronként és alkalmazásuk fordítás közben, hogy a kiválasztott kifejezések konzisztensek maradjanak; kifejezések kezelése a Beállításokban (hozzáadás/szerkesztés/törlés, CSV/XLSX import és sablon export)
+- **Előzmények** - teljes végrehajtási előzmények bemeneti/kimeneti szöveggel, szűréssel és exportálással
+- **Egyszerű & Haladó** - Egyszerű mód (alapértelmezett): kurált előbeállítások szolgáltatónként (**Ingyenes (OpenRouter)**, **Standard**, **Haladó**, **Technikai**; csak a kiválasztott szolgáltatóhoz tartozó leképezéssel rendelkező előbeállítások jelennek meg) modellazonosítók kiválasztása nélkül; Haladó mód: a konfigurált szolgáltatók teljes modelllistája
+- **Modellek & költség** - költség- és használati irányítópultok (Összefoglaló, Modell szerint, Összes hívás) exporttal; az OpenRouter a tényleges kiadásokat mutatja, más szolgáltatók becsléseket használnak
+- **Felhasználói felület** - többnyelvű felület (30+ nyelv, jobbról balra írás támogatása), betűtípusok, ...
+- **Web mód** - több felhasználós támogatás rendszergazdai szerepkörökkel
+- **Asztali** - Electron alkalmazás Windows és Linux rendszerekre
+- **Önhostolt** - Docker kép amd64 és arm64 rendszerekhez (Raspberry Pi-kompatibilis)
 
 A telepítést követően tekintse meg a [**Felhasználói útmutatót**](USER-GUIDE.hu.md) az összes funkció részletes ismertetéséhez.
 

@@ -49,48 +49,50 @@ Transrewrt 可協助您以三種主要方式處理文字：
   - [工具列](#toolbar)
   - [輸入與輸出面板](#input-and-output-panels)
 - [翻譯](#translate)
-  - [翻譯文本](#translate-text)
+  - [翻譯文字](#translate-text)
   - [語言選擇](#language-selection)
-  - [有用的翻譯設定](#helpful-translation-settings)
-  - [精煉你的翻譯](#refining-translation)
+  - [實用的翻譯設定](#helpful-translation-settings)
+  - [優化您的翻譯](#refining-your-translation)
+  - [使用詞彙表](#using-the-glossary)
 - [重寫](#rewrite)
 - [轉換](#transform)
   - [執行現有提示](#run-an-existing-prompt)
-  - [如果你還沒有提示](#if-you-have-no-prompts-yet)
+  - [如果您還沒有提示](#if-you-have-no-prompts-yet)
   - [快速建立提示](#create-a-prompt-quickly)
   - [編輯提示](#edit-a-prompt)
-  - [在使用前測試提示](#test-a-prompt-before-using-it)
+  - [在實際使用前測試提示](#test-a-prompt-before-using-it)
 - [儀表板](#dashboard)
-  - [篩選數據](#filter-the-data)
-  - [儀表板標籤](#dashboard-tabs)
-  - [匯出數據](#export-data)
-  - [刪除模型的存儲記錄](#delete-stored-records-for-a-model)
+  - [篩選資料](#filter-the-data)
+  - [儀表板分頁](#dashboard-tabs)
+  - [匯出資料](#export-data)
+  - [刪除模型的已儲存記錄](#delete-stored-records-for-a-model)
 - [歷史記錄](#history)
   - [篩選歷史記錄](#filter-the-history)
-  - [匯出歷史數據](#export-history-data)
+  - [匯出歷史記錄資料](#export-history-data)
 - [設定](#settings)
   - [一般設定](#general-settings)
   - [模型](#models)
   - [語言](#languages)
   - [成本追蹤](#cost-tracking)
-  - [轉換（設定標籤）](#transform-settings-tab)
+  - [轉換（設定分頁）](#transform-settings-tab)
+  - [詞彙表（設定分頁）](#glossary-settings-tab)
   - [使用者](#users)
   - [API 設定](#api-config)
   - [關於](#about)
 - [常見問題](#common-issues)
-  - [應用程式無法翻譯、重寫或轉換文本](#the-app-will-not-translate-rewrite-or-transform-text)
+  - [應用程式無法翻譯、重寫或轉換文字](#the-app-will-not-translate-rewrite-or-transform-text)
   - [模型列表為空](#the-model-list-is-empty)
   - [結果太慢或太貴](#the-result-is-too-slow-or-too-expensive)
   - [介面語言錯誤](#the-interface-is-in-the-wrong-language)
-  - [文本太小或難以閱讀](#the-text-is-too-small-or-hard-to-read)
+  - [文字太小或難以閱讀](#the-text-is-too-small-or-hard-to-read)
   - [儀表板摘要看起來是空的](#dashboard-summary-looks-empty)
-  - [成本顯示「不可用」或似乎錯誤](#cost-shows-not-available-or-seems-wrong)
-  - [總成本與我的提供者帳單不符](#total-cost-does-not-match-my-provider-bill)
-  - [歷史頁面在側邊欄中缺失](#the-history-page-is-missing-from-the-sidebar)
-  - [網頁應用程式：意外重定向到登錄頁面](#web-app-redirected-to-the-login-page-unexpectedly)
-  - [網頁管理員：忘記或丟失密碼](#web-admin-forgot-or-lost-a-password)
-  - [儀表板對其他使用者顯示無資料（網頁）](#dashboard-shows-no-data-for-other-users-web)
-  - [我更改了提示並丟失了編輯](#i-changed-a-prompt-and-lost-the-edits)
+  - [成本顯示「無法使用」或似乎不正確](#cost-shows-not-available-or-seems-wrong)
+  - [總成本與我的供應商帳單不符](#total-cost-does-not-match-my-provider-bill)
+  - [側邊欄缺少「歷史記錄」頁面](#the-history-page-is-missing-from-the-sidebar)
+  - [網頁應用程式：意外重新導向至登入頁面](#web-app-redirected-to-the-login-page-unexpectedly)
+  - [網頁管理員：忘記或遺失密碼](#web-admin-forgot-or-lost-a-password)
+  - [儀表板顯示其他使用者的無資料（網頁）](#dashboard-shows-no-data-for-other-users-web)
+  - [我更改了提示但失去了編輯內容](#i-changed-a-prompt-and-lost-the-edits)
 - [快速提示](#quick-tips)
 - [免責聲明](#disclaimer)
 - [授權](#license)
@@ -297,6 +299,27 @@ Transrewrt 可協助您以三種主要方式處理文字：
 1. **重新表述…** — 在輸出區未選取任何文字時，可取得相同輸入內容的另一種完整翻譯版本，用詞會有所不同。模型會取得您目前已有的所有版本，因此新用詞可與既有版本有所差異。您最多可儲存 **五個** 版本，並透過版本下拉選單在它們之間切換。若已選取文字，**重新表述…** 會在選取範圍附近顯示詞語替換選項（與右鍵選單相同）。未選取文字時，若已達五個版本上限，**重新表述…** 將停用；若已選取文字，即使已達五個版本仍可運作（僅提供詞語替換，並更新第 5 版）。當完整重新表述正在執行時，可點擊 **停止翻譯** 來取消；輸出內容會恢復至重新表述開始時處於作用中的版本。
 2. **詞語替換** — 在輸出區選取一個或多個詞語，或選取短語（若僅選取部分詞語，應用程式會自動將選取範圍擴展至完整詞語），然後按右鍵或點擊 **重新表述…**。選取範圍附近會顯示一組替換選項清單；點擊其中一項即可替換。每個選項可能會替換比您選取範圍稍大的區段（例如相鄰的介系詞或冠詞），以確保句子語法正確。若您擁有的版本少於五個，編輯後的輸出內容會儲存為新版本；若已達五個版本，則僅更新 **第 5 版**。未選取任何文字時按右鍵不會有任何作用。按下 **Esc** 或點擊清單外部即可取消，且不會更改輸出內容。
 3. **成本** — 每次完整 **重新表述…**（未選取文字）與每次詞語替換請求都會再次呼叫模型，並可能增加使用成本（與一般翻譯執行相同）。
+
+<br/>
+
+<a id="using-the-glossary"></a>
+### 使用詞彙表
+
+**詞彙表**是特定語言對的來源/目標術語列表。啟用詞彙表後，Transrewrt 會將匹配的術語傳送給模型，以確保您的慣用詞在翻譯中保持一致（例如，產品名稱、品牌術語或職稱，應始終以相同方式翻譯）。
+
+在「**翻譯**」頁面上使用它：
+
+1. 在輸入面板中開啟「**詞彙表**」開關（位於自動執行和自動複製開關旁邊）。
+2. 選擇您的「**來源**」和「**目標**」語言，然後像平常一樣進行翻譯。為該語言對儲存的術語將自動套用。
+3. 若要即時擷取新術語對，請點擊「**新增至詞彙表**」（位於「**來源:**」語言選擇器旁邊）。對話方塊會預先填入您目前的語言，因此您只需填寫「**來源術語**」和「**目標術語**」。
+4. 使用輸出頁腳中的「**詞彙表**」連結（或對話方塊中的「**管理詞彙表**」連結）跳至 [**設定** > **詞彙表**](#glossary-settings) 並檢閱您的所有術語。
+
+您可以在 [**設定** > **詞彙表**](#glossary-settings) 分頁中新增、編輯、匯入和匯出術語 — 請參閱下方說明。
+
+<br/>
+
+> ℹ️ **注意**<br/>
+> 詞彙表術語是依據「**語言對**」進行匹配的，因此為英文 → 法文儲存的術語在翻譯英文 → 德文時不會套用。由於需要特定的來源語言才能匹配術語，因此無法使用「**偵測語言**」作為來源來使用詞彙表。
 
 [--------------------------------------------------------------------------------------------------------------------------]: #
 
@@ -555,6 +578,7 @@ Transrewrt 可協助您以三種主要方式處理文字：
   | 語言         |   是   |     是     |        是         | |
   | 成本追蹤     |   是   |     是     |         -          | |
   | 轉換         |   是   |     是     |        是         | 大量匯入/匯出轉換提示 |
+  | 詞彙表         |   是   |     是     |        是         | 翻譯期間套用的術語對        |
   | 使用者             |    -    |     是     |         -          | |
   | API 設定        |   是   |     是     |         -          | |
   | 關於             |   是   |     是     |        是         | |
@@ -704,6 +728,27 @@ Transrewrt 可協助您以三種主要方式處理文字：
 - 從檔案匯入提示
 - 匯出提示以備份或分享
 - 將範例提示載入提示清單中
+
+<br/>
+
+<a id="glossary-settings"></a>
+### 詞彙表（設定分頁）
+
+使用 **設定** > **詞彙表** 來管理翻譯期間套用的術語對（請參閱 [使用詞彙表](#using-the-glossary))。每個術語都包含 **來源語言**、**目標語言**、**來源術語** 和 **目標術語**。
+
+您可以：
+
+- **新增術語** — 填寫表格底部的列（選擇語言、輸入來源和目標術語），然後按一下 **+** 按鈕。
+- **尋找術語** — 按 **來源語言**、**目標語言** 或任意 **文字** 來篩選列表；按一下 **清除篩選條件** 以重設。
+- **刪除術語** — 按一下該列上的垃圾桶圖示。
+- **匯入** — 從 `.csv`、`.xlsx` 或 `.xls` 檔案載入術語。檔案應包含 `source_language`、`target_language`、`source_text` 和 `target_text` 等欄位。
+- **匯出 CSV** / **匯出 XLSX** — 下載所有術語以進行備份或共用。
+- **範本 CSV** / **範本 XLSX** — 下載一個包含正確欄位標題的空白檔案，以便填寫後匯入。
+
+<br/>
+
+> ℹ️ **注意**<br/>
+> 在 **桌面應用程式** 中，詞彙表會在本機儲存。在 **網頁版** 中，每個使用者都有自己的詞彙表，因此您的術語不會影響其他使用者。
 
 <br/>
 

@@ -12,15 +12,16 @@
 
 AI alat za obradu teksta: prevođenje između jezika, prepisivanje u različitim stilovima i transformacija prilagođenim upitima – koristeći više AI davatelja (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI i lokalni Ollama). Radi kao desktop aplikacija (Electron) ili samoposlužena web aplikacija (Docker).
 
-- **Prevedi** - između desetak jezika, s automatskim prepoznavanjem izvora
-- **Prepisi** - ispravi gramatiku, poboljšaj jasnoću, formalno/neformalno, skraćivanje, proširivanje, tehnički sadržaj
-- **Transformiraj** - prilagođeni AI upiti; kreiraj i upravljaj upitima, opcionalni ciljni jezik po upitu
+- **Prevedi** - između desetaka jezika, s automatskim otkrivanjem izvora
+- **Prepisivanje** - ispravite gramatiku, poboljšajte jasnoću, formalno/neformalno, skratite, proširite, tehničko
+- **Transformacija** - prilagođeni AI upiti; stvarajte i upravljajte upitima, neobavezni ciljni jezik po upitu
+- **Rječnik** - pohranite parove izvornih/ciljnih pojmova po jezičnom paru i primijenite ih tijekom prijevoda kako bi odabrani pojmovi ostali dosljedni; upravljajte pojmovima u Postavkama (dodaj/uredi/izbriši, uvoz CSV/XLSX i izvoz predloška)
 - **Povijest** - potpuna povijest izvršavanja s ulaznim/izlaznim tekstom, filtriranjem i izvozom
-- **Lako i Napredno** - Laki način (zadano): odabrani predlošci po davatelju usluga (**Besplatno (OpenRouter)**, **Standardno**, **Napredno**, **Tehničko**; prikazuju se samo predlošci koji imaju mapiranje za odabranog davatelja usluga) bez odabira ID-ova modela; Napredni način: potpuni popis modela iz vaših konfiguriranih davatelja usluga
-- **Modeli i trošak** - nadzorne ploče za trošak i korištenje (Sažetak, Po modelu, Svi pozivi) s mogućnošću izvoza; OpenRouter prikazuje stvarne troškove, dok ostali davatelji usluga koriste procjene
-- **Korisnički sučelje (UI)** - višejezično sučelje (30+ jezika, podrška za RTL), fontovi, ...
+- **Jednostavno i Napredno** - Jednostavni način (zadano): odabrani predodređeni skupovi za svakog davatelja (**Besplatno (OpenRouter)**, **Standardno**, **Napredno**, **Tehničko**; pojavljuju se samo predodređeni skupovi s mapiranjem za odabranog davatelja) bez odabira ID-ova modela; Napredni način: potpuni popis modela od vaših konfiguriranih davatelja
+- **Modeli i trošak** - nadzorne ploče za troškove i korištenje (Sažetak, Po modelu, Svi pozivi) s izvozom; OpenRouter prikazuje stvarni utrošak, drugi davatelji koriste procjene
+- **Korisničko sučelje** - višejezično sučelje (30+ jezika, podrška za RTL), fontovi, ...
 - **Web način** - podrška za više korisnika s administratorskim ulogama
-- **Radna površina** - Electron aplikacija za Windows i Linux
+- **Desktop** - Electron aplikacija za Windows i Linux
 - **Samostalno hostiranje** - Docker slika za amd64 i arm64 (spremno za Raspberry Pi)
 
 Nakon instalacije, pogledajte [**vodič za korisnike**](USER-GUIDE.hr.md) za potpuni pregled svih značajki.

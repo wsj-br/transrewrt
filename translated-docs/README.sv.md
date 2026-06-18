@@ -12,16 +12,17 @@
 
 AI-drivet textverktyg: översätt mellan språk, omskriv i olika stilar och omvandla med anpassade frågor – med flera AI-leverantörer (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI och lokal Ollama). Kör som skrivbordsapp (Electron) eller självvärd webbapp (Docker).
 
-- **Översätt** – mellan dussintals språk, med automatisk källspråksidentifiering
-- **Omskriv** – åtgärda grammatik, förbättra tydligheten, formellt/obligatoriskt, förkorta, utöka, tekniskt
-- **Transformera** – anpassade AI-prompts; skapa och hantera prompts, valfritt målspråk per prompt
-- **Historik** – fullständig körningshistorik med inmatning/utdata, filtrering och export
-- **Enkel & Avancerad** - Enkelt läge (standard): förvalda förinställningar per leverantör (**Gratis (OpenRouter)**, **Standard**, **Avancerad**, **Teknisk**; endast förinställningar med en mappning för den valda leverantören visas) utan att välja modell-ID; Avancerat läge: fullständig modelllista från dina konfigurerade leverantörer
-- **Modeller & kostnad** - kostnads- och användningsinstrumentpaneler (Sammanfattning, Efter modell, Alla anrop) med export; OpenRouter visar faktisk utgift, andra leverantörer använder uppskattningar
-- **Användargränssnitt (UI)** - flerspråkigt gränssnitt (30+ språk, RTL-stöd), teckensnitt, ...
+- **Översätt** - mellan dussintals språk, med automatisk källdetektering
+- **Omskrivning** - korrigera grammatik, förbättra tydlighet, formell/informell, förkorta, utöka, teknisk
+- **Transformera** - anpassade AI-prompter; skapa och hantera prompter, valfritt målspråk per prompt
+- **Ordlista** - lagra par av käll-/måltermer per språkpar och tillämpa dem under översättning så att valda termer förblir konsekventa; hantera termer i Inställningar (lägg till/redigera/ta bort, CSV/XLSX-import och export av mall)
+- **Historik** - fullständig körningshistorik med inmatning/utdatatext, filtrering och export
+- **Enkel & Avancerad** - Enkelt läge (standard): kurerade förinställningar per leverantör (**Gratis (OpenRouter)**, **Standard**, **Avancerad**, **Teknisk**; endast förinställningar med en mappning för den valda leverantören visas) utan att välja modell-ID; Avancerat läge: fullständig modellista från dina konfigurerade leverantörer
+- **Modeller & kostnad** - instrumentpaneler för kostnader och användning (Sammanfattning, Efter modell, Alla samtal) med export; OpenRouter visar faktiska utgifter, andra leverantörer använder uppskattningar
+- **UI** - flerspråkigt gränssnitt (30+ språk, stöd för RTL), typsnitt, ...
 - **Webbläge** - stöd för flera användare med administratörsroller
 - **Skrivbord** - Electron-app för Windows och Linux
-- **Självvärdbaserad** - Docker-avbildning för amd64 & arm64 (klar för Raspberry Pi)
+- **Självhostad** - Docker-image för amd64 & arm64 (redo för Raspberry Pi)
 
 När installationen är klar, se [**användarhandboken**](USER-GUIDE.sv.md) för en fullständig genomgång av alla funktioner.
 

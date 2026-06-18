@@ -52,45 +52,47 @@ Transrewrt 可通过以下三种主要方式帮助您处理文本：
   - [翻译文本](#translate-text)
   - [语言选择](#language-selection)
   - [有用的翻译设置](#helpful-translation-settings)
-  - [优化您的翻译](#refining-translation)
+  - [优化您的翻译](#refining-your-translation)
+  - [使用词汇表](#using-the-glossary)
 - [重写](#rewrite)
 - [转换](#transform)
   - [运行现有提示](#run-an-existing-prompt)
   - [如果您还没有提示](#if-you-have-no-prompts-yet)
   - [快速创建提示](#create-a-prompt-quickly)
   - [编辑提示](#edit-a-prompt)
-  - [在使用前测试提示](#test-a-prompt-before-using-it)
+  - [在使用提示前进行测试](#test-a-prompt-before-using-it)
 - [仪表板](#dashboard)
   - [筛选数据](#filter-the-data)
   - [仪表板选项卡](#dashboard-tabs)
   - [导出数据](#export-data)
-  - [删除模型的存储记录](#delete-stored-records-for-a-model)
+  - [删除模型的已存储记录](#delete-stored-records-for-a-model)
 - [历史记录](#history)
   - [筛选历史记录](#filter-the-history)
-  - [导出历史数据](#export-history-data)
+  - [导出历史记录数据](#export-history-data)
 - [设置](#settings)
   - [常规设置](#general-settings)
   - [模型](#models)
   - [语言](#languages)
   - [成本跟踪](#cost-tracking)
   - [转换（设置选项卡）](#transform-settings-tab)
+  - [词汇表（设置选项卡）](#glossary-settings-tab)
   - [用户](#users)
   - [API 配置](#api-config)
   - [关于](#about)
 - [常见问题](#common-issues)
   - [应用程序无法翻译、重写或转换文本](#the-app-will-not-translate-rewrite-or-transform-text)
   - [模型列表为空](#the-model-list-is-empty)
-  - [结果太慢或费用过高](#the-result-is-too-slow-or-too-expensive)
+  - [结果太慢或太昂贵](#the-result-is-too-slow-or-too-expensive)
   - [界面语言错误](#the-interface-is-in-the-wrong-language)
   - [文本太小或难以阅读](#the-text-is-too-small-or-hard-to-read)
-  - [仪表板摘要看起来为空](#dashboard-summary-looks-empty)
-  - [成本显示“不可用”或似乎错误](#cost-shows-not-available-or-seems-wrong)
-  - [总费用与我的提供商账单不符](#total-cost-does-not-match-my-provider-bill)
-  - [历史页面在侧边栏中缺失](#the-history-page-is-missing-from-the-sidebar)
+  - [仪表板摘要为空](#dashboard-summary-looks-empty)
+  - [成本显示“不可用”或似乎不正确](#cost-shows-not-available-or-seems-wrong)
+  - [总成本与我的提供商账单不符](#total-cost-does-not-match-my-provider-bill)
+  - [侧边栏缺少“历史记录”页面](#the-history-page-is-missing-from-the-sidebar)
   - [Web 应用：意外重定向到登录页面](#web-app-redirected-to-the-login-page-unexpectedly)
-  - [Web 管理：忘记或丢失密码](#web-admin-forgot-or-lost-a-password)
-  - [仪表板对其他用户显示无数据（Web）](#dashboard-shows-no-data-for-other-users-web)
-  - [我更改了提示并丢失了编辑](#i-changed-a-prompt-and-lost-the-edits)
+  - [Web 管理员：忘记或丢失密码](#web-admin-forgot-or-lost-a-password)
+  - [仪表板显示其他用户的无数据（Web）](#dashboard-shows-no-data-for-other-users-web)
+  - [我更改了提示但丢失了编辑内容](#i-changed-a-prompt-and-lost-the-edits)
 - [快速提示](#quick-tips)
 - [免责声明](#disclaimer)
 - [许可证](#license)
@@ -297,6 +299,27 @@ Transrewrt 可通过以下三种主要方式帮助您处理文本：
 1. **翻译…** — 在输出中未选择文本的情况下，获取相同输入的另一种完整翻译，使用不同的措辞。模型会接收您已有的每个版本，因此新措辞可以与所有版本不同。您可以存储最多 **五个** 版本，并在版本下拉菜单中切换。选择文本时，**翻译…** 会在选择附近打开单词替代（与右键单击相同）。如果没有选择，**翻译…** 在达到五个版本后会被禁用；如果有选择，它仍然可以在五个版本时工作（仅单词替代，更新版本 5）。在完整重述运行时，单击 **停止翻译** 以取消；输出返回到重述开始时处于活动状态的版本。
 2. **单词替代** — 在输出中选择一个或多个单词或短语（如果您只选择了一个单词的一部分，应用程序会将选择扩展为完整单词），然后右键单击或单击 **翻译…**。在选择附近会出现一个简短的替代列表；单击一个以替换它。每个选项可能会替换比您的选择稍宽的范围（例如相邻的介词或冠词），以保持句子的语法正确。如果您少于五个版本，编辑后的输出将作为新版本保存；在五个版本时，仅更新 **版本 5**。右键单击没有选择时不会执行任何操作。按 **Esc** 或单击列表外部以取消而不更改输出。
 3. **费用** — 每个完整的 **翻译…**（无选择）和每个单词替代请求都会再次使用模型，并可能增加使用费用（与正常翻译运行相同）。
+
+<br/>
+
+<a id="using-the-glossary"></a>
+### 使用词汇表
+
+一个 **词汇表** 是特定语言对的源/目标术语列表。当词汇表启用时，Transrewrt 会将匹配的术语发送给模型，以便您的首选措辞在翻译中保持一致（例如，产品名称、品牌术语或应始终以相同方式翻译的职位名称）。
+
+要在 **翻译** 页面上使用它：
+
+1. 在输入面板中打开 **词汇表** 开关（位于自动执行和自动复制开关旁边）。
+2. 选择您的 **源语言** 和 **目标语言** 并像往常一样进行翻译。为该语言对保存的术语会自动应用。
+3. 要即时捕获新对，请点击 **添加到词汇表**（位于 **源语言:** 选择器旁边）。对话框已预先填充您当前的语言，因此您只需填写 **源术语** 和 **目标术语**。
+4. 使用输出页脚中的 **词汇表** 链接（或对话框内的 **管理词汇表** 链接）跳转到 [**设置** > **词汇表**](#glossary-settings) 并查看您的所有术语。
+
+您可以在 [**设置** > **词汇表**](#glossary-settings) 选项卡中添加、编辑、导入和导出术语 — 见下文。
+
+<br/>
+
+> ℹ️ **注意**<br/>
+> 词汇表术语按 **语言对** 匹配，因此为英语 → 法语保存的术语在翻译英语 → 德语时不会应用。词汇表不能与 **检测语言** 一起用作源语言，因为需要特定的源语言来匹配术语。
 
 [--------------------------------------------------------------------------------------------------------------------------]: #
 
@@ -555,6 +578,7 @@ Transrewrt 可通过以下三种主要方式帮助您处理文本：
   | 语言         |   是   |     是     |        是         | |
   | 成本跟踪     |   是   |     是     |         -          | |
   | 转换         |   是   |     是     |        是         | 批量导入/导出转换提示词 |
+  | 词汇表         |   是   |     是     |        是         | 翻译期间应用的术语对        |
   | 用户             |    -    |     是     |         -          | |
   | API 配置        |   是   |     是     |         -          | |
   | 关于             |   是   |     是     |        是         | |
@@ -704,6 +728,27 @@ Transrewrt 可通过以下三种主要方式帮助您处理文本：
 - 从文件导入提示词
 - 导出提示词以备份或分享
 - 将示例提示词加载到提示词列表中
+
+<br/>
+
+<a id="glossary-settings"></a>
+### 词汇表（设置选项卡）
+
+使用 **设置** > **词汇表** 来管理翻译过程中应用的术语对（请参阅 [使用词汇表](#using-the-glossary))。每个术语都有 **源语言**、**目标语言**、**源术语** 和 **目标术语**。
+
+您可以：
+
+- **添加术语** — 填写表格底部的行（选择语言，输入源术语和目标术语），然后点击 **+** 按钮。
+- **查找术语** — 按 **源语言**、**目标语言** 或 **文本** 筛选列表；点击 **清除筛选条件** 重置。
+- **删除术语** — 点击其所在行的垃圾桶图标。
+- **导入** — 从 `.csv`、`.xlsx` 或 `.xls` 文件加载术语。文件应包含 `source_language`、`target_language`、`source_text` 和 `target_text` 列。
+- **导出 CSV** / **导出 XLSX** — 下载所有术语以进行备份或共享。
+- **CSV 模板** / **XLSX 模板** — 下载一个带有正确列标题的空文件，以便填写并导入。
+
+<br/>
+
+> ℹ️ **注意**<br/>
+> 在 **桌面应用** 中，词汇表是本地存储的。在 **网页版** 中，每个用户都有自己的词汇表，因此您的术语不会影响其他用户。
 
 <br/>
 

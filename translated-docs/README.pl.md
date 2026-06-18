@@ -12,16 +12,17 @@
 
 Narzędzie tekstowe z wykorzystaniem AI: tłumaczenie między językami, przeformułowanie w różnych stylach oraz transformacja za pomocą niestandardowych promptów — z wykorzystaniem wielu dostawców AI (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI oraz lokalny Ollama). Działa jako aplikacja desktopowa (Electron) lub samodzielnie hostowana aplikacja internetowa (Docker).
 
-- **Tłumacz** – między dziesiątkami języków, z automatycznym wykrywaniem języka źródłowego
-- **Przepisz** – popraw błędy gramatyczne, popraw czytelność, wersja formalna/nieformalna, skróć, rozwiń, wersja techniczna
-- **Przekształć** – niestandardowe zachęty AI; twórz i zarządzaj zachętami, opcjonalny język docelowy dla każdej zachęty
-- **Historia** – pełna historia wykonania z tekstem wejściowym/wyjściowym, filtrowaniem i eksportem
-- **Łatwy i zaawansowany** – Tryb łatwy (domyślny): wyselekcjonowane ustawienia domyślne dla każdego dostawcy (**Darmowe (OpenRouter)**, **Standardowe**, **Zaawansowane**, **Techniczne**; widoczne są wyłącznie ustawienia domyślne, które mają mapowanie dla wybranego dostawcy), bez konieczności wybierania identyfikatorów modeli; Tryb zaawansowany: pełna lista modeli z Twoich skonfigurowanych dostawców
-- **Modele i koszt** – tabele kosztów i zużycia (Podsumowanie, Według modelu, Wszystkie wywołania) z możliwością eksportu; OpenRouter pokazuje rzeczywiste wydatki, inne dostawcy używają szacunków
-- **Interfejs użytkownika (UI)** – wielojęzyczny interfejs (ponad 30 języków, obsługa języków pisanych od prawej do lewej), czcionki, ...
-- **Tryb sieciowy** – obsługa wielu użytkowników z rolami administratora
-- **Aplikacja komputerowa** – aplikacja Electron dla systemów Windows i Linux
-- **Hostowana lokalnie** – obraz Docker dla architektur amd64 i arm64 (gotowy do użycia na Raspberry Pi)
+- **Tłumacz** - między dziesiątkami języków, z automatycznym wykrywaniem źródła
+- **Przeróbka** - popraw gramatykę, popraw jasność, formalny/nieformalny, skróć, rozszerz, techniczny
+- **Transformacja** - niestandardowe prompty AI; twórz i zarządzaj promptami, opcjonalny język docelowy na prompt
+- **Słownik** - przechowuj pary terminów źródłowych/docelowych dla każdej pary językowej i stosuj je podczas tłumaczenia, aby wybrane terminy pozostały spójne; zarządzaj terminami w Ustawieniach (dodaj/edytuj/usuń, import CSV/XLSX i eksport szablonu)
+- **Historia** - pełna historia wykonania z tekstem wejściowym/wyjściowym, filtrowaniem i eksportem
+- **Łatwy i Zaawansowany** - Tryb łatwy (domyślny): wyselekcjonowane presety na dostawcę (**Bezpłatne (OpenRouter)**, **Standardowe**, **Zaawansowane**, **Techniczne**; pojawiają się tylko presety z mapowaniem dla wybranego dostawcy) bez wybierania identyfikatorów modeli; Tryb zaawansowany: pełna lista modeli od skonfigurowanych dostawców
+- **Modele i koszt** - pulpity nawigacyjne kosztów i użycia (Podsumowanie, Według modelu, Wszystkie połączenia) z eksportem; OpenRouter pokazuje rzeczywiste wydatki, inni dostawcy używają szacunków
+- **UI** - wielojęzyczny interfejs (ponad 30 języków, obsługa RTL), czcionki, ...
+- **Tryb sieciowy** - obsługa wielu użytkowników z rolami administratora
+- **Pulpit** - aplikacja Electron dla systemów Windows i Linux
+- **Hostowany samodzielnie** - obraz Docker dla amd64 i arm64 (gotowy na Raspberry Pi)
 
 Po zainstalowaniu zapoznaj się z [**Podręcznikiem użytkownika**](USER-GUIDE.pl.md), aby poznać szczegółowy opis wszystkich funkcji.
 

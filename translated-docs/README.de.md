@@ -12,16 +12,17 @@
 
 KI-gestütztes Texttool: Übersetzung zwischen Sprachen, Umschreibung in verschiedenen Stilen und Transformation mit benutzerdefinierten Prompts – unter Verwendung mehrerer KI-Anbieter (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI und lokales Ollama). Läuft als Desktop-App (Electron) oder als selbstgehostete Web-App (Docker).
 
-- **Übersetzen** – zwischen Dutzenden von Sprachen, mit automatischer Erkennung der Quelle
-- **Umschreiben** – Grammatik korrigieren, Klarheit verbessern, formell/informell, verkürzen, erweitern, technisch
-- **Umwandeln** – benutzerdefinierte KI-Prompts; Prompts erstellen und verwalten, optionale Zielsprache pro Prompt
-- **Verlauf** – vollständiger Ausführungsverlauf mit Eingabe-/Ausgabetext, Filterung und Export
-- **Einfach & Erweitert** - Einfacher Modus (Standard): kuratierte Voreinstellungen pro Anbieter (**Kostenlos (OpenRouter)**, **Standard**, **Erweitert**, **Technisch**; es werden nur Voreinstellungen angezeigt, die eine Zuordnung zum ausgewählten Anbieter haben) ohne Auswahl von Modell-IDs; Erweiterter Modus: vollständige Modellliste der konfigurierten Anbieter
-- **Modelle & Kosten** - Kosten- und Nutzungs-Dashboards (Zusammenfassung, Nach Modell, Alle Aufrufe) mit Exportfunktion; OpenRouter zeigt die tatsächlichen Ausgaben an, andere Anbieter verwenden Schätzungen
-- **Benutzeroberfläche (UI)** - mehrsprachige Oberfläche (30+ Sprachen, RTL-Unterstützung), Schriftarten, ...
-- **Web-Modus** - Unterstützung für mehrere Benutzer mit Administratorrollen
+- **Übersetzen** - zwischen Dutzenden von Sprachen, mit automatischer Quellerkennung
+- **Umschreiben** - Grammatik korrigieren, Klarheit verbessern, formell/informell, kürzen, erweitern, technisch
+- **Transformieren** - benutzerdefinierte KI-Eingabeaufforderungen; Eingabeaufforderungen erstellen und verwalten, optionale Zielsprache pro Eingabeaufforderung
+- **Glossar** - Quell-/Zielbegriffspaare pro Sprachpaar speichern und während der Übersetzung anwenden, damit ausgewählte Begriffe konsistent bleiben; Begriffe in den Einstellungen verwalten (hinzufügen/bearbeiten/löschen, CSV/XLSX-Import und Vorlagenexport)
+- **Verlauf** - vollständiger Ausführungsverlauf mit Eingabe-/Ausgabetext, Filterung und Export
+- **Einfach & Erweitert** - Einfacher Modus (Standard): kuratierte Voreinstellungen pro Anbieter (**Frei (OpenRouter)**, **Standard**, **Erweitert**, **Technisch**; nur Voreinstellungen mit einer Zuordnung für den ausgewählten Anbieter werden angezeigt) ohne Auswahl von Modell-IDs; Erweitert-Modus: vollständige Modellliste von Ihren konfigurierten Anbietern
+- **Modelle & Kosten** - Kosten- und Nutzungs-Dashboards (Zusammenfassung, Nach Modell, Alle Aufrufe) mit Export; OpenRouter zeigt tatsächliche Ausgaben, andere Anbieter verwenden Schätzungen
+- **UI** - mehrsprachige Benutzeroberfläche (30+ Sprachen, RTL-Unterstützung), Schriftarten, ...
+- **Web-Modus** - Multi-User-Unterstützung mit Administratorrollen
 - **Desktop** - Electron-App für Windows und Linux
-- **Selbstgehostet** - Docker-Image für amd64 & arm64 (bereit für Raspberry Pi)
+- **Self-hosted** - Docker-Image für amd64 & arm64 (bereit für Raspberry Pi)
 
 Nach der Installation finden Sie im [**Benutzerhandbuch**](USER-GUIDE.de.md) eine vollständige Übersicht über alle Funktionen.
 

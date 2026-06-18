@@ -51,8 +51,9 @@ Esta guía explica cómo usar la aplicación una vez instalada y en funcionamien
 - [Traducir](#translate)
   - [Traducir texto](#translate-text)
   - [Selección de idioma](#language-selection)
-  - [Configuraciones de traducción útiles](#helpful-translation-settings)
-  - [Refinando tu traducción](#refining-translation)
+  - [Configuración útil de traducción](#helpful-translation-settings)
+  - [Refinar tu traducción](#refining-your-translation)
+  - [Usar el glosario](#using-the-glossary)
 - [Reescritura](#rewrite)
 - [Transformar](#transform)
   - [Ejecutar un indicador existente](#run-an-existing-prompt)
@@ -74,21 +75,22 @@ Esta guía explica cómo usar la aplicación una vez instalada y en funcionamien
   - [Idiomas](#languages)
   - [Seguimiento de costos](#cost-tracking)
   - [Transformar (pestaña de configuración)](#transform-settings-tab)
+  - [Glosario (pestaña de configuración)](#glossary-settings-tab)
   - [Usuarios](#users)
   - [Configuración de API](#api-config)
   - [Acerca de](#about)
 - [Problemas comunes](#common-issues)
-  - [La aplicación no traducirá, reescribirá o transformará texto](#the-app-will-not-translate-rewrite-or-transform-text)
+  - [La aplicación no traducirá, reescribirá ni transformará texto](#the-app-will-not-translate-rewrite-or-transform-text)
   - [La lista de modelos está vacía](#the-model-list-is-empty)
-  - [El resultado es demasiado lento o demasiado caro](#the-result-is-too-slow-or-too-expensive)
+  - [El resultado es demasiado lento o caro](#the-result-is-too-slow-or-too-expensive)
   - [La interfaz está en el idioma incorrecto](#the-interface-is-in-the-wrong-language)
   - [El texto es demasiado pequeño o difícil de leer](#the-text-is-too-small-or-hard-to-read)
-  - [El resumen del panel de control parece vacío](#dashboard-summary-looks-empty)
+  - [Resumen del panel de control está vacío](#dashboard-summary-looks-empty)
   - [El costo muestra "no disponible" o parece incorrecto](#cost-shows-not-available-or-seems-wrong)
   - [El costo total no coincide con la factura de mi proveedor](#total-cost-does-not-match-my-provider-bill)
-  - [La página de historial falta en la barra lateral](#the-history-page-is-missing-from-the-sidebar)
-  - [Aplicación web: redirigido a la página de inicio de sesión inesperadamente](#web-app-redirected-to-the-login-page-unexpectedly)
-  - [Administrador web: olvidé o perdí una contraseña](#web-admin-forgot-or-lost-a-password)
+  - [Falta la página de Historial en la barra lateral](#the-history-page-is-missing-from-the-sidebar)
+  - [Aplicación web: redirigido inesperadamente a la página de inicio de sesión](#web-app-redirected-to-the-login-page-unexpectedly)
+  - [Administrador web: contraseña olvidada o perdida](#web-admin-forgot-or-lost-a-password)
   - [El panel de control no muestra datos para otros usuarios (web)](#dashboard-shows-no-data-for-other-users-web)
   - [Cambié un indicador y perdí las ediciones](#i-changed-a-prompt-and-lost-the-edits)
 - [Consejos rápidos](#quick-tips)
@@ -297,6 +299,27 @@ Después de una traducción exitosa, **Reformular…** y el menú desplegable de
 1. **Reformular…** — sin texto seleccionado en la salida, obtenga otra traducción completa de la misma entrada con una redacción diferente. El modelo recibe cada versión que ya tiene, por lo que la nueva redacción puede diferir de todas ellas. Puede almacenar hasta **cinco** versiones y alternar entre ellas en el menú desplegable de versiones. Con texto seleccionado, **Reformular…** abre alternativas de palabras cerca de la selección (igual que hacer clic derecho). Sin una selección, **Reformular…** está deshabilitado una vez que alcanza cinco versiones; con una selección, aún funciona en cinco versiones (solo alternativas de palabras, actualizando la versión 5). Mientras se está ejecutando una reformulación completa, haga clic en **Detener Traducción** para cancelar; la salida regresa a la versión que estaba activa cuando comenzó la reformulación.
 2. **Alternativas de palabras** — seleccione una o más palabras o una frase corta en la salida (si selecciona solo parte de una palabra, la aplicación expande la selección a palabras completas), luego haga clic derecho o haga clic en **Reformular…**. Aparece una lista corta de alternativas cerca de la selección; haga clic en una para reemplazarla. Cada opción puede reemplazar un rango ligeramente más amplio que su selección (por ejemplo, una preposición o artículo adyacente) para que la oración se mantenga gramatical. Si tiene menos de cinco versiones, la salida editada se guarda como una nueva versión; en cinco versiones, solo se actualiza **la versión 5**. Hacer clic derecho sin selección no hace nada. Presione **Esc** o haga clic fuera de la lista para cancelar sin cambiar la salida.
 3. **Costos** — cada **Reformular…** completo (sin selección) y cada solicitud de alternativa de palabra utiliza el modelo nuevamente y puede aumentar el costo de uso (igual que una ejecución de traducción normal).
+
+<br/>
+
+<a id="using-the-glossary"></a>
+### Usar el glosario
+
+Un **glosario** es una lista de pares de términos de origen/destino para un par de idiomas específico. Cuando el glosario está activado, Transrewrt envía los términos coincidentes al modelo para que tu redacción preferida se mantenga consistente en las traducciones (por ejemplo, un nombre de producto, un término de marca o un título de trabajo que siempre debe traducirse de la misma manera).
+
+Para usarlo en la página **Traducir**:
+
+1. Activa el interruptor **Glosario** en el panel de entrada (junto a los interruptores de ejecución automática y copia automática).
+2. Elige tus idiomas de **Origen** y **Destino** y traduce como de costumbre. Los términos guardados para ese par de idiomas se aplican automáticamente.
+3. Para capturar un nuevo par sobre la marcha, haz clic en **Añadir al glosario** (junto al selector de idioma **De:**). El diálogo se rellena previamente con tus idiomas actuales, por lo que solo necesitas completar el **término de origen** y el **término de destino**.
+4. Usa el enlace **Glosario** en el pie de página de salida (o el enlace **Gestionar glosario** dentro del diálogo) para ir a [**Configuración** > **Glosario**](#glossary-settings) y revisar todos tus términos.
+
+Añades, editas, importas y exportas términos en la pestaña [**Configuración** > **Glosario**](#glossary-settings), consulta más abajo.
+
+<br/>
+
+> ℹ️ **NOTA**<br/>
+> Los términos del glosario se emparejan por **par de idiomas**, por lo que un término guardado para inglés → francés no se aplica al traducir inglés → alemán. El glosario no se puede usar con **Detectar idioma** como origen, porque se necesita un idioma de origen específico para emparejar los términos.
 
 [--------------------------------------------------------------------------------------------------------------------------]: #
 
@@ -555,6 +578,7 @@ Las pestañas disponibles dependen de la plataforma y de su rol:
   | Idiomas           |   sí   |     sí     |        sí         |                                              |
   | Seguimiento de costos    |   sí   |     sí     |         -          |                                              |
   | Transformar        |   sí   |     sí     |        sí         | Importación/exportación masiva de indicaciones de transformación      |
+  | Glosario         |   sí   |     sí     |        sí         | Pares de términos aplicados durante la traducción        |
   | Usuarios            |    -    |     sí     |         -          |                                              |
   | Configuración de API       |   sí   |     sí     |         -          |                                              |
   | Acerca de            |   sí   |     sí     |        sí         |                                              |
@@ -704,6 +728,27 @@ Puede:
 - importar mensajes desde un archivo
 - exportar mensajes para respaldo o compartirlos
 - cargar mensajes de ejemplo a la lista de mensajes
+
+<br/>
+
+<a id="glossary-settings"></a>
+### Glosario (pestaña de configuración)
+
+Use **Configuración** > **Glosario** para administrar los pares de términos aplicados durante la traducción (consulte [Uso del glosario](#using-the-glossary)). Cada término tiene un **idioma de origen**, un **idioma de destino**, un **término de origen** y un **término de destino**.
+
+Puede:
+
+- **Agregar un término** — complete la fila en la parte inferior de la tabla (seleccione los idiomas, escriba los términos de origen y destino) y haga clic en el botón **+**.
+- **Buscar términos** — filtre la lista por **Idioma de origen**, **Idioma de destino** o **texto** libre; haga clic en **Borrar filtros** para restablecer.
+- **Eliminar un término** — haga clic en el icono de la papelera en su fila.
+- **Importar** — cargue términos desde un archivo `.csv`, `.xlsx` o `.xls`. El archivo debe tener las columnas `source_language`, `target_language`, `source_text` y `target_text`.
+- **Exportar CSV** / **Exportar XLSX** — descargue todos sus términos para hacer una copia de seguridad o compartirlos.
+- **Plantilla CSV** / **Plantilla XLSX** — descargue un archivo vacío con los encabezados de columna correctos para completar e importar.
+
+<br/>
+
+> ℹ️ **NOTA**<br/>
+> En la **aplicación de escritorio**, el glosario se almacena localmente. En la **versión web**, cada usuario tiene su propio glosario, por lo que sus términos no afectan a otros usuarios.
 
 <br/>
 

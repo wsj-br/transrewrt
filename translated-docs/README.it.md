@@ -12,16 +12,17 @@
 
 Strumento testuale basato su AI: traduci tra lingue, riscrivi in stili diversi e trasforma con prompt personalizzati - utilizzando più provider di intelligenza artificiale (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI e Ollama locale). Funziona come app desktop (Electron) o come app web autosufficiente (Docker).
 
-- **Traduci** - tra dozzine di lingue, con rilevamento automatico dell'origine
-- **Riscrivi** - correggi grammatica, migliora chiarezza, registro formale/informale, accorcia, espandi, tecnico
-- **Trasforma** - prompt personalizzati con intelligenza artificiale; crea e gestisci prompt, lingua di destinazione opzionale per ogni prompt
-- **Cronologia** - cronologia completa delle esecuzioni con testo in input/output, filtri ed esportazione
-- **Facile e Avanzato** - Modalità Facile (predefinita): preset selezionati per provider (**Gratuito (OpenRouter)**, **Standard**, **Avanzato**, **Tecnico**; vengono mostrati solo i preset con un mapping per il provider selezionato), senza dover scegliere gli ID dei modelli; Modalità Avanzata: elenco completo dei modelli dai provider configurati
-- **Modelli e costo** - dashboard su costi e utilizzo (Riepilogo, Per modello, Tutte le chiamate) con funzione di esportazione; OpenRouter mostra la spesa effettiva, per gli altri provider vengono usate stime
-- **Interfaccia utente (UI)** - interfaccia multilingue (30+ lingue, supporto RTL), tipi di carattere, ...
-- **Modalità web** - supporto multi-utente con ruoli di amministratore
-- **Desktop** - App Electron per Windows e Linux
-- **Self-hosted** - Immagine Docker per amd64 e arm64 (pronta per Raspberry Pi)
+- **Traduci** - tra decine di lingue, con rilevamento automatico della lingua di origine
+- **Riscrittura** - correggi la grammatica, migliora la chiarezza, formale/informale, abbrevia, espandi, tecnico
+- **Trasforma** - prompt AI personalizzati; crea e gestisci prompt, lingua di destinazione opzionale per prompt
+- **Glossario** - archivia coppie di termini origine/destinazione per coppia di lingue e applicale durante la traduzione in modo che i termini scelti rimangano coerenti; gestisci i termini nelle Impostazioni (aggiungi/modifica/elimina, importazione CSV/XLSX ed esportazione modello)
+- **Cronologia** - cronologia completa delle esecuzioni con testo di input/output, filtraggio ed esportazione
+- **Facile e Avanzato** - Modalità Facile (predefinita): preset curati per provider (**Gratuito (OpenRouter)**, **Standard**, **Avanzato**, **Tecnico**; compaiono solo i preset con una mappatura per il provider selezionato) senza scegliere ID modello; Modalità Avanzata: elenco completo dei modelli dai tuoi provider configurati
+- **Modelli e costo** - dashboard di costo e utilizzo (Riepilogo, Per modello, Tutte le chiamate) con esportazione; OpenRouter mostra la spesa effettiva, altri provider utilizzano stime
+- **UI** - interfaccia multilingue (oltre 30 lingue, supporto RTL), font, ...
+- **Modalità Web** - supporto multi-utente con ruoli di amministratore
+- **Desktop** - app Electron per Windows e Linux
+- **Self-hosted** - immagine Docker per amd64 e arm64 (pronta per Raspberry Pi)
 
 Una volta installato, consultare la [**Guida per l'utente**](USER-GUIDE.it.md) per una panoramica completa di tutte le funzionalità.
 

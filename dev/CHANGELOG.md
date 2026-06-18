@@ -16,6 +16,7 @@ Use conventional types (Added, Changed, Fixed, etc.) and short descriptions.
 - **Security**: Force `js-yaml` to `^4.2.0` via `pnpm-workspace.yaml` overrides so `gray-matter` no longer pulls vulnerable `js-yaml@3.x` (GHSA-h67p-54hq-rp68 DoS); removed the ineffective top-level `overrides` block from `package.json` (pnpm reads overrides from `pnpm-workspace.yaml`).
 - **Fixed**: Resolve lint errors and warnings in glossary code — replaced `no-explicit-any` usages with proper types in `GlossaryAddModal`, `SettingsGlossaryTab`, and `useGlossaryTerms`, and fixed `react-hooks/exhaustive-deps` warnings in `useGlossaryTerms` and `useProcessing`.
 - **Changed**: Align glossary code with codebase conventions — `SettingsGlossaryTab` and `GlossaryAddModal` use default exports; dropped the unused `settings` prop from `SettingsGlossaryTab`; centralized the `GlossaryTerm` type and CSV/XLSX import/export helpers in `utils/misc/glossaryUtils.ts` (reusing `exportUtils.escapeCsvCell`); standardized progress-label ellipsis to `…`.
+- **Added**: Document the glossary feature in `README.md` (feature list) and `USER-GUIDE.md` (new "Using the glossary" Translate subsection, "Glossary (settings tab)" section, Settings tabs table row, and TOC entries).
 
 ## [1.5.0] - 2026-06-08
 

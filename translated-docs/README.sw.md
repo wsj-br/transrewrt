@@ -12,16 +12,17 @@
 
 Zana ya maandishi yenye nguvu ya AI: tafsiri kati ya lugha mbalimbali, andika upya kwa mitindo tofauti, na ubadilishe kwa kutumia mandhari maalum - kwa kutumia mtoa huduma wengi wa AI (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, na Ollama ya kijitihima). Inafanya kazi kama programu ya kompyuta (Electron) au kama programu binafsi ya wavuti (Docker).
 
-- **Tafsiri** - kati ya lugha kumi na kadhaa, na kipimo cha chanzo kiotomatiki
-- **Andika upya** - sahihi sarufi, boresha uwazi, fomali/isiyo ya fomali, fupisha, panua, ya kikina
-- **Badilisha** - maagizo ya AI ya kibinafsi; tengeneza na usimamize maagizo, lugha ya kipato kwa kila maagizo ni ya si lazima
-- **Historia** - historia kamili ya utekelezaji ikiwa na maandishi ya kuingiza/ya pato, kupanga kwa kuchuja, na utoaji
-- **Rahisi & Ubinafsi** - Njia rahisi (chaguo-msingi): viweko vilivyochaguliwa kwa kila mtoa huduma (**Bure (OpenRouter)**, **Kawaida**, **Ubinafsi**, **Kiteknolojia**; viweko tu vinavyomhusu mtoa huduma uliochaguliwa vinavyonekana) bila kuchagua vitambulisho vya mfumo; Njia ya ubinafsi: orodha kamili ya mifano kutoka kwa watoa huduma wako wamewekwa
-- **Mifano na gharama** - dashibodi za gharama na matumizi (Muhtasari, Kwa mfano, Wito wote) zenye uwezo wa upelelezi; OpenRouter inaonyesha matumizi halisi, watoa wengine hutumia mapigo
-- **UI** - kiolesura cha lugha nyingi (zaidi ya 30, msaada wa kuelimisha kulia-kushoto), fonti, ...
-- **Njia ya wavuti** - msaada wa watumiaji wengi wenye majukumu ya msimamizi
-- **Desktop** - Programu ya Electron kwa Windows na Linux
-- **Imeyakishwa binafsi** - Picha ya Docker kwa amd64 & arm64 (inayotumika kwenye Raspberry Pi)
+- **Tafsiri** - kati ya lugha kadhaa, na utambuzi wa chanzo kiotomatiki
+- **Kuandika upya** - rekebisha sarufi, boresha uwazi, rasmi/isiyo rasmi, funga, panua, kiufundi
+- **Kubadilisha** - maelezo maalum ya AI; unda na udhibiti maelezo, lugha lengo la hiari kwa kila maelezo
+- **Kamusi** - hifadhi jozi za istilahi chanzo/lengo kwa kila jozi ya lugha na zitumie wakati wa kutafsiri ili istilahi zilizochaguliwa zibaki thabiti; dhibiti istilahi katika Mipangilio (ongeza/hariri/futa, CSV/XLSX ingiza na hamisha templeti)
+- **Historia** - historia kamili ya utekelezaji na maandishi ya kuingiza/kutoa, kuchuja, na hamisha
+- **Rahisi & Maalum** - Hali Rahisi (chaguo-msingi): mipangilio iliyochaguliwa kwa kila mtoa huduma (**Bure (OpenRouter)**, **Standard**, **Maalum**, **Kiufundi**; mipangilio tu yenye ramani kwa mtoa huduma aliyechaguliwa huonekana) bila kuchagua vitambulisho vya modeli; Hali Maalum: orodha kamili ya modeli kutoka kwa watoa huduma wako waliowekwa
+- **Modeli & gharama** - dashibodi za gharama na matumizi (Muhtasari, Kwa Modeli, Simu Zote) na hamisha; OpenRouter huonyesha matumizi halisi, watoa huduma wengine hutumia makadirio
+- **Kiolesura** - kiolesura cha lugha nyingi (lugha 30+, usaidizi wa RTL), fonti, ...
+- **Hali ya Wavuti** - usaidizi wa watumiaji wengi na majukumu ya msimamizi
+- **Desktop** - programu ya Electron kwa Windows na Linux
+- **Jipangishie mwenyewe** - picha ya Docker kwa amd64 & arm64 (tayari kwa Raspberry Pi)
 
 Baada ya kusakinisha, angalia [**Mwongozo wa Mtumiaji**](USER-GUIDE.sw.md) kwa mchoro kamili wa vipengele vyote.
 

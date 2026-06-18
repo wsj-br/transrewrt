@@ -49,20 +49,21 @@ Diese Anleitung erklärt die Verwendung der App, sobald sie installiert und ausg
   - [Symbolleiste](#toolbar)
   - [Eingabe- und Ausgabefelder](#input-and-output-panels)
 - [Übersetzen](#translate)
-  - [Übersetzen Sie den Text](#translate-text)
+  - [Text übersetzen](#translate-text)
   - [Sprachauswahl](#language-selection)
   - [Hilfreiche Übersetzungseinstellungen](#helpful-translation-settings)
-  - [Verfeinern Sie Ihre Übersetzung](#refining-translation)
+  - [Ihre Übersetzung verfeinern](#refining-your-translation)
+  - [Glossar verwenden](#using-the-glossary)
 - [Umschreiben](#rewrite)
 - [Transformieren](#transform)
   - [Einen vorhandenen Prompt ausführen](#run-an-existing-prompt)
   - [Wenn Sie noch keine Prompts haben](#if-you-have-no-prompts-yet)
-  - [Einen Prompt schnell erstellen](#create-a-prompt-quickly)
+  - [Schnell einen Prompt erstellen](#create-a-prompt-quickly)
   - [Einen Prompt bearbeiten](#edit-a-prompt)
-  - [Einen Prompt vor der Verwendung testen](#test-a-prompt-before-using-it)
+  - [Einen Prompt testen, bevor Sie ihn verwenden](#test-a-prompt-before-using-it)
 - [Dashboard](#dashboard)
   - [Daten filtern](#filter-the-data)
-  - [Dashboard-Tabs](#dashboard-tabs)
+  - [Dashboard-Registerkarten](#dashboard-tabs)
   - [Daten exportieren](#export-data)
   - [Gespeicherte Datensätze für ein Modell löschen](#delete-stored-records-for-a-model)
 - [Verlauf](#history)
@@ -73,22 +74,23 @@ Diese Anleitung erklärt die Verwendung der App, sobald sie installiert und ausg
   - [Modelle](#models)
   - [Sprachen](#languages)
   - [Kostenverfolgung](#cost-tracking)
-  - [Transformieren (Einstellungs-Tab)](#transform-settings-tab)
+  - [Transformieren (Einstellungen-Registerkarte)](#transform-settings-tab)
+  - [Glossar (Einstellungen-Registerkarte)](#glossary-settings-tab)
   - [Benutzer](#users)
   - [API-Konfiguration](#api-config)
   - [Über](#about)
 - [Häufige Probleme](#common-issues)
-  - [Die App kann keinen Text übersetzen, umschreiben oder transformieren](#the-app-will-not-translate-rewrite-or-transform-text)
+  - [Die App übersetzt, schreibt nicht um oder transformiert keinen Text](#the-app-will-not-translate-rewrite-or-transform-text)
   - [Die Modellliste ist leer](#the-model-list-is-empty)
   - [Das Ergebnis ist zu langsam oder zu teuer](#the-result-is-too-slow-or-too-expensive)
   - [Die Benutzeroberfläche ist in der falschen Sprache](#the-interface-is-in-the-wrong-language)
   - [Der Text ist zu klein oder schwer zu lesen](#the-text-is-too-small-or-hard-to-read)
   - [Dashboard-Zusammenfassung sieht leer aus](#dashboard-summary-looks-empty)
-  - [Kosten zeigen "nicht verfügbar" oder scheinen falsch zu sein](#cost-shows-not-available-or-seems-wrong)
-  - [Die Gesamtkosten stimmen nicht mit meiner Anbieterrechnung überein](#total-cost-does-not-match-my-provider-bill)
-  - [Die Verlaufsseite fehlt in der Seitenleiste](#the-history-page-is-missing-from-the-sidebar)
-  - [Web-App: unerwartet zur Anmeldeseite umgeleitet](#web-app-redirected-to-the-login-page-unexpectedly)
-  - [Web-Administrator: Passwort vergessen oder verloren](#web-admin-forgot-or-lost-a-password)
+  - [Kosten zeigen „nicht verfügbar“ an oder scheinen falsch zu sein](#cost-shows-not-available-or-seems-wrong)
+  - [Gesamtkosten stimmen nicht mit meiner Anbieterrechnung überein](#total-cost-does-not-match-my-provider-bill)
+  - [Die Seite „Verlauf“ fehlt in der Seitenleiste](#the-history-page-is-missing-from-the-sidebar)
+  - [Web-App: unerwartet zur Anmeldeseite weitergeleitet](#web-app-redirected-to-the-login-page-unexpectedly)
+  - [Web-Admin: Passwort vergessen oder verloren](#web-admin-forgot-or-lost-a-password)
   - [Dashboard zeigt keine Daten für andere Benutzer (Web)](#dashboard-shows-no-data-for-other-users-web)
   - [Ich habe einen Prompt geändert und die Änderungen verloren](#i-changed-a-prompt-and-lost-the-edits)
 - [Schnelle Tipps](#quick-tips)
@@ -297,6 +299,27 @@ Nach einer erfolgreichen Übersetzung erscheinen **Hinzufügen…** und das Drop
 1. **Hinzufügen…** — ohne ausgewählten Text in der Ausgabe erhalten Sie eine vollständige Übersetzung des gleichen Eingangs mit anderer Formulierung. Das Modell erhält jede Version, die Sie bereits haben, sodass die neue Formulierung von allen abweichen kann. Sie können bis zu **fünf** Versionen speichern und zwischen ihnen im Dropdown-Menü für die Version wechseln. Mit ausgewähltem Text öffnet **Hinzufügen…** Wortalternativen in der Nähe der Auswahl (gleich wie Rechtsklick). Ohne Auswahl ist **Hinzufügen…** deaktiviert, sobald Sie fünf Versionen erreicht haben; mit einer Auswahl funktioniert es weiterhin bei fünf Versionen (nur Wortalternativen, Aktualisierung der Version 5). Während eine vollständige Umformulierung läuft, klicken Sie auf **Stoppen Übersetzen**, um abzubrechen; die Ausgabe kehrt zu der Version zurück, die aktiv war, als die Umformulierung begann.
 2. **Wortalternativen** — wählen Sie ein oder mehrere Wörter oder eine kurze Phrase in der Ausgabe aus (wenn Sie nur einen Teil eines Wortes auswählen, erweitert die App die Auswahl auf vollständige Wörter), dann klicken Sie mit der rechten Maustaste oder auf **Hinzufügen…**. Eine kurze Liste von Alternativen erscheint in der Nähe der Auswahl; klicken Sie auf eine, um sie zu ersetzen. Jede Option kann einen etwas breiteren Bereich als Ihre Auswahl ersetzen (zum Beispiel eine benachbarte Präposition oder einen Artikel), sodass der Satz grammatikalisch bleibt. Wenn Sie weniger als fünf Versionen haben, wird die bearbeitete Ausgabe als neue Version gespeichert; bei fünf Versionen wird nur **Version 5** aktualisiert. Rechtsklick ohne Auswahl hat keine Wirkung. Drücken Sie **Esc** oder klicken Sie außerhalb der Liste, um abzubrechen, ohne die Ausgabe zu ändern.
 3. **Kosten** — jede vollständige **Hinzufügen…** (keine Auswahl) und jede Anfrage nach Wortalternativen verwendet das Modell erneut und kann zu Nutzungskosten führen (gleich wie bei einem normalen Übersetzungsdurchlauf).
+
+<br/>
+
+<a id="using-the-glossary"></a>
+### Glossar verwenden
+
+Ein **Glossar** ist eine Liste von Quell-/Zielbegriffspaaren für ein bestimmtes Sprachpaar. Wenn das Glossar aktiviert ist, sendet Transrewrt die übereinstimmenden Begriffe an das Modell, sodass Ihre bevorzugte Formulierung bei Übersetzungen konsistent bleibt (z. B. ein Produktname, ein Markenbegriff oder eine Berufsbezeichnung, die immer gleich übersetzt werden sollte).
+
+So verwenden Sie es auf der Seite **Übersetzen**:
+
+1. Schalten Sie den Schalter **Glossar** im Eingabebereich ein (neben den Schaltern für automatische Ausführung und automatische Kopie).
+2. Wählen Sie Ihre **Ausgangs-** und **Zielsprachen** und übersetzen Sie wie gewohnt. Für dieses Sprachpaar gespeicherte Begriffe werden automatisch angewendet.
+3. Um ein neues Paar im laufenden Betrieb zu erfassen, klicken Sie auf **Zum Glossar hinzufügen** (neben dem Sprachauswahlfeld **Von:**). Das Dialogfeld ist mit Ihren aktuellen Sprachen vorausgefüllt, sodass Sie nur den **Begriff in Ausgangssprache** und **Begriff in Zielsprache** ausfüllen müssen.
+4. Verwenden Sie den Link **Glossar** in der Fußzeile der Ausgabe (oder den Link **Glossar verwalten** im Dialogfeld), um zu [**Einstellungen** > **Glossar**](#glossary-settings) zu gelangen und alle Ihre Begriffe zu überprüfen.
+
+Sie fügen Begriffe im Tab [**Einstellungen** > **Glossar**](#glossary-settings) hinzu, bearbeiten, importieren und exportieren sie – siehe unten.
+
+<br/>
+
+> ℹ️ **HINWEIS**<br/>
+> Glossarbegriffe werden nach **Sprachpaar** abgeglichen. Ein für Englisch → Französisch gespeicherter Begriff wird also nicht angewendet, wenn Englisch → Deutsch übersetzt wird. Das Glossar kann nicht mit **Sprache erkennen** als Quelle verwendet werden, da eine bestimmte Ausgangssprache für den Abgleich von Begriffen erforderlich ist.
 
 [--------------------------------------------------------------------------------------------------------------------------]: #
 
@@ -555,6 +578,7 @@ Die verfügbaren Tabs hängen von der Plattform und Ihrer Rolle ab:
   | Sprachen        |   ja   |     ja     |        ja         |                                              |
   | Kostenverfolgung    |   ja   |     ja     |         -          |                                              |
   | Umwandeln        |   ja   |     ja     |        ja         | Massenimport/-export von Transformations-Prompts      |
+  | Glossar         |   ja   |     ja     |        ja         | Begriffspaare, die während der Übersetzung angewendet werden        |
   | Benutzer            |    -    |     ja     |         -          |                                              |
   | API-Konfiguration       |   ja   |     ja     |         -          |                                              |
   | Über            |   ja   |     ja     |        ja         |                                              |
@@ -704,6 +728,27 @@ Sie können:
 - Prompts aus einer Datei importieren
 - Prompts zur Sicherung oder zum Teilen exportieren
 - Beispielprompts zur Prompt-Liste hinzufügen
+
+<br/>
+
+<a id="glossary-settings"></a>
+### Glossar (Einstellungen-Registerkarte)
+
+Verwenden Sie **Einstellungen** > **Glossar**, um die während der Übersetzung angewendeten Begriffspaare zu verwalten (siehe [Glossar verwenden](#using-the-glossary)). Jeder Begriff hat eine **Ausgangssprache**, eine **Zielsprache**, einen **Begriff in Ausgangssprache** und einen **Begriff in Zielsprache**.
+
+Sie können:
+
+- **Begriff hinzufügen** — Füllen Sie die Zeile am Ende der Tabelle aus (wählen Sie die Sprachen aus, geben Sie den Ausgangs- und Zielbegriff ein) und klicken Sie auf die Schaltfläche **+**.
+- **Begriffe finden** — Filtern Sie die Liste nach **Ausgangssprache**, **Zielsprache** oder freiem **Text**; klicken Sie auf **Filter löschen**, um zurückzusetzen.
+- **Begriff löschen** — Klicken Sie auf das Papierkorbsymbol in der entsprechenden Zeile.
+- **Importieren** — Laden Sie Begriffe aus einer `.csv`, `.xlsx` oder `.xls` Datei. Die Datei sollte die Spalten `source_language`, `target_language`, `source_text` und `target_text` enthalten.
+- **CSV exportieren** / **XLSX exportieren** — Laden Sie alle Ihre Begriffe als Backup oder zum Teilen herunter.
+- **CSV-Vorlage** / **XLSX-Vorlage** — Laden Sie eine leere Datei mit den richtigen Spaltenüberschriften herunter, um sie auszufüllen und zu importieren.
+
+<br/>
+
+> ℹ️ **HINWEIS**<br/>
+> In der **Desktop-App** wird das Glossar lokal gespeichert. In der **Webversion** hat jeder Benutzer sein eigenes Glossar, sodass Ihre Begriffe andere Benutzer nicht beeinträchtigen.
 
 <br/>
 

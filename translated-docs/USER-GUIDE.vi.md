@@ -51,20 +51,21 @@ Hướng dẫn này giải thích cách sử dụng ứng dụng sau khi đã c�
 - [Dịch](#translate)
   - [Dịch văn bản](#translate-text)
   - [Chọn ngôn ngữ](#language-selection)
-  - [Cài đặt dịch hữu ích](#helpful-translation-settings)
-  - [Chỉnh sửa bản dịch của bạn](#refining-translation)
+  - [Các cài đặt dịch hữu ích](#helpful-translation-settings)
+  - [Tinh chỉnh bản dịch của bạn](#refining-your-translation)
+  - [Sử dụng từ điển](#using-the-glossary)
 - [Chỉnh sửa lại](#rewrite)
 - [Chuyển đổi](#transform)
   - [Chạy một lời nhắc hiện có](#run-an-existing-prompt)
   - [Nếu bạn chưa có lời nhắc nào](#if-you-have-no-prompts-yet)
-  - [Tạo một lời nhắc nhanh chóng](#create-a-prompt-quickly)
-  - [Chỉnh sửa một lời nhắc](#edit-a-prompt)
-  - [Kiểm tra một lời nhắc trước khi sử dụng](#test-a-prompt-before-using-it)
+  - [Tạo lời nhắc nhanh chóng](#create-a-prompt-quickly)
+  - [Chỉnh sửa lời nhắc](#edit-a-prompt)
+  - [Kiểm tra lời nhắc trước khi sử dụng](#test-a-prompt-before-using-it)
 - [Bảng điều khiển](#dashboard)
   - [Lọc dữ liệu](#filter-the-data)
-  - [Thẻ bảng điều khiển](#dashboard-tabs)
+  - [Các tab Bảng điều khiển](#dashboard-tabs)
   - [Xuất dữ liệu](#export-data)
-  - [Xóa các bản ghi đã lưu cho một mô hình](#delete-stored-records-for-a-model)
+  - [Xóa bản ghi đã lưu cho một mô hình](#delete-stored-records-for-a-model)
 - [Lịch sử](#history)
   - [Lọc lịch sử](#filter-the-history)
   - [Xuất dữ liệu lịch sử](#export-history-data)
@@ -72,27 +73,28 @@ Hướng dẫn này giải thích cách sử dụng ứng dụng sau khi đã c�
   - [Cài đặt chung](#general-settings)
   - [Mô hình](#models)
   - [Ngôn ngữ](#languages)
-  - [Theo dõi Chi phí](#cost-tracking)
-  - [Chuyển đổi (thẻ cài đặt)](#transform-settings-tab)
+  - [Theo dõi chi phí](#cost-tracking)
+  - [Chuyển đổi (tab cài đặt)](#transform-settings-tab)
+  - [Từ điển (tab cài đặt)](#glossary-settings-tab)
   - [Người dùng](#users)
   - [Cấu hình API](#api-config)
   - [Giới thiệu](#about)
-- [Vấn đề thường gặp](#common-issues)
-  - [Ứng dụng không dịch, chỉnh sửa lại, hoặc chuyển đổi văn bản](#the-app-will-not-translate-rewrite-or-transform-text)
+- [Các vấn đề thường gặp](#common-issues)
+  - [Ứng dụng sẽ không dịch, chỉnh sửa lại hoặc chuyển đổi văn bản](#the-app-will-not-translate-rewrite-or-transform-text)
   - [Danh sách mô hình trống](#the-model-list-is-empty)
-  - [Kết quả quá chậm hoặc quá đắt](#the-result-is-too-slow-or-too-expensive)
-  - [Giao diện đang ở ngôn ngữ sai](#the-interface-is-in-the-wrong-language)
+  - [Kết quả quá chậm hoặc quá tốn kém](#the-result-is-too-slow-or-too-expensive)
+  - [Giao diện sai ngôn ngữ](#the-interface-is-in-the-wrong-language)
   - [Văn bản quá nhỏ hoặc khó đọc](#the-text-is-too-small-or-hard-to-read)
   - [Tóm tắt Bảng điều khiển trống](#dashboard-summary-looks-empty)
-  - [Chi phí hiển thị "không có sẵn" hoặc có vẻ sai](#cost-shows-not-available-or-seems-wrong)
+  - [Chi phí hiển thị "không khả dụng" hoặc có vẻ sai](#cost-shows-not-available-or-seems-wrong)
   - [Tổng chi phí không khớp với hóa đơn của nhà cung cấp](#total-cost-does-not-match-my-provider-bill)
-  - [Trang Lịch sử bị thiếu trong thanh bên](#the-history-page-is-missing-from-the-sidebar)
-  - [Ứng dụng web: bị chuyển hướng đến trang đăng nhập một cách bất ngờ](#web-app-redirected-to-the-login-page-unexpectedly)
+  - [Trang Lịch sử bị thiếu khỏi thanh bên](#the-history-page-is-missing-from-the-sidebar)
+  - [Ứng dụng web: bị chuyển hướng bất ngờ đến trang đăng nhập](#web-app-redirected-to-the-login-page-unexpectedly)
   - [Quản trị viên web: quên hoặc mất mật khẩu](#web-admin-forgot-or-lost-a-password)
   - [Bảng điều khiển không hiển thị dữ liệu cho người dùng khác (web)](#dashboard-shows-no-data-for-other-users-web)
-  - [Tôi đã thay đổi một lời nhắc và mất các chỉnh sửa](#i-changed-a-prompt-and-lost-the-edits)
+  - [Tôi đã thay đổi lời nhắc và mất các chỉnh sửa](#i-changed-a-prompt-and-lost-the-edits)
 - [Mẹo nhanh](#quick-tips)
-- [Tuyên bố từ chối trách nhiệm](#disclaimer)
+- [Tuyên bố miễn trừ trách nhiệm](#disclaimer)
 - [Giấy phép](#license)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -297,6 +299,27 @@ Sau khi bản dịch thành công, **Dịch lại…** và menu thả xuống ph
 1. **Dịch lại…** — khi không có văn bản nào được chọn trong đầu ra, nhận một bản dịch đầy đủ khác của cùng một đầu vào với cách diễn đạt khác. Mô hình nhận mọi phiên bản bạn đã có để cách diễn đạt mới có thể khác với tất cả chúng. Bạn có thể lưu tối đa **năm** phiên bản và chuyển đổi giữa chúng trong menu thả xuống phiên bản. Khi có văn bản được chọn, **Dịch lại…** mở các từ thay thế gần lựa chọn (giống như nhấp chuột phải). Nếu không có lựa chọn, **Dịch lại…** sẽ bị vô hiệu hóa khi bạn đạt năm phiên bản; với một lựa chọn, nó vẫn hoạt động ở năm phiên bản (chỉ từ thay thế, cập nhật phiên bản 5). Trong khi một lần dịch lại đầy đủ đang chạy, nhấp vào **Dừng Dịch** để hủy; đầu ra sẽ trở lại phiên bản đang hoạt động khi lần dịch lại bắt đầu.
 2. **Từ thay thế** — chọn một hoặc nhiều từ hoặc một cụm từ ngắn trong đầu ra (nếu bạn chỉ chọn một phần của một từ, ứng dụng sẽ mở rộng lựa chọn thành các từ đầy đủ), sau đó nhấp chuột phải hoặc nhấp vào **Dịch lại…**. Một danh sách ngắn các lựa chọn xuất hiện gần lựa chọn; nhấp vào một để thay thế. Mỗi tùy chọn có thể thay thế một khoảng rộng hơn một chút so với lựa chọn của bạn (ví dụ như một giới từ hoặc mạo từ liền kề) để câu vẫn giữ được ngữ pháp. Nếu bạn có ít hơn năm phiên bản, đầu ra đã chỉnh sửa sẽ được lưu dưới dạng một phiên bản mới; ở năm phiên bản, chỉ **phiên bản 5** được cập nhật. Nhấp chuột phải mà không có lựa chọn sẽ không có tác dụng. Nhấn **Esc** hoặc nhấp ra ngoài danh sách để hủy mà không thay đổi đầu ra.
 3. **Chi phí** — mỗi lần **Dịch lại…** đầy đủ (không có lựa chọn) và mỗi yêu cầu từ thay thế đều sử dụng lại mô hình và có thể làm tăng chi phí sử dụng (giống như một lần dịch bình thường).
+
+<br/>
+
+<a id="using-the-glossary"></a>
+### Sử dụng từ điển
+
+Một **từ điển** là một danh sách các cặp thuật ngữ nguồn/đích cho một cặp ngôn ngữ cụ thể. Khi từ điển được bật, Transrewrt sẽ gửi các thuật ngữ khớp tới mô hình để từ ngữ ưa thích của bạn nhất quán trên các bản dịch (ví dụ: tên sản phẩm, thuật ngữ thương hiệu hoặc chức danh công việc luôn được dịch giống nhau).
+
+Để sử dụng trên trang **Dịch**:
+
+1. Bật công tắc **Từ điển** trong bảng đầu vào (bên cạnh công tắc tự động thực thi và tự động sao chép).
+2. Chọn ngôn ngữ **Từ** và **Đến** của bạn và dịch như bình thường. Các thuật ngữ đã lưu cho cặp ngôn ngữ đó sẽ được áp dụng tự động.
+3. Để ghi lại một cặp mới nhanh chóng, hãy nhấp vào **Thêm vào Từ điển** (bên cạnh bộ chọn ngôn ngữ **Từ:**). Hộp thoại được điền sẵn ngôn ngữ hiện tại của bạn để bạn chỉ cần điền **thuật ngữ nguồn** và **thuật ngữ đích**.
+4. Sử dụng liên kết **Từ điển** ở chân trang đầu ra (hoặc liên kết **Quản lý từ điển** bên trong hộp thoại) để chuyển đến [**Cài đặt** > **Từ điển**](#glossary-settings) và xem lại tất cả các thuật ngữ của bạn.
+
+Bạn thêm, chỉnh sửa, nhập và xuất thuật ngữ trong tab [**Cài đặt** > **Từ điển**](#glossary-settings) — xem bên dưới.
+
+<br/>
+
+> ℹ️ **LƯU Ý**<br/>
+> Các thuật ngữ trong từ điển được khớp theo **cặp ngôn ngữ**, vì vậy một thuật ngữ đã lưu cho Tiếng Anh → Tiếng Pháp sẽ không được áp dụng khi dịch Tiếng Anh → Tiếng Đức. Từ điển không thể sử dụng với **Phát hiện ngôn ngữ** làm nguồn, vì cần có một ngôn ngữ nguồn cụ thể để khớp các thuật ngữ.
 
 [--------------------------------------------------------------------------------------------------------------------------]: #
 
@@ -555,6 +578,7 @@ Các tab khả dụng phụ thuộc vào nền tảng và vai trò của bạn:
   | Ngôn ngữ        |   có   |     có     |        có         |                                              |
   | Theo dõi chi phí    |   có   |     có     |         -          |                                              |
   | Chuyển đổi        |   có   |     có     |        có         | Nhập/xuất hàng loạt các lời nhắc chuyển đổi      |
+  | Từ điển         |   có   |     có     |        có         | Cặp thuật ngữ được áp dụng trong khi dịch        |
   | Người dùng            |    -    |     có     |         -          |                                              |
   | Cấu hình API       |   có   |     có     |         -          |                                              |
   | Giới thiệu            |   có   |     có     |        có         |                                              |
@@ -704,6 +728,27 @@ Bạn có thể:
 - nhập lời nhắc từ tệp
 - xuất lời nhắc để sao lưu hoặc chia sẻ
 - tải lời nhắc mẫu vào danh sách lời nhắc
+
+<br/>
+
+<a id="glossary-settings"></a>
+### Từ điển (tab cài đặt)
+
+Sử dụng **Cài đặt** > **Từ điển** để quản lý các cặp thuật ngữ được áp dụng trong quá trình dịch (xem [Sử dụng từ điển](#using-the-glossary)). Mỗi thuật ngữ có **ngôn ngữ nguồn**, **ngôn ngữ đích**, **thuật ngữ nguồn** và **thuật ngữ đích**.
+
+Bạn có thể:
+
+- **Thêm thuật ngữ** — điền vào hàng dưới cùng của bảng (chọn ngôn ngữ, nhập thuật ngữ nguồn và đích) rồi nhấp vào nút **+**.
+- **Tìm thuật ngữ** — lọc danh sách theo **Ngôn ngữ nguồn**, **Ngôn ngữ đích** hoặc **văn bản** tự do; nhấp vào **Xóa bộ lọc** để đặt lại.
+- **Xóa thuật ngữ** — nhấp vào biểu tượng thùng rác trên hàng của nó.
+- **Nhập** — tải thuật ngữ từ tệp `.csv`, `.xlsx` hoặc `.xls`. Tệp phải có các cột `source_language`, `target_language`, `source_text` và `target_text`.
+- **Xuất CSV** / **Xuất XLSX** — tải xuống tất cả các thuật ngữ của bạn để sao lưu hoặc chia sẻ.
+- **Mẫu CSV** / **Mẫu XLSX** — tải xuống một tệp trống với các tiêu đề cột chính xác để điền và nhập.
+
+<br/>
+
+> ℹ️ **LƯU Ý**<br/>
+> Trong **ứng dụng dành cho máy tính**, từ điển được lưu trữ cục bộ. Trong **phiên bản web**, mỗi người dùng có từ điển riêng, vì vậy các thuật ngữ của bạn sẽ không ảnh hưởng đến những người dùng khác.
 
 <br/>
 

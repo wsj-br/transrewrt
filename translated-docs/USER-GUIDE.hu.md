@@ -48,50 +48,52 @@ Ez az útmutató azt ismerteti, hogyan használható az alkalmazás telepítés 
   - [Eszköztár](#toolbar)
   - [Bemeneti és kimeneti panel](#input-and-output-panels)
 - [Fordítás](#translate)
-  - [Fordítás](#translate-text)
+  - [Szöveg fordítása](#translate-text)
   - [Nyelv kiválasztása](#language-selection)
   - [Hasznos fordítási beállítások](#helpful-translation-settings)
-  - [A fordítás finomítása](#refining-translation)
+  - [A fordítás finomítása](#refining-your-translation)
+  - [A szószedet használata](#using-the-glossary)
 - [Átírás](#rewrite)
 - [Átalakítás](#transform)
-  - [Futtass egy meglévő kérést](#run-an-existing-prompt)
-  - [Ha még nincs kérése](#if-you-have-no-prompts-yet)
-  - [Hozzáadás egy kéréshez gyorsan](#create-a-prompt-quickly)
+  - [Meglévő kérés futtatása](#run-an-existing-prompt)
+  - [Ha még nincsenek kérései](#if-you-have-no-prompts-yet)
+  - [Gyors kérés létrehozása](#create-a-prompt-quickly)
   - [Kérés szerkesztése](#edit-a-prompt)
   - [Kérés tesztelése használat előtt](#test-a-prompt-before-using-it)
 - [Irányítópult](#dashboard)
   - [Adatok szűrése](#filter-the-data)
-  - [Irányítópult lapok](#dashboard-tabs)
+  - [Irányítópult lapjai](#dashboard-tabs)
   - [Adatok exportálása](#export-data)
-  - [Törlés tárolt rekordok egy modellhez](#delete-stored-records-for-a-model)
+  - [Tárolt rekordok törlése egy modellhez](#delete-stored-records-for-a-model)
 - [Előzmények](#history)
   - [Előzmények szűrése](#filter-the-history)
-  - [Előzmények adatainak exportálása](#export-history-data)
+  - [Előzményadatok exportálása](#export-history-data)
 - [Beállítások](#settings)
   - [Általános beállítások](#general-settings)
   - [Modellek](#models)
   - [Nyelvek](#languages)
   - [Költségkövetés](#cost-tracking)
-  - [Átalakítás (beállítási fül)](#transform-settings-tab)
+  - [Átalakítás (beállítások lap)](#transform-settings-tab)
+  - [Szószedet (beállítások lap)](#glossary-settings-tab)
   - [Felhasználók](#users)
   - [API konfiguráció](#api-config)
   - [Névjegy](#about)
 - [Gyakori problémák](#common-issues)
-  - [Az alkalmazás nem fordít, nem ír át, vagy nem alakít át szöveget](#the-app-will-not-translate-rewrite-or-transform-text)
-  - [A modell lista üres](#the-model-list-is-empty)
+  - [Az alkalmazás nem fordít, nem ír át és nem alakít át szöveget](#the-app-will-not-translate-rewrite-or-transform-text)
+  - [A modelllista üres](#the-model-list-is-empty)
   - [Az eredmény túl lassú vagy túl drága](#the-result-is-too-slow-or-too-expensive)
-  - [A felület a rossz nyelven van](#the-interface-is-in-the-wrong-language)
+  - [Az interfész rossz nyelven van](#the-interface-is-in-the-wrong-language)
   - [A szöveg túl kicsi vagy nehezen olvasható](#the-text-is-too-small-or-hard-to-read)
-  - [Irányítópult összefoglaló üresnek tűnik](#dashboard-summary-looks-empty)
-  - [A költség "nem elérhető" vagy helytelennek tűnik](#cost-shows-not-available-or-seems-wrong)
-  - [A teljes költség nem egyezik a szolgáltatóm számlájával](#total-cost-does-not-match-my-provider-bill)
+  - [Irányítópult összefoglalója üresnek tűnik](#dashboard-summary-looks-empty)
+  - [A költség "nem elérhető" értéket mutat, vagy hibásnak tűnik](#cost-shows-not-available-or-seems-wrong)
+  - [A teljes költség nem egyezik a szolgáltatói számlámmal](#total-cost-does-not-match-my-provider-bill)
   - [Az Előzmények oldal hiányzik az oldalsávból](#the-history-page-is-missing-from-the-sidebar)
-  - [Webalkalmazás: váratlanul átirányít a bejelentkezési oldalra](#web-app-redirected-to-the-login-page-unexpectedly)
-  - [Web rendszergazda: elfelejtette vagy elvesztette a jelszót](#web-admin-forgot-or-lost-a-password)
-  - [Irányítópult nem mutat adatokat más felhasználók számára (web)](#dashboard-shows-no-data-for-other-users-web)
-  - [Megváltoztattam egy kérést és elvesztettem a módosításokat](#i-changed-a-prompt-and-lost-the-edits)
+  - [Webalkalmazás: váratlanul átirányítva a bejelentkezési oldalra](#web-app-redirected-to-the-login-page-unexpectedly)
+  - [Webes rendszergazda: elfelejtett vagy elveszett jelszó](#web-admin-forgot-or-lost-a-password)
+  - [Az irányítópult nem mutat adatokat más felhasználók számára (webes)](#dashboard-shows-no-data-for-other-users-web)
+  - [Módosítottam egy kérést és elvesztek a szerkesztések](#i-changed-a-prompt-and-lost-the-edits)
 - [Gyors tippek](#quick-tips)
-- [Jogi nyilatkozat](#disclaimer)
+- [Felelősségkizárás](#disclaimer)
 - [Licenc](#license)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -296,6 +298,27 @@ Sikeres fordítás után a **Hozzáadás…** és a verzió legördülő menü m
 1. **Hozzáadás…** — ha nincs kiválasztott szöveg a kimenetben, egy újabb teljes fordítást kap ugyanazzal a bemenettel, de más megfogalmazásban. A modell megkapja az összes már meglévő verziót, így az új megfogalmazás eltérhet mindegyiktől. Legfeljebb **öt** verziót tárolhat, és válthat közöttük a verzió legördülő menüben. Kiválasztott szöveg esetén a **Hozzáadás…** szószók alternatíváit nyitja meg a kiválasztás közelében (ugyanaz, mint a jobb gombos kattintás). Kiválasztás nélkül a **Hozzáadás…** letiltásra kerül, amint eléri az öt verziót; kiválasztással azonban továbbra is működik öt verziónál (csak szószók alternatívái, az 5. verzió frissítése). Amíg egy teljes újrafogalmazás fut, kattintson a **Leállítás Fordítás** gombra a megszakításhoz; a kimenet visszatér arra a verzióra, amely aktív volt, amikor az újrafogalmazás elkezdődött.
 2. **Szószók alternatívái** — válasszon ki egy vagy több szót vagy egy rövid kifejezést a kimenetben (ha csak egy szó részét választja ki, az alkalmazás kibővíti a választást teljes szavakra), majd kattintson a jobb gombbal, vagy kattintson a **Hozzáadás…** gombra. Egy rövid alternatív lista jelenik meg a kiválasztás közelében; kattintson egyre a helyettesítéshez. Minden lehetőség egy kicsit szélesebb terjedelmet is helyettesíthet, mint a kiválasztás (például egy szomszédos elöljárószó vagy névelő), így a mondat nyelvtanilag helyes marad. Ha kevesebb mint öt verziója van, a szerkesztett kimenet új verzióként kerül mentésre; öt verziónál csak az **5. verzió** frissül. Jobb gombbal kattintva, ha nincs kiválasztás, semmi sem történik. Nyomja meg az **Esc** billentyűt, vagy kattintson a lista kívül, hogy megszakítsa anélkül, hogy megváltoztatná a kimenetet.
 3. **Költségek** — minden teljes **Hozzáadás…** (kiválasztás nélkül) és minden szószók alternatíva kérés újra használja a modellt, és növelheti a használati költséget (ugyanaz, mint egy normál fordítási futás).
+
+<br/>
+
+<a id="using-the-glossary"></a>
+### A szószedet használata
+
+A **szószedet** forrás/cél kifejezéspárok listája egy adott nyelvpárhoz. Amikor a szószedet be van kapcsolva, a Transrewrt elküldi a megfelelő kifejezéseket a modellnek, így az Ön által preferált megfogalmazás következetes marad a fordítások során (például egy terméknév, egy márkanév vagy egy olyan munkakör, amelyet mindig ugyanúgy kell fordítani).
+
+A használatához a **Fordítás** oldalon:
+
+1. Kapcsolja be a **Szószedet** kapcsolót a beviteli panelen (az automatikus végrehajtás és az automatikus másolás kapcsolók mellett).
+2. Válassza ki a **Forrás** és **Cél** nyelveket, és fordítson a szokásos módon. Az ehhez a nyelvpárhoz mentett kifejezések automatikusan alkalmazásra kerülnek.
+3. Új pár rögzítéséhez kattintson a **Hozzáadás a szószedethez** gombra (a **Forrás:** nyelvválasztó mellett). Az ablak előre ki lesz töltve az aktuális nyelveivel, így csak a **forráskifejezést** és a **célkifejezést** kell megadnia.
+4. Használja a **Szószedet** hivatkozást a kimeneti láblécben (vagy a párbeszédablakon belüli **Szószedet kezelése** hivatkozást), hogy a [**Beállítások** > **Szószedet**](#glossary-settings) oldalra ugorjon, és áttekintse az összes kifejezését.
+
+A kifejezéseket a [**Beállítások** > **Szószedet**](#glossary-settings) lapon adhatja hozzá, szerkesztheti, importálhatja és exportálhatja — lásd alább.
+
+<br/>
+
+> ℹ️ **JEGYZET**<br/>
+> A szószedet kifejezései **nyelv páronként** kerülnek egyeztetésre, így az angol → francia nyelvekre mentett kifejezés nem kerül alkalmazásra angol → német fordítás esetén. A szószedet nem használható a **Nyelv felismerése** funkcióval forrásként, mert a kifejezések egyeztetéséhez specifikus forrásnyelvre van szükség.
 
 [--------------------------------------------------------------------------------------------------------------------------]: #
 
@@ -554,6 +577,7 @@ A rendelkezésre álló fülek a platformtól és a szerepkörtől függnek:
   | Nyelvek        |   igen   |     igen     |        igen         |                                              |
   | Költségkövetés    |   igen   |     igen     |         -          |                                              |
   | Átalakítás        |   igen   |     igen     |        igen         | Kötegelt import/export az átalakítási promptokhoz      |
+  | Szószedet         |   igen   |     igen     |        igen         | Kifejezéspárok alkalmazva a fordítás során        |
   | Felhasználók            |    -    |     igen     |         -          |                                              |
   | API beállítások       |   igen   |     igen     |         -          |                                              |
   | Névjegy            |   igen   |     igen     |        igen         |                                              |
@@ -703,6 +727,27 @@ Lehetőségei:
 - importálhat promptokat fájlból
 - exportálhat promptokat biztonsági mentéshez vagy megosztáshoz
 - mintapromptok betöltése a promptlista számára
+
+<br/>
+
+<a id="glossary-settings"></a>
+### Szószedet (beállítások lap)
+
+Használja a **Beállítások** > **Szószedet** menüpontot a fordítás során alkalmazott kifejezés­párok kezeléséhez (lásd: [A szószedet használata](#using-the-glossary)). Minden kifejezésnek van **forrásnyelve**, **célnyelve**, **forráskifejezése** és **célkifejezése**.
+
+Lehetőségei:
+
+- **Kifejezés hozzáadása** — töltse ki az űrlapot az űrlap alján (válassza ki a nyelveket, írja be a forrás- és célkifejezéseket), majd kattintson a **+** gombra.
+- **Kifejezések keresése** — szűrje a listát **forrásnyelv**, **célnyelv** vagy szabad **szöveg** alapján; kattintson a **Szűrők törlése** gombra az alaphelyzetbe állításhoz.
+- **Kifejezés törlése** — kattintson a kuka ikonra a sorában.
+- **Importálás** — kifejezések betöltése `.csv`, `.xlsx` vagy `.xls` fájlból. A fájlnak tartalmaznia kell a következő oszlopokat: `source_language`, `target_language`, `source_text` és `target_text`.
+- **Exportálás CSV** / **Exportálás XLSX** formátumban — töltse le az összes kifejezést biztonsági mentéshez vagy megosztáshoz.
+- **Sablon CSV** / **Sablon XLSX** — töltse le az üres fájlt a megfelelő oszlopfejlécekkel, amelyet kitölthet és importálhat.
+
+<br/>
+
+> ℹ️ **MEGJEGYZÉS**<br/>
+> Az **asztali alkalmazásban** a szószedet helyileg van tárolva. A **webes verzióban** minden felhasználó rendelkezik saját szószedettel, így az Ön kifejezései nem befolyásolják a többi felhasználót.
 
 <br/>
 

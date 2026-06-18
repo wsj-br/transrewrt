@@ -12,16 +12,17 @@
 
 Alat teks sing didhukung AI: terjemahake antar basa, tulis ulang gaya beda, lan ubah nganggo prompt khusus - nggunakake pirang-pirang panyedhiya AI (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, lan Ollama lokal). Jalan minangka aplikasi desktop (Electron) utawa aplikasi web sing bisa digawe dhewe (Docker).
 
-- **Terjemahake** - antarane puluhan basa, kanthi pendeteksian sumber otomatis
-- **Tulis ulang** - perbaiki tata basa, improve clarity, formal/informal, ngendhakake, nembahake, teknis
-- **Ubah** - prompt AI khusus; gawe lan atur prompt, basa sasaran opsional saben prompt
-- **Riwayat** - riwayat eksekusi lengkap kanthi teks input/output, penyaringan, lan ekspor
-- **Gampang & Lanjutan** - Modus gampang (standar): preset sing dipilih saben panyedhiya (**Gratis (OpenRouter)**, **Standar**, **Lanjutan**, **Teknis**; mung preset kanthi peta kanggo panyedhiya sing dipilih sing katon) tanpa milih ID model; Modus lanjutan: dhaftar model lengkap saka panyedhiya sing wis dikonfigurasi
-- **Model lan biaya** - dasbor biaya lan panggunaan (Ringkasan, Dhèk model, Kabeh pangelingan API) kanthi ekspor; OpenRouter nuduhake panggunan nyata, panyedhiya liya nggunakake perkiraan
+- **Terjemahake** - antarane puluhan basa, kanthi deteksi sumber otomatis
+- **Transrewrt** - ndandani tata basa, tingkatake kejernihan, formal/informal, pendhekake, tambahi, teknis
+- **Transformasi** - prompt AI khusus; gawé lan ngatur prompt, basa target opsional saben prompt
+- **Glosarium** - nyimpen pasangan istilah sumber/target saben pasangan basa lan ngetrapake nalika terjemahan supaya istilah sing dipilih tetep konsisten; ngatur istilah ing Pengaturan (tambah/sunting/hapus, impor CSV/XLSX lan ekspor template)
+- **Sejarah** - riwayat eksekusi lengkap kanthi teks input/output, panyaringan, lan ekspor
+- **Mudah & Lanjutan** - Mode Gampang (standar): preset sing dikurasi saben panyedhiya (**Gratis (OpenRouter)**, **Standar**, **Lanjutan**, **Teknis**; mung preset kanthi pemetaan kanggo panyedhiya sing dipilih sing katon) tanpa milih ID model; Mode Lanjutan: dhaptar model lengkap saka panyedhiya sing dikonfigurasi
+- **Model & biaya** - dashboard biaya lan panggunaan (Ringkasan, Miturut Model, Kabeh Panggilan) kanthi ekspor; OpenRouter nuduhake pengeluaran nyata, panyedhiya liyane nggunakake perkiraan
 - **UI** - antarmuka multibasa (30+ basa, dhukungan RTL), font, ...
-- **Modus web** - dhukungan multi-pangguna kanthi peran admin
-- **Desktop** - Aplikasi Electron kanggo Windows lan Linux
-- **Swadaya** - Gambar Docker kanggo amd64 & arm64 (siap digunakake ing Raspberry Pi)
+- **Mode Web** - dhukungan multi-pengguna kanthi peran admin
+- **Desktop** - aplikasi Electron kanggo Windows lan Linux
+- **Self-hosted** - gambar Docker kanggo amd64 & arm64 (siap kanggo Raspberry Pi)
 
 Sawise dipasang, deleng [**Pandhuan Pangguna**](USER-GUIDE.jv.md) kanggo pandhuan lengkap babagan kabeh fitur.
 

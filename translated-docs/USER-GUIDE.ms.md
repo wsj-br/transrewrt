@@ -50,14 +50,15 @@ Panduan ini menerangkan cara menggunakan aplikasi setelah dipasang dan dijalanka
   - [Panel input dan output](#input-and-output-panels)
 - [Terjemahan](#translate)
   - [Terjemah teks](#translate-text)
-  - [Pemilihan bahasa](#language-selection)
+  - [Pilihan bahasa](#language-selection)
   - [Tetapan terjemahan yang berguna](#helpful-translation-settings)
-  - [Memperhalus terjemahan anda](#refining-translation)
-- [Menulis semula](#rewrite)
+  - [Memperhalusi terjemahan anda](#refining-your-translation)
+  - [Menggunakan glosari](#using-the-glossary)
+- [Tulis semula](#rewrite)
 - [Transformasi](#transform)
   - [Jalankan arahan sedia ada](#run-an-existing-prompt)
-  - [Jika anda belum mempunyai arahan](#if-you-have-no-prompts-yet)
-  - [Cipta arahan dengan cepat](#create-a-prompt-quickly)
+  - [Jika anda belum mempunyai sebarang arahan](#if-you-have-no-prompts-yet)
+  - [Cipta arahan dengan pantas](#create-a-prompt-quickly)
   - [Edit arahan](#edit-a-prompt)
   - [Uji arahan sebelum menggunakannya](#test-a-prompt-before-using-it)
 - [Papan pemuka](#dashboard)
@@ -74,24 +75,25 @@ Panduan ini menerangkan cara menggunakan aplikasi setelah dipasang dan dijalanka
   - [Bahasa](#languages)
   - [Penjejakan kos](#cost-tracking)
   - [Transformasi (tab tetapan)](#transform-settings-tab)
+  - [Glosari (tab tetapan)](#glossary-settings-tab)
   - [Pengguna](#users)
   - [Konfigurasi API](#api-config)
   - [Tentang](#about)
-- [Masalah biasa](#common-issues)
-  - [Aplikasi tidak akan menterjemah, menulis semula, atau mentransformasi teks](#the-app-will-not-translate-rewrite-or-transform-text)
+- [Isu lazim](#common-issues)
+  - [Aplikasi tidak akan menterjemah, menulis semula atau mengubah teks](#the-app-will-not-translate-rewrite-or-transform-text)
   - [Senarai model kosong](#the-model-list-is-empty)
-  - [Hasil terlalu lambat atau terlalu mahal](#the-result-is-too-slow-or-too-expensive)
-  - [Antaramuka dalam bahasa yang salah](#the-interface-is-in-the-wrong-language)
+  - [Hasil terlalu perlahan atau terlalu mahal](#the-result-is-too-slow-or-too-expensive)
+  - [Antara muka dalam bahasa yang salah](#the-interface-is-in-the-wrong-language)
   - [Teks terlalu kecil atau sukar dibaca](#the-text-is-too-small-or-hard-to-read)
-  - [Ringkasan Papan Pemuka kelihatan kosong](#dashboard-summary-looks-empty)
-  - [Kos menunjukkan "tidak tersedia" atau nampak salah](#cost-shows-not-available-or-seems-wrong)
+  - [Ringkasan Papan pemuka kelihatan kosong](#dashboard-summary-looks-empty)
+  - [Kos menunjukkan "tidak tersedia" atau kelihatan salah](#cost-shows-not-available-or-seems-wrong)
   - [Jumlah kos tidak sepadan dengan bil pembekal saya](#total-cost-does-not-match-my-provider-bill)
-  - [Halaman Sejarah hilang dari bar sisi](#the-history-page-is-missing-from-the-sidebar)
-  - [Aplikasi web: diarahkan ke halaman log masuk tanpa diduga](#web-app-redirected-to-the-login-page-unexpectedly)
-  - [Admin web: terlupa atau kehilangan kata laluan](#web-admin-forgot-or-lost-a-password)
-  - [Papan pemuka menunjukkan tiada data untuk pengguna lain (web)](#dashboard-shows-no-data-for-other-users-web)
-  - [Saya mengubah arahan dan kehilangan pengeditan](#i-changed-a-prompt-and-lost-the-edits)
-- [Petua cepat](#quick-tips)
+  - [Halaman Sejarah tiada dalam bar sisi](#the-history-page-is-missing-from-the-sidebar)
+  - [Aplikasi web: diarahkan semula ke halaman log masuk secara tidak sengaja](#web-app-redirected-to-the-login-page-unexpectedly)
+  - [Admin web: terlupa atau hilang kata laluan](#web-admin-forgot-or-lost-a-password)
+  - [Papan pemuka tidak menunjukkan data untuk pengguna lain (web)](#dashboard-shows-no-data-for-other-users-web)
+  - [Saya menukar arahan dan kehilangan edit](#i-changed-a-prompt-and-lost-the-edits)
+- [Petua pantas](#quick-tips)
 - [Penafian](#disclaimer)
 - [Lesen](#license)
 
@@ -297,6 +299,27 @@ Selepas terjemahan berjaya, **Terjemah Semula…** dan dropdown versi muncul di 
 1. **Terjemah Semula…** — tanpa teks yang dipilih dalam output, dapatkan terjemahan penuh yang lain bagi input yang sama dengan perkataan yang berbeza. Model menerima setiap versi yang anda sudah ada supaya perkataan baru boleh berbeza daripada semua versi tersebut. Anda boleh menyimpan sehingga **lima** versi dan bertukar antara mereka dalam dropdown versi. Dengan teks yang dipilih, **Terjemah Semula…** membuka alternatif perkataan berhampiran pilihan (sama seperti klik kanan). Tanpa pilihan, **Terjemah Semula…** dinyahdayakan setelah anda mencapai lima versi; dengan pilihan, ia masih berfungsi pada lima versi (alternatif perkataan sahaja, mengemas kini versi 5). Semasa terjemahan penuh sedang berjalan, klik **Henti Terjemah** untuk membatalkan; output kembali kepada versi yang aktif apabila terjemahan semula dimulakan.
 2. **Alternatif perkataan** — pilih satu atau lebih perkataan atau frasa pendek dalam output (jika anda hanya memilih sebahagian daripada perkataan, aplikasi akan mengembangkan pilihan kepada perkataan penuh), kemudian klik kanan atau klik **Terjemah Semula…**. Senarai pendek alternatif muncul berhampiran pilihan; klik satu untuk menggantikannya. Setiap pilihan mungkin menggantikan jangkauan yang sedikit lebih luas daripada pilihan anda (contohnya, preposisi atau artikel yang bersebelahan) supaya ayat tetap gramatis. Jika anda mempunyai kurang daripada lima versi, output yang diedit disimpan sebagai versi baru; pada lima versi, hanya **versi 5** yang dikemas kini. Klik kanan tanpa pilihan tidak melakukan apa-apa. Tekan **Esc** atau klik di luar senarai untuk membatalkan tanpa mengubah output.
 3. **Kos** — setiap **Terjemah Semula…** penuh (tanpa pilihan) dan setiap permintaan alternatif perkataan menggunakan model sekali lagi dan mungkin menambah kepada kos penggunaan (sama seperti larian terjemahan biasa).
+
+<br/>
+
+<a id="using-the-glossary"></a>
+### Menggunakan glosari
+
+A **glosari** ialah senarai pasangan istilah sumber/sasaran untuk pasangan bahasa tertentu. Apabila glosari dihidupkan, Transrewrt menghantar istilah yang sepadan kepada model supaya perkataan pilihan anda kekal konsisten merentasi terjemahan (contohnya nama produk, istilah jenama, atau jawatan yang sentiasa perlu diterjemahkan dengan cara yang sama).
+
+Untuk menggunakannya pada halaman **Terjemah**:
+
+1. Hidupkan suis **Glosari** dalam panel input (di sebelah suis auto-laksana dan auto-salin).
+2. Pilih bahasa **Dari** dan **Ke** anda dan terjemah seperti biasa. Istilah yang disimpan untuk pasangan bahasa itu digunakan secara automatik.
+3. Untuk menangkap pasangan baharu dengan pantas, klik **Tambah ke Glosari** (di sebelah pemilih bahasa **Dari:**). Dialog diprapenuhi dengan bahasa semasa anda jadi anda hanya perlu mengisi **istilah sumber** dan **istilah sasaran**.
+4. Gunakan pautan **Glosari** di bahagian bawah output (atau pautan **Urus glosari** di dalam dialog) untuk melompat ke [**Tetapan** > **Glosari**](#glossary-settings) dan semak semua istilah anda.
+
+Anda menambah, mengedit, mengimport dan mengeksport istilah dalam tab [**Tetapan** > **Glosari**](#glossary-settings) — lihat di bawah.
+
+<br/>
+
+> ℹ️ **NOTA**<br/>
+> Istilah glosari dipadankan mengikut **pasangan bahasa**, jadi istilah yang disimpan untuk Inggeris → Perancis tidak digunakan apabila menterjemah Inggeris → Jerman. Glosari tidak boleh digunakan dengan **Kesan Bahasa** sebagai sumber, kerana bahasa sumber tertentu diperlukan untuk memadankan istilah.
 
 [--------------------------------------------------------------------------------------------------------------------------]: #
 
@@ -555,6 +578,7 @@ Tab yang tersedia bergantung pada platform dan peranan anda:
   | Bahasa        |   ya   |     ya     |        ya         |                                              |
   | Penjejakan Kos    |   ya   |     ya     |         -          |                                              |
   | Transformasikan        |   ya   |     ya     |        ya         | Import/paparan pukal arahan transformasi      |
+  | Glosari         |   ya   |     ya     |        ya         | Pasangan istilah digunakan semasa terjemahan        |
   | Pengguna            |    -    |     ya     |         -          |                                              |
   | Konfigurasi API       |   ya   |     ya     |         -          |                                              |
   | Perihal            |   ya   |     ya     |        ya         |                                              |
@@ -704,6 +728,27 @@ Anda boleh:
 - import arahan dari fail
 - eksport arahan untuk sandaran atau perkongsian
 - muatkan arahan sampel ke senarai arahan
+
+<br/>
+
+<a id="glossary-settings"></a>
+### Glosari (tab tetapan)
+
+Gunakan **Tetapan** > **Glosari** untuk mengurus pasangan istilah yang digunakan semasa terjemahan (lihat [Menggunakan glosari](#using-the-glossary)). Setiap istilah mempunyai **bahasa sumber**, **bahasa sasaran**, **istilah sumber**, dan **istilah sasaran**.
+
+Anda boleh:
+
+- **Tambah istilah** — isi baris di bahagian bawah jadual (pilih bahasa, taip istilah sumber dan sasaran) dan klik butang **+**.
+- **Cari istilah** — tapis senarai mengikut **Bahasa sumber**, **Bahasa sasaran**, atau **teks** percuma; klik **Nyah-tapis** untuk tetapkan semula.
+- **Padam istilah** — klik ikon bakul sampah pada barisnya.
+- **Import** — muatkan istilah daripada fail `.csv`, `.xlsx`, atau `.xls`. Fail tersebut sepatutnya mempunyai lajur `source_language`, `target_language`, `source_text`, dan `target_text`.
+- **Eksport CSV** / **Eksport XLSX** — muat turun semua istilah anda untuk sandaran atau perkongsian.
+- **Templat CSV** / **Templat XLSX** — muat turun fail kosong dengan pengepala lajur yang betul untuk diisi dan diimport.
+
+<br/>
+
+> ℹ️ **NOTA**<br/>
+> Dalam **aplikasi desktop**, glosari disimpan secara setempat. Dalam **versi web**, setiap pengguna mempunyai glosari sendiri, jadi istilah anda tidak menjejaskan pengguna lain.
 
 <br/>
 

@@ -49,48 +49,50 @@ Deze handleiding legt uit hoe u de app gebruikt nadat deze is geïnstalleerd en 
   - [Werkbalk](#toolbar)
   - [Invoer- en uitvoerpanelen](#input-and-output-panels)
 - [Vertalen](#translate)
-  - [Vertaal tekst](#translate-text)
-  - [Taalselectie](#language-selection)
+  - [Tekst vertalen](#translate-text)
+  - [Taalkeuze](#language-selection)
   - [Handige vertaalinstellingen](#helpful-translation-settings)
-  - [Je vertaling verfijnen](#refining-translation)
+  - [Uw vertaling verfijnen](#refining-your-translation)
+  - [De woordenlijst gebruiken](#using-the-glossary)
 - [Herschrijven](#rewrite)
 - [Transformeren](#transform)
-  - [Voer een bestaande prompt uit](#run-an-existing-prompt)
-  - [Als je nog geen prompts hebt](#if-you-have-no-prompts-yet)
-  - [Maak snel een prompt aan](#create-a-prompt-quickly)
-  - [Bewerk een prompt](#edit-a-prompt)
-  - [Test een prompt voordat je deze gebruikt](#test-a-prompt-before-using-it)
+  - [Een bestaande prompt uitvoeren](#run-an-existing-prompt)
+  - [Als u nog geen prompts hebt](#if-you-have-no-prompts-yet)
+  - [Snel een prompt aanmaken](#create-a-prompt-quickly)
+  - [Een prompt bewerken](#edit-a-prompt)
+  - [Een prompt testen voordat u deze gebruikt](#test-a-prompt-before-using-it)
 - [Dashboard](#dashboard)
-  - [Filter de gegevens](#filter-the-data)
+  - [De gegevens filteren](#filter-the-data)
   - [Dashboard-tabbladen](#dashboard-tabs)
   - [Gegevens exporteren](#export-data)
-  - [Verwijder opgeslagen records voor een model](#delete-stored-records-for-a-model)
+  - [Opgeslagen records voor een model verwijderen](#delete-stored-records-for-a-model)
 - [Geschiedenis](#history)
-  - [Filter de geschiedenis](#filter-the-history)
-  - [Exporteer geschiedenisgegevens](#export-history-data)
+  - [De geschiedenis filteren](#filter-the-history)
+  - [Historiegegevens exporteren](#export-history-data)
 - [Instellingen](#settings)
   - [Algemene instellingen](#general-settings)
   - [Modellen](#models)
   - [Talen](#languages)
   - [Kostenregistratie](#cost-tracking)
-  - [Transformeren (instellingen tab)](#transform-settings-tab)
+  - [Transformeren (instellingen-tabblad)](#transform-settings-tab)
+  - [Woordenlijst (instellingen-tabblad)](#glossary-settings-tab)
   - [Gebruikers](#users)
   - [API-configuratie](#api-config)
   - [Over](#about)
 - [Veelvoorkomende problemen](#common-issues)
-  - [De app vertaalt, herschrijft of transformeert tekst niet](#the-app-will-not-translate-rewrite-or-transform-text)
-  - [De modellenlijst is leeg](#the-model-list-is-empty)
+  - [De app vertaalt, herschrijft of transformeert geen tekst](#the-app-will-not-translate-rewrite-or-transform-text)
+  - [De modellijst is leeg](#the-model-list-is-empty)
   - [Het resultaat is te traag of te duur](#the-result-is-too-slow-or-too-expensive)
-  - [De interface is in de verkeerde taal](#the-interface-is-in-the-wrong-language)
-  - [De tekst is te klein of moeilijk te lezen](#the-text-is-too-small-or-hard-to-read)
-  - [Dashboard Samenvatting lijkt leeg](#dashboard-summary-looks-empty)
-  - [Kosten tonen "niet beschikbaar" of lijken verkeerd](#cost-shows-not-available-or-seems-wrong)
+  - [De interface heeft de verkeerde taal](#the-interface-is-in-the-wrong-language)
+  - [De tekst is te klein of moeilijk leesbaar](#the-text-is-too-small-or-hard-to-read)
+  - [Dashboard Samenvatting ziet er leeg uit](#dashboard-summary-looks-empty)
+  - [Kosten tonen "niet beschikbaar" of lijken onjuist](#cost-shows-not-available-or-seems-wrong)
   - [Totale kosten komen niet overeen met mijn providerfactuur](#total-cost-does-not-match-my-provider-bill)
-  - [De Geschiedenis-pagina ontbreekt in de zijbalk](#the-history-page-is-missing-from-the-sidebar)
-  - [Webapp: onverwacht doorgestuurd naar de inlogpagina](#web-app-redirected-to-the-login-page-unexpectedly)
-  - [Webbeheerder: wachtwoord vergeten of kwijt](#web-admin-forgot-or-lost-a-password)
+  - [De pagina Geschiedenis ontbreekt in de zijbalk](#the-history-page-is-missing-from-the-sidebar)
+  - [Web-app: onverwacht omgeleid naar de inlogpagina](#web-app-redirected-to-the-login-page-unexpectedly)
+  - [Web beheerder: wachtwoord vergeten of kwijt](#web-admin-forgot-or-lost-a-password)
   - [Dashboard toont geen gegevens voor andere gebruikers (web)](#dashboard-shows-no-data-for-other-users-web)
-  - [Ik heb een prompt gewijzigd en de bewerkingen verloren](#i-changed-a-prompt-and-lost-the-edits)
+  - [Ik heb een prompt gewijzigd en de wijzigingen zijn verloren gegaan](#i-changed-a-prompt-and-lost-the-edits)
 - [Snelle tips](#quick-tips)
 - [Disclaimer](#disclaimer)
 - [Licentie](#license)
@@ -297,6 +299,27 @@ Na een succesvolle vertaling verschijnen **Herschrijven…** en de versie dropdo
 1. **Herschrijven…** — met geen tekst geselecteerd in de uitvoer, krijg je een volledige vertaling van dezelfde invoer met andere bewoording. Het model ontvangt elke versie die je al hebt, zodat de nieuwe bewoording kan verschillen van al deze. Je kunt tot **vijf** versies opslaan en tussen hen schakelen in de versie dropdown. Met geselecteerde tekst opent **Herschrijven…** woordalternatieven nabij de selectie (dezelfde als rechtsklikken). Zonder selectie is **Herschrijven…** uitgeschakeld zodra je vijf versies hebt bereikt; met een selectie werkt het nog steeds bij vijf versies (alleen woordalternatieven, versie 5 wordt bijgewerkt). Terwijl een volledige herschrijving loopt, klik op **Stop Vertalen** om te annuleren; de uitvoer keert terug naar de versie die actief was toen de herschrijving begon.
 2. **Woordalternatieven** — selecteer een of meer woorden of een korte zin in de uitvoer (als je alleen een deel van een woord selecteert, breidt de app de selectie uit naar volledige woorden), klik dan met de rechtermuisknop of klik op **Herschrijven…**. Een korte lijst met alternatieven verschijnt nabij de selectie; klik op een om deze te vervangen. Elke optie kan een iets bredere span vervangen dan je selectie (bijvoorbeeld een aangrenzende voorzetsel of lidwoord) zodat de zin grammaticaal blijft. Als je minder dan vijf versies hebt, wordt de bewerkte uitvoer opgeslagen als een nieuwe versie; bij vijf versies wordt alleen **versie 5** bijgewerkt. Rechtsklikken zonder selectie doet niets. Druk op **Esc** of klik buiten de lijst om te annuleren zonder de uitvoer te wijzigen.
 3. **Kosten** — elke volledige **Herschrijven…** (geen selectie) en elk verzoek om woordalternatieven gebruikt het model opnieuw en kan bijdragen aan de gebruikskosten (dezelfde als een normale vertaalrun).
+
+<br/>
+
+<a id="using-the-glossary"></a>
+### De woordenlijst gebruiken
+
+Een **woordenlijst** is een lijst met bron/doel-termkoppelingen voor een specifiek taalpaar. Wanneer de woordenlijst is ingeschakeld, stuurt Transrewrt de overeenkomende termen naar het model, zodat uw voorkeursterminologie consistent blijft in vertalingen (bijvoorbeeld een productnaam, een merkterm of een functietitel die altijd op dezelfde manier moet worden vertaald).
+
+Om het te gebruiken op de pagina **Vertalen**:
+
+1. Schakel de schakelaar **Woordenlijst** in het invoerpaneel in (naast de schakelaars voor automatisch uitvoeren en automatisch kopiëren).
+2. Kies uw **Van** en **Naar** talen en vertaal zoals gewoonlijk. Termen die voor dat taalpaar zijn opgeslagen, worden automatisch toegepast.
+3. Om een nieuwe koppeling ter plekke vast te leggen, klikt u op **Toevoegen aan woordenlijst** (naast de keuzelijst voor de **Van:** taal). Het dialoogvenster is vooraf ingevuld met uw huidige talen, zodat u alleen de **bronterm** en **doelterm** hoeft in te vullen.
+4. Gebruik de link **Woordenlijst** in de voettekst van de uitvoer (of de link **Woordenlijst beheren** in het dialoogvenster) om naar [**Instellingen** > **Woordenlijst**](#glossary-settings) te gaan en al uw termen te bekijken.
+
+U voegt termen toe, bewerkt, importeert en exporteert ze in het tabblad [**Instellingen** > **Woordenlijst**](#glossary-settings) — zie hieronder.
+
+<br/>
+
+> ℹ️ **OPMERKING**<br/>
+> Woordenlijsttermen worden gematcht op **taalpaar**, dus een term die is opgeslagen voor Engels → Frans wordt niet toegepast bij het vertalen van Engels → Duits. De woordenlijst kan niet worden gebruikt met **Taal detecteren** als bron, omdat een specifieke brontaal nodig is om termen te matchen.
 
 [--------------------------------------------------------------------------------------------------------------------------]: #
 
@@ -555,6 +578,7 @@ De beschikbare tabbladen zijn afhankelijk van het platform en uw rol:
   | Talen         |   ja   |     ja     |        ja         | |
   | Kostenregistratie     |   ja   |     ja     |         -          | |
   | Transformeren         |   ja   |     ja     |        ja         | Bulkimport/export van transformeerprompts |
+  | Woordenlijst    |   ja    |     ja      |        ja           | Termkoppelingen toegepast tijdens vertaling        |
   | Gebruikers             |    -    |     ja     |         -          | |
   | API-configuratie        |   ja   |     ja     |         -          | |
   | Over             |   ja   |     ja     |        ja         | |
@@ -704,6 +728,27 @@ U kunt:
 - prompts importeren uit een bestand
 - prompts exporteren voor back-up of delen
 - voorbeeldvragen laden naar de promptlijst
+
+<br/>
+
+<a id="glossary-settings"></a>
+### Woordenlijst (instellingen-tabblad)
+
+Gebruik **Instellingen** > **Woordenlijst** om de termkoppelingen te beheren die tijdens de vertaling worden toegepast (zie [De woordenlijst gebruiken](#using-the-glossary)). Elke term heeft een **bron taal**, **doeltaal**, **bronterm** en **doelterm**.
+
+U kunt:
+
+- **Term toevoegen** — vul de rij onderaan de tabel in (kies de talen, typ de bron- en doeltermen) en klik op de **+** knop.
+- **Termen zoeken** — filter de lijst op **Bron taal**, **Doeltaal** of vrije **tekst**; klik op **Filters wissen** om opnieuw in te stellen.
+- **Term verwijderen** — klik op het prullenbak-icoon in de betreffende rij.
+- **Importeren** — laad termen uit een `.csv`, `.xlsx`, of `.xls` bestand. Het bestand moet de kolommen `source_language`, `target_language`, `source_text` en `target_text` hebben.
+- **Exporteren CSV** / **Exporteren XLSX** — download al uw termen voor back-up of delen.
+- **Sjabloon CSV** / **Sjabloon XLSX** — download een leeg bestand met de juiste kolomkoppen om in te vullen en te importeren.
+
+<br/>
+
+> ℹ️ **OPMERKING**<br/>
+> In de **desktop-app** wordt de woordenlijst lokaal opgeslagen. In de **webversie** heeft elke gebruiker zijn eigen woordenlijst, dus uw termen hebben geen invloed op andere gebruikers.
 
 <br/>
 

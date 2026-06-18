@@ -14,14 +14,15 @@ Outil de texte alimenté par l'IA : traduire entre langues, réécrire dans diff
 
 - **Traduire** - entre des dizaines de langues, avec détection automatique de la source
 - **Réécriture** - corriger la grammaire, améliorer la clarté, formel/informel, raccourcir, développer, technique
-- **Transformer** - invites personnalisées par IA ; créer et gérer des invites, langue cible facultative par invite
-- **Historique** - historique complet des exécutions avec texte d'entrée/de sortie, filtres et exportation
-- **Facile et Avancé** - Mode Facile (par défaut) : préréglages sélectionnés par fournisseur (**Gratuit (OpenRouter)**, **Standard**, **Avancé**, **Technique** ; seuls les préréglages avec une correspondance pour le fournisseur sélectionné s'affichent), sans sélection d'ID de modèle ; Mode Avancé : liste complète des modèles provenant de vos fournisseurs configurés
-- **Modèles et coût** - tableaux de bord de coût et d'utilisation (Résumé, Par modèle, Tous les appels) avec fonction d'exportation ; OpenRouter affiche les dépenses réelles, les autres fournisseurs utilisent des estimations
-- **Interface utilisateur (UI)** - interface multilingue (30+ langues, prise en charge RTL), polices, ...
-- **Mode Web** - prise en charge multi-utilisateur avec rôles d'administrateur
-- **Bureau** - Application Electron pour Windows et Linux
-- **Auto-hébergé** - Image Docker pour amd64 et arm64 (prêt à l'emploi sur Raspberry Pi)
+- **Transformation** - invites IA personnalisées ; créer et gérer des invites, langue cible optionnelle par invite
+- **Glossaire** - stocker des paires de termes source/cible par paire de langues et les appliquer pendant la traduction afin que les termes choisis restent cohérents ; gérer les termes dans Paramètres (ajouter/modifier/supprimer, importer CSV/XLSX et exporter des modèles)
+- **Historique** - historique d'exécution complet avec texte d'entrée/sortie, filtrage et exportation
+- **Facile & Avancé** - Mode Facile (par défaut) : préréglages organisés par fournisseur (**Gratuit (OpenRouter)**, **Standard**, **Avancé**, **Technique** ; seuls les préréglages avec une correspondance pour le fournisseur sélectionné apparaissent) sans choisir d'identifiants de modèle ; Mode Avancé : liste complète des modèles de vos fournisseurs configurés
+- **Modèles & coût** - tableaux de bord de coût et d'utilisation (Résumé, Par modèle, Tous les appels) avec exportation ; OpenRouter affiche les dépenses réelles, les autres fournisseurs utilisent des estimations
+- **Interface utilisateur** - interface multilingue (plus de 30 langues, prise en charge RTL), polices, ...
+- **Mode Web** - prise en charge multi-utilisateurs avec rôles d'administrateur
+- **Bureau** - application Electron pour Windows et Linux
+- **Auto-hébergé** - image Docker pour amd64 et arm64 (prête pour Raspberry Pi)
 
 Une fois installé, consultez le [**Guide de l'utilisateur**](USER-GUIDE.fr.md) pour une présentation complète de toutes les fonctionnalités.
 

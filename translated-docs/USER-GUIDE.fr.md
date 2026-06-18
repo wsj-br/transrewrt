@@ -49,15 +49,16 @@ Ce guide explique comment utiliser l'application une fois installée et en cours
   - [Barre d'outils](#toolbar)
   - [Panneaux d'entrée et de sortie](#input-and-output-panels)
 - [Traduire](#translate)
-  - [Traduire le texte](#translate-text)
+  - [Traduire du texte](#translate-text)
   - [Sélection de la langue](#language-selection)
   - [Paramètres de traduction utiles](#helpful-translation-settings)
-  - [Affiner votre traduction](#refining-translation)
+  - [Affiner votre traduction](#refining-your-translation)
+  - [Utilisation du glossaire](#using-the-glossary)
 - [Réécriture](#rewrite)
 - [Transformation](#transform)
   - [Exécuter une invite existante](#run-an-existing-prompt)
   - [Si vous n'avez pas encore d'invites](#if-you-have-no-prompts-yet)
-  - [Créer une invite rapidement](#create-a-prompt-quickly)
+  - [Créer rapidement une invite](#create-a-prompt-quickly)
   - [Modifier une invite](#edit-a-prompt)
   - [Tester une invite avant de l'utiliser](#test-a-prompt-before-using-it)
 - [Tableau de bord](#dashboard)
@@ -67,30 +68,31 @@ Ce guide explique comment utiliser l'application une fois installée et en cours
   - [Supprimer les enregistrements stockés pour un modèle](#delete-stored-records-for-a-model)
 - [Historique](#history)
   - [Filtrer l'historique](#filter-the-history)
-  - [Exporter les données d'historique](#export-history-data)
+  - [Exporter les données de l'historique](#export-history-data)
 - [Paramètres](#settings)
   - [Paramètres généraux](#general-settings)
   - [Modèles](#models)
   - [Langues](#languages)
   - [Suivi des coûts](#cost-tracking)
-  - [Transformation (onglet des paramètres)](#transform-settings-tab)
+  - [Transformation (onglet Paramètres)](#transform-settings-tab)
+  - [Glossaire (onglet Paramètres)](#glossary-settings-tab)
   - [Utilisateurs](#users)
   - [Config. API](#api-config)
   - [À propos](#about)
 - [Problèmes courants](#common-issues)
-  - [L'application ne traduira, ne réécrira ou ne transformera pas le texte](#the-app-will-not-translate-rewrite-or-transform-text)
+  - [L'application ne traduit, ne réécrit ni ne transforme le texte](#the-app-will-not-translate-rewrite-or-transform-text)
   - [La liste des modèles est vide](#the-model-list-is-empty)
   - [Le résultat est trop lent ou trop coûteux](#the-result-is-too-slow-or-too-expensive)
   - [L'interface est dans la mauvaise langue](#the-interface-is-in-the-wrong-language)
   - [Le texte est trop petit ou difficile à lire](#the-text-is-too-small-or-hard-to-read)
-  - [Le résumé du tableau de bord semble vide](#dashboard-summary-looks-empty)
-  - [Le coût indique "non disponible" ou semble incorrect](#cost-shows-not-available-or-seems-wrong)
-  - [Le coût total ne correspond pas à ma facture de fournisseur](#total-cost-does-not-match-my-provider-bill)
+  - [Résumé du tableau de bord est vide](#dashboard-summary-looks-empty)
+  - [Le coût affiche "non disponible" ou semble incorrect](#cost-shows-not-available-or-seems-wrong)
+  - [Le coût total ne correspond pas à ma facture du fournisseur](#total-cost-does-not-match-my-provider-bill)
   - [La page Historique est manquante dans la barre latérale](#the-history-page-is-missing-from-the-sidebar)
-  - [Application web : redirigé vers la page de connexion de manière inattendue](#web-app-redirected-to-the-login-page-unexpectedly)
-  - [Administrateur web : mot de passe oublié ou perdu](#web-admin-forgot-or-lost-a-password)
-  - [Le tableau de bord ne montre aucune donnée pour d'autres utilisateurs (web)](#dashboard-shows-no-data-for-other-users-web)
-  - [J'ai changé une invite et perdu les modifications](#i-changed-a-prompt-and-lost-the-edits)
+  - [Application web : redirection inattendue vers la page de connexion](#web-app-redirected-to-the-login-page-unexpectedly)
+  - [Admin web : mot de passe oublié ou perdu](#web-admin-forgot-or-lost-a-password)
+  - [Le tableau de bord n'affiche aucune donnée pour les autres utilisateurs (web)](#dashboard-shows-no-data-for-other-users-web)
+  - [J'ai modifié une invite et perdu les modifications](#i-changed-a-prompt-and-lost-the-edits)
 - [Conseils rapides](#quick-tips)
 - [Avertissement](#disclaimer)
 - [Licence](#license)
@@ -297,6 +299,27 @@ Après une traduction réussie, **Reformuler…** et le menu déroulant de versi
 1. **Reformuler…** — sans texte sélectionné dans la sortie, obtenez une autre traduction complète du même input avec des formulations différentes. Le modèle reçoit chaque version que vous avez déjà afin que la nouvelle formulation puisse différer de toutes les autres. Vous pouvez stocker jusqu'à **cinq** versions et basculer entre elles dans le menu déroulant de version. Avec du texte sélectionné, **Reformuler…** ouvre des alternatives de mots près de la sélection (comme un clic droit). Sans sélection, **Reformuler…** est désactivé une fois que vous atteignez cinq versions ; avec une sélection, cela fonctionne toujours à cinq versions (alternatives de mots uniquement, mise à jour de la version 5). Pendant qu'une reformulation complète est en cours, cliquez sur **Arrêter Traduire** pour annuler ; la sortie revient à la version qui était active lorsque la reformulation a commencé.
 2. **Alternatives de mots** — sélectionnez un ou plusieurs mots ou une courte phrase dans la sortie (si vous sélectionnez seulement une partie d'un mot, l'application étend la sélection à des mots complets), puis cliquez avec le bouton droit ou cliquez sur **Reformuler…**. Une courte liste d'alternatives apparaît près de la sélection ; cliquez sur l'une d'elles pour la remplacer. Chaque option peut remplacer une portée légèrement plus large que votre sélection (par exemple, une préposition ou un article adjacent) afin que la phrase reste grammaticale. Si vous avez moins de cinq versions, la sortie modifiée est enregistrée comme une nouvelle version ; à cinq versions, seule **la version 5** est mise à jour. Un clic droit sans sélection ne fait rien. Appuyez sur **Échap** ou cliquez en dehors de la liste pour annuler sans changer la sortie.
 3. **Coûts** — chaque **Reformuler…** complet (sans sélection) et chaque demande d'alternative de mot utilise à nouveau le modèle et peut ajouter au coût d'utilisation (comme lors d'une exécution de traduction normale).
+
+<br/>
+
+<a id="using-the-glossary"></a>
+### Utilisation du glossaire
+
+Un **glossaire** est une liste de paires de termes source/cible pour une paire de langues spécifique. Lorsque le glossaire est activé, Transrewrt envoie les termes correspondants au modèle afin que votre formulation préférée reste cohérente dans les traductions (par exemple, un nom de produit, un terme de marque ou un titre de poste qui doit toujours être traduit de la même manière).
+
+Pour l'utiliser sur la page **Traduire** :
+
+1. Activez le commutateur **Glossaire** dans le panneau d'entrée (à côté des commutateurs d'exécution automatique et de copie automatique).
+2. Choisissez vos langues **Source** et **Cible** et traduisez comme d'habitude. Les termes enregistrés pour cette paire de langues sont appliqués automatiquement.
+3. Pour capturer une nouvelle paire à la volée, cliquez sur **Ajouter au glossaire** (à côté du sélecteur de langue **De :**). La boîte de dialogue est pré-remplie avec vos langues actuelles, vous n'avez donc qu'à remplir le **terme source** et le **terme cible**.
+4. Utilisez le lien **Glossaire** dans le pied de page de sortie (ou le lien **Gérer le glossaire** dans la boîte de dialogue) pour accéder à [**Paramètres** > **Glossaire**](#glossary-settings) et examiner tous vos termes.
+
+Vous ajoutez, modifiez, importez et exportez des termes dans l'onglet [**Paramètres** > **Glossaire**](#glossary-settings) — voir ci-dessous.
+
+<br/>
+
+> ℹ️ **NOTE**<br/>
+> Les termes du glossaire sont mis en correspondance par **paire de langues**, donc un terme enregistré pour Anglais → Français n'est pas appliqué lors de la traduction Anglais → Allemand. Le glossaire ne peut pas être utilisé avec **Détecter la langue** comme source, car une langue source spécifique est nécessaire pour faire correspondre les termes.
 
 [--------------------------------------------------------------------------------------------------------------------------]: #
 
@@ -555,6 +578,7 @@ Les onglets disponibles dépendent de la plateforme et de votre rôle :
   | Langues           |   oui   |     oui     |        oui         |                                              |
   | Suivi des coûts   |   oui   |     oui     |         -          |                                              |
   | Transformation    |   oui   |     oui     |        oui         | Importation/exportation massive des invites de transformation |
+  | Glossaire        |   oui   |     oui     |        oui         | Paires de termes appliquées pendant la traduction |
   | Utilisateurs      |    -    |     oui     |         -          |                                              |
   | Configuration API |   oui   |     oui     |         -          |                                              |
   | À propos          |   oui   |     oui     |        oui         |                                              |
@@ -704,6 +728,27 @@ Vous pouvez :
 - importer des invites à partir d'un fichier
 - exporter des invites pour sauvegarde ou partage
 - charger des invites d'exemple dans la liste des invites
+
+<br/>
+
+<a id="glossary-settings"></a>
+### Glossaire (onglet Paramètres)
+
+Utilisez **Paramètres** > **Glossaire** pour gérer les paires de termes appliquées lors de la traduction (voir [Utilisation du glossaire](#using-the-glossary)). Chaque terme a une **langue source**, une **langue cible**, un **terme source** et un **terme cible**.
+
+Vous pouvez :
+
+- **Ajouter un terme** — remplissez la ligne en bas du tableau (choisissez les langues, tapez les termes source et cible) et cliquez sur le bouton **+**.
+- **Trouver des termes** — filtrez la liste par **Langue source**, **Langue cible** ou **texte** libre ; cliquez sur **Effacer les filtres** pour réinitialiser.
+- **Supprimer un terme** — cliquez sur l'icône de corbeille sur sa ligne.
+- **Importer** — chargez des termes à partir d'un fichier `.csv`, `.xlsx` ou `.xls`. Le fichier doit contenir les colonnes `source_language`, `target_language`, `source_text` et `target_text`.
+- **Exporter CSV** / **Exporter XLSX** — téléchargez tous vos termes pour sauvegarde ou partage.
+- **Modèle CSV** / **Modèle XLSX** — téléchargez un fichier vide avec les en-têtes de colonnes corrects à remplir et à importer.
+
+<br/>
+
+> ℹ️ **NOTE**<br/>
+> Dans l'**application de bureau**, le glossaire est stocké localement. Dans la **version web**, chaque utilisateur a son propre glossaire, donc vos termes n'affectent pas les autres utilisateurs.
 
 <br/>
 

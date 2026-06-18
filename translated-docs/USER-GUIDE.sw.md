@@ -49,22 +49,23 @@ Mwongozo huu unaelezea jinsi ya kutumia programu baada ya kupakia na kuinua. Kwa
   - [Barua ya zana](#toolbar)
   - [Sehemu za kuingiza na pato](#input-and-output-panels)
 - [Tafsiri](#translate)
-  - [Tafsiri maandiko](#translate-text)
-  - [Chaguo la lugha](#language-selection)
-  - [Mipangilio ya tafsiri yenye msaada](#helpful-translation-settings)
-  - [Kurekebisha tafsiri yako](#refining-translation)
+  - [Tafsiri ya maandishi](#translate-text)
+  - [Uchaguzi wa lugha](#language-selection)
+  - [Mazingira muhimu ya tafsiri](#helpful-translation-settings)
+  - [Kurekebisha tafsiri yako](#refining-your-translation)
+  - [Kutumia kamusi](#using-the-glossary)
 - [Kuandika upya](#rewrite)
 - [Kubadilisha](#transform)
   - [Endesha maelezo yaliyopo](#run-an-existing-prompt)
   - [Ikiwa huna maelezo bado](#if-you-have-no-prompts-yet)
   - [Unda maelezo haraka](#create-a-prompt-quickly)
   - [Hariri maelezo](#edit-a-prompt)
-  - [Jaribio la maelezo kabla ya kuyatumia](#test-a-prompt-before-using-it)
+  - [Jaribu maelezo kabla ya kuyatumia](#test-a-prompt-before-using-it)
 - [Dashibodi](#dashboard)
   - [Chuja data](#filter-the-data)
-  - [Mikakati ya dashibodi](#dashboard-tabs)
+  - [Tabu za dashibodi](#dashboard-tabs)
   - [Hamisha data](#export-data)
-  - [Futa rekodi zilizohifadhiwa kwa ajili ya modeli](#delete-stored-records-for-a-model)
+  - [Futa rekodi zilizohifadhiwa kwa modeli](#delete-stored-records-for-a-model)
 - [Historia](#history)
   - [Chuja historia](#filter-the-history)
   - [Hamisha data ya historia](#export-history-data)
@@ -73,24 +74,25 @@ Mwongozo huu unaelezea jinsi ya kutumia programu baada ya kupakia na kuinua. Kwa
   - [Modeli](#models)
   - [Lugha](#languages)
   - [Ufuatiliaji wa gharama](#cost-tracking)
-  - [Kubadilisha (tab ya mipangilio)](#transform-settings-tab)
+  - [Kubadilisha (tabu ya mipangilio)](#transform-settings-tab)
+  - [Kamusi (tabu ya mipangilio)](#glossary-settings-tab)
   - [Watumiaji](#users)
   - [Usanidi wa API](#api-config)
   - [Kuhusu](#about)
 - [Masuala ya kawaida](#common-issues)
-  - [Programu haitafsiri, haiandiki upya, au kubadilisha maandiko](#the-app-will-not-translate-rewrite-or-transform-text)
-  - [Orodha ya modeli ni tupu](#the-model-list-is-empty)
-  - [Matokeo ni polepole sana au gharama ni kubwa](#the-result-is-too-slow-or-too-expensive)
+  - [Programu haitatambua lugha, kuandika upya, au kubadilisha maandishi](#the-app-will-not-translate-rewrite-or-transform-text)
+  - [Modeli orodha ni tupu](#the-model-list-is-empty)
+  - [Matokeo ni polepole sana au ghali sana](#the-result-is-too-slow-or-too-expensive)
   - [Kiolesura kiko katika lugha isiyo sahihi](#the-interface-is-in-the-wrong-language)
   - [Maandishi ni madogo sana au magumu kusoma](#the-text-is-too-small-or-hard-to-read)
-  - [Muhtasari wa Dashibodi unaonekana kuwa tupu](#dashboard-summary-looks-empty)
-  - [Gharama inaonyesha "haipatikani" au inaonekana kuwa si sahihi](#cost-shows-not-available-or-seems-wrong)
-  - [Jumla ya gharama haitoshi na bili ya mtoa huduma wangu](#total-cost-does-not-match-my-provider-bill)
-  - [Ukurasa wa Historia umepotea kutoka kwenye sidebar](#the-history-page-is-missing-from-the-sidebar)
-  - [Programu ya wavuti: ilielekezwa kwenye ukurasa wa kuingia bila kutarajia](#web-app-redirected-to-the-login-page-unexpectedly)
-  - [Msimamizi wa wavuti: kusahau au kupoteza nenosiri](#web-admin-forgot-or-lost-a-password)
+  - [Muhtasari wa Dashibodi unaonekana tupu](#dashboard-summary-looks-empty)
+  - [Gharama inaonyesha "haipatikani" au inaonekana vibaya](#cost-shows-not-available-or-seems-wrong)
+  - [Jumla ya gharama hailingani na bili ya mtoa huduma wangu](#total-cost-does-not-match-my-provider-bill)
+  - [Ukurasa wa Historia haupo kwenye upau wa kando](#the-history-page-is-missing-from-the-sidebar)
+  - [Programu ya wavuti: ilielekezwa tena kwenye ukurasa wa kuingia bila kutarajia](#web-app-redirected-to-the-login-page-unexpectedly)
+  - [Utawala wa wavuti: umesahau au kupoteza nenosiri](#web-admin-forgot-or-lost-a-password)
   - [Dashibodi inaonyesha hakuna data kwa watumiaji wengine (wavuti)](#dashboard-shows-no-data-for-other-users-web)
-  - [Nimebadilisha maelezo na kupoteza mabadiliko](#i-changed-a-prompt-and-lost-the-edits)
+  - [Nilibadilisha maelezo na nikapoteza marekebisho](#i-changed-a-prompt-and-lost-the-edits)
 - [Vidokezo vya haraka](#quick-tips)
 - [Kanusho](#disclaimer)
 - [Leseni](#license)
@@ -297,6 +299,27 @@ Baada ya tafsiri kufanikiwa, **Rephrase…** na orodha ya toleo zinaonekana kwen
 1. **Rephrase…** — bila maandiko yoyote yaliyochaguliwa kwenye matokeo, pata tafsiri nyingine kamili ya ingizo sawa na maneno tofauti. Mfano unapata kila toleo ulilonalo tayari ili maneno mapya yawe tofauti na yote. Unaweza kuhifadhi hadi **tano** ya matoleo na kubadilisha kati yao kwenye orodha ya toleo. Ukiwa na maandiko yaliyochaguliwa, **Rephrase…** inafungua mbadala za maneno karibu na uchaguzi (sawa na kubonyeza kulia). Bila uchaguzi, **Rephrase…** inazuiliwa mara unapofikia matoleo tano; ukiwa na uchaguzi, bado inafanya kazi kwa matoleo tano (mbadala za maneno pekee, ikisasisha toleo 5). Wakati kuboresha kamili kunapofanyika, bonyeza **Simamisha Tafsiri** ili kughairi; matokeo yanarudi kwenye toleo lililokuwa hai wakati kuboresha kulianza.
 2. **Mbadala za maneno** — chagua neno moja au zaidi au kifungu kifupi kwenye matokeo (ikiwa unachagua sehemu tu ya neno, programu inapanua uchaguzi hadi maneno kamili), kisha bonyeza kulia au bonyeza **Rephrase…**. Orodha fupi ya mbadala inaonekana karibu na uchaguzi; bonyeza moja ili kuibadilisha. Kila chaguo kinaweza kubadilisha sehemu pana kidogo zaidi kuliko uchaguzi wako (kwa mfano, preposition au makala iliyo karibu) ili sentensi ibaki na sarufi. Ikiwa una matoleo chini ya tano, matokeo yaliyohariri yanahifadhiwa kama toleo jipya; kwa matoleo tano, ni **toleo 5** pekee linalosasishwa. Bonyeza kulia bila uchaguzi hakufanyi chochote. Bonyeza **Esc** au bonyeza nje ya orodha ili kughairi bila kubadilisha matokeo.
 3. **Gharama** — kila **Rephrase…** kamili (bila uchaguzi) na kila ombi la mbadala za maneno hutumia mfano tena na inaweza kuongeza gharama ya matumizi (sawa na kazi ya tafsiri ya kawaida).
+
+<br/>
+
+<a id="using-the-glossary"></a>
+### Kutumia kamusi
+
+A **kamusi** ni orodha ya jozi za istilahi chanzo/lengo kwa jozi maalum ya lugha. Wakati kamusi imewashwa, Transrewrt hutuma istilahi zinazolingana kwa modeli ili maneno unayopendelea yabaki kuwa thabiti katika tafsiri (kwa mfano jina la bidhaa, istilahi ya chapa, au cheo cha kazi ambacho kinapaswa kutafsiriwa sawa kila wakati).
+
+Kuitumia kwenye ukurasa wa **Tafsiri**:
+
+1. Washa swichi ya **Kamusi** kwenye paneli ya ingizo (karibu na swichi za utekelezaji kiotomatiki na kunakili kiotomatiki).
+2. Chagua lugha zako za **Kutoka** na **Kwenda** na utafsiri kama kawaida. Istilahi zilizohifadhiwa kwa jozi hiyo ya lugha hutumika kiotomatiki.
+3. Ili kunasa jozi mpya kwa haraka, bofya **Ongeza kwenye Kamusi** (karibu na kiongozi cha lugha cha **Kutoka:**). Dialog imejazwa awali na lugha zako za sasa ili ujaze tu **istilahi chanzo** na **istilahi lengo**.
+4. Tumia kiungo cha **Kamusi** kwenye sehemu ya chini ya matokeo (au kiungo cha **Simamia kamusi** ndani ya dialog) kuruka hadi [**Mipangilio** > **Kamusi**](#glossary-settings) na uhakiki istilahi zako zote.
+
+Unaongeza, unahariri, unaingiza, na unahamisha istilahi katika tabu ya [**Mipangilio** > **Kamusi**](#glossary-settings) — angalia hapa chini.
+
+<br/>
+
+> ℹ️ **KUMBUKA**<br/>
+> Istilahi za kamusi zinazolinganishwa na **jozi ya lugha**, kwa hivyo istilahi iliyohifadhiwa kwa Kiingereza → Kifaransa haitumiki wakati wa kutafsiri Kiingereza → Kijerumani. Kamusi haiwezi kutumiwa na **Tambua Lugha** kama chanzo, kwa sababu lugha maalum ya chanzo inahitajika ili kulinganisha istilahi.
 
 [--------------------------------------------------------------------------------------------------------------------------]: #
 
@@ -555,6 +578,7 @@ Vidole vilivyonapatikana vinategemea jukwaa na jukumu lako:
   | Lugha            |   ndio   |     ndio     |        ndio         |                                              |
   | Ufuatiliaji wa Gharama    |   ndio   |     ndio     |         -          |                                              |
   | Badilisha        |   ndio   |     ndio     |        ndio         | Kuingiza/kutoa kwa wingi kwa maagizo ya ubadilishaji      |
+  | Kamusi         |   ndiyo   |     ndiyo     |        ndiyo         | Jozi za istilahi zilizotumika wakati wa tafsiri        |
   | Watumiaji        |    -    |     ndio     |         -          |                                              |
   | Mipangilio ya API       |   ndio   |     ndio     |         -          |                                              |
   | Kuhusu            |   ndio   |     ndio     |        ndio         |                                              |
@@ -704,6 +728,27 @@ Unaweza:
 - ingiza maagizo kutoka kwenye faili
 - toa maagizo kwa ajili ya usimamizi au kushiriki
 - pakia maagizo ya mfano kwenye orodha ya maagizo
+
+<br/>
+
+<a id="glossary-settings"></a>
+### Kamusi (tabu ya mipangilio)
+
+Tumia **Mipangilio** > **Kamusi** kudhibiti jozi za istilahi zinazotumika wakati wa tafsiri (ona [Kutumia kamusi](#using-the-glossary)). Kila istilahi ina **lugha chanzo**, **lugha lengo**, **istilahi chanzo**, na **istilahi lengo**.
+
+Unaweza:
+
+- **Ongeza istilahi** — jaza safu kwenye sehemu ya chini ya jedwali (chagua lugha, andika istilahi chanzo na lengo) na ubofye kitufe cha **+**.
+- **Tafuta istilahi** — chuja orodha kwa **Lugha chanzo**, **Lugha lengo**, au **maandishi** ya bure; bofya **Futa vichujio** ili kuweka upya.
+- **Futa istilahi** — bofya ikoni ya pipa la takataka kwenye safu yake.
+- **Ingiza** — pakia istilahi kutoka kwa faili ya `.csv`, `.xlsx`, au `.xls`. Faili inapaswa kuwa na nguzo `source_language`, `target_language`, `source_text`, na `target_text`.
+- **Sadiria CSV** / **Sadiria XLSX** — pakua istilahi zako zote kwa ajili ya kuhifadhi nakala au kushiriki.
+- **Kiolezo cha CSV** / **Kiolezo cha XLSX** — pakua faili tupu yenye vichwa sahihi vya nguzo ili ujaze na kuingiza.
+
+<br/>
+
+> ℹ️ **KUMBUKA**<br/>
+> Katika **programu ya kompyuta**, kamusi huhifadhiwa ndani ya kifaa. Katika **toleo la wavuti**, kila mtumiaji ana kamusi yake mwenyewe, kwa hivyo istilahi zako haziathiri watumiaji wengine.
 
 <br/>
 

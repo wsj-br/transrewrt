@@ -50,48 +50,50 @@ Ipinaliliwanag ng gabay na ito kung paano gamitin ang app kapag naka-install at 
   - [Input at output panels](#input-and-output-panels)
 - [Pagsasalin](#translate)
   - [Isalin ang teksto](#translate-text)
-  - [Pumili ng wika](#language-selection)
+  - [Pagpili ng wika](#language-selection)
   - [Mga kapaki-pakinabang na setting ng pagsasalin](#helpful-translation-settings)
-  - [Pagpapahusay ng iyong pagsasalin](#refining-translation)
+  - [Pagpino ng iyong pagsasalin](#refining-your-translation)
+  - [Paggamit ng glossary](#using-the-glossary)
 - [Rewrite](#rewrite)
 - [Transform](#transform)
-  - [Patakbuhin ang umiiral na prompt](#run-an-existing-prompt)
+  - [Pagpapatakbo ng isang umiiral na prompt](#run-an-existing-prompt)
   - [Kung wala ka pang mga prompt](#if-you-have-no-prompts-yet)
-  - [Lumikha ng prompt nang mabilis](#create-a-prompt-quickly)
-  - [I-edit ang prompt](#edit-a-prompt)
-  - [Subukin ang prompt bago ito gamitin](#test-a-prompt-before-using-it)
+  - [Mabilis na paglikha ng prompt](#create-a-prompt-quickly)
+  - [Pag-edit ng prompt](#edit-a-prompt)
+  - [Pagsubok ng prompt bago ito gamitin](#test-a-prompt-before-using-it)
 - [Dashboard](#dashboard)
-  - [I-filter ang data](#filter-the-data)
+  - [Pag-filter ng data](#filter-the-data)
   - [Mga tab ng Dashboard](#dashboard-tabs)
-  - [I-export ang data](#export-data)
-  - [I-delete ang naka-imbak na mga tala para sa isang modelo](#delete-stored-records-for-a-model)
+  - [Pag-export ng data](#export-data)
+  - [Pag-delete ng mga nakaimbak na tala para sa isang modelo](#delete-stored-records-for-a-model)
 - [History](#history)
-  - [I-filter ang history](#filter-the-history)
-  - [I-export ang data ng history](#export-history-data)
+  - [Pag-filter ng history](#filter-the-history)
+  - [Pag-export ng data ng history](#export-history-data)
 - [Mga Setting](#settings)
-  - [Pangkalahatang mga setting](#general-settings)
+  - [Pangkalahatang Mga Setting](#general-settings)
   - [Mga Modelo](#models)
   - [Mga Wika](#languages)
   - [Pagsubaybay ng Gastos](#cost-tracking)
   - [Transform (tab ng mga setting)](#transform-settings-tab)
+  - [Glossary (tab ng mga setting)](#glossary-settings-tab)
   - [Mga Gumagamit](#users)
-  - [API Config](#api-config)
+  - [API config](#api-config)
   - [Tungkol sa](#about)
-- [Karaniwang mga isyu](#common-issues)
-  - [Ang app ay hindi makapag-translate, mag-rewrite, o mag-transform ng teksto](#the-app-will-not-translate-rewrite-or-transform-text)
-  - [Ang listahan ng modelo ay walang laman](#the-model-list-is-empty)
-  - [Ang resulta ay masyadong mabagal o masyadong mahal](#the-result-is-too-slow-or-too-expensive)
-  - [Ang interface ay nasa maling wika](#the-interface-is-in-the-wrong-language)
-  - [Ang teksto ay masyadong maliit o mahirap basahin](#the-text-is-too-small-or-hard-to-read)
-  - [Mukhang walang laman ang Dashboard Summary](#dashboard-summary-looks-empty)
+- [Mga Karaniwang Isyu](#common-issues)
+  - [Hindi maisasalin, maire-rewrite, o matra-transform ng app ang teksto](#the-app-will-not-translate-rewrite-or-transform-text)
+  - [Walang laman ang listahan ng modelo](#the-model-list-is-empty)
+  - [Masyadong mabagal o masyadong mahal ang resulta](#the-result-is-too-slow-or-too-expensive)
+  - [Mali ang wika ng interface](#the-interface-is-in-the-wrong-language)
+  - [Masyadong maliit o mahirap basahin ang teksto](#the-text-is-too-small-or-hard-to-read)
+  - [Walang laman ang Buod ng Dashboard](#dashboard-summary-looks-empty)
   - [Ang Gastos ay nagpapakita ng "hindi available" o mukhang mali](#cost-shows-not-available-or-seems-wrong)
-  - [Ang kabuuang gastos ay hindi tumutugma sa bill ng aking provider](#total-cost-does-not-match-my-provider-bill)
-  - [Ang History page ay nawawala mula sa sidebar](#the-history-page-is-missing-from-the-sidebar)
-  - [Web app: na-redirect sa login page nang hindi inaasahan](#web-app-redirected-to-the-login-page-unexpectedly)
+  - [Hindi tumutugma ang Kabuuang Gastos sa aking bill ng provider](#total-cost-does-not-match-my-provider-bill)
+  - [Nawawala ang pahina ng History sa sidebar](#the-history-page-is-missing-from-the-sidebar)
+  - [Web app: hindi inaasahang na-redirect sa login page](#web-app-redirected-to-the-login-page-unexpectedly)
   - [Web admin: nakalimutan o nawala ang password](#web-admin-forgot-or-lost-a-password)
-  - [Ang Dashboard ay walang data para sa ibang mga gumagamit (web)](#dashboard-shows-no-data-for-other-users-web)
-  - [Binago ko ang isang prompt at nawala ang mga edit](#i-changed-a-prompt-and-lost-the-edits)
-- [Mabilis na mga tip](#quick-tips)
+  - [Walang data na ipinapakita ang Dashboard para sa ibang mga gumagamit (web)](#dashboard-shows-no-data-for-other-users-web)
+  - [Binago ko ang isang prompt at nawala ang mga pag-edit](#i-changed-a-prompt-and-lost-the-edits)
+- [Mga Mabilisang Tip](#quick-tips)
 - [Disclaimer](#disclaimer)
 - [Lisensya](#license)
 
@@ -297,6 +299,27 @@ Pagkatapos ng matagumpay na pagsasalin, ang **Mag-rephrase…** at ang dropdown 
 1. **Mag-rephrase…** — kung walang tekstong napili sa output, makakuha ng isa pang buong pagsasalin ng parehong input na may ibang wording. Tinatanggap ng modelo ang bawat bersyon na mayroon ka na kaya ang bagong wording ay maaaring magkaiba sa lahat ng ito. Maaari kang mag-imbak ng hanggang **limang** bersyon at lumipat-lipat sa mga ito sa dropdown ng bersyon. Kapag may napiling teksto, ang **Mag-rephrase…** ay nagbubukas ng mga alternatibong salita malapit sa pagpili (pareho sa pag-right-click). Kung walang pagpili, ang **Mag-rephrase…** ay hindi pinagana kapag umabot ka na sa limang bersyon; kung may pagpili, ito ay gumagana pa rin sa limang bersyon (mga alternatibong salita lamang, ina-update ang bersyon 5). Habang tumatakbo ang isang buong rephrase, i-click ang **Huminto sa Pagsasalin** upang kanselahin; ang output ay babalik sa bersyon na aktibo nang magsimula ang rephrase.
 2. **Mga alternatibong salita** — pumili ng isa o higit pang mga salita o isang maikling parirala sa output (kung pumili ka lamang ng bahagi ng isang salita, ang app ay palawakin ang pagpili sa buong mga salita), pagkatapos ay i-right-click o i-click ang **Mag-rephrase…**. Isang maikling listahan ng mga alternatibo ang lilitaw malapit sa pagpili; i-click ang isa upang palitan ito. Bawat opsyon ay maaaring palitan ang bahagyang mas malawak na saklaw kaysa sa iyong pagpili (halimbawa, isang katabing preposition o artikulo) upang manatiling grammatical ang pangungusap. Kung mayroon kang mas kaunti sa limang bersyon, ang na-edit na output ay nai-save bilang isang bagong bersyon; sa limang bersyon, tanging ang **bersyon 5** ang ina-update. Ang pag-right-click nang walang pagpili ay walang ginagawa. Pindutin ang **Esc** o i-click sa labas ng listahan upang kanselahin nang hindi binabago ang output.
 3. **Gastos** — bawat buong **Mag-rephrase…** (walang pagpili) at bawat kahilingan ng alternatibong salita ay muling gumagamit ng modelo at maaaring magdagdag sa gastos ng paggamit (pareho sa isang normal na takbo ng pagsasalin).
+
+<br/>
+
+<a id="using-the-glossary"></a>
+### Paggamit ng glossary
+
+Ang **glossary** ay isang listahan ng mga pares ng source/target term para sa isang partikular na pares ng wika. Kapag naka-on ang glossary, ipapadala ng Transrewrt ang mga tumutugmang termino sa modelo upang manatiling pare-pareho ang iyong ginustong mga salita sa mga pagsasalin (halimbawa, isang pangalan ng produkto, isang termino ng brand, o isang titulo ng trabaho na dapat laging isalin sa parehong paraan).
+
+Para gamitin ito sa **Translate** page:
+
+1. I-on ang **Glossary** switch sa input panel (sa tabi ng mga switch ng auto-execute at auto-copy).
+2. Piliin ang iyong mga wika na **Mula** at **Patungo** at isalin gaya ng dati. Awtomatikong ia-apply ang mga terminong na-save para sa pares ng wikang iyon.
+3. Para makuha ang isang bagong pares habang ginagamit, i-click ang **Idagdag sa Glossary** (sa tabi ng **Mula:** language selector). Ang dialog ay pre-filled ng iyong kasalukuyang mga wika kaya kailangan mo lang punan ang **termino sa pinagmulan** at **termino sa target**.
+4. Gamitin ang link na **Glossary** sa footer ng output (o ang link na **Pamahalaan ang glossary** sa loob ng dialog) para pumunta sa [**Mga Setting** > **Glossary**](#glossary-settings) at suriin ang lahat ng iyong mga termino.
+
+Magdaragdag, mag-e-edit, mag-i-import, at mag-e-export ka ng mga termino sa [**Mga Setting** > **Glossary**](#glossary-settings) tab — tingnan sa ibaba.
+
+<br/>
+
+> ℹ️ **PAALALA**<br/>
+> Ang mga termino sa glossary ay itinutugma ayon sa **pares ng wika**, kaya ang isang terminong na-save para sa English → French ay hindi ia-apply kapag nagsasalin ng English → German. Hindi magagamit ang glossary sa **Tukuyin ang Wika** bilang source, dahil kailangan ang isang partikular na wika ng pinagmulan para maitugma ang mga termino.
 
 [--------------------------------------------------------------------------------------------------------------------------]: #
 
@@ -555,6 +578,7 @@ Ang mga available na tab ay nakadepende sa platform at sa iyong tungkulin:
   | Languages        |   yes   |     yes     |        yes         |                                              |
   | Cost Tracking    |   yes   |     yes     |         -          |                                              |
   | Transform        |   yes   |     yes     |        yes         | Bulk import/export ng mga prompt sa pagbabago      |
+  | Glossary         |   oo   |     oo     |        oo         | Mga pares ng termino na inilapat habang nagsasalin        |
   | Users            |    -    |     yes     |         -          |                                              |
   | API Config       |   yes   |     yes     |         -          |                                              |
   | About            |   yes   |     yes     |        yes         |                                              |
@@ -704,6 +728,27 @@ Maaari mong:
 - i-import ang mga prompt mula sa isang file
 - i-export ang mga prompt para sa backup o pagbabahagi
 - i-load ang mga sample prompt sa listahan ng prompt
+
+<br/>
+
+<a id="glossary-settings"></a>
+### Glossary (tab ng mga setting)
+
+Gamitin ang **Mga Setting** > **Glossary** upang pamahalaan ang mga pares ng termino na inilalapat sa pagsasalin (tingnan ang [Paggamit ng glossary](#using-the-glossary)). Ang bawat termino ay may **wika ng pinagmulan**, **wika ng target**, **termino sa pinagmulan**, at **termino sa target**.
+
+Maaari mong:
+
+- **Magdagdag ng termino** — punan ang hilera sa ibaba ng talahanayan (piliin ang mga wika, i-type ang mga termino sa pinagmulan at target) at i-click ang **+** na button.
+- **Maghanap ng mga termino** — i-filter ang listahan ayon sa **Wika ng Pinagmulan**, **Wika ng Target**, o libreng **teksto**; i-click ang **Alisin ang mga filter** upang i-reset.
+- **I-delete ang termino** — i-click ang icon ng trash-bin sa hilera nito.
+- **Mag-import** — mag-load ng mga termino mula sa isang `.csv`, `.xlsx`, o `.xls` file. Dapat ay may mga column na `source_language`, `target_language`, `source_text`, at `target_text` ang file.
+- **I-export ang CSV** / **I-export ang XLSX** — i-download ang lahat ng iyong mga termino para sa backup o pagbabahagi.
+- **Template CSV** / **Template XLSX** — i-download ang isang walang laman na file na may tamang mga header ng column upang punan at i-import.
+
+<br/>
+
+> ℹ️ **TANDAAN**<br/>
+> Sa **desktop app**, ang glossary ay naka-imbak nang lokal. Sa **web version**, ang bawat user ay may sariling glossary, kaya ang iyong mga termino ay hindi makakaapekto sa ibang mga user.
 
 <br/>
 

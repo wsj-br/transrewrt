@@ -12,16 +12,17 @@
 
 Kasangkapan sa teksto na pinapagana ng AI: isalin sa pagitan ng mga wika, muling isulat sa iba't ibang estilo, at baguhin gamit ang pasadyang mga prompt — gamit ang maramihang AI provider (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, at lokal na Ollama). Tumatakbo bilang desktop app (Electron) o self-hosted web app (Docker).
 
-- **Isalin** - sa pagitan ng mga dosenang mga wika, na may awtomatikong pagtuklas ng pinagmulan
-- **Muling isulat** - ayusin ang gramatika, pabutihin ang linaw, pormal/impormal, paiikliin, palawakin, teknikal
-- **Baguhin** - mga pasadyang prompt sa AI; lumikha at pamahalaan ang mga prompt, opsyonal na wika ng destinasyon bawat prompt
-- **Kasaysayan** - buong kasaysayan ng pagpapatupad na may tekstong input/output, pag-filter, at pag-export
-- **Madali & Advanced** - Madaling mode (default): mga naayos na preset bawat provider (**Libre (OpenRouter)**, **Standard**, **Advanced**, **Technical**; ang mga preset na may mapping lamang para sa napiling provider ang lumilitaw) nang hindi pinipili ang model ID; Advanced mode: buong listahan ng modelo mula sa iyong naka-configure na mga provider
-- **Mga Modelo & gastos** - mga dashboard para sa gastos at paggamit (Buod, Ayos ng Modelo, Lahat ng Tawag) na may opsyon na i-export; ipinapakita ng OpenRouter ang aktuwal na gastos, ang iba pang mga provider ay gumagamit ng mga pagtataya
-- **UI** - multilingual na interface (30+ wika, suporta sa RTL), mga font, ...
-- **Web mode** - suporta sa multi-user na may admin roles
+- **Isalin** - sa pagitan ng dose-dosenang mga wika, na may awtomatikong pagtuklas ng pinagmulan
+- **Rewrite** - ayusin ang gramatika, pagandahin ang clarity, pormal/impormal, paiksihin, palawakin, teknikal
+- **Transform** - mga custom na AI prompt; lumikha at mamahala ng mga prompt, opsyonal na wika ng target bawat prompt
+- **Glossary** - mag-imbak ng mga pares ng termino ng pinagmulan/target bawat pares ng wika at ilapat ang mga ito sa panahon ng pagsasalin upang ang mga napiling termino ay manatiling pare-pareho; pamahalaan ang mga termino sa Mga Setting (magdagdag/mag-edit/mag-delete, CSV/XLSX import at export ng template)
+- **History** - kumpletong kasaysayan ng pagpapatupad na may input/output text, pag-filter, at export
+- **Madali & Abante** - Madaling mode (default): mga curated na preset bawat provider (**Libre (OpenRouter)**, **Standard**, **Abante**, **Teknikal**; lilitaw lamang ang mga preset na may pagmamapa para sa napiling provider) nang hindi pumipili ng mga ID ng modelo; Abante na mode: kumpletong listahan ng modelo mula sa iyong mga naka-configure na provider
+- **Mga Modelo & gastos** - mga dashboard ng gastos at paggamit (Buod, Ayon sa Model, Lahat ng Tawag) na may export; ipinapakita ng OpenRouter ang aktwal na ginastos, ang iba pang mga provider ay gumagamit ng mga pagtatantya
+- **UI** - multilingual na interface (30+ na wika, suporta sa RTL), mga font, ...
+- **Web mode** - suporta para sa maramihang user na may mga tungkulin ng admin
 - **Desktop** - Electron app para sa Windows at Linux
-- **Self-hosted** - Docker image para sa amd64 & arm64 (handang gamitin sa Raspberry Pi)
+- **Self-hosted** - Docker image para sa amd64 & arm64 (handa para sa Raspberry Pi)
 
 Kapag nainstall na, tingnan ang [**User Guide**](USER-GUIDE.tl.md) para sa kompletong gabay sa lahat ng mga tampok.
 

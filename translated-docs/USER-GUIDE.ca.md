@@ -49,50 +49,52 @@ Aquesta guia explica com utilitzar l'aplicació un cop instal·lada i en execuci
   - [Barra d'eines](#toolbar)
   - [Panells d'entrada i sortida](#input-and-output-panels)
 - [Traduir](#translate)
-  - [Tradueix text](#translate-text)
+  - [Traducció de text](#translate-text)
   - [Selecció d'idioma](#language-selection)
-  - [Configuracions de traducció útils](#helpful-translation-settings)
-  - [Refinant la teva traducció](#refining-translation)
-- [Reescriptura](#rewrite)
+  - [Configuració útil de traducció](#helpful-translation-settings)
+  - [Refinament de la vostra traducció](#refining-your-translation)
+  - [Ús del glossari](#using-the-glossary)
+- [Reescritura](#rewrite)
 - [Transformació](#transform)
-  - [Executa un indicador existent](#run-an-existing-prompt)
-  - [Si encara no tens indicadors](#if-you-have-no-prompts-yet)
-  - [Crea un indicador ràpidament](#create-a-prompt-quickly)
-  - [Edita un indicador](#edit-a-prompt)
-  - [Prova un indicador abans d'utilitzar-lo](#test-a-prompt-before-using-it)
+  - [Execució d'un indicador existent](#run-an-existing-prompt)
+  - [Si encara no teniu cap indicador](#if-you-have-no-prompts-yet)
+  - [Creació ràpida d'un indicador](#create-a-prompt-quickly)
+  - [Edició d'un indicador](#edit-a-prompt)
+  - [Prova d'un indicador abans d'utilitzar-lo](#test-a-prompt-before-using-it)
 - [Tauler de control](#dashboard)
-  - [Filtra les dades](#filter-the-data)
+  - [Filtrat de dades](#filter-the-data)
   - [Pestanyes del tauler de control](#dashboard-tabs)
-  - [Exporta dades](#export-data)
-  - [Elimina registres emmagatzemats per a un model](#delete-stored-records-for-a-model)
+  - [Exportació de dades](#export-data)
+  - [Eliminació de registres emmagatzemats per a un model](#delete-stored-records-for-a-model)
 - [Historial](#history)
-  - [Filtra l'historial](#filter-the-history)
-  - [Exporta dades de l'historial](#export-history-data)
+  - [Filtrat de l'historial](#filter-the-history)
+  - [Exportació de dades de l'historial](#export-history-data)
 - [Configuració](#settings)
   - [Configuració general](#general-settings)
   - [Models](#models)
   - [Idiomes](#languages)
   - [Seguiment de costos](#cost-tracking)
   - [Transformació (pestanya de configuració)](#transform-settings-tab)
+  - [Glossari (pestanya de configuració)](#glossary-settings-tab)
   - [Usuaris](#users)
   - [Configuració de l'API](#api-config)
   - [Quant a](#about)
 - [Problemes comuns](#common-issues)
-  - [L'aplicació no tradueix, reescriu o transforma text](#the-app-will-not-translate-rewrite-or-transform-text)
+  - [L'aplicació no tradueix, reescriu ni transforma text](#the-app-will-not-translate-rewrite-or-transform-text)
   - [La llista de models està buida](#the-model-list-is-empty)
   - [El resultat és massa lent o massa car](#the-result-is-too-slow-or-too-expensive)
   - [La interfície està en l'idioma incorrecte](#the-interface-is-in-the-wrong-language)
   - [El text és massa petit o difícil de llegir](#the-text-is-too-small-or-hard-to-read)
-  - [El resum del tauler de control sembla buit](#dashboard-summary-looks-empty)
+  - [Resum del tauler de control buit](#dashboard-summary-looks-empty)
   - [El cost mostra "no disponible" o sembla incorrecte](#cost-shows-not-available-or-seems-wrong)
-  - [El cost total no coincideix amb la factura del meu proveïdor](#total-cost-does-not-match-my-provider-bill)
-  - [La pàgina d'historial falta de la barra lateral](#the-history-page-is-missing-from-the-sidebar)
+  - [El cost total no coincideix amb la meva factura del proveïdor](#total-cost-does-not-match-my-provider-bill)
+  - [La pàgina d'Historial falta a la barra lateral](#the-history-page-is-missing-from-the-sidebar)
   - [Aplicació web: redirigit a la pàgina d'inici de sessió inesperadament](#web-app-redirected-to-the-login-page-unexpectedly)
-  - [Administrador web: he oblidat o he perdut una contrasenya](#web-admin-forgot-or-lost-a-password)
+  - [Administrador web: he oblidat o he perdut la contrasenya](#web-admin-forgot-or-lost-a-password)
   - [El tauler de control no mostra dades per a altres usuaris (web)](#dashboard-shows-no-data-for-other-users-web)
   - [He canviat un indicador i he perdut les edicions](#i-changed-a-prompt-and-lost-the-edits)
 - [Consells ràpids](#quick-tips)
-- [Renúncia](#disclaimer)
+- [Exempció de responsabilitat](#disclaimer)
 - [Llicència](#license)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -297,6 +299,27 @@ Després d'una traducció exitosa, **Reformula…** i el menú desplegable de ve
 1. **Reformula…** — sense text seleccionat a la sortida, obtindreu una altra traducció completa de la mateixa entrada amb una redacció diferent. El model rep cada versió que ja teniu, de manera que la nova redacció pot diferir de totes elles. Podeu emmagatzemar fins a **cinc** versions i canviar entre elles al menú desplegable de versió. Amb text seleccionat, **Reformula…** obre alternatives de paraules a prop de la selecció (igual que fer clic amb el botó dret). Sense una selecció, **Reformula…** es desactiva un cop arribeu a cinc versions; amb una selecció, encara funciona amb cinc versions (alternatives de paraules només, actualitzant la versió 5). Mentre s'està executant una reformulació completa, feu clic a **Atura Traducció** per cancel·lar; la sortida torna a la versió que estava activa quan va començar la reformulació.
 2. **Alternatives de paraules** — seleccioneu una o més paraules o una frase curta a la sortida (si seleccioneu només part d'una paraula, l'aplicació amplia la selecció a paraules completes), després feu clic amb el botó dret o feu clic a **Reformula…**. Apareix una llista curta d'alternatives a prop de la selecció; feu clic a una per substituir-la. Cada opció pot substituir un rang lleugerament més ampli que la vostra selecció (per exemple, una preposició o article adjacent) de manera que la frase es mantingui gramatical. Si teniu menys de cinc versions, la sortida editada es guarda com una nova versió; amb cinc versions, només es actualitza **la versió 5**. Fer clic amb el botó dret sense selecció no fa res. Premeu **Esc** o feu clic fora de la llista per cancel·lar sense canviar la sortida.
 3. **Costos** — cada **Reformula…** completa (sense selecció) i cada sol·licitud d'alternativa de paraules utilitza el model novament i pot afegir-se al cost d'ús (igual que una execució de traducció normal).
+
+<br/>
+
+<a id="using-the-glossary"></a>
+### Ús del glossari
+
+Un **glossari** és una llista de parells de termes d'origen/destí per a un parell d'idiomes específic. Quan el glossari està activat, Transrewrt envia els termes coincidents al model perquè la vostra redacció preferida es mantingui coherent en les traduccions (per exemple, un nom de producte, un terme de marca o un títol de feina que sempre s'ha de traduir de la mateixa manera).
+
+Per utilitzar-lo a la pàgina **Traducció**:
+
+1. Activeu l'interruptor **Glossari** al panell d'entrada (al costat dels interruptors d'execució automàtica i còpia automàtica).
+2. Trieu els vostres idiomes **De** i **A** i traduïu com de costum. Els termes desats per a aquest parell d'idiomes s'apliquen automàticament.
+3. Per capturar un nou parell sobre la marxa, feu clic a **Afegeix al glossari** (al costat del selector d'idioma **De:**). El diàleg es preemplena amb els vostres idiomes actuals, de manera que només heu d'omplir el **terme d'origen** i el **terme de destinació**.
+4. Utilitzeu l'enllaç **Glossari** al peu de pàgina de sortida (o l'enllaç **Gestiona el glossari** dins del diàleg) per saltar a [**Configuració** > **Glossari**](#glossary-settings) i revisar tots els vostres termes.
+
+Afegiu, editeu, importeu i exporteu termes a la pestanya [**Configuració** > **Glossari**](#glossary-settings) — vegeu més avall.
+
+<br/>
+
+> ℹ️ **NOTA**<br/>
+> Els termes del glossari es fan coincidir per **parell d'idiomes**, de manera que un terme desat per a Anglès → Francès no s'aplica quan es tradueix Anglès → Alemany. El glossari no es pot utilitzar amb **Detecta l'idioma** com a origen, ja que es necessita un idioma d'origen específic per fer coincidir els termes.
 
 [--------------------------------------------------------------------------------------------------------------------------]: #
 
@@ -555,6 +578,7 @@ Les pestanyes disponibles depenen de la plataforma i del vostre rol:
   | Idiomes         |   sí   |     sí     |        sí         | |
   | Seguiment de costos     |   sí   |     sí     |         -          | |
   | Transformar         |   sí   |     sí     |        sí         | Importació/exportació massiva d'indicacions de transformació |
+  | Glossari         |   sí   |     sí     |        sí         | Parells de termes aplicats durant la traducció        |
   | Usuaris             |    -    |     sí     |         -          | |
   | Configuració de l'API        |   sí   |     sí     |         -          | |
   | Quant a             |   sí   |     sí     |        sí         | |
@@ -704,6 +728,27 @@ Pots:
 - importar indicacions des d’un fitxer
 - exportar indicacions per fer-ne còpies de seguretat o compartir-les
 - carregar exemples d'indicacions a la llista d'indicacions
+
+<br/>
+
+<a id="glossary-settings"></a>
+### Glossari (pestanya de configuració)
+
+Utilitza **Configuració** > **Glossari** per gestionar els parells de termes aplicats durant la traducció (consulta [Ús del glossari](#using-the-glossary)). Cada terme té un **idioma d'origen**, un **idioma de destinació**, un **terme d'origen** i un **terme de destinació**.
+
+Pots:
+
+- **Afegir un terme** — omple la fila a la part inferior de la taula (tria els idiomes, escriu els termes d'origen i destinació) i fes clic al botó **+**.
+- **Cerca termes** — filtra la llista per **Idioma d'origen**, **Idioma de destinació** o **text** lliure; fes clic a **Esborra els filtres** per restablir.
+- **Elimina un terme** — fes clic a la icona de paperera a la seva fila.
+- **Importa** — carrega termes des d'un fitxer `.csv`, `.xlsx` o `.xls`. El fitxer ha de tenir les columnes `source_language`, `target_language`, `source_text` i `target_text`.
+- **Exporta CSV** / **Exporta XLSX** — descarrega tots els teus termes per fer una còpia de seguretat o compartir-los.
+- **Plantilla CSV** / **Plantilla XLSX** — descarrega un fitxer buit amb les capçaleres de columna correctes per omplir i importar.
+
+<br/>
+
+> ℹ️ **NOTA**<br/>
+> A l'**aplicació d'escriptori**, el glossari es desa localment. A la **versió web**, cada usuari té el seu propi glossari, de manera que els teus termes no afecten els altres usuaris.
 
 <br/>
 

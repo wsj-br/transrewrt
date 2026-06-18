@@ -12,16 +12,17 @@
 
 Eina de text amb IA: tradueix entre idiomes, reescriu en diferents estils i transforma amb prompts personalitzats — utilitzant múltiples proveïdors d'IA (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI i Ollama local). Funciona com a aplicació d'escriptori (Electron) o com a aplicació web autoallotjada (Docker).
 
-- **Traduir** - entre desenes d'idiomes, amb detecció automàtica de l'idioma d'origen
-- **Reescriure** - corregir gramàtica, millorar la claredat, formal/informal, escurçar, ampliar, tècnic
-- **Transformar** - indicadors personalitzats d'IA; crear i gestionar indicadors, idioma de destinació opcional per a cada indicador
-- **Historial** - historial complet d'execucions amb text d'entrada i de sortida, filtres i exportació
-- **Fàcil i Avançat** - Mode fàcil (per defecte): predefinicions seleccionades per proveïdor (**Gratuït (OpenRouter)**, **Estàndard**, **Avançat**, **Tècnic**; només apareixen les predefinicions amb una assignació per al proveïdor seleccionat) sense haver de triar IDs de models; Mode avançat: llista completa de models dels proveïdors configurats
-- **Models i cost** - taulells de cost i ús (Resum, Per model, Tots els trucades) amb exportació; OpenRouter mostra el desemborsament real, altres proveïdors utilitzen estimacions
-- **IU** - interfície multilingüe (30+ idiomes, suport RTL), tipus de lletra, ...
-- **Mode web** - suport multiusuari amb rols d'administrador
-- **Escriptori** - Aplicació Electron per a Windows i Linux
-- **Autoallotjat** - Imatge Docker per a amd64 i arm64 (preparat per Raspberry Pi)
+- **Tradueix** - entre desenes d'idiomes, amb detecció automàtica de la font
+- **Reescriptura** - corregeix la gramàtica, millora la claredat, formal/informal, escurça, amplia, tècnic
+- **Transformació** - indicadors d'IA personalitzats; crea i gestiona indicadors, idioma de destinació opcional per indicador
+- **Glossari** - emmagatzema parells de termes font/destinació per parell d'idiomes i aplica'ls durant la traducció perquè els termes escollits es mantinguin coherents; gestiona els termes a Configuració (afegir/editar/eliminar, importació CSV/XLSX i exportació de plantilles)
+- **Historial** - historial complet d'execucions amb text d'entrada/sortida, filtratge i exportació
+- **Fàcil i Avançat** - Mode fàcil (per defecte): preconfiguracions curades per proveïdor (**Gratuït (OpenRouter)**, **Estàndard**, **Avançat**, **Tècnic**; només apareixen les preconfiguracions amb un mapa per al proveïdor seleccionat) sense triar IDs de model; Mode avançat: llista completa de models dels vostres proveïdors configurats
+- **Models i cost** - taulers de control de costos i ús (Resum, Per model, Totes les trucades) amb exportació; OpenRouter mostra la despesa real, altres proveïdors utilitzen estimacions
+- **UI** - interfície multilingüe (més de 30 idiomes, suport RTL), tipografies, ...
+- **Mode web** - suport multi-usuari amb rols d'administrador
+- **Desktop** - aplicació Electron per a Windows i Linux
+- **Auto-allotjat** - imatge Docker per a amd64 i arm64 (preparat per a Raspberry Pi)
 
 Un cop instal·lat, consulteu la [**Guia de l'usuari**](USER-GUIDE.ca.md) per obtenir una descripció completa de totes les funcions.
 
