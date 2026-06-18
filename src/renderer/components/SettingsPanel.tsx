@@ -11,6 +11,7 @@ import {
   Info,
   WandSparkles,
   Users,
+  BookOpen,
   Settings as SettingsIcon,
   ChevronLeft,
   ChevronRight,
@@ -31,6 +32,7 @@ import SettingsCostTrackingTab from "./SettingsCostTrackingTab";
 import SettingsTransformPromptsTab from "./SettingsTransformPromptsTab";
 import SettingsAboutTab from "./SettingsAboutTab";
 import SettingsUsersTab from "./SettingsUsersTab";
+import { SettingsGlossaryTab } from "./SettingsGlossaryTab";
 import HeaderLanguageSelector from "./HeaderLanguageSelector";
 import ConfirmModal from "./ConfirmModal";
 import { FREE_MODEL_ID } from "../constants";
@@ -147,6 +149,7 @@ const SettingsPanel = ({ openToTab, onOpenToTabConsumed }) => {
         ? [{ id: "cost", icon: <DollarSign size={15} />, label: t("Cost Tracking") }]
         : []),
       { id: "transform", icon: <WandSparkles size={15} />, label: t("Transform") },
+      { id: "glossary", icon: <BookOpen size={15} />, label: t("Glossary") },
       ...(canAccessUsersTab
         ? [{ id: "users", icon: <Users size={15} />, label: t("Users") }]
         : []),
@@ -680,6 +683,7 @@ const SettingsPanel = ({ openToTab, onOpenToTabConsumed }) => {
         )}
 
         {activeTab === "transform" && <SettingsTransformPromptsTab />}
+        {activeTab === "glossary" && <SettingsGlossaryTab settings={settings} />}
 
         {canAccessUsersTab && activeTab === "users" && (
           <SettingsUsersTab />

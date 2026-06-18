@@ -44,6 +44,14 @@ interface ElectronAPI {
     delete?: (id: unknown) => Promise<unknown>;
     import?: (prompts: unknown, mode: unknown) => Promise<unknown>;
   };
+  glossary?: {
+    getAll?: () => Promise<unknown>;
+    getByLangPair?: (sourceLang: string, targetLang: string) => Promise<unknown>;
+    create?: (term: unknown) => Promise<unknown>;
+    update?: (id: number, term: unknown) => Promise<unknown>;
+    delete?: (id: number) => Promise<unknown>;
+    import?: (terms: unknown) => Promise<unknown>;
+  };
   exportConfigBackup?: (opts?: { includeUsageData?: boolean }) => Promise<{
     ok?: boolean;
     canceled?: boolean;

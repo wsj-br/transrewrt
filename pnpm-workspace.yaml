@@ -19,6 +19,7 @@ minimumReleaseAgeExclude:
   - lucide-react@1.17.0
   - webpack-cli@7.0.3
   - ai-i18n-tools@1.6.0
+  - electron@42.4.1
 
 overrides:
   tmp: ^0.2.6

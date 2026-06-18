@@ -675,6 +675,76 @@ const webAPI = {
     },
   },
 
+  glossary: {
+    getAll: async () => {
+      const res = await apiFetch(`${API_BASE}/api/glossary`, { credentials: "include" });
+      if (res.status === 401) { handle401(); return Promise.reject({ status: 401 }); }
+      if (!res.ok) throw new Error("Failed to load glossary");
+      return res.json();
+    },
+    getByLangPair: async (sourceLang: string, targetLang: string) => {
+      const q = new URLSearchParams({ source: sourceLang, target: targetLang });
+      const res = await apiFetch(`${API_BASE}/api/glossary/by-lang-pair?${q}`, { credentials: "include" });
+      if (res.status === 401) { handle401(); return Promise.reject({ status: 401 }); }
+      if (!res.ok) throw new Error("Failed to load glossary terms");
+      return res.json();
+    },
+    create: async (term) => {
+      const res = await apiFetch(`${API_BASE}/api/glossary`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(term),
+        credentials: "include",
+      });
+      if (res.status === 401) { handle401(); return Promise.reject({ status: 401 }); }
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        throw new Error(data.error || "Failed to create glossary term");
+      }
+      return res.json();
+    },
+    update: async (id: number, term) => {
+      const res = await apiFetch(`${API_BASE}/api/glossary/${id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(term),
+        credentials: "include",
+      });
+      if (res.status === 401) { handle401(); return Promise.reject({ status: 401 }); }
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        throw new Error(data.error || "Failed to update glossary term");
+      }
+      return { success: true, error: null };
+    },
+    delete: async (id: number) => {
+      const res = await apiFetch(`${API_BASE}/api/glossary/${id}`, {
+        method: "DELETE",
+        credentials: "include",
+      });
+      if (res.status === 401) { handle401(); return Promise.reject({ status: 401 }); }
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        throw new Error(data.error || "Failed to delete glossary term");
+      }
+      return { success: true, error: null };
+    },
+    import: async (terms) => {
+      const res = await apiFetch(`${API_BASE}/api/glossary/import`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ terms: Array.isArray(terms) ? terms : [terms] }),
+        credentials: "include",
+      });
+      if (res.status === 401) { handle401(); return Promise.reject({ status: 401 }); }
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        throw new Error(data.error || "Failed to import glossary terms");
+      }
+      return res.json();
+    },
+  },
+
   getApiStatus: async () => {
     try {
       const res = await apiFetch(`${API_BASE}/api/status`, { credentials: "include" });

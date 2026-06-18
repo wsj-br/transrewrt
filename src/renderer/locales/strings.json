@@ -1703,7 +1703,7 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 437
+        "line": 449
       }
     ]
   },
@@ -1788,15 +1788,15 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 444
+        "line": 456
       },
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 498
+        "line": 510
       },
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 504
+        "line": 516
       },
       {
         "file": "src/renderer/components/DashboardTabAllCalls.tsx",
@@ -1905,7 +1905,7 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 452
+        "line": 464
       },
       {
         "file": "src/renderer/components/DashboardTabByModel.tsx",
@@ -2006,11 +2006,11 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 456
+        "line": 468
       },
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 504
+        "line": 516
       },
       {
         "file": "src/renderer/utils/misc/formatUtils.ts",
@@ -2099,7 +2099,7 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 464
+        "line": 476
       },
       {
         "file": "src/renderer/components/DashboardTabAllCalls.tsx",
@@ -2196,7 +2196,7 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 506
+        "line": 518
       },
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
@@ -2289,7 +2289,7 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 670
+        "line": 702
       },
       {
         "file": "src/renderer/components/DashboardTabAllCalls.tsx",
@@ -2326,6 +2326,14 @@
       {
         "file": "src/renderer/components/SettingsCostTrackingTab.tsx",
         "line": 124
+      },
+      {
+        "file": "src/renderer/components/SettingsGlossaryTab.tsx",
+        "line": 245
+      },
+      {
+        "file": "src/renderer/components/SettingsGlossaryTab.tsx",
+        "line": 339
       },
       {
         "file": "src/renderer/components/SettingsTransformPromptsTab.tsx",
@@ -2426,7 +2434,7 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 690
+        "line": 722
       },
       {
         "file": "src/renderer/components/SettingsTransformPromptsTab.tsx",
@@ -2523,7 +2531,7 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 691
+        "line": 723
       },
       {
         "file": "src/renderer/components/SettingsTransformPromptsTab.tsx",
@@ -2612,7 +2620,7 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 692
+        "line": 724
       },
       {
         "file": "src/renderer/components/SettingsTransformPromptsTab.tsx",
@@ -2701,7 +2709,7 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 694
+        "line": 726
       },
       {
         "file": "src/renderer/components/SelectFromPresetsModal.tsx",
@@ -2794,15 +2802,15 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 695
+        "line": 727
       },
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 789
+        "line": 821
       },
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 858
+        "line": 903
       },
       {
         "file": "src/renderer/components/ChangePasswordModal.tsx",
@@ -2842,7 +2850,7 @@
       },
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 707
+        "line": 711
       },
       {
         "file": "src/renderer/components/SettingsTransformPromptsTab.tsx",
@@ -2951,11 +2959,11 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 786
+        "line": 818
       },
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 855
+        "line": 900
       },
       {
         "file": "src/renderer/components/SettingsTransformPromptsTab.tsx",
@@ -3044,11 +3052,11 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 787
+        "line": 819
       },
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 856
+        "line": 901
       }
     ]
   },
@@ -3133,11 +3141,11 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 787
+        "line": 819
       },
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 856
+        "line": 901
       }
     ]
   },
@@ -3222,11 +3230,11 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 788
+        "line": 820
       },
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 857
+        "line": 902
       },
       {
         "file": "src/renderer/components/DashboardPage.tsx",
@@ -10557,7 +10565,7 @@
       },
       {
         "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
-        "line": 215
+        "line": 251
       }
     ]
   },
@@ -10650,7 +10658,7 @@
       },
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 149
+        "line": 151
       },
       {
         "file": "src/renderer/components/Sidebar.tsx",
@@ -10659,6 +10667,1365 @@
       {
         "file": "src/renderer/components/workspace/TransformWorkspace.tsx",
         "line": 286
+      }
+    ]
+  },
+  "d44fb71c": {
+    "source": "All fields are required.",
+    "translated": {
+      "pt-BR": "Todos os campos são obrigatórios.",
+      "zh-CN": "所有字段均为必填项。",
+      "zh-TW": "所有欄位皆為必填。",
+      "bn": "সমস্ত ক্ষেত্র আবশ্যক।",
+      "ar": "جميع الحقول مطلوبة.",
+      "ca": "Tots els camps són obligatoris.",
+      "cs": "Všechna pole jsou povinná.",
+      "hr": "Sva polja su obavezna.",
+      "en-US": "All fields are required.",
+      "fr": "Tous les champs sont obligatoires.",
+      "de": "Alle Felder sind erforderlich.",
+      "hi": "सभी फ़ील्ड आवश्यक हैं।",
+      "nl": "Alle velden zijn verplicht.",
+      "tl": "Kailangan ang lahat ng field.",
+      "el": "Όλα τα πεδία είναι υποχρεωτικά.",
+      "hu": "Minden mező kitöltése kötelező.",
+      "pt": "Todos os campos são obrigatórios.",
+      "ja": "すべてのフィールドが必須です。",
+      "ko": "모든 필드를 입력해야 합니다.",
+      "pl": "Wszystkie pola są wymagane.",
+      "it": "Tutti i campi sono obbligatori.",
+      "fa": "تمام فیلدها الزامی هستند.",
+      "ms": "Semua medan diperlukan.",
+      "jv": "Kabeh kolom wajib diisi.",
+      "es": "Todos los campos son obligatorios.",
+      "ru": "Все поля обязательны для заполнения.",
+      "sv": "Alla fält krävs.",
+      "ro": "Toate câmpurile sunt obligatorii.",
+      "sk": "Všetky polia sú povinné.",
+      "te": "అన్ని ఫీల్డ్‌లు అవసరం.",
+      "pa": "ਸਾਰੇ ਖੇਤਰ ਜ਼ਰੂਰੀ ਹਨ।",
+      "sw": "Sehemu zote zinahitajika.",
+      "th": "จำเป็นต้องกรอกข้อมูลทุกช่อง",
+      "vi": "Tất cả các trường là bắt buộc.",
+      "tr": "Tüm alanlar zorunludur.",
+      "uk": "Усі поля є обов'язковими."
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/GlossaryAddModal.tsx",
+        "line": 59
+      }
+    ],
+    "models": {
+      "pt-BR": "google/gemini-2.5-flash-lite",
+      "zh-CN": "google/gemini-2.5-flash-lite",
+      "zh-TW": "google/gemini-2.5-flash-lite",
+      "bn": "google/gemini-2.5-flash-lite",
+      "ar": "google/gemini-2.5-flash-lite",
+      "ca": "google/gemini-2.5-flash-lite",
+      "cs": "google/gemini-2.5-flash-lite",
+      "hr": "google/gemini-2.5-flash-lite",
+      "en-US": "google/gemini-2.5-flash-lite",
+      "fr": "google/gemini-2.5-flash-lite",
+      "de": "google/gemini-2.5-flash-lite",
+      "hi": "google/gemini-2.5-flash-lite",
+      "nl": "google/gemini-2.5-flash-lite",
+      "tl": "google/gemini-2.5-flash-lite",
+      "el": "google/gemini-2.5-flash-lite",
+      "hu": "google/gemini-2.5-flash-lite",
+      "pt": "google/gemini-2.5-flash-lite",
+      "ja": "google/gemini-2.5-flash-lite",
+      "ko": "google/gemini-2.5-flash-lite",
+      "pl": "google/gemini-2.5-flash-lite",
+      "it": "google/gemini-2.5-flash-lite",
+      "fa": "google/gemini-2.5-flash-lite",
+      "ms": "google/gemini-2.5-flash-lite",
+      "jv": "google/gemini-2.5-flash-lite",
+      "es": "google/gemini-2.5-flash-lite",
+      "ru": "google/gemini-2.5-flash-lite",
+      "sv": "google/gemini-2.5-flash-lite",
+      "ro": "google/gemini-2.5-flash-lite",
+      "sk": "google/gemini-2.5-flash-lite",
+      "te": "google/gemini-2.5-flash-lite",
+      "pa": "google/gemini-2.5-flash-lite",
+      "sw": "google/gemma-4-31b-it",
+      "th": "google/gemini-2.5-flash-lite",
+      "vi": "google/gemini-2.5-flash-lite",
+      "tr": "google/gemini-2.5-flash-lite",
+      "uk": "google/gemini-2.5-flash-lite"
+    }
+  },
+  "fa81b94a": {
+    "source": "Term updated.",
+    "translated": {
+      "pt-BR": "Termo atualizado.",
+      "zh-CN": "术语已更新。",
+      "zh-TW": "術語已更新。",
+      "bn": "শব্দ আপডেট করা হয়েছে।",
+      "ar": "تم تحديث المصطلح.",
+      "ca": "Terme actualitzat.",
+      "cs": "Termín byl aktualizován.",
+      "hr": "Pojam je ažuriran.",
+      "en-US": "Term updated.",
+      "fr": "Terme mis à jour.",
+      "de": "Begriff aktualisiert.",
+      "hi": "शब्द अपडेट किया गया।",
+      "nl": "Term bijgewerkt.",
+      "tl": "Na-update ang termino.",
+      "el": "Ο όρος ενημερώθηκε.",
+      "hu": "A kifejezés frissítve.",
+      "pt": "Termo atualizado.",
+      "ja": "用語が更新されました。",
+      "ko": "용어 업데이트됨.",
+      "pl": "Termin zaktualizowany.",
+      "it": "Termine aggiornato.",
+      "fa": "اصطلاح به‌روز شد.",
+      "ms": "Istilah dikemas kini.",
+      "jv": "Istilah diowahi.",
+      "es": "Término actualizado.",
+      "ru": "Термин обновлен.",
+      "sv": "Termen uppdaterad.",
+      "ro": "Termen actualizat.",
+      "sk": "Termín bol aktualizovaný.",
+      "te": "పదం నవీకరించబడింది.",
+      "pa": "ਸ਼ਬਦ ਅੱਪਡੇਟ ਕੀਤਾ ਗਿਆ।",
+      "sw": "Istilahi imesasishwa.",
+      "th": "อัปเดตคำศัพท์แล้ว",
+      "vi": "Thuật ngữ đã được cập nhật.",
+      "tr": "Terim güncellendi.",
+      "uk": "Термін оновлено."
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/GlossaryAddModal.tsx",
+        "line": 72
+      }
+    ],
+    "models": {
+      "pt-BR": "google/gemini-2.5-flash-lite",
+      "zh-CN": "google/gemini-2.5-flash-lite",
+      "zh-TW": "google/gemini-2.5-flash-lite",
+      "bn": "google/gemini-2.5-flash-lite",
+      "ar": "google/gemini-2.5-flash-lite",
+      "ca": "google/gemini-2.5-flash-lite",
+      "cs": "google/gemini-2.5-flash-lite",
+      "hr": "google/gemini-2.5-flash-lite",
+      "en-US": "google/gemini-2.5-flash-lite",
+      "fr": "google/gemini-2.5-flash-lite",
+      "de": "google/gemini-2.5-flash-lite",
+      "hi": "google/gemini-2.5-flash-lite",
+      "nl": "google/gemini-2.5-flash-lite",
+      "tl": "google/gemini-2.5-flash-lite",
+      "el": "google/gemini-2.5-flash-lite",
+      "hu": "google/gemini-2.5-flash-lite",
+      "pt": "google/gemini-2.5-flash-lite",
+      "ja": "google/gemini-2.5-flash-lite",
+      "ko": "google/gemini-2.5-flash-lite",
+      "pl": "google/gemini-2.5-flash-lite",
+      "it": "google/gemini-2.5-flash-lite",
+      "fa": "google/gemini-2.5-flash-lite",
+      "ms": "google/gemini-2.5-flash-lite",
+      "jv": "google/gemini-2.5-flash-lite",
+      "es": "google/gemini-2.5-flash-lite",
+      "ru": "google/gemini-2.5-flash-lite",
+      "sv": "google/gemini-2.5-flash-lite",
+      "ro": "google/gemini-2.5-flash-lite",
+      "sk": "google/gemini-2.5-flash-lite",
+      "te": "google/gemini-2.5-flash-lite",
+      "pa": "google/gemini-2.5-flash-lite",
+      "sw": "google/gemma-4-31b-it",
+      "th": "google/gemini-2.5-flash-lite",
+      "vi": "google/gemini-2.5-flash-lite",
+      "tr": "google/gemini-2.5-flash-lite",
+      "uk": "google/gemini-2.5-flash-lite"
+    }
+  },
+  "acc36eb8": {
+    "source": "Term saved.",
+    "translated": {
+      "pt-BR": "Termo salvo.",
+      "zh-CN": "术语已保存。",
+      "zh-TW": "術語已儲存。",
+      "bn": "শব্দ সংরক্ষিত হয়েছে।",
+      "ar": "تم حفظ المصطلح.",
+      "ca": "Terme desat.",
+      "cs": "Termín byl uložen.",
+      "hr": "Pojam je spremljen.",
+      "en-US": "Term saved.",
+      "fr": "Terme enregistré.",
+      "de": "Begriff gespeichert.",
+      "hi": "शब्द सहेजा गया।",
+      "nl": "Term opgeslagen.",
+      "tl": "Nai-save ang termino.",
+      "el": "Ο όρος αποθηκεύτηκε.",
+      "hu": "A kifejezés mentve.",
+      "pt": "Termo guardado.",
+      "ja": "用語が保存されました。",
+      "ko": "용어 저장됨.",
+      "pl": "Termin zapisany.",
+      "it": "Termine salvato.",
+      "fa": "اصطلاح ذخیره شد.",
+      "ms": "Istilah disimpan.",
+      "jv": "Istilah disimpen.",
+      "es": "Término guardado.",
+      "ru": "Термин сохранен.",
+      "sv": "Termen sparad.",
+      "ro": "Termen salvat.",
+      "sk": "Termín bol uložený.",
+      "te": "పదం సేవ్ చేయబడింది.",
+      "pa": "ਸ਼ਬਦ ਸੁਰੱਖਿਅਤ ਕੀਤਾ ਗਿਆ।",
+      "sw": "Istilahi imehifadhiwa.",
+      "th": "บันทึกคำศัพท์แล้ว",
+      "vi": "Thuật ngữ đã được lưu.",
+      "tr": "Terim kaydedildi.",
+      "uk": "Термін збережено."
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/GlossaryAddModal.tsx",
+        "line": 72
+      }
+    ],
+    "models": {
+      "pt-BR": "google/gemini-2.5-flash-lite",
+      "zh-CN": "google/gemini-2.5-flash-lite",
+      "zh-TW": "google/gemini-2.5-flash-lite",
+      "bn": "google/gemini-2.5-flash-lite",
+      "ar": "google/gemini-2.5-flash-lite",
+      "ca": "google/gemini-2.5-flash-lite",
+      "cs": "google/gemini-2.5-flash-lite",
+      "hr": "google/gemini-2.5-flash-lite",
+      "en-US": "google/gemini-2.5-flash-lite",
+      "fr": "google/gemini-2.5-flash-lite",
+      "de": "google/gemini-2.5-flash-lite",
+      "hi": "google/gemini-2.5-flash-lite",
+      "nl": "google/gemini-2.5-flash-lite",
+      "tl": "google/gemini-2.5-flash-lite",
+      "el": "google/gemini-2.5-flash-lite",
+      "hu": "google/gemini-2.5-flash-lite",
+      "pt": "google/gemini-2.5-flash-lite",
+      "ja": "google/gemini-2.5-flash-lite",
+      "ko": "google/gemini-2.5-flash-lite",
+      "pl": "google/gemini-2.5-flash-lite",
+      "it": "google/gemini-2.5-flash-lite",
+      "fa": "google/gemini-2.5-flash-lite",
+      "ms": "google/gemini-2.5-flash-lite",
+      "jv": "google/gemini-2.5-flash-lite",
+      "es": "google/gemini-2.5-flash-lite",
+      "ru": "google/gemini-2.5-flash-lite",
+      "sv": "google/gemini-2.5-flash-lite",
+      "ro": "google/gemini-2.5-flash-lite",
+      "sk": "google/gemini-2.5-flash-lite",
+      "te": "google/gemini-2.5-flash-lite",
+      "pa": "google/gemini-2.5-flash-lite",
+      "sw": "google/gemma-4-31b-it",
+      "th": "google/gemini-2.5-flash-lite",
+      "vi": "google/gemini-2.5-flash-lite",
+      "tr": "google/gemini-2.5-flash-lite",
+      "uk": "google/gemini-2.5-flash-lite"
+    }
+  },
+  "37eea45e": {
+    "source": "Failed to save term.",
+    "translated": {
+      "pt-BR": "Falha ao salvar o termo.",
+      "zh-CN": "保存术语失败。",
+      "zh-TW": "儲存術語失敗。",
+      "bn": "শব্দ সংরক্ষণ করা যায়নি।",
+      "ar": "فشل حفظ المصطلح.",
+      "ca": "No s'ha pogut desar el terme.",
+      "cs": "Nepodařilo se uložit termín.",
+      "hr": "Spremanje pojma nije uspjelo.",
+      "en-US": "Failed to save term.",
+      "fr": "Échec de l'enregistrement du terme.",
+      "de": "Begriff konnte nicht gespeichert werden.",
+      "hi": "शब्द सहेजने में विफल।",
+      "nl": "Term opslaan mislukt.",
+      "tl": "Nabigong i-save ang termino.",
+      "el": "Αποτυχία αποθήκευσης του όρου.",
+      "hu": "Nem sikerült menteni a kifejezést.",
+      "pt": "Falha ao guardar o termo.",
+      "ja": "用語の保存に失敗しました。",
+      "ko": "용어 저장 실패.",
+      "pl": "Nie udało się zapisać terminu.",
+      "it": "Impossibile salvare il termine.",
+      "fa": "ذخیره اصطلاح ناموفق بود.",
+      "ms": "Gagal menyimpan istilah.",
+      "jv": "Gagal nyimpen istilah.",
+      "es": "Error al guardar el término.",
+      "ru": "Не удалось сохранить термин.",
+      "sv": "Kunde inte spara termen.",
+      "ro": "Eroare la salvarea termenului.",
+      "sk": "Nepodarilo sa uložiť termín.",
+      "te": "పదాన్ని సేవ్ చేయడంలో విఫలమైంది.",
+      "pa": "ਸ਼ਬਦ ਸੁਰੱਖਿਅਤ ਕਰਨ ਵਿੱਚ ਅਸਫਲ।",
+      "sw": "Imeshindwa kuhifadhi istilahi.",
+      "th": "ไม่สามารถบันทึกคำศัพท์ได้",
+      "vi": "Không thể lưu thuật ngữ.",
+      "tr": "Terim kaydedilemedi.",
+      "uk": "Не вдалося зберегти термін."
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/GlossaryAddModal.tsx",
+        "line": 75
+      }
+    ],
+    "models": {
+      "pt-BR": "google/gemini-2.5-flash-lite",
+      "zh-CN": "google/gemini-2.5-flash-lite",
+      "zh-TW": "google/gemini-2.5-flash-lite",
+      "bn": "google/gemini-2.5-flash-lite",
+      "ar": "google/gemini-2.5-flash-lite",
+      "ca": "google/gemini-2.5-flash-lite",
+      "cs": "google/gemini-2.5-flash-lite",
+      "hr": "google/gemini-2.5-flash-lite",
+      "en-US": "google/gemini-2.5-flash-lite",
+      "fr": "google/gemini-2.5-flash-lite",
+      "de": "google/gemini-2.5-flash-lite",
+      "hi": "google/gemini-2.5-flash-lite",
+      "nl": "google/gemini-2.5-flash-lite",
+      "tl": "google/gemini-2.5-flash-lite",
+      "el": "google/gemini-2.5-flash-lite",
+      "hu": "google/gemini-2.5-flash-lite",
+      "pt": "google/gemini-2.5-flash-lite",
+      "ja": "google/gemini-2.5-flash-lite",
+      "ko": "google/gemini-2.5-flash-lite",
+      "pl": "google/gemini-2.5-flash-lite",
+      "it": "google/gemini-2.5-flash-lite",
+      "fa": "google/gemini-2.5-flash-lite",
+      "ms": "google/gemini-2.5-flash-lite",
+      "jv": "google/gemini-2.5-flash-lite",
+      "es": "google/gemini-2.5-flash-lite",
+      "ru": "google/gemini-2.5-flash-lite",
+      "sv": "google/gemini-2.5-flash-lite",
+      "ro": "google/gemini-2.5-flash-lite",
+      "sk": "google/gemini-2.5-flash-lite",
+      "te": "google/gemini-2.5-flash-lite",
+      "pa": "google/gemini-2.5-flash-lite",
+      "sw": "google/gemma-4-31b-it",
+      "th": "google/gemini-2.5-flash-lite",
+      "vi": "google/gemini-2.5-flash-lite",
+      "tr": "google/gemini-2.5-flash-lite",
+      "uk": "google/gemini-2.5-flash-lite"
+    }
+  },
+  "764cd168": {
+    "source": "Add to Glossary",
+    "translated": {
+      "pt-BR": "Adicionar ao Glossário",
+      "zh-CN": "添加到词汇表",
+      "zh-TW": "新增至詞彙表",
+      "bn": "গ্লসারিতে যোগ করুন",
+      "ar": "إضافة إلى المسرد",
+      "ca": "Afegeix al glossari",
+      "cs": "Přidat do slovníku",
+      "hr": "Dodaj u rječnik",
+      "en-US": "Add to Glossary",
+      "fr": "Ajouter au glossaire",
+      "de": "Zum Glossar hinzufügen",
+      "hi": "शब्दावली में जोड़ें",
+      "nl": "Toevoegen aan woordenlijst",
+      "tl": "Idagdag sa Glossary",
+      "el": "Προσθήκη στο Γλωσσάριο",
+      "hu": "Hozzáadás a szószedethez",
+      "pt": "Adicionar ao Glossário",
+      "ja": "用語集に追加",
+      "ko": "용어집에 추가",
+      "pl": "Dodaj do słownika",
+      "it": "Aggiungi al glossario",
+      "fa": "افزودن به واژه‌نامه",
+      "ms": "Tambah ke Glosari",
+      "jv": "Tambah menyang Glosarium",
+      "es": "Añadir al glosario",
+      "ru": "Добавить в глоссарий",
+      "sv": "Lägg till i ordlista",
+      "ro": "Adaugă în glosar",
+      "sk": "Pridať do slovníka",
+      "te": "గ్లోసరీకి జోడించు",
+      "pa": "ਸ਼ਬਦ-ਕੋਸ਼ ਵਿੱਚ ਸ਼ਾਮਲ ਕਰੋ",
+      "sw": "Ongeza kwenye Kamusi",
+      "th": "เพิ่มลงในอภิธานศัพท์",
+      "vi": "Thêm vào Từ điển",
+      "tr": "Sözlüğe Ekle",
+      "uk": "Додати до глосарію"
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/GlossaryAddModal.tsx",
+        "line": 85
+      },
+      {
+        "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
+        "line": 82
+      },
+      {
+        "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
+        "line": 83
+      },
+      {
+        "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
+        "line": 86
+      }
+    ],
+    "models": {
+      "pt-BR": "google/gemini-2.5-flash-lite",
+      "zh-CN": "google/gemini-2.5-flash-lite",
+      "zh-TW": "google/gemini-2.5-flash-lite",
+      "bn": "google/gemini-2.5-flash-lite",
+      "ar": "google/gemini-2.5-flash-lite",
+      "ca": "google/gemini-2.5-flash-lite",
+      "cs": "google/gemini-2.5-flash-lite",
+      "hr": "google/gemini-2.5-flash-lite",
+      "en-US": "google/gemini-2.5-flash-lite",
+      "fr": "google/gemini-2.5-flash-lite",
+      "de": "google/gemini-2.5-flash-lite",
+      "hi": "google/gemini-2.5-flash-lite",
+      "nl": "google/gemini-2.5-flash-lite",
+      "tl": "google/gemini-2.5-flash-lite",
+      "el": "google/gemini-2.5-flash-lite",
+      "hu": "google/gemini-2.5-flash-lite",
+      "pt": "google/gemini-2.5-flash-lite",
+      "ja": "google/gemini-2.5-flash-lite",
+      "ko": "google/gemini-2.5-flash-lite",
+      "pl": "google/gemini-2.5-flash-lite",
+      "it": "google/gemini-2.5-flash-lite",
+      "fa": "google/gemini-2.5-flash-lite",
+      "ms": "google/gemini-2.5-flash-lite",
+      "jv": "google/gemini-2.5-flash-lite",
+      "es": "google/gemini-2.5-flash-lite",
+      "ru": "google/gemini-2.5-flash-lite",
+      "sv": "google/gemini-2.5-flash-lite",
+      "ro": "google/gemini-2.5-flash-lite",
+      "sk": "google/gemini-2.5-flash-lite",
+      "te": "google/gemini-2.5-flash-lite",
+      "pa": "google/gemini-2.5-flash-lite",
+      "sw": "google/gemma-4-31b-it",
+      "th": "google/gemini-2.5-flash-lite",
+      "vi": "google/gemini-2.5-flash-lite",
+      "tr": "google/gemini-2.5-flash-lite",
+      "uk": "google/gemini-2.5-flash-lite"
+    }
+  },
+  "a23627e6": {
+    "source": "Source language",
+    "translated": {
+      "pt-BR": "Idioma de origem",
+      "zh-CN": "源语言",
+      "zh-TW": "來源語言",
+      "bn": "উৎস ভাষা",
+      "ar": "لغة المصدر",
+      "ca": "Idioma d'origen",
+      "cs": "Zdrojový jazyk",
+      "hr": "Izvorni jezik",
+      "en-US": "Source language",
+      "fr": "Langue source",
+      "de": "Ausgangssprache",
+      "hi": "स्रोत भाषा",
+      "nl": "Bron taal",
+      "tl": "Wika ng Pinagmulan",
+      "el": "Γλώσσα πηγής",
+      "hu": "Forrásnyelv",
+      "pt": "Idioma de origem",
+      "ja": "ソース言語",
+      "ko": "소스 언어",
+      "pl": "Język źródłowy",
+      "it": "Lingua di origine",
+      "fa": "زبان مبدأ",
+      "ms": "Bahasa sumber",
+      "jv": "Basa sumber",
+      "es": "Idioma de origen",
+      "ru": "Исходный язык",
+      "sv": "Källspråk",
+      "ro": "Limba sursă",
+      "sk": "Zdrojový jazyk",
+      "te": "మూల భాష",
+      "pa": "ਸਰੋਤ ਭਾਸ਼ਾ",
+      "sw": "Lugha chanzo",
+      "th": "ภาษาต้นทาง",
+      "vi": "Ngôn ngữ nguồn",
+      "tr": "Kaynak dil",
+      "uk": "Мова оригіналу"
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/GlossaryAddModal.tsx",
+        "line": 90
+      },
+      {
+        "file": "src/renderer/components/GlossaryAddModal.tsx",
+        "line": 92
+      },
+      {
+        "file": "src/renderer/components/SettingsGlossaryTab.tsx",
+        "line": 283
+      },
+      {
+        "file": "src/renderer/components/SettingsGlossaryTab.tsx",
+        "line": 285
+      },
+      {
+        "file": "src/renderer/components/SettingsGlossaryTab.tsx",
+        "line": 328
+      },
+      {
+        "file": "src/renderer/components/SettingsGlossaryTab.tsx",
+        "line": 374
+      }
+    ],
+    "models": {
+      "pt-BR": "google/gemini-2.5-flash-lite",
+      "zh-CN": "google/gemini-2.5-flash-lite",
+      "zh-TW": "google/gemini-2.5-flash-lite",
+      "bn": "google/gemini-2.5-flash-lite",
+      "ar": "google/gemini-2.5-flash-lite",
+      "ca": "google/gemini-2.5-flash-lite",
+      "cs": "google/gemini-2.5-flash-lite",
+      "hr": "google/gemini-2.5-flash-lite",
+      "en-US": "google/gemini-2.5-flash-lite",
+      "fr": "google/gemini-2.5-flash-lite",
+      "de": "google/gemini-2.5-flash-lite",
+      "hi": "google/gemini-2.5-flash-lite",
+      "nl": "google/gemini-2.5-flash-lite",
+      "tl": "google/gemini-2.5-flash-lite",
+      "el": "google/gemini-2.5-flash-lite",
+      "hu": "google/gemini-2.5-flash-lite",
+      "pt": "google/gemini-2.5-flash-lite",
+      "ja": "google/gemini-2.5-flash-lite",
+      "ko": "google/gemini-2.5-flash-lite",
+      "pl": "google/gemini-2.5-flash-lite",
+      "it": "google/gemini-2.5-flash-lite",
+      "fa": "google/gemini-2.5-flash-lite",
+      "ms": "google/gemini-2.5-flash-lite",
+      "jv": "google/gemini-2.5-flash-lite",
+      "es": "google/gemini-2.5-flash-lite",
+      "ru": "google/gemini-2.5-flash-lite",
+      "sv": "google/gemini-2.5-flash-lite",
+      "ro": "google/gemini-2.5-flash-lite",
+      "sk": "google/gemini-2.5-flash-lite",
+      "te": "google/gemini-2.5-flash-lite",
+      "pa": "google/gemini-2.5-flash-lite",
+      "sw": "google/gemma-4-31b-it",
+      "th": "google/gemini-2.5-flash-lite",
+      "vi": "google/gemini-2.5-flash-lite",
+      "tr": "google/gemini-2.5-flash-lite",
+      "uk": "google/gemini-2.5-flash-lite"
+    }
+  },
+  "648f771e": {
+    "source": "Target language",
+    "translated": {
+      "pt-BR": "Idioma de destino",
+      "zh-CN": "目标语言",
+      "zh-TW": "目標語言",
+      "bn": "লক্ষ্য ভাষা",
+      "ar": "لغة الهدف",
+      "ca": "Idioma de destinació",
+      "cs": "Cílový jazyk",
+      "hr": "Ciljni jezik",
+      "en-US": "Target language",
+      "fr": "Langue cible",
+      "de": "Zielsprache",
+      "hi": "लक्ष्य भाषा",
+      "nl": "Doeltaal",
+      "tl": "Wika ng Target",
+      "el": "Γλώσσα στόχος",
+      "hu": "Célnyelv",
+      "pt": "Idioma de destino",
+      "ja": "ターゲット言語",
+      "ko": "대상 언어",
+      "pl": "Język docelowy",
+      "it": "Lingua di destinazione",
+      "fa": "زبان مقصد",
+      "ms": "Bahasa sasaran",
+      "jv": "Basa target",
+      "es": "Idioma de destino",
+      "ru": "Целевой язык",
+      "sv": "Målspråk",
+      "ro": "Limba țintă",
+      "sk": "Cieľový jazyk",
+      "te": "లక్ష్య భాష",
+      "pa": "ਨਿਸ਼ਾਨਾ ਭਾਸ਼ਾ",
+      "sw": "Lugha lengo",
+      "th": "ภาษาปลายทาง",
+      "vi": "Ngôn ngữ đích",
+      "tr": "Hedef dil",
+      "uk": "Цільова мова"
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/GlossaryAddModal.tsx",
+        "line": 101
+      },
+      {
+        "file": "src/renderer/components/GlossaryAddModal.tsx",
+        "line": 103
+      },
+      {
+        "file": "src/renderer/components/SettingsGlossaryTab.tsx",
+        "line": 294
+      },
+      {
+        "file": "src/renderer/components/SettingsGlossaryTab.tsx",
+        "line": 296
+      },
+      {
+        "file": "src/renderer/components/SettingsGlossaryTab.tsx",
+        "line": 330
+      },
+      {
+        "file": "src/renderer/components/SettingsGlossaryTab.tsx",
+        "line": 394
+      }
+    ],
+    "models": {
+      "pt-BR": "google/gemini-2.5-flash-lite",
+      "zh-CN": "google/gemini-2.5-flash-lite",
+      "zh-TW": "google/gemini-2.5-flash-lite",
+      "bn": "google/gemini-2.5-flash-lite",
+      "ar": "google/gemini-2.5-flash-lite",
+      "ca": "google/gemini-2.5-flash-lite",
+      "cs": "google/gemini-2.5-flash-lite",
+      "hr": "google/gemini-2.5-flash-lite",
+      "en-US": "google/gemini-2.5-flash-lite",
+      "fr": "google/gemini-2.5-flash-lite",
+      "de": "google/gemini-2.5-flash-lite",
+      "hi": "google/gemini-2.5-flash-lite",
+      "nl": "google/gemini-2.5-flash-lite",
+      "tl": "google/gemini-2.5-flash-lite",
+      "el": "google/gemini-2.5-flash-lite",
+      "hu": "google/gemini-2.5-flash-lite",
+      "pt": "google/gemini-2.5-flash-lite",
+      "ja": "google/gemini-2.5-flash-lite",
+      "ko": "google/gemini-2.5-flash-lite",
+      "pl": "google/gemini-2.5-flash-lite",
+      "it": "google/gemini-2.5-flash-lite",
+      "fa": "google/gemini-2.5-flash-lite",
+      "ms": "google/gemini-2.5-flash-lite",
+      "jv": "google/gemini-2.5-flash-lite",
+      "es": "google/gemini-2.5-flash-lite",
+      "ru": "google/gemini-2.5-flash-lite",
+      "sv": "google/gemini-2.5-flash-lite",
+      "ro": "google/gemini-2.5-flash-lite",
+      "sk": "google/gemini-2.5-flash-lite",
+      "te": "google/gemini-2.5-flash-lite",
+      "pa": "google/gemini-2.5-flash-lite",
+      "sw": "google/gemma-4-31b-it",
+      "th": "google/gemini-2.5-flash-lite",
+      "vi": "google/gemini-2.5-flash-lite",
+      "tr": "google/gemini-2.5-flash-lite",
+      "uk": "google/gemini-2.5-flash-lite"
+    }
+  },
+  "f22a11c1": {
+    "source": "Source term",
+    "translated": {
+      "pt-BR": "Termo de origem",
+      "zh-CN": "源术语",
+      "zh-TW": "來源術語",
+      "bn": "উৎস শব্দ",
+      "ar": "مصطلح المصدر",
+      "ca": "Terme d'origen",
+      "cs": "Zdrojový termín",
+      "hr": "Izvorni pojam",
+      "en-US": "Source term",
+      "fr": "Terme source",
+      "de": "Begriff in Ausgangssprache",
+      "hi": "स्रोत शब्द",
+      "nl": "Bronterm",
+      "tl": "Termino sa Pinagmulan",
+      "el": "Όρος πηγής",
+      "hu": "Forráskifejezés",
+      "pt": "Termo de origem",
+      "ja": "ソース用語",
+      "ko": "소스 용어",
+      "pl": "Termin źródłowy",
+      "it": "Termine di origine",
+      "fa": "اصطلاح مبدأ",
+      "ms": "Istilah sumber",
+      "jv": "Istilah sumber",
+      "es": "Término de origen",
+      "ru": "Исходный термин",
+      "sv": "Källterm",
+      "ro": "Termen sursă",
+      "sk": "Zdrojový termín",
+      "te": "మూల పదం",
+      "pa": "ਸਰੋਤ ਸ਼ਬਦ",
+      "sw": "Istilahi chanzo",
+      "th": "คำศัพท์ต้นทาง",
+      "vi": "Thuật ngữ nguồn",
+      "tr": "Kaynak terim",
+      "uk": "Термін мовою оригіналу"
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/GlossaryAddModal.tsx",
+        "line": 113
+      },
+      {
+        "file": "src/renderer/components/SettingsGlossaryTab.tsx",
+        "line": 329
+      }
+    ],
+    "models": {
+      "pt-BR": "google/gemini-2.5-flash-lite",
+      "zh-CN": "google/gemini-2.5-flash-lite",
+      "zh-TW": "google/gemini-2.5-flash-lite",
+      "bn": "google/gemini-2.5-flash-lite",
+      "ar": "google/gemini-2.5-flash-lite",
+      "ca": "google/gemini-2.5-flash-lite",
+      "cs": "google/gemini-2.5-flash-lite",
+      "hr": "google/gemini-2.5-flash-lite",
+      "en-US": "google/gemini-2.5-flash-lite",
+      "fr": "google/gemini-2.5-flash-lite",
+      "de": "google/gemini-2.5-flash-lite",
+      "hi": "google/gemini-2.5-flash-lite",
+      "nl": "google/gemini-2.5-flash-lite",
+      "tl": "google/gemini-2.5-flash-lite",
+      "el": "google/gemini-2.5-flash-lite",
+      "hu": "google/gemini-2.5-flash-lite",
+      "pt": "google/gemini-2.5-flash-lite",
+      "ja": "google/gemini-2.5-flash-lite",
+      "ko": "google/gemini-2.5-flash-lite",
+      "pl": "google/gemini-2.5-flash-lite",
+      "it": "google/gemini-2.5-flash-lite",
+      "fa": "google/gemini-2.5-flash-lite",
+      "ms": "google/gemini-2.5-flash-lite",
+      "jv": "google/gemini-2.5-flash-lite",
+      "es": "google/gemini-2.5-flash-lite",
+      "ru": "google/gemini-2.5-flash-lite",
+      "sv": "google/gemini-2.5-flash-lite",
+      "ro": "google/gemini-2.5-flash-lite",
+      "sk": "google/gemini-2.5-flash-lite",
+      "te": "google/gemini-2.5-flash-lite",
+      "pa": "google/gemini-2.5-flash-lite",
+      "sw": "google/gemma-4-31b-it",
+      "th": "google/gemini-2.5-flash-lite",
+      "vi": "google/gemini-2.5-flash-lite",
+      "tr": "google/gemini-2.5-flash-lite",
+      "uk": "google/gemini-2.5-flash-lite"
+    }
+  },
+  "e9912365": {
+    "source": "Term in source language...",
+    "translated": {
+      "pt-BR": "Termo no idioma de origem...",
+      "zh-CN": "源语言中的术语...",
+      "zh-TW": "來源語言的術語...",
+      "bn": "উৎস ভাষায় শব্দ...",
+      "ar": "المصطلح بلغة المصدر...",
+      "ca": "Terme en l'idioma d'origen...",
+      "cs": "Termín ve zdrojovém jazyce...",
+      "hr": "Pojam na izvornom jeziku...",
+      "en-US": "Term in source language...",
+      "fr": "Terme dans la langue source...",
+      "de": "Begriff in Ausgangssprache...",
+      "hi": "स्रोत भाषा में शब्द...",
+      "nl": "Term in brontaal...",
+      "tl": "Termino sa wikang pinagmulan...",
+      "el": "Όρος στη γλώσσα πηγής...",
+      "hu": "Kifejezés a forrásnyelven...",
+      "pt": "Termo no idioma de origem...",
+      "ja": "ソース言語の用語...",
+      "ko": "소스 언어 용어...",
+      "pl": "Termin w języku źródłowym...",
+      "it": "Termine nella lingua di origine...",
+      "fa": "اصطلاح به زبان مبدأ...",
+      "ms": "Istilah dalam bahasa sumber...",
+      "jv": "Istilah ing basa sumber...",
+      "es": "Término en idioma de origen...",
+      "ru": "Термин на исходном языке...",
+      "sv": "Term på källspråket...",
+      "ro": "Termen în limba sursă...",
+      "sk": "Termín v zdrojovom jazyku...",
+      "te": "మూల భాషలో పదం...",
+      "pa": "ਸਰੋਤ ਭਾਸ਼ਾ ਵਿੱਚ ਸ਼ਬਦ...",
+      "sw": "Istilahi katika lugha chanzo...",
+      "th": "คำศัพท์ในภาษาต้นทาง...",
+      "vi": "Thuật ngữ trong ngôn ngữ nguồn...",
+      "tr": "Kaynak dildeki terim...",
+      "uk": "Термін мовою оригіналу..."
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/GlossaryAddModal.tsx",
+        "line": 118
+      }
+    ],
+    "models": {
+      "pt-BR": "google/gemini-2.5-flash-lite",
+      "zh-CN": "google/gemini-2.5-flash-lite",
+      "zh-TW": "google/gemini-2.5-flash-lite",
+      "bn": "google/gemini-2.5-flash-lite",
+      "ar": "google/gemini-2.5-flash-lite",
+      "ca": "google/gemini-2.5-flash-lite",
+      "cs": "google/gemini-2.5-flash-lite",
+      "hr": "google/gemini-2.5-flash-lite",
+      "en-US": "google/gemini-2.5-flash-lite",
+      "fr": "google/gemini-2.5-flash-lite",
+      "de": "google/gemini-2.5-flash-lite",
+      "hi": "google/gemini-2.5-flash-lite",
+      "nl": "google/gemini-2.5-flash-lite",
+      "tl": "google/gemini-2.5-flash-lite",
+      "el": "google/gemini-2.5-flash-lite",
+      "hu": "google/gemini-2.5-flash-lite",
+      "pt": "google/gemini-2.5-flash-lite",
+      "ja": "google/gemini-2.5-flash-lite",
+      "ko": "google/gemini-2.5-flash-lite",
+      "pl": "google/gemini-2.5-flash-lite",
+      "it": "google/gemini-2.5-flash-lite",
+      "fa": "google/gemini-2.5-flash-lite",
+      "ms": "google/gemini-2.5-flash-lite",
+      "jv": "google/gemini-2.5-flash-lite",
+      "es": "google/gemini-2.5-flash-lite",
+      "ru": "google/gemini-2.5-flash-lite",
+      "sv": "google/gemini-2.5-flash-lite",
+      "ro": "google/gemini-2.5-flash-lite",
+      "sk": "google/gemini-2.5-flash-lite",
+      "te": "google/gemini-2.5-flash-lite",
+      "pa": "google/gemini-2.5-flash-lite",
+      "sw": "google/gemma-4-31b-it",
+      "th": "google/gemini-2.5-flash-lite",
+      "vi": "google/gemini-2.5-flash-lite",
+      "tr": "google/gemini-2.5-flash-lite",
+      "uk": "google/gemini-2.5-flash-lite"
+    }
+  },
+  "7223e91d": {
+    "source": "Target term",
+    "translated": {
+      "pt-BR": "Termo de destino",
+      "zh-CN": "目标术语",
+      "zh-TW": "目標術語",
+      "bn": "লক্ষ্য শব্দ",
+      "ar": "مصطلح الهدف",
+      "ca": "Terme de destinació",
+      "cs": "Cílový termín",
+      "hr": "Ciljni pojam",
+      "en-US": "Target term",
+      "fr": "Terme cible",
+      "de": "Begriff in Zielsprache",
+      "hi": "लक्ष्य शब्द",
+      "nl": "Doelterm",
+      "tl": "Termino sa Target",
+      "el": "Όρος στόχος",
+      "hu": "Célkifejezés",
+      "pt": "Termo de destino",
+      "ja": "ターゲット用語",
+      "ko": "대상 용어",
+      "pl": "Termin docelowy",
+      "it": "Termine di destinazione",
+      "fa": "اصطلاح مقصد",
+      "ms": "Istilah sasaran",
+      "jv": "Istilah target",
+      "es": "Término de destino",
+      "ru": "Целевой термин",
+      "sv": "Målterm",
+      "ro": "Termen țintă",
+      "sk": "Cieľový termín",
+      "te": "లక్ష్య పదం",
+      "pa": "ਨਿਸ਼ਾਨਾ ਸ਼ਬਦ",
+      "sw": "Istilahi lengo",
+      "th": "คำศัพท์ปลายทาง",
+      "vi": "Thuật ngữ đích",
+      "tr": "Hedef terim",
+      "uk": "Цільовий термін"
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/GlossaryAddModal.tsx",
+        "line": 122
+      },
+      {
+        "file": "src/renderer/components/SettingsGlossaryTab.tsx",
+        "line": 331
+      }
+    ],
+    "models": {
+      "pt-BR": "google/gemini-2.5-flash-lite",
+      "zh-CN": "google/gemini-2.5-flash-lite",
+      "zh-TW": "google/gemini-2.5-flash-lite",
+      "bn": "google/gemini-2.5-flash-lite",
+      "ar": "google/gemini-2.5-flash-lite",
+      "ca": "google/gemini-2.5-flash-lite",
+      "cs": "google/gemini-2.5-flash-lite",
+      "hr": "google/gemini-2.5-flash-lite",
+      "en-US": "google/gemini-2.5-flash-lite",
+      "fr": "google/gemini-2.5-flash-lite",
+      "de": "google/gemini-2.5-flash-lite",
+      "hi": "google/gemini-2.5-flash-lite",
+      "nl": "google/gemini-2.5-flash-lite",
+      "tl": "google/gemini-2.5-flash-lite",
+      "el": "google/gemini-2.5-flash-lite",
+      "hu": "google/gemini-2.5-flash-lite",
+      "pt": "google/gemini-2.5-flash-lite",
+      "ja": "google/gemini-2.5-flash-lite",
+      "ko": "google/gemini-2.5-flash-lite",
+      "pl": "google/gemini-2.5-flash-lite",
+      "it": "google/gemini-2.5-flash-lite",
+      "fa": "google/gemini-2.5-flash-lite",
+      "ms": "google/gemini-2.5-flash-lite",
+      "jv": "google/gemini-2.5-flash-lite",
+      "es": "google/gemini-2.5-flash-lite",
+      "ru": "google/gemini-2.5-flash-lite",
+      "sv": "google/gemini-2.5-flash-lite",
+      "ro": "google/gemini-2.5-flash-lite",
+      "sk": "google/gemini-2.5-flash-lite",
+      "te": "google/gemini-2.5-flash-lite",
+      "pa": "google/gemini-2.5-flash-lite",
+      "sw": "google/gemma-4-31b-it",
+      "th": "google/gemini-2.5-flash-lite",
+      "vi": "google/gemini-2.5-flash-lite",
+      "tr": "google/gemini-2.5-flash-lite",
+      "uk": "google/gemini-2.5-flash-lite"
+    }
+  },
+  "1d3105b2": {
+    "source": "Term in target language...",
+    "translated": {
+      "pt-BR": "Termo no idioma de destino...",
+      "zh-CN": "目标语言中的术语...",
+      "zh-TW": "目標語言的術語...",
+      "bn": "লক্ষ্য ভাষায় শব্দ...",
+      "ar": "المصطلح بلغة الهدف...",
+      "ca": "Terme en l'idioma de destinació...",
+      "cs": "Termín v cílovém jazyce...",
+      "hr": "Pojam na ciljnom jeziku...",
+      "en-US": "Term in target language...",
+      "fr": "Terme dans la langue cible...",
+      "de": "Begriff in Zielsprache...",
+      "hi": "लक्ष्य भाषा में शब्द...",
+      "nl": "Term in doeltaal...",
+      "tl": "Termino sa wikang target...",
+      "el": "Όρος στη γλώσσα στόχο...",
+      "hu": "Kifejezés a célnyelven...",
+      "pt": "Termo no idioma de destino...",
+      "ja": "ターゲット言語の用語...",
+      "ko": "대상 언어 용어...",
+      "pl": "Termin w języku docelowym...",
+      "it": "Termine nella lingua di destinazione...",
+      "fa": "اصطلاح به زبان مقصد...",
+      "ms": "Istilah dalam bahasa sasaran...",
+      "jv": "Istilah ing basa target...",
+      "es": "Término en idioma de destino...",
+      "ru": "Термин на целевом языке...",
+      "sv": "Term på målspråket...",
+      "ro": "Termen în limba țintă...",
+      "sk": "Termín v cieľovom jazyku...",
+      "te": "లక్ష్య భాషలో పదం...",
+      "pa": "ਨਿਸ਼ਾਨਾ ਭਾਸ਼ਾ ਵਿੱਚ ਸ਼ਬਦ...",
+      "sw": "Istilahi katika lugha lengo...",
+      "th": "คำศัพท์ในภาษาปลายทาง...",
+      "vi": "Thuật ngữ trong ngôn ngữ đích...",
+      "tr": "Hedef dildeki terim...",
+      "uk": "Термін цільовою мовою..."
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/GlossaryAddModal.tsx",
+        "line": 127
+      }
+    ],
+    "models": {
+      "pt-BR": "google/gemini-2.5-flash-lite",
+      "zh-CN": "google/gemini-2.5-flash-lite",
+      "zh-TW": "google/gemini-2.5-flash-lite",
+      "bn": "google/gemini-2.5-flash-lite",
+      "ar": "google/gemini-2.5-flash-lite",
+      "ca": "google/gemini-2.5-flash-lite",
+      "cs": "google/gemini-2.5-flash-lite",
+      "hr": "google/gemini-2.5-flash-lite",
+      "en-US": "google/gemini-2.5-flash-lite",
+      "fr": "google/gemini-2.5-flash-lite",
+      "de": "google/gemini-2.5-flash-lite",
+      "hi": "google/gemini-2.5-flash-lite",
+      "nl": "google/gemini-2.5-flash-lite",
+      "tl": "google/gemini-2.5-flash-lite",
+      "el": "google/gemini-2.5-flash-lite",
+      "hu": "google/gemini-2.5-flash-lite",
+      "pt": "google/gemini-2.5-flash-lite",
+      "ja": "google/gemini-2.5-flash-lite",
+      "ko": "google/gemini-2.5-flash-lite",
+      "pl": "google/gemini-2.5-flash-lite",
+      "it": "google/gemini-2.5-flash-lite",
+      "fa": "google/gemini-2.5-flash-lite",
+      "ms": "google/gemini-2.5-flash-lite",
+      "jv": "google/gemini-2.5-flash-lite",
+      "es": "google/gemini-2.5-flash-lite",
+      "ru": "google/gemini-2.5-flash-lite",
+      "sv": "google/gemini-2.5-flash-lite",
+      "ro": "google/gemini-2.5-flash-lite",
+      "sk": "google/gemini-2.5-flash-lite",
+      "te": "google/gemini-2.5-flash-lite",
+      "pa": "google/gemini-2.5-flash-lite",
+      "sw": "google/gemma-4-31b-it",
+      "th": "google/gemini-2.5-flash-lite",
+      "vi": "google/gemini-2.5-flash-lite",
+      "tr": "google/gemini-2.5-flash-lite",
+      "uk": "google/gemini-2.5-flash-lite"
+    }
+  },
+  "c16fb509": {
+    "source": "Manage glossary",
+    "translated": {
+      "pt-BR": "Gerenciar glossário",
+      "zh-CN": "管理词汇表",
+      "zh-TW": "管理詞彙表",
+      "bn": "গ্লসারি পরিচালনা করুন",
+      "ar": "إدارة المسرد",
+      "ca": "Gestiona el glossari",
+      "cs": "Spravovat slovník",
+      "hr": "Upravljanje rječnikom",
+      "en-US": "Manage glossary",
+      "fr": "Gérer le glossaire",
+      "de": "Glossar verwalten",
+      "hi": "शब्दावली प्रबंधित करें",
+      "nl": "Woordenlijst beheren",
+      "tl": "Pamahalaan ang glossary",
+      "el": "Διαχείριση γλωσσαρίου",
+      "hu": "Szószedet kezelése",
+      "pt": "Gerir glossário",
+      "ja": "用語集を管理",
+      "ko": "용어집 관리",
+      "pl": "Zarządzaj słownikiem",
+      "it": "Gestisci glossario",
+      "fa": "مدیریت واژه‌نامه",
+      "ms": "Urus glosari",
+      "jv": "Kelola glosarium",
+      "es": "Gestionar glosario",
+      "ru": "Управление глоссарием",
+      "sv": "Hantera ordlista",
+      "ro": "Gestionare glosar",
+      "sk": "Spravovať slovník",
+      "te": "గ్లోసరీని నిర్వహించండి",
+      "pa": "ਸ਼ਬਦ-ਕੋਸ਼ ਦਾ ਪ੍ਰਬੰਧਨ ਕਰੋ",
+      "sw": "Simamia kamusi",
+      "th": "จัดการอภิธานศัพท์",
+      "vi": "Quản lý từ điển",
+      "tr": "Sözlüğü yönet",
+      "uk": "Керування глосарієм"
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/GlossaryAddModal.tsx",
+        "line": 141
+      }
+    ],
+    "models": {
+      "pt-BR": "google/gemini-2.5-flash-lite",
+      "zh-CN": "google/gemini-2.5-flash-lite",
+      "zh-TW": "google/gemini-2.5-flash-lite",
+      "bn": "google/gemini-2.5-flash-lite",
+      "ar": "google/gemini-2.5-flash-lite",
+      "ca": "google/gemini-2.5-flash-lite",
+      "cs": "google/gemini-2.5-flash-lite",
+      "hr": "google/gemini-2.5-flash-lite",
+      "en-US": "google/gemini-2.5-flash-lite",
+      "fr": "google/gemini-2.5-flash-lite",
+      "de": "google/gemini-2.5-flash-lite",
+      "hi": "google/gemini-2.5-flash-lite",
+      "nl": "google/gemini-2.5-flash-lite",
+      "tl": "google/gemini-2.5-flash-lite",
+      "el": "google/gemini-2.5-flash-lite",
+      "hu": "google/gemini-2.5-flash-lite",
+      "pt": "google/gemini-2.5-flash-lite",
+      "ja": "google/gemini-2.5-flash-lite",
+      "ko": "google/gemini-2.5-flash-lite",
+      "pl": "google/gemini-2.5-flash-lite",
+      "it": "google/gemini-2.5-flash-lite",
+      "fa": "google/gemini-2.5-flash-lite",
+      "ms": "google/gemini-2.5-flash-lite",
+      "jv": "google/gemini-2.5-flash-lite",
+      "es": "google/gemini-2.5-flash-lite",
+      "ru": "google/gemini-2.5-flash-lite",
+      "sv": "google/gemini-2.5-flash-lite",
+      "ro": "google/gemini-2.5-flash-lite",
+      "sk": "google/gemini-2.5-flash-lite",
+      "te": "google/gemini-2.5-flash-lite",
+      "pa": "google/gemini-2.5-flash-lite",
+      "sw": "google/gemma-4-31b-it",
+      "th": "google/gemini-2.5-flash-lite",
+      "vi": "google/gemini-2.5-flash-lite",
+      "tr": "google/gemini-2.5-flash-lite",
+      "uk": "google/gemini-2.5-flash-lite"
+    }
+  },
+  "d3d2e617": {
+    "source": "Close",
+    "translated": {
+      "pt-BR": "Fechar",
+      "ca": "Tancar",
+      "ar": "إغلاق",
+      "bn": "বন্ধ করুন",
+      "zh-TW": "關閉",
+      "zh-CN": "关闭",
+      "hr": "Zatvori",
+      "cs": "Zavřít",
+      "en-US": "Close",
+      "fr": "Fermer",
+      "tl": "Isara",
+      "nl": "Sluiten",
+      "de": "Schließen",
+      "hu": "Bezárás",
+      "hi": "बंद करें",
+      "el": "Κλείσιμο",
+      "ms": "Tutup",
+      "ko": "닫기",
+      "ja": "閉じる",
+      "it": "Chiudi",
+      "pt": "Fechar",
+      "pl": "Zamknij",
+      "pa": "ਬੰਦ ਕਰੋ",
+      "fa": "بستن",
+      "es": "Cerrar",
+      "ru": "Закрыть",
+      "ro": "Închide",
+      "sk": "Zavrieť",
+      "sv": "Stäng",
+      "th": "ปิด",
+      "sw": "Funga",
+      "te": "మూసివేయి",
+      "vi": "Đóng",
+      "tr": "Kapat",
+      "uk": "Закрити",
+      "jv": "Tutup"
+    },
+    "models": {
+      "pt-BR": "anthropic/claude-3-haiku",
+      "ca": "anthropic/claude-3-haiku",
+      "ar": "anthropic/claude-3-haiku",
+      "bn": "anthropic/claude-3-haiku",
+      "zh-TW": "anthropic/claude-3-haiku",
+      "zh-CN": "anthropic/claude-3-haiku",
+      "hr": "anthropic/claude-3-haiku",
+      "cs": "anthropic/claude-3-haiku",
+      "en-US": "anthropic/claude-3-haiku",
+      "fr": "anthropic/claude-3-haiku",
+      "tl": "anthropic/claude-3-haiku",
+      "nl": "anthropic/claude-3-haiku",
+      "de": "anthropic/claude-3-haiku",
+      "hu": "openai/gpt-4o-mini",
+      "hi": "anthropic/claude-3-haiku",
+      "el": "anthropic/claude-3-haiku",
+      "ms": "anthropic/claude-3-haiku",
+      "ko": "anthropic/claude-3-haiku",
+      "ja": "anthropic/claude-3-haiku",
+      "it": "anthropic/claude-3-haiku",
+      "pt": "anthropic/claude-3-haiku",
+      "pl": "anthropic/claude-3-haiku",
+      "pa": "anthropic/claude-3-haiku",
+      "fa": "anthropic/claude-3-haiku",
+      "es": "anthropic/claude-3-haiku",
+      "ru": "anthropic/claude-3-haiku",
+      "ro": "anthropic/claude-3-haiku",
+      "sk": "anthropic/claude-3-haiku",
+      "sv": "anthropic/claude-3-haiku",
+      "th": "anthropic/claude-3-haiku",
+      "sw": "anthropic/claude-3-haiku",
+      "te": "anthropic/claude-3-haiku",
+      "vi": "anthropic/claude-3-haiku",
+      "tr": "anthropic/claude-3-haiku",
+      "uk": "anthropic/claude-3-haiku",
+      "jv": "anthropic/claude-3-haiku"
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/GlossaryAddModal.tsx",
+        "line": 145
+      },
+      {
+        "file": "src/renderer/components/SelectFromPresetsModal.tsx",
+        "line": 239
+      },
+      {
+        "file": "src/renderer/components/ThirdPartyNoticesModal.tsx",
+        "line": 152
+      }
+    ]
+  },
+  "575f5f86": {
+    "source": "Saving...",
+    "translated": {
+      "pt-BR": "Salvando...",
+      "zh-CN": "正在保存...",
+      "zh-TW": "正在儲存...",
+      "bn": "সংরক্ষণ করা হচ্ছে...",
+      "ar": "جارٍ الحفظ...",
+      "ca": "Desant...",
+      "cs": "Ukládání...",
+      "hr": "Spremanje...",
+      "en-US": "Saving...",
+      "fr": "Enregistrement en cours...",
+      "de": "Speichere...",
+      "hi": "सहेजा जा रहा है...",
+      "nl": "Opslaan...",
+      "tl": "Nagse-save...",
+      "el": "Αποθήκευση...",
+      "hu": "Mentés...",
+      "pt": "A guardar...",
+      "ja": "保存中...",
+      "ko": "저장 중...",
+      "pl": "Zapisywanie...",
+      "it": "Salvataggio in corso...",
+      "fa": "در حال ذخیره...",
+      "ms": "Menyimpan...",
+      "jv": "Nyimpen...",
+      "es": "Guardando...",
+      "ru": "Сохранение...",
+      "sv": "Sparar...",
+      "ro": "Se salvează...",
+      "sk": "Ukladá sa...",
+      "te": "సేవ్ చేస్తోంది...",
+      "pa": "ਸੁਰੱਖਿਅਤ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ...",
+      "sw": "Inahifadhi...",
+      "th": "กำลังบันทึก...",
+      "vi": "Đang lưu...",
+      "tr": "Kaydediliyor...",
+      "uk": "Збереження..."
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/GlossaryAddModal.tsx",
+        "line": 148
+      }
+    ],
+    "models": {
+      "pt-BR": "google/gemini-2.5-flash-lite",
+      "zh-CN": "google/gemini-2.5-flash-lite",
+      "zh-TW": "google/gemini-2.5-flash-lite",
+      "bn": "google/gemini-2.5-flash-lite",
+      "ar": "google/gemini-2.5-flash-lite",
+      "ca": "google/gemini-2.5-flash-lite",
+      "cs": "google/gemini-2.5-flash-lite",
+      "hr": "google/gemini-2.5-flash-lite",
+      "en-US": "google/gemini-2.5-flash-lite",
+      "fr": "google/gemini-2.5-flash-lite",
+      "de": "google/gemini-2.5-flash-lite",
+      "hi": "google/gemini-2.5-flash-lite",
+      "nl": "google/gemini-2.5-flash-lite",
+      "tl": "google/gemini-2.5-flash-lite",
+      "el": "google/gemini-2.5-flash-lite",
+      "hu": "google/gemini-2.5-flash-lite",
+      "pt": "google/gemini-2.5-flash-lite",
+      "ja": "google/gemini-2.5-flash-lite",
+      "ko": "google/gemini-2.5-flash-lite",
+      "pl": "google/gemini-2.5-flash-lite",
+      "it": "google/gemini-2.5-flash-lite",
+      "fa": "google/gemini-2.5-flash-lite",
+      "ms": "google/gemini-2.5-flash-lite",
+      "jv": "google/gemini-2.5-flash-lite",
+      "es": "google/gemini-2.5-flash-lite",
+      "ru": "google/gemini-2.5-flash-lite",
+      "sv": "google/gemini-2.5-flash-lite",
+      "ro": "google/gemini-2.5-flash-lite",
+      "sk": "google/gemini-2.5-flash-lite",
+      "te": "google/gemini-2.5-flash-lite",
+      "pa": "google/gemini-2.5-flash-lite",
+      "sw": "google/gemma-4-31b-it",
+      "th": "google/gemini-2.5-flash-lite",
+      "vi": "google/gemini-2.5-flash-lite",
+      "tr": "google/gemini-2.5-flash-lite",
+      "uk": "google/gemini-2.5-flash-lite"
+    }
+  },
+  "c9cc8cce": {
+    "source": "Save",
+    "translated": {
+      "pt-BR": "Salvar",
+      "ca": "Desa",
+      "ar": "حفظ",
+      "bn": "সংরক্ষণ করুন",
+      "zh-CN": "保存",
+      "zh-TW": "儲存",
+      "hr": "Spremi",
+      "cs": "Uložit",
+      "en-US": "Save",
+      "fr": "Enregistrer",
+      "nl": "Opslaan",
+      "tl": "I-save",
+      "de": "Speichern",
+      "hu": "Mentés",
+      "hi": "सहेजें",
+      "el": "Αποθήκευση",
+      "ms": "Simpan",
+      "ko": "저장",
+      "ja": "保存",
+      "it": "Salva",
+      "pt": "Salvar",
+      "pl": "Zapisz",
+      "pa": "ਸੁਰੱਖਿਅਤ ਕਰੋ",
+      "fa": "ذخیره",
+      "es": "Guardar",
+      "ro": "Salvare",
+      "ru": "Сохранить",
+      "sk": "Uložiť",
+      "th": "บันทึก",
+      "sw": "Hifadhi",
+      "sv": "Spara",
+      "te": "సేవ్ చేయండి",
+      "vi": "Lưu",
+      "tr": "Kaydet",
+      "uk": "Зберегти",
+      "jv": "Simpen"
+    },
+    "models": {
+      "pt-BR": "anthropic/claude-3-haiku",
+      "ca": "anthropic/claude-3-haiku",
+      "ar": "anthropic/claude-3-haiku",
+      "bn": "anthropic/claude-3-haiku",
+      "zh-CN": "qwen/qwen3-235b-a22b-2507",
+      "zh-TW": "anthropic/claude-3-haiku",
+      "hr": "anthropic/claude-3-haiku",
+      "cs": "anthropic/claude-3-haiku",
+      "en-US": "anthropic/claude-3-haiku",
+      "fr": "anthropic/claude-3-haiku",
+      "nl": "anthropic/claude-3-haiku",
+      "tl": "anthropic/claude-3-haiku",
+      "de": "anthropic/claude-3-haiku",
+      "hu": "anthropic/claude-3-haiku",
+      "hi": "anthropic/claude-3-haiku",
+      "el": "anthropic/claude-3-haiku",
+      "ms": "anthropic/claude-3-haiku",
+      "ko": "anthropic/claude-3-haiku",
+      "ja": "anthropic/claude-3-haiku",
+      "it": "anthropic/claude-3-haiku",
+      "pt": "anthropic/claude-3-haiku",
+      "pl": "anthropic/claude-3-haiku",
+      "pa": "anthropic/claude-3-haiku",
+      "fa": "anthropic/claude-3-haiku",
+      "es": "anthropic/claude-3-haiku",
+      "ro": "anthropic/claude-3-haiku",
+      "ru": "anthropic/claude-3-haiku",
+      "sk": "anthropic/claude-3-haiku",
+      "th": "anthropic/claude-3-haiku",
+      "sw": "anthropic/claude-3-haiku",
+      "sv": "anthropic/claude-3-haiku",
+      "te": "anthropic/claude-3-haiku",
+      "vi": "anthropic/claude-3-haiku",
+      "tr": "anthropic/claude-3-haiku",
+      "uk": "anthropic/claude-3-haiku",
+      "jv": "anthropic/claude-3-haiku"
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/GlossaryAddModal.tsx",
+        "line": 148
+      },
+      {
+        "file": "src/renderer/components/SettingsApiTab.tsx",
+        "line": 335
+      },
+      {
+        "file": "src/renderer/components/SettingsApiTab.tsx",
+        "line": 479
+      },
+      {
+        "file": "src/renderer/components/SettingsUsersTab.tsx",
+        "line": 398
+      },
+      {
+        "file": "src/renderer/components/TransformPromptEditor.tsx",
+        "line": 446
       }
     ]
   },
@@ -10856,7 +12223,7 @@
       },
       {
         "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
-        "line": 75
+        "line": 92
       }
     ]
   },
@@ -10965,7 +12332,7 @@
       },
       {
         "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
-        "line": 142
+        "line": 166
       }
     ]
   },
@@ -11313,11 +12680,11 @@
       },
       {
         "file": "src/renderer/components/LanguageSelector.tsx",
-        "line": 101
+        "line": 104
       },
       {
         "file": "src/renderer/components/LanguageSelector.tsx",
-        "line": 177
+        "line": 182
       }
     ]
   },
@@ -11402,11 +12769,11 @@
     "locations": [
       {
         "file": "src/renderer/components/LanguageSelector.tsx",
-        "line": 100
+        "line": 103
       },
       {
         "file": "src/renderer/components/LanguageSelector.tsx",
-        "line": 151
+        "line": 156
       }
     ]
   },
@@ -12777,11 +14144,11 @@
       },
       {
         "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
-        "line": 215
+        "line": 251
       },
       {
         "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
-        "line": 216
+        "line": 252
       }
     ]
   },
@@ -14513,95 +15880,6 @@
       }
     ]
   },
-  "d3d2e617": {
-    "source": "Close",
-    "translated": {
-      "pt-BR": "Fechar",
-      "ca": "Tancar",
-      "ar": "إغلاق",
-      "bn": "বন্ধ করুন",
-      "zh-TW": "關閉",
-      "zh-CN": "关闭",
-      "hr": "Zatvori",
-      "cs": "Zavřít",
-      "en-US": "Close",
-      "fr": "Fermer",
-      "tl": "Isara",
-      "nl": "Sluiten",
-      "de": "Schließen",
-      "hu": "Bezárás",
-      "hi": "बंद करें",
-      "el": "Κλείσιμο",
-      "ms": "Tutup",
-      "ko": "닫기",
-      "ja": "閉じる",
-      "it": "Chiudi",
-      "pt": "Fechar",
-      "pl": "Zamknij",
-      "pa": "ਬੰਦ ਕਰੋ",
-      "fa": "بستن",
-      "es": "Cerrar",
-      "ru": "Закрыть",
-      "ro": "Închide",
-      "sk": "Zavrieť",
-      "sv": "Stäng",
-      "th": "ปิด",
-      "sw": "Funga",
-      "te": "మూసివేయి",
-      "vi": "Đóng",
-      "tr": "Kapat",
-      "uk": "Закрити",
-      "jv": "Tutup"
-    },
-    "models": {
-      "pt-BR": "anthropic/claude-3-haiku",
-      "ca": "anthropic/claude-3-haiku",
-      "ar": "anthropic/claude-3-haiku",
-      "bn": "anthropic/claude-3-haiku",
-      "zh-TW": "anthropic/claude-3-haiku",
-      "zh-CN": "anthropic/claude-3-haiku",
-      "hr": "anthropic/claude-3-haiku",
-      "cs": "anthropic/claude-3-haiku",
-      "en-US": "anthropic/claude-3-haiku",
-      "fr": "anthropic/claude-3-haiku",
-      "tl": "anthropic/claude-3-haiku",
-      "nl": "anthropic/claude-3-haiku",
-      "de": "anthropic/claude-3-haiku",
-      "hu": "openai/gpt-4o-mini",
-      "hi": "anthropic/claude-3-haiku",
-      "el": "anthropic/claude-3-haiku",
-      "ms": "anthropic/claude-3-haiku",
-      "ko": "anthropic/claude-3-haiku",
-      "ja": "anthropic/claude-3-haiku",
-      "it": "anthropic/claude-3-haiku",
-      "pt": "anthropic/claude-3-haiku",
-      "pl": "anthropic/claude-3-haiku",
-      "pa": "anthropic/claude-3-haiku",
-      "fa": "anthropic/claude-3-haiku",
-      "es": "anthropic/claude-3-haiku",
-      "ru": "anthropic/claude-3-haiku",
-      "ro": "anthropic/claude-3-haiku",
-      "sk": "anthropic/claude-3-haiku",
-      "sv": "anthropic/claude-3-haiku",
-      "th": "anthropic/claude-3-haiku",
-      "sw": "anthropic/claude-3-haiku",
-      "te": "anthropic/claude-3-haiku",
-      "vi": "anthropic/claude-3-haiku",
-      "tr": "anthropic/claude-3-haiku",
-      "uk": "anthropic/claude-3-haiku",
-      "jv": "anthropic/claude-3-haiku"
-    },
-    "locations": [
-      {
-        "file": "src/renderer/components/SelectFromPresetsModal.tsx",
-        "line": 239
-      },
-      {
-        "file": "src/renderer/components/ThirdPartyNoticesModal.tsx",
-        "line": 152
-      }
-    ]
-  },
   "34b6cd75": {
     "source": "Version",
     "translated": {
@@ -14861,7 +16139,7 @@
       },
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 156
+        "line": 159
       }
     ]
   },
@@ -15809,103 +17087,6 @@
       {
         "file": "src/renderer/components/SettingsApiTab.tsx",
         "line": 611
-      }
-    ]
-  },
-  "c9cc8cce": {
-    "source": "Save",
-    "translated": {
-      "pt-BR": "Salvar",
-      "ca": "Desa",
-      "ar": "حفظ",
-      "bn": "সংরক্ষণ করুন",
-      "zh-CN": "保存",
-      "zh-TW": "儲存",
-      "hr": "Spremi",
-      "cs": "Uložit",
-      "en-US": "Save",
-      "fr": "Enregistrer",
-      "nl": "Opslaan",
-      "tl": "I-save",
-      "de": "Speichern",
-      "hu": "Mentés",
-      "hi": "सहेजें",
-      "el": "Αποθήκευση",
-      "ms": "Simpan",
-      "ko": "저장",
-      "ja": "保存",
-      "it": "Salva",
-      "pt": "Salvar",
-      "pl": "Zapisz",
-      "pa": "ਸੁਰੱਖਿਅਤ ਕਰੋ",
-      "fa": "ذخیره",
-      "es": "Guardar",
-      "ro": "Salvare",
-      "ru": "Сохранить",
-      "sk": "Uložiť",
-      "th": "บันทึก",
-      "sw": "Hifadhi",
-      "sv": "Spara",
-      "te": "సేవ్ చేయండి",
-      "vi": "Lưu",
-      "tr": "Kaydet",
-      "uk": "Зберегти",
-      "jv": "Simpen"
-    },
-    "models": {
-      "pt-BR": "anthropic/claude-3-haiku",
-      "ca": "anthropic/claude-3-haiku",
-      "ar": "anthropic/claude-3-haiku",
-      "bn": "anthropic/claude-3-haiku",
-      "zh-CN": "qwen/qwen3-235b-a22b-2507",
-      "zh-TW": "anthropic/claude-3-haiku",
-      "hr": "anthropic/claude-3-haiku",
-      "cs": "anthropic/claude-3-haiku",
-      "en-US": "anthropic/claude-3-haiku",
-      "fr": "anthropic/claude-3-haiku",
-      "nl": "anthropic/claude-3-haiku",
-      "tl": "anthropic/claude-3-haiku",
-      "de": "anthropic/claude-3-haiku",
-      "hu": "anthropic/claude-3-haiku",
-      "hi": "anthropic/claude-3-haiku",
-      "el": "anthropic/claude-3-haiku",
-      "ms": "anthropic/claude-3-haiku",
-      "ko": "anthropic/claude-3-haiku",
-      "ja": "anthropic/claude-3-haiku",
-      "it": "anthropic/claude-3-haiku",
-      "pt": "anthropic/claude-3-haiku",
-      "pl": "anthropic/claude-3-haiku",
-      "pa": "anthropic/claude-3-haiku",
-      "fa": "anthropic/claude-3-haiku",
-      "es": "anthropic/claude-3-haiku",
-      "ro": "anthropic/claude-3-haiku",
-      "ru": "anthropic/claude-3-haiku",
-      "sk": "anthropic/claude-3-haiku",
-      "th": "anthropic/claude-3-haiku",
-      "sw": "anthropic/claude-3-haiku",
-      "sv": "anthropic/claude-3-haiku",
-      "te": "anthropic/claude-3-haiku",
-      "vi": "anthropic/claude-3-haiku",
-      "tr": "anthropic/claude-3-haiku",
-      "uk": "anthropic/claude-3-haiku",
-      "jv": "anthropic/claude-3-haiku"
-    },
-    "locations": [
-      {
-        "file": "src/renderer/components/SettingsApiTab.tsx",
-        "line": 335
-      },
-      {
-        "file": "src/renderer/components/SettingsApiTab.tsx",
-        "line": 479
-      },
-      {
-        "file": "src/renderer/components/SettingsUsersTab.tsx",
-        "line": 398
-      },
-      {
-        "file": "src/renderer/components/TransformPromptEditor.tsx",
-        "line": 446
       }
     ]
   },
@@ -19567,7 +20748,7 @@
       },
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 147
+        "line": 149
       }
     ]
   },
@@ -24334,11 +25515,11 @@
       },
       {
         "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
-        "line": 55
+        "line": 59
       },
       {
         "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
-        "line": 56
+        "line": 60
       }
     ]
   },
@@ -24528,7 +25709,7 @@
       },
       {
         "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
-        "line": 55
+        "line": 59
       }
     ]
   },
@@ -24629,7 +25810,7 @@
       },
       {
         "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
-        "line": 95
+        "line": 119
       }
     ]
   },
@@ -24730,7 +25911,7 @@
       },
       {
         "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
-        "line": 174
+        "line": 210
       }
     ]
   },
@@ -26692,6 +27873,1629 @@
         "line": 817
       }
     ]
+  },
+  "5da5f84a": {
+    "source": "No valid rows found in file.",
+    "translated": {
+      "pt-BR": "Nenhuma linha válida encontrada no arquivo.",
+      "zh-CN": "在文件中未找到有效行。",
+      "zh-TW": "在檔案中找不到有效列。",
+      "bn": "ফাইলে কোনো বৈধ সারি পাওয়া যায়নি।",
+      "ar": "لم يتم العثور على صفوف صالحة في الملف.",
+      "ca": "No s'han trobat files vàlides al fitxer.",
+      "cs": "V souboru nebyly nalezeny žádné platné řádky.",
+      "hr": "Nisu pronađeni valjani redci u datoteci.",
+      "en-US": "No valid rows found in file.",
+      "fr": "Aucune ligne valide trouvée dans le fichier.",
+      "de": "Keine gültigen Zeilen in der Datei gefunden.",
+      "hi": "फ़ाइल में कोई मान्य पंक्ति नहीं मिली।",
+      "nl": "Geen geldige rijen gevonden in bestand.",
+      "tl": "Walang nakitang balidong row sa file.",
+      "el": "Δεν βρέθηκαν έγκυρες γραμμές στο αρχείο.",
+      "hu": "Nem található érvényes sor a fájlban.",
+      "pt": "Nenhuma linha válida encontrada no ficheiro.",
+      "ja": "ファイルに有効な行が見つかりませんでした。",
+      "ko": "파일에서 유효한 행을 찾을 수 없습니다.",
+      "pl": "Nie znaleziono prawidłowych wierszy w pliku.",
+      "it": "Nessuna riga valida trovata nel file.",
+      "fa": "هیچ ردیف معتبری در فایل یافت نشد.",
+      "ms": "Tiada baris sah ditemui dalam fail.",
+      "jv": "Ora ana baris sing valid ditemokake ing file.",
+      "es": "No se encontraron filas válidas en el archivo.",
+      "ru": "В файле не найдено допустимых строк.",
+      "sv": "Inga giltiga rader hittades i filen.",
+      "ro": "Nu au fost găsite rânduri valide în fișier.",
+      "sk": "V súbore sa nenašli žiadne platné riadky.",
+      "te": "ఫైల్‌లో చెల్లుబాటు అయ్యే అడ్డు వరుసలు కనుగొనబడలేదు.",
+      "pa": "ਫਾਈਲ ਵਿੱਚ ਕੋਈ ਵੈਧ ਕਤਾਰਾਂ ਨਹੀਂ ਮਿਲੀਆਂ।",
+      "sw": "Hakuna mistari sahihi iliyopatikana kwenye faili.",
+      "th": "ไม่พบแถวที่ถูกต้องในไฟล์",
+      "vi": "Không tìm thấy hàng hợp lệ trong tệp.",
+      "tr": "Dosyada geçerli satır bulunamadı.",
+      "uk": "Не знайдено дійсних рядків у файлі."
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/SettingsGlossaryTab.tsx",
+        "line": 203
+      }
+    ],
+    "models": {
+      "pt-BR": "google/gemini-2.5-flash-lite",
+      "zh-CN": "google/gemini-2.5-flash-lite",
+      "zh-TW": "google/gemini-2.5-flash-lite",
+      "bn": "google/gemini-2.5-flash-lite",
+      "ar": "google/gemini-2.5-flash-lite",
+      "ca": "google/gemini-2.5-flash-lite",
+      "cs": "google/gemini-2.5-flash-lite",
+      "hr": "google/gemini-2.5-flash-lite",
+      "en-US": "google/gemini-2.5-flash-lite",
+      "fr": "google/gemini-2.5-flash-lite",
+      "de": "google/gemini-2.5-flash-lite",
+      "hi": "google/gemini-2.5-flash-lite",
+      "nl": "google/gemini-2.5-flash-lite",
+      "tl": "google/gemini-2.5-flash-lite",
+      "el": "google/gemini-2.5-flash-lite",
+      "hu": "google/gemini-2.5-flash-lite",
+      "pt": "google/gemini-2.5-flash-lite",
+      "ja": "google/gemini-2.5-flash-lite",
+      "ko": "google/gemini-2.5-flash-lite",
+      "pl": "google/gemini-2.5-flash-lite",
+      "it": "google/gemini-2.5-flash-lite",
+      "fa": "google/gemini-2.5-flash-lite",
+      "ms": "google/gemini-2.5-flash-lite",
+      "jv": "google/gemini-2.5-flash-lite",
+      "es": "google/gemini-2.5-flash-lite",
+      "ru": "google/gemini-2.5-flash-lite",
+      "sv": "google/gemini-2.5-flash-lite",
+      "ro": "google/gemini-2.5-flash-lite",
+      "sk": "google/gemini-2.5-flash-lite",
+      "te": "google/gemini-2.5-flash-lite",
+      "pa": "google/gemini-2.5-flash-lite",
+      "sw": "google/gemma-4-31b-it",
+      "th": "google/gemini-2.5-flash-lite",
+      "vi": "google/gemini-2.5-flash-lite",
+      "tr": "google/gemini-2.5-flash-lite",
+      "uk": "google/gemini-2.5-flash-lite"
+    }
+  },
+  "45fad013": {
+    "source": "Imported {{count}} terms.",
+    "translated": {
+      "pt-BR": "{{count}} termos importados.",
+      "zh-CN": "已导入 {{count}} 个术语。",
+      "zh-TW": "已匯入 {{count}} 個術語。",
+      "bn": "{{count}} টি শব্দ আমদানি করা হয়েছে।",
+      "ar": "تم استيراد {{count}} مصطلح.",
+      "ca": "S'han importat {{count}} termes.",
+      "cs": "Importováno {{count}} termínů.",
+      "hr": "Uvezeno {{count}} pojmova.",
+      "en-US": "Imported {{count}} terms.",
+      "fr": "{{count}} termes importés.",
+      "de": "{{count}} Begriffe importiert.",
+      "hi": "{{count}} शब्द आयात किए गए।",
+      "nl": "{{count}} termen geïmporteerd.",
+      "tl": "Na-import ang {{count}} na termino.",
+      "el": "Εισήχθησαν {{count}} όροι.",
+      "hu": "{{count}} kifejezés importálva.",
+      "pt": "Importados {{count}} termos.",
+      "ja": "{{count}} 件の用語をインポートしました。",
+      "ko": "{{count}}개의 용어를 가져왔습니다.",
+      "pl": "Zaimportowano {{count}} terminów.",
+      "it": "Importati {{count}} termini.",
+      "fa": "{{count}} اصطلاح وارد شد.",
+      "ms": "Mengimport {{count}} istilah.",
+      "jv": "Ngimpor {{count}} istilah.",
+      "es": "Se importaron {{count}} términos.",
+      "ru": "Импортировано {{count}} терминов.",
+      "sv": "Importerade {{count}} termer.",
+      "ro": "Au fost importați {{count}} termeni.",
+      "sk": "Importovaných {{count}} termínov.",
+      "te": "{{count}} పదాలు దిగుమతి చేయబడ్డాయి.",
+      "pa": "{{count}} ਸ਼ਬਦ ਆਯਾਤ ਕੀਤੇ ਗਏ।",
+      "sw": "Imeingiza istilahi {{count}}.",
+      "th": "นำเข้า {{count}} คำศัพท์แล้ว",
+      "vi": "Đã nhập {{count}} thuật ngữ.",
+      "tr": "{{count}} terim içe aktarıldı.",
+      "uk": "Імпортовано {{count}} термінів."
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/SettingsGlossaryTab.tsx",
+        "line": 205
+      }
+    ],
+    "models": {
+      "pt-BR": "google/gemini-2.5-flash-lite",
+      "zh-CN": "google/gemini-2.5-flash-lite",
+      "zh-TW": "google/gemini-2.5-flash-lite",
+      "bn": "google/gemini-2.5-flash-lite",
+      "ar": "google/gemini-2.5-flash-lite",
+      "ca": "google/gemini-2.5-flash-lite",
+      "cs": "google/gemini-2.5-flash-lite",
+      "hr": "google/gemini-2.5-flash-lite",
+      "en-US": "google/gemini-2.5-flash-lite",
+      "fr": "google/gemini-2.5-flash-lite",
+      "de": "google/gemini-2.5-flash-lite",
+      "hi": "google/gemini-2.5-flash-lite",
+      "nl": "google/gemini-2.5-flash-lite",
+      "tl": "google/gemini-2.5-flash-lite",
+      "el": "google/gemini-2.5-flash-lite",
+      "hu": "google/gemini-2.5-flash-lite",
+      "pt": "google/gemini-2.5-flash-lite",
+      "ja": "google/gemini-2.5-flash-lite",
+      "ko": "google/gemini-2.5-flash-lite",
+      "pl": "google/gemini-2.5-flash-lite",
+      "it": "google/gemini-2.5-flash-lite",
+      "fa": "google/gemini-2.5-flash-lite",
+      "ms": "google/gemini-2.5-flash-lite",
+      "jv": "google/gemini-2.5-flash-lite",
+      "es": "google/gemini-2.5-flash-lite",
+      "ru": "google/gemini-2.5-flash-lite",
+      "sv": "google/gemini-2.5-flash-lite",
+      "ro": "google/gemini-2.5-flash-lite",
+      "sk": "google/gemini-2.5-flash-lite",
+      "te": "google/gemini-2.5-flash-lite",
+      "pa": "google/gemini-2.5-flash-lite",
+      "sw": "google/gemma-4-31b-it",
+      "th": "google/gemini-2.5-flash-lite",
+      "vi": "google/gemini-2.5-flash-lite",
+      "tr": "google/gemini-2.5-flash-lite",
+      "uk": "google/gemini-2.5-flash-lite"
+    }
+  },
+  "405d4e28": {
+    "source": "Import failed.",
+    "translated": {
+      "pt-BR": "Falha na importação.",
+      "ca": "Error en importar.",
+      "ar": "فشل الاستيراد.",
+      "bn": "আমদানি ব্যর্থ হয়েছে।",
+      "zh-TW": "匯入失敗。",
+      "hr": "Uvoz nije uspio.",
+      "zh-CN": "导入失败。",
+      "cs": "Import se nezdařil.",
+      "en-US": "Import failed.",
+      "fr": "Échec de l'importation.",
+      "tl": "Nabigo ang pag-import.",
+      "nl": "Import mislukt.",
+      "de": "Import fehlgeschlagen.",
+      "hu": "Importálás sikertelen.",
+      "hi": "आयात विफल।",
+      "el": "Η εισαγωγή απέτυχε.",
+      "ms": "Import gagal.",
+      "ko": "가져오기 실패.",
+      "ja": "インポートに失敗しました。",
+      "it": "Importazione non riuscita.",
+      "pt": "Falha na importação.",
+      "pl": "Import nie powiódł się.",
+      "pa": "ਆਯਾਤ ਅਸਫਲ।",
+      "fa": "وارد کردن با شکست مواجه شد.",
+      "es": "Error al importar.",
+      "ru": "Ошибка импорта.",
+      "ro": "Importul a eșuat.",
+      "sk": "Import zlyhal.",
+      "sv": "Importen misslyckades.",
+      "th": "นำเข้าล้มเหลว",
+      "sw": "Kuhamisha kumeshindwa.",
+      "te": "దిగుమతి విఫలమైంది.",
+      "vi": "Nhập không thành công.",
+      "tr": "İçe aktarma başarısız.",
+      "uk": "Помилка імпорту.",
+      "jv": "Impor gagal."
+    },
+    "models": {
+      "pt-BR": "anthropic/claude-3-haiku",
+      "ca": "anthropic/claude-3-haiku",
+      "ar": "anthropic/claude-3-haiku",
+      "bn": "anthropic/claude-3-haiku",
+      "zh-TW": "anthropic/claude-3-haiku",
+      "hr": "anthropic/claude-3-haiku",
+      "zh-CN": "anthropic/claude-3-haiku",
+      "cs": "anthropic/claude-3-haiku",
+      "en-US": "anthropic/claude-3-haiku",
+      "fr": "anthropic/claude-3-haiku",
+      "tl": "anthropic/claude-3-haiku",
+      "nl": "anthropic/claude-3-haiku",
+      "de": "anthropic/claude-3-haiku",
+      "hu": "anthropic/claude-3-haiku",
+      "hi": "anthropic/claude-3-haiku",
+      "el": "anthropic/claude-3-haiku",
+      "ms": "anthropic/claude-3-haiku",
+      "ko": "anthropic/claude-3-haiku",
+      "ja": "anthropic/claude-3-haiku",
+      "it": "anthropic/claude-3-haiku",
+      "pt": "anthropic/claude-3-haiku",
+      "pl": "anthropic/claude-3-haiku",
+      "pa": "anthropic/claude-3-haiku",
+      "fa": "anthropic/claude-3-haiku",
+      "es": "anthropic/claude-3-haiku",
+      "ru": "anthropic/claude-3-haiku",
+      "ro": "anthropic/claude-3-haiku",
+      "sk": "anthropic/claude-3-haiku",
+      "sv": "anthropic/claude-3-haiku",
+      "th": "anthropic/claude-3-haiku",
+      "sw": "anthropic/claude-3-haiku",
+      "te": "anthropic/claude-3-haiku",
+      "vi": "anthropic/claude-3-haiku",
+      "tr": "anthropic/claude-3-haiku",
+      "uk": "anthropic/claude-3-haiku",
+      "jv": "anthropic/claude-3-haiku"
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/SettingsGlossaryTab.tsx",
+        "line": 208
+      },
+      {
+        "file": "src/renderer/components/SettingsTransformPromptsTab.tsx",
+        "line": 480
+      },
+      {
+        "file": "src/renderer/components/SettingsTransformPromptsTab.tsx",
+        "line": 522
+      }
+    ]
+  },
+  "cdb83dbe": {
+    "source": "Glossary Terms",
+    "translated": {
+      "pt-BR": "Termos do Glossário",
+      "zh-CN": "词汇表术语",
+      "zh-TW": "詞彙表術語",
+      "bn": "গ্লসারি শব্দ",
+      "ar": "مصطلحات المسرد",
+      "ca": "Termes del glossari",
+      "cs": "Termíny slovníku",
+      "hr": "Pojmovi rječnika",
+      "en-US": "Glossary Terms",
+      "fr": "Termes du glossaire",
+      "de": "Glossarbegriffe",
+      "hi": "शब्दावली शब्द",
+      "nl": "Woordenlijsttermen",
+      "tl": "Mga Termino sa Glossary",
+      "el": "Όροι Γλωσσαρίου",
+      "hu": "Szószedet kifejezései",
+      "pt": "Termos do Glossário",
+      "ja": "用語集の用語",
+      "ko": "용어집 용어",
+      "pl": "Terminy słownika",
+      "it": "Termini del glossario",
+      "fa": "اصطلاحات واژه‌نامه",
+      "ms": "Istilah Glosari",
+      "jv": "Istilah Glosarium",
+      "es": "Términos del glosario",
+      "ru": "Термины глоссария",
+      "sv": "Ordlistetermer",
+      "ro": "Termeni din glosar",
+      "sk": "Termíny v slovníku",
+      "te": "గ్లోసరీ పదాలు",
+      "pa": "ਸ਼ਬਦ-ਕੋਸ਼ ਦੇ ਸ਼ਬਦ",
+      "sw": "Istilahi za Kamusi",
+      "th": "คำศัพท์ในอภิธานศัพท์",
+      "vi": "Thuật ngữ trong Từ điển",
+      "tr": "Sözlük Terimleri",
+      "uk": "Терміни глосарію"
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/SettingsGlossaryTab.tsx",
+        "line": 243
+      }
+    ],
+    "models": {
+      "pt-BR": "google/gemini-2.5-flash-lite",
+      "zh-CN": "google/gemini-2.5-flash-lite",
+      "zh-TW": "google/gemini-2.5-flash-lite",
+      "bn": "google/gemini-2.5-flash-lite",
+      "ar": "google/gemini-2.5-flash-lite",
+      "ca": "google/gemini-2.5-flash-lite",
+      "cs": "google/gemini-2.5-flash-lite",
+      "hr": "google/gemini-2.5-flash-lite",
+      "en-US": "google/gemini-2.5-flash-lite",
+      "fr": "google/gemini-2.5-flash-lite",
+      "de": "google/gemini-2.5-flash-lite",
+      "hi": "google/gemini-2.5-flash-lite",
+      "nl": "google/gemini-2.5-flash-lite",
+      "tl": "google/gemini-2.5-flash-lite",
+      "el": "google/gemini-2.5-flash-lite",
+      "hu": "google/gemini-2.5-flash-lite",
+      "pt": "google/gemini-2.5-flash-lite",
+      "ja": "google/gemini-2.5-flash-lite",
+      "ko": "google/gemini-2.5-flash-lite",
+      "pl": "google/gemini-2.5-flash-lite",
+      "it": "google/gemini-2.5-flash-lite",
+      "fa": "google/gemini-2.5-flash-lite",
+      "ms": "google/gemini-2.5-flash-lite",
+      "jv": "google/gemini-2.5-flash-lite",
+      "es": "google/gemini-2.5-flash-lite",
+      "ru": "google/gemini-2.5-flash-lite",
+      "sv": "google/gemini-2.5-flash-lite",
+      "ro": "google/gemini-2.5-flash-lite",
+      "sk": "google/gemini-2.5-flash-lite",
+      "te": "google/gemini-2.5-flash-lite",
+      "pa": "google/gemini-2.5-flash-lite",
+      "sw": "google/gemma-4-31b-it",
+      "th": "google/gemini-2.5-flash-lite",
+      "vi": "google/gemini-2.5-flash-lite",
+      "tr": "google/gemini-2.5-flash-lite",
+      "uk": "google/gemini-2.5-flash-lite"
+    }
+  },
+  "a88a7dfc": {
+    "source": "{{count}} terms",
+    "translated": {
+      "pt-BR": "{{count}} termos",
+      "zh-CN": "{{count}} 个术语",
+      "zh-TW": "{{count}} 個術語",
+      "bn": "{{count}} টি শব্দ",
+      "ar": "{{count}} مصطلح",
+      "ca": "{{count}} termes",
+      "cs": "{{count}} termínů",
+      "hr": "{{count}} pojmova",
+      "en-US": "{{count}} terms",
+      "fr": "{{count}} termes",
+      "de": "{{count}} Begriffe",
+      "hi": "{{count}} शब्द",
+      "nl": "{{count}} termen",
+      "tl": "{{count}} na termino",
+      "el": "{{count}} όροι",
+      "hu": "{{count}} kifejezés",
+      "pt": "{{count}} termos",
+      "ja": "{{count}} 件の用語",
+      "ko": "{{count}}개의 용어",
+      "pl": "{{count}} terminów",
+      "it": "{{count}} termini",
+      "fa": "{{count}} اصطلاح",
+      "ms": "{{count}} istilah",
+      "jv": "{{count}} istilah",
+      "es": "{{count}} términos",
+      "ru": "{{count}} терминов",
+      "sv": "{{count}} termer",
+      "ro": "{{count}} termeni",
+      "sk": "{{count}} termínov",
+      "te": "{{count}} పదాలు",
+      "pa": "{{count}} ਸ਼ਬਦ",
+      "sw": "istilahi {{count}}",
+      "th": "{{count}} คำศัพท์",
+      "vi": "{{count}} thuật ngữ",
+      "tr": "{{count}} terim",
+      "uk": "{{count}} термінів"
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/SettingsGlossaryTab.tsx",
+        "line": 245
+      }
+    ],
+    "models": {
+      "pt-BR": "google/gemini-2.5-flash-lite",
+      "zh-CN": "google/gemini-2.5-flash-lite",
+      "zh-TW": "google/gemini-2.5-flash-lite",
+      "bn": "google/gemini-2.5-flash-lite",
+      "ar": "google/gemini-2.5-flash-lite",
+      "ca": "google/gemini-2.5-flash-lite",
+      "cs": "google/gemini-2.5-flash-lite",
+      "hr": "google/gemini-2.5-flash-lite",
+      "en-US": "google/gemini-2.5-flash-lite",
+      "fr": "google/gemini-2.5-flash-lite",
+      "de": "google/gemini-2.5-flash-lite",
+      "hi": "google/gemini-2.5-flash-lite",
+      "nl": "google/gemini-2.5-flash-lite",
+      "tl": "google/gemini-2.5-flash-lite",
+      "el": "google/gemini-2.5-flash-lite",
+      "hu": "google/gemini-2.5-flash-lite",
+      "pt": "google/gemini-2.5-flash-lite",
+      "ja": "google/gemini-2.5-flash-lite",
+      "ko": "google/gemini-2.5-flash-lite",
+      "pl": "google/gemini-2.5-flash-lite",
+      "it": "google/gemini-2.5-flash-lite",
+      "fa": "google/gemini-2.5-flash-lite",
+      "ms": "google/gemini-2.5-flash-lite",
+      "jv": "google/gemini-2.5-flash-lite",
+      "es": "google/gemini-2.5-flash-lite",
+      "ru": "google/gemini-2.5-flash-lite",
+      "sv": "google/gemini-2.5-flash-lite",
+      "ro": "google/gemini-2.5-flash-lite",
+      "sk": "google/gemini-2.5-flash-lite",
+      "te": "google/gemini-2.5-flash-lite",
+      "pa": "google/gemini-2.5-flash-lite",
+      "sw": "google/gemma-4-31b-it",
+      "th": "google/gemini-2.5-flash-lite",
+      "vi": "google/gemini-2.5-flash-lite",
+      "tr": "google/gemini-2.5-flash-lite",
+      "uk": "google/gemini-2.5-flash-lite"
+    }
+  },
+  "72d6d7a1": {
+    "source": "Import",
+    "translated": {
+      "pt-BR": "Importar",
+      "zh-CN": "导入",
+      "zh-TW": "匯入",
+      "bn": "আমদানি",
+      "ar": "استيراد",
+      "ca": "Importa",
+      "cs": "Importovat",
+      "hr": "Uvoz",
+      "en-US": "Import",
+      "fr": "Importer",
+      "de": "Importieren",
+      "hi": "आयात करें",
+      "nl": "Importeren",
+      "tl": "Mag-import",
+      "el": "Εισαγωγή",
+      "hu": "Importálás",
+      "pt": "Importar",
+      "ja": "インポート",
+      "ko": "가져오기",
+      "pl": "Importuj",
+      "it": "Importa",
+      "fa": "وارد کردن",
+      "ms": "Import",
+      "jv": "Impor",
+      "es": "Importar",
+      "ru": "Импорт",
+      "sv": "Importera",
+      "ro": "Import",
+      "sk": "Importovať",
+      "te": "దిగుమతి",
+      "pa": "ਆਯਾਤ ਕਰੋ",
+      "sw": "Ingiza",
+      "th": "นำเข้า",
+      "vi": "Nhập",
+      "tr": "İçe Aktar",
+      "uk": "Імпорт"
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/SettingsGlossaryTab.tsx",
+        "line": 254
+      }
+    ],
+    "models": {
+      "pt-BR": "google/gemini-2.5-flash-lite",
+      "zh-CN": "google/gemini-2.5-flash-lite",
+      "zh-TW": "google/gemini-2.5-flash-lite",
+      "bn": "google/gemini-2.5-flash-lite",
+      "ar": "google/gemini-2.5-flash-lite",
+      "ca": "google/gemini-2.5-flash-lite",
+      "cs": "google/gemini-2.5-flash-lite",
+      "hr": "google/gemini-2.5-flash-lite",
+      "en-US": "google/gemini-2.5-flash-lite",
+      "fr": "google/gemini-2.5-flash-lite",
+      "de": "google/gemini-2.5-flash-lite",
+      "hi": "google/gemini-2.5-flash-lite",
+      "nl": "google/gemini-2.5-flash-lite",
+      "tl": "google/gemini-2.5-flash-lite",
+      "el": "google/gemini-2.5-flash-lite",
+      "hu": "google/gemini-2.5-flash-lite",
+      "pt": "google/gemini-2.5-flash-lite",
+      "ja": "google/gemini-2.5-flash-lite",
+      "ko": "google/gemini-2.5-flash-lite",
+      "pl": "google/gemini-2.5-flash-lite",
+      "it": "google/gemini-2.5-flash-lite",
+      "fa": "google/gemini-2.5-flash-lite",
+      "ms": "google/gemini-2.5-flash-lite",
+      "jv": "google/gemini-2.5-flash-lite",
+      "es": "google/gemini-2.5-flash-lite",
+      "ru": "google/gemini-2.5-flash-lite",
+      "sv": "google/gemini-2.5-flash-lite",
+      "ro": "google/gemini-2.5-flash-lite",
+      "sk": "google/gemini-2.5-flash-lite",
+      "te": "google/gemini-2.5-flash-lite",
+      "pa": "google/gemini-2.5-flash-lite",
+      "sw": "google/gemma-4-31b-it",
+      "th": "google/gemini-2.5-flash-lite",
+      "vi": "google/gemini-2.5-flash-lite",
+      "tr": "google/gemini-2.5-flash-lite",
+      "uk": "google/gemini-2.5-flash-lite"
+    }
+  },
+  "c04f1e48": {
+    "source": "Export CSV",
+    "translated": {
+      "pt-BR": "Exportar CSV",
+      "zh-CN": "导出 CSV",
+      "zh-TW": "匯出 CSV",
+      "bn": "CSV এক্সপোর্ট করুন",
+      "ar": "تصدير CSV",
+      "ca": "Exporta CSV",
+      "cs": "Exportovat CSV",
+      "hr": "Izvoz CSV",
+      "en-US": "Export CSV",
+      "fr": "Exporter CSV",
+      "de": "CSV exportieren",
+      "hi": "CSV निर्यात करें",
+      "nl": "Exporteren CSV",
+      "tl": "I-export ang CSV",
+      "el": "Εξαγωγή CSV",
+      "hu": "Exportálás CSV formátumban",
+      "pt": "Exportar CSV",
+      "ja": "CSVをエクスポート",
+      "ko": "CSV 내보내기",
+      "pl": "Eksportuj CSV",
+      "it": "Esporta CSV",
+      "fa": "صادر کردن CSV",
+      "ms": "Eksport CSV",
+      "jv": "Ekspor CSV",
+      "es": "Exportar CSV",
+      "ru": "Экспорт CSV",
+      "sv": "Exportera CSV",
+      "ro": "Export CSV",
+      "sk": "Exportovať CSV",
+      "te": "CSV ఎగుమతి",
+      "pa": "CSV ਨਿਰਯਾਤ ਕਰੋ",
+      "sw": "Sadiria CSV",
+      "th": "ส่งออก CSV",
+      "vi": "Xuất CSV",
+      "tr": "CSV'yi Dışa Aktar",
+      "uk": "Експорт CSV"
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/SettingsGlossaryTab.tsx",
+        "line": 258
+      }
+    ],
+    "models": {
+      "pt-BR": "google/gemini-2.5-flash-lite",
+      "zh-CN": "google/gemini-2.5-flash-lite",
+      "zh-TW": "google/gemini-2.5-flash-lite",
+      "bn": "google/gemini-2.5-flash-lite",
+      "ar": "google/gemini-2.5-flash-lite",
+      "ca": "google/gemini-2.5-flash-lite",
+      "cs": "google/gemini-2.5-flash-lite",
+      "hr": "google/gemini-2.5-flash-lite",
+      "en-US": "google/gemini-2.5-flash-lite",
+      "fr": "google/gemini-2.5-flash-lite",
+      "de": "google/gemini-2.5-flash-lite",
+      "hi": "google/gemini-2.5-flash-lite",
+      "nl": "google/gemini-2.5-flash-lite",
+      "tl": "google/gemini-2.5-flash-lite",
+      "el": "google/gemini-2.5-flash-lite",
+      "hu": "google/gemini-2.5-flash-lite",
+      "pt": "google/gemini-2.5-flash-lite",
+      "ja": "google/gemini-2.5-flash-lite",
+      "ko": "google/gemini-2.5-flash-lite",
+      "pl": "google/gemini-2.5-flash-lite",
+      "it": "google/gemini-2.5-flash-lite",
+      "fa": "google/gemini-2.5-flash-lite",
+      "ms": "google/gemini-2.5-flash-lite",
+      "jv": "google/gemini-2.5-flash-lite",
+      "es": "google/gemini-2.5-flash-lite",
+      "ru": "google/gemini-2.5-flash-lite",
+      "sv": "google/gemini-2.5-flash-lite",
+      "ro": "google/gemini-2.5-flash-lite",
+      "sk": "google/gemini-2.5-flash-lite",
+      "te": "google/gemini-2.5-flash-lite",
+      "pa": "google/gemini-2.5-flash-lite",
+      "sw": "google/gemma-4-31b-it",
+      "th": "google/gemini-2.5-flash-lite",
+      "vi": "google/gemini-2.5-flash-lite",
+      "tr": "google/gemini-2.5-flash-lite",
+      "uk": "google/gemini-2.5-flash-lite"
+    }
+  },
+  "b863e1c9": {
+    "source": "Export XLSX",
+    "translated": {
+      "pt-BR": "Exportar XLSX",
+      "zh-CN": "导出 XLSX",
+      "zh-TW": "匯出 XLSX",
+      "bn": "XLSX এক্সপোর্ট করুন",
+      "ar": "تصدير XLSX",
+      "ca": "Exporta XLSX",
+      "cs": "Exportovat XLSX",
+      "hr": "Izvoz XLSX",
+      "en-US": "Export XLSX",
+      "fr": "Exporter XLSX",
+      "de": "XLSX exportieren",
+      "hi": "XLSX निर्यात करें",
+      "nl": "Exporteren XLSX",
+      "tl": "I-export ang XLSX",
+      "el": "Εξαγωγή XLSX",
+      "hu": "Exportálás XLSX formátumban",
+      "pt": "Exportar XLSX",
+      "ja": "XLSXをエクスポート",
+      "ko": "XLSX 내보내기",
+      "pl": "Eksportuj XLSX",
+      "it": "Esporta XLSX",
+      "fa": "صادر کردن XLSX",
+      "ms": "Eksport XLSX",
+      "jv": "Ekspor XLSX",
+      "es": "Exportar XLSX",
+      "ru": "Экспорт XLSX",
+      "sv": "Exportera XLSX",
+      "ro": "Export XLSX",
+      "sk": "Exportovať XLSX",
+      "te": "XLSX ఎగుమతి",
+      "pa": "XLSX ਨਿਰਯਾਤ ਕਰੋ",
+      "sw": "Sadiria XLSX",
+      "th": "ส่งออก XLSX",
+      "vi": "Xuất XLSX",
+      "tr": "XLSX'i Dışa Aktar",
+      "uk": "Експорт XLSX"
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/SettingsGlossaryTab.tsx",
+        "line": 262
+      }
+    ],
+    "models": {
+      "pt-BR": "google/gemini-2.5-flash-lite",
+      "zh-CN": "google/gemini-2.5-flash-lite",
+      "zh-TW": "google/gemini-2.5-flash-lite",
+      "bn": "google/gemini-2.5-flash-lite",
+      "ar": "google/gemini-2.5-flash-lite",
+      "ca": "google/gemini-2.5-flash-lite",
+      "cs": "google/gemini-2.5-flash-lite",
+      "hr": "google/gemini-2.5-flash-lite",
+      "en-US": "google/gemini-2.5-flash-lite",
+      "fr": "google/gemini-2.5-flash-lite",
+      "de": "google/gemini-2.5-flash-lite",
+      "hi": "google/gemini-2.5-flash-lite",
+      "nl": "google/gemini-2.5-flash-lite",
+      "tl": "google/gemini-2.5-flash-lite",
+      "el": "google/gemini-2.5-flash-lite",
+      "hu": "google/gemini-2.5-flash-lite",
+      "pt": "google/gemini-2.5-flash-lite",
+      "ja": "google/gemini-2.5-flash-lite",
+      "ko": "google/gemini-2.5-flash-lite",
+      "pl": "google/gemini-2.5-flash-lite",
+      "it": "google/gemini-2.5-flash-lite",
+      "fa": "google/gemini-2.5-flash-lite",
+      "ms": "google/gemini-2.5-flash-lite",
+      "jv": "google/gemini-2.5-flash-lite",
+      "es": "google/gemini-2.5-flash-lite",
+      "ru": "google/gemini-2.5-flash-lite",
+      "sv": "google/gemini-2.5-flash-lite",
+      "ro": "google/gemini-2.5-flash-lite",
+      "sk": "google/gemini-2.5-flash-lite",
+      "te": "google/gemini-2.5-flash-lite",
+      "pa": "google/gemini-2.5-flash-lite",
+      "sw": "google/gemma-4-31b-it",
+      "th": "google/gemini-2.5-flash-lite",
+      "vi": "google/gemini-2.5-flash-lite",
+      "tr": "google/gemini-2.5-flash-lite",
+      "uk": "google/gemini-2.5-flash-lite"
+    }
+  },
+  "a8aab1f2": {
+    "source": "Template CSV",
+    "translated": {
+      "pt-BR": "Modelo CSV",
+      "zh-CN": "CSV 模板",
+      "zh-TW": "範本 CSV",
+      "bn": "টেমপ্লেট CSV",
+      "ar": "قالب CSV",
+      "ca": "Plantilla CSV",
+      "cs": "Šablona CSV",
+      "hr": "Predložak CSV",
+      "en-US": "Template CSV",
+      "fr": "Modèle CSV",
+      "de": "CSV-Vorlage",
+      "hi": "CSV टेम्पलेट",
+      "nl": "Sjabloon CSV",
+      "tl": "Template CSV",
+      "el": "Πρότυπο CSV",
+      "hu": "Sablon CSV",
+      "pt": "Modelo CSV",
+      "ja": "CSVテンプレート",
+      "ko": "CSV 템플릿",
+      "pl": "Szablon CSV",
+      "it": "Modello CSV",
+      "fa": "قالب CSV",
+      "ms": "Templat CSV",
+      "jv": "Templat CSV",
+      "es": "Plantilla CSV",
+      "ru": "Шаблон CSV",
+      "sv": "Mall CSV",
+      "ro": "Șablon CSV",
+      "sk": "Šablóna CSV",
+      "te": "టెంప్లేట్ CSV",
+      "pa": "CSV ਟੈਂਪਲੇਟ",
+      "sw": "Kiolezo cha CSV",
+      "th": "เทมเพลต CSV",
+      "vi": "Mẫu CSV",
+      "tr": "Şablon CSV",
+      "uk": "Шаблон CSV"
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/SettingsGlossaryTab.tsx",
+        "line": 267
+      }
+    ],
+    "models": {
+      "pt-BR": "google/gemini-2.5-flash-lite",
+      "zh-CN": "google/gemini-2.5-flash-lite",
+      "zh-TW": "google/gemini-2.5-flash-lite",
+      "bn": "google/gemini-2.5-flash-lite",
+      "ar": "google/gemini-2.5-flash-lite",
+      "ca": "google/gemini-2.5-flash-lite",
+      "cs": "google/gemini-2.5-flash-lite",
+      "hr": "google/gemini-2.5-flash-lite",
+      "en-US": "google/gemini-2.5-flash-lite",
+      "fr": "google/gemini-2.5-flash-lite",
+      "de": "google/gemini-2.5-flash-lite",
+      "hi": "google/gemini-2.5-flash-lite",
+      "nl": "google/gemini-2.5-flash-lite",
+      "tl": "google/gemini-2.5-flash-lite",
+      "el": "google/gemini-2.5-flash-lite",
+      "hu": "google/gemini-2.5-flash-lite",
+      "pt": "google/gemini-2.5-flash-lite",
+      "ja": "google/gemini-2.5-flash-lite",
+      "ko": "google/gemini-2.5-flash-lite",
+      "pl": "google/gemini-2.5-flash-lite",
+      "it": "google/gemini-2.5-flash-lite",
+      "fa": "google/gemini-2.5-flash-lite",
+      "ms": "google/gemini-2.5-flash-lite",
+      "jv": "google/gemini-2.5-flash-lite",
+      "es": "google/gemini-2.5-flash-lite",
+      "ru": "google/gemini-2.5-flash-lite",
+      "sv": "google/gemini-2.5-flash-lite",
+      "ro": "google/gemini-2.5-flash-lite",
+      "sk": "google/gemini-2.5-flash-lite",
+      "te": "google/gemini-2.5-flash-lite",
+      "pa": "google/gemini-2.5-flash-lite",
+      "sw": "google/gemma-4-31b-it",
+      "th": "google/gemini-2.5-flash-lite",
+      "vi": "google/gemini-2.5-flash-lite",
+      "tr": "google/gemini-2.5-flash-lite",
+      "uk": "google/gemini-2.5-flash-lite"
+    }
+  },
+  "1956ebc4": {
+    "source": "Template XLSX",
+    "translated": {
+      "pt-BR": "Modelo XLSX",
+      "zh-CN": "XLSX 模板",
+      "zh-TW": "範本 XLSX",
+      "bn": "টেমপ্লেট XLSX",
+      "ar": "قالب XLSX",
+      "ca": "Plantilla XLSX",
+      "cs": "Šablona XLSX",
+      "hr": "Predložak XLSX",
+      "en-US": "Template XLSX",
+      "fr": "Modèle XLSX",
+      "de": "XLSX-Vorlage",
+      "hi": "XLSX टेम्पलेट",
+      "nl": "Sjabloon XLSX",
+      "tl": "Template XLSX",
+      "el": "Πρότυπο XLSX",
+      "hu": "Sablon XLSX",
+      "pt": "Modelo XLSX",
+      "ja": "XLSXテンプレート",
+      "ko": "XLSX 템플릿",
+      "pl": "Szablon XLSX",
+      "it": "Modello XLSX",
+      "fa": "قالب XLSX",
+      "ms": "Templat XLSX",
+      "jv": "Templat XLSX",
+      "es": "Plantilla XLSX",
+      "ru": "Шаблон XLSX",
+      "sv": "Mall XLSX",
+      "ro": "Șablon XLSX",
+      "sk": "Šablóna XLSX",
+      "te": "టెంప్లేట్ XLSX",
+      "pa": "XLSX ਟੈਂਪਲੇਟ",
+      "sw": "Kiolezo cha XLSX",
+      "th": "เทมเพลต XLSX",
+      "vi": "Mẫu XLSX",
+      "tr": "Şablon XLSX",
+      "uk": "Шаблон XLSX"
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/SettingsGlossaryTab.tsx",
+        "line": 271
+      }
+    ],
+    "models": {
+      "pt-BR": "google/gemini-2.5-flash-lite",
+      "zh-CN": "google/gemini-2.5-flash-lite",
+      "zh-TW": "google/gemini-2.5-flash-lite",
+      "bn": "google/gemini-2.5-flash-lite",
+      "ar": "google/gemini-2.5-flash-lite",
+      "ca": "google/gemini-2.5-flash-lite",
+      "cs": "google/gemini-2.5-flash-lite",
+      "hr": "google/gemini-2.5-flash-lite",
+      "en-US": "google/gemini-2.5-flash-lite",
+      "fr": "google/gemini-2.5-flash-lite",
+      "de": "google/gemini-2.5-flash-lite",
+      "hi": "google/gemini-2.5-flash-lite",
+      "nl": "google/gemini-2.5-flash-lite",
+      "tl": "google/gemini-2.5-flash-lite",
+      "el": "google/gemini-2.5-flash-lite",
+      "hu": "google/gemini-2.5-flash-lite",
+      "pt": "google/gemini-2.5-flash-lite",
+      "ja": "google/gemini-2.5-flash-lite",
+      "ko": "google/gemini-2.5-flash-lite",
+      "pl": "google/gemini-2.5-flash-lite",
+      "it": "google/gemini-2.5-flash-lite",
+      "fa": "google/gemini-2.5-flash-lite",
+      "ms": "google/gemini-2.5-flash-lite",
+      "jv": "google/gemini-2.5-flash-lite",
+      "es": "google/gemini-2.5-flash-lite",
+      "ru": "google/gemini-2.5-flash-lite",
+      "sv": "google/gemini-2.5-flash-lite",
+      "ro": "google/gemini-2.5-flash-lite",
+      "sk": "google/gemini-2.5-flash-lite",
+      "te": "google/gemini-2.5-flash-lite",
+      "pa": "google/gemini-2.5-flash-lite",
+      "sw": "google/gemma-4-31b-it",
+      "th": "google/gemini-2.5-flash-lite",
+      "vi": "google/gemini-2.5-flash-lite",
+      "tr": "google/gemini-2.5-flash-lite",
+      "uk": "google/gemini-2.5-flash-lite"
+    }
+  },
+  "21d4a1b4": {
+    "source": "Search terms",
+    "translated": {
+      "pt-BR": "Pesquisar termos",
+      "zh-CN": "搜索术语",
+      "zh-TW": "搜尋術語",
+      "bn": "শব্দ অনুসন্ধান করুন",
+      "ar": "البحث عن المصطلحات",
+      "ca": "Cerca termes",
+      "cs": "Hledat termíny",
+      "hr": "Pretraži pojmove",
+      "en-US": "Search terms",
+      "fr": "Rechercher des termes",
+      "de": "Begriffe suchen",
+      "hi": "शब्द खोजें",
+      "nl": "Termen zoeken",
+      "tl": "Maghanap ng mga termino",
+      "el": "Αναζήτηση όρων",
+      "hu": "Kifejezések keresése",
+      "pt": "Procurar termos",
+      "ja": "用語を検索",
+      "ko": "용어 검색",
+      "pl": "Szukaj terminów",
+      "it": "Cerca termini",
+      "fa": "جستجوی اصطلاحات",
+      "ms": "Cari istilah",
+      "jv": "Golèki istilah",
+      "es": "Buscar términos",
+      "ru": "Поиск терминов",
+      "sv": "Sök efter termer",
+      "ro": "Caută termeni",
+      "sk": "Hľadať termíny",
+      "te": "పదాల కోసం శోధించండి",
+      "pa": "ਸ਼ਬਦਾਂ ਦੀ ਖੋਜ ਕਰੋ",
+      "sw": "Tafuta istilahi",
+      "th": "ค้นหาคำศัพท์",
+      "vi": "Tìm kiếm thuật ngữ",
+      "tr": "Terimleri ara",
+      "uk": "Пошук термінів"
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/SettingsGlossaryTab.tsx",
+        "line": 305
+      }
+    ],
+    "models": {
+      "pt-BR": "google/gemini-2.5-flash-lite",
+      "zh-CN": "google/gemini-2.5-flash-lite",
+      "zh-TW": "google/gemini-2.5-flash-lite",
+      "bn": "google/gemini-2.5-flash-lite",
+      "ar": "google/gemini-2.5-flash-lite",
+      "ca": "google/gemini-2.5-flash-lite",
+      "cs": "google/gemini-2.5-flash-lite",
+      "hr": "google/gemini-2.5-flash-lite",
+      "en-US": "google/gemini-2.5-flash-lite",
+      "fr": "google/gemini-2.5-flash-lite",
+      "de": "google/gemini-2.5-flash-lite",
+      "hi": "google/gemini-2.5-flash-lite",
+      "nl": "google/gemini-2.5-flash-lite",
+      "tl": "google/gemini-2.5-flash-lite",
+      "el": "google/gemini-2.5-flash-lite",
+      "hu": "google/gemini-2.5-flash-lite",
+      "pt": "google/gemini-2.5-flash-lite",
+      "ja": "google/gemini-2.5-flash-lite",
+      "ko": "google/gemini-2.5-flash-lite",
+      "pl": "google/gemini-2.5-flash-lite",
+      "it": "google/gemini-2.5-flash-lite",
+      "fa": "google/gemini-2.5-flash-lite",
+      "ms": "google/gemini-2.5-flash-lite",
+      "jv": "google/gemini-2.5-flash-lite",
+      "es": "google/gemini-2.5-flash-lite",
+      "ru": "google/gemini-2.5-flash-lite",
+      "sv": "google/gemini-2.5-flash-lite",
+      "ro": "google/gemini-2.5-flash-lite",
+      "sk": "google/gemini-2.5-flash-lite",
+      "te": "google/gemini-2.5-flash-lite",
+      "pa": "google/gemini-2.5-flash-lite",
+      "sw": "google/gemma-4-31b-it",
+      "th": "google/gemini-2.5-flash-lite",
+      "vi": "google/gemini-2.5-flash-lite",
+      "tr": "google/gemini-2.5-flash-lite",
+      "uk": "google/gemini-2.5-flash-lite"
+    }
+  },
+  "509e0869": {
+    "source": "Filter by text…",
+    "translated": {
+      "pt-BR": "Filtrar por texto...",
+      "zh-CN": "按文本筛选…",
+      "zh-TW": "依文字篩選…",
+      "bn": "টেক্সট দ্বারা ফিল্টার করুন…",
+      "ar": "التصفية حسب النص...",
+      "ca": "Filtra per text...",
+      "cs": "Filtrovat podle textu…",
+      "hr": "Filtriraj po tekstu…",
+      "en-US": "Filter by text...",
+      "fr": "Filtrer par texte...",
+      "de": "Nach Text filtern…",
+      "hi": "टेक्स्ट द्वारा फ़िल्टर करें…",
+      "nl": "Filteren op tekst...",
+      "tl": "Salain ayon sa teksto…",
+      "el": "Φιλτράρισμα κατά κείμενο…",
+      "hu": "Szűrés szöveg alapján…",
+      "pt": "Filtrar por texto…",
+      "ja": "テキストでフィルタリング…",
+      "ko": "텍스트로 필터링…",
+      "pl": "Filtruj według tekstu...",
+      "it": "Filtra per testo...",
+      "fa": "فیلتر بر اساس متن...",
+      "ms": "Tapis mengikut teks…",
+      "jv": "Filter miturut teks…",
+      "es": "Filtrar por texto...",
+      "ru": "Фильтр по тексту...",
+      "sv": "Filtrera efter text...",
+      "ro": "Filtrează după text...",
+      "sk": "Filtrovať podľa textu…",
+      "te": "టెక్స్ట్ ద్వారా ఫిల్టర్ చేయండి…",
+      "pa": "ਟੈਕਸਟ ਦੁਆਰਾ ਫਿਲਟਰ ਕਰੋ…",
+      "sw": "Chuja kwa maandishi…",
+      "th": "กรองตามข้อความ...",
+      "vi": "Lọc theo văn bản…",
+      "tr": "Metne göre filtrele…",
+      "uk": "Фільтрувати за текстом..."
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/SettingsGlossaryTab.tsx",
+        "line": 311
+      }
+    ],
+    "models": {
+      "pt-BR": "google/gemini-2.5-flash-lite",
+      "zh-CN": "google/gemini-2.5-flash-lite",
+      "zh-TW": "google/gemini-2.5-flash-lite",
+      "bn": "google/gemini-2.5-flash-lite",
+      "ar": "google/gemini-2.5-flash-lite",
+      "ca": "google/gemini-2.5-flash-lite",
+      "cs": "google/gemini-2.5-flash-lite",
+      "hr": "google/gemini-2.5-flash-lite",
+      "en-US": "google/gemini-2.5-flash-lite",
+      "fr": "google/gemini-2.5-flash-lite",
+      "de": "google/gemini-2.5-flash-lite",
+      "hi": "google/gemini-2.5-flash-lite",
+      "nl": "google/gemini-2.5-flash-lite",
+      "tl": "google/gemini-2.5-flash-lite",
+      "el": "google/gemini-2.5-flash-lite",
+      "hu": "google/gemini-2.5-flash-lite",
+      "pt": "google/gemini-2.5-flash-lite",
+      "ja": "google/gemini-2.5-flash-lite",
+      "ko": "google/gemini-2.5-flash-lite",
+      "pl": "google/gemini-2.5-flash-lite",
+      "it": "google/gemini-2.5-flash-lite",
+      "fa": "google/gemini-2.5-flash-lite",
+      "ms": "google/gemini-2.5-flash-lite",
+      "jv": "google/gemini-2.5-flash-lite",
+      "es": "google/gemini-2.5-flash-lite",
+      "ru": "google/gemini-2.5-flash-lite",
+      "sv": "google/gemini-2.5-flash-lite",
+      "ro": "google/gemini-2.5-flash-lite",
+      "sk": "google/gemini-2.5-flash-lite",
+      "te": "google/gemini-2.5-flash-lite",
+      "pa": "google/gemini-2.5-flash-lite",
+      "sw": "google/gemma-4-31b-it",
+      "th": "google/gemini-2.5-flash-lite",
+      "vi": "google/gemini-2.5-flash-lite",
+      "tr": "google/gemini-2.5-flash-lite",
+      "uk": "google/gemini-2.5-flash-lite"
+    }
+  },
+  "0b275442": {
+    "source": "Clear filters",
+    "translated": {
+      "pt-BR": "Limpar filtros",
+      "zh-CN": "清除筛选条件",
+      "zh-TW": "清除篩選條件",
+      "bn": "ফিল্টারগুলি সাফ করুন",
+      "ar": "مسح عوامل التصفية",
+      "ca": "Esborra els filtres",
+      "cs": "Vymazat filtry",
+      "hr": "Očisti filtre",
+      "en-US": "Clear filters",
+      "fr": "Effacer les filtres",
+      "de": "Filter löschen",
+      "hi": "फ़िल्टर साफ़ करें",
+      "nl": "Filters wissen",
+      "tl": "Alisin ang mga filter",
+      "el": "Εκκαθάριση φίλτρων",
+      "hu": "Szűrők törlése",
+      "pt": "Limpar filtros",
+      "ja": "フィルタをクリア",
+      "ko": "필터 지우기",
+      "pl": "Wyczyść filtry",
+      "it": "Cancella filtri",
+      "fa": "پاک کردن فیلترها",
+      "ms": "Nyah-tapis",
+      "jv": "Busak filter",
+      "es": "Borrar filtros",
+      "ru": "Сбросить фильтры",
+      "sv": "Rensa filter",
+      "ro": "Șterge filtrele",
+      "sk": "Vymazať filtre",
+      "te": "ఫిల్టర్‌లను క్లియర్ చేయండి",
+      "pa": "ਫਿਲਟਰ ਸਾਫ਼ ਕਰੋ",
+      "sw": "Futa vichujio",
+      "th": "ล้างตัวกรอง",
+      "vi": "Xóa bộ lọc",
+      "tr": "Filtreleri temizle",
+      "uk": "Очистити фільтри"
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/SettingsGlossaryTab.tsx",
+        "line": 318
+      }
+    ],
+    "models": {
+      "pt-BR": "google/gemini-2.5-flash-lite",
+      "zh-CN": "google/gemini-2.5-flash-lite",
+      "zh-TW": "google/gemini-2.5-flash-lite",
+      "bn": "google/gemini-2.5-flash-lite",
+      "ar": "google/gemini-2.5-flash-lite",
+      "ca": "google/gemini-2.5-flash-lite",
+      "cs": "google/gemini-2.5-flash-lite",
+      "hr": "google/gemini-2.5-flash-lite",
+      "en-US": "google/gemini-2.5-flash-lite",
+      "fr": "google/gemini-2.5-flash-lite",
+      "de": "google/gemini-2.5-flash-lite",
+      "hi": "google/gemini-2.5-flash-lite",
+      "nl": "google/gemini-2.5-flash-lite",
+      "tl": "google/gemini-2.5-flash-lite",
+      "el": "google/gemini-2.5-flash-lite",
+      "hu": "google/gemini-2.5-flash-lite",
+      "pt": "google/gemini-2.5-flash-lite",
+      "ja": "google/gemini-2.5-flash-lite",
+      "ko": "google/gemini-2.5-flash-lite",
+      "pl": "google/gemini-2.5-flash-lite",
+      "it": "google/gemini-2.5-flash-lite",
+      "fa": "google/gemini-2.5-flash-lite",
+      "ms": "google/gemini-2.5-flash-lite",
+      "jv": "google/gemini-2.5-flash-lite",
+      "es": "google/gemini-2.5-flash-lite",
+      "ru": "google/gemini-2.5-flash-lite",
+      "sv": "google/gemini-2.5-flash-lite",
+      "ro": "google/gemini-2.5-flash-lite",
+      "sk": "google/gemini-2.5-flash-lite",
+      "te": "google/gemini-2.5-flash-lite",
+      "pa": "google/gemini-2.5-flash-lite",
+      "sw": "google/gemma-4-31b-it",
+      "th": "google/gemini-2.5-flash-lite",
+      "vi": "google/gemini-2.5-flash-lite",
+      "tr": "google/gemini-2.5-flash-lite",
+      "uk": "google/gemini-2.5-flash-lite"
+    }
+  },
+  "7ef91f14": {
+    "source": "No glossary terms yet. Add one below or import a file.",
+    "translated": {
+      "pt-BR": "Ainda não há termos no glossário. Adicione um abaixo ou importe um arquivo.",
+      "zh-CN": "尚无词汇表术语。请在下方添加一个或导入文件。",
+      "zh-TW": "尚無詞彙表術語。請在下方新增一項或匯入檔案。",
+      "bn": "এখনও কোনো গ্লসারি শব্দ নেই। নিচে একটি যোগ করুন বা একটি ফাইল আমদানি করুন।",
+      "ar": "لا توجد مصطلحات مسرد بعد. أضف واحدًا أدناه أو استورد ملفًا.",
+      "ca": "Encara no hi ha termes al glossari. Afegeix-ne un a continuació o importa un fitxer.",
+      "cs": "Zatím žádné termíny slovníku. Přidejte jeden níže nebo importujte soubor.",
+      "hr": "Još nema pojmova u rječniku. Dodajte ih u nastavku ili uvezite datoteku.",
+      "en-US": "No glossary terms yet. Add one below or import a file.",
+      "fr": "Aucun terme de glossaire pour le moment. Ajoutez-en un ci-dessous ou importez un fichier.",
+      "de": "Noch keine Glossarbegriffe. Fügen Sie unten einen hinzu oder importieren Sie eine Datei.",
+      "hi": "अभी तक कोई शब्दावली शब्द नहीं है। नीचे एक जोड़ें या एक फ़ाइल आयात करें।",
+      "nl": "Nog geen woordenlijsttermen. Voeg er hieronder een toe of importeer een bestand.",
+      "tl": "Wala pang termino sa glossary. Magdagdag ng isa sa ibaba o mag-import ng file.",
+      "el": "Δεν υπάρχουν ακόμη όροι στο γλωσσάριο. Προσθέστε έναν παρακάτω ή εισαγάγετε ένα αρχείο.",
+      "hu": "Még nincsenek szószedet kifejezések. Adjon hozzá egyet alább, vagy importáljon egy fájlt.",
+      "pt": "Ainda não há termos no glossário. Adicione um abaixo ou importe um ficheiro.",
+      "ja": "用語集の用語がまだありません。以下から追加するか、ファイルをインポートしてください。",
+      "ko": "아직 용어집 용어가 없습니다. 아래에서 추가하거나 파일을 가져오세요.",
+      "pl": "Brak terminów w słowniku. Dodaj poniżej lub zaimportuj plik.",
+      "it": "Nessun termine nel glossario. Aggiungine uno qui sotto o importa un file.",
+      "fa": "هنوز اصطلاحی در واژه‌نامه وجود ندارد. یکی در زیر اضافه کنید یا یک فایل وارد کنید.",
+      "ms": "Tiada istilah glosari lagi. Tambah satu di bawah atau import fail.",
+      "jv": "Glosarium durung ana. Tambah siji ing ngisor utawa impor file.",
+      "es": "Aún no hay términos en el glosario. Añada uno a continuación o importe un archivo.",
+      "ru": "Терминов глоссария пока нет. Добавьте один ниже или импортируйте файл.",
+      "sv": "Inga ordlistetermer ännu. Lägg till en nedan eller importera en fil.",
+      "ro": "Încă nu există termeni în glosar. Adaugă unul mai jos sau importă un fișier.",
+      "sk": "Zatiaľ žiadne termíny v slovníku. Pridajte jeden nižšie alebo importujte súbor.",
+      "te": "ఇంకా గ్లోసరీ పదాలు లేవు. క్రింద ఒకదాన్ని జోడించండి లేదా ఫైల్‌ను దిగుమతి చేయండి.",
+      "pa": "ਅਜੇ ਕੋਈ ਸ਼ਬਦ-ਕੋਸ਼ ਸ਼ਬਦ ਨਹੀਂ ਹੈ। ਹੇਠਾਂ ਇੱਕ ਸ਼ਾਮਲ ਕਰੋ ਜਾਂ ਇੱਕ ਫਾਈਲ ਆਯਾਤ ਕਰੋ।",
+      "sw": "Hakuna istilahi za kamusi bado. Ongeza hapa chini au ingiza faili.",
+      "th": "ยังไม่มีคำศัพท์ในอภิธานศัพท์ เพิ่มคำศัพท์ด้านล่าง หรือนำเข้าไฟล์",
+      "vi": "Chưa có thuật ngữ nào. Thêm một thuật ngữ bên dưới hoặc nhập một tệp.",
+      "tr": "Henüz sözlük terimi yok. Aşağıdan bir tane ekleyin veya bir dosya içe aktarın.",
+      "uk": "Термінів глосарію ще немає. Додайте один нижче або імпортуйте файл."
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/SettingsGlossaryTab.tsx",
+        "line": 346
+      }
+    ],
+    "models": {
+      "pt-BR": "google/gemini-2.5-flash-lite",
+      "zh-CN": "google/gemini-2.5-flash-lite",
+      "zh-TW": "google/gemini-2.5-flash-lite",
+      "bn": "google/gemini-2.5-flash-lite",
+      "ar": "google/gemini-2.5-flash-lite",
+      "ca": "google/gemini-2.5-flash-lite",
+      "cs": "google/gemini-2.5-flash-lite",
+      "hr": "google/gemini-2.5-flash-lite",
+      "en-US": "google/gemini-2.5-flash-lite",
+      "fr": "google/gemini-2.5-flash-lite",
+      "de": "google/gemini-2.5-flash-lite",
+      "hi": "google/gemini-2.5-flash-lite",
+      "nl": "google/gemini-2.5-flash-lite",
+      "tl": "google/gemini-2.5-flash-lite",
+      "el": "google/gemini-2.5-flash-lite",
+      "hu": "google/gemini-2.5-flash-lite",
+      "pt": "google/gemini-2.5-flash-lite",
+      "ja": "google/gemini-2.5-flash-lite",
+      "ko": "google/gemini-2.5-flash-lite",
+      "pl": "google/gemini-2.5-flash-lite",
+      "it": "google/gemini-2.5-flash-lite",
+      "fa": "google/gemini-2.5-flash-lite",
+      "ms": "google/gemini-2.5-flash-lite",
+      "jv": "google/gemini-2.5-flash-lite",
+      "es": "google/gemini-2.5-flash-lite",
+      "ru": "google/gemini-2.5-flash-lite",
+      "sv": "google/gemini-2.5-flash-lite",
+      "ro": "google/gemini-2.5-flash-lite",
+      "sk": "google/gemini-2.5-flash-lite",
+      "te": "google/gemini-2.5-flash-lite",
+      "pa": "google/gemini-2.5-flash-lite",
+      "sw": "google/gemma-4-31b-it",
+      "th": "google/gemini-2.5-flash-lite",
+      "vi": "google/gemini-2.5-flash-lite",
+      "tr": "google/gemini-2.5-flash-lite",
+      "uk": "google/gemini-2.5-flash-lite"
+    }
+  },
+  "976c147b": {
+    "source": "No terms match the current filters.",
+    "translated": {
+      "pt-BR": "Nenhum termo corresponde aos filtros atuais.",
+      "zh-CN": "没有术语匹配当前筛选条件。",
+      "zh-TW": "沒有術語符合目前的篩選條件。",
+      "bn": "বর্তমান ফিল্টারগুলির সাথে মেলে এমন কোনো শব্দ নেই।",
+      "ar": "لا توجد مصطلحات تطابق عوامل التصفية الحالية.",
+      "ca": "No hi ha termes que coincideixin amb els filtres actuals.",
+      "cs": "Žádné termíny neodpovídají aktuálním filtrům.",
+      "hr": "Nijedan pojam ne odgovara trenutnim filtrima.",
+      "en-US": "No terms match the current filters.",
+      "fr": "Aucun terme ne correspond aux filtres actuels.",
+      "de": "Keine Begriffe entsprechen den aktuellen Filtern.",
+      "hi": "कोई शब्द वर्तमान फ़िल्टर से मेल नहीं खाता।",
+      "nl": "Geen termen komen overeen met de huidige filters.",
+      "tl": "Walang terminong tumutugma sa kasalukuyang mga filter.",
+      "el": "Δεν βρέθηκαν όροι που να ταιριάζουν με τα τρέχοντα φίλτρα.",
+      "hu": "Nincs olyan kifejezés, amely megfelelne a jelenlegi szűrőknek.",
+      "pt": "Nenhum termo corresponde aos filtros atuais.",
+      "ja": "現在のフィルタに一致する用語はありません。",
+      "ko": "현재 필터와 일치하는 용어가 없습니다.",
+      "pl": "Brak terminów pasujących do bieżących filtrów.",
+      "it": "Nessun termine corrisponde ai filtri correnti.",
+      "fa": "هیچ اصطلاحی با فیلترهای فعلی مطابقت ندارد.",
+      "ms": "Tiada istilah sepadan dengan penapis semasa.",
+      "jv": "Ora ana istilah sing cocog karo filter saiki.",
+      "es": "No hay términos que coincidan con los filtros actuales.",
+      "ru": "Термины не соответствуют текущим фильтрам.",
+      "sv": "Inga termer matchar de aktuella filtren.",
+      "ro": "Nu există termeni care să corespundă filtrelor curente.",
+      "sk": "Žiadne termíny nezodpovedajú aktuálnym filtrom.",
+      "te": "ప్రస్తుత ఫిల్టర్‌లకు సరిపోలే పదాలు లేవు.",
+      "pa": "ਕੋਈ ਸ਼ਬਦ ਮੌਜੂਦਾ ਫਿਲਟਰਾਂ ਨਾਲ ਮੇਲ ਨਹੀਂ ਖਾਂਦਾ।",
+      "sw": "Hakuna istilahi zinazolingana na vichujio vya sasa.",
+      "th": "ไม่พบคำศัพท์ที่ตรงกับตัวกรองปัจจุบัน",
+      "vi": "Không có thuật ngữ nào khớp với bộ lọc hiện tại.",
+      "tr": "Hiçbir terim mevcut filtrelerle eşleşmiyor.",
+      "uk": "Терміни не відповідають поточним фільтрам."
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/SettingsGlossaryTab.tsx",
+        "line": 346
+      }
+    ],
+    "models": {
+      "pt-BR": "google/gemini-2.5-flash-lite",
+      "zh-CN": "google/gemini-2.5-flash-lite",
+      "zh-TW": "google/gemini-2.5-flash-lite",
+      "bn": "google/gemini-2.5-flash-lite",
+      "ar": "google/gemini-2.5-flash-lite",
+      "ca": "google/gemini-2.5-flash-lite",
+      "cs": "google/gemini-2.5-flash-lite",
+      "hr": "google/gemini-2.5-flash-lite",
+      "en-US": "google/gemini-2.5-flash-lite",
+      "fr": "google/gemini-2.5-flash-lite",
+      "de": "google/gemini-2.5-flash-lite",
+      "hi": "google/gemini-2.5-flash-lite",
+      "nl": "google/gemini-2.5-flash-lite",
+      "tl": "google/gemini-2.5-flash-lite",
+      "el": "google/gemini-2.5-flash-lite",
+      "hu": "google/gemini-2.5-flash-lite",
+      "pt": "google/gemini-2.5-flash-lite",
+      "ja": "google/gemini-2.5-flash-lite",
+      "ko": "google/gemini-2.5-flash-lite",
+      "pl": "google/gemini-2.5-flash-lite",
+      "it": "google/gemini-2.5-flash-lite",
+      "fa": "google/gemini-2.5-flash-lite",
+      "ms": "google/gemini-2.5-flash-lite",
+      "jv": "google/gemini-2.5-flash-lite",
+      "es": "google/gemini-2.5-flash-lite",
+      "ru": "google/gemini-2.5-flash-lite",
+      "sv": "google/gemini-2.5-flash-lite",
+      "ro": "google/gemini-2.5-flash-lite",
+      "sk": "google/gemini-2.5-flash-lite",
+      "te": "google/gemini-2.5-flash-lite",
+      "pa": "google/gemini-2.5-flash-lite",
+      "sw": "google/gemma-4-31b-it",
+      "th": "google/gemini-2.5-flash-lite",
+      "vi": "google/gemini-2.5-flash-lite",
+      "tr": "google/gemini-2.5-flash-lite",
+      "uk": "google/gemini-2.5-flash-lite"
+    }
+  },
+  "634f0a82": {
+    "source": "Delete term",
+    "translated": {
+      "pt-BR": "Excluir termo",
+      "zh-CN": "删除术语",
+      "zh-TW": "刪除術語",
+      "bn": "শব্দ মুছুন",
+      "ar": "حذف المصطلح",
+      "ca": "Elimina el terme",
+      "cs": "Smazat termín",
+      "hr": "Izbriši pojam",
+      "en-US": "Delete term",
+      "fr": "Supprimer le terme",
+      "de": "Begriff löschen",
+      "hi": "शब्द हटाएं",
+      "nl": "Term verwijderen",
+      "tl": "Burahin ang termino",
+      "el": "Διαγραφή όρου",
+      "hu": "Kifejezés törlése",
+      "pt": "Eliminar termo",
+      "ja": "用語を削除",
+      "ko": "용어 삭제",
+      "pl": "Usuń termin",
+      "it": "Elimina termine",
+      "fa": "حذف اصطلاح",
+      "ms": "Padam istilah",
+      "jv": "Busak istilah",
+      "es": "Eliminar término",
+      "ru": "Удалить термин",
+      "sv": "Ta bort term",
+      "ro": "Șterge termenul",
+      "sk": "Odstrániť termín",
+      "te": "పదాన్ని తొలగించు",
+      "pa": "ਸ਼ਬਦ ਮਿਟਾਓ",
+      "sw": "Futa istilahi",
+      "th": "ลบคำศัพท์",
+      "vi": "Xóa thuật ngữ",
+      "tr": "Terimi sil",
+      "uk": "Видалити термін"
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/SettingsGlossaryTab.tsx",
+        "line": 362
+      }
+    ],
+    "models": {
+      "pt-BR": "google/gemini-2.5-flash-lite",
+      "zh-CN": "google/gemini-2.5-flash-lite",
+      "zh-TW": "google/gemini-2.5-flash-lite",
+      "bn": "google/gemini-2.5-flash-lite",
+      "ar": "google/gemini-2.5-flash-lite",
+      "ca": "google/gemini-2.5-flash-lite",
+      "cs": "google/gemini-2.5-flash-lite",
+      "hr": "google/gemini-2.5-flash-lite",
+      "en-US": "google/gemini-2.5-flash-lite",
+      "fr": "google/gemini-2.5-flash-lite",
+      "de": "google/gemini-2.5-flash-lite",
+      "hi": "google/gemini-2.5-flash-lite",
+      "nl": "google/gemini-2.5-flash-lite",
+      "tl": "google/gemini-2.5-flash-lite",
+      "el": "google/gemini-2.5-flash-lite",
+      "hu": "google/gemini-2.5-flash-lite",
+      "pt": "google/gemini-2.5-flash-lite",
+      "ja": "google/gemini-2.5-flash-lite",
+      "ko": "google/gemini-2.5-flash-lite",
+      "pl": "google/gemini-2.5-flash-lite",
+      "it": "google/gemini-2.5-flash-lite",
+      "fa": "google/gemini-2.5-flash-lite",
+      "ms": "google/gemini-2.5-flash-lite",
+      "jv": "google/gemini-2.5-flash-lite",
+      "es": "google/gemini-2.5-flash-lite",
+      "ru": "google/gemini-2.5-flash-lite",
+      "sv": "google/gemini-2.5-flash-lite",
+      "ro": "google/gemini-2.5-flash-lite",
+      "sk": "google/gemini-2.5-flash-lite",
+      "te": "google/gemini-2.5-flash-lite",
+      "pa": "google/gemini-2.5-flash-lite",
+      "sw": "google/gemma-4-31b-it",
+      "th": "google/gemini-2.5-flash-lite",
+      "vi": "google/gemini-2.5-flash-lite",
+      "tr": "google/gemini-2.5-flash-lite",
+      "uk": "google/gemini-2.5-flash-lite"
+    }
+  },
+  "24f38d90": {
+    "source": "Source term…",
+    "translated": {
+      "pt-BR": "Termo de origem...",
+      "zh-CN": "源术语…",
+      "zh-TW": "來源術語…",
+      "bn": "উৎস শব্দ…",
+      "ar": "مصطلح المصدر...",
+      "ca": "Terme d'origen...",
+      "cs": "Zdrojový termín…",
+      "hr": "Izvorni pojam…",
+      "en-US": "Source term...",
+      "fr": "Terme source...",
+      "de": "Begriff in Ausgangssprache…",
+      "hi": "स्रोत शब्द…",
+      "nl": "Bronterm...",
+      "tl": "Termino sa Pinagmulan…",
+      "el": "Όρος πηγής…",
+      "hu": "Forráskifejezés…",
+      "pt": "Termo de origem…",
+      "ja": "ソース用語…",
+      "ko": "소스 용어…",
+      "pl": "Termin źródłowy...",
+      "it": "Termine di origine...",
+      "fa": "اصطلاح مبدأ...",
+      "ms": "Istilah sumber…",
+      "jv": "Istilah sumber…",
+      "es": "Término de origen...",
+      "ru": "Исходный термин...",
+      "sv": "Källterm...",
+      "ro": "Termen sursă...",
+      "sk": "Zdrojový termín…",
+      "te": "మూల పదం…",
+      "pa": "ਸਰੋਤ ਸ਼ਬਦ...",
+      "sw": "Istilahi chanzo…",
+      "th": "คำศัพท์ต้นทาง...",
+      "vi": "Thuật ngữ nguồn…",
+      "tr": "Kaynak terim…",
+      "uk": "Термін мовою оригіналу..."
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/SettingsGlossaryTab.tsx",
+        "line": 388
+      }
+    ],
+    "models": {
+      "pt-BR": "google/gemini-2.5-flash-lite",
+      "zh-CN": "google/gemini-2.5-flash-lite",
+      "zh-TW": "google/gemini-2.5-flash-lite",
+      "bn": "google/gemini-2.5-flash-lite",
+      "ar": "google/gemini-2.5-flash-lite",
+      "ca": "google/gemini-2.5-flash-lite",
+      "cs": "google/gemini-2.5-flash-lite",
+      "hr": "google/gemini-2.5-flash-lite",
+      "en-US": "google/gemini-2.5-flash-lite",
+      "fr": "google/gemini-2.5-flash-lite",
+      "de": "google/gemini-2.5-flash-lite",
+      "hi": "google/gemini-2.5-flash-lite",
+      "nl": "google/gemini-2.5-flash-lite",
+      "tl": "google/gemini-2.5-flash-lite",
+      "el": "google/gemini-2.5-flash-lite",
+      "hu": "google/gemini-2.5-flash-lite",
+      "pt": "google/gemini-2.5-flash-lite",
+      "ja": "google/gemini-2.5-flash-lite",
+      "ko": "google/gemini-2.5-flash-lite",
+      "pl": "google/gemini-2.5-flash-lite",
+      "it": "google/gemini-2.5-flash-lite",
+      "fa": "google/gemini-2.5-flash-lite",
+      "ms": "google/gemini-2.5-flash-lite",
+      "jv": "google/gemini-2.5-flash-lite",
+      "es": "google/gemini-2.5-flash-lite",
+      "ru": "google/gemini-2.5-flash-lite",
+      "sv": "google/gemini-2.5-flash-lite",
+      "ro": "google/gemini-2.5-flash-lite",
+      "sk": "google/gemini-2.5-flash-lite",
+      "te": "google/gemini-2.5-flash-lite",
+      "pa": "google/gemini-2.5-flash-lite",
+      "sw": "google/gemma-4-31b-it",
+      "th": "google/gemini-2.5-flash-lite",
+      "vi": "google/gemini-2.5-flash-lite",
+      "tr": "google/gemini-2.5-flash-lite",
+      "uk": "google/gemini-2.5-flash-lite"
+    }
+  },
+  "2bba6eb9": {
+    "source": "Target term…",
+    "translated": {
+      "pt-BR": "Termo de destino...",
+      "zh-CN": "目标术语…",
+      "zh-TW": "目標術語…",
+      "bn": "লক্ষ্য শব্দ…",
+      "ar": "مصطلح الهدف...",
+      "ca": "Terme de destinació...",
+      "cs": "Cílový termín…",
+      "hr": "Ciljni pojam…",
+      "en-US": "Target term...",
+      "fr": "Terme cible...",
+      "de": "Begriff in Zielsprache…",
+      "hi": "लक्ष्य शब्द…",
+      "nl": "Doelterm...",
+      "tl": "Termino sa Target…",
+      "el": "Όρος στόχου…",
+      "hu": "Célkifejezés…",
+      "pt": "Termo de destino…",
+      "ja": "ターゲット用語…",
+      "ko": "대상 용어…",
+      "pl": "Termin docelowy...",
+      "it": "Termine di destinazione...",
+      "fa": "اصطلاح مقصد...",
+      "ms": "Istilah sasaran…",
+      "jv": "Istilah target…",
+      "es": "Término de destino...",
+      "ru": "Целевой термин...",
+      "sv": "Målterm...",
+      "ro": "Termen țintă...",
+      "sk": "Cieľový termín…",
+      "te": "లక్ష్య పదం…",
+      "pa": "ਨਿਸ਼ਾਨਾ ਸ਼ਬਦ...",
+      "sw": "Istilahi lengo…",
+      "th": "คำศัพท์ปลายทาง...",
+      "vi": "Thuật ngữ đích…",
+      "tr": "Hedef terim…",
+      "uk": "Цільовий термін..."
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/SettingsGlossaryTab.tsx",
+        "line": 408
+      }
+    ],
+    "models": {
+      "pt-BR": "google/gemini-2.5-flash-lite",
+      "zh-CN": "google/gemini-2.5-flash-lite",
+      "zh-TW": "google/gemini-2.5-flash-lite",
+      "bn": "google/gemini-2.5-flash-lite",
+      "ar": "google/gemini-2.5-flash-lite",
+      "ca": "google/gemini-2.5-flash-lite",
+      "cs": "google/gemini-2.5-flash-lite",
+      "hr": "google/gemini-2.5-flash-lite",
+      "en-US": "google/gemini-2.5-flash-lite",
+      "fr": "google/gemini-2.5-flash-lite",
+      "de": "google/gemini-2.5-flash-lite",
+      "hi": "google/gemini-2.5-flash-lite",
+      "nl": "google/gemini-2.5-flash-lite",
+      "tl": "google/gemini-2.5-flash-lite",
+      "el": "google/gemini-2.5-flash-lite",
+      "hu": "google/gemini-2.5-flash-lite",
+      "pt": "google/gemini-2.5-flash-lite",
+      "ja": "google/gemini-2.5-flash-lite",
+      "ko": "google/gemini-2.5-flash-lite",
+      "pl": "google/gemini-2.5-flash-lite",
+      "it": "google/gemini-2.5-flash-lite",
+      "fa": "google/gemini-2.5-flash-lite",
+      "ms": "google/gemini-2.5-flash-lite",
+      "jv": "google/gemini-2.5-flash-lite",
+      "es": "google/gemini-2.5-flash-lite",
+      "ru": "google/gemini-2.5-flash-lite",
+      "sv": "google/gemini-2.5-flash-lite",
+      "ro": "google/gemini-2.5-flash-lite",
+      "sk": "google/gemini-2.5-flash-lite",
+      "te": "google/gemini-2.5-flash-lite",
+      "pa": "google/gemini-2.5-flash-lite",
+      "sw": "google/gemma-4-31b-it",
+      "th": "google/gemini-2.5-flash-lite",
+      "vi": "google/gemini-2.5-flash-lite",
+      "tr": "google/gemini-2.5-flash-lite",
+      "uk": "google/gemini-2.5-flash-lite"
+    }
+  },
+  "8aae687b": {
+    "source": "Add term",
+    "translated": {
+      "pt-BR": "Adicionar termo",
+      "zh-CN": "添加术语",
+      "zh-TW": "新增術語",
+      "bn": "শব্দ যোগ করুন",
+      "ar": "إضافة مصطلح",
+      "ca": "Afegeix terme",
+      "cs": "Přidat termín",
+      "hr": "Dodaj pojam",
+      "en-US": "Add term",
+      "fr": "Ajouter un terme",
+      "de": "Begriff hinzufügen",
+      "hi": "शब्द जोड़ें",
+      "nl": "Term toevoegen",
+      "tl": "Magdagdag ng termino",
+      "el": "Προσθήκη όρου",
+      "hu": "Kifejezés hozzáadása",
+      "pt": "Adicionar termo",
+      "ja": "用語を追加",
+      "ko": "용어 추가",
+      "pl": "Dodaj termin",
+      "it": "Aggiungi termine",
+      "fa": "افزودن اصطلاح",
+      "ms": "Tambah istilah",
+      "jv": "Tambah istilah",
+      "es": "Añadir término",
+      "ru": "Добавить термин",
+      "sv": "Lägg till term",
+      "ro": "Adaugă termen",
+      "sk": "Pridať termín",
+      "te": "పదాన్ని జోడించు",
+      "pa": "ਸ਼ਬਦ ਸ਼ਾਮਲ ਕਰੋ",
+      "sw": "Ongeza istilahi",
+      "th": "เพิ่มคำศัพท์",
+      "vi": "Thêm thuật ngữ",
+      "tr": "Terim ekle",
+      "uk": "Додати термін"
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/SettingsGlossaryTab.tsx",
+        "line": 419
+      }
+    ],
+    "models": {
+      "pt-BR": "google/gemini-2.5-flash-lite",
+      "zh-CN": "google/gemini-2.5-flash-lite",
+      "zh-TW": "google/gemini-2.5-flash-lite",
+      "bn": "google/gemini-2.5-flash-lite",
+      "ar": "google/gemini-2.5-flash-lite",
+      "ca": "google/gemini-2.5-flash-lite",
+      "cs": "google/gemini-2.5-flash-lite",
+      "hr": "google/gemini-2.5-flash-lite",
+      "en-US": "google/gemini-2.5-flash-lite",
+      "fr": "google/gemini-2.5-flash-lite",
+      "de": "google/gemini-2.5-flash-lite",
+      "hi": "google/gemini-2.5-flash-lite",
+      "nl": "google/gemini-2.5-flash-lite",
+      "tl": "google/gemini-2.5-flash-lite",
+      "el": "google/gemini-2.5-flash-lite",
+      "hu": "google/gemini-2.5-flash-lite",
+      "pt": "google/gemini-2.5-flash-lite",
+      "ja": "google/gemini-2.5-flash-lite",
+      "ko": "google/gemini-2.5-flash-lite",
+      "pl": "google/gemini-2.5-flash-lite",
+      "it": "google/gemini-2.5-flash-lite",
+      "fa": "google/gemini-2.5-flash-lite",
+      "ms": "google/gemini-2.5-flash-lite",
+      "jv": "google/gemini-2.5-flash-lite",
+      "es": "google/gemini-2.5-flash-lite",
+      "ru": "google/gemini-2.5-flash-lite",
+      "sv": "google/gemini-2.5-flash-lite",
+      "ro": "google/gemini-2.5-flash-lite",
+      "sk": "google/gemini-2.5-flash-lite",
+      "te": "google/gemini-2.5-flash-lite",
+      "pa": "google/gemini-2.5-flash-lite",
+      "sw": "google/gemma-4-31b-it",
+      "th": "google/gemini-2.5-flash-lite",
+      "vi": "google/gemini-2.5-flash-lite",
+      "tr": "google/gemini-2.5-flash-lite",
+      "uk": "google/gemini-2.5-flash-lite"
+    }
   },
   "047b58f0": {
     "source": "Most used languages",
@@ -29170,7 +31974,7 @@
       },
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 706
+        "line": 710
       }
     ]
   },
@@ -29425,7 +32229,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 132
+        "line": 134
       }
     ]
   },
@@ -29510,7 +32314,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 140
+        "line": 142
       }
     ]
   },
@@ -29595,9 +32399,102 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 145
+        "line": 147
       }
     ]
+  },
+  "31d109d1": {
+    "source": "Glossary",
+    "translated": {
+      "pt-BR": "Glossário",
+      "zh-CN": "词汇表",
+      "zh-TW": "詞彙表",
+      "bn": "গ্লসারি",
+      "ar": "المسرد",
+      "ca": "Glossari",
+      "cs": "Slovník",
+      "hr": "Rječnik",
+      "en-US": "Glossary",
+      "fr": "Glossaire",
+      "de": "Glossar",
+      "hi": "शब्दावली",
+      "nl": "Woordenlijst",
+      "tl": "Glossary",
+      "el": "Γλωσσάριο",
+      "hu": "Szószedet",
+      "pt": "Glossário",
+      "ja": "用語集",
+      "ko": "용어집",
+      "pl": "Słownik",
+      "it": "Glossario",
+      "fa": "واژه‌نامه",
+      "ms": "Glosari",
+      "jv": "Glosarium",
+      "es": "Glosario",
+      "ru": "Глоссарий",
+      "sv": "Ordlista",
+      "ro": "Glosar",
+      "sk": "Slovník",
+      "te": "గ్లోసరీ",
+      "pa": "ਸ਼ਬਦ-ਕੋਸ਼",
+      "sw": "Kamusi",
+      "th": "อภิธานศัพท์",
+      "vi": "Từ điển",
+      "tr": "Sözlük",
+      "uk": "Глосарій"
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/SettingsPanel.tsx",
+        "line": 152
+      },
+      {
+        "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
+        "line": 109
+      },
+      {
+        "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
+        "line": 202
+      }
+    ],
+    "models": {
+      "pt-BR": "google/gemini-2.5-flash-lite",
+      "zh-CN": "google/gemini-2.5-flash-lite",
+      "zh-TW": "google/gemini-2.5-flash-lite",
+      "bn": "google/gemini-2.5-flash-lite",
+      "ar": "google/gemini-2.5-flash-lite",
+      "ca": "google/gemini-2.5-flash-lite",
+      "cs": "google/gemini-2.5-flash-lite",
+      "hr": "google/gemini-2.5-flash-lite",
+      "en-US": "google/gemini-2.5-flash-lite",
+      "fr": "google/gemini-2.5-flash-lite",
+      "de": "google/gemini-2.5-flash-lite",
+      "hi": "google/gemini-2.5-flash-lite",
+      "nl": "google/gemini-2.5-flash-lite",
+      "tl": "google/gemini-2.5-flash-lite",
+      "el": "google/gemini-2.5-flash-lite",
+      "hu": "google/gemini-2.5-flash-lite",
+      "pt": "google/gemini-2.5-flash-lite",
+      "ja": "google/gemini-2.5-flash-lite",
+      "ko": "google/gemini-2.5-flash-lite",
+      "pl": "google/gemini-2.5-flash-lite",
+      "it": "google/gemini-2.5-flash-lite",
+      "fa": "google/gemini-2.5-flash-lite",
+      "ms": "google/gemini-2.5-flash-lite",
+      "jv": "google/gemini-2.5-flash-lite",
+      "es": "google/gemini-2.5-flash-lite",
+      "ru": "google/gemini-2.5-flash-lite",
+      "sv": "google/gemini-2.5-flash-lite",
+      "ro": "google/gemini-2.5-flash-lite",
+      "sk": "google/gemini-2.5-flash-lite",
+      "te": "google/gemini-2.5-flash-lite",
+      "pa": "google/gemini-2.5-flash-lite",
+      "sw": "google/gemma-4-31b-it",
+      "th": "google/gemini-2.5-flash-lite",
+      "vi": "google/gemini-2.5-flash-lite",
+      "tr": "google/gemini-2.5-flash-lite",
+      "uk": "google/gemini-2.5-flash-lite"
+    }
   },
   "f9aae5fd": {
     "source": "Users",
@@ -29680,7 +32577,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 151
+        "line": 154
       }
     ]
   },
@@ -29765,7 +32662,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 154
+        "line": 157
       }
     ]
   },
@@ -29850,7 +32747,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 333
+        "line": 336
       }
     ]
   },
@@ -29935,7 +32832,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 334
+        "line": 337
       }
     ]
   },
@@ -30020,7 +32917,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 335
+        "line": 338
       }
     ]
   },
@@ -30105,7 +33002,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 336
+        "line": 339
       }
     ]
   },
@@ -30190,7 +33087,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 337
+        "line": 340
       }
     ]
   },
@@ -30275,7 +33172,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 338
+        "line": 341
       }
     ]
   },
@@ -30360,7 +33257,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 339
+        "line": 342
       }
     ]
   },
@@ -30445,7 +33342,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 340
+        "line": 343
       }
     ]
   },
@@ -30530,7 +33427,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 341
+        "line": 344
       }
     ]
   },
@@ -30615,7 +33512,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 342
+        "line": 345
       }
     ]
   },
@@ -30700,7 +33597,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 345
+        "line": 348
       }
     ]
   },
@@ -30785,7 +33682,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 509
+        "line": 512
       },
       {
         "file": "src/renderer/components/Sidebar.tsx",
@@ -30874,11 +33771,11 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 530
+        "line": 533
       },
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 532
+        "line": 535
       }
     ]
   },
@@ -30963,7 +33860,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 567
+        "line": 570
       }
     ]
   },
@@ -31048,7 +33945,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 607
+        "line": 610
       }
     ]
   },
@@ -31133,7 +34030,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 702
+        "line": 706
       }
     ]
   },
@@ -31218,7 +34115,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 703
+        "line": 707
       }
     ]
   },
@@ -31988,95 +34885,6 @@
       {
         "file": "src/renderer/components/SettingsTransformPromptsTab.tsx",
         "line": 519
-      }
-    ]
-  },
-  "405d4e28": {
-    "source": "Import failed.",
-    "translated": {
-      "pt-BR": "Falha na importação.",
-      "ca": "Error en importar.",
-      "ar": "فشل الاستيراد.",
-      "bn": "আমদানি ব্যর্থ হয়েছে।",
-      "zh-TW": "匯入失敗。",
-      "hr": "Uvoz nije uspio.",
-      "zh-CN": "导入失败。",
-      "cs": "Import se nezdařil.",
-      "en-US": "Import failed.",
-      "fr": "Échec de l'importation.",
-      "tl": "Nabigo ang pag-import.",
-      "nl": "Import mislukt.",
-      "de": "Import fehlgeschlagen.",
-      "hu": "Importálás sikertelen.",
-      "hi": "आयात विफल।",
-      "el": "Η εισαγωγή απέτυχε.",
-      "ms": "Import gagal.",
-      "ko": "가져오기 실패.",
-      "ja": "インポートに失敗しました。",
-      "it": "Importazione non riuscita.",
-      "pt": "Falha na importação.",
-      "pl": "Import nie powiódł się.",
-      "pa": "ਆਯਾਤ ਅਸਫਲ।",
-      "fa": "وارد کردن با شکست مواجه شد.",
-      "es": "Error al importar.",
-      "ru": "Ошибка импорта.",
-      "ro": "Importul a eșuat.",
-      "sk": "Import zlyhal.",
-      "sv": "Importen misslyckades.",
-      "th": "นำเข้าล้มเหลว",
-      "sw": "Kuhamisha kumeshindwa.",
-      "te": "దిగుమతి విఫలమైంది.",
-      "vi": "Nhập không thành công.",
-      "tr": "İçe aktarma başarısız.",
-      "uk": "Помилка імпорту.",
-      "jv": "Impor gagal."
-    },
-    "models": {
-      "pt-BR": "anthropic/claude-3-haiku",
-      "ca": "anthropic/claude-3-haiku",
-      "ar": "anthropic/claude-3-haiku",
-      "bn": "anthropic/claude-3-haiku",
-      "zh-TW": "anthropic/claude-3-haiku",
-      "hr": "anthropic/claude-3-haiku",
-      "zh-CN": "anthropic/claude-3-haiku",
-      "cs": "anthropic/claude-3-haiku",
-      "en-US": "anthropic/claude-3-haiku",
-      "fr": "anthropic/claude-3-haiku",
-      "tl": "anthropic/claude-3-haiku",
-      "nl": "anthropic/claude-3-haiku",
-      "de": "anthropic/claude-3-haiku",
-      "hu": "anthropic/claude-3-haiku",
-      "hi": "anthropic/claude-3-haiku",
-      "el": "anthropic/claude-3-haiku",
-      "ms": "anthropic/claude-3-haiku",
-      "ko": "anthropic/claude-3-haiku",
-      "ja": "anthropic/claude-3-haiku",
-      "it": "anthropic/claude-3-haiku",
-      "pt": "anthropic/claude-3-haiku",
-      "pl": "anthropic/claude-3-haiku",
-      "pa": "anthropic/claude-3-haiku",
-      "fa": "anthropic/claude-3-haiku",
-      "es": "anthropic/claude-3-haiku",
-      "ru": "anthropic/claude-3-haiku",
-      "ro": "anthropic/claude-3-haiku",
-      "sk": "anthropic/claude-3-haiku",
-      "sv": "anthropic/claude-3-haiku",
-      "th": "anthropic/claude-3-haiku",
-      "sw": "anthropic/claude-3-haiku",
-      "te": "anthropic/claude-3-haiku",
-      "vi": "anthropic/claude-3-haiku",
-      "tr": "anthropic/claude-3-haiku",
-      "uk": "anthropic/claude-3-haiku",
-      "jv": "anthropic/claude-3-haiku"
-    },
-    "locations": [
-      {
-        "file": "src/renderer/components/SettingsTransformPromptsTab.tsx",
-        "line": 480
-      },
-      {
-        "file": "src/renderer/components/SettingsTransformPromptsTab.tsx",
-        "line": 522
       }
     ]
   },
@@ -38388,11 +41196,11 @@
       },
       {
         "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
-        "line": 185
+        "line": 221
       },
       {
         "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
-        "line": 186
+        "line": 222
       }
     ]
   },
@@ -38845,11 +41653,11 @@
       },
       {
         "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
-        "line": 102
+        "line": 126
       },
       {
         "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
-        "line": 103
+        "line": 127
       }
     ]
   },
@@ -44183,7 +46991,7 @@
       },
       {
         "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
-        "line": 64
+        "line": 68
       }
     ]
   },
@@ -44276,7 +47084,7 @@
       },
       {
         "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
-        "line": 78
+        "line": 95
       }
     ]
   },
@@ -44373,7 +47181,7 @@
       },
       {
         "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
-        "line": 92
+        "line": 116
       }
     ]
   },
@@ -44470,7 +47278,7 @@
       },
       {
         "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
-        "line": 145
+        "line": 169
       }
     ]
   },
@@ -44567,7 +47375,7 @@
       },
       {
         "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
-        "line": 171
+        "line": 207
       }
     ]
   },
@@ -44749,7 +47557,7 @@
       },
       {
         "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
-        "line": 205
+        "line": 241
       }
     ]
   },
@@ -44842,7 +47650,7 @@
       },
       {
         "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
-        "line": 215
+        "line": 251
       }
     ]
   },
@@ -45538,9 +48346,179 @@
       },
       {
         "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
-        "line": 116
+        "line": 140
       }
     ]
+  },
+  "5d2e33ff": {
+    "source": "Use glossary during translation",
+    "translated": {
+      "pt-BR": "Usar glossário durante a tradução",
+      "zh-CN": "翻译时使用词汇表",
+      "zh-TW": "翻譯時使用詞彙表",
+      "bn": "অনুবাদ করার সময় গ্লসারি ব্যবহার করুন",
+      "ar": "استخدام المسرد أثناء الترجمة",
+      "ca": "Utilitza el glossari durant la traducció",
+      "cs": "Použít slovník během překladu",
+      "hr": "Koristi rječnik tijekom prevođenja",
+      "en-US": "Use glossary during translation",
+      "fr": "Utiliser le glossaire pendant la traduction",
+      "de": "Glossar während der Übersetzung verwenden",
+      "hi": "अनुवाद के दौरान शब्दावली का उपयोग करें",
+      "nl": "Woordenlijst gebruiken tijdens vertaling",
+      "tl": "Gamitin ang glossary habang nagsasalin",
+      "el": "Χρήση γλωσσαρίου κατά τη μετάφραση",
+      "hu": "Szószedet használata fordítás közben",
+      "pt": "Utilizar glossário durante a tradução",
+      "ja": "翻訳中に用語集を使用する",
+      "ko": "번역 중 용어집 사용",
+      "pl": "Używaj słownika podczas tłumaczenia",
+      "it": "Usa il glossario durante la traduzione",
+      "fa": "استفاده از واژه‌نامه در حین ترجمه",
+      "ms": "Gunakan glosari semasa penterjemahan",
+      "jv": "Gunakake glosarium nalika nerjemahake",
+      "es": "Usar glosario durante la traducción",
+      "ru": "Использовать глоссарий при переводе",
+      "sv": "Använd ordlista under översättning",
+      "ro": "Utilizează glosar în timpul traducerii",
+      "sk": "Použiť slovník počas prekladu",
+      "te": "అనువాదం సమయంలో గ్లోసరీని ఉపయోగించండి",
+      "pa": "ਅਨੁਵਾਦ ਦੌਰਾਨ ਸ਼ਬਦ-ਕੋਸ਼ ਦੀ ਵਰਤੋਂ ਕਰੋ",
+      "sw": "Tumia kamusi wakati wa kutafsiri",
+      "th": "ใช้พจนานุกรมระหว่างการแปล",
+      "vi": "Sử dụng từ điển trong quá trình dịch",
+      "tr": "Çeviri sırasında sözlüğü kullan",
+      "uk": "Використовувати глосарій під час перекладу"
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
+        "line": 112
+      }
+    ],
+    "models": {
+      "pt-BR": "google/gemini-2.5-flash-lite",
+      "zh-CN": "google/gemini-2.5-flash-lite",
+      "zh-TW": "google/gemini-2.5-flash-lite",
+      "bn": "google/gemini-2.5-flash-lite",
+      "ar": "google/gemini-2.5-flash-lite",
+      "ca": "google/gemini-2.5-flash-lite",
+      "cs": "google/gemini-2.5-flash-lite",
+      "hr": "google/gemini-2.5-flash-lite",
+      "en-US": "google/gemini-2.5-flash-lite",
+      "fr": "google/gemini-2.5-flash-lite",
+      "de": "google/gemini-2.5-flash-lite",
+      "hi": "google/gemini-2.5-flash-lite",
+      "nl": "google/gemini-2.5-flash-lite",
+      "tl": "google/gemini-2.5-flash-lite",
+      "el": "google/gemini-2.5-flash-lite",
+      "hu": "google/gemini-2.5-flash-lite",
+      "pt": "google/gemini-2.5-flash-lite",
+      "ja": "google/gemini-2.5-flash-lite",
+      "ko": "google/gemini-2.5-flash-lite",
+      "pl": "google/gemini-2.5-flash-lite",
+      "it": "google/gemini-2.5-flash-lite",
+      "fa": "google/gemini-2.5-flash-lite",
+      "ms": "google/gemini-2.5-flash-lite",
+      "jv": "google/gemini-2.5-flash-lite",
+      "es": "google/gemini-2.5-flash-lite",
+      "ru": "google/gemini-2.5-flash-lite",
+      "sv": "google/gemini-2.5-flash-lite",
+      "ro": "google/gemini-2.5-flash-lite",
+      "sk": "google/gemini-2.5-flash-lite",
+      "te": "google/gemini-2.5-flash-lite",
+      "pa": "google/gemini-2.5-flash-lite",
+      "sw": "google/gemma-4-31b-it",
+      "th": "google/gemini-2.5-flash-lite",
+      "vi": "google/gemini-2.5-flash-lite",
+      "tr": "google/gemini-2.5-flash-lite",
+      "uk": "google/gemini-2.5-flash-lite"
+    }
+  },
+  "b7ea9862": {
+    "source": "Open Glossary Settings",
+    "translated": {
+      "pt-BR": "Abrir Configurações do Glossário",
+      "zh-CN": "打开词汇表设置",
+      "zh-TW": "開啟詞彙表設定",
+      "bn": "গ্লসারি সেটিংস খুলুন",
+      "ar": "فتح إعدادات المسرد",
+      "ca": "Obre la configuració del glossari",
+      "cs": "Otevřít nastavení slovníku",
+      "hr": "Otvori postavke rječnika",
+      "en-US": "Open Glossary Settings",
+      "fr": "Ouvrir les paramètres du glossaire",
+      "de": "Glossareinstellungen öffnen",
+      "hi": "शब्दावली सेटिंग्स खोलें",
+      "nl": "Woordenlijstinstellingen openen",
+      "tl": "Buksan ang Mga Setting ng Glossary",
+      "el": "Άνοιγμα Ρυθμίσεων Γλωσσαρίου",
+      "hu": "Szószedet beállításainak megnyitása",
+      "pt": "Abrir Definições do Glossário",
+      "ja": "用語集の設定を開く",
+      "ko": "용어집 설정 열기",
+      "pl": "Otwórz ustawienia słownika",
+      "it": "Apri impostazioni glossario",
+      "fa": "باز کردن تنظیمات واژه‌نامه",
+      "ms": "Buka Tetapan Glosari",
+      "jv": "Setelan Glosarium Bukak",
+      "es": "Abrir configuración del glosario",
+      "ru": "Открыть настройки глоссария",
+      "sv": "Öppna ordlistainställningar",
+      "ro": "Deschide setările glosarului",
+      "sk": "Otvoriť nastavenia slovníka",
+      "te": "గ్లోసరీ సెట్టింగ్‌లను తెరవండి",
+      "pa": "ਸ਼ਬਦ-ਕੋਸ਼ ਸੈਟਿੰਗਾਂ ਖੋਲ੍ਹੋ",
+      "sw": "Fungua Mipangilio ya Kamusi",
+      "th": "เปิดการตั้งค่าอภิธานศัพท์",
+      "vi": "Mở Cài đặt Từ điển",
+      "tr": "Sözlük Ayarlarını Aç",
+      "uk": "Відкрити налаштування глосарію"
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
+        "line": 199
+      }
+    ],
+    "models": {
+      "pt-BR": "google/gemini-2.5-flash-lite",
+      "zh-CN": "google/gemini-2.5-flash-lite",
+      "zh-TW": "google/gemini-2.5-flash-lite",
+      "bn": "google/gemini-2.5-flash-lite",
+      "ar": "google/gemini-2.5-flash-lite",
+      "ca": "google/gemini-2.5-flash-lite",
+      "cs": "google/gemini-2.5-flash-lite",
+      "hr": "google/gemini-2.5-flash-lite",
+      "en-US": "google/gemini-2.5-flash-lite",
+      "fr": "google/gemini-2.5-flash-lite",
+      "de": "google/gemini-2.5-flash-lite",
+      "hi": "google/gemini-2.5-flash-lite",
+      "nl": "google/gemini-2.5-flash-lite",
+      "tl": "google/gemini-2.5-flash-lite",
+      "el": "google/gemini-2.5-flash-lite",
+      "hu": "google/gemini-2.5-flash-lite",
+      "pt": "google/gemini-2.5-flash-lite",
+      "ja": "google/gemini-2.5-flash-lite",
+      "ko": "google/gemini-2.5-flash-lite",
+      "pl": "google/gemini-2.5-flash-lite",
+      "it": "google/gemini-2.5-flash-lite",
+      "fa": "google/gemini-2.5-flash-lite",
+      "ms": "google/gemini-2.5-flash-lite",
+      "jv": "google/gemini-2.5-flash-lite",
+      "es": "google/gemini-2.5-flash-lite",
+      "ru": "google/gemini-2.5-flash-lite",
+      "sv": "google/gemini-2.5-flash-lite",
+      "ro": "google/gemini-2.5-flash-lite",
+      "sk": "google/gemini-2.5-flash-lite",
+      "te": "google/gemini-2.5-flash-lite",
+      "pa": "google/gemini-2.5-flash-lite",
+      "sw": "google/gemma-4-31b-it",
+      "th": "google/gemini-2.5-flash-lite",
+      "vi": "google/gemini-2.5-flash-lite",
+      "tr": "google/gemini-2.5-flash-lite",
+      "uk": "google/gemini-2.5-flash-lite"
+    }
   },
   "edde60f6": {
     "source": "Improve Clarity",
@@ -46416,7 +49394,7 @@
     "locations": [
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 123
+        "line": 124
       }
     ]
   },
@@ -46501,7 +49479,7 @@
     "locations": [
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 183
+        "line": 186
       }
     ]
   },
@@ -46586,23 +49564,23 @@
     "locations": [
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 192
+        "line": 195
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 193
+        "line": 196
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 205
+        "line": 208
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 225
+        "line": 228
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 391
+        "line": 394
       }
     ]
   },
@@ -46687,11 +49665,11 @@
     "locations": [
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 192
+        "line": 195
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 510
+        "line": 513
       }
     ]
   },
@@ -46776,19 +49754,19 @@
     "locations": [
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 198
+        "line": 201
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 337
+        "line": 340
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 516
+        "line": 519
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 654
+        "line": 657
       }
     ]
   },
@@ -46873,19 +49851,19 @@
     "locations": [
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 199
+        "line": 202
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 338
+        "line": 341
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 517
+        "line": 520
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 655
+        "line": 658
       }
     ]
   },
@@ -46970,7 +49948,7 @@
     "locations": [
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 265
+        "line": 268
       }
     ]
   },
@@ -47055,7 +50033,7 @@
     "locations": [
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 327
+        "line": 330
       }
     ]
   },
@@ -47140,23 +50118,23 @@
     "locations": [
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 436
+        "line": 439
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 510
+        "line": 513
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 511
+        "line": 514
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 523
+        "line": 526
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 542
+        "line": 545
       }
     ]
   },
@@ -47241,7 +50219,7 @@
     "locations": [
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 447
+        "line": 450
       }
     ]
   },
@@ -47326,7 +50304,7 @@
     "locations": [
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 503
+        "line": 506
       }
     ]
   },
@@ -47411,7 +50389,7 @@
     "locations": [
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 597
+        "line": 600
       }
     ]
   },
@@ -47496,23 +50474,23 @@
     "locations": [
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 648
+        "line": 651
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 649
+        "line": 652
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 660
+        "line": 663
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 680
+        "line": 683
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 715
+        "line": 718
       },
       {
         "file": "src/renderer/hooks/useTransformPrompts.ts",
@@ -47605,7 +50583,7 @@
     "locations": [
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 648
+        "line": 651
       }
     ]
   },

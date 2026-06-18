@@ -12,7 +12,7 @@ import { TranslateRephraseControls } from "./TranslateRephraseControls";
 import { WorkspaceOutputMeta } from "./WorkspaceOutputMeta";
 import { WorkspaceBehaviourSwitch } from "./WorkspaceBehaviourSwitch";
 import { Button } from "@/components/ui/button";
-import { Zap, Square, Trash2, Clipboard, Copy } from "lucide-react";
+import { Zap, Square, Trash2, Clipboard, Copy, BookPlus, BookOpen } from "lucide-react";
 import { modelFooterDisplayId } from "../../utils/misc/modelIdUtils";
 
 /** Removes key symbols (⇧, ↵) from translated shortcut text and trims. */
@@ -47,6 +47,10 @@ export function getTranslatePanels({ common, input, output, options }) {
     autoCopy,
     onAutoExecuteChange,
     onAutoCopyChange,
+    useGlossary,
+    onUseGlossaryChange,
+    onOpenGlossaryModal,
+    onOpenGlossarySettings,
   } = common;
   const { sourceLanguage, setSourceLanguage, targetLanguage, setTargetLanguage } = options;
 
@@ -58,8 +62,8 @@ export function getTranslatePanels({ common, input, output, options }) {
   const modelId = lastRunModel ? modelFooterDisplayId(lastRunModel) : "";
 
   const leftPanel = (
-    <div className="flex flex-col h-full gap-2">
-      <div className="flex items-center min-h-10">
+    <div className="flex flex-col h-full gap-2" data-panel="input">
+      <div className="flex items-center min-h-10 gap-2">
         <LanguageSelector
           label={t("From:")}
           value={sourceLanguage}
@@ -69,6 +73,19 @@ export function getTranslatePanels({ common, input, output, options }) {
           iconClassName="text-emerald-500"
           iconStrokeWidth={1.6}
         />
+        {useGlossary && (
+          <Button
+            variant="outline"
+            size="sm"
+            className="h-8 shrink-0 gap-1.5"
+            onClick={onOpenGlossaryModal}
+            title={t("Add to Glossary")}
+            aria-label={t("Add to Glossary")}
+          >
+            <BookPlus className="h-3.5 w-3.5" />
+            <span className="hidden sm:inline">{t("Add to Glossary")}</span>
+          </Button>
+        )}
       </div>
       <div className="flex-1 min-h-0">
         <TextPanel
@@ -87,6 +104,13 @@ export function getTranslatePanels({ common, input, output, options }) {
           {input.getStats()}
         </span>
         <div className="flex shrink-0 items-center gap-2 ms-auto">
+          <WorkspaceBehaviourSwitch
+            id="workspace-use-glossary-translate"
+            label={t("Glossary")}
+            checked={!!useGlossary}
+            onCheckedChange={onUseGlossaryChange}
+            title={t("Use glossary during translation")}
+          />
           <WorkspaceBehaviourSwitch
             id="workspace-auto-execute-translate"
             label={t("Auto-execute")}
@@ -110,7 +134,7 @@ export function getTranslatePanels({ common, input, output, options }) {
   );
 
   const rightPanel = (
-    <div className="flex flex-col h-full gap-2">
+    <div className="flex flex-col h-full gap-2" data-panel="output">
       <div className={workspaceOutputPanelHeaderRowClassName}>
         <LanguageSelector
           label={t("To:")}
@@ -166,6 +190,18 @@ export function getTranslatePanels({ common, input, output, options }) {
           </span>
         ) : null}
         <div className="flex shrink-0 items-center gap-2 ms-auto">
+          {useGlossary && (
+            <Button
+              variant="link"
+              size="sm"
+              className="h-8 gap-1.5 text-xs text-muted-foreground [&:hover]:text-blue-600 dark:[&:hover]:text-blue-400 [&:hover]:underline"
+              onClick={onOpenGlossarySettings}
+              title={t("Open Glossary Settings")}
+            >
+              <BookOpen size={14} />
+              <span className="hidden md:inline">{t("Glossary")}</span>
+            </Button>
+          )}
           <WorkspaceBehaviourSwitch
             id="workspace-auto-copy-translate"
             label={t("Auto-copy")}

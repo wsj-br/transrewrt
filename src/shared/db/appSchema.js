@@ -40,6 +40,7 @@ function applyAppSchema(db) {
   migrateApiCallsRenameRewriteStyleToMode(db);
   migrateCustomPromptsUserId(db);
   migrateActionContentForeignKey(db);
+  createGlossaryTermsTable(db);
 }
 
 /** Link action_content → api_calls with ON DELETE CASCADE; rebuild table if an old DB has no FK. */
@@ -190,6 +191,23 @@ function migrateCustomPromptsUserId(db) {
   `);
 }
 
+/** Create glossary_terms table if it does not exist. */
+function createGlossaryTermsTable(db) {
+  db.exec(`
+    CREATE TABLE IF NOT EXISTS glossary_terms (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      source_language TEXT NOT NULL,
+      target_language TEXT NOT NULL,
+      source_text TEXT NOT NULL,
+      target_text TEXT NOT NULL,
+      created_at TEXT NOT NULL,
+      updated_at TEXT NOT NULL,
+      user_id TEXT,
+      UNIQUE(source_language, target_language, source_text, user_id)
+    )
+  `);
+}
+
 function promptTargetLanguageToDb(value) {
   return value === true || value === 1 ? 1 : 0;
 }
@@ -307,6 +325,18 @@ const sql = {
   CUSTOM_PROMPTS_DELETE_ALL_FOR_USER: "DELETE FROM custom_prompts WHERE user_id = ?",
   CUSTOM_PROMPTS_UPDATE_BY_NAME: `UPDATE custom_prompts SET role = ?, instructions = ?, output_description = ?, temperature = ?, target_language = ?, prompt_instructions = ?, updated_at = ? WHERE name = ? AND user_id IS NULL`,
   CUSTOM_PROMPTS_UPDATE_BY_NAME_FOR_USER: `UPDATE custom_prompts SET role = ?, instructions = ?, output_description = ?, temperature = ?, target_language = ?, prompt_instructions = ?, updated_at = ? WHERE name = ? AND user_id = ?`,
+  /** Glossary terms — Electron uses user_id IS NULL, web uses user_id = ? */
+  GLOSSARY_GET_ALL: "SELECT * FROM glossary_terms WHERE user_id IS NULL ORDER BY source_language, target_language, source_text ASC",
+  GLOSSARY_GET_ALL_FOR_USER: "SELECT * FROM glossary_terms WHERE user_id = ? ORDER BY source_language, target_language, source_text ASC",
+  GLOSSARY_GET_BY_LANG_PAIR: "SELECT * FROM glossary_terms WHERE source_language = ? AND target_language = ? AND user_id IS NULL ORDER BY source_text ASC",
+  GLOSSARY_GET_BY_LANG_PAIR_FOR_USER: "SELECT * FROM glossary_terms WHERE source_language = ? AND target_language = ? AND user_id = ? ORDER BY source_text ASC",
+  GLOSSARY_INSERT: `INSERT INTO glossary_terms (source_language, target_language, source_text, target_text, created_at, updated_at, user_id) VALUES (?, ?, ?, ?, ?, ?, ?)`,
+  GLOSSARY_UPDATE: `UPDATE glossary_terms SET source_language = ?, target_language = ?, source_text = ?, target_text = ?, updated_at = ? WHERE id = ? AND user_id IS NULL`,
+  GLOSSARY_UPDATE_FOR_USER: `UPDATE glossary_terms SET source_language = ?, target_language = ?, source_text = ?, target_text = ?, updated_at = ? WHERE id = ? AND user_id = ?`,
+  GLOSSARY_UPDATE_BY_CONFLICT: `UPDATE glossary_terms SET target_text = ?, updated_at = ? WHERE source_language = ? AND target_language = ? AND source_text = ? AND user_id IS NULL`,
+  GLOSSARY_UPDATE_BY_CONFLICT_FOR_USER: `UPDATE glossary_terms SET target_text = ?, updated_at = ? WHERE source_language = ? AND target_language = ? AND source_text = ? AND user_id = ?`,
+  GLOSSARY_DELETE: "DELETE FROM glossary_terms WHERE id = ? AND user_id IS NULL",
+  GLOSSARY_DELETE_FOR_USER: "DELETE FROM glossary_terms WHERE id = ? AND user_id = ?",
 };
 
 function replaceWhere(sqlStr, whereClause) {

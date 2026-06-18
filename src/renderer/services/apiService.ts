@@ -2,6 +2,7 @@ import { getBasePath } from "../utils/misc/urlUtils";
 import * as sessionExpiredHandler from "../utils/misc/sessionExpiredHandler";
 import prompts from "../../config-defaults/prompts.json";
 import { streamChoiceToString } from "../../shared/llm/streamDeltaContent.js";
+import webAPI from "../utils/api/webApiClient";
 
 function randomRequestId() {
   return globalThis.crypto?.randomUUID?.() || `req-${Date.now()}-${Math.random().toString(36).slice(2)}`;
@@ -16,7 +17,7 @@ function isAbortError(error) {
   return Boolean(error && error.name === "AbortError");
 }
 
-function buildTranslatePrompt(sourceLang, targetLang, promptHint = null) {
+function buildTranslatePrompt(sourceLang, targetLang, promptHint = null, glossaryTerms = []) {
   const config = prompts.translate;
   const shared = prompts.shared.translate;
   const taskLines = [config.firstBullet];
@@ -31,9 +32,13 @@ function buildTranslatePrompt(sourceLang, targetLang, promptHint = null) {
     ...shared.task,
     ...shared.footer,
   ];
-  const prompt = resolvePrompt(lines)
+  let prompt = resolvePrompt(lines)
     .replace(/\{\{sourceLang\}\}/g, sourceLang || "")
     .replace(/\{\{targetLang\}\}/g, targetLang || "");
+  if (Array.isArray(glossaryTerms) && glossaryTerms.length > 0) {
+    const termLines = glossaryTerms.map((t) => `- ${t.source_text} → ${t.target_text}`).join("\n");
+    prompt = `${prompt}\n\nGlossary — use these exact term mappings when they appear:\n${termLines}`;
+  }
   if (promptHint && String(promptHint).trim()) {
     return `${prompt}\n\n[Preset instruction: ${String(promptHint).trim()}]`;
   }
@@ -500,9 +505,9 @@ class APIService {
    * @param {string} sourceLang - Source language (optional)
    * @returns {Promise<Object>} Translation result with content and usage
    */
-  async translate(text, targetLang, model, sourceLang = null, signal = null, promptHint = null) {
+  async translate(text, targetLang, model, sourceLang = null, signal = null, promptHint = null, glossaryTerms = []) {
     try {
-      const systemPrompt = buildTranslatePrompt(sourceLang, targetLang, promptHint);
+      const systemPrompt = buildTranslatePrompt(sourceLang, targetLang, promptHint, glossaryTerms);
       return await this._streamChatCompletion(systemPrompt, `<translate>${text}</translate>`, model, 0.3, signal, "translate", {});
     } catch (error) {
       if (isAbortError(error)) {
@@ -907,4 +912,32 @@ Respond with ONLY the JSON object. No other text.`;
 }
 
 export default new APIService();
+
+/** Routes glossary CRUD to Electron IPC or web API depending on runtime. */
+export const glossaryApi = {
+  getAll: () =>
+    window.electronAPI?.glossary
+      ? window.electronAPI.glossary.getAll()
+      : webAPI.glossary.getAll(),
+  getByLangPair: (sourceLang: string, targetLang: string) =>
+    window.electronAPI?.glossary
+      ? window.electronAPI.glossary.getByLangPair(sourceLang, targetLang)
+      : webAPI.glossary.getByLangPair(sourceLang, targetLang),
+  create: (term: object) =>
+    window.electronAPI?.glossary
+      ? window.electronAPI.glossary.create(term)
+      : webAPI.glossary.create(term),
+  update: (id: number, term: object) =>
+    window.electronAPI?.glossary
+      ? window.electronAPI.glossary.update(id, term)
+      : webAPI.glossary.update(id, term),
+  delete: (id: number) =>
+    window.electronAPI?.glossary
+      ? window.electronAPI.glossary.delete(id)
+      : webAPI.glossary.delete(id),
+  import: (terms: object[]) =>
+    window.electronAPI?.glossary
+      ? window.electronAPI.glossary.import(terms)
+      : webAPI.glossary.import(terms),
+};
 

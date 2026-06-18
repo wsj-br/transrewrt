@@ -40,6 +40,7 @@ export function useProcessing({
   transformPrompts,
   transformPromptId,
   transformFromLang,
+  glossaryTerms = [],
 }) {
   const [isProcessing, setIsProcessing] = useState(false);
   const [elapsedTime, setElapsedTime] = useState(0);
@@ -140,7 +141,9 @@ export function useProcessing({
           targetLanguage,
           activeModel,
           sourceLanguage === "Detect Language" ? null : sourceLanguage,
-          signal
+          signal,
+          null,
+          glossaryTerms,
         );
 
         if (timerRef.current) {

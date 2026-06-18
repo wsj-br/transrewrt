@@ -11,6 +11,12 @@ Use conventional types (Added, Changed, Fixed, etc.) and short descriptions.
 
 ## Unreleased
 
+- **Changed**: Translate workspace — `Add to Glossary` button now sits to the right of the `From:` language selector (input panel header); restyled the `Glossary` settings link in the output footer to match the Template CSV/XLSX buttons (muted text, blue underline on hover). Both the `Add to Glossary` and `Glossary` buttons are hidden when the glossary switch is off.
+- **Fixed**: Add to Glossary modal source language dropdown now lists all languages (full list with most-used on top) instead of only the most-used ones, matching the target language dropdown.
+- **Changed**: Settings → Glossary tab table column order to source language, source term, target language, target term.
+- **Changed**: Settings → Glossary tab adds a gap above the terms table; Template CSV/XLSX buttons gain a file-down icon, stay muted by default, and turn blue with an underline on hover (hover variant uses `[&:hover]:` so it works on `hover: none` environments).
+- **Changed**: Settings → Glossary tab language columns now hug their content (compact `hugSelectWidth` selectors, icon hidden via new `LanguageSelector` `hideIcon` prop) so the source/target term columns get the remaining width.
+
 ## [1.5.0] - 2026-06-08
 
 - **Added**: Custom OpenAI-compatible provider (name, URL, and API key) in Settings → API Config (Electron) and via `CUSTOM_PROVIDER_*` environment variables (web/Docker); models listed in Advanced mode when configured and reachable (e.g. NVIDIA NIM).

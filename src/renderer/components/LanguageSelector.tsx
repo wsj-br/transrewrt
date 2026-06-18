@@ -32,6 +32,8 @@ interface LanguageSelectorProps {
   hugSelectWidth?: boolean;
   /** When true, the visible label span is omitted; `label` is still used for `aria-label` on the trigger. */
   hideLabel?: boolean;
+  /** When true, the leading Languages icon is omitted (e.g. compact table cells). */
+  hideIcon?: boolean;
   /** Tailwind colour classes for the leading Languages icon (e.g. header mode accent). */
   iconClassName?: string;
   /** Stroke width for the Languages icon; header mode icons use 1.6. */
@@ -49,6 +51,7 @@ const LanguageSelector = ({
   dataTestId,
   hugSelectWidth = false,
   hideLabel = false,
+  hideIcon = false,
   iconClassName,
   iconStrokeWidth,
 }: LanguageSelectorProps) => {
@@ -105,11 +108,13 @@ const LanguageSelector = ({
 
   return (
     <div className="flex items-center gap-2" data-testid={dataTestId}>
-      <Languages
-        className={cn("h-5 w-5 shrink-0", iconClassName)}
-        style={iconColor ? { color: iconColor } : undefined}
-        strokeWidth={iconStrokeWidth}
-      />
+      {!hideIcon && (
+        <Languages
+          className={cn("h-5 w-5 shrink-0", iconClassName)}
+          style={iconColor ? { color: iconColor } : undefined}
+          strokeWidth={iconStrokeWidth}
+        />
+      )}
       {label && !hideLabel && (
         <span className="text-sm font-medium text-muted-foreground whitespace-nowrap">
           {label}
@@ -213,6 +218,7 @@ LanguageSelector.propTypes = {
   dataTestId: PropTypes.string,
   hugSelectWidth: PropTypes.bool,
   hideLabel: PropTypes.bool,
+  hideIcon: PropTypes.bool,
   iconClassName: PropTypes.string,
   iconStrokeWidth: PropTypes.number,
 };

@@ -17,6 +17,8 @@ import { useDebouncedProcess } from "../hooks/useDebouncedProcess";
 import { useProcessing } from "../hooks/useProcessing";
 import { useTranslateWordAlternatives } from "../hooks/useTranslateWordAlternatives";
 import { useTransformPrompts } from "../hooks/useTransformPrompts";
+import { useGlossaryTerms } from "../hooks/useGlossaryTerms";
+import { GlossaryAddModal } from "./GlossaryAddModal";
 import { TranslateWordAlternativesPopover } from "./TranslateWordAlternativesPopover";
 import { findUILanguageEntry } from "../utils/misc/languageConstants";
 import {
@@ -83,6 +85,9 @@ const App = () => {
   };
 
   const [openSettingsToTab, setOpenSettingsToTab] = useState(null);
+  const [glossaryModalOpen, setGlossaryModalOpen] = useState(false);
+  const [glossaryPrefillSrcText, setGlossaryPrefillSrcText] = useState("");
+  const [glossaryPrefillTgtText, setGlossaryPrefillTgtText] = useState("");
   const hasRestoredViewRef = useRef(false);
   // Independent input/output per mode so switching translate ↔ rewrite keeps each view's content
   const [inputTextTranslate, setInputTextTranslate] = useState("");
@@ -191,6 +196,12 @@ const App = () => {
     transform,
     activeModel,
   });
+
+  const { terms: glossaryTermsForProcessing } = useGlossaryTerms(
+    sourceLanguage,
+    targetLanguage,
+    currentMode === "translate" && !!settings.use_glossary,
+  );
 
   const inputText = currentMode === "translate" ? inputTextTranslate : currentMode === "rewrite" ? inputTextRewrite : inputTextTransform;
   const outputText = currentMode === "translate" ? outputTextTranslate : currentMode === "rewrite" ? outputTextRewrite : outputTextTransform;
@@ -309,6 +320,7 @@ const App = () => {
     transformPrompts,
     transformPromptId,
     transformFromLang,
+    glossaryTerms: glossaryTermsForProcessing,
   });
 
   const {
@@ -534,6 +546,26 @@ const App = () => {
     autoCopy: !!settings.auto_copy,
     onAutoExecuteChange: (checked) => updateSettings({ auto_translate_on_paste: checked }),
     onAutoCopyChange: (checked) => updateSettings({ auto_copy: checked }),
+    useGlossary: !!settings.use_glossary,
+    onUseGlossaryChange: (checked) => updateSettings({ use_glossary: checked }),
+    onOpenGlossaryModal: () => {
+      // Read selections from translate textareas at the moment the button is clicked
+      const inputTextarea = document.querySelector<HTMLTextAreaElement>('[data-panel="input"] textarea');
+      const outputTextarea = document.querySelector<HTMLTextAreaElement>('[data-panel="output"] textarea');
+      const inputSel = inputTextarea && inputTextarea.selectionStart !== inputTextarea.selectionEnd
+        ? inputTextarea.value.substring(inputTextarea.selectionStart, inputTextarea.selectionEnd)
+        : "";
+      const outputSel = outputTextarea && outputTextarea.selectionStart !== outputTextarea.selectionEnd
+        ? outputTextarea.value.substring(outputTextarea.selectionStart, outputTextarea.selectionEnd)
+        : "";
+      setGlossaryPrefillSrcText(inputSel);
+      setGlossaryPrefillTgtText(outputSel);
+      setGlossaryModalOpen(true);
+    },
+    onOpenGlossarySettings: () => {
+      setOpenSettingsToTab("glossary");
+      setCurrentView("settings");
+    },
   };
 
   const { leftPanel, rightPanel, workspaceTopBar = null, actionBar = null } =
@@ -793,6 +825,19 @@ const App = () => {
           />
         )}
         {loadSampleConfirmModal}
+        <GlossaryAddModal
+          open={glossaryModalOpen}
+          onClose={() => setGlossaryModalOpen(false)}
+          sourceLanguage={sourceLanguage === "Detect Language" ? null : sourceLanguage}
+          targetLanguage={targetLanguage}
+          prefillSourceText={glossaryPrefillSrcText}
+          prefillTargetText={glossaryPrefillTgtText}
+          onOpenSettings={() => {
+            setGlossaryModalOpen(false);
+            setOpenSettingsToTab("glossary");
+            setCurrentView("settings");
+          }}
+        />
         <TranslateWordAlternativesPopover {...translateWordAltPopoverProps} />
       </>
     );
@@ -861,6 +906,19 @@ const App = () => {
         />
       )}
       {loadSampleConfirmModal}
+      <GlossaryAddModal
+        open={glossaryModalOpen}
+        onClose={() => setGlossaryModalOpen(false)}
+        sourceLanguage={sourceLanguage === "Detect Language" ? null : sourceLanguage}
+        targetLanguage={targetLanguage}
+        prefillSourceText={glossaryPrefillSrcText}
+        prefillTargetText={glossaryPrefillTgtText}
+        onOpenSettings={() => {
+          setGlossaryModalOpen(false);
+          setOpenSettingsToTab("glossary");
+          setCurrentView("settings");
+        }}
+      />
       <TranslateWordAlternativesPopover {...translateWordAltPopoverProps} />
     </div>
   );

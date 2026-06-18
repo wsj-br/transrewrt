@@ -16,6 +16,7 @@ const createStatusRouter = require("./routes/status");
 const createApiLlmRouter = require("./routes/apiLlm");
 const createCallsRouter = require("./routes/calls");
 const createCustomPromptsRouter = require("./routes/customPrompts");
+const createGlossaryRouter = require("./routes/glossary");
 const createUsersRouter = require("./routes/users");
 const createConfigBackupRouter = require("./routes/configBackup");
 const { createPresetsRouter, startPresetsRemoteSync } = require("./routes/presets");
@@ -196,6 +197,7 @@ app.use(
     log,
   ),
 );
+app.use("/api", createGlossaryRouter(appDb.getDb, auth.setSessionRefreshCookie, log));
 app.use("/api/presets", createPresetsRouter(PRESETS_PATH, DEFAULT_PRESETS_PATH, log, appDb));
 
 // One level up: dev has src/server → project root; Docker has /app/server → /app

@@ -488,6 +488,124 @@ function registerAppDbHandlers(ipcMain, getUserDataPath) {
       return { success: false, count: 0, error: err.message };
     }
   });
+
+  ipcMain.handle("glossary:getAll", () => {
+    try {
+      const d = getDb();
+      if (!d) return [];
+      return d.prepare(sql.GLOSSARY_GET_ALL).all();
+    } catch (err) {
+      console.error("[appDb] glossary:getAll error:", err);
+      return [];
+    }
+  });
+
+  ipcMain.handle("glossary:getByLangPair", (_, sourceLang, targetLang) => {
+    try {
+      const d = getDb();
+      if (!d) return [];
+      return d.prepare(sql.GLOSSARY_GET_BY_LANG_PAIR).all(sourceLang, targetLang);
+    } catch (err) {
+      console.error("[appDb] glossary:getByLangPair error:", err);
+      return [];
+    }
+  });
+
+  ipcMain.handle("glossary:create", (_, term) => {
+    try {
+      const d = getDb();
+      if (!d) return { id: null, error: "Database unavailable" };
+      const now = new Date().toISOString();
+      try {
+        const result = d.prepare(sql.GLOSSARY_INSERT).run(
+          term.source_language || "",
+          term.target_language || "",
+          term.source_text || "",
+          term.target_text || "",
+          now,
+          now,
+          null,
+        );
+        return { id: result.lastInsertRowid, error: null, updated: false };
+      } catch (e) {
+        if (/UNIQUE constraint/.test(e.message)) {
+          d.prepare(sql.GLOSSARY_UPDATE_BY_CONFLICT).run(
+            term.target_text || "",
+            now,
+            term.source_language || "",
+            term.target_language || "",
+            term.source_text || "",
+          );
+          const row = d.prepare("SELECT id FROM glossary_terms WHERE source_language = ? AND target_language = ? AND source_text = ? AND user_id IS NULL").get(term.source_language || "", term.target_language || "", term.source_text || "");
+          return { id: row?.id ?? null, error: null, updated: true };
+        }
+        throw e;
+      }
+    } catch (err) {
+      console.error("[appDb] glossary:create error:", err);
+      return { id: null, error: err.message };
+    }
+  });
+
+  ipcMain.handle("glossary:update", (_, id, term) => {
+    try {
+      const d = getDb();
+      if (!d) return { success: false, error: "Database unavailable" };
+      const now = new Date().toISOString();
+      d.prepare(sql.GLOSSARY_UPDATE).run(
+        term.source_language || "",
+        term.target_language || "",
+        term.source_text || "",
+        term.target_text || "",
+        now,
+        id,
+      );
+      return { success: true, error: null };
+    } catch (err) {
+      console.error("[appDb] glossary:update error:", err);
+      return { success: false, error: err.message };
+    }
+  });
+
+  ipcMain.handle("glossary:delete", (_, id) => {
+    try {
+      const d = getDb();
+      if (!d) return { success: false, error: "Database unavailable" };
+      d.prepare(sql.GLOSSARY_DELETE).run(id);
+      return { success: true, error: null };
+    } catch (err) {
+      console.error("[appDb] glossary:delete error:", err);
+      return { success: false, error: err.message };
+    }
+  });
+
+  ipcMain.handle("glossary:import", (_, terms) => {
+    try {
+      const d = getDb();
+      if (!d) return { success: false, count: 0, error: "Database unavailable" };
+      const list = Array.isArray(terms) ? terms : [];
+      const now = new Date().toISOString();
+      const insert = d.prepare(sql.GLOSSARY_INSERT);
+      const update = d.prepare(sql.GLOSSARY_UPDATE_BY_CONFLICT);
+      let count = 0;
+      for (const t of list) {
+        if (!t?.source_text || !t?.target_text || !t?.source_language || !t?.target_language) continue;
+        try {
+          insert.run(t.source_language, t.target_language, t.source_text, t.target_text, t.created_at || now, now, null);
+          count++;
+        } catch (e) {
+          if (/UNIQUE constraint/.test(e.message)) {
+            update.run(t.target_text, now, t.source_language, t.target_language, t.source_text);
+            count++;
+          } else throw e;
+        }
+      }
+      return { success: true, count, error: null };
+    } catch (err) {
+      console.error("[appDb] glossary:import error:", err);
+      return { success: false, count: 0, error: err.message };
+    }
+  });
 }
 
 module.exports = {
