@@ -11,11 +11,11 @@ Use conventional types (Added, Changed, Fixed, etc.) and short descriptions.
 
 ## Unreleased
 
-- **Changed**: Translate workspace — `Add to Glossary` button now sits to the right of the `From:` language selector (input panel header); restyled the `Glossary` settings link in the output footer to match the Template CSV/XLSX buttons (muted text, blue underline on hover). Both the `Add to Glossary` and `Glossary` buttons are hidden when the glossary switch is off.
-- **Fixed**: Add to Glossary modal source language dropdown now lists all languages (full list with most-used on top) instead of only the most-used ones, matching the target language dropdown.
-- **Changed**: Settings → Glossary tab table column order to source language, source term, target language, target term.
-- **Changed**: Settings → Glossary tab adds a gap above the terms table; Template CSV/XLSX buttons gain a file-down icon, stay muted by default, and turn blue with an underline on hover (hover variant uses `[&:hover]:` so it works on `hover: none` environments).
-- **Changed**: Settings → Glossary tab language columns now hug their content (compact `hugSelectWidth` selectors, icon hidden via new `LanguageSelector` `hideIcon` prop) so the source/target term columns get the remaining width.
+- **Added**: Glossary — store source/target term pairs per language pair and apply them during translation so chosen terms stay consistent. Manage terms in Settings → Glossary (add/edit/delete, CSV/XLSX import and template export); terms are stored locally in Electron and per-user on the server (web/Docker).
+- **Changed**: Translate workspace integrates the glossary — an `Add to Glossary` button beside the `From:` language selector and a `Glossary` settings link in the output footer, both hidden when the glossary switch is off.
+- **Security**: Force `js-yaml` to `^4.2.0` via `pnpm-workspace.yaml` overrides so `gray-matter` no longer pulls vulnerable `js-yaml@3.x` (GHSA-h67p-54hq-rp68 DoS); removed the ineffective top-level `overrides` block from `package.json` (pnpm reads overrides from `pnpm-workspace.yaml`).
+- **Fixed**: Resolve lint errors and warnings in glossary code — replaced `no-explicit-any` usages with proper types in `GlossaryAddModal`, `SettingsGlossaryTab`, and `useGlossaryTerms`, and fixed `react-hooks/exhaustive-deps` warnings in `useGlossaryTerms` and `useProcessing`.
+- **Changed**: Align glossary code with codebase conventions — `SettingsGlossaryTab` and `GlossaryAddModal` use default exports; dropped the unused `settings` prop from `SettingsGlossaryTab`; centralized the `GlossaryTerm` type and CSV/XLSX import/export helpers in `utils/misc/glossaryUtils.ts` (reusing `exportUtils.escapeCsvCell`); standardized progress-label ellipsis to `…`.
 
 ## [1.5.0] - 2026-06-08
 

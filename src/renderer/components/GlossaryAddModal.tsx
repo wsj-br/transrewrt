@@ -24,7 +24,7 @@ interface GlossaryAddModalProps {
   onOpenSettings?: () => void;
 }
 
-export function GlossaryAddModal({
+function GlossaryAddModal({
   open,
   onClose,
   sourceLanguage,
@@ -63,15 +63,15 @@ export function GlossaryAddModal({
     setErrorMsg(null);
     setSavedMsg(null);
     try {
-      const res: any = await glossaryApi.create({
+      const res = (await glossaryApi.create({
         source_language: srcLang,
         target_language: tgtLang,
         source_text: srcText.trim(),
         target_text: tgtText.trim(),
-      });
+      })) as { updated?: boolean } | undefined;
       setSavedMsg(res?.updated ? t("Term updated.") : t("Term saved."));
       onSaved?.();
-    } catch (err: any) {
+    } catch (err) {
       setErrorMsg(err?.message || t("Failed to save term."));
     } finally {
       setSaving(false);
@@ -115,7 +115,7 @@ export function GlossaryAddModal({
               className="min-h-[64px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm resize-y focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
               value={srcText}
               onChange={(e) => setSrcText(e.target.value)}
-              placeholder={t("Term in source language...")}
+              placeholder={t("Term in source language…")}
             />
           </div>
           <div className="flex flex-col gap-1.5">
@@ -124,7 +124,7 @@ export function GlossaryAddModal({
               className="min-h-[64px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm resize-y focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
               value={tgtText}
               onChange={(e) => setTgtText(e.target.value)}
-              placeholder={t("Term in target language...")}
+              placeholder={t("Term in target language…")}
             />
           </div>
           {savedMsg && <p className="text-sm text-emerald-500">{savedMsg}</p>}
@@ -145,7 +145,7 @@ export function GlossaryAddModal({
               {t("Close")}
             </Button>
             <Button onClick={handleSave} disabled={saving}>
-              {saving ? t("Saving...") : t("Save")}
+              {saving ? t("Saving…") : t("Save")}
             </Button>
           </div>
         </DialogFooter>
@@ -153,3 +153,5 @@ export function GlossaryAddModal({
     </Dialog>
   );
 }
+
+export default GlossaryAddModal;

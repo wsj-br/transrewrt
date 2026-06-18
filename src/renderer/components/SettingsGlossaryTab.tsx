@@ -6,6 +6,15 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { triggerDownload } from "../utils/misc/exportUtils";
+import {
+  type GlossaryTerm,
+  parseCsvToTerms,
+  parseXlsxToTerms,
+  termsToCsv,
+  termsToXlsx,
+  glossaryTemplateCsvBlob,
+  glossaryTemplateXlsxBlob,
+} from "../utils/misc/glossaryUtils";
 import { glossaryApi } from "../services/apiService";
 import LanguageSelector from "./LanguageSelector";
 import {
@@ -17,114 +26,7 @@ import {
 } from "./settings/settingsTableClasses";
 import { cn } from "@/lib/utils";
 
-interface GlossaryTerm {
-  id: number;
-  source_language: string;
-  target_language: string;
-  source_text: string;
-  target_text: string;
-  created_at?: string;
-  updated_at?: string;
-}
-
-const GLOSSARY_CSV_HEADERS = ["source_language", "target_language", "source_text", "target_text"];
-
-function escapeCsvCell(val: string): string {
-  const s = String(val ?? "");
-  if (s.includes(",") || s.includes('"') || s.includes("\n")) {
-    return `"${s.replace(/"/g, '""')}"`;
-  }
-  return s;
-}
-
-function parseCsvLine(line: string): string[] {
-  const out: string[] = [];
-  let field = "";
-  let inQuotes = false;
-  for (let i = 0; i < line.length; i++) {
-    const ch = line[i];
-    if (ch === '"') {
-      if (inQuotes && line[i + 1] === '"') { field += '"'; i++; }
-      else inQuotes = !inQuotes;
-    } else if (ch === "," && !inQuotes) {
-      out.push(field);
-      field = "";
-    } else {
-      field += ch;
-    }
-  }
-  out.push(field || "");
-  return out;
-}
-
-function normalizeHeaders(headers: string[]): string[] {
-  return headers.map((h) => String(h).trim().toLowerCase().replace(/\s+/g, "_"));
-}
-
-function parseCsvToTerms(text: string, fallbackSrcLang: string, fallbackTgtLang: string): GlossaryTerm[] {
-  const lines = text.split(/\r?\n/).filter((l) => l.trim());
-  if (lines.length < 2) return [];
-  const headers = normalizeHeaders(parseCsvLine(lines[0]));
-  const has4Cols = headers.includes("source_language") && headers.includes("target_language");
-  const terms: GlossaryTerm[] = [];
-  for (let i = 1; i < lines.length; i++) {
-    const vals = parseCsvLine(lines[i]);
-    if (has4Cols) {
-      const row: Record<string, string> = {};
-      headers.forEach((h, idx) => { row[h] = vals[idx] != null ? String(vals[idx]).trim() : ""; });
-      if (row.source_text && row.target_text && row.source_language && row.target_language) {
-        terms.push({ id: 0, source_language: row.source_language, target_language: row.target_language, source_text: row.source_text, target_text: row.target_text });
-      }
-    } else {
-      const srcIdx = headers.indexOf("source_text");
-      const tgtIdx = headers.indexOf("target_text");
-      const s = srcIdx >= 0 ? (vals[srcIdx] ?? "").trim() : (vals[0] ?? "").trim();
-      const tg = tgtIdx >= 0 ? (vals[tgtIdx] ?? "").trim() : (vals[1] ?? "").trim();
-      if (s && tg && fallbackSrcLang && fallbackTgtLang) {
-        terms.push({ id: 0, source_language: fallbackSrcLang, target_language: fallbackTgtLang, source_text: s, target_text: tg });
-      }
-    }
-  }
-  return terms;
-}
-
-function parseXlsxToTerms(wb: any, fallbackSrcLang: string, fallbackTgtLang: string): { terms: GlossaryTerm[]; is2col: boolean } {
-  const sheetName = wb.SheetNames[0];
-  const rows: Record<string, string>[] = XLSX.utils.sheet_to_json(wb.Sheets[sheetName], { defval: "" });
-  if (!rows.length) return { terms: [], is2col: false };
-  const keys = Object.keys(rows[0]).map((k) => k.trim().toLowerCase().replace(/\s+/g, "_"));
-  const has4Cols = keys.includes("source_language") && keys.includes("target_language");
-  const terms: GlossaryTerm[] = rows.map((row) => {
-    const norm: Record<string, string> = {};
-    Object.keys(row).forEach((k) => { norm[k.trim().toLowerCase().replace(/\s+/g, "_")] = String(row[k] ?? "").trim(); });
-    if (has4Cols) {
-      return { id: 0, source_language: norm.source_language || "", target_language: norm.target_language || "", source_text: norm.source_text || "", target_text: norm.target_text || "" };
-    }
-    return { id: 0, source_language: fallbackSrcLang, target_language: fallbackTgtLang, source_text: norm.source_text || norm[keys[0]] || "", target_text: norm.target_text || norm[keys[1]] || "" };
-  }).filter((t) => t.source_text && t.target_text && t.source_language && t.target_language);
-  return { terms, is2col: !has4Cols };
-}
-
-function termsToXlsx(terms: GlossaryTerm[]): Blob {
-  const rows = terms.map((t) => ({ source_language: t.source_language, target_language: t.target_language, source_text: t.source_text, target_text: t.target_text }));
-  const ws = XLSX.utils.json_to_sheet(rows);
-  const wb = XLSX.utils.book_new();
-  XLSX.utils.book_append_sheet(wb, ws, "Glossary");
-  const arr = XLSX.write(wb, { bookType: "xlsx", type: "array" });
-  return new Blob([arr], { type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" });
-}
-
-function termsToCsv(terms: GlossaryTerm[]): Blob {
-  const header = GLOSSARY_CSV_HEADERS.join(",");
-  const rows = terms.map((t) => [t.source_language, t.target_language, t.source_text, t.target_text].map(escapeCsvCell).join(","));
-  return new Blob([[header, ...rows].join("\r\n")], { type: "text/csv;charset=utf-8;" });
-}
-
-interface SettingsGlossaryTabProps {
-  settings: Record<string, unknown>;
-}
-
-export function SettingsGlossaryTab({ settings: _settings }: SettingsGlossaryTabProps) {
+function SettingsGlossaryTab() {
   const { t } = useTranslation();
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -141,7 +43,7 @@ export function SettingsGlossaryTab({ settings: _settings }: SettingsGlossaryTab
   const load = useCallback(async () => {
     setLoading(true);
     try {
-      const data: any = await glossaryApi.getAll();
+      const data = (await glossaryApi.getAll()) as GlossaryTerm[] | { terms?: GlossaryTerm[] };
       setTerms(Array.isArray(data) ? data : (data?.terms ?? []));
     } catch {
       setTerms([]);
@@ -171,9 +73,9 @@ export function SettingsGlossaryTab({ settings: _settings }: SettingsGlossaryTab
     if (!newRow.source_language || !newRow.target_language || !newRow.source_text.trim() || !newRow.target_text.trim()) return;
     setSaving(true);
     try {
-      const created: any = await glossaryApi.create({ ...newRow, source_text: newRow.source_text.trim(), target_text: newRow.target_text.trim() });
+      const created = (await glossaryApi.create({ ...newRow, source_text: newRow.source_text.trim(), target_text: newRow.target_text.trim() })) as GlossaryTerm | undefined;
       if (created?.id) {
-        setTerms((prev) => [...prev, created as GlossaryTerm]);
+        setTerms((prev) => [...prev, created]);
       } else {
         await load();
       }
@@ -201,10 +103,10 @@ export function SettingsGlossaryTab({ settings: _settings }: SettingsGlossaryTab
         termsToImport = parseCsvToTerms(text, "", "");
       }
       if (!termsToImport.length) { setImportStatus(t("No valid rows found in file.")); return; }
-      const result: any = await glossaryApi.import(termsToImport);
+      const result = (await glossaryApi.import(termsToImport)) as { count?: number } | undefined;
       setImportStatus(t("Imported {{count}} terms.", { count: result?.count ?? termsToImport.length }));
       await load();
-    } catch (err: any) {
+    } catch (err) {
       setImportStatus(err?.message || t("Import failed."));
     }
   };
@@ -220,17 +122,11 @@ export function SettingsGlossaryTab({ settings: _settings }: SettingsGlossaryTab
   };
 
   const handleDownloadTemplateCsv = () => {
-    const blob = new Blob([GLOSSARY_CSV_HEADERS.join(",") + "\r\n"], { type: "text/csv;charset=utf-8;" });
-    triggerDownload(blob, "glossary-template.csv");
+    triggerDownload(glossaryTemplateCsvBlob(), "glossary-template.csv");
   };
 
   const handleDownloadTemplateXlsx = () => {
-    const ws = XLSX.utils.aoa_to_sheet([GLOSSARY_CSV_HEADERS]);
-    const wb = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(wb, ws, "Glossary");
-    const arr = XLSX.write(wb, { bookType: "xlsx", type: "array" });
-    const blob = new Blob([arr], { type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" });
-    triggerDownload(blob, "glossary-template.xlsx");
+    triggerDownload(glossaryTemplateXlsxBlob(), "glossary-template.xlsx");
   };
 
   return (
@@ -429,3 +325,5 @@ export function SettingsGlossaryTab({ settings: _settings }: SettingsGlossaryTab
     </div>
   );
 }
+
+export default SettingsGlossaryTab;

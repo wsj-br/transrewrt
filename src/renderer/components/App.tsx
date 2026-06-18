@@ -18,7 +18,7 @@ import { useProcessing } from "../hooks/useProcessing";
 import { useTranslateWordAlternatives } from "../hooks/useTranslateWordAlternatives";
 import { useTransformPrompts } from "../hooks/useTransformPrompts";
 import { useGlossaryTerms } from "../hooks/useGlossaryTerms";
-import { GlossaryAddModal } from "./GlossaryAddModal";
+import GlossaryAddModal from "./GlossaryAddModal";
 import { TranslateWordAlternativesPopover } from "./TranslateWordAlternativesPopover";
 import { findUILanguageEntry } from "../utils/misc/languageConstants";
 import {

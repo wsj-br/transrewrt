@@ -11,6 +11,12 @@ alwaysApply: true
 - **Framework**: Electron + React. Shared React renderer; Electron main/preload only in desktop mode.
 - **Runtime environments**: Two modes:  **Electron**: local `config.json` via preload, direct OpenRouter API, separate window/modal for settings. **Web/Docker**: server file via REST API, External API calls proxied (key on server).  When changing config, API, or settings UI, consider both runtimes.
 
+## Dependencies & overrides
+
+- Package manager is **pnpm** (`packageManager` in `package.json`); use `pnpm` (not npm/yarn) for installs and audits.
+- pnpm **dependency overrides** live in `pnpm-workspace.yaml` under the `overrides:` key — NOT in `package.json`. A top-level `overrides` block in `package.json` is ignored by pnpm, so add or edit overrides in `pnpm-workspace.yaml`, then run `pnpm install` to regenerate `pnpm-lock.yaml`.
+- Related pnpm settings also live in `pnpm-workspace.yaml`: `allowBuilds`, `allowedDeprecatedVersions`, `minimumReleaseAgeExclude`.
+
 ## i18n (UI translations)
 
 When the task touches UI strings, locales, internationalization, localization, or translation tooling, read **`dev/ai-i18n-tools-context.md`** before changing code or running CLI commands. Skip that file for unrelated work.

@@ -1,16 +1,8 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { glossaryApi } from "../services/apiService";
+import type { GlossaryTerm } from "../utils/misc/glossaryUtils";
 
-export interface GlossaryTerm {
-  id: number;
-  source_language: string;
-  target_language: string;
-  source_text: string;
-  target_text: string;
-  created_at: string;
-  updated_at: string;
-  user_id: string | null;
-}
+export type { GlossaryTerm };
 
 /**
  * Fetches glossary terms for a given language pair.
@@ -27,7 +19,7 @@ export function useGlossaryTerms(
   const [error, setError] = useState<string | null>(null);
   const fetchCount = useRef(0);
 
-  const fetch = async () => {
+  const fetch = useCallback(async () => {
     if (!enabled || !sourceLang || !targetLang || sourceLang === "Detect Language") {
       setTerms([]);
       return;
@@ -39,18 +31,18 @@ export function useGlossaryTerms(
       const rows = await glossaryApi.getByLangPair(sourceLang, targetLang);
       if (id !== fetchCount.current) return;
       setTerms(Array.isArray(rows) ? rows : []);
-    } catch (err: any) {
+    } catch (err) {
       if (id !== fetchCount.current) return;
       setError(err?.message || "Failed to load glossary");
       setTerms([]);
     } finally {
       if (id === fetchCount.current) setLoading(false);
     }
-  };
+  }, [enabled, sourceLang, targetLang]);
 
   useEffect(() => {
     fetch();
-  }, [sourceLang, targetLang, enabled]);
+  }, [fetch]);
 
   return { terms, loading, error, refresh: fetch };
 }

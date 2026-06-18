@@ -32,7 +32,7 @@ import SettingsCostTrackingTab from "./SettingsCostTrackingTab";
 import SettingsTransformPromptsTab from "./SettingsTransformPromptsTab";
 import SettingsAboutTab from "./SettingsAboutTab";
 import SettingsUsersTab from "./SettingsUsersTab";
-import { SettingsGlossaryTab } from "./SettingsGlossaryTab";
+import SettingsGlossaryTab from "./SettingsGlossaryTab";
 import HeaderLanguageSelector from "./HeaderLanguageSelector";
 import ConfirmModal from "./ConfirmModal";
 import { FREE_MODEL_ID } from "../constants";
@@ -683,7 +683,7 @@ const SettingsPanel = ({ openToTab, onOpenToTabConsumed }) => {
         )}
 
         {activeTab === "transform" && <SettingsTransformPromptsTab />}
-        {activeTab === "glossary" && <SettingsGlossaryTab settings={settings} />}
+        {activeTab === "glossary" && <SettingsGlossaryTab />}
 
         {canAccessUsersTab && activeTab === "users" && (
           <SettingsUsersTab />

@@ -248,6 +248,7 @@ export function useProcessing({
       activeModel,
       settings.auto_copy,
       translate,
+      glossaryTerms,
       setOutputTextTranslate,
       setCurrentMode,
       updateSettings,

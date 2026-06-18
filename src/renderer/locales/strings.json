@@ -2329,11 +2329,11 @@
       },
       {
         "file": "src/renderer/components/SettingsGlossaryTab.tsx",
-        "line": 245
+        "line": 141
       },
       {
         "file": "src/renderer/components/SettingsGlossaryTab.tsx",
-        "line": 339
+        "line": 235
       },
       {
         "file": "src/renderer/components/SettingsTransformPromptsTab.tsx",
@@ -10710,12 +10710,6 @@
       "tr": "Tüm alanlar zorunludur.",
       "uk": "Усі поля є обов'язковими."
     },
-    "locations": [
-      {
-        "file": "src/renderer/components/GlossaryAddModal.tsx",
-        "line": 59
-      }
-    ],
     "models": {
       "pt-BR": "google/gemini-2.5-flash-lite",
       "zh-CN": "google/gemini-2.5-flash-lite",
@@ -10753,7 +10747,13 @@
       "vi": "google/gemini-2.5-flash-lite",
       "tr": "google/gemini-2.5-flash-lite",
       "uk": "google/gemini-2.5-flash-lite"
-    }
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/GlossaryAddModal.tsx",
+        "line": 59
+      }
+    ]
   },
   "fa81b94a": {
     "source": "Term updated.",
@@ -10795,12 +10795,6 @@
       "tr": "Terim güncellendi.",
       "uk": "Термін оновлено."
     },
-    "locations": [
-      {
-        "file": "src/renderer/components/GlossaryAddModal.tsx",
-        "line": 72
-      }
-    ],
     "models": {
       "pt-BR": "google/gemini-2.5-flash-lite",
       "zh-CN": "google/gemini-2.5-flash-lite",
@@ -10838,7 +10832,13 @@
       "vi": "google/gemini-2.5-flash-lite",
       "tr": "google/gemini-2.5-flash-lite",
       "uk": "google/gemini-2.5-flash-lite"
-    }
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/GlossaryAddModal.tsx",
+        "line": 72
+      }
+    ]
   },
   "acc36eb8": {
     "source": "Term saved.",
@@ -10880,12 +10880,6 @@
       "tr": "Terim kaydedildi.",
       "uk": "Термін збережено."
     },
-    "locations": [
-      {
-        "file": "src/renderer/components/GlossaryAddModal.tsx",
-        "line": 72
-      }
-    ],
     "models": {
       "pt-BR": "google/gemini-2.5-flash-lite",
       "zh-CN": "google/gemini-2.5-flash-lite",
@@ -10923,7 +10917,13 @@
       "vi": "google/gemini-2.5-flash-lite",
       "tr": "google/gemini-2.5-flash-lite",
       "uk": "google/gemini-2.5-flash-lite"
-    }
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/GlossaryAddModal.tsx",
+        "line": 72
+      }
+    ]
   },
   "37eea45e": {
     "source": "Failed to save term.",
@@ -10965,12 +10965,6 @@
       "tr": "Terim kaydedilemedi.",
       "uk": "Не вдалося зберегти термін."
     },
-    "locations": [
-      {
-        "file": "src/renderer/components/GlossaryAddModal.tsx",
-        "line": 75
-      }
-    ],
     "models": {
       "pt-BR": "google/gemini-2.5-flash-lite",
       "zh-CN": "google/gemini-2.5-flash-lite",
@@ -11008,7 +11002,13 @@
       "vi": "google/gemini-2.5-flash-lite",
       "tr": "google/gemini-2.5-flash-lite",
       "uk": "google/gemini-2.5-flash-lite"
-    }
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/GlossaryAddModal.tsx",
+        "line": 75
+      }
+    ]
   },
   "764cd168": {
     "source": "Add to Glossary",
@@ -11050,24 +11050,6 @@
       "tr": "Sözlüğe Ekle",
       "uk": "Додати до глосарію"
     },
-    "locations": [
-      {
-        "file": "src/renderer/components/GlossaryAddModal.tsx",
-        "line": 85
-      },
-      {
-        "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
-        "line": 82
-      },
-      {
-        "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
-        "line": 83
-      },
-      {
-        "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
-        "line": 86
-      }
-    ],
     "models": {
       "pt-BR": "google/gemini-2.5-flash-lite",
       "zh-CN": "google/gemini-2.5-flash-lite",
@@ -11105,7 +11087,25 @@
       "vi": "google/gemini-2.5-flash-lite",
       "tr": "google/gemini-2.5-flash-lite",
       "uk": "google/gemini-2.5-flash-lite"
-    }
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/GlossaryAddModal.tsx",
+        "line": 85
+      },
+      {
+        "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
+        "line": 82
+      },
+      {
+        "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
+        "line": 83
+      },
+      {
+        "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
+        "line": 86
+      }
+    ]
   },
   "a23627e6": {
     "source": "Source language",
@@ -11147,32 +11147,6 @@
       "tr": "Kaynak dil",
       "uk": "Мова оригіналу"
     },
-    "locations": [
-      {
-        "file": "src/renderer/components/GlossaryAddModal.tsx",
-        "line": 90
-      },
-      {
-        "file": "src/renderer/components/GlossaryAddModal.tsx",
-        "line": 92
-      },
-      {
-        "file": "src/renderer/components/SettingsGlossaryTab.tsx",
-        "line": 283
-      },
-      {
-        "file": "src/renderer/components/SettingsGlossaryTab.tsx",
-        "line": 285
-      },
-      {
-        "file": "src/renderer/components/SettingsGlossaryTab.tsx",
-        "line": 328
-      },
-      {
-        "file": "src/renderer/components/SettingsGlossaryTab.tsx",
-        "line": 374
-      }
-    ],
     "models": {
       "pt-BR": "google/gemini-2.5-flash-lite",
       "zh-CN": "google/gemini-2.5-flash-lite",
@@ -11210,7 +11184,33 @@
       "vi": "google/gemini-2.5-flash-lite",
       "tr": "google/gemini-2.5-flash-lite",
       "uk": "google/gemini-2.5-flash-lite"
-    }
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/GlossaryAddModal.tsx",
+        "line": 90
+      },
+      {
+        "file": "src/renderer/components/GlossaryAddModal.tsx",
+        "line": 92
+      },
+      {
+        "file": "src/renderer/components/SettingsGlossaryTab.tsx",
+        "line": 179
+      },
+      {
+        "file": "src/renderer/components/SettingsGlossaryTab.tsx",
+        "line": 181
+      },
+      {
+        "file": "src/renderer/components/SettingsGlossaryTab.tsx",
+        "line": 224
+      },
+      {
+        "file": "src/renderer/components/SettingsGlossaryTab.tsx",
+        "line": 270
+      }
+    ]
   },
   "648f771e": {
     "source": "Target language",
@@ -11252,32 +11252,6 @@
       "tr": "Hedef dil",
       "uk": "Цільова мова"
     },
-    "locations": [
-      {
-        "file": "src/renderer/components/GlossaryAddModal.tsx",
-        "line": 101
-      },
-      {
-        "file": "src/renderer/components/GlossaryAddModal.tsx",
-        "line": 103
-      },
-      {
-        "file": "src/renderer/components/SettingsGlossaryTab.tsx",
-        "line": 294
-      },
-      {
-        "file": "src/renderer/components/SettingsGlossaryTab.tsx",
-        "line": 296
-      },
-      {
-        "file": "src/renderer/components/SettingsGlossaryTab.tsx",
-        "line": 330
-      },
-      {
-        "file": "src/renderer/components/SettingsGlossaryTab.tsx",
-        "line": 394
-      }
-    ],
     "models": {
       "pt-BR": "google/gemini-2.5-flash-lite",
       "zh-CN": "google/gemini-2.5-flash-lite",
@@ -11315,7 +11289,33 @@
       "vi": "google/gemini-2.5-flash-lite",
       "tr": "google/gemini-2.5-flash-lite",
       "uk": "google/gemini-2.5-flash-lite"
-    }
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/GlossaryAddModal.tsx",
+        "line": 101
+      },
+      {
+        "file": "src/renderer/components/GlossaryAddModal.tsx",
+        "line": 103
+      },
+      {
+        "file": "src/renderer/components/SettingsGlossaryTab.tsx",
+        "line": 190
+      },
+      {
+        "file": "src/renderer/components/SettingsGlossaryTab.tsx",
+        "line": 192
+      },
+      {
+        "file": "src/renderer/components/SettingsGlossaryTab.tsx",
+        "line": 226
+      },
+      {
+        "file": "src/renderer/components/SettingsGlossaryTab.tsx",
+        "line": 290
+      }
+    ]
   },
   "f22a11c1": {
     "source": "Source term",
@@ -11357,16 +11357,6 @@
       "tr": "Kaynak terim",
       "uk": "Термін мовою оригіналу"
     },
-    "locations": [
-      {
-        "file": "src/renderer/components/GlossaryAddModal.tsx",
-        "line": 113
-      },
-      {
-        "file": "src/renderer/components/SettingsGlossaryTab.tsx",
-        "line": 329
-      }
-    ],
     "models": {
       "pt-BR": "google/gemini-2.5-flash-lite",
       "zh-CN": "google/gemini-2.5-flash-lite",
@@ -11404,47 +11394,57 @@
       "vi": "google/gemini-2.5-flash-lite",
       "tr": "google/gemini-2.5-flash-lite",
       "uk": "google/gemini-2.5-flash-lite"
-    }
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/GlossaryAddModal.tsx",
+        "line": 113
+      },
+      {
+        "file": "src/renderer/components/SettingsGlossaryTab.tsx",
+        "line": 225
+      }
+    ]
   },
-  "e9912365": {
-    "source": "Term in source language...",
+  "3655b607": {
+    "source": "Term in source language…",
     "translated": {
-      "pt-BR": "Termo no idioma de origem...",
-      "zh-CN": "源语言中的术语...",
-      "zh-TW": "來源語言的術語...",
-      "bn": "উৎস ভাষায় শব্দ...",
-      "ar": "المصطلح بلغة المصدر...",
-      "ca": "Terme en l'idioma d'origen...",
-      "cs": "Termín ve zdrojovém jazyce...",
-      "hr": "Pojam na izvornom jeziku...",
-      "en-US": "Term in source language...",
-      "fr": "Terme dans la langue source...",
-      "de": "Begriff in Ausgangssprache...",
+      "ar": "المصطلح باللغة المصدر…",
+      "hr": "Pojam na izvornom jeziku…",
+      "pt-BR": "Termo no idioma de origem…",
+      "ca": "Term in source language…",
+      "zh-TW": "來源語言中的術語…",
+      "zh-CN": "源语言术语…",
+      "bn": "উৎস ভাষার পরিভাষা…",
+      "cs": "Termín ve zdrojovém jazyce…",
+      "nl": "Term in source language…",
+      "en-US": "Term in source language…",
+      "de": "Begriff in Quellensprache…",
+      "tl": "Termino sa pinagmulang wika…",
+      "el": "Όρος στην πηγαία γλώσσα…",
       "hi": "स्रोत भाषा में शब्द...",
-      "nl": "Term in brontaal...",
-      "tl": "Termino sa wikang pinagmulan...",
-      "el": "Όρος στη γλώσσα πηγής...",
-      "hu": "Kifejezés a forrásnyelven...",
-      "pt": "Termo no idioma de origem...",
-      "ja": "ソース言語の用語...",
-      "ko": "소스 언어 용어...",
-      "pl": "Termin w języku źródłowym...",
-      "it": "Termine nella lingua di origine...",
-      "fa": "اصطلاح به زبان مبدأ...",
-      "ms": "Istilah dalam bahasa sumber...",
-      "jv": "Istilah ing basa sumber...",
-      "es": "Término en idioma de origen...",
-      "ru": "Термин на исходном языке...",
-      "sv": "Term på källspråket...",
-      "ro": "Termen în limba sursă...",
-      "sk": "Termín v zdrojovom jazyku...",
-      "te": "మూల భాషలో పదం...",
-      "pa": "ਸਰੋਤ ਭਾਸ਼ਾ ਵਿੱਚ ਸ਼ਬਦ...",
-      "sw": "Istilahi katika lugha chanzo...",
-      "th": "คำศัพท์ในภาษาต้นทาง...",
-      "vi": "Thuật ngữ trong ngôn ngữ nguồn...",
-      "tr": "Kaynak dildeki terim...",
-      "uk": "Термін мовою оригіналу..."
+      "hu": "Forrásnyelvi kifejezés…",
+      "fr": "Terme dans la langue source…",
+      "pt": "Termo no idioma de origem…",
+      "ja": "ソース言語の用語…",
+      "ms": "Istilah dalam bahasa sumber…",
+      "it": "Termine nella lingua di origine…",
+      "jv": "Istilah ing basa sumber…",
+      "pl": "Term in source language…",
+      "ko": "원본 언어의 용어…",
+      "fa": "اصطلاح در زبان مبدأ…",
+      "sv": "Term i källspråk…",
+      "ro": "Termen în limba sursă…",
+      "es": "Término en idioma de origen…",
+      "pa": "ਸਰੋਤ ਭਾਸ਼ਾ ਵਿੱਚ ਸ਼ਬਦ…",
+      "te": "మూల భాషలో పదం…",
+      "ru": "Термин на исходном языке…",
+      "sk": "Term in source language…",
+      "sw": "Neno katika lugha chanzo...",
+      "vi": "Thuật ngữ trong ngôn ngữ nguồn…",
+      "tr": "Kaynak dildeki terim…",
+      "th": "คำศัพท์ในภาษาต้นฉบับ…",
+      "uk": "Термін вихідною мовою…"
     },
     "locations": [
       {
@@ -11453,41 +11453,41 @@
       }
     ],
     "models": {
-      "pt-BR": "google/gemini-2.5-flash-lite",
-      "zh-CN": "google/gemini-2.5-flash-lite",
-      "zh-TW": "google/gemini-2.5-flash-lite",
-      "bn": "google/gemini-2.5-flash-lite",
       "ar": "google/gemini-2.5-flash-lite",
-      "ca": "google/gemini-2.5-flash-lite",
-      "cs": "google/gemini-2.5-flash-lite",
       "hr": "google/gemini-2.5-flash-lite",
-      "en-US": "google/gemini-2.5-flash-lite",
-      "fr": "google/gemini-2.5-flash-lite",
-      "de": "google/gemini-2.5-flash-lite",
-      "hi": "google/gemini-2.5-flash-lite",
+      "pt-BR": "google/gemini-2.5-flash-lite",
+      "ca": "google/gemini-2.5-flash-lite",
+      "zh-TW": "google/gemini-2.5-flash-lite",
+      "zh-CN": "google/gemini-2.5-flash-lite",
+      "bn": "google/gemini-2.5-flash-lite",
+      "cs": "google/gemini-2.5-flash-lite",
       "nl": "google/gemini-2.5-flash-lite",
+      "en-US": "google/gemini-2.5-flash-lite",
+      "de": "google/gemini-2.5-flash-lite",
       "tl": "google/gemini-2.5-flash-lite",
       "el": "google/gemini-2.5-flash-lite",
+      "hi": "google/gemini-2.5-flash-lite",
       "hu": "google/gemini-2.5-flash-lite",
+      "fr": "google/gemini-2.5-flash-lite",
       "pt": "google/gemini-2.5-flash-lite",
       "ja": "google/gemini-2.5-flash-lite",
-      "ko": "google/gemini-2.5-flash-lite",
-      "pl": "google/gemini-2.5-flash-lite",
-      "it": "google/gemini-2.5-flash-lite",
-      "fa": "google/gemini-2.5-flash-lite",
       "ms": "google/gemini-2.5-flash-lite",
+      "it": "google/gemini-2.5-flash-lite",
       "jv": "google/gemini-2.5-flash-lite",
-      "es": "google/gemini-2.5-flash-lite",
-      "ru": "google/gemini-2.5-flash-lite",
+      "pl": "google/gemini-2.5-flash-lite",
+      "ko": "google/gemini-2.5-flash-lite",
+      "fa": "google/gemini-2.5-flash-lite",
       "sv": "google/gemini-2.5-flash-lite",
       "ro": "google/gemini-2.5-flash-lite",
-      "sk": "google/gemini-2.5-flash-lite",
-      "te": "google/gemini-2.5-flash-lite",
+      "es": "google/gemini-2.5-flash-lite",
       "pa": "google/gemini-2.5-flash-lite",
-      "sw": "google/gemma-4-31b-it",
-      "th": "google/gemini-2.5-flash-lite",
+      "te": "google/gemini-2.5-flash-lite",
+      "ru": "google/gemini-2.5-flash-lite",
+      "sk": "google/gemini-2.5-flash-lite",
+      "sw": "google/gemini-2.5-flash-lite",
       "vi": "google/gemini-2.5-flash-lite",
       "tr": "google/gemini-2.5-flash-lite",
+      "th": "google/gemini-2.5-flash-lite",
       "uk": "google/gemini-2.5-flash-lite"
     }
   },
@@ -11531,16 +11531,6 @@
       "tr": "Hedef terim",
       "uk": "Цільовий термін"
     },
-    "locations": [
-      {
-        "file": "src/renderer/components/GlossaryAddModal.tsx",
-        "line": 122
-      },
-      {
-        "file": "src/renderer/components/SettingsGlossaryTab.tsx",
-        "line": 331
-      }
-    ],
     "models": {
       "pt-BR": "google/gemini-2.5-flash-lite",
       "zh-CN": "google/gemini-2.5-flash-lite",
@@ -11578,47 +11568,57 @@
       "vi": "google/gemini-2.5-flash-lite",
       "tr": "google/gemini-2.5-flash-lite",
       "uk": "google/gemini-2.5-flash-lite"
-    }
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/GlossaryAddModal.tsx",
+        "line": 122
+      },
+      {
+        "file": "src/renderer/components/SettingsGlossaryTab.tsx",
+        "line": 227
+      }
+    ]
   },
-  "1d3105b2": {
-    "source": "Term in target language...",
+  "77980c55": {
+    "source": "Term in target language…",
     "translated": {
-      "pt-BR": "Termo no idioma de destino...",
-      "zh-CN": "目标语言中的术语...",
-      "zh-TW": "目標語言的術語...",
-      "bn": "লক্ষ্য ভাষায় শব্দ...",
-      "ar": "المصطلح بلغة الهدف...",
-      "ca": "Terme en l'idioma de destinació...",
-      "cs": "Termín v cílovém jazyce...",
-      "hr": "Pojam na ciljnom jeziku...",
-      "en-US": "Term in target language...",
-      "fr": "Terme dans la langue cible...",
-      "de": "Begriff in Zielsprache...",
+      "ar": "المصطلح باللغة الهدف…",
+      "hr": "Pojam na ciljnom jeziku…",
+      "pt-BR": "Termo no idioma de destino…",
+      "ca": "Term in target language…",
+      "zh-TW": "目標語言中的術語…",
+      "zh-CN": "目标语言术语…",
+      "bn": "লক্ষ্য ভাষার পরিভাষা…",
+      "cs": "Termín v cílovém jazyce…",
+      "nl": "Term in target language…",
+      "en-US": "Term in target language…",
+      "de": "Begriff in Zielsprache…",
+      "tl": "Termino sa target na wika…",
+      "el": "Όρος στη γλώσσα προορισμού…",
       "hi": "लक्ष्य भाषा में शब्द...",
-      "nl": "Term in doeltaal...",
-      "tl": "Termino sa wikang target...",
-      "el": "Όρος στη γλώσσα στόχο...",
-      "hu": "Kifejezés a célnyelven...",
-      "pt": "Termo no idioma de destino...",
-      "ja": "ターゲット言語の用語...",
-      "ko": "대상 언어 용어...",
-      "pl": "Termin w języku docelowym...",
-      "it": "Termine nella lingua di destinazione...",
-      "fa": "اصطلاح به زبان مقصد...",
-      "ms": "Istilah dalam bahasa sasaran...",
-      "jv": "Istilah ing basa target...",
-      "es": "Término en idioma de destino...",
-      "ru": "Термин на целевом языке...",
-      "sv": "Term på målspråket...",
-      "ro": "Termen în limba țintă...",
-      "sk": "Termín v cieľovom jazyku...",
-      "te": "లక్ష్య భాషలో పదం...",
-      "pa": "ਨਿਸ਼ਾਨਾ ਭਾਸ਼ਾ ਵਿੱਚ ਸ਼ਬਦ...",
-      "sw": "Istilahi katika lugha lengo...",
-      "th": "คำศัพท์ในภาษาปลายทาง...",
-      "vi": "Thuật ngữ trong ngôn ngữ đích...",
-      "tr": "Hedef dildeki terim...",
-      "uk": "Термін цільовою мовою..."
+      "hu": "Célnyelvi kifejezés…",
+      "fr": "Terme dans la langue cible…",
+      "pt": "Termo no idioma de destino…",
+      "ja": "ターゲット言語の用語…",
+      "ms": "Istilah dalam bahasa sasaran…",
+      "it": "Termine nella lingua di destinazione…",
+      "jv": "Istilah ing basa target…",
+      "pl": "Term in target language…",
+      "ko": "대상 언어의 용어…",
+      "fa": "اصطلاح در زبان مقصد…",
+      "sv": "Term i målspråk…",
+      "ro": "Termen în limba țintă…",
+      "es": "Término en idioma de destino…",
+      "pa": "ਟਾਰਗੇਟ ਭਾਸ਼ਾ ਵਿੱਚ ਸ਼ਬਦ…",
+      "te": "లక్ష్య భాషలో పదం…",
+      "ru": "Термин на целевом языке…",
+      "sk": "Term in target language…",
+      "sw": "Neno katika lugha lengwa...",
+      "vi": "Thuật ngữ trong ngôn ngữ đích…",
+      "tr": "Hedef dildeki terim…",
+      "th": "คำศัพท์ในภาษาปลายทาง…",
+      "uk": "Термін цільовою мовою…"
     },
     "locations": [
       {
@@ -11627,41 +11627,41 @@
       }
     ],
     "models": {
-      "pt-BR": "google/gemini-2.5-flash-lite",
-      "zh-CN": "google/gemini-2.5-flash-lite",
-      "zh-TW": "google/gemini-2.5-flash-lite",
-      "bn": "google/gemini-2.5-flash-lite",
       "ar": "google/gemini-2.5-flash-lite",
-      "ca": "google/gemini-2.5-flash-lite",
-      "cs": "google/gemini-2.5-flash-lite",
       "hr": "google/gemini-2.5-flash-lite",
-      "en-US": "google/gemini-2.5-flash-lite",
-      "fr": "google/gemini-2.5-flash-lite",
-      "de": "google/gemini-2.5-flash-lite",
-      "hi": "google/gemini-2.5-flash-lite",
+      "pt-BR": "google/gemini-2.5-flash-lite",
+      "ca": "google/gemini-2.5-flash-lite",
+      "zh-TW": "google/gemini-2.5-flash-lite",
+      "zh-CN": "google/gemini-2.5-flash-lite",
+      "bn": "google/gemini-2.5-flash-lite",
+      "cs": "google/gemini-2.5-flash-lite",
       "nl": "google/gemini-2.5-flash-lite",
+      "en-US": "google/gemini-2.5-flash-lite",
+      "de": "google/gemini-2.5-flash-lite",
       "tl": "google/gemini-2.5-flash-lite",
       "el": "google/gemini-2.5-flash-lite",
+      "hi": "google/gemini-2.5-flash-lite",
       "hu": "google/gemini-2.5-flash-lite",
+      "fr": "google/gemini-2.5-flash-lite",
       "pt": "google/gemini-2.5-flash-lite",
       "ja": "google/gemini-2.5-flash-lite",
-      "ko": "google/gemini-2.5-flash-lite",
-      "pl": "google/gemini-2.5-flash-lite",
-      "it": "google/gemini-2.5-flash-lite",
-      "fa": "google/gemini-2.5-flash-lite",
       "ms": "google/gemini-2.5-flash-lite",
+      "it": "google/gemini-2.5-flash-lite",
       "jv": "google/gemini-2.5-flash-lite",
-      "es": "google/gemini-2.5-flash-lite",
-      "ru": "google/gemini-2.5-flash-lite",
+      "pl": "google/gemini-2.5-flash-lite",
+      "ko": "google/gemini-2.5-flash-lite",
+      "fa": "google/gemini-2.5-flash-lite",
       "sv": "google/gemini-2.5-flash-lite",
       "ro": "google/gemini-2.5-flash-lite",
-      "sk": "google/gemini-2.5-flash-lite",
-      "te": "google/gemini-2.5-flash-lite",
+      "es": "google/gemini-2.5-flash-lite",
       "pa": "google/gemini-2.5-flash-lite",
-      "sw": "google/gemma-4-31b-it",
-      "th": "google/gemini-2.5-flash-lite",
+      "te": "google/gemini-2.5-flash-lite",
+      "ru": "google/gemini-2.5-flash-lite",
+      "sk": "google/gemini-2.5-flash-lite",
+      "sw": "google/gemini-2.5-flash-lite",
       "vi": "google/gemini-2.5-flash-lite",
       "tr": "google/gemini-2.5-flash-lite",
+      "th": "google/gemini-2.5-flash-lite",
       "uk": "google/gemini-2.5-flash-lite"
     }
   },
@@ -11705,12 +11705,6 @@
       "tr": "Sözlüğü yönet",
       "uk": "Керування глосарієм"
     },
-    "locations": [
-      {
-        "file": "src/renderer/components/GlossaryAddModal.tsx",
-        "line": 141
-      }
-    ],
     "models": {
       "pt-BR": "google/gemini-2.5-flash-lite",
       "zh-CN": "google/gemini-2.5-flash-lite",
@@ -11748,7 +11742,13 @@
       "vi": "google/gemini-2.5-flash-lite",
       "tr": "google/gemini-2.5-flash-lite",
       "uk": "google/gemini-2.5-flash-lite"
-    }
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/GlossaryAddModal.tsx",
+        "line": 141
+      }
+    ]
   },
   "d3d2e617": {
     "source": "Close",
@@ -11843,45 +11843,45 @@
       }
     ]
   },
-  "575f5f86": {
-    "source": "Saving...",
+  "eedf6b8b": {
+    "source": "Saving…",
     "translated": {
-      "pt-BR": "Salvando...",
-      "zh-CN": "正在保存...",
-      "zh-TW": "正在儲存...",
-      "bn": "সংরক্ষণ করা হচ্ছে...",
-      "ar": "جارٍ الحفظ...",
-      "ca": "Desant...",
-      "cs": "Ukládání...",
-      "hr": "Spremanje...",
-      "en-US": "Saving...",
-      "fr": "Enregistrement en cours...",
-      "de": "Speichere...",
-      "hi": "सहेजा जा रहा है...",
-      "nl": "Opslaan...",
-      "tl": "Nagse-save...",
-      "el": "Αποθήκευση...",
-      "hu": "Mentés...",
-      "pt": "A guardar...",
-      "ja": "保存中...",
-      "ko": "저장 중...",
-      "pl": "Zapisywanie...",
-      "it": "Salvataggio in corso...",
-      "fa": "در حال ذخیره...",
-      "ms": "Menyimpan...",
-      "jv": "Nyimpen...",
-      "es": "Guardando...",
-      "ru": "Сохранение...",
-      "sv": "Sparar...",
-      "ro": "Se salvează...",
-      "sk": "Ukladá sa...",
-      "te": "సేవ్ చేస్తోంది...",
-      "pa": "ਸੁਰੱਖਿਅਤ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ...",
-      "sw": "Inahifadhi...",
-      "th": "กำลังบันทึก...",
-      "vi": "Đang lưu...",
-      "tr": "Kaydediliyor...",
-      "uk": "Збереження..."
+      "ar": "جارٍ الحفظ…",
+      "hr": "Spremanje…",
+      "pt-BR": "Salvando…",
+      "ca": "Desant…",
+      "zh-TW": "正在儲存…",
+      "zh-CN": "正在保存…",
+      "bn": "সংরক্ষণ করা হচ্ছে…",
+      "cs": "Ukládání…",
+      "nl": "Opslaan…",
+      "en-US": "Saving…",
+      "de": "Speichere…",
+      "tl": "Nagse-save…",
+      "el": "Αποθήκευση…",
+      "hi": "सहेज रहा है…",
+      "hu": "Mentés folyamatban…",
+      "fr": "Enregistrement…",
+      "pt": "A guardar…",
+      "ja": "保存中…",
+      "ms": "Menyimpan…",
+      "it": "Salvataggio in corso…",
+      "jv": "Nyimpen…",
+      "pl": "Zapisywanie…",
+      "ko": "저장 중…",
+      "fa": "در حال ذخیره…",
+      "sv": "Sparar…",
+      "ro": "Se salvează…",
+      "es": "Guardando…",
+      "pa": "ਸੇਵ ਹੋ ਰਿਹਾ ਹੈ…",
+      "te": "సేవ్ చేస్తోంది…",
+      "ru": "Сохранение…",
+      "sk": "Ukladá sa…",
+      "sw": "Inahifadhi…",
+      "vi": "Đang lưu…",
+      "tr": "Kaydediliyor…",
+      "th": "กำลังบันทึก…",
+      "uk": "Збереження…"
     },
     "locations": [
       {
@@ -11890,41 +11890,41 @@
       }
     ],
     "models": {
-      "pt-BR": "google/gemini-2.5-flash-lite",
-      "zh-CN": "google/gemini-2.5-flash-lite",
-      "zh-TW": "google/gemini-2.5-flash-lite",
-      "bn": "google/gemini-2.5-flash-lite",
       "ar": "google/gemini-2.5-flash-lite",
-      "ca": "google/gemini-2.5-flash-lite",
-      "cs": "google/gemini-2.5-flash-lite",
       "hr": "google/gemini-2.5-flash-lite",
-      "en-US": "google/gemini-2.5-flash-lite",
-      "fr": "google/gemini-2.5-flash-lite",
-      "de": "google/gemini-2.5-flash-lite",
-      "hi": "google/gemini-2.5-flash-lite",
+      "pt-BR": "google/gemini-2.5-flash-lite",
+      "ca": "google/gemini-2.5-flash-lite",
+      "zh-TW": "google/gemini-2.5-flash-lite",
+      "zh-CN": "google/gemini-2.5-flash-lite",
+      "bn": "google/gemini-2.5-flash-lite",
+      "cs": "google/gemini-2.5-flash-lite",
       "nl": "google/gemini-2.5-flash-lite",
+      "en-US": "google/gemini-2.5-flash-lite",
+      "de": "google/gemini-2.5-flash-lite",
       "tl": "google/gemini-2.5-flash-lite",
       "el": "google/gemini-2.5-flash-lite",
+      "hi": "google/gemini-2.5-flash-lite",
       "hu": "google/gemini-2.5-flash-lite",
+      "fr": "google/gemini-2.5-flash-lite",
       "pt": "google/gemini-2.5-flash-lite",
       "ja": "google/gemini-2.5-flash-lite",
-      "ko": "google/gemini-2.5-flash-lite",
-      "pl": "google/gemini-2.5-flash-lite",
-      "it": "google/gemini-2.5-flash-lite",
-      "fa": "google/gemini-2.5-flash-lite",
       "ms": "google/gemini-2.5-flash-lite",
+      "it": "google/gemini-2.5-flash-lite",
       "jv": "google/gemini-2.5-flash-lite",
-      "es": "google/gemini-2.5-flash-lite",
-      "ru": "google/gemini-2.5-flash-lite",
+      "pl": "google/gemini-2.5-flash-lite",
+      "ko": "google/gemini-2.5-flash-lite",
+      "fa": "google/gemini-2.5-flash-lite",
       "sv": "google/gemini-2.5-flash-lite",
       "ro": "google/gemini-2.5-flash-lite",
-      "sk": "google/gemini-2.5-flash-lite",
-      "te": "google/gemini-2.5-flash-lite",
+      "es": "google/gemini-2.5-flash-lite",
       "pa": "google/gemini-2.5-flash-lite",
-      "sw": "google/gemma-4-31b-it",
-      "th": "google/gemini-2.5-flash-lite",
+      "te": "google/gemini-2.5-flash-lite",
+      "ru": "google/gemini-2.5-flash-lite",
+      "sk": "google/gemini-2.5-flash-lite",
+      "sw": "google/gemini-2.5-flash-lite",
       "vi": "google/gemini-2.5-flash-lite",
       "tr": "google/gemini-2.5-flash-lite",
+      "th": "google/gemini-2.5-flash-lite",
       "uk": "google/gemini-2.5-flash-lite"
     }
   },
@@ -27914,12 +27914,6 @@
       "tr": "Dosyada geçerli satır bulunamadı.",
       "uk": "Не знайдено дійсних рядків у файлі."
     },
-    "locations": [
-      {
-        "file": "src/renderer/components/SettingsGlossaryTab.tsx",
-        "line": 203
-      }
-    ],
     "models": {
       "pt-BR": "google/gemini-2.5-flash-lite",
       "zh-CN": "google/gemini-2.5-flash-lite",
@@ -27957,7 +27951,13 @@
       "vi": "google/gemini-2.5-flash-lite",
       "tr": "google/gemini-2.5-flash-lite",
       "uk": "google/gemini-2.5-flash-lite"
-    }
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/SettingsGlossaryTab.tsx",
+        "line": 105
+      }
+    ]
   },
   "45fad013": {
     "source": "Imported {{count}} terms.",
@@ -27999,12 +27999,6 @@
       "tr": "{{count}} terim içe aktarıldı.",
       "uk": "Імпортовано {{count}} термінів."
     },
-    "locations": [
-      {
-        "file": "src/renderer/components/SettingsGlossaryTab.tsx",
-        "line": 205
-      }
-    ],
     "models": {
       "pt-BR": "google/gemini-2.5-flash-lite",
       "zh-CN": "google/gemini-2.5-flash-lite",
@@ -28042,7 +28036,13 @@
       "vi": "google/gemini-2.5-flash-lite",
       "tr": "google/gemini-2.5-flash-lite",
       "uk": "google/gemini-2.5-flash-lite"
-    }
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/SettingsGlossaryTab.tsx",
+        "line": 107
+      }
+    ]
   },
   "405d4e28": {
     "source": "Import failed.",
@@ -28125,7 +28125,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGlossaryTab.tsx",
-        "line": 208
+        "line": 110
       },
       {
         "file": "src/renderer/components/SettingsTransformPromptsTab.tsx",
@@ -28177,12 +28177,6 @@
       "tr": "Sözlük Terimleri",
       "uk": "Терміни глосарію"
     },
-    "locations": [
-      {
-        "file": "src/renderer/components/SettingsGlossaryTab.tsx",
-        "line": 243
-      }
-    ],
     "models": {
       "pt-BR": "google/gemini-2.5-flash-lite",
       "zh-CN": "google/gemini-2.5-flash-lite",
@@ -28220,7 +28214,13 @@
       "vi": "google/gemini-2.5-flash-lite",
       "tr": "google/gemini-2.5-flash-lite",
       "uk": "google/gemini-2.5-flash-lite"
-    }
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/SettingsGlossaryTab.tsx",
+        "line": 139
+      }
+    ]
   },
   "a88a7dfc": {
     "source": "{{count}} terms",
@@ -28262,12 +28262,6 @@
       "tr": "{{count}} terim",
       "uk": "{{count}} термінів"
     },
-    "locations": [
-      {
-        "file": "src/renderer/components/SettingsGlossaryTab.tsx",
-        "line": 245
-      }
-    ],
     "models": {
       "pt-BR": "google/gemini-2.5-flash-lite",
       "zh-CN": "google/gemini-2.5-flash-lite",
@@ -28305,7 +28299,13 @@
       "vi": "google/gemini-2.5-flash-lite",
       "tr": "google/gemini-2.5-flash-lite",
       "uk": "google/gemini-2.5-flash-lite"
-    }
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/SettingsGlossaryTab.tsx",
+        "line": 141
+      }
+    ]
   },
   "72d6d7a1": {
     "source": "Import",
@@ -28347,12 +28347,6 @@
       "tr": "İçe Aktar",
       "uk": "Імпорт"
     },
-    "locations": [
-      {
-        "file": "src/renderer/components/SettingsGlossaryTab.tsx",
-        "line": 254
-      }
-    ],
     "models": {
       "pt-BR": "google/gemini-2.5-flash-lite",
       "zh-CN": "google/gemini-2.5-flash-lite",
@@ -28390,7 +28384,13 @@
       "vi": "google/gemini-2.5-flash-lite",
       "tr": "google/gemini-2.5-flash-lite",
       "uk": "google/gemini-2.5-flash-lite"
-    }
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/SettingsGlossaryTab.tsx",
+        "line": 150
+      }
+    ]
   },
   "c04f1e48": {
     "source": "Export CSV",
@@ -28432,12 +28432,6 @@
       "tr": "CSV'yi Dışa Aktar",
       "uk": "Експорт CSV"
     },
-    "locations": [
-      {
-        "file": "src/renderer/components/SettingsGlossaryTab.tsx",
-        "line": 258
-      }
-    ],
     "models": {
       "pt-BR": "google/gemini-2.5-flash-lite",
       "zh-CN": "google/gemini-2.5-flash-lite",
@@ -28475,7 +28469,13 @@
       "vi": "google/gemini-2.5-flash-lite",
       "tr": "google/gemini-2.5-flash-lite",
       "uk": "google/gemini-2.5-flash-lite"
-    }
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/SettingsGlossaryTab.tsx",
+        "line": 154
+      }
+    ]
   },
   "b863e1c9": {
     "source": "Export XLSX",
@@ -28517,12 +28517,6 @@
       "tr": "XLSX'i Dışa Aktar",
       "uk": "Експорт XLSX"
     },
-    "locations": [
-      {
-        "file": "src/renderer/components/SettingsGlossaryTab.tsx",
-        "line": 262
-      }
-    ],
     "models": {
       "pt-BR": "google/gemini-2.5-flash-lite",
       "zh-CN": "google/gemini-2.5-flash-lite",
@@ -28560,7 +28554,13 @@
       "vi": "google/gemini-2.5-flash-lite",
       "tr": "google/gemini-2.5-flash-lite",
       "uk": "google/gemini-2.5-flash-lite"
-    }
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/SettingsGlossaryTab.tsx",
+        "line": 158
+      }
+    ]
   },
   "a8aab1f2": {
     "source": "Template CSV",
@@ -28602,12 +28602,6 @@
       "tr": "Şablon CSV",
       "uk": "Шаблон CSV"
     },
-    "locations": [
-      {
-        "file": "src/renderer/components/SettingsGlossaryTab.tsx",
-        "line": 267
-      }
-    ],
     "models": {
       "pt-BR": "google/gemini-2.5-flash-lite",
       "zh-CN": "google/gemini-2.5-flash-lite",
@@ -28645,7 +28639,13 @@
       "vi": "google/gemini-2.5-flash-lite",
       "tr": "google/gemini-2.5-flash-lite",
       "uk": "google/gemini-2.5-flash-lite"
-    }
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/SettingsGlossaryTab.tsx",
+        "line": 163
+      }
+    ]
   },
   "1956ebc4": {
     "source": "Template XLSX",
@@ -28687,12 +28687,6 @@
       "tr": "Şablon XLSX",
       "uk": "Шаблон XLSX"
     },
-    "locations": [
-      {
-        "file": "src/renderer/components/SettingsGlossaryTab.tsx",
-        "line": 271
-      }
-    ],
     "models": {
       "pt-BR": "google/gemini-2.5-flash-lite",
       "zh-CN": "google/gemini-2.5-flash-lite",
@@ -28730,7 +28724,13 @@
       "vi": "google/gemini-2.5-flash-lite",
       "tr": "google/gemini-2.5-flash-lite",
       "uk": "google/gemini-2.5-flash-lite"
-    }
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/SettingsGlossaryTab.tsx",
+        "line": 167
+      }
+    ]
   },
   "21d4a1b4": {
     "source": "Search terms",
@@ -28772,12 +28772,6 @@
       "tr": "Terimleri ara",
       "uk": "Пошук термінів"
     },
-    "locations": [
-      {
-        "file": "src/renderer/components/SettingsGlossaryTab.tsx",
-        "line": 305
-      }
-    ],
     "models": {
       "pt-BR": "google/gemini-2.5-flash-lite",
       "zh-CN": "google/gemini-2.5-flash-lite",
@@ -28815,7 +28809,13 @@
       "vi": "google/gemini-2.5-flash-lite",
       "tr": "google/gemini-2.5-flash-lite",
       "uk": "google/gemini-2.5-flash-lite"
-    }
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/SettingsGlossaryTab.tsx",
+        "line": 201
+      }
+    ]
   },
   "509e0869": {
     "source": "Filter by text…",
@@ -28857,12 +28857,6 @@
       "tr": "Metne göre filtrele…",
       "uk": "Фільтрувати за текстом..."
     },
-    "locations": [
-      {
-        "file": "src/renderer/components/SettingsGlossaryTab.tsx",
-        "line": 311
-      }
-    ],
     "models": {
       "pt-BR": "google/gemini-2.5-flash-lite",
       "zh-CN": "google/gemini-2.5-flash-lite",
@@ -28900,7 +28894,13 @@
       "vi": "google/gemini-2.5-flash-lite",
       "tr": "google/gemini-2.5-flash-lite",
       "uk": "google/gemini-2.5-flash-lite"
-    }
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/SettingsGlossaryTab.tsx",
+        "line": 207
+      }
+    ]
   },
   "0b275442": {
     "source": "Clear filters",
@@ -28942,12 +28942,6 @@
       "tr": "Filtreleri temizle",
       "uk": "Очистити фільтри"
     },
-    "locations": [
-      {
-        "file": "src/renderer/components/SettingsGlossaryTab.tsx",
-        "line": 318
-      }
-    ],
     "models": {
       "pt-BR": "google/gemini-2.5-flash-lite",
       "zh-CN": "google/gemini-2.5-flash-lite",
@@ -28985,7 +28979,13 @@
       "vi": "google/gemini-2.5-flash-lite",
       "tr": "google/gemini-2.5-flash-lite",
       "uk": "google/gemini-2.5-flash-lite"
-    }
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/SettingsGlossaryTab.tsx",
+        "line": 214
+      }
+    ]
   },
   "7ef91f14": {
     "source": "No glossary terms yet. Add one below or import a file.",
@@ -29027,12 +29027,6 @@
       "tr": "Henüz sözlük terimi yok. Aşağıdan bir tane ekleyin veya bir dosya içe aktarın.",
       "uk": "Термінів глосарію ще немає. Додайте один нижче або імпортуйте файл."
     },
-    "locations": [
-      {
-        "file": "src/renderer/components/SettingsGlossaryTab.tsx",
-        "line": 346
-      }
-    ],
     "models": {
       "pt-BR": "google/gemini-2.5-flash-lite",
       "zh-CN": "google/gemini-2.5-flash-lite",
@@ -29070,7 +29064,13 @@
       "vi": "google/gemini-2.5-flash-lite",
       "tr": "google/gemini-2.5-flash-lite",
       "uk": "google/gemini-2.5-flash-lite"
-    }
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/SettingsGlossaryTab.tsx",
+        "line": 242
+      }
+    ]
   },
   "976c147b": {
     "source": "No terms match the current filters.",
@@ -29112,12 +29112,6 @@
       "tr": "Hiçbir terim mevcut filtrelerle eşleşmiyor.",
       "uk": "Терміни не відповідають поточним фільтрам."
     },
-    "locations": [
-      {
-        "file": "src/renderer/components/SettingsGlossaryTab.tsx",
-        "line": 346
-      }
-    ],
     "models": {
       "pt-BR": "google/gemini-2.5-flash-lite",
       "zh-CN": "google/gemini-2.5-flash-lite",
@@ -29155,7 +29149,13 @@
       "vi": "google/gemini-2.5-flash-lite",
       "tr": "google/gemini-2.5-flash-lite",
       "uk": "google/gemini-2.5-flash-lite"
-    }
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/SettingsGlossaryTab.tsx",
+        "line": 242
+      }
+    ]
   },
   "634f0a82": {
     "source": "Delete term",
@@ -29197,12 +29197,6 @@
       "tr": "Terimi sil",
       "uk": "Видалити термін"
     },
-    "locations": [
-      {
-        "file": "src/renderer/components/SettingsGlossaryTab.tsx",
-        "line": 362
-      }
-    ],
     "models": {
       "pt-BR": "google/gemini-2.5-flash-lite",
       "zh-CN": "google/gemini-2.5-flash-lite",
@@ -29240,7 +29234,13 @@
       "vi": "google/gemini-2.5-flash-lite",
       "tr": "google/gemini-2.5-flash-lite",
       "uk": "google/gemini-2.5-flash-lite"
-    }
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/SettingsGlossaryTab.tsx",
+        "line": 258
+      }
+    ]
   },
   "24f38d90": {
     "source": "Source term…",
@@ -29282,12 +29282,6 @@
       "tr": "Kaynak terim…",
       "uk": "Термін мовою оригіналу..."
     },
-    "locations": [
-      {
-        "file": "src/renderer/components/SettingsGlossaryTab.tsx",
-        "line": 388
-      }
-    ],
     "models": {
       "pt-BR": "google/gemini-2.5-flash-lite",
       "zh-CN": "google/gemini-2.5-flash-lite",
@@ -29325,7 +29319,13 @@
       "vi": "google/gemini-2.5-flash-lite",
       "tr": "google/gemini-2.5-flash-lite",
       "uk": "google/gemini-2.5-flash-lite"
-    }
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/SettingsGlossaryTab.tsx",
+        "line": 284
+      }
+    ]
   },
   "2bba6eb9": {
     "source": "Target term…",
@@ -29367,12 +29367,6 @@
       "tr": "Hedef terim…",
       "uk": "Цільовий термін..."
     },
-    "locations": [
-      {
-        "file": "src/renderer/components/SettingsGlossaryTab.tsx",
-        "line": 408
-      }
-    ],
     "models": {
       "pt-BR": "google/gemini-2.5-flash-lite",
       "zh-CN": "google/gemini-2.5-flash-lite",
@@ -29410,7 +29404,13 @@
       "vi": "google/gemini-2.5-flash-lite",
       "tr": "google/gemini-2.5-flash-lite",
       "uk": "google/gemini-2.5-flash-lite"
-    }
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/SettingsGlossaryTab.tsx",
+        "line": 304
+      }
+    ]
   },
   "8aae687b": {
     "source": "Add term",
@@ -29452,12 +29452,6 @@
       "tr": "Terim ekle",
       "uk": "Додати термін"
     },
-    "locations": [
-      {
-        "file": "src/renderer/components/SettingsGlossaryTab.tsx",
-        "line": 419
-      }
-    ],
     "models": {
       "pt-BR": "google/gemini-2.5-flash-lite",
       "zh-CN": "google/gemini-2.5-flash-lite",
@@ -29495,7 +29489,13 @@
       "vi": "google/gemini-2.5-flash-lite",
       "tr": "google/gemini-2.5-flash-lite",
       "uk": "google/gemini-2.5-flash-lite"
-    }
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/SettingsGlossaryTab.tsx",
+        "line": 315
+      }
+    ]
   },
   "047b58f0": {
     "source": "Most used languages",
@@ -32443,20 +32443,6 @@
       "tr": "Sözlük",
       "uk": "Глосарій"
     },
-    "locations": [
-      {
-        "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 152
-      },
-      {
-        "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
-        "line": 109
-      },
-      {
-        "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
-        "line": 202
-      }
-    ],
     "models": {
       "pt-BR": "google/gemini-2.5-flash-lite",
       "zh-CN": "google/gemini-2.5-flash-lite",
@@ -32494,7 +32480,21 @@
       "vi": "google/gemini-2.5-flash-lite",
       "tr": "google/gemini-2.5-flash-lite",
       "uk": "google/gemini-2.5-flash-lite"
-    }
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/SettingsPanel.tsx",
+        "line": 152
+      },
+      {
+        "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
+        "line": 109
+      },
+      {
+        "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
+        "line": 202
+      }
+    ]
   },
   "f9aae5fd": {
     "source": "Users",
@@ -48390,12 +48390,6 @@
       "tr": "Çeviri sırasında sözlüğü kullan",
       "uk": "Використовувати глосарій під час перекладу"
     },
-    "locations": [
-      {
-        "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
-        "line": 112
-      }
-    ],
     "models": {
       "pt-BR": "google/gemini-2.5-flash-lite",
       "zh-CN": "google/gemini-2.5-flash-lite",
@@ -48433,7 +48427,13 @@
       "vi": "google/gemini-2.5-flash-lite",
       "tr": "google/gemini-2.5-flash-lite",
       "uk": "google/gemini-2.5-flash-lite"
-    }
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
+        "line": 112
+      }
+    ]
   },
   "b7ea9862": {
     "source": "Open Glossary Settings",
@@ -48475,12 +48475,6 @@
       "tr": "Sözlük Ayarlarını Aç",
       "uk": "Відкрити налаштування глосарію"
     },
-    "locations": [
-      {
-        "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
-        "line": 199
-      }
-    ],
     "models": {
       "pt-BR": "google/gemini-2.5-flash-lite",
       "zh-CN": "google/gemini-2.5-flash-lite",
@@ -48518,7 +48512,13 @@
       "vi": "google/gemini-2.5-flash-lite",
       "tr": "google/gemini-2.5-flash-lite",
       "uk": "google/gemini-2.5-flash-lite"
-    }
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
+        "line": 199
+      }
+    ]
   },
   "edde60f6": {
     "source": "Improve Clarity",
@@ -49580,7 +49580,7 @@
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 394
+        "line": 395
       }
     ]
   },
@@ -49669,7 +49669,7 @@
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 513
+        "line": 514
       }
     ]
   },
@@ -49758,15 +49758,15 @@
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 340
+        "line": 341
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 519
+        "line": 520
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 657
+        "line": 658
       }
     ]
   },
@@ -49855,15 +49855,15 @@
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 341
+        "line": 342
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 520
+        "line": 521
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 658
+        "line": 659
       }
     ]
   },
@@ -49948,7 +49948,7 @@
     "locations": [
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 268
+        "line": 269
       }
     ]
   },
@@ -50033,7 +50033,7 @@
     "locations": [
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 330
+        "line": 331
       }
     ]
   },
@@ -50118,11 +50118,7 @@
     "locations": [
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 439
-      },
-      {
-        "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 513
+        "line": 440
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
@@ -50130,11 +50126,15 @@
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 526
+        "line": 515
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 545
+        "line": 527
+      },
+      {
+        "file": "src/renderer/hooks/useProcessing.ts",
+        "line": 546
       }
     ]
   },
@@ -50219,7 +50219,7 @@
     "locations": [
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 450
+        "line": 451
       }
     ]
   },
@@ -50304,7 +50304,7 @@
     "locations": [
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 506
+        "line": 507
       }
     ]
   },
@@ -50389,7 +50389,7 @@
     "locations": [
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 600
+        "line": 601
       }
     ]
   },
@@ -50474,23 +50474,23 @@
     "locations": [
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 651
-      },
-      {
-        "file": "src/renderer/hooks/useProcessing.ts",
         "line": 652
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 663
+        "line": 653
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 683
+        "line": 664
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 718
+        "line": 684
+      },
+      {
+        "file": "src/renderer/hooks/useProcessing.ts",
+        "line": 719
       },
       {
         "file": "src/renderer/hooks/useTransformPrompts.ts",
@@ -50583,7 +50583,7 @@
     "locations": [
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 651
+        "line": 652
       }
     ]
   },
