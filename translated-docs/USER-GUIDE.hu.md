@@ -26,7 +26,7 @@ Ez az útmutató azt ismerteti, hogyan használható az alkalmazás telepítés 
 > A Transrewrt elérhető asztali alkalmazásként Windows és Linux rendszerekre, valamint önkiszolgáló webalkalmazásként. Ez az útmutató az alkalmazás mindennapi használatára koncentrál. Ha valami csak egy verzióra vonatkozik, azt egyértelműen megjelöljük.
 
 <small>**Olvassa más nyelveken:** </small>
-<small id="lang-list">[English (GB)](../USER-GUIDE.md) · [Português (Brasil)](./USER-GUIDE.pt-BR.md) · [العربية](./USER-GUIDE.ar.md) · [বাংলা](./USER-GUIDE.bn.md) · [Català](./USER-GUIDE.ca.md) · [中文 (中国大陆)](./USER-GUIDE.zh-CN.md) · [中文 (台灣)](./USER-GUIDE.zh-TW.md) · [Hrvatski](./USER-GUIDE.hr.md) · [Čeština](./USER-GUIDE.cs.md) · [Nederlands](./USER-GUIDE.nl.md) · [English (US)](./USER-GUIDE.en-US.md) · [Tagalog](./USER-GUIDE.tl.md) · [Français](./USER-GUIDE.fr.md) · [Deutsch](./USER-GUIDE.de.md) · [Ελληνικά](./USER-GUIDE.el.md) · [हिन्दी](./USER-GUIDE.hi.md) · [Magyar](./USER-GUIDE.hu.md) · [Italiano](./USER-GUIDE.it.md) · [日本語](./USER-GUIDE.ja.md) · [한국어](./USER-GUIDE.ko.md) · [Bahasa Melayu](./USER-GUIDE.ms.md) · [فارسی](./USER-GUIDE.fa.md) · [Polski](./USER-GUIDE.pl.md) · [Basa Jawa](./USER-GUIDE.jv.md) · [Português](./USER-GUIDE.pt.md) · [ਪੰਜਾਬੀ](./USER-GUIDE.pa.md) · [Română](./USER-GUIDE.ro.md) · [Русский](./USER-GUIDE.ru.md) · [Slovenčina](./USER-GUIDE.sk.md) · [Español](./USER-GUIDE.es.md) · [Kiswahili](./USER-GUIDE.sw.md) · [Svenska](./USER-GUIDE.sv.md) · [తెలుగు](./USER-GUIDE.te.md) · [ไทย](./USER-GUIDE.th.md) · [Türkçe](./USER-GUIDE.tr.md) · [Українська](./USER-GUIDE.uk.md) · [Tiếng Việt](./USER-GUIDE.vi.md)</small>
+<small id="lang-list">[English (UK)](../USER-GUIDE.md) · [Português (Brasil)](./USER-GUIDE.pt-BR.md) · [العربية](./USER-GUIDE.ar.md) · [বাংলা](./USER-GUIDE.bn.md) · [Català](./USER-GUIDE.ca.md) · [简体中文](./USER-GUIDE.zh-Hans.md) · [繁體中文](./USER-GUIDE.zh-Hant.md) · [Hrvatski](./USER-GUIDE.hr.md) · [Čeština](./USER-GUIDE.cs.md) · [Nederlands](./USER-GUIDE.nl.md) · [English (US)](./USER-GUIDE.en-US.md) · [Tagalog](./USER-GUIDE.tl.md) · [Français](./USER-GUIDE.fr.md) · [Deutsch](./USER-GUIDE.de.md) · [Ελληνικά](./USER-GUIDE.el.md) · [Hindi (Roman)](./USER-GUIDE.hi-Latn.md) · [Magyar](./USER-GUIDE.hu.md) · [Italiano](./USER-GUIDE.it.md) · [日本語](./USER-GUIDE.ja.md) · [한국어](./USER-GUIDE.ko.md) · [Bahasa Melayu](./USER-GUIDE.ms.md) · [فارسی](./USER-GUIDE.fa.md) · [Polski](./USER-GUIDE.pl.md) · [Basa Jawa](./USER-GUIDE.jv.md) · [Português](./USER-GUIDE.pt.md) · [پنجابی](./USER-GUIDE.pa-PK.md) · [Română](./USER-GUIDE.ro.md) · [Русский](./USER-GUIDE.ru.md) · [Slovenčina](./USER-GUIDE.sk.md) · [Español](./USER-GUIDE.es.md) · [Kiswahili](./USER-GUIDE.sw.md) · [Svenska](./USER-GUIDE.sv.md) · [తెలుగు](./USER-GUIDE.te.md) · [ไทย](./USER-GUIDE.th.md) · [Türkçe](./USER-GUIDE.tr.md) · [Українська](./USER-GUIDE.uk.md) · [Tiếng Việt](./USER-GUIDE.vi.md)</small>
 
 <small>
 
@@ -103,7 +103,7 @@ Ez az útmutató azt ismerteti, hogyan használható az alkalmazás telepítés 
 <a id="before-you-start"></a>
 ## Előkészületek
 
-A Transrewrt használatához legalább egy AI-szolgáltatóhoz kell hozzáférésed. A támogatott szolgáltatók: [OpenRouter](https://openrouter.ai) (amely sok modellt egyesít), OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras és [Ollama](https://ollama.com) helyi modellekhez.
+A Transrewrt használatához legalább egy AI-szolgáltatóhoz kell hozzáférnie. A támogatott szolgáltatók: [OpenRouter](https://openrouter.ai) (amely sok modellt összesít), OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, bármely OpenAI-kompatibilis szolgáltató és a [Ollama](https://ollama.com) helyi modellekhez.
 
 Nem kell fizetős modellt választania a kezdéshez. Amint hozzáadja az OpenRouter API-kulcsát, az alkalmazás automatikusan engedélyez egy beépített, **ingyenes** OpenRouter opciót. Ez lehetővé teszi a szöveg azonnali fordítását, átírását és átalakítását. Alternatív megoldásként ingyenes API-kulcsot szerezhet a Cerebrastól, a Google-tól, a Groqtól, a Mistral AI-tól vagy a [NVIDIA](https://build.nvidia.com/) (OpenAI-kompatibilis API) szolgáltatótól.
 
@@ -761,7 +761,7 @@ A **Felhasználók** elem használatával kezelheti a felhasználói fiókokat a
 <a id="api-config"></a>
 ### API beállítások
 
-A támogatott szolgáltatók a következők: OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, **Ollama** (helyi modellek egy alap URL-en keresztül), és egy opcionális **egyedi OpenAI-kompatibilis szolgáltató** (név, URL és API-kulcs – csak haladó módban). Csak a használt szolgáltatókat kell konfigurálnia.
+A támogatott szolgáltatók: OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, **Ollama** (helyi modellek alap URL-en keresztül), és egy opcionális **egyedi OpenAI-kompatibilis szolgáltató** (név, URL és API kulcs — csak Haladó módban). Csak a használt szolgáltatókat kell konfigurálnia.
 
 **Webalkalmazás: csak rendszergazda**
 
@@ -781,7 +781,7 @@ Az API-kulcsokat rendszer- vagy Docker-környezeti változókon keresztül konfi
 
 **Asztali alkalmazás**
 
-Használja az **API konfigurációt** az API-kulcsok tárolásához minden használt szolgáltatóhoz. Az Ollama esetében az API-kulcs helyett adja meg az **alap URL-t**. Egy egyedi OpenAI-kompatibilis szolgáltatóhoz (pl. [NVIDIA NIM](https://build.nvidia.com/)) adjon meg egy **szolgáltatónevet**, **alap URL-t** (például `https://integrate.api.nvidia.com/v1`) és **API-kulcsot**; mindhárom kötelező. Az URL és a név helyben szerkeszthető; az API-kulcs cseréjéhez használja a **Szerkesztés** lehetőséget. Az egyedi szolgáltató modelljei csak **haladó** módban jelennek meg (Beállítások → Modellek).
+Használja az **API konfigurációt** az egyes használt szolgáltatók API kulcsainak tárolására. Az Ollama esetében az API kulcs helyett adja meg az **alap URL-t**. Egy egyedi OpenAI-kompatibilis szolgáltatóhoz (nem a beépített listában szereplő végpontok, például egy önállóan üzemeltetett szerver vagy átjáró) adjon meg egy **szolgáltatónevet**, egy **alap URL-t** (például `https://my-llm.example.com/v1`) és egy **API kulcsot**; mindhárom kötelező. Az URL és a név inline szerkeszthető; az API kulcs cseréjéhez használja a **Szerkesztés** gombot. Az egyedi szolgáltató modelljei csak **Haladó** módban jelennek meg (Beállítások → Modellek).
 
 <br/>
 
@@ -790,7 +790,7 @@ Használja az **API konfigurációt** az API-kulcsok tárolásához minden haszn
 
 <br/>
 
-- Csak a szükséges szolgáltatókat adja hozzá. A **Beállítások** > **Modellek** részben minden modell azonosítója a szolgáltatóval kezdődik (például `openrouter/openrouter/free`, `openai/gpt-4o`, `ollama/llama3`, `NVIDIA/nvidia/nemotron-nano-3-30b-a3b` egy NVIDIA nevű egyedi végponthoz).
+- Csak a szükséges szolgáltatókat adja hozzá. A **Beállítások** > **Modellek** részben minden modell azonosítója a szolgáltatóval kezdődik (például `openrouter/openrouter/free`, `openai/gpt-4o`, `nvidia/nvidia/nemotron-nano-3-30b-a3b`, `ollama/llama3`, `MyProvider/…` egy `MyProvider` nevű egyedi végponthoz).
 
 API-kulcs hozzáadásához írja be az értéket a szövegmezőbe, majd kattintson a `Save` gombra. Már meglévő kulcs lecseréléséhez kattintson a `Edit` gombra. A kulcs működésének ellenőrzéséhez kattintson a `Test` gombra. Az Ollama alap URL-je esetében mindig kattintson a `Test` gombra a kapcsolat ellenőrzéséhez.
 

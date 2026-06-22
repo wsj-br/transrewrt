@@ -3,14 +3,14 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.0-blue" alt="Version"></a>
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.1-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
   <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react" alt="React 19">
   <img src="https://img.shields.io/badge/Electron-41-47848F?logo=electron" alt="Electron 41">
 </p>
 
-ابزار متنی مبتنی بر هوش مصنوعی: ترجمه بین زبان‌ها، بازنویسی به سبک‌های مختلف و تبدیل با پرسش‌های سفارشی — با استفاده از ارائه‌دهندگان متعدد هوش مصنوعی (OpenRouter، OpenAI، Anthropic، Google Gemini، DeepSeek، Groq، Mistral، xAI و Ollama محلی). این ابزار به صورت برنامه دسکتاپ (الکترون) یا برنامه تحت وب قابل اجرا به صورت خودمیزبانی (Docker) اجرا می‌شود.
+ابزار متنی مبتنی بر هوش مصنوعی: ترجمه بین زبان‌ها، بازنویسی به سبک‌های مختلف، و تبدیل با دستورات سفارشی - با استفاده از چندین ارائه‌دهنده هوش مصنوعی (OpenRouter، OpenAI، Anthropic، Google Gemini، DeepSeek، Groq، Mistral، xAI، Cerebras، NVIDIA، Alibaba Cloud، apikey.fun، هر ارائه‌دهنده سازگار با OpenAI، و Ollama محلی). به عنوان یک برنامه دسکتاپ (Electron) یا یک برنامه وب خودمیزبانی شده (Docker) اجرا می‌شود.
 
 - **ترجمه** - بین ده‌ها زبان، با تشخیص خودکار منبع
 - **بازنویسی** - رفع اشکالات گرامری، بهبود وضوح، رسمی/غیررسمی، کوتاه کردن، گسترش دادن، فنی
@@ -27,7 +27,7 @@
 پس از نصب، [**راهنمای کاربر**](USER-GUIDE.fa.md) را برای مرور کامل تمام ویژگی‌ها مشاهده کنید.
 
 <small>**خواندن به زبان‌های دیگر:** </small>
-<small id="lang-list">[English (GB)](../README.md) · [Português (Brasil)](./README.pt-BR.md) · [العربية](./README.ar.md) · [বাংলা](./README.bn.md) · [Català](./README.ca.md) · [中文 (中国大陆)](./README.zh-CN.md) · [中文 (台灣)](./README.zh-TW.md) · [Hrvatski](./README.hr.md) · [Čeština](./README.cs.md) · [Nederlands](./README.nl.md) · [English (US)](./README.en-US.md) · [Tagalog](./README.tl.md) · [Français](./README.fr.md) · [Deutsch](./README.de.md) · [Ελληνικά](./README.el.md) · [हिन्दी](./README.hi.md) · [Magyar](./README.hu.md) · [Italiano](./README.it.md) · [日本語](./README.ja.md) · [한국어](./README.ko.md) · [Bahasa Melayu](./README.ms.md) · [فارسی](./README.fa.md) · [Polski](./README.pl.md) · [Basa Jawa](./README.jv.md) · [Português](./README.pt.md) · [ਪੰਜਾਬੀ](./README.pa.md) · [Română](./README.ro.md) · [Русский](./README.ru.md) · [Slovenčina](./README.sk.md) · [Español](./README.es.md) · [Kiswahili](./README.sw.md) · [Svenska](./README.sv.md) · [తెలుగు](./README.te.md) · [ไทย](./README.th.md) · [Türkçe](./README.tr.md) · [Українська](./README.uk.md) · [Tiếng Việt](./README.vi.md)</small>
+<small id="lang-list">[English (UK)](../README.md) · [Português (Brasil)](./README.pt-BR.md) · [العربية](./README.ar.md) · [বাংলা](./README.bn.md) · [Català](./README.ca.md) · [简体中文](./README.zh-Hans.md) · [繁體中文](./README.zh-Hant.md) · [Hrvatski](./README.hr.md) · [Čeština](./README.cs.md) · [Nederlands](./README.nl.md) · [English (US)](./README.en-US.md) · [Tagalog](./README.tl.md) · [Français](./README.fr.md) · [Deutsch](./README.de.md) · [Ελληνικά](./README.el.md) · [Hindi (Roman)](./README.hi-Latn.md) · [Magyar](./README.hu.md) · [Italiano](./README.it.md) · [日本語](./README.ja.md) · [한국어](./README.ko.md) · [Bahasa Melayu](./README.ms.md) · [فارسی](./README.fa.md) · [Polski](./README.pl.md) · [Basa Jawa](./README.jv.md) · [Português](./README.pt.md) · [پنجابی](./README.pa-PK.md) · [Română](./README.ro.md) · [Русский](./README.ru.md) · [Slovenčina](./README.sk.md) · [Español](./README.es.md) · [Kiswahili](./README.sw.md) · [Svenska](./README.sv.md) · [తెలుగు](./README.te.md) · [ไทย](./README.th.md) · [Türkçe](./README.tr.md) · [Українська](./README.uk.md) · [Tiếng Việt](./README.vi.md)</small>
 
 <small>
 
@@ -255,7 +255,7 @@ Transrewrt از ارائه‌دهندگان متعدد هوش مصنوعی پش�
 
 از مدل **Body Builder** OpenRouter ([`openrouter/bodybuilder`](https://openrouter.ai/openrouter/bodybuilder)) برای ترجمه، بازنویسی یا تبدیل استفاده نکنید: این مدل بارهای درخواست JSON برمی‌گرداند، نه متن کامل‌شده برای این وظایف. به [تنظیمات → مدل‌ها](USER-GUIDE.fa.md#models) در راهنمای کاربر مراجعه کنید.
 
-شما همچنین می‌توانید از ارائه‌دهندگان دیگر (OpenAI، Anthropic، Google Gemini، DeepSeek، Groq، Mistral، xAI، Cerebras) استفاده کنید یا مدل‌ها را به صورت محلی با [Ollama](https://ollama.com) اجرا کنید. برای فهرست کامل ارائه‌دهندگان پشتیبانی‌شده و متغیرهای محیطی به [پیکربندی](#configuration-and-environment) مراجعه کنید.
+شما همچنین می‌توانید از ارائه‌دهندگان دیگر (OpenAI، Anthropic، Google Gemini، DeepSeek، Groq، Mistral، xAI، Cerebras، NVIDIA، Alibaba Cloud، apikey.fun، هر ارائه‌دهنده سازگار با OpenAI) استفاده کنید یا مدل‌ها را به صورت محلی با [Ollama](https://ollama.com) اجرا کنید. برای لیست کامل ارائه‌دهندگان پشتیبانی شده و متغیرهای محیطی به [پیکربندی](#configuration-and-environment) مراجعه کنید.
 
 </br>
 
@@ -281,9 +281,9 @@ Transrewrt از ارائه‌دهندگان متعدد هوش مصنوعی پش�
 
 **متغیرهای محیطی** (فقط برای وب/داکر؛ الکترون از فایل پیکربندی محلی استفاده می‌کند)
 
-| متغیر             | توضیحات                                                                  |
-|----------------------|------------------------------------------------------------------------------|
-| `PORT`               | پورت گوشدهی سرور (پیش‌فرض `5000`)                                  |
+| متغیر                  | توضیحات                                                                             |
+|---------------------------|-----------------------------------------------------------------------------------------|
+| `PORT`                    | پورت گوش دادن سرور (پیش‌فرض `5000`)                                             |
 | `CONFIG_PATH`        | مسیر فایل پیکربندی (پیش‌فرض `/app/data/config.json`)                |
 | `TZ`                 | منطقه زمانی برای زمان سمت سرور (ثبت رویدادها و غیره) (پیش‌فرض `Europe/London`) |
 | `HISTORY_DISABLED`   | به‌طور اختیاری، تاریخچه اجرا را غیرفعال می‌کند (پیش‌فرض `false` است) |
@@ -297,11 +297,14 @@ Transrewrt از ارائه‌دهندگان متعدد هوش مصنوعی پش�
 | `MISTRAL_API_KEY`    | کلید API Mistral                                                              |
 | `OLLAMA_URL`         | آدرس پایه Ollama (مثلاً `http://host.docker.internal:11434`)                   |
 | `XAI_API_KEY`        | کلید API xAI                                                                  |
+| `NVIDIA_API_KEY`          | کلید API NVIDIA                                                                          |
+| `ALIBABA_API_KEY`         | کلید API Alibaba Cloud (DashScope)                                                       |
+| `APIFUN_API_KEY`          | کلید API apikey.fun                                                                      |
 | `CUSTOM_PROVIDER_NAME` | نام نمایشی برای یک ارائه‌دهنده سفارشی سازگار با OpenAI (هر سه متغیر سفارشی مورد نیاز است) |
-| `CUSTOM_PROVIDER_URL`  | URL پایه برای یک ارائه‌دهنده سفارشی سازگار با OpenAI (مثلاً `https://integrate.api.nvidia.com/v1`) |
+| `CUSTOM_PROVIDER_URL`     | آدرس پایه برای یک ارائه‌دهنده سفارشی سازگار با OpenAI (مثلاً `https://my-llm.example.com/v1`) |
 | `CUSTOM_PROVIDER_API_KEY` | کلید API برای یک ارائه‌دهنده سفارشی سازگار با OpenAI                         |
 
-**ارائه‌دهنده سفارشی سازگار با OpenAI (وب/Docker):** هر سه متغیر `CUSTOM_PROVIDER_*` را تنظیم کنید. مثال برای [NVIDIA NIM](https://build.nvidia.com/): `CUSTOM_PROVIDER_NAME=NVIDIA`، `CUSTOM_PROVIDER_URL=https://integrate.api.nvidia.com/v1` و یک کلید API از [build.nvidia.com](https://build.nvidia.com/). مدل‌ها در حالت **پیشرفته** تحت تنظیمات → مدل‌ها با شناسه‌هایی مانند `NVIDIA/…` (نام ارائه‌دهنده به عنوان پیشوند) ظاهر می‌شوند.
+**ارائه‌دهنده سفارشی سازگار با OpenAI (وب/Docker):** برای هر نقطه پایانی سازگار با OpenAI که در لیست داخلی بالا نیست (مثلاً یک سرور یا گیت‌وی خودمیزبانی شده)، هر سه متغیر `CUSTOM_PROVIDER_*` را تنظیم کنید — به عنوان مثال `CUSTOM_PROVIDER_NAME=MyProvider`، `CUSTOM_PROVIDER_URL=https://my-llm.example.com/v1`، و کلید API مطابق. مدل‌ها در حالت **پیشرفته** تحت تنظیمات → مدل‌ها با شناسه‌هایی مانند `MyProvider/…` (نام ارائه‌دهنده به عنوان پیشوند) ظاهر می‌شوند.
 
 **حالت حریم خصوصی:** برای غیرفعال کردن مطلق پیگیری تاریخچه بسته به `config.json` یا ترجیحات کاربر، مقدار `HISTORY_DISABLED` را روی `true` یا `1` (بدون توجه به بزرگی یا کوچکی حروف) تنظیم کنید، هم برای **فرآیند سرور وب/داکر** و/یا **فرآیند اصلی دسکتاپ الکترون** (مثلاً محیط سیستم یا برنامه‌ی راه‌انداز — نه فقط رندرر). این کار ذخیره‌سازی تاریخچه ورودی/خروجی را غیرفعال می‌کند، **تنظیمات → تنظیمات عمومی → تاریخچه** را قفل می‌کند و از دسترسی به APIهای مرتبط با تاریخچه جلوگیری می‌کند.
 

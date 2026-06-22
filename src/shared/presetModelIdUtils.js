@@ -13,6 +13,9 @@ const DIRECT_LLM_ENGINES = new Set([
   "ollama",
   "xai",
   "cerebras",
+  "nvidia",
+  "alibaba",
+  "apifun",
 ]);
 
 /** Retired or invalid OpenRouter paths still found in older presets.json → current catalog id. */

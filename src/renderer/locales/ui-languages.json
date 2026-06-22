@@ -1,15 +1,15 @@
 [
   {
     "code": "en-GB",
-    "label": "English (GB)",
-    "englishName": "English (GB)",
+    "label": "English (UK)",
+    "englishName": "English (United Kingdom)",
     "direction": "ltr",
     "isSourceLocale": true
   },
   {
     "code": "pt-BR",
     "label": "Português (Brasil)",
-    "englishName": "Portuguese (BR)",
+    "englishName": "Portuguese (Brazil)",
     "direction": "ltr"
   },
   {
@@ -31,15 +31,15 @@
     "direction": "ltr"
   },
   {
-    "code": "zh-CN",
-    "label": "中文 (中国大陆)",
-    "englishName": "Chinese (CN)",
+    "code": "zh-Hans",
+    "label": "简体中文",
+    "englishName": "Chinese (Simplified)",
     "direction": "ltr"
   },
   {
-    "code": "zh-TW",
-    "label": "中文 (台灣)",
-    "englishName": "Chinese (TW)",
+    "code": "zh-Hant",
+    "label": "繁體中文",
+    "englishName": "Chinese (Traditional)",
     "direction": "ltr"
   },
   {
@@ -63,7 +63,7 @@
   {
     "code": "en-US",
     "label": "English (US)",
-    "englishName": "English (US)",
+    "englishName": "English (United States)",
     "direction": "ltr"
   },
   {
@@ -91,9 +91,9 @@
     "direction": "ltr"
   },
   {
-    "code": "hi",
-    "label": "हिन्दी",
-    "englishName": "Hindi",
+    "code": "hi-Latn",
+    "label": "Hindi (Roman)",
+    "englishName": "Hindi (Romanized)",
     "direction": "ltr"
   },
   {
@@ -151,10 +151,10 @@
     "direction": "ltr"
   },
   {
-    "code": "pa",
-    "label": "ਪੰਜਾਬੀ",
-    "englishName": "Panjabi / Punjabi",
-    "direction": "ltr"
+    "code": "pa-PK",
+    "label": "پنجابی",
+    "englishName": "Punjabi (Shahmukhi)",
+    "direction": "rtl"
   },
   {
     "code": "ro",

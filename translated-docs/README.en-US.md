@@ -3,14 +3,14 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.0-blue" alt="Version"></a>
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.1-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
   <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react" alt="React 19">
   <img src="https://img.shields.io/badge/Electron-41-47848F?logo=electron" alt="Electron 41">
 </p>
 
-AI-powered text tool: translate between languages, rewrite in different styles, and transform with custom prompts - using multiple AI providers (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, and local Ollama). Runs as a desktop app (Electron) or a self-hosted web app (Docker).
+AI-powered text tool: translate between languages, rewrite in different styles, and transform with custom prompts - using multiple AI providers (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, any OpenAI-compatible provider, and local Ollama). Runs as a desktop app (Electron) or a self-hosted web app (Docker).
 
 - **Translate** - between dozens of languages, with automatic source detection
 - **Rewrite** - fix grammar, improve clarity, formal/informal, shorten, expand, technical
@@ -27,7 +27,7 @@ AI-powered text tool: translate between languages, rewrite in different styles, 
 Once installed, see the [**User Guide**](USER-GUIDE.en-US.md) for a full walkthrough of all features.
 
 <small>**Read in other languages:** </small>
-<small id="lang-list">[English (GB)](../README.md) · [Português (Brasil)](./README.pt-BR.md) · [العربية](./README.ar.md) · [বাংলা](./README.bn.md) · [Català](./README.ca.md) · [中文 (中国大陆)](./README.zh-CN.md) · [中文 (台灣)](./README.zh-TW.md) · [Hrvatski](./README.hr.md) · [Čeština](./README.cs.md) · [Nederlands](./README.nl.md) · [English (US)](./README.en-US.md) · [Tagalog](./README.tl.md) · [Français](./README.fr.md) · [Deutsch](./README.de.md) · [Ελληνικά](./README.el.md) · [हिन्दी](./README.hi.md) · [Magyar](./README.hu.md) · [Italiano](./README.it.md) · [日本語](./README.ja.md) · [한국어](./README.ko.md) · [Bahasa Melayu](./README.ms.md) · [فارسی](./README.fa.md) · [Polski](./README.pl.md) · [Basa Jawa](./README.jv.md) · [Português](./README.pt.md) · [ਪੰਜਾਬੀ](./README.pa.md) · [Română](./README.ro.md) · [Русский](./README.ru.md) · [Slovenčina](./README.sk.md) · [Español](./README.es.md) · [Kiswahili](./README.sw.md) · [Svenska](./README.sv.md) · [తెలుగు](./README.te.md) · [ไทย](./README.th.md) · [Türkçe](./README.tr.md) · [Українська](./README.uk.md) · [Tiếng Việt](./README.vi.md)</small>
+<small id="lang-list">[English (UK)](../README.md) · [Português (Brasil)](./README.pt-BR.md) · [العربية](./README.ar.md) · [বাংলা](./README.bn.md) · [Català](./README.ca.md) · [简体中文](./README.zh-Hans.md) · [繁體中文](./README.zh-Hant.md) · [Hrvatski](./README.hr.md) · [Čeština](./README.cs.md) · [Nederlands](./README.nl.md) · [English (US)](./README.en-US.md) · [Tagalog](./README.tl.md) · [Français](./README.fr.md) · [Deutsch](./README.de.md) · [Ελληνικά](./README.el.md) · [Hindi (Roman)](./README.hi-Latn.md) · [Magyar](./README.hu.md) · [Italiano](./README.it.md) · [日本語](./README.ja.md) · [한국어](./README.ko.md) · [Bahasa Melayu](./README.ms.md) · [فارسی](./README.fa.md) · [Polski](./README.pl.md) · [Basa Jawa](./README.jv.md) · [Português](./README.pt.md) · [پنجابی](./README.pa-PK.md) · [Română](./README.ro.md) · [Русский](./README.ru.md) · [Slovenčina](./README.sk.md) · [Español](./README.es.md) · [Kiswahili](./README.sw.md) · [Svenska](./README.sv.md) · [తెలుగు](./README.te.md) · [ไทย](./README.th.md) · [Türkçe](./README.tr.md) · [Українська](./README.uk.md) · [Tiếng Việt](./README.vi.md)</small>
 
 <small>
 
@@ -255,7 +255,7 @@ Transrewrt supports multiple AI providers. [OpenRouter](https://openrouter.ai) i
 
 Do not use OpenRouter’s **Body Builder** model ([`openrouter/bodybuilder`](https://openrouter.ai/openrouter/bodybuilder)) for translate, rewrite, or transform: it returns JSON request payloads, not the completed text for those tasks. See [Settings → Models](USER-GUIDE.en-US.md#models) in the User Guide.
 
-You can also use other providers (OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras) or run models locally with [Ollama](https://ollama.com). See [Configuration](#configuration-and-environment) for the full list of supported providers and environment variables.
+You can also use other providers (OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, any OpenAI-compatible provider) or run models locally with [Ollama](https://ollama.com). See [Configuration](#configuration-and-environment) for the full list of supported providers and environment variables.
 
 </br>
 
@@ -281,9 +281,9 @@ You can also use other providers (OpenAI, Anthropic, Google Gemini, DeepSeek, Gr
 
 **Environment variables** (web/Docker only; Electron uses the local config file)
 
-| Variable             | Description                                                                  |
-|----------------------|------------------------------------------------------------------------------|
-| `PORT`               | Server listening port  (defaults to `5000`)                                  |
+| Variable                  | Description                                                                             |
+|---------------------------|-----------------------------------------------------------------------------------------|
+| `PORT`                    | Server listening port  (defaults to `5000`)                                             |
 | `CONFIG_PATH`        | Path to the config file (defaults to `/app/data/config.json`)                |
 | `TZ`                 | timezone for server-side time (logging, etc.) (defaults to  `Europe/London`) |
 | `HISTORY_DISABLED`   | Force execution history off (optional, defaults to `false`)                  |
@@ -297,11 +297,14 @@ You can also use other providers (OpenAI, Anthropic, Google Gemini, DeepSeek, Gr
 | `MISTRAL_API_KEY`    | Mistral API key                                                              |
 | `OLLAMA_URL`         | Ollama base URL (e.g. `http://host.docker.internal:11434`)                   |
 | `XAI_API_KEY`        | xAI API key                                                                  |
+| `NVIDIA_API_KEY`          | NVIDIA API key                                                                          |
+| `ALIBABA_API_KEY`         | Alibaba Cloud (DashScope) API key                                                       |
+| `APIFUN_API_KEY`          | apikey.fun API key                                                                      |
 | `CUSTOM_PROVIDER_NAME` | Display name for a custom OpenAI-compatible provider (all three custom variables required) |
-| `CUSTOM_PROVIDER_URL`  | Base URL for a custom OpenAI-compatible provider (e.g. `https://integrate.api.nvidia.com/v1`) |
+| `CUSTOM_PROVIDER_URL`     | Base URL for a custom OpenAI-compatible provider (e.g. `https://my-llm.example.com/v1`) |
 | `CUSTOM_PROVIDER_API_KEY` | API key for a custom OpenAI-compatible provider                         |
 
-**Custom OpenAI-compatible provider (web/Docker):** set all three `CUSTOM_PROVIDER_*` variables. Example for [NVIDIA NIM](https://build.nvidia.com/): `CUSTOM_PROVIDER_NAME=NVIDIA`, `CUSTOM_PROVIDER_URL=https://integrate.api.nvidia.com/v1`, and an API key from [build.nvidia.com](https://build.nvidia.com/). Models appear in **Advanced** mode under Settings → Models with IDs like `NVIDIA/…` (provider name as prefix).
+**Custom OpenAI-compatible provider (web/Docker):** for any OpenAI-compatible endpoint not in the built-in list above (e.g. a self-hosted server or gateway), set all three `CUSTOM_PROVIDER_*` variables — for example `CUSTOM_PROVIDER_NAME=MyProvider`, `CUSTOM_PROVIDER_URL=https://my-llm.example.com/v1`, and the matching API key. Models appear in **Advanced** mode under Settings → Models with IDs like `MyProvider/…` (provider name as prefix).
 
 **Privacy mode:** To force the track of history off regardless of `config.json` or per-user preferences, set `HISTORY_DISABLED` to `true` or `1` (case-insensitive) for the **web/Docker server process** and/or the **Electron desktop main process** (e.g. system or launcher environment — not the renderer alone). This disables storing input/output history, locks **Settings → General Settings → History**, and blocks History-related APIs.
 

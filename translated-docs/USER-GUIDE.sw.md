@@ -26,7 +26,7 @@ Mwongozo huu unaelezea jinsi ya kutumia programu baada ya kupakia na kuinua. Kwa
 > Transrewrt inapatikana kama programu ya kompyuta kwa Windows na Linux, pia kama programu ya wavuti inayohifadhiwa na mtumiaji mwenyewe. Mwongozo huu unazingatia matumizi ya kila siku ya programu. Lengo la kila kitu kinachotumika kwa toleo moja tu, limealikwa wazi.
 
 <small>**Soma kwa lugha nyingine:** </small>
-<small id="lang-list">[English (GB)](../USER-GUIDE.md) · [Português (Brasil)](./USER-GUIDE.pt-BR.md) · [العربية](./USER-GUIDE.ar.md) · [বাংলা](./USER-GUIDE.bn.md) · [Català](./USER-GUIDE.ca.md) · [中文 (中国大陆)](./USER-GUIDE.zh-CN.md) · [中文 (台灣)](./USER-GUIDE.zh-TW.md) · [Hrvatski](./USER-GUIDE.hr.md) · [Čeština](./USER-GUIDE.cs.md) · [Nederlands](./USER-GUIDE.nl.md) · [English (US)](./USER-GUIDE.en-US.md) · [Tagalog](./USER-GUIDE.tl.md) · [Français](./USER-GUIDE.fr.md) · [Deutsch](./USER-GUIDE.de.md) · [Ελληνικά](./USER-GUIDE.el.md) · [हिन्दी](./USER-GUIDE.hi.md) · [Magyar](./USER-GUIDE.hu.md) · [Italiano](./USER-GUIDE.it.md) · [日本語](./USER-GUIDE.ja.md) · [한국어](./USER-GUIDE.ko.md) · [Bahasa Melayu](./USER-GUIDE.ms.md) · [فارسی](./USER-GUIDE.fa.md) · [Polski](./USER-GUIDE.pl.md) · [Basa Jawa](./USER-GUIDE.jv.md) · [Português](./USER-GUIDE.pt.md) · [ਪੰਜਾਬੀ](./USER-GUIDE.pa.md) · [Română](./USER-GUIDE.ro.md) · [Русский](./USER-GUIDE.ru.md) · [Slovenčina](./USER-GUIDE.sk.md) · [Español](./USER-GUIDE.es.md) · [Kiswahili](./USER-GUIDE.sw.md) · [Svenska](./USER-GUIDE.sv.md) · [తెలుగు](./USER-GUIDE.te.md) · [ไทย](./USER-GUIDE.th.md) · [Türkçe](./USER-GUIDE.tr.md) · [Українська](./USER-GUIDE.uk.md) · [Tiếng Việt](./USER-GUIDE.vi.md)</small>
+<small id="lang-list">[English (UK)](../USER-GUIDE.md) · [Português (Brasil)](./USER-GUIDE.pt-BR.md) · [العربية](./USER-GUIDE.ar.md) · [বাংলা](./USER-GUIDE.bn.md) · [Català](./USER-GUIDE.ca.md) · [简体中文](./USER-GUIDE.zh-Hans.md) · [繁體中文](./USER-GUIDE.zh-Hant.md) · [Hrvatski](./USER-GUIDE.hr.md) · [Čeština](./USER-GUIDE.cs.md) · [Nederlands](./USER-GUIDE.nl.md) · [English (US)](./USER-GUIDE.en-US.md) · [Tagalog](./USER-GUIDE.tl.md) · [Français](./USER-GUIDE.fr.md) · [Deutsch](./USER-GUIDE.de.md) · [Ελληνικά](./USER-GUIDE.el.md) · [Hindi (Roman)](./USER-GUIDE.hi-Latn.md) · [Magyar](./USER-GUIDE.hu.md) · [Italiano](./USER-GUIDE.it.md) · [日本語](./USER-GUIDE.ja.md) · [한국어](./USER-GUIDE.ko.md) · [Bahasa Melayu](./USER-GUIDE.ms.md) · [فارسی](./USER-GUIDE.fa.md) · [Polski](./USER-GUIDE.pl.md) · [Basa Jawa](./USER-GUIDE.jv.md) · [Português](./USER-GUIDE.pt.md) · [پنجابی](./USER-GUIDE.pa-PK.md) · [Română](./USER-GUIDE.ro.md) · [Русский](./USER-GUIDE.ru.md) · [Slovenčina](./USER-GUIDE.sk.md) · [Español](./USER-GUIDE.es.md) · [Kiswahili](./USER-GUIDE.sw.md) · [Svenska](./USER-GUIDE.sv.md) · [తెలుగు](./USER-GUIDE.te.md) · [ไทย](./USER-GUIDE.th.md) · [Türkçe](./USER-GUIDE.tr.md) · [Українська](./USER-GUIDE.uk.md) · [Tiếng Việt](./USER-GUIDE.vi.md)</small>
 
 <small>
 
@@ -104,7 +104,7 @@ Mwongozo huu unaelezea jinsi ya kutumia programu baada ya kupakia na kuinua. Kwa
 <a id="before-you-start"></a>
 ## Kabla ya kuanza
 
-Ili kutumia Transrewrt, unahitaji ufikiaji kwa mtoa huduma yoyote moja ya AI. Matoa wa kusaidiwa ni: [OpenRouter](https://openrouter.ai) (ambayo inakusanya mifano mingi), OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, na [Ollama](https://ollama.com) kwa mifano ya wahali.
+Ili kutumia Transrewrt, unahitaji ufikiaji wa angalau mmoja wa watoa huduma wa AI. Watoa huduma wanaoungwa mkono ni: [OpenRouter](https://openrouter.ai) (ambao unajumuisha modeli nyingi), OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, mtoa huduma yeyote anayepatana na OpenAI, na [Ollama](https://ollama.com) kwa modeli za ndani.
 
 Huna haja ya kuchagua modeli yenye malipo ili kuanza. Mara tu unapoongeza ufunguo wako wa API wa OpenRouter, programu huwezesha kiotomatiki chaguo la ndani la **bure** la OpenRouter. Hii hukuruhusu kuanza kutafsiri, kuandika upya, na kubadilisha maandishi mara moja. Vinginevyo, unaweza pia kupata ufunguo wa bure wa API kutoka Cerebras, Google, Groq, Mistral AI, au [NVIDIA](https://build.nvidia.com/) (API inayopatana na OpenAI).
 
@@ -762,7 +762,7 @@ Tumia **Watumiaji** kudumisha akaunti za watumiaji katika toleo la wavuti. Unawe
 <a id="api-config"></a>
 ### Mipangilio ya API
 
-Watoa huduma wanaoungwa mkono ni: OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, **Ollama** (modeli za ndani kupitia URL ya msingi), na **mtoa huduma wa hiari anayepatana na OpenAI** (jina, URL, na ufunguo wa API — hali ya Maalum pekee). Unahitaji tu kusanidi watoa huduma unaotumia.
+Watoa huduma wanaoungwa mkono ni: OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, **Ollama** (modeli za ndani kupitia URL ya msingi), na **mtoa huduma wa kustom anayepatana na OpenAI** wa hiari (jina, URL, na ufunguo wa API — hali ya Maalum pekee). Unahitaji tu kusanidi watoa huduma unaotumia.
 
 **Programu ya wavuti: kwa msimamizi tu**
 
@@ -782,7 +782,7 @@ Funguo za API huendeshwa kupitia vigezo vya mazingira ya mfumo au Docker - hazij
 
 **Programu ya kompyuta**
 
-Tumia **Usanidi wa API** kuhifadhi funguo za API kwa kila mtoa huduma unaotumia. Kwa Ollama, weka **URL ya msingi** badala ya ufunguo wa API. Kwa mtoa huduma wa kustom anayepatana na OpenAI (k.w.a [NVIDIA NIM](https://build.nvidia.com/)), weka **jina la mtoa huduma**, **URL ya msingi** (kama vile `https://integrate.api.nvidia.com/v1`), na **ufunguo wa API**; zote tatu zinahitajika. URL na jina huhaririwa moja kwa moja; tumia **Hariri** kuchukua nafasi ya ufunguo wa API. Model za mtoa huduma wa kustom huonekana katika hali ya **Maalum** pekee (Mipangilio → Modeli).
+Tumia **Usanidi wa API** kuhifadhi funguo za API kwa kila mtoa huduma unaotumia. Kwa Ollama, weka **URL ya msingi** badala ya ufunguo wa API. Kwa mtoa huduma wa kustom anayepatana na OpenAI (mlango wowote ambao hauko kwenye orodha iliyojengewa ndani, kama vile seva inayojitegemea au lango), weka **jina la mtoa huduma**, **URL ya msingi** (kama vile `https://my-llm.example.com/v1`), na **ufunguo wa API**; zote tatu zinahitajika. URL na jina huhaririwa ndani ya mstari; tumia **Hariri** kuchukua nafasi ya ufunguo wa API. Model za mtoa huduma wa kustom huonekana katika hali ya **Maalum** pekee (Mipangilio → Modeli).
 
 <br/>
 
@@ -791,7 +791,7 @@ Tumia **Usanidi wa API** kuhifadhi funguo za API kwa kila mtoa huduma unaotumia.
 
 <br/>
 
-- Ongeza tu watoa huduma unaohitaji. Katika **Mipangilio** > **Modeli**, kila kitambulisho cha modeli huanza na mtoa huduma (kwa mfano `openrouter/openrouter/free`, `openai/gpt-4o`, `ollama/llama3`, `NVIDIA/nvidia/nemotron-nano-3-30b-a3b` kwa sehemu ya kustom inayoitwa NVIDIA).
+- Ongeza tu watoa huduma unaohitaji. Katika **Mipangilio** > **Modeli**, kila kitambulisho cha modeli huanza na mtoa huduma (kwa mfano `openrouter/openrouter/free`, `openai/gpt-4o`, `nvidia/nvidia/nemotron-nano-3-30b-a3b`, `ollama/llama3`, `MyProvider/…` kwa mlango wa kustom unaoitwa `MyProvider`).
 
 Ili kuongeza funguo la API, weka thamani kwenye kikopo cha maandishi na ubonyeze `Save`. Ili kubadilisha funguo uliopo, bonyeza `Edit`. Ili kuthibitisha kwamba funguo linafanya kazi, bonyeza `Test`. Kwa URL ya msingi wa Ollama, bonyeza daima `Test` kuchunguza muunganisho.
 

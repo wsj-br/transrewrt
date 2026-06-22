@@ -26,7 +26,7 @@ Hướng dẫn này giải thích cách sử dụng ứng dụng sau khi đã c�
 > Transrewrt có sẵn dưới dạng ứng dụng máy tính để bàn dành cho Windows và Linux, và dưới dạng ứng dụng web tự lưu trữ. Hướng dẫn này tập trung vào việc sử dụng hàng ngày ứng dụng. Những nội dung chỉ áp dụng cho một phiên bản cụ thể sẽ được ghi rõ.
 
 <small>**Đọc bằng các ngôn ngữ khác:** </small>
-<small id="lang-list">[English (GB)](../USER-GUIDE.md) · [Português (Brasil)](./USER-GUIDE.pt-BR.md) · [العربية](./USER-GUIDE.ar.md) · [বাংলা](./USER-GUIDE.bn.md) · [Català](./USER-GUIDE.ca.md) · [中文 (中国大陆)](./USER-GUIDE.zh-CN.md) · [中文 (台灣)](./USER-GUIDE.zh-TW.md) · [Hrvatski](./USER-GUIDE.hr.md) · [Čeština](./USER-GUIDE.cs.md) · [Nederlands](./USER-GUIDE.nl.md) · [English (US)](./USER-GUIDE.en-US.md) · [Tagalog](./USER-GUIDE.tl.md) · [Français](./USER-GUIDE.fr.md) · [Deutsch](./USER-GUIDE.de.md) · [Ελληνικά](./USER-GUIDE.el.md) · [हिन्दी](./USER-GUIDE.hi.md) · [Magyar](./USER-GUIDE.hu.md) · [Italiano](./USER-GUIDE.it.md) · [日本語](./USER-GUIDE.ja.md) · [한국어](./USER-GUIDE.ko.md) · [Bahasa Melayu](./USER-GUIDE.ms.md) · [فارسی](./USER-GUIDE.fa.md) · [Polski](./USER-GUIDE.pl.md) · [Basa Jawa](./USER-GUIDE.jv.md) · [Português](./USER-GUIDE.pt.md) · [ਪੰਜਾਬੀ](./USER-GUIDE.pa.md) · [Română](./USER-GUIDE.ro.md) · [Русский](./USER-GUIDE.ru.md) · [Slovenčina](./USER-GUIDE.sk.md) · [Español](./USER-GUIDE.es.md) · [Kiswahili](./USER-GUIDE.sw.md) · [Svenska](./USER-GUIDE.sv.md) · [తెలుగు](./USER-GUIDE.te.md) · [ไทย](./USER-GUIDE.th.md) · [Türkçe](./USER-GUIDE.tr.md) · [Українська](./USER-GUIDE.uk.md) · [Tiếng Việt](./USER-GUIDE.vi.md)</small>
+<small id="lang-list">[English (UK)](../USER-GUIDE.md) · [Português (Brasil)](./USER-GUIDE.pt-BR.md) · [العربية](./USER-GUIDE.ar.md) · [বাংলা](./USER-GUIDE.bn.md) · [Català](./USER-GUIDE.ca.md) · [简体中文](./USER-GUIDE.zh-Hans.md) · [繁體中文](./USER-GUIDE.zh-Hant.md) · [Hrvatski](./USER-GUIDE.hr.md) · [Čeština](./USER-GUIDE.cs.md) · [Nederlands](./USER-GUIDE.nl.md) · [English (US)](./USER-GUIDE.en-US.md) · [Tagalog](./USER-GUIDE.tl.md) · [Français](./USER-GUIDE.fr.md) · [Deutsch](./USER-GUIDE.de.md) · [Ελληνικά](./USER-GUIDE.el.md) · [Hindi (Roman)](./USER-GUIDE.hi-Latn.md) · [Magyar](./USER-GUIDE.hu.md) · [Italiano](./USER-GUIDE.it.md) · [日本語](./USER-GUIDE.ja.md) · [한국어](./USER-GUIDE.ko.md) · [Bahasa Melayu](./USER-GUIDE.ms.md) · [فارسی](./USER-GUIDE.fa.md) · [Polski](./USER-GUIDE.pl.md) · [Basa Jawa](./USER-GUIDE.jv.md) · [Português](./USER-GUIDE.pt.md) · [پنجابی](./USER-GUIDE.pa-PK.md) · [Română](./USER-GUIDE.ro.md) · [Русский](./USER-GUIDE.ru.md) · [Slovenčina](./USER-GUIDE.sk.md) · [Español](./USER-GUIDE.es.md) · [Kiswahili](./USER-GUIDE.sw.md) · [Svenska](./USER-GUIDE.sv.md) · [తెలుగు](./USER-GUIDE.te.md) · [ไทย](./USER-GUIDE.th.md) · [Türkçe](./USER-GUIDE.tr.md) · [Українська](./USER-GUIDE.uk.md) · [Tiếng Việt](./USER-GUIDE.vi.md)</small>
 
 <small>
 
@@ -104,7 +104,7 @@ Hướng dẫn này giải thích cách sử dụng ứng dụng sau khi đã c�
 <a id="before-you-start"></a>
 ## Trước khi bắt đầu
 
-Để sử dụng Transrewrt, bạn cần truy cập vào ít nhất một nhà cung cấp AI. Các nhà cung cấp được hỗ trợ gồm: [OpenRouter](https://openrouter.ai) (tích hợp nhiều mô hình), OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras và [Ollama](https://ollama.com) cho các mô hình nội bộ.
+Để sử dụng Transrewrt, bạn cần có quyền truy cập vào ít nhất một nhà cung cấp AI. Các nhà cung cấp được hỗ trợ bao gồm: [OpenRouter](https://openrouter.ai) (tổng hợp nhiều mô hình), OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, bất kỳ nhà cung cấp nào tương thích với OpenAI và [Ollama](https://ollama.com) cho các mô hình cục bộ.
 
 Bạn không cần chọn mô hình trả phí để bắt đầu. Ngay khi bạn thêm khóa API OpenRouter của mình, ứng dụng sẽ tự động bật tùy chọn OpenRouter **miễn phí** tích hợp sẵn. Điều này cho phép bạn bắt đầu dịch, viết lại và chuyển đổi văn bản ngay lập tức. Ngoài ra, bạn cũng có thể lấy khóa API miễn phí từ Cerebras, Google, Groq, Mistral AI hoặc [NVIDIA](https://build.nvidia.com/) (API tương thích OpenAI).
 
@@ -762,7 +762,7 @@ Sử dụng **Người dùng** để quản lý tài khoản người dùng tron
 <a id="api-config"></a>
 ### Cấu hình API
 
-Các nhà cung cấp được hỗ trợ bao gồm: OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, **Ollama** (mô hình cục bộ qua URL cơ sở) và **nhà cung cấp tùy chỉnh tương thích OpenAI** tùy chọn (tên, URL và khóa API — chỉ ở chế độ Nâng cao). Bạn chỉ cần cấu hình các nhà cung cấp mà bạn sử dụng.
+Các nhà cung cấp được hỗ trợ bao gồm: OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, **Ollama** (mô hình cục bộ qua URL cơ sở) và một **nhà cung cấp tùy chỉnh tương thích OpenAI** tùy chọn (tên, URL và khóa API — chỉ ở chế độ Nâng cao). Bạn chỉ cần cấu hình các nhà cung cấp mà bạn sử dụng.
 
 **Ứng dụng web: chỉ dành cho quản trị viên**
 
@@ -782,7 +782,7 @@ Khóa API được cấu hình thông qua các biến môi trường hệ thốn
 
 **Ứng dụng máy tính để bàn**
 
-Sử dụng **Cấu hình API** để lưu trữ khóa API cho từng nhà cung cấp bạn sử dụng. Đối với Ollama, hãy nhập **URL cơ sở** thay vì khóa API. Đối với nhà cung cấp tùy chỉnh tương thích OpenAI (ví dụ: [NVIDIA NIM](https://build.nvidia.com/)), hãy nhập **tên nhà cung cấp**, **URL cơ sở** (chẳng hạn như `https://integrate.api.nvidia.com/v1`) và **khóa API**; cả ba đều bắt buộc. URL và tên được chỉnh sửa nội tuyến; sử dụng **Chỉnh sửa** để thay thế khóa API. Các mô hình nhà cung cấp tùy chỉnh chỉ xuất hiện ở chế độ **Nâng cao** (Cài đặt → Mô hình).
+Sử dụng **Cấu hình API** để lưu trữ khóa API cho từng nhà cung cấp bạn sử dụng. Đối với Ollama, hãy nhập **URL cơ sở** thay vì khóa API. Đối với nhà cung cấp tùy chỉnh tương thích OpenAI (bất kỳ điểm cuối nào không có trong danh sách tích hợp sẵn, chẳng hạn như máy chủ hoặc cổng tự lưu trữ), hãy nhập **tên nhà cung cấp**, **URL cơ sở** (ví dụ: `https://my-llm.example.com/v1`) và **khóa API**; cả ba đều bắt buộc. URL và tên được chỉnh sửa trực tuyến; sử dụng **Chỉnh sửa** để thay thế khóa API. Các mô hình của nhà cung cấp tùy chỉnh chỉ xuất hiện ở chế độ **Nâng cao** (Cài đặt → Mô hình).
 
 <br/>
 
@@ -791,7 +791,7 @@ Sử dụng **Cấu hình API** để lưu trữ khóa API cho từng nhà cung 
 
 <br/>
 
-- Chỉ thêm các nhà cung cấp bạn cần. Trong **Cài đặt** > **Mô hình**, mỗi ID mô hình bắt đầu bằng nhà cung cấp (ví dụ: `openrouter/openrouter/free`, `openai/gpt-4o`, `ollama/llama3`, `NVIDIA/nvidia/nemotron-nano-3-30b-a3b` cho một điểm cuối tùy chỉnh có tên NVIDIA).
+- Chỉ thêm các nhà cung cấp bạn cần. Trong **Cài đặt** > **Mô hình**, mỗi ID mô hình bắt đầu bằng nhà cung cấp (ví dụ: `openrouter/openrouter/free`, `openai/gpt-4o`, `nvidia/nvidia/nemotron-nano-3-30b-a3b`, `ollama/llama3`, `MyProvider/…` cho một điểm cuối tùy chỉnh có tên `MyProvider`).
 
 Để thêm khóa API, nhập giá trị vào ô văn bản và nhấn `Save`. Để thay thế khóa hiện có, nhấn `Edit`. Để xác minh khóa hoạt động, nhấn `Test`. Với URL gốc Ollama, luôn nhấn `Test` để kiểm tra kết nối.
 

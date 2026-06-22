@@ -3,14 +3,14 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.0-blue" alt="Version"></a>
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.1-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
   <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react" alt="React 19">
   <img src="https://img.shields.io/badge/Electron-41-47848F?logo=electron" alt="Electron 41">
 </p>
 
-Công cụ văn bản được hỗ trợ bởi AI: dịch giữa các ngôn ngữ, viết lại theo các phong cách khác nhau và chuyển đổi bằng lời nhắc tùy chỉnh - sử dụng nhiều nhà cung cấp AI (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI và Ollama cục bộ). Chạy dưới dạng ứng dụng máy tính để bàn (Electron) hoặc ứng dụng web tự lưu trữ (Docker).
+Công cụ văn bản hỗ trợ AI: dịch giữa các ngôn ngữ, viết lại theo các phong cách khác nhau và chuyển đổi bằng các câu lệnh tùy chỉnh - sử dụng nhiều nhà cung cấp AI (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, bất kỳ nhà cung cấp nào tương thích OpenAI và Ollama cục bộ). Chạy dưới dạng ứng dụng máy tính (Electron) hoặc ứng dụng web tự lưu trữ (Docker).
 
 - **Dịch** - giữa hàng chục ngôn ngữ, với khả năng tự động phát hiện ngôn ngữ nguồn
 - **Chỉnh sửa lại** - sửa ngữ pháp, cải thiện rõ ràng, trang trọng/thân mật, rút gọn, mở rộng, kỹ thuật
@@ -27,7 +27,7 @@ Công cụ văn bản được hỗ trợ bởi AI: dịch giữa các ngôn ng�
 Sau khi cài đặt, hãy xem [**Hướng dẫn Người dùng**](USER-GUIDE.vi.md) để được hướng dẫn chi tiết về tất cả các tính năng.
 
 <small>**Đọc bằng các ngôn ngữ khác:** </small>
-<small id="lang-list">[English (GB)](../README.md) · [Português (Brasil)](./README.pt-BR.md) · [العربية](./README.ar.md) · [বাংলা](./README.bn.md) · [Català](./README.ca.md) · [中文 (中国大陆)](./README.zh-CN.md) · [中文 (台灣)](./README.zh-TW.md) · [Hrvatski](./README.hr.md) · [Čeština](./README.cs.md) · [Nederlands](./README.nl.md) · [English (US)](./README.en-US.md) · [Tagalog](./README.tl.md) · [Français](./README.fr.md) · [Deutsch](./README.de.md) · [Ελληνικά](./README.el.md) · [हिन्दी](./README.hi.md) · [Magyar](./README.hu.md) · [Italiano](./README.it.md) · [日本語](./README.ja.md) · [한국어](./README.ko.md) · [Bahasa Melayu](./README.ms.md) · [فارسی](./README.fa.md) · [Polski](./README.pl.md) · [Basa Jawa](./README.jv.md) · [Português](./README.pt.md) · [ਪੰਜਾਬੀ](./README.pa.md) · [Română](./README.ro.md) · [Русский](./README.ru.md) · [Slovenčina](./README.sk.md) · [Español](./README.es.md) · [Kiswahili](./README.sw.md) · [Svenska](./README.sv.md) · [తెలుగు](./README.te.md) · [ไทย](./README.th.md) · [Türkçe](./README.tr.md) · [Українська](./README.uk.md) · [Tiếng Việt](./README.vi.md)</small>
+<small id="lang-list">[English (UK)](../README.md) · [Português (Brasil)](./README.pt-BR.md) · [العربية](./README.ar.md) · [বাংলা](./README.bn.md) · [Català](./README.ca.md) · [简体中文](./README.zh-Hans.md) · [繁體中文](./README.zh-Hant.md) · [Hrvatski](./README.hr.md) · [Čeština](./README.cs.md) · [Nederlands](./README.nl.md) · [English (US)](./README.en-US.md) · [Tagalog](./README.tl.md) · [Français](./README.fr.md) · [Deutsch](./README.de.md) · [Ελληνικά](./README.el.md) · [Hindi (Roman)](./README.hi-Latn.md) · [Magyar](./README.hu.md) · [Italiano](./README.it.md) · [日本語](./README.ja.md) · [한국어](./README.ko.md) · [Bahasa Melayu](./README.ms.md) · [فارسی](./README.fa.md) · [Polski](./README.pl.md) · [Basa Jawa](./README.jv.md) · [Português](./README.pt.md) · [پنجابی](./README.pa-PK.md) · [Română](./README.ro.md) · [Русский](./README.ru.md) · [Slovenčina](./README.sk.md) · [Español](./README.es.md) · [Kiswahili](./README.sw.md) · [Svenska](./README.sv.md) · [తెలుగు](./README.te.md) · [ไทย](./README.th.md) · [Türkçe](./README.tr.md) · [Українська](./README.uk.md) · [Tiếng Việt](./README.vi.md)</small>
 
 <small>
 
@@ -255,7 +255,7 @@ Transrewrt hỗ trợ nhiều nhà cung cấp AI. [OpenRouter](https://openroute
 
 Không sử dụng mô hình **Body Builder** của OpenRouter ([`openrouter/bodybuilder`](https://openrouter.ai/openrouter/bodybuilder)) cho dịch, viết lại hoặc chuyển đổi: nó trả về các gói yêu cầu JSON, chứ không phải văn bản hoàn chỉnh cho các tác vụ đó. Xem [Cài đặt → Mô hình](USER-GUIDE.vi.md#models) trong Hướng dẫn Người dùng.
 
-Bạn cũng có thể sử dụng các nhà cung cấp khác (OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras) hoặc chạy mô hình cục bộ với [Ollama](https://ollama.com). Xem [Cấu hình](#configuration-and-environment) để biết danh sách đầy đủ các nhà cung cấp được hỗ trợ và các biến môi trường.
+Bạn cũng có thể sử dụng các nhà cung cấp khác (OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, bất kỳ nhà cung cấp nào tương thích OpenAI) hoặc chạy các mô hình cục bộ với [Ollama](https://ollama.com). Xem [Cấu hình](#configuration-and-environment) để biết danh sách đầy đủ các nhà cung cấp được hỗ trợ và biến môi trường.
 
 </br>
 
@@ -281,9 +281,9 @@ Bạn cũng có thể sử dụng các nhà cung cấp khác (OpenAI, Anthropic,
 
 **Biến môi trường** (chỉ dành cho web/Docker; Electron sử dụng tệp cấu hình cục bộ)
 
-| Biến                | Mô tả                                                                          |
-|----------------------|------------------------------------------------------------------------------|
-| `PORT`               | Cổng lắng nghe của máy chủ (mặc định là `5000`)                                  |
+| Biến                  | Mô tả                                                                                       |
+|---------------------------|-----------------------------------------------------------------------------------------|
+| `PORT`                    | Cổng lắng nghe của máy chủ (mặc định là `5000`)                                             |
 | `CONFIG_PATH`        | Đường dẫn đến tệp cấu hình (mặc định là `/app/data/config.json`)                |
 | `TZ`                 | múi giờ cho thời gian phía máy chủ (ghi log, v.v.) (mặc định là `Europe/London`) |
 | `HISTORY_DISABLED`   | Bắt buộc tắt lịch sử thực thi (tùy chọn, mặc định là `false`)                  |
@@ -297,11 +297,14 @@ Bạn cũng có thể sử dụng các nhà cung cấp khác (OpenAI, Anthropic,
 | `MISTRAL_API_KEY`    | Khóa API Mistral                                                              |
 | `OLLAMA_URL`         | URL gốc Ollama (ví dụ: `http://host.docker.internal:11434`)                   |
 | `XAI_API_KEY`        | Khóa API xAI                                                                  |
+| `NVIDIA_API_KEY`          | Khóa API NVIDIA                                                                          |
+| `ALIBABA_API_KEY`         | Khóa API Alibaba Cloud (DashScope)                                                       |
+| `APIFUN_API_KEY`          | Khóa API apikey.fun                                                                      |
 | `CUSTOM_PROVIDER_NAME` | Tên hiển thị cho nhà cung cấp tùy chỉnh tương thích OpenAI (yêu cầu cả ba biến tùy chỉnh) |
-| `CUSTOM_PROVIDER_URL`  | URL cơ sở cho nhà cung cấp tùy chỉnh tương thích OpenAI (ví dụ: `https://integrate.api.nvidia.com/v1`) |
+| `CUSTOM_PROVIDER_URL`     | URL cơ sở cho nhà cung cấp tùy chỉnh tương thích OpenAI (ví dụ: `https://my-llm.example.com/v1`) |
 | `CUSTOM_PROVIDER_API_KEY` | Khóa API cho nhà cung cấp tùy chỉnh tương thích OpenAI                         |
 
-**Nhà cung cấp tùy chỉnh tương thích OpenAI (web/Docker):** đặt cả ba biến `CUSTOM_PROVIDER_*`. Ví dụ cho [NVIDIA NIM](https://build.nvidia.com/): `CUSTOM_PROVIDER_NAME=NVIDIA`, `CUSTOM_PROVIDER_URL=https://integrate.api.nvidia.com/v1`, và khóa API từ [build.nvidia.com](https://build.nvidia.com/). Các mô hình xuất hiện ở chế độ **Nâng cao** trong Cài đặt → Mô hình với các ID như `NVIDIA/…` (tên nhà cung cấp làm tiền tố).
+**Nhà cung cấp tùy chỉnh tương thích OpenAI (web/Docker):** dành cho bất kỳ điểm cuối nào tương thích OpenAI không có trong danh sách tích hợp ở trên (ví dụ: máy chủ hoặc cổng tự lưu trữ), hãy đặt cả ba biến `CUSTOM_PROVIDER_*` — ví dụ: `CUSTOM_PROVIDER_NAME=MyProvider`, `CUSTOM_PROVIDER_URL=https://my-llm.example.com/v1` và khóa API tương ứng. Các mô hình sẽ xuất hiện ở chế độ **Nâng cao** trong Cài đặt → Mô hình với các ID như `MyProvider/…` (tên nhà cung cấp làm tiền tố).
 
 **Chế độ riêng tư:** Để buộc tắt việc ghi nhận lịch sử bất kể `config.json` hay tùy chọn theo người dùng, hãy đặt `HISTORY_DISABLED` thành `true` hoặc `1` (không phân biệt chữ hoa/thường) cho **quy trình máy chủ web/Docker** và/hoặc **quy trình chính ứng dụng desktop Electron** (ví dụ: môi trường hệ thống hoặc trình khởi chạy — không chỉ riêng trình hiển thị). Thao tác này sẽ vô hiệu hóa việc lưu trữ lịch sử đầu vào/đầu ra, khóa mục **Cài đặt → Cài đặt chung → Lịch sử** và chặn các API liên quan đến Lịch sử.
 

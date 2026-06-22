@@ -3,14 +3,14 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.0-blue" alt="Version"></a>
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.1-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
   <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react" alt="React 19">
   <img src="https://img.shields.io/badge/Electron-41-47848F?logo=electron" alt="Electron 41">
 </p>
 
-Instrument text AI: traduce între limbi, rescrie în stiluri diferite și transformă cu prompturi personalizate – utilizând mai mulți furnizori de AI (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI și Ollama local). Rulează ca aplicație desktop (Electron) sau aplicație web auto-găzduită (Docker).
+Instrument de text bazat pe AI: traduceți între limbi, rescrieți în stiluri diferite și transformați cu prompturi personalizate - folosind mai mulți furnizori AI (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, orice furnizor compatibil cu OpenAI și Ollama local). Rulează ca aplicație desktop (Electron) sau aplicație web auto-găzduită (Docker).
 
 - **Traducere** - între zeci de limbi, cu detectare automată a sursei
 - **Reescriere** - corectare gramaticală, îmbunătățire claritate, formal/informal, scurtare, extindere, tehnic
@@ -27,7 +27,7 @@ Instrument text AI: traduce între limbi, rescrie în stiluri diferite și trans
 Odată instalat, consultați [**Ghidul utilizatorului**](USER-GUIDE.ro.md) pentru o prezentare completă a tuturor funcțiilor.
 
 <small>**Citește în alte limbi:** </small>
-<small id="lang-list">[English (GB)](../README.md) · [Português (Brasil)](./README.pt-BR.md) · [العربية](./README.ar.md) · [বাংলা](./README.bn.md) · [Català](./README.ca.md) · [中文 (中国大陆)](./README.zh-CN.md) · [中文 (台灣)](./README.zh-TW.md) · [Hrvatski](./README.hr.md) · [Čeština](./README.cs.md) · [Nederlands](./README.nl.md) · [English (US)](./README.en-US.md) · [Tagalog](./README.tl.md) · [Français](./README.fr.md) · [Deutsch](./README.de.md) · [Ελληνικά](./README.el.md) · [हिन्दी](./README.hi.md) · [Magyar](./README.hu.md) · [Italiano](./README.it.md) · [日本語](./README.ja.md) · [한국어](./README.ko.md) · [Bahasa Melayu](./README.ms.md) · [فارسی](./README.fa.md) · [Polski](./README.pl.md) · [Basa Jawa](./README.jv.md) · [Português](./README.pt.md) · [ਪੰਜਾਬੀ](./README.pa.md) · [Română](./README.ro.md) · [Русский](./README.ru.md) · [Slovenčina](./README.sk.md) · [Español](./README.es.md) · [Kiswahili](./README.sw.md) · [Svenska](./README.sv.md) · [తెలుగు](./README.te.md) · [ไทย](./README.th.md) · [Türkçe](./README.tr.md) · [Українська](./README.uk.md) · [Tiếng Việt](./README.vi.md)</small>
+<small id="lang-list">[English (UK)](../README.md) · [Português (Brasil)](./README.pt-BR.md) · [العربية](./README.ar.md) · [বাংলা](./README.bn.md) · [Català](./README.ca.md) · [简体中文](./README.zh-Hans.md) · [繁體中文](./README.zh-Hant.md) · [Hrvatski](./README.hr.md) · [Čeština](./README.cs.md) · [Nederlands](./README.nl.md) · [English (US)](./README.en-US.md) · [Tagalog](./README.tl.md) · [Français](./README.fr.md) · [Deutsch](./README.de.md) · [Ελληνικά](./README.el.md) · [Hindi (Roman)](./README.hi-Latn.md) · [Magyar](./README.hu.md) · [Italiano](./README.it.md) · [日本語](./README.ja.md) · [한국어](./README.ko.md) · [Bahasa Melayu](./README.ms.md) · [فارسی](./README.fa.md) · [Polski](./README.pl.md) · [Basa Jawa](./README.jv.md) · [Português](./README.pt.md) · [پنجابی](./README.pa-PK.md) · [Română](./README.ro.md) · [Русский](./README.ru.md) · [Slovenčina](./README.sk.md) · [Español](./README.es.md) · [Kiswahili](./README.sw.md) · [Svenska](./README.sv.md) · [తెలుగు](./README.te.md) · [ไทย](./README.th.md) · [Türkçe](./README.tr.md) · [Українська](./README.uk.md) · [Tiếng Việt](./README.vi.md)</small>
 
 <small>
 
@@ -255,7 +255,7 @@ Transrewrt susține mai mulți furnizori de IA. [OpenRouter](https://openrouter.
 
 Nu folosiți modelul **Body Builder** al OpenRouter ([`openrouter/bodybuilder`](https://openrouter.ai/openrouter/bodybuilder)) pentru traducere, rescriere sau transformare: acesta returnează sarcini JSON, nu textul finalizat pentru aceste sarcini. Consultați [Setări → Modele](USER-GUIDE.ro.md#models) din Ghidul utilizatorului.
 
-Puteți utiliza și alți furnizori (OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras) sau rula modele local cu [Ollama](https://ollama.com). Consultați [Configurare](#configuration-and-environment) pentru lista completă a furnizorilor susținuți și variabilelor de mediu.
+Puteți utiliza, de asemenea, alți furnizori (OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, orice furnizor compatibil cu OpenAI) sau puteți rula modele local cu [Ollama](https://ollama.com). Consultați [Configurare](#configuration-and-environment) pentru lista completă a furnizorilor suportați și a variabilelor de mediu.
 
 </br>
 
@@ -281,9 +281,9 @@ Puteți utiliza și alți furnizori (OpenAI, Anthropic, Google Gemini, DeepSeek,
 
 **Variabile de mediu** (doar web/Docker; Electron folosește fișierul de configurare local)
 
-| Variabilă             | Descriere                                                                  |
-|----------------------|------------------------------------------------------------------------------|
-| `PORT`               | Portul pe care ascultă serverul (implicit `5000`)                                  |
+| Variabilă                  | Descriere                                                                             |
+|---------------------------|-----------------------------------------------------------------------------------------|
+| `PORT`                    | Portul pe care ascultă serverul (implicit este `5000`)                                             |
 | `CONFIG_PATH`        | Calea către fișierul de configurare (implicit `/app/data/config.json`)                |
 | `TZ`                 | fus orar pentru timpul de pe server (jurnalizare etc.) (implicit `Europe/London`) |
 | `HISTORY_DISABLED`   | Activează dezactivarea istoricului execuției (opțional, implicit `false`)                  |
@@ -297,11 +297,14 @@ Puteți utiliza și alți furnizori (OpenAI, Anthropic, Google Gemini, DeepSeek,
 | `MISTRAL_API_KEY`    | Cheie API Mistral                                                              |
 | `OLLAMA_URL`         | URL de bază Ollama (ex: `http://host.docker.internal:11434`)                   |
 | `XAI_API_KEY`        | Cheie API xAI                                                                  |
+| `NVIDIA_API_KEY`          | Cheie API NVIDIA                                                                          |
+| `ALIBABA_API_KEY`         | Cheie API Alibaba Cloud (DashScope)                                                       |
+| `APIFUN_API_KEY`          | Cheie API apikey.fun                                                                      |
 | `CUSTOM_PROVIDER_NAME` | Nume afișat pentru un furnizor personalizat compatibil cu OpenAI (toate cele trei variabile personalizate sunt necesare) |
-| `CUSTOM_PROVIDER_URL`  | URL de bază pentru un furnizor personalizat compatibil cu OpenAI (de ex. `https://integrate.api.nvidia.com/v1`) |
+| `CUSTOM_PROVIDER_URL`     | URL de bază pentru un furnizor personalizat compatibil cu OpenAI (de ex. `https://my-llm.example.com/v1`) |
 | `CUSTOM_PROVIDER_API_KEY` | Cheie API pentru un furnizor personalizat compatibil cu OpenAI                         |
 
-**Furnizor personalizat compatibil cu OpenAI (web/Docker):** setați toate cele trei variabile `CUSTOM_PROVIDER_*`. Exemplu pentru [NVIDIA NIM](https://build.nvidia.com/): `CUSTOM_PROVIDER_NAME=NVIDIA`, `CUSTOM_PROVIDER_URL=https://integrate.api.nvidia.com/v1` și o cheie API de pe [build.nvidia.com](https://build.nvidia.com/). Modelele apar în modul **Avansat** sub Setări → Modele cu ID-uri precum `NVIDIA/…` (numele furnizorului ca prefix).
+**Furnizor personalizat compatibil cu OpenAI (web/Docker):** pentru orice punct final compatibil cu OpenAI care nu se află în lista încorporată de mai sus (de ex. un server auto-găzduit sau un gateway), setați toate cele trei variabile `CUSTOM_PROVIDER_*` — de exemplu `CUSTOM_PROVIDER_NAME=MyProvider`, `CUSTOM_PROVIDER_URL=https://my-llm.example.com/v1` și cheia API corespunzătoare. Modelele apar în modul **Avansat** sub Setări → Modele cu ID-uri precum `MyProvider/…` (numele furnizorului ca prefix).
 
 **Modul de confidențialitate:** Pentru a forța dezactivarea urmăririi istoricului indiferent de `config.json` sau de preferințele pe utilizator, setați `HISTORY_DISABLED` la `true` sau `1` (fără distincție între majuscule și minuscule) pentru **procesul server web/Docker** și/sau **procesul principal desktop Electron** (de exemplu, mediul sistemului sau al lansatorului — nu doar renderer-ul). Aceasta dezactivează stocarea istoricului intrare/ieșire, blochează **Setări → Setări generale → Istoric** și blochează API-urile legate de Istoric.
 

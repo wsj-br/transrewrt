@@ -26,7 +26,7 @@ Transrewrt আপনাকে তিনটি প্রধান উপায়
 > Transrewrt উইন্ডোজ এবং লিনাক্সের জন্য একটি ডেস্কটপ অ্যাপ হিসাবে এবং একটি স্ব-হোস্টেড ওয়েব অ্যাপ হিসাবে উপলব্ধ। এই গাইডটি অ্যাপটির দৈনিক ব্যবহার নিয়ে কেন্দ্রিত। যেখানে কিছু শুধুমাত্র একটি সংস্করণের জন্য প্রযোজ্য, সেখানে এটি স্পষ্টভাবে চিহ্নিত করা হয়েছে।
 
 <small>**অন্যান্য ভাষায় পড়ুন:** </small>
-<small id="lang-list">[English (GB)](../USER-GUIDE.md) · [Português (Brasil)](./USER-GUIDE.pt-BR.md) · [العربية](./USER-GUIDE.ar.md) · [বাংলা](./USER-GUIDE.bn.md) · [Català](./USER-GUIDE.ca.md) · [中文 (中国大陆)](./USER-GUIDE.zh-CN.md) · [中文 (台灣)](./USER-GUIDE.zh-TW.md) · [Hrvatski](./USER-GUIDE.hr.md) · [Čeština](./USER-GUIDE.cs.md) · [Nederlands](./USER-GUIDE.nl.md) · [English (US)](./USER-GUIDE.en-US.md) · [Tagalog](./USER-GUIDE.tl.md) · [Français](./USER-GUIDE.fr.md) · [Deutsch](./USER-GUIDE.de.md) · [Ελληνικά](./USER-GUIDE.el.md) · [हिन्दी](./USER-GUIDE.hi.md) · [Magyar](./USER-GUIDE.hu.md) · [Italiano](./USER-GUIDE.it.md) · [日本語](./USER-GUIDE.ja.md) · [한국어](./USER-GUIDE.ko.md) · [Bahasa Melayu](./USER-GUIDE.ms.md) · [فارسی](./USER-GUIDE.fa.md) · [Polski](./USER-GUIDE.pl.md) · [Basa Jawa](./USER-GUIDE.jv.md) · [Português](./USER-GUIDE.pt.md) · [ਪੰਜਾਬੀ](./USER-GUIDE.pa.md) · [Română](./USER-GUIDE.ro.md) · [Русский](./USER-GUIDE.ru.md) · [Slovenčina](./USER-GUIDE.sk.md) · [Español](./USER-GUIDE.es.md) · [Kiswahili](./USER-GUIDE.sw.md) · [Svenska](./USER-GUIDE.sv.md) · [తెలుగు](./USER-GUIDE.te.md) · [ไทย](./USER-GUIDE.th.md) · [Türkçe](./USER-GUIDE.tr.md) · [Українська](./USER-GUIDE.uk.md) · [Tiếng Việt](./USER-GUIDE.vi.md)</small>
+<small id="lang-list">[English (UK)](../USER-GUIDE.md) · [Português (Brasil)](./USER-GUIDE.pt-BR.md) · [العربية](./USER-GUIDE.ar.md) · [বাংলা](./USER-GUIDE.bn.md) · [Català](./USER-GUIDE.ca.md) · [简体中文](./USER-GUIDE.zh-Hans.md) · [繁體中文](./USER-GUIDE.zh-Hant.md) · [Hrvatski](./USER-GUIDE.hr.md) · [Čeština](./USER-GUIDE.cs.md) · [Nederlands](./USER-GUIDE.nl.md) · [English (US)](./USER-GUIDE.en-US.md) · [Tagalog](./USER-GUIDE.tl.md) · [Français](./USER-GUIDE.fr.md) · [Deutsch](./USER-GUIDE.de.md) · [Ελληνικά](./USER-GUIDE.el.md) · [Hindi (Roman)](./USER-GUIDE.hi-Latn.md) · [Magyar](./USER-GUIDE.hu.md) · [Italiano](./USER-GUIDE.it.md) · [日本語](./USER-GUIDE.ja.md) · [한국어](./USER-GUIDE.ko.md) · [Bahasa Melayu](./USER-GUIDE.ms.md) · [فارسی](./USER-GUIDE.fa.md) · [Polski](./USER-GUIDE.pl.md) · [Basa Jawa](./USER-GUIDE.jv.md) · [Português](./USER-GUIDE.pt.md) · [پنجابی](./USER-GUIDE.pa-PK.md) · [Română](./USER-GUIDE.ro.md) · [Русский](./USER-GUIDE.ru.md) · [Slovenčina](./USER-GUIDE.sk.md) · [Español](./USER-GUIDE.es.md) · [Kiswahili](./USER-GUIDE.sw.md) · [Svenska](./USER-GUIDE.sv.md) · [తెలుగు](./USER-GUIDE.te.md) · [ไทย](./USER-GUIDE.th.md) · [Türkçe](./USER-GUIDE.tr.md) · [Українська](./USER-GUIDE.uk.md) · [Tiếng Việt](./USER-GUIDE.vi.md)</small>
 
 <small>
 
@@ -104,7 +104,7 @@ Transrewrt আপনাকে তিনটি প্রধান উপায়
 <a id="before-you-start"></a>
 ## শুরু করার আগে
 
-Transrewrt ব্যবহার করতে হলে আপনার কমপক্ষে একটি AI প্রদানকারীতে অ্যাক্সেস থাকা প্রয়োজন। সমর্থিত প্রদানকারীগুলি হল: [OpenRouter](https://openrouter.ai) (যা অনেক মডেল একত্রিত করে), OpenAI, অ্যানথ্রোপিক, Google Gemini, ডিপসীক, গ্রোক, মিস্ট্রাল, এক্সএআই, সেরেব্রাস এবং স্থানীয় মডেলের জন্য [Ollama](https://ollama.com)।
+Transrewrt ব্যবহার করার জন্য, আপনার অন্তত একটি AI প্রদানকারীর অ্যাক্সেস প্রয়োজন। সমর্থিত প্রদানকারীরা হল: [OpenRouter](https://openrouter.ai) (যা অনেক মডেল একত্রিত করে), OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, যেকোনো OpenAI-সামঞ্জস্যপূর্ণ প্রদানকারী, এবং স্থানীয় মডেলগুলির জন্য [Ollama](https://ollama.com)।
 
 শুরু করার জন্য আপনাকে একটি পেইড মডেল নির্বাচন করার প্রয়োজন নেই। আপনি আপনার OpenRouter API কী যুক্ত করার সাথে সাথেই অ্যাপটি স্বয়ংক্রিয়ভাবে একটি বিল্ট-ইন **বিনামূল্য** OpenRouter বিকল্প সক্রিয় করে। এটি আপনাকে অবিলম্বে টেক্সট অনুবাদ, পুনর্লিখন এবং রূপান্তর করা শুরু করতে দেয়। বিকল্পভাবে, আপনি Cerebras, Google, Groq, Mistral AI, বা [NVIDIA](https://build.nvidia.com/) (OpenAI-সামঞ্জস্যপূর্ণ API) থেকেও একটি বিনামূল্য API কী পেতে পারেন।
 
@@ -762,7 +762,7 @@ Transrewrt ব্যবহার করতে হলে আপনার কম�
 <a id="api-config"></a>
 ### API কনফিগ
 
-সমর্থিত প্রদানকারীরা হলেন: OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, **Ollama** (একটি বেস URL এর মাধ্যমে স্থানীয় মডেল), এবং একটি ঐচ্ছিক **কাস্টম OpenAI-সামঞ্জস্যপূর্ণ প্রদানকারী** (নাম, URL, এবং API কী — শুধুমাত্র উন্নত মোডে)। আপনাকে শুধুমাত্র সেই প্রদানকারীদের কনফিগার করতে হবে যা আপনি ব্যবহার করেন।
+সমর্থিত প্রদানকারীরা হল: OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, **Ollama** (একটি বেস URL এর মাধ্যমে স্থানীয় মডেল), এবং একটি ঐচ্ছিক **কাস্টম OpenAI-সামঞ্জস্যপূর্ণ প্রদানকারী** (নাম, URL, এবং API কী — শুধুমাত্র উন্নত মোডে)। আপনার শুধুমাত্র সেই প্রদানকারীগুলি কনফিগার করতে হবে যা আপনি ব্যবহার করেন।
 
 **ওয়েব অ্যাপ্লিকেশন: শুধুমাত্র প্রশাসক**
 
@@ -782,7 +782,7 @@ API কীগুলি সিস্টেম বা Docker এনভায়র
 
 **ডেস্কটপ অ্যাপ্লিকেশন**
 
-আপনি যে প্রদানকারী ব্যবহার করেন তার জন্য API কী সংরক্ষণ করতে **API কনফিগারেশন** ব্যবহার করুন। Ollama-এর জন্য, API কী-এর পরিবর্তে **বেস URL** প্রবেশ করান। একটি কাস্টম OpenAI-সামঞ্জস্যপূর্ণ প্রদানকারীর জন্য (যেমন [NVIDIA NIM](https://build.nvidia.com/)), একটি **প্রদানকারীর নাম**, **বেস URL** (যেমন `https://integrate.api.nvidia.com/v1`), এবং **API কী** প্রবেশ করান; তিনটিই প্রয়োজনীয়। URL এবং নামটি ইনলাইন সম্পাদনা করা হয়; API কী প্রতিস্থাপন করতে **সম্পাদনা করুন** ব্যবহার করুন। কাস্টম প্রদানকারীর মডেলগুলি শুধুমাত্র **উন্নত** মোডে প্রদর্শিত হয় (সেটিংস → মডেলগুলি)।
+আপনি যে প্রদানকারীগুলি ব্যবহার করেন তার জন্য API কী সংরক্ষণ করতে **API কনফিগারেশন** ব্যবহার করুন। Ollama-এর জন্য, API কী-এর পরিবর্তে **বেস URL** লিখুন। একটি কাস্টম OpenAI-সামঞ্জস্যপূর্ণ প্রদানকারীর জন্য (অন্তর্নির্মিত তালিকার বাইরের যেকোনো এন্ডপয়েন্ট, যেমন একটি স্ব-হোস্টেড সার্ভার বা গেটওয়ে), একটি **প্রদানকারীর নাম**, **বেস URL** (যেমন `https://my-llm.example.com/v1`), এবং **API কী** লিখুন; তিনটিই প্রয়োজন। URL এবং নামটি ইনলাইন সম্পাদনা করা হয়; API কী প্রতিস্থাপন করতে **সম্পাদনা করুন** ব্যবহার করুন। কাস্টম প্রদানকারীর মডেলগুলি শুধুমাত্র **উন্নত** মোডে প্রদর্শিত হয় (সেটিংস → মডেল)।
 
 <br/>
 
@@ -791,7 +791,7 @@ API কীগুলি সিস্টেম বা Docker এনভায়র
 
 <br/>
 
-- শুধুমাত্র আপনার প্রয়োজনীয় প্রদানকারী যুক্ত করুন। **সেটিংস** > **মডেলগুলি**-তে, প্রতিটি মডেল আইডি প্রদানকারী দিয়ে শুরু হয় (উদাহরণস্বরূপ NVIDIA-এর মতো একটি কাস্টম এন্ডপয়েন্টের জন্য `openrouter/openrouter/free`, `openai/gpt-4o`, `ollama/llama3`, `NVIDIA/nvidia/nemotron-nano-3-30b-a3b`)।
+- শুধুমাত্র আপনার প্রয়োজনীয় প্রদানকারীগুলি যুক্ত করুন। **সেটিংস** > **মডেল**-এ, প্রতিটি মডেল আইডি প্রদানকারী দিয়ে শুরু হয় (উদাহরণস্বরূপ `openrouter/openrouter/free`, `openai/gpt-4o`, `nvidia/nvidia/nemotron-nano-3-30b-a3b`, `ollama/llama3`, `MyProvider/…` একটি কাস্টম এন্ডপয়েন্টের জন্য যার নাম `MyProvider`)।
 
 একটি API কী যোগ করতে, টেক্সট ফিল্ডে মান প্রবেশ করান এবং `Save` বোতামে ক্লিক করুন। একটি বিদ্যমান কী প্রতিস্থাপন করতে, `Edit` ক্লিক করুন। কীটি কাজ করছে কিনা তা যাচাই করতে, `Test` ক্লিক করুন। ওলামা বেস URL-এর জন্য, সংযোগ পরীক্ষা করতে সবসময় `Test` ক্লিক করুন।
 

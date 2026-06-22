@@ -26,7 +26,7 @@ Aquesta guia explica com utilitzar l'aplicació un cop instal·lada i en execuci
 > Transrewrt està disponible com a aplicació d'escriptori per a Windows i Linux, i com a aplicació web autoallotjada. Aquesta guia es centra en l'ús diari de l'aplicació. Quan alguna cosa només s'aplica a una versió, es marca clarament.
 
 <small>**Llegeix en altres idiomes:** </small>
-<small id="lang-list">[English (GB)](../USER-GUIDE.md) · [Português (Brasil)](./USER-GUIDE.pt-BR.md) · [العربية](./USER-GUIDE.ar.md) · [বাংলা](./USER-GUIDE.bn.md) · [Català](./USER-GUIDE.ca.md) · [中文 (中国大陆)](./USER-GUIDE.zh-CN.md) · [中文 (台灣)](./USER-GUIDE.zh-TW.md) · [Hrvatski](./USER-GUIDE.hr.md) · [Čeština](./USER-GUIDE.cs.md) · [Nederlands](./USER-GUIDE.nl.md) · [English (US)](./USER-GUIDE.en-US.md) · [Tagalog](./USER-GUIDE.tl.md) · [Français](./USER-GUIDE.fr.md) · [Deutsch](./USER-GUIDE.de.md) · [Ελληνικά](./USER-GUIDE.el.md) · [हिन्दी](./USER-GUIDE.hi.md) · [Magyar](./USER-GUIDE.hu.md) · [Italiano](./USER-GUIDE.it.md) · [日本語](./USER-GUIDE.ja.md) · [한국어](./USER-GUIDE.ko.md) · [Bahasa Melayu](./USER-GUIDE.ms.md) · [فارسی](./USER-GUIDE.fa.md) · [Polski](./USER-GUIDE.pl.md) · [Basa Jawa](./USER-GUIDE.jv.md) · [Português](./USER-GUIDE.pt.md) · [ਪੰਜਾਬੀ](./USER-GUIDE.pa.md) · [Română](./USER-GUIDE.ro.md) · [Русский](./USER-GUIDE.ru.md) · [Slovenčina](./USER-GUIDE.sk.md) · [Español](./USER-GUIDE.es.md) · [Kiswahili](./USER-GUIDE.sw.md) · [Svenska](./USER-GUIDE.sv.md) · [తెలుగు](./USER-GUIDE.te.md) · [ไทย](./USER-GUIDE.th.md) · [Türkçe](./USER-GUIDE.tr.md) · [Українська](./USER-GUIDE.uk.md) · [Tiếng Việt](./USER-GUIDE.vi.md)</small>
+<small id="lang-list">[English (UK)](../USER-GUIDE.md) · [Português (Brasil)](./USER-GUIDE.pt-BR.md) · [العربية](./USER-GUIDE.ar.md) · [বাংলা](./USER-GUIDE.bn.md) · [Català](./USER-GUIDE.ca.md) · [简体中文](./USER-GUIDE.zh-Hans.md) · [繁體中文](./USER-GUIDE.zh-Hant.md) · [Hrvatski](./USER-GUIDE.hr.md) · [Čeština](./USER-GUIDE.cs.md) · [Nederlands](./USER-GUIDE.nl.md) · [English (US)](./USER-GUIDE.en-US.md) · [Tagalog](./USER-GUIDE.tl.md) · [Français](./USER-GUIDE.fr.md) · [Deutsch](./USER-GUIDE.de.md) · [Ελληνικά](./USER-GUIDE.el.md) · [Hindi (Roman)](./USER-GUIDE.hi-Latn.md) · [Magyar](./USER-GUIDE.hu.md) · [Italiano](./USER-GUIDE.it.md) · [日本語](./USER-GUIDE.ja.md) · [한국어](./USER-GUIDE.ko.md) · [Bahasa Melayu](./USER-GUIDE.ms.md) · [فارسی](./USER-GUIDE.fa.md) · [Polski](./USER-GUIDE.pl.md) · [Basa Jawa](./USER-GUIDE.jv.md) · [Português](./USER-GUIDE.pt.md) · [پنجابی](./USER-GUIDE.pa-PK.md) · [Română](./USER-GUIDE.ro.md) · [Русский](./USER-GUIDE.ru.md) · [Slovenčina](./USER-GUIDE.sk.md) · [Español](./USER-GUIDE.es.md) · [Kiswahili](./USER-GUIDE.sw.md) · [Svenska](./USER-GUIDE.sv.md) · [తెలుగు](./USER-GUIDE.te.md) · [ไทย](./USER-GUIDE.th.md) · [Türkçe](./USER-GUIDE.tr.md) · [Українська](./USER-GUIDE.uk.md) · [Tiếng Việt](./USER-GUIDE.vi.md)</small>
 
 <small>
 
@@ -104,7 +104,7 @@ Aquesta guia explica com utilitzar l'aplicació un cop instal·lada i en execuci
 <a id="before-you-start"></a>
 ## Abans de començar
 
-Per utilitzar Transrewrt, necessiteu accés a com a mínim un proveïdor d'IA. Els proveïdors compatibles són: [OpenRouter](https://openrouter.ai) (que agrega molts models), OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras i [Ollama](https://ollama.com) per a models locals.
+Per utilitzar Transrewrt, necessites accés a almenys un proveïdor d'IA. Els proveïdors admesos són: [OpenRouter](https://openrouter.ai) (que agrupa molts models), OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, qualsevol proveïdor compatible amb OpenAI i [Ollama](https://ollama.com) per a models locals.
 
 No cal que seleccioneu un model de pagament per començar. Tan bon punt afegiu la vostra clau API d'OpenRouter, l'aplicació habilita automàticament una opció **gratuïta** integrada d'OpenRouter. Això us permet començar a traduir, reescriure i transformar text immediatament. Alternativament, també podeu obtenir una clau API gratuïta de Cerebras, Google, Groq, Mistral AI o [NVIDIA](https://build.nvidia.com/) (API compatible amb OpenAI).
 
@@ -762,7 +762,7 @@ Utilitza **Usuaris** per gestionar comptes d'usuari a la versió web. Pots afegi
 <a id="api-config"></a>
 ### Configuració de l'API
 
-Els proveïdors compatibles són: OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, **Ollama** (models locals mitjançant una URL base) i un **proveïdor personalitzat opcional compatible amb OpenAI** (nom, URL i clau API - només en mode Avançat). Només cal que configureu els proveïdors que utilitzeu.
+Els proveïdors admesos són: OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, **Ollama** (models locals mitjançant una URL base) i un **proveïdor personalitzat compatible amb OpenAI** opcional (nom, URL i clau API — només mode Avançat). Només cal configurar els proveïdors que utilitzeu.
 
 **Aplicació web: només administrador**
 
@@ -782,7 +782,7 @@ Les claus API es configuren mitjançant variables d'entorn del sistema o de Dock
 
 **Aplicació d'escriptori**
 
-Utilitzeu **Configuració de l'API** per emmagatzemar les claus API de cada proveïdor que utilitzeu. Per a Ollama, introduïu l'**URL base** en lloc d'una clau API. Per a un proveïdor personalitzat compatible amb OpenAI (per exemple, [NVIDIA NIM](https://build.nvidia.com/)), introduïu un **nom de proveïdor**, una **URL base** (com ara `https://integrate.api.nvidia.com/v1`) i una **clau API**; es requereixen els tres. L'URL i el nom es modifiquen en línia; utilitzeu **Edita** per substituir la clau API. Els models del proveïdor personalitzat apareixen només en mode **Avançat** (Configuració > Models).
+Utilitza la **Configuració de l'API** per emmagatzemar les claus API de cada proveïdor que utilitzis. Per a Ollama, introdueix la **URL base** en lloc d'una clau API. Per a un proveïdor personalitzat compatible amb OpenAI (qualsevol punt final que no estigui a la llista integrada, com ara un servidor autoallotjat o una passarel·la), introdueix un **nom de proveïdor**, una **URL base** (com ara `https://my-llm.example.com/v1`) i una **clau API**; els tres són obligatoris. La URL i el nom es modifiquen en línia; utilitza **Edita** per substituir la clau API. Els models del proveïdor personalitzat només apareixen en mode **Avançat** (Configuració → Models).
 
 <br/>
 
@@ -791,7 +791,7 @@ Utilitzeu **Configuració de l'API** per emmagatzemar les claus API de cada prov
 
 <br/>
 
-- Afegiu només els proveïdors que necessiteu. A **Configuració** > **Models**, cada ID de model comença amb el proveïdor (per exemple, `openrouter/openrouter/free`, `openai/gpt-4o`, `ollama/llama3`, `NVIDIA/nvidia/nemotron-nano-3-30b-a3b` per a un punt final personalitzat anomenat NVIDIA).
+- Afegeix només els proveïdors que necessitis. A **Configuració** > **Models**, cada ID de model comença amb el proveïdor (per exemple `openrouter/openrouter/free`, `openai/gpt-4o`, `nvidia/nvidia/nemotron-nano-3-30b-a3b`, `ollama/llama3`, `MyProvider/…` per a un punt final personalitzat anomenat `MyProvider`).
 
 Per afegir una clau API, introdueix el valor al camp de text i fes clic a `Save`. Per substituir una clau existent, fes clic a `Edit`. Per verificar que una clau funciona, fes clic a `Test`. Per a l'URL base d'Ollama, sempre fes clic a `Test` per comprovar la connexió.
 

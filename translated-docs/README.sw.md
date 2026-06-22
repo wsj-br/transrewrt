@@ -3,14 +3,14 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.0-blue" alt="Version"></a>
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.1-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
   <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react" alt="React 19">
   <img src="https://img.shields.io/badge/Electron-41-47848F?logo=electron" alt="Electron 41">
 </p>
 
-Zana ya maandishi yenye nguvu ya AI: tafsiri kati ya lugha mbalimbali, andika upya kwa mitindo tofauti, na ubadilishe kwa kutumia mandhari maalum - kwa kutumia mtoa huduma wengi wa AI (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, na Ollama ya kijitihima). Inafanya kazi kama programu ya kompyuta (Electron) au kama programu binafsi ya wavuti (Docker).
+Zana ya maandishi yenye nguvu ya AI: tafsiri kati ya lugha, andika upya kwa mitindo tofauti, na ubadilishe kwa maagizo maalum - kwa kutumia watoa huduma wengi wa AI (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, mtoa huduma yeyote anayepatana na OpenAI, na Ollama ya ndani). Inafanya kazi kama programu ya eneo-kazi (Electron) au programu ya wavuti iliyojipangisha (Docker).
 
 - **Tafsiri** - kati ya lugha kadhaa, na utambuzi wa chanzo kiotomatiki
 - **Kuandika upya** - rekebisha sarufi, boresha uwazi, rasmi/isiyo rasmi, funga, panua, kiufundi
@@ -27,7 +27,7 @@ Zana ya maandishi yenye nguvu ya AI: tafsiri kati ya lugha mbalimbali, andika up
 Baada ya kusakinisha, angalia [**Mwongozo wa Mtumiaji**](USER-GUIDE.sw.md) kwa mchoro kamili wa vipengele vyote.
 
 <small>**Soma kwa lugha nyingine:** </small>
-<small id="lang-list">[English (GB)](../README.md) · [Português (Brasil)](./README.pt-BR.md) · [العربية](./README.ar.md) · [বাংলা](./README.bn.md) · [Català](./README.ca.md) · [中文 (中国大陆)](./README.zh-CN.md) · [中文 (台灣)](./README.zh-TW.md) · [Hrvatski](./README.hr.md) · [Čeština](./README.cs.md) · [Nederlands](./README.nl.md) · [English (US)](./README.en-US.md) · [Tagalog](./README.tl.md) · [Français](./README.fr.md) · [Deutsch](./README.de.md) · [Ελληνικά](./README.el.md) · [हिन्दी](./README.hi.md) · [Magyar](./README.hu.md) · [Italiano](./README.it.md) · [日本語](./README.ja.md) · [한국어](./README.ko.md) · [Bahasa Melayu](./README.ms.md) · [فارسی](./README.fa.md) · [Polski](./README.pl.md) · [Basa Jawa](./README.jv.md) · [Português](./README.pt.md) · [ਪੰਜਾਬੀ](./README.pa.md) · [Română](./README.ro.md) · [Русский](./README.ru.md) · [Slovenčina](./README.sk.md) · [Español](./README.es.md) · [Kiswahili](./README.sw.md) · [Svenska](./README.sv.md) · [తెలుగు](./README.te.md) · [ไทย](./README.th.md) · [Türkçe](./README.tr.md) · [Українська](./README.uk.md) · [Tiếng Việt](./README.vi.md)</small>
+<small id="lang-list">[English (UK)](../README.md) · [Português (Brasil)](./README.pt-BR.md) · [العربية](./README.ar.md) · [বাংলা](./README.bn.md) · [Català](./README.ca.md) · [简体中文](./README.zh-Hans.md) · [繁體中文](./README.zh-Hant.md) · [Hrvatski](./README.hr.md) · [Čeština](./README.cs.md) · [Nederlands](./README.nl.md) · [English (US)](./README.en-US.md) · [Tagalog](./README.tl.md) · [Français](./README.fr.md) · [Deutsch](./README.de.md) · [Ελληνικά](./README.el.md) · [Hindi (Roman)](./README.hi-Latn.md) · [Magyar](./README.hu.md) · [Italiano](./README.it.md) · [日本語](./README.ja.md) · [한국어](./README.ko.md) · [Bahasa Melayu](./README.ms.md) · [فارسی](./README.fa.md) · [Polski](./README.pl.md) · [Basa Jawa](./README.jv.md) · [Português](./README.pt.md) · [پنجابی](./README.pa-PK.md) · [Română](./README.ro.md) · [Русский](./README.ru.md) · [Slovenčina](./README.sk.md) · [Español](./README.es.md) · [Kiswahili](./README.sw.md) · [Svenska](./README.sv.md) · [తెలుగు](./README.te.md) · [ไทย](./README.th.md) · [Türkçe](./README.tr.md) · [Українська](./README.uk.md) · [Tiếng Việt](./README.vi.md)</small>
 
 <small>
 
@@ -255,7 +255,7 @@ Transrewrt inasaidia mtoa huduma wengi wa AI. [OpenRouter](https://openrouter.ai
 
 Usitumie kifaa cha OpenRouter **Body Builder** ([`openrouter/bodybuilder`](https://openrouter.ai/openrouter/bodybuilder)) kwa tafsiri, kuandika upya, au kubadilisha: kinarudisha payload za JSON za ombi, si maandishi yaliyotimia kwa kazi hizo. Angalia [Mipangilio → Mifano](USER-GUIDE.sw.md#models) katika Mwongozo wa Mtumiaji.
 
-Unaweza pia kutumia mtoa huduma wengine (OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras) au kuendesha mifano kwenye [Ollama](https://ollama.com). Angalia [Ugawaji](#configuration-and-environment) kwa orodha kamili ya mtoa huduma waliopokelewa na vigezo vya mazingira.
+Unaweza pia kutumia watoa huduma wengine (OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, mtoa huduma yeyote anayepatana na OpenAI) au kuendesha modeli ndani ya nchi ukitumia [Ollama](https://ollama.com). Tazama [Mipangilio](#configuration-and-environment) kwa orodha kamili ya watoa huduma wanaotumika na vigezo vya mazingira.
 
 </br>
 
@@ -281,9 +281,9 @@ Unaweza pia kutumia mtoa huduma wengine (OpenAI, Anthropic, Google Gemini, DeepS
 
 **Vigezo vya mazingira** (web/Docker tu; Electron hutumia faili ya usanidi ya kijitihima)
 
-| Kigezo | Maelezo |
-|----------------------|------------------------------------------------------------------------------|
-| `PORT` | Lango la kikasha cha seva (huwekwa kama chaguo-msingi `5000`) |
+| Kigezo                  | Maelezo                                                                             |
+|---------------------------|-----------------------------------------------------------------------------------------|
+| `PORT`                    | Mlango wa kusikiliza wa seva  (chaguo-msingi ni `5000`)                                             |
 | `CONFIG_PATH`        | Njia ya faili ya usanidi (chaguo-msingi ni `/app/data/config.json`)                |
 | `TZ` | saa ya eneo la seva (kumbukumbu, n.k.) (huwekwa kama chaguo-msingi `Europe/London`) |
 | `HISTORY_DISABLED`   | Imarisha historia ya utekelezaji iwe zima (ya kuchagua, chaguo-msingi ni `false`)                  |
@@ -297,11 +297,14 @@ Unaweza pia kutumia mtoa huduma wengine (OpenAI, Anthropic, Google Gemini, DeepS
 | `MISTRAL_API_KEY` | Ufunguo wa Mistral API |
 | `OLLAMA_URL` | URL ya msingi wa Ollama (kama vile `http://host.docker.internal:11434`) |
 | `XAI_API_KEY`        | ufunguo wa xAI API                                                                  |
+| `NVIDIA_API_KEY`          | Ufunguo wa API wa NVIDIA                                                                          |
+| `ALIBABA_API_KEY`         | Ufunguo wa API wa Alibaba Cloud (DashScope)                                                       |
+| `APIFUN_API_KEY`          | Ufunguo wa API wa apikey.fun                                                                      |
 | `CUSTOM_PROVIDER_NAME` | Jina la kuonyesha kwa mtoa huduma wa kustom anayepatana na OpenAI (vigezo vyote vitatu vya kustom vinahitajika) |
-| `CUSTOM_PROVIDER_URL`  | URL ya msingi kwa mtoa huduma wa kustom anayepatana na OpenAI (k.m. `https://integrate.api.nvidia.com/v1`) |
+| `CUSTOM_PROVIDER_URL`     | URL ya msingi kwa mtoa huduma maalum anayepatana na OpenAI (k.m. `https://my-llm.example.com/v1`) |
 | `CUSTOM_PROVIDER_API_KEY` | Ufunguo wa API kwa mtoa huduma wa kustom anayepatana na OpenAI                         |
 
-**Mtoa huduma wa kustom anayepatana na OpenAI (web/Docker):** weka vigezo vyote vitatu vya `CUSTOM_PROVIDER_*`. Mfano wa [NVIDIA NIM](https://build.nvidia.com/): `CUSTOM_PROVIDER_NAME=NVIDIA`, `CUSTOM_PROVIDER_URL=https://integrate.api.nvidia.com/v1`, na ufunguo wa API kutoka [build.nvidia.com](https://build.nvidia.com/). Modeli huonekana katika hali ya **Maalum** chini ya Mipangilio → Modeli zenye vitambulisho kama `NVIDIA/…` (jina la mtoa huduma kama kiambishi awali).
+**Mtoa huduma maalum anayepatana na OpenAI (wavu/Docker):** kwa sehemu yoyote ya mwisho inayopatana na OpenAI ambayo haipo kwenye orodha iliyo hapo juu (k.m. seva iliyojipangisha au lango), weka vigezo vyote vitatu vya `CUSTOM_PROVIDER_*` — kwa mfano `CUSTOM_PROVIDER_NAME=MyProvider`, `CUSTOM_PROVIDER_URL=https://my-llm.example.com/v1`, na ufunguo unaolingana wa API. Modeli huonekana katika hali ya **Maalum** chini ya Mipangilio → Modeli na vitambulisho kama `MyProvider/…` (jina la mtoa huduma kama kiambishi awali).
 
 **Namweo ya faragha:** Ikiwa unataka kuzima kufuatilia historia bila kujali `config.json` au mapendeleo ya kila mtumiaji, weka `HISTORY_DISABLED` kuwa `true` au `1` (haikadhi herufi kubwa/ndogo) kwa ajili ya **prosesi ya wavuti/Docker server** na/au **prosesi kuu ya Electron ya desktop** (kama vile mazingira ya mfumo au kuanzisha — si kipekee kipengele cha kuonyesha). Hii huwasilisha kuhifadhi historia ya kuingiza/pato, inafunga **Mipangilio → Mipangilio ya kawaida → Historia**, na inazuia API zinazohusiana na Historia.
 

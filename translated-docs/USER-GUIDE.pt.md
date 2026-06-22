@@ -26,7 +26,7 @@ Este guia explica como utilizar a aplicação depois de instalada e em execuçã
 > O Transrewrt está disponível como aplicação de ambiente de trabalho para Windows e Linux, e como aplicação web auto-hospedada. Este guia centra-se na utilização diária da aplicação. Sempre que algo se aplica apenas a uma versão, isso é claramente indicado.
 
 <small>**Leia em outros idiomas:** </small>
-<small id="lang-list">[English (GB)](../USER-GUIDE.md) · [Português (Brasil)](./USER-GUIDE.pt-BR.md) · [العربية](./USER-GUIDE.ar.md) · [বাংলা](./USER-GUIDE.bn.md) · [Català](./USER-GUIDE.ca.md) · [中文 (中国大陆)](./USER-GUIDE.zh-CN.md) · [中文 (台灣)](./USER-GUIDE.zh-TW.md) · [Hrvatski](./USER-GUIDE.hr.md) · [Čeština](./USER-GUIDE.cs.md) · [Nederlands](./USER-GUIDE.nl.md) · [English (US)](./USER-GUIDE.en-US.md) · [Tagalog](./USER-GUIDE.tl.md) · [Français](./USER-GUIDE.fr.md) · [Deutsch](./USER-GUIDE.de.md) · [Ελληνικά](./USER-GUIDE.el.md) · [हिन्दी](./USER-GUIDE.hi.md) · [Magyar](./USER-GUIDE.hu.md) · [Italiano](./USER-GUIDE.it.md) · [日本語](./USER-GUIDE.ja.md) · [한국어](./USER-GUIDE.ko.md) · [Bahasa Melayu](./USER-GUIDE.ms.md) · [فارسی](./USER-GUIDE.fa.md) · [Polski](./USER-GUIDE.pl.md) · [Basa Jawa](./USER-GUIDE.jv.md) · [Português](./USER-GUIDE.pt.md) · [ਪੰਜਾਬੀ](./USER-GUIDE.pa.md) · [Română](./USER-GUIDE.ro.md) · [Русский](./USER-GUIDE.ru.md) · [Slovenčina](./USER-GUIDE.sk.md) · [Español](./USER-GUIDE.es.md) · [Kiswahili](./USER-GUIDE.sw.md) · [Svenska](./USER-GUIDE.sv.md) · [తెలుగు](./USER-GUIDE.te.md) · [ไทย](./USER-GUIDE.th.md) · [Türkçe](./USER-GUIDE.tr.md) · [Українська](./USER-GUIDE.uk.md) · [Tiếng Việt](./USER-GUIDE.vi.md)</small>
+<small id="lang-list">[English (UK)](../USER-GUIDE.md) · [Português (Brasil)](./USER-GUIDE.pt-BR.md) · [العربية](./USER-GUIDE.ar.md) · [বাংলা](./USER-GUIDE.bn.md) · [Català](./USER-GUIDE.ca.md) · [简体中文](./USER-GUIDE.zh-Hans.md) · [繁體中文](./USER-GUIDE.zh-Hant.md) · [Hrvatski](./USER-GUIDE.hr.md) · [Čeština](./USER-GUIDE.cs.md) · [Nederlands](./USER-GUIDE.nl.md) · [English (US)](./USER-GUIDE.en-US.md) · [Tagalog](./USER-GUIDE.tl.md) · [Français](./USER-GUIDE.fr.md) · [Deutsch](./USER-GUIDE.de.md) · [Ελληνικά](./USER-GUIDE.el.md) · [Hindi (Roman)](./USER-GUIDE.hi-Latn.md) · [Magyar](./USER-GUIDE.hu.md) · [Italiano](./USER-GUIDE.it.md) · [日本語](./USER-GUIDE.ja.md) · [한국어](./USER-GUIDE.ko.md) · [Bahasa Melayu](./USER-GUIDE.ms.md) · [فارسی](./USER-GUIDE.fa.md) · [Polski](./USER-GUIDE.pl.md) · [Basa Jawa](./USER-GUIDE.jv.md) · [Português](./USER-GUIDE.pt.md) · [پنجابی](./USER-GUIDE.pa-PK.md) · [Română](./USER-GUIDE.ro.md) · [Русский](./USER-GUIDE.ru.md) · [Slovenčina](./USER-GUIDE.sk.md) · [Español](./USER-GUIDE.es.md) · [Kiswahili](./USER-GUIDE.sw.md) · [Svenska](./USER-GUIDE.sv.md) · [తెలుగు](./USER-GUIDE.te.md) · [ไทย](./USER-GUIDE.th.md) · [Türkçe](./USER-GUIDE.tr.md) · [Українська](./USER-GUIDE.uk.md) · [Tiếng Việt](./USER-GUIDE.vi.md)</small>
 
 <small>
 
@@ -104,7 +104,7 @@ Este guia explica como utilizar a aplicação depois de instalada e em execuçã
 <a id="before-you-start"></a>
 ## Antes de começar
 
-Para usar o Transrewrt, você precisa ter acesso a pelo menos um fornecedor de IA. Os fornecedores suportados são: [OpenRouter](https://openrouter.ai) (que agrega muitos modelos), OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras e [Ollama](https://ollama.com) para modelos locais.
+Para usar o Transrewrt, você precisa de acesso a pelo menos um provedor de IA. Os provedores suportados são: [OpenRouter](https://openrouter.ai) (que agrega muitos modelos), OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, qualquer provedor compatível com OpenAI e [Ollama](https://ollama.com) para modelos locais.
 
 Não precisa selecionar um modelo pago para começar. Assim que adicionar a sua chave de API OpenRouter, a aplicação ativa automaticamente uma opção **grátis** integrada da OpenRouter. Isto permite-lhe começar a traduzir, reescrever e transformar texto imediatamente. Alternativamente, também pode obter uma chave de API gratuita da Cerebras, Google, Groq, Mistral AI ou [NVIDIA](https://build.nvidia.com/) (API compatível com OpenAI).
 
@@ -762,7 +762,7 @@ Utilize **Utilizadores** para gerir contas de utilizador na versão web. Pode ad
 <a id="api-config"></a>
 ### Configuração da API
 
-Os provedores suportados são: OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, **Ollama** (modelos locais através de um URL base) e um **provedor personalizado compatível com OpenAI** opcional (nome, URL e chave de API — apenas no modo Avançado). Precisa apenas de configurar os provedores que utiliza.
+Os provedores suportados são: OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, **Ollama** (modelos locais via URL base) e um **provedor personalizado compatível com OpenAI** opcional (nome, URL e chave de API — apenas no modo Avançado). Você só precisa configurar os provedores que usa.
 
 **Aplicação web: apenas administrador**
 
@@ -782,7 +782,7 @@ As chaves de API são configuradas através de variáveis de ambiente do sistema
 
 **Aplicação desktop**
 
-Utilize **Configuração da API** para armazenar chaves de API para cada provedor que utiliza. Para Ollama, insira o **URL base** em vez de uma chave de API. Para um provedor personalizado compatível com OpenAI (por exemplo, [NVIDIA NIM](https://build.nvidia.com/)), insira um **nome de provedor**, **URL base** (como `https://integrate.api.nvidia.com/v1`) e **chave de API**; todos os três são necessários. O URL e o nome são editados inline; utilize **Editar** para substituir a chave de API. Os modelos do provedor personalizado aparecem apenas no modo **Avançado** (Configurações → Modelos).
+Use **Configuração da API** para armazenar chaves de API para cada provedor que você usa. Para Ollama, insira a **URL base** em vez de uma chave de API. Para um provedor personalizado compatível com OpenAI (qualquer endpoint que não esteja na lista integrada, como um servidor auto-hospedado ou gateway), insira um **nome de provedor**, **URL base** (como `https://my-llm.example.com/v1`) e **chave de API**; todos os três são necessários. A URL e o nome são editados inline; use **Editar** para substituir a chave de API. Os modelos de provedor personalizado aparecem apenas no modo **Avançado** (Configurações → Modelos).
 
 <br/>
 
@@ -791,7 +791,7 @@ Utilize **Configuração da API** para armazenar chaves de API para cada provedo
 
 <br/>
 
-- Adicione apenas os provedores de que necessita. Em **Configurações** > **Modelos**, cada ID de modelo começa com o provedor (por exemplo, `openrouter/openrouter/free`, `openai/gpt-4o`, `ollama/llama3`, `NVIDIA/nvidia/nemotron-nano-3-30b-a3b` para um endpoint personalizado chamado NVIDIA).
+- Adicione apenas os provedores de que você precisa. Em **Configurações** > **Modelos**, cada ID de modelo começa com o provedor (por exemplo, `openrouter/openrouter/free`, `openai/gpt-4o`, `nvidia/nvidia/nemotron-nano-3-30b-a3b`, `ollama/llama3`, `MyProvider/…` para um endpoint personalizado chamado `MyProvider`).
 
 Para adicionar uma chave de API, introduza o valor no campo de texto e clique em `Save`. Para substituir uma chave existente, clique em `Edit`. Para verificar se uma chave está a funcionar, clique em `Test`. Para a URL base do Ollama, clique sempre em `Test` para verificar a ligação.
 

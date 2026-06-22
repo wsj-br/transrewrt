@@ -3,14 +3,14 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.0-blue" alt="Version"></a>
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.1-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
   <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react" alt="React 19">
   <img src="https://img.shields.io/badge/Electron-41-47848F?logo=electron" alt="Electron 41">
 </p>
 
-Nástroj na spracovanie textu s využitím umelej inteligencie: preklad medzi jazykmi, prepis v rôznych štýloch a transformácia pomocou vlastných výziev – s využitím viacerých poskytovateľov AI (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI a lokálny Ollama). Spúšťa sa ako desktopová aplikácia (Electron) alebo ako samostatne hostovaná webová aplikácia (Docker).
+Nástroj na prácu s textom poháňaný umelou inteligenciou: prekladajte medzi jazykmi, prepisujte v rôznych štýloch a transformujte pomocou vlastných pokynov – s využitím viacerých poskytovateľov AI (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, akýkoľvek poskytovateľ kompatibilný s OpenAI a lokálne Ollama). Spustí sa ako desktopová aplikácia (Electron) alebo ako webová aplikácia hostovaná samostatne (Docker).
 
 - **Preložiť** - medzi desiatkami jazykov s automatickou detekciou zdroja
 - **Prepísať** - opraviť gramatiku, zlepšiť jasnosť, formálne/neformálne, skrátiť, rozšíriť, technické
@@ -27,7 +27,7 @@ Nástroj na spracovanie textu s využitím umelej inteligencie: preklad medzi ja
 Po nainštalovaní si pozrite [**Používateľskú príručku**](USER-GUIDE.sk.md) pre podrobný prehľad všetkých funkcií.
 
 <small>**Prečítajte si v iných jazykoch:** </small>
-<small id="lang-list">[English (GB)](../README.md) · [Português (Brasil)](./README.pt-BR.md) · [العربية](./README.ar.md) · [বাংলা](./README.bn.md) · [Català](./README.ca.md) · [中文 (中国大陆)](./README.zh-CN.md) · [中文 (台灣)](./README.zh-TW.md) · [Hrvatski](./README.hr.md) · [Čeština](./README.cs.md) · [Nederlands](./README.nl.md) · [English (US)](./README.en-US.md) · [Tagalog](./README.tl.md) · [Français](./README.fr.md) · [Deutsch](./README.de.md) · [Ελληνικά](./README.el.md) · [हिन्दी](./README.hi.md) · [Magyar](./README.hu.md) · [Italiano](./README.it.md) · [日本語](./README.ja.md) · [한국어](./README.ko.md) · [Bahasa Melayu](./README.ms.md) · [فارسی](./README.fa.md) · [Polski](./README.pl.md) · [Basa Jawa](./README.jv.md) · [Português](./README.pt.md) · [ਪੰਜਾਬੀ](./README.pa.md) · [Română](./README.ro.md) · [Русский](./README.ru.md) · [Slovenčina](./README.sk.md) · [Español](./README.es.md) · [Kiswahili](./README.sw.md) · [Svenska](./README.sv.md) · [తెలుగు](./README.te.md) · [ไทย](./README.th.md) · [Türkçe](./README.tr.md) · [Українська](./README.uk.md) · [Tiếng Việt](./README.vi.md)</small>
+<small id="lang-list">[English (UK)](../README.md) · [Português (Brasil)](./README.pt-BR.md) · [العربية](./README.ar.md) · [বাংলা](./README.bn.md) · [Català](./README.ca.md) · [简体中文](./README.zh-Hans.md) · [繁體中文](./README.zh-Hant.md) · [Hrvatski](./README.hr.md) · [Čeština](./README.cs.md) · [Nederlands](./README.nl.md) · [English (US)](./README.en-US.md) · [Tagalog](./README.tl.md) · [Français](./README.fr.md) · [Deutsch](./README.de.md) · [Ελληνικά](./README.el.md) · [Hindi (Roman)](./README.hi-Latn.md) · [Magyar](./README.hu.md) · [Italiano](./README.it.md) · [日本語](./README.ja.md) · [한국어](./README.ko.md) · [Bahasa Melayu](./README.ms.md) · [فارسی](./README.fa.md) · [Polski](./README.pl.md) · [Basa Jawa](./README.jv.md) · [Português](./README.pt.md) · [پنجابی](./README.pa-PK.md) · [Română](./README.ro.md) · [Русский](./README.ru.md) · [Slovenčina](./README.sk.md) · [Español](./README.es.md) · [Kiswahili](./README.sw.md) · [Svenska](./README.sv.md) · [తెలుగు](./README.te.md) · [ไทย](./README.th.md) · [Türkçe](./README.tr.md) · [Українська](./README.uk.md) · [Tiếng Việt](./README.vi.md)</small>
 
 <small>
 
@@ -255,7 +255,7 @@ Transrewrt podporuje viacerých poskytovateľov umelého inteligencie. [OpenRout
 
 Nepoužívajte model **Body Builder** od OpenRouter ([`openrouter/bodybuilder`](https://openrouter.ai/openrouter/bodybuilder)) na preklad, prepisovanie alebo transformáciu: vracia JSON dátové balíky, nie hotový text pre tieto úlohy. Pozrite si [Nastavenia → Modely](USER-GUIDE.sk.md#models) v Používateľskej príručke.
 
-Môžete tiež použiť iných poskytovateľov (OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras) alebo spustiť modely lokálne pomocou [Ollama](https://ollama.com). Pozrite si [Konfigurácia](#configuration-and-environment) pre kompletný zoznam podporovaných poskytovateľov a premenných prostredia.
+Môžete tiež použiť iných poskytovateľov (OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, akýkoľvek poskytovateľ kompatibilný s OpenAI) alebo spustiť modely lokálne pomocou [Ollama](https://ollama.com). Úplný zoznam podporovaných poskytovateľov a premenných prostredia nájdete v časti [Konfigurácia](#configuration-and-environment).
 
 </br>
 
@@ -281,9 +281,9 @@ Môžete tiež použiť iných poskytovateľov (OpenAI, Anthropic, Google Gemini
 
 **Premenné prostredia** (iba web/Docker; Electron používa lokálny konfiguračný súbor)
 
-| Premenná             | Popis                                                                  |
-|----------------------|------------------------------------------------------------------------------|
-| `PORT`               | Port, na ktorom počúva server (predvolené `5000`)                                  |
+| Premenná                  | Popis                                                                                   |
+|---------------------------|-----------------------------------------------------------------------------------------|
+| `PORT`                    | Port, na ktorom server počúva (predvolené je `5000`)                                     |
 | `CONFIG_PATH`        | Cesta k súboru s konfiguráciou (predvolene `/app/data/config.json`)                |
 | `TZ`                 | časové pásmo pre čas na strane servera (zaznamenávanie, atď.) (predvolené `Europe/London`) |
 | `HISTORY_DISABLED`   | Vynúti vypnutie histórie vykonávania (voliteľné, predvolené je `false`)                  |
@@ -297,11 +297,14 @@ Môžete tiež použiť iných poskytovateľov (OpenAI, Anthropic, Google Gemini
 | `MISTRAL_API_KEY`    | Kľúč Mistral API                                                              |
 | `OLLAMA_URL`         | Základná URL Ollama (napr. `http://host.docker.internal:11434`)                   |
 | `XAI_API_KEY`        | kľúč xAI API                                                                  |
+| `NVIDIA_API_KEY`          | API kľúč NVIDIA                                                                         |
+| `ALIBABA_API_KEY`         | API kľúč Alibaba Cloud (DashScope)                                                      |
+| `APIFUN_API_KEY`          | API kľúč apikey.fun                                                                     |
 | `CUSTOM_PROVIDER_NAME` | Zobrazovaný názov pre vlastného poskytovateľa kompatibilného s OpenAI (všetky tri vlastné premenné sú povinné) |
-| `CUSTOM_PROVIDER_URL`  | Základná URL pre vlastného poskytovateľa kompatibilného s OpenAI (napr. `https://integrate.api.nvidia.com/v1`) |
+| `CUSTOM_PROVIDER_URL`     | Základná URL adresa pre vlastného poskytovateľa kompatibilného s OpenAI (napr. `https://my-llm.example.com/v1`) |
 | `CUSTOM_PROVIDER_API_KEY` | API kľúč pre vlastného poskytovateľa kompatibilného s OpenAI                         |
 
-**Vlastný poskytovateľ kompatibilný s OpenAI (web/Docker):** nastavte všetky tri premenné `CUSTOM_PROVIDER_*`. Príklad pre [NVIDIA NIM](https://build.nvidia.com/): `CUSTOM_PROVIDER_NAME=NVIDIA`, `CUSTOM_PROVIDER_URL=https://integrate.api.nvidia.com/v1` a API kľúč z [build.nvidia.com](https://build.nvidia.com/). Modely sa zobrazia v režime **Pokročilé** v časti Nastavenia → Modely s identifikátormi ako `NVIDIA/…` (názov poskytovateľa ako predpona).
+**Vlastný poskytovateľ kompatibilný s OpenAI (web/Docker):** pre akýkoľvek koncový bod kompatibilný s OpenAI, ktorý nie je v zozname vyššie (napr. samostatne hostovaný server alebo brána), nastavte všetky tri premenné `CUSTOM_PROVIDER_*` – napríklad `CUSTOM_PROVIDER_NAME=MyProvider`, `CUSTOM_PROVIDER_URL=https://my-llm.example.com/v1` a zodpovedajúci API kľúč. Modely sa zobrazia v režime **Pokročilé** v časti Nastavenia → Modely s identifikátormi ako `MyProvider/…` (názov poskytovateľa ako predpona).
 
 **Režim súkromia:** Ak chcete vynútiť vypnutie sledovania histórie bez ohľadu na `config.json` alebo preferencie používateľa, nastavte `HISTORY_DISABLED` na `true` alebo `1` (bez rozlišovania veľkosti písmen) pre **webový/Docker serverový proces** a/alebo **hlavný proces desktopovej aplikácie Electron** (napr. systémové alebo spúšťacie prostredie – nie len vykresľovací proces). Toto zakazuje ukladanie histórie vstupov/výstupov, uzamkne **Nastavenia → Všeobecné nastavenia → História** a blokuje API súvisiace s Históriou.
 

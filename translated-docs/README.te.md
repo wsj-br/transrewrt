@@ -3,14 +3,14 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.0-blue" alt="Version"></a>
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.1-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
   <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react" alt="React 19">
   <img src="https://img.shields.io/badge/Electron-41-47848F?logo=electron" alt="Electron 41">
 </p>
 
-ఎఐ-శక్తితో కూడిన టెక్స్ట్ సాధనం: భాషల మధ్య అనువదించు, విభిన్న శైలులలో రీరైట్ చేయి, కస్టమ్ ప్రాంప్ట్‌లతో ట్రాన్స్‌ఫార్మ్ చేయి - బహుళ ఎఐ ప్రదాతలను ఉపయోగించి (ఓపెన్రౌటర్, ఓపెన్ఏఐ, యాంథ్రోపిక్, గూగుల్ జెమిని, డీప్సీక్, గ్రోక్, మిస్ట్రల్, ఎక్స్ఏఐ మరియు స్థానిక ఓలామా). డెస్క్‌టాప్ అప్లికేషన్ (ఎలక్ట్రాన్) లేదా స్వంతంగా హోస్ట్ చేసుకునే వెబ్ అప్లికేషన్ (డాకర్) గా నడుస్తుంది.
+AI-ఆధారిత టెక్స్ట్ సాధనం: భాషల మధ్య అనువదించండి, విభిన్న శైలులలో పునర్వ్యవస్థీకరించండి మరియు కస్టమ్ ప్రాంప్ట్‌లతో రూపాంతరం చేయండి - బహుళ AI ప్రొవైడర్‌లను (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, ఏదైనా OpenAI-కంపాటిబుల్ ప్రొవైడర్ మరియు స్థానిక Ollama) ఉపయోగించి. డెస్క్‌టాప్ యాప్ (Electron) లేదా స్వీయ-హోస్ట్ చేయబడిన వెబ్ యాప్ (Docker)గా రన్ అవుతుంది.
 
 - **అనువదించు** - డజన్ల కొద్దీ భాషల మధ్య, ఆటోమేటిక్ సోర్స్ డిటెక్షన్‌తో
 - **పునర్వ్యవస్థీకరణ** - వ్యాకరణాన్ని సరిచేయండి, స్పష్టతను మెరుగుపరచండి, అధికారిక/అనధికారిక, సంక్షిప్తీకరించండి, విస్తరించండి, సాంకేతిక
@@ -27,7 +27,7 @@
 ఇన్‌స్టాల్ చేసిన తర్వాత, అన్ని లక్షణాల పూర్తి వాకింగ్ కోసం [**వాడుకరి మార్గదర్శి**](USER-GUIDE.te.md) చూడండి.
 
 <small>**ఇతర భాషలలో చదవండి:** </small>
-<small id="lang-list">[English (GB)](../README.md) · [Português (Brasil)](./README.pt-BR.md) · [العربية](./README.ar.md) · [বাংলা](./README.bn.md) · [Català](./README.ca.md) · [中文 (中国大陆)](./README.zh-CN.md) · [中文 (台灣)](./README.zh-TW.md) · [Hrvatski](./README.hr.md) · [Čeština](./README.cs.md) · [Nederlands](./README.nl.md) · [English (US)](./README.en-US.md) · [Tagalog](./README.tl.md) · [Français](./README.fr.md) · [Deutsch](./README.de.md) · [Ελληνικά](./README.el.md) · [हिन्दी](./README.hi.md) · [Magyar](./README.hu.md) · [Italiano](./README.it.md) · [日本語](./README.ja.md) · [한국어](./README.ko.md) · [Bahasa Melayu](./README.ms.md) · [فارسی](./README.fa.md) · [Polski](./README.pl.md) · [Basa Jawa](./README.jv.md) · [Português](./README.pt.md) · [ਪੰਜਾਬੀ](./README.pa.md) · [Română](./README.ro.md) · [Русский](./README.ru.md) · [Slovenčina](./README.sk.md) · [Español](./README.es.md) · [Kiswahili](./README.sw.md) · [Svenska](./README.sv.md) · [తెలుగు](./README.te.md) · [ไทย](./README.th.md) · [Türkçe](./README.tr.md) · [Українська](./README.uk.md) · [Tiếng Việt](./README.vi.md)</small>
+<small id="lang-list">[English (UK)](../README.md) · [Português (Brasil)](./README.pt-BR.md) · [العربية](./README.ar.md) · [বাংলা](./README.bn.md) · [Català](./README.ca.md) · [简体中文](./README.zh-Hans.md) · [繁體中文](./README.zh-Hant.md) · [Hrvatski](./README.hr.md) · [Čeština](./README.cs.md) · [Nederlands](./README.nl.md) · [English (US)](./README.en-US.md) · [Tagalog](./README.tl.md) · [Français](./README.fr.md) · [Deutsch](./README.de.md) · [Ελληνικά](./README.el.md) · [Hindi (Roman)](./README.hi-Latn.md) · [Magyar](./README.hu.md) · [Italiano](./README.it.md) · [日本語](./README.ja.md) · [한국어](./README.ko.md) · [Bahasa Melayu](./README.ms.md) · [فارسی](./README.fa.md) · [Polski](./README.pl.md) · [Basa Jawa](./README.jv.md) · [Português](./README.pt.md) · [پنجابی](./README.pa-PK.md) · [Română](./README.ro.md) · [Русский](./README.ru.md) · [Slovenčina](./README.sk.md) · [Español](./README.es.md) · [Kiswahili](./README.sw.md) · [Svenska](./README.sv.md) · [తెలుగు](./README.te.md) · [ไทย](./README.th.md) · [Türkçe](./README.tr.md) · [Українська](./README.uk.md) · [Tiếng Việt](./README.vi.md)</small>
 
 <small>
 
@@ -255,7 +255,7 @@ Transrewrt అనేక AI ప్రదాతలను మద్దతు ఇస
 
 అనువదించు, రీరైట్ లేదా ట్రాన్స్‌ఫార్మ్ చేయడానికి ఓపెన్రౌటర్ యొక్క **బాడీ బిల్డర్** మోడల్ ([`openrouter/bodybuilder`](https://openrouter.ai/openrouter/bodybuilder)) ఉపయోగించవద్దు: ఆ పనుల కోసం పూర్తి చేసిన పాఠం కాకుండా జెసన్ అభ్యర్థన పేలోడ్‌లను ఇది తిరిగి ఇస్తుంది. వాడుకరి మార్గదర్శిలో [సెట్టింగ్‌లు → మోడల్‌లు](USER-GUIDE.te.md#models) చూడండి.
 
-మీరు ఇతర ప్రదాతలను (ఓపెన్ఏఐ, యాంథ్రోపిక్, గూగుల్ జెమిని, డీప్సీక్, గ్రోక్, మిస్ట్రల్, ఎక్స్ఏఐ, Cerebras) ఉపయోగించవచ్చు లేదా [ఓలామా](https://ollama.com) తో స్థానికంగా మోడల్‌లను నడుపుతారు. మద్దతు ఇచ్చిన ప్రదాతలు మరియు పర్యావరణ వేరియబుల్స్ పూర్తి జాబితా కోసం [కాన్ఫిగరేషన్](#configuration-and-environment) చూడండి.
+మీరు ఇతర ప్రొవైడర్‌లను (OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, ఏదైనా OpenAI-కంపాటిబుల్ ప్రొవైడర్) కూడా ఉపయోగించవచ్చు లేదా [Ollama](https://ollama.com)తో మోడళ్లను స్థానికంగా రన్ చేయవచ్చు. మద్దతు ఉన్న ప్రొవైడర్‌లు మరియు ఎన్విరాన్‌మెంట్ వేరియబుల్స్ యొక్క పూర్తి జాబితా కోసం [కాన్ఫిగరేషన్](#configuration-and-environment) చూడండి.
 
 </br>
 
@@ -281,9 +281,9 @@ Transrewrt అనేక AI ప్రదాతలను మద్దతు ఇస
 
 **పర్యావరణ వేరియబుల్స్** (వెబ్/డాకర్ మాత్రమే; ఎలక్ట్రాన్ స్థానిక కాన్ఫిగ్ ఫైల్ ఉపయోగిస్తుంది)
 
-| వేరియబుల్             | వివరణ                                                                  |
-|----------------------|------------------------------------------------------------------------------|
-| `PORT`               | సర్వర్ వినడానికి పోర్ట్  (డిఫాల్ట్ `5000`)                                  |
+| వేరియబుల్                  | వివరణ                                                                             |
+|---------------------------|-----------------------------------------------------------------------------------------|
+| `PORT`                    | సర్వర్ లిజనింగ్ పోర్ట్  (డిఫాల్ట్‌గా `5000`)                                             |
 | `CONFIG_PATH`        | కాన్ఫిగ్ ఫైల్ యొక్క పాత్ (డిఫాల్ట్‌గా `/app/data/config.json`)                |
 | `TZ`                 | సర్వర్-సైడ్ సమయానికి టైమ్ జోన్ (లాగింగ్, మొదలైనవి) (డిఫాల్ట్ `Europe/London`) |
 | `HISTORY_DISABLED`   | చరిత్ర యొక్క అమలును ఆపడానికి (ఐచ్ఛికం, డిఫాల్ట్‌గా `false`)                  |
@@ -297,11 +297,14 @@ Transrewrt అనేక AI ప్రదాతలను మద్దతు ఇస
 | `MISTRAL_API_KEY`    | Mistral API కీ                                                              |
 | `OLLAMA_URL`         | Ollama బేస్ URL (ఉదా: `http://host.docker.internal:11434`)                   |
 | `XAI_API_KEY`        | xAI API కీ                                                                  |
+| `NVIDIA_API_KEY`          | NVIDIA API కీ                                                                          |
+| `ALIBABA_API_KEY`         | Alibaba Cloud (DashScope) API కీ                                                       |
+| `APIFUN_API_KEY`          | apikey.fun API కీ                                                                      |
 | `CUSTOM_PROVIDER_NAME` | కస్టమ్ OpenAI-కంపాటిబుల్ ప్రొవైడర్ కోసం డిస్ప్లే పేరు (మూడు కస్టమ్ వేరియబుల్స్ అవసరం) |
-| `CUSTOM_PROVIDER_URL`  | కస్టమ్ OpenAI-కంపాటిబుల్ ప్రొవైడర్ కోసం బేస్ URL (ఉదా. `https://integrate.api.nvidia.com/v1`) |
+| `CUSTOM_PROVIDER_URL`     | కస్టమ్ OpenAI-కంపాటిబుల్ ప్రొవైడర్ కోసం బేస్ URL (ఉదా. `https://my-llm.example.com/v1`) |
 | `CUSTOM_PROVIDER_API_KEY` | కస్టమ్ OpenAI-కంపాటిబుల్ ప్రొవైడర్ కోసం API కీ                         |
 
-**కస్టమ్ OpenAI-కంపాటిబుల్ ప్రొవైడర్ (వెబ్/డాకర్):** మూడు `CUSTOM_PROVIDER_*` వేరియబుల్స్‌ను సెట్ చేయండి. [NVIDIA NIM](https://build.nvidia.com/) కోసం ఉదాహరణ: `CUSTOM_PROVIDER_NAME=NVIDIA`, `CUSTOM_PROVIDER_URL=https://integrate.api.nvidia.com/v1`, మరియు [build.nvidia.com](https://build.nvidia.com/) నుండి API కీ. మాడల్స్ **అధునాతన** మోడ్‌లో సెట్టింగ్స్ → మాడల్స్ కింద `NVIDIA/…` వంటి ఐడిలతో కనిపిస్తాయి (ప్రొవైడర్ పేరు ప్రిఫిక్స్‌గా ఉంటుంది).
+**కస్టమ్ OpenAI-కంపాటిబుల్ ప్రొవైడర్ (వెబ్/డాకర్):** పైన ఉన్న అంతర్నిర్మిత జాబితాలో లేని ఏదైనా OpenAI-కంపాటిబుల్ ఎండ్‌పాయింట్ కోసం (ఉదా. స్వీయ-హోస్ట్ చేయబడిన సర్వర్ లేదా గేట్‌వే), మూడు `CUSTOM_PROVIDER_*` వేరియబుల్స్‌ను సెట్ చేయండి — ఉదాహరణకు `CUSTOM_PROVIDER_NAME=MyProvider`, `CUSTOM_PROVIDER_URL=https://my-llm.example.com/v1`, మరియు సరిపోలే API కీ. మోడల్స్ సెట్టింగ్స్ → మోడల్స్ కింద **అధునాతన** మోడ్‌లో `MyProvider/…` (ప్రొవైడర్ పేరు ప్రిఫిక్స్‌గా) వంటి ఐడిలతో కనిపిస్తాయి.
 
 **గోప్యతా మోడ్:** `config.json` లేదా వాడుకరి ప్రాధాన్యతలకు సంబంధించి చరిత్ర ట్రాక్‌ను ఆపడానికి, **వెబ్/డాకర్ సర్వర్ ప్రాసెస్** మరియు/లేదా **ఎలక్ట్రాన్ డెస్క్‌టాప్ మెయిన్ ప్రాసెస్** కోసం `HISTORY_DISABLED` ని `true` లేదా `1` (చిన్న అక్షరాలు/పెద్ద అక్షరాలు పటిష్టంగా లెక్కించబడవు) గా సెట్ చేయండి (ఉదా: సిస్టమ్ లేదా లాంచర్ పర్యావరణం — రెండరర్ మాత్రమే కాదు). ఇది ఇన్‌పుట్/అవుట్‌పుట్ చరిత్రను నిల్వ చేయడాన్ని నిషేధిస్తుంది, **సెట్టింగ్స్ → సాధారణ సెట్టింగ్లు → చరిత్ర** ని లాక్ చేస్తుంది మరియు చరిత్రకు సంబంధించిన APIలను నిరోధిస్తుంది.
 

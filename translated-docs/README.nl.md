@@ -3,14 +3,14 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.0-blue" alt="Version"></a>
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.1-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
   <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react" alt="React 19">
   <img src="https://img.shields.io/badge/Electron-41-47848F?logo=electron" alt="Electron 41">
 </p>
 
-AI-gestuurde teksttool: vertalen tussen talen, herschrijven in verschillende stijlen en transformeren met aangepaste prompts - met gebruik van meerdere AI-providers (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI en lokaal Ollama). Werkt als desktopapp (Electron) of als zelfgehoste webapp (Docker).
+AI-gestuurde teksttool: vertaal tussen talen, herschrijf in verschillende stijlen en transformeer met aangepaste prompts - gebruikmakend van meerdere AI-providers (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, elke OpenAI-compatibele provider en lokale Ollama). Draait als een desktop-app (Electron) of een zelf-gehoste web-app (Docker).
 
 - **Vertalen** - tussen tientallen talen, met automatische bronherkenning
 - **Herschrijven** - grammatica corrigeren, duidelijkheid verbeteren, formeel/informeel, verkorten, uitbreiden, technisch
@@ -27,7 +27,7 @@ AI-gestuurde teksttool: vertalen tussen talen, herschrijven in verschillende sti
 Nadat u het hebt geïnstalleerd, raadpleeg de [**Gebruikershandleiding**](USER-GUIDE.nl.md) voor een volledige uitleg van alle functies.
 
 <small>**Lees in andere talen:** </small>
-<small id="lang-list">[English (GB)](../README.md) · [Português (Brasil)](./README.pt-BR.md) · [العربية](./README.ar.md) · [বাংলা](./README.bn.md) · [Català](./README.ca.md) · [中文 (中国大陆)](./README.zh-CN.md) · [中文 (台灣)](./README.zh-TW.md) · [Hrvatski](./README.hr.md) · [Čeština](./README.cs.md) · [Nederlands](./README.nl.md) · [English (US)](./README.en-US.md) · [Tagalog](./README.tl.md) · [Français](./README.fr.md) · [Deutsch](./README.de.md) · [Ελληνικά](./README.el.md) · [हिन्दी](./README.hi.md) · [Magyar](./README.hu.md) · [Italiano](./README.it.md) · [日本語](./README.ja.md) · [한국어](./README.ko.md) · [Bahasa Melayu](./README.ms.md) · [فارسی](./README.fa.md) · [Polski](./README.pl.md) · [Basa Jawa](./README.jv.md) · [Português](./README.pt.md) · [ਪੰਜਾਬੀ](./README.pa.md) · [Română](./README.ro.md) · [Русский](./README.ru.md) · [Slovenčina](./README.sk.md) · [Español](./README.es.md) · [Kiswahili](./README.sw.md) · [Svenska](./README.sv.md) · [తెలుగు](./README.te.md) · [ไทย](./README.th.md) · [Türkçe](./README.tr.md) · [Українська](./README.uk.md) · [Tiếng Việt](./README.vi.md)</small>
+<small id="lang-list">[English (UK)](../README.md) · [Português (Brasil)](./README.pt-BR.md) · [العربية](./README.ar.md) · [বাংলা](./README.bn.md) · [Català](./README.ca.md) · [简体中文](./README.zh-Hans.md) · [繁體中文](./README.zh-Hant.md) · [Hrvatski](./README.hr.md) · [Čeština](./README.cs.md) · [Nederlands](./README.nl.md) · [English (US)](./README.en-US.md) · [Tagalog](./README.tl.md) · [Français](./README.fr.md) · [Deutsch](./README.de.md) · [Ελληνικά](./README.el.md) · [Hindi (Roman)](./README.hi-Latn.md) · [Magyar](./README.hu.md) · [Italiano](./README.it.md) · [日本語](./README.ja.md) · [한국어](./README.ko.md) · [Bahasa Melayu](./README.ms.md) · [فارسی](./README.fa.md) · [Polski](./README.pl.md) · [Basa Jawa](./README.jv.md) · [Português](./README.pt.md) · [پنجابی](./README.pa-PK.md) · [Română](./README.ro.md) · [Русский](./README.ru.md) · [Slovenčina](./README.sk.md) · [Español](./README.es.md) · [Kiswahili](./README.sw.md) · [Svenska](./README.sv.md) · [తెలుగు](./README.te.md) · [ไทย](./README.th.md) · [Türkçe](./README.tr.md) · [Українська](./README.uk.md) · [Tiếng Việt](./README.vi.md)</small>
 
 <small>
 
@@ -255,7 +255,7 @@ Transrewrt ondersteunt meerdere AI-providers. [OpenRouter](https://openrouter.ai
 
 Gebruik OpenRouter’s **Body Builder** model ([`openrouter/bodybuilder`](https://openrouter.ai/openrouter/bodybuilder)) niet voor vertalen, herschrijven of transformeren: het retourneert JSON-verzoekgegevens, niet de voltooide tekst voor deze taken. Zie [Instellingen → Modellen](USER-GUIDE.nl.md#models) in de Gebruikershandleiding.
 
-Je kunt ook andere providers gebruiken (OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras) of modellen lokaal uitvoeren met [Ollama](https://ollama.com). Zie [Configuratie](#configuration-and-environment) voor de volledige lijst met ondersteunde providers en omgevingsvariabelen.
+U kunt ook andere providers gebruiken (OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, elke OpenAI-compatibele provider) of modellen lokaal draaien met [Ollama](https://ollama.com). Zie [Configuratie](#configuration-and-environment) voor de volledige lijst van ondersteunde providers en omgevingsvariabelen.
 
 </br>
 
@@ -281,9 +281,9 @@ Je kunt ook andere providers gebruiken (OpenAI, Anthropic, Google Gemini, DeepSe
 
 **Omgevingsvariabelen** (alleen web/Docker; Electron gebruikt het lokale configuratiebestand)
 
-| Variabele             | Beschrijving                                                                  |
-|----------------------|------------------------------------------------------------------------------|
-| `PORT`               | Poort waarop de server luistert (standaard `5000`)                                  |
+| Variabele                 | Beschrijving                                                                            |
+|---------------------------|-----------------------------------------------------------------------------------------|
+| `PORT`                    | Server luisterpoort (standaard `5000`)                                                |
 | `CONFIG_PATH`        | Pad naar het configuratiebestand (standaard is `/app/data/config.json`)                |
 | `TZ`                 | tijdzone voor serverzijde tijd (loggen, enz.) (standaard `Europe/London`) |
 | `HISTORY_DISABLED`   | Forceer geschiedenisregistratie uit (optioneel, standaard is `false`)                  |
@@ -297,11 +297,14 @@ Je kunt ook andere providers gebruiken (OpenAI, Anthropic, Google Gemini, DeepSe
 | `MISTRAL_API_KEY`    | Mistral API-sleutel                                                              |
 | `OLLAMA_URL`         | Ollama basis-URL (bijv. `http://host.docker.internal:11434`)                   |
 | `XAI_API_KEY`        | xAI API-sleutel                                                                  |
+| `NVIDIA_API_KEY`          | NVIDIA API-sleutel                                                                      |
+| `ALIBABA_API_KEY`         | Alibaba Cloud (DashScope) API-sleutel                                                   |
+| `APIFUN_API_KEY`          | apikey.fun API-sleutel                                                                  |
 | `CUSTOM_PROVIDER_NAME` | Weergavenaam voor een aangepaste OpenAI-compatibele provider (alle drie aangepaste variabelen vereist) |
-| `CUSTOM_PROVIDER_URL`  | Basiss URL voor een aangepaste OpenAI-compatibele provider (bijv. `https://integrate.api.nvidia.com/v1`) |
+| `CUSTOM_PROVIDER_URL`     | Basis-URL voor een aangepaste OpenAI-compatibele provider (bijv. `https://my-llm.example.com/v1`) |
 | `CUSTOM_PROVIDER_API_KEY` | API-sleutel voor een aangepaste OpenAI-compatibele provider                         |
 
-**Aangepaste OpenAI-compatibele provider (web/Docker):** stel alle drie `CUSTOM_PROVIDER_*` variabelen in. Voorbeeld voor [NVIDIA NIM](https://build.nvidia.com/): `CUSTOM_PROVIDER_NAME=NVIDIA`, `CUSTOM_PROVIDER_URL=https://integrate.api.nvidia.com/v1`, en een API-sleutel van [build.nvidia.com](https://build.nvidia.com/). Modellen verschijnen in **Geavanceerd** modus onder Instellingen → Modellen met ID's zoals `NVIDIA/…` (providernaam als voorvoegsel).
+**Aangepaste OpenAI-compatibele provider (web/Docker):** voor elk OpenAI-compatibel eindpunt dat niet in de bovenstaande ingebouwde lijst staat (bijv. een zelf-gehoste server of gateway), stelt u alle drie de `CUSTOM_PROVIDER_*` variabelen in — bijvoorbeeld `CUSTOM_PROVIDER_NAME=MyProvider`, `CUSTOM_PROVIDER_URL=https://my-llm.example.com/v1`, en de bijbehorende API-sleutel. Modellen verschijnen in de **Geavanceerd** modus onder Instellingen → Modellen met id's zoals `MyProvider/…` (providernaam als voorvoegsel).
 
 **Privacymodus:** Om de geschiedenisregistratie uit te schakelen, ongeacht `config.json` of gebruikersvoorkeuren, stel `HISTORY_DISABLED` in op `true` of `1` (niet hoofdlettergevoelig) voor het **web/Docker-serverproces** en/of het **Electron-desktop hoofdproces** (bijvoorbeeld systeem- of startomgeving — niet alleen de renderer). Dit schakelt het opslaan van invoer/uitvoer-geschiedenis uit, vergrendelt **Instellingen → Algemene instellingen → Geschiedenis** en blokkeert geschiedenisgerelateerde API's.
 

@@ -3,14 +3,14 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.0-blue" alt="Version"></a>
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.1-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
   <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react" alt="React 19">
   <img src="https://img.shields.io/badge/Electron-41-47848F?logo=electron" alt="Electron 41">
 </p>
 
-AI 기반 텍스트 도구: 여러 AI 제공업체(OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI 및 로컬 Ollama)를 사용하여 언어 간 번역, 다양한 스타일로 재작성 및 사용자 정의 프롬프트로 변환 - 데스크톱 앱(Electron) 또는 자체 호스팅 웹 앱(Docker)으로 실행.
+AI 기반 텍스트 도구: 언어 간 번역, 다양한 스타일로 다시 쓰기, 사용자 지정 프롬프트로 변환 - 여러 AI 공급자(OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, 모든 OpenAI 호환 공급자, 로컬 Ollama) 사용. 데스크톱 앱(Electron) 또는 자체 호스팅 웹 앱(Docker)으로 실행됩니다.
 
 - **번역** - 자동 소스 감지를 통해 수십 가지 언어 간 번역
 - **다시 쓰기** - 문법 수정, 명확성 개선, 공식/비공식, 줄이기, 확장, 기술
@@ -27,7 +27,7 @@ AI 기반 텍스트 도구: 여러 AI 제공업체(OpenRouter, OpenAI, Anthropic
 설치 후 모든 기능에 대한 자세한 설명은 [**사용자 안내서**](USER-GUIDE.ko.md)를 참조하세요.
 
 <small>**다른 언어로 읽기:** </small>
-<small id="lang-list">[English (GB)](../README.md) · [Português (Brasil)](./README.pt-BR.md) · [العربية](./README.ar.md) · [বাংলা](./README.bn.md) · [Català](./README.ca.md) · [中文 (中国大陆)](./README.zh-CN.md) · [中文 (台灣)](./README.zh-TW.md) · [Hrvatski](./README.hr.md) · [Čeština](./README.cs.md) · [Nederlands](./README.nl.md) · [English (US)](./README.en-US.md) · [Tagalog](./README.tl.md) · [Français](./README.fr.md) · [Deutsch](./README.de.md) · [Ελληνικά](./README.el.md) · [हिन्दी](./README.hi.md) · [Magyar](./README.hu.md) · [Italiano](./README.it.md) · [日本語](./README.ja.md) · [한국어](./README.ko.md) · [Bahasa Melayu](./README.ms.md) · [فارسی](./README.fa.md) · [Polski](./README.pl.md) · [Basa Jawa](./README.jv.md) · [Português](./README.pt.md) · [ਪੰਜਾਬੀ](./README.pa.md) · [Română](./README.ro.md) · [Русский](./README.ru.md) · [Slovenčina](./README.sk.md) · [Español](./README.es.md) · [Kiswahili](./README.sw.md) · [Svenska](./README.sv.md) · [తెలుగు](./README.te.md) · [ไทย](./README.th.md) · [Türkçe](./README.tr.md) · [Українська](./README.uk.md) · [Tiếng Việt](./README.vi.md)</small>
+<small id="lang-list">[English (UK)](../README.md) · [Português (Brasil)](./README.pt-BR.md) · [العربية](./README.ar.md) · [বাংলা](./README.bn.md) · [Català](./README.ca.md) · [简体中文](./README.zh-Hans.md) · [繁體中文](./README.zh-Hant.md) · [Hrvatski](./README.hr.md) · [Čeština](./README.cs.md) · [Nederlands](./README.nl.md) · [English (US)](./README.en-US.md) · [Tagalog](./README.tl.md) · [Français](./README.fr.md) · [Deutsch](./README.de.md) · [Ελληνικά](./README.el.md) · [Hindi (Roman)](./README.hi-Latn.md) · [Magyar](./README.hu.md) · [Italiano](./README.it.md) · [日本語](./README.ja.md) · [한국어](./README.ko.md) · [Bahasa Melayu](./README.ms.md) · [فارسی](./README.fa.md) · [Polski](./README.pl.md) · [Basa Jawa](./README.jv.md) · [Português](./README.pt.md) · [پنجابی](./README.pa-PK.md) · [Română](./README.ro.md) · [Русский](./README.ru.md) · [Slovenčina](./README.sk.md) · [Español](./README.es.md) · [Kiswahili](./README.sw.md) · [Svenska](./README.sv.md) · [తెలుగు](./README.te.md) · [ไทย](./README.th.md) · [Türkçe](./README.tr.md) · [Українська](./README.uk.md) · [Tiếng Việt](./README.vi.md)</small>
 
 <small>
 
@@ -254,7 +254,7 @@ Transrewrt는 여러 AI 제공업체를 지원합니다. [OpenRouter](https://op
 
 번역, 재작성 또는 변환 작업에는 OpenRouter의 **Body Builder** 모델([`openrouter/bodybuilder`](https://openrouter.ai/openrouter/bodybuilder))을 사용하지 마세요. 이 모델은 완성된 텍스트가 아닌 JSON 요청 페이로드를 반환합니다. [설정 → 모델](USER-GUIDE.ko.md#models)을 참조하세요.
 
-또한 OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras와 같은 다른 제공업체를 사용하거나 [Ollama](https://ollama.com)를 통해 로컬에서 모델을 실행할 수 있습니다. 지원되는 제공업체 및 환경 변수의 전체 목록은 [설정](#configuration-and-environment)을 참조하세요.
+다른 공급자(OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, 모든 OpenAI 호환 공급자)를 사용하거나 [Ollama](https://ollama.com)로 모델을 로컬에서 실행할 수도 있습니다. 지원되는 공급자 및 환경 변수의 전체 목록은 [구성](#configuration-and-environment)를 참조하세요.
 
 </br>
 
@@ -280,9 +280,9 @@ Transrewrt는 여러 AI 제공업체를 지원합니다. [OpenRouter](https://op
 
 **환경 변수** (웹/Docker 전용; Electron은 로컬 구성 파일 사용)
 
-| 변수             | 설명                                                                  |
-|----------------------|------------------------------------------------------------------------------|
-| `PORT`               | 서버 리스닝 포트 (기본값: `5000`)                                  |
+| 변수                  | 설명                                                                             |
+|---------------------------|-----------------------------------------------------------------------------------------|
+| `PORT`                    | 서버 수신 포트 (기본값: `5000`)                                             |
 | `CONFIG_PATH`        | 구성 파일의 경로 (기본값: `/app/data/config.json`)                |
 | `TZ`                 | 서버 측 시간대 (로그 등, 기본값: `Europe/London`) |
 | `HISTORY_DISABLED`   | 실행 기록을 강제로 끄기 (옵션, 기본값은 `false`)                  |
@@ -296,11 +296,14 @@ Transrewrt는 여러 AI 제공업체를 지원합니다. [OpenRouter](https://op
 | `MISTRAL_API_KEY`    | Mistral API 키                                                              |
 | `OLLAMA_URL`         | Ollama 기본 URL (예: `http://host.docker.internal:11434`)                   |
 | `XAI_API_KEY`        | xAI API 키                                                                  |
+| `NVIDIA_API_KEY`          | NVIDIA API 키                                                                          |
+| `ALIBABA_API_KEY`         | Alibaba Cloud (DashScope) API 키                                                       |
+| `APIFUN_API_KEY`          | apikey.fun API 키                                                                      |
 | `CUSTOM_PROVIDER_NAME` | 사용자 지정 OpenAI 호환 공급자에 대한 표시 이름 (세 개의 사용자 지정 변수 모두 필요) |
-| `CUSTOM_PROVIDER_URL`  | 사용자 지정 OpenAI 호환 공급자에 대한 기본 URL (예: `https://integrate.api.nvidia.com/v1`) |
+| `CUSTOM_PROVIDER_URL`     | 사용자 지정 OpenAI 호환 공급자의 기본 URL (예: `https://my-llm.example.com/v1`) |
 | `CUSTOM_PROVIDER_API_KEY` | 사용자 지정 OpenAI 호환 공급자에 대한 API 키                         |
 
-**사용자 지정 OpenAI 호환 제공자(웹/Docker):** 세 가지 `CUSTOM_PROVIDER_*` 변수를 모두 설정합니다. [NVIDIA NIM](https://build.nvidia.com/)의 예시: `CUSTOM_PROVIDER_NAME=NVIDIA`, `CUSTOM_PROVIDER_URL=https://integrate.api.nvidia.com/v1` 및 [build.nvidia.com](https://build.nvidia.com/)의 API 키. 모델은 설정 → 모델 아래의 **고급** 모드에 `NVIDIA/…`와 같은 ID(접두사로 제공자 이름)로 표시됩니다.
+**사용자 지정 OpenAI 호환 공급자(웹/Docker):** 위에 내장된 목록에 없는 모든 OpenAI 호환 엔드포인트(예: 자체 호스팅 서버 또는 게이트웨이)의 경우, 세 가지 `CUSTOM_PROVIDER_*` 변수를 모두 설정하세요. 예를 들어 `CUSTOM_PROVIDER_NAME=MyProvider`, `CUSTOM_PROVIDER_URL=https://my-llm.example.com/v1` 및 해당 API 키를 설정합니다. 모델은 설정 → 모델 아래의 **고급** 모드에 `MyProvider/…`(공급자 이름 접두사)과 같은 ID로 표시됩니다.
 
 **개인정보 보호 모드:** `config.json` 또는 사용자별 설정과 관계없이 기록 추적을 강제로 끄려면, **웹/Docker 서버 프로세스** 및/또는 **Electron 데스크탑 메인 프로세스**에서 `HISTORY_DISABLED`을 `true` 또는 `1`(대소문자 구분 없음)로 설정하십시오(예: 시스템 또는 런처 환경 — 렌더러만이 아님). 이 설정은 입력/출력 기록 저장을 비활성화하고, **설정 → 일반 설정 → 기록**을 잠급니다. 또한 기록 관련 API를 차단합니다.
 

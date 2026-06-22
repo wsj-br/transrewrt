@@ -26,7 +26,7 @@ Tato příručka vysvětluje, jak aplikaci používat po její instalaci a spuš
 > Transrewrt je dostupný jako desktopová aplikace pro Windows a Linux a také jako samostatně hostovaná webová aplikace. Tato příručka se zaměřuje na běžné používání aplikace. Pokud něco platí pouze pro jednu verzi, je to jasně označeno.
 
 <small>**Přečtěte si v jiných jazycích:** </small>
-<small id="lang-list">[English (GB)](../USER-GUIDE.md) · [Português (Brasil)](./USER-GUIDE.pt-BR.md) · [العربية](./USER-GUIDE.ar.md) · [বাংলা](./USER-GUIDE.bn.md) · [Català](./USER-GUIDE.ca.md) · [中文 (中国大陆)](./USER-GUIDE.zh-CN.md) · [中文 (台灣)](./USER-GUIDE.zh-TW.md) · [Hrvatski](./USER-GUIDE.hr.md) · [Čeština](./USER-GUIDE.cs.md) · [Nederlands](./USER-GUIDE.nl.md) · [English (US)](./USER-GUIDE.en-US.md) · [Tagalog](./USER-GUIDE.tl.md) · [Français](./USER-GUIDE.fr.md) · [Deutsch](./USER-GUIDE.de.md) · [Ελληνικά](./USER-GUIDE.el.md) · [हिन्दी](./USER-GUIDE.hi.md) · [Magyar](./USER-GUIDE.hu.md) · [Italiano](./USER-GUIDE.it.md) · [日本語](./USER-GUIDE.ja.md) · [한국어](./USER-GUIDE.ko.md) · [Bahasa Melayu](./USER-GUIDE.ms.md) · [فارسی](./USER-GUIDE.fa.md) · [Polski](./USER-GUIDE.pl.md) · [Basa Jawa](./USER-GUIDE.jv.md) · [Português](./USER-GUIDE.pt.md) · [ਪੰਜਾਬੀ](./USER-GUIDE.pa.md) · [Română](./USER-GUIDE.ro.md) · [Русский](./USER-GUIDE.ru.md) · [Slovenčina](./USER-GUIDE.sk.md) · [Español](./USER-GUIDE.es.md) · [Kiswahili](./USER-GUIDE.sw.md) · [Svenska](./USER-GUIDE.sv.md) · [తెలుగు](./USER-GUIDE.te.md) · [ไทย](./USER-GUIDE.th.md) · [Türkçe](./USER-GUIDE.tr.md) · [Українська](./USER-GUIDE.uk.md) · [Tiếng Việt](./USER-GUIDE.vi.md)</small>
+<small id="lang-list">[English (UK)](../USER-GUIDE.md) · [Português (Brasil)](./USER-GUIDE.pt-BR.md) · [العربية](./USER-GUIDE.ar.md) · [বাংলা](./USER-GUIDE.bn.md) · [Català](./USER-GUIDE.ca.md) · [简体中文](./USER-GUIDE.zh-Hans.md) · [繁體中文](./USER-GUIDE.zh-Hant.md) · [Hrvatski](./USER-GUIDE.hr.md) · [Čeština](./USER-GUIDE.cs.md) · [Nederlands](./USER-GUIDE.nl.md) · [English (US)](./USER-GUIDE.en-US.md) · [Tagalog](./USER-GUIDE.tl.md) · [Français](./USER-GUIDE.fr.md) · [Deutsch](./USER-GUIDE.de.md) · [Ελληνικά](./USER-GUIDE.el.md) · [Hindi (Roman)](./USER-GUIDE.hi-Latn.md) · [Magyar](./USER-GUIDE.hu.md) · [Italiano](./USER-GUIDE.it.md) · [日本語](./USER-GUIDE.ja.md) · [한국어](./USER-GUIDE.ko.md) · [Bahasa Melayu](./USER-GUIDE.ms.md) · [فارسی](./USER-GUIDE.fa.md) · [Polski](./USER-GUIDE.pl.md) · [Basa Jawa](./USER-GUIDE.jv.md) · [Português](./USER-GUIDE.pt.md) · [پنجابی](./USER-GUIDE.pa-PK.md) · [Română](./USER-GUIDE.ro.md) · [Русский](./USER-GUIDE.ru.md) · [Slovenčina](./USER-GUIDE.sk.md) · [Español](./USER-GUIDE.es.md) · [Kiswahili](./USER-GUIDE.sw.md) · [Svenska](./USER-GUIDE.sv.md) · [తెలుగు](./USER-GUIDE.te.md) · [ไทย](./USER-GUIDE.th.md) · [Türkçe](./USER-GUIDE.tr.md) · [Українська](./USER-GUIDE.uk.md) · [Tiếng Việt](./USER-GUIDE.vi.md)</small>
 
 <small>
 
@@ -104,7 +104,7 @@ Tato příručka vysvětluje, jak aplikaci používat po její instalaci a spuš
 <a id="before-you-start"></a>
 ## Než začnete
 
-Pro použití aplikace Transrewrt potřebujete přístup alespoň k jednomu poskytovateli umělé inteligence. Podporovaní poskytovatelé jsou: [OpenRouter](https://openrouter.ai) (který agreguje mnoho modelů), OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras a [Ollama](https://ollama.com) pro místní modely.
+Pro použití Transrewrt potřebujete přístup k alespoň jednomu poskytovateli AI. Podporovaní poskytovatelé jsou: [OpenRouter](https://openrouter.ai) (který agreguje mnoho modelů), OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, jakýkoli poskytovatel kompatibilní s OpenAI a [Ollama](https://ollama.com) pro lokální modely.
 
 Pro začátek nemusíte vybírat placený model. Jakmile přidáte svůj API klíč OpenRouter, aplikace automaticky povolí vestavěnou **bezplatnou** možnost OpenRouter. To vám umožní okamžitě začít překládat, přepisovat a transformovat text. Alternativně můžete také získat bezplatný API klíč od společností Cerebras, Google, Groq, Mistral AI nebo [NVIDIA](https://build.nvidia.com/) (API kompatibilní s OpenAI).
 
@@ -762,7 +762,7 @@ Použijte **Uživatelé** ke správě uživatelských účtů ve webové verzi. 
 <a id="api-config"></a>
 ### Nastavení API
 
-Podporovaní poskytovatelé jsou: OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, **Ollama** (lokální modely přes základní URL) a volitelný **vlastní poskytovatel kompatibilní s OpenAI** (název, URL a API klíč – pouze v pokročilém režimu). Musíte nakonfigurovat pouze poskytovatele, které používáte.
+Podporovaní poskytovatelé jsou: OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, **Ollama** (lokální modely přes základní URL) a volitelný **vlastní poskytovatel kompatibilní s OpenAI** (název, URL a API klíč — pouze v pokročilém režimu). Stačí nakonfigurovat poskytovatele, které používáte.
 
 **Webová aplikace: pouze pro správce**
 
@@ -782,7 +782,7 @@ API klíče se konfigurují prostřednictvím systémových proměnných prostř
 
 **Desktopová aplikace**
 
-Použijte **Konfigurace API** k uložení API klíčů pro každého poskytovatele, kterého používáte. Pro Ollama zadejte místo API klíče **základní URL**. Pro vlastního poskytovatele kompatibilního s OpenAI (např. [NVIDIA NIM](https://build.nvidia.com/)) zadejte **název poskytovatele**, **základní URL** (např. `https://integrate.api.nvidia.com/v1`) a **API klíč**; všechny tři jsou povinné. URL a název se upravují přímo; použijte **Upravit** k nahrazení API klíče. Modely vlastního poskytovatele se zobrazují pouze v **pokročilém** režimu (Nastavení → Modely).
+Použijte **Konfigurace API** k uložení API klíčů pro každého poskytovatele, kterého používáte. Pro Ollama zadejte místo API klíče **základní URL**. Pro vlastního poskytovatele kompatibilního s OpenAI (jakýkoli koncový bod, který není ve vestavěném seznamu, například vlastní server nebo brána) zadejte **název poskytovatele**, **základní URL** (například `https://my-llm.example.com/v1`) a **API klíč**; všechny tři jsou povinné. URL a název se upravují přímo; pro nahrazení API klíče použijte **Upravit**. Modely vlastního poskytovatele se zobrazují pouze v **Pokročilé** režimu (Nastavení → Modely).
 
 <br/>
 
@@ -791,7 +791,7 @@ Použijte **Konfigurace API** k uložení API klíčů pro každého poskytovate
 
 <br/>
 
-- Přidejte pouze poskytovatele, které potřebujete. V **Nastavení** > **Modely** začíná každý ID modelu poskytovatelem (například `openrouter/openrouter/free`, `openai/gpt-4o`, `ollama/llama3`, `NVIDIA/nvidia/nemotron-nano-3-30b-a3b` pro vlastní koncový bod s názvem NVIDIA).
+- Přidávejte pouze poskytovatele, které potřebujete. V **Nastavení** > **Modely** začíná každé ID modelu poskytovatelem (například `openrouter/openrouter/free`, `openai/gpt-4o`, `nvidia/nvidia/nemotron-nano-3-30b-a3b`, `ollama/llama3`, `MyProvider/…` pro vlastní koncový bod s názvem `MyProvider`).
 
 Chcete-li přidat API klíč, zadejte hodnotu do textového pole a klikněte na `Save`. Chcete-li nahradit stávající klíč, klikněte na `Edit`. Chcete-li ověřit, že klíč funguje, klikněte na `Test`. U základní adresy URL Ollamy vždy klikněte na `Test` a ověřte připojení.
 

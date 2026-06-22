@@ -26,7 +26,7 @@ Transrewrtは、テキストを以下の3つの方法で処理するのに役立
 > Transrewrtは、WindowsおよびLinux向けのデスクトップアプリとして、またセルフホスト型のWebアプリとして利用可能です。このガイドではアプリの日常的な使用方法に焦点を当てています。特定のバージョンにのみ適用される内容については、明確にマークしています。
 
 <small>**他の言語で読む：** </small>
-<small id="lang-list">[English (GB)](../USER-GUIDE.md) · [Português (Brasil)](./USER-GUIDE.pt-BR.md) · [العربية](./USER-GUIDE.ar.md) · [বাংলা](./USER-GUIDE.bn.md) · [Català](./USER-GUIDE.ca.md) · [中文 (中国大陆)](./USER-GUIDE.zh-CN.md) · [中文 (台灣)](./USER-GUIDE.zh-TW.md) · [Hrvatski](./USER-GUIDE.hr.md) · [Čeština](./USER-GUIDE.cs.md) · [Nederlands](./USER-GUIDE.nl.md) · [English (US)](./USER-GUIDE.en-US.md) · [Tagalog](./USER-GUIDE.tl.md) · [Français](./USER-GUIDE.fr.md) · [Deutsch](./USER-GUIDE.de.md) · [Ελληνικά](./USER-GUIDE.el.md) · [हिन्दी](./USER-GUIDE.hi.md) · [Magyar](./USER-GUIDE.hu.md) · [Italiano](./USER-GUIDE.it.md) · [日本語](./USER-GUIDE.ja.md) · [한국어](./USER-GUIDE.ko.md) · [Bahasa Melayu](./USER-GUIDE.ms.md) · [فارسی](./USER-GUIDE.fa.md) · [Polski](./USER-GUIDE.pl.md) · [Basa Jawa](./USER-GUIDE.jv.md) · [Português](./USER-GUIDE.pt.md) · [ਪੰਜਾਬੀ](./USER-GUIDE.pa.md) · [Română](./USER-GUIDE.ro.md) · [Русский](./USER-GUIDE.ru.md) · [Slovenčina](./USER-GUIDE.sk.md) · [Español](./USER-GUIDE.es.md) · [Kiswahili](./USER-GUIDE.sw.md) · [Svenska](./USER-GUIDE.sv.md) · [తెలుగు](./USER-GUIDE.te.md) · [ไทย](./USER-GUIDE.th.md) · [Türkçe](./USER-GUIDE.tr.md) · [Українська](./USER-GUIDE.uk.md) · [Tiếng Việt](./USER-GUIDE.vi.md)</small>
+<small id="lang-list">[English (UK)](../USER-GUIDE.md) · [Português (Brasil)](./USER-GUIDE.pt-BR.md) · [العربية](./USER-GUIDE.ar.md) · [বাংলা](./USER-GUIDE.bn.md) · [Català](./USER-GUIDE.ca.md) · [简体中文](./USER-GUIDE.zh-Hans.md) · [繁體中文](./USER-GUIDE.zh-Hant.md) · [Hrvatski](./USER-GUIDE.hr.md) · [Čeština](./USER-GUIDE.cs.md) · [Nederlands](./USER-GUIDE.nl.md) · [English (US)](./USER-GUIDE.en-US.md) · [Tagalog](./USER-GUIDE.tl.md) · [Français](./USER-GUIDE.fr.md) · [Deutsch](./USER-GUIDE.de.md) · [Ελληνικά](./USER-GUIDE.el.md) · [Hindi (Roman)](./USER-GUIDE.hi-Latn.md) · [Magyar](./USER-GUIDE.hu.md) · [Italiano](./USER-GUIDE.it.md) · [日本語](./USER-GUIDE.ja.md) · [한국어](./USER-GUIDE.ko.md) · [Bahasa Melayu](./USER-GUIDE.ms.md) · [فارسی](./USER-GUIDE.fa.md) · [Polski](./USER-GUIDE.pl.md) · [Basa Jawa](./USER-GUIDE.jv.md) · [Português](./USER-GUIDE.pt.md) · [پنجابی](./USER-GUIDE.pa-PK.md) · [Română](./USER-GUIDE.ro.md) · [Русский](./USER-GUIDE.ru.md) · [Slovenčina](./USER-GUIDE.sk.md) · [Español](./USER-GUIDE.es.md) · [Kiswahili](./USER-GUIDE.sw.md) · [Svenska](./USER-GUIDE.sv.md) · [తెలుగు](./USER-GUIDE.te.md) · [ไทย](./USER-GUIDE.th.md) · [Türkçe](./USER-GUIDE.tr.md) · [Українська](./USER-GUIDE.uk.md) · [Tiếng Việt](./USER-GUIDE.vi.md)</small>
 
 <small>
 
@@ -103,7 +103,7 @@ Transrewrtは、テキストを以下の3つの方法で処理するのに役立
 <a id="before-you-start"></a>
 ## はじめに
 
-Transrewrt を使用するには、少なくとも1つのAIプロバイダーへのアクセスが必要です。サポートされているプロバイダーは以下のとおりです：[OpenRouter](https://openrouter.ai)（多数のモデルを統合）、OpenAI、Anthropic、Google Gemini、DeepSeek、Groq、Mistral、xAI、Cerebras、およびローカルモデル用の[Ollama](https://ollama.com)。
+Transrewrtを使用するには、少なくとも1つのAIプロバイダーへのアクセスが必要です。サポートされているプロバイダーは次のとおりです。[OpenRouter](https://openrouter.ai)（多くのモデルを集約）、OpenAI、Anthropic、Google Gemini、DeepSeek、Groq、Mistral、xAI、Cerebras、NVIDIA、Alibaba Cloud、apikey.fun、任意のOpenAI互換プロバイダー、およびローカルモデル用の[Ollama](https://ollama.com)です。
 
 有料モデルを選択する必要はありません。OpenRouter API キーを追加すると、アプリは自動的に組み込みの **無料** OpenRouter オプションを有効にします。これにより、テキストの翻訳、書き換え、変換をすぐに開始できます。または、Cerebras、Google、Groq、Mistral AI、または [NVIDIA](https://build.nvidia.com/) (OpenAI 互換 API) から無料の API キーを取得することもできます。
 
@@ -760,7 +760,7 @@ Web版では、**ユーザー**を使用してユーザー アカウントを管
 <a id="api-config"></a>
 ### API設定
 
-サポートされているプロバイダーは次のとおりです: OpenRouter、OpenAI、Anthropic、Google Gemini、DeepSeek、Groq、Mistral、xAI、Cerebras、**Ollama** (ベース URL を介したローカルモデル)、およびオプションの **カスタム OpenAI 互換プロバイダー** (名前、URL、API キー — 高度モードのみ)。使用するプロバイダーのみを設定する必要があります。
+サポートされているプロバイダーは次のとおりです。OpenRouter、OpenAI、Anthropic、Google Gemini、DeepSeek、Groq、Mistral、xAI、Cerebras、NVIDIA、Alibaba Cloud、apikey.fun、**Ollama**（ベースURL経由のローカルモデル）、およびオプションの**カスタムOpenAI互換プロバイダー**（名前、URL、APIキー — 高度モードのみ）。使用するプロバイダーのみを設定する必要があります。
 
 **Webアプリケーション：管理者のみ**
 
@@ -780,7 +780,7 @@ API キーは、システムまたは Docker 環境変数を通じて設定さ�
 
 **デスクトップアプリケーション**
 
-**API 設定**を使用して、使用するプロバイダーごとに API キーを保存します。Ollama の場合は、API キーの代わりに **ベース URL** を入力します。カスタム OpenAI 互換プロバイダー (例: [NVIDIA NIM](https://build.nvidia.com/)) の場合は、**プロバイダー名**、**ベース URL** (例: `https://integrate.api.nvidia.com/v1`)、および **API キー** を入力します。これら 3 つすべてが必要です。URL と名前はインラインで編集されます。**編集** を使用して API キーを置き換えます。カスタム プロバイダーのモデルは **高度** モードのみに表示されます (設定 → モデル)。
+**API 設定**を使用して、使用する各プロバイダーのAPIキーを保存します。Ollamaの場合は、APIキーの代わりに**ベースURL**を入力します。カスタムOpenAI互換プロバイダー（自己ホスト型サーバーやゲートウェイなど、組み込みリストにないエンドポイント）の場合は、**プロバイダー名**、**ベースURL**（`https://my-llm.example.com/v1`など）、および**APIキー**を入力します。これら3つすべてが必要です。URLと名前はインラインで編集されます。APIキーを置き換えるには**編集**を使用します。カスタムプロバイダーのモデルは**高度**モードのみに表示されます（設定 → モデル）。
 
 <br/>
 
@@ -789,7 +789,7 @@ API キーは、システムまたは Docker 環境変数を通じて設定さ�
 
 <br/>
 
-- 必要なプロバイダーのみを追加します。**設定** > **モデル** では、各モデル ID はプロバイダーで始まります (例: カスタム エンドポイント NVIDIA の場合、`openrouter/openrouter/free`、`openai/gpt-4o`、`ollama/llama3`、`NVIDIA/nvidia/nemotron-nano-3-30b-a3b`)。
+- 必要なプロバイダーのみを追加してください。**設定** > **モデル**では、各モデルIDはプロバイダーで始まります（例：`openrouter/openrouter/free`、`openai/gpt-4o`、`nvidia/nvidia/nemotron-nano-3-30b-a3b`、`ollama/llama3`、`MyProvider/…`は、`MyProvider`という名前のカスタムエンドポイント用）。
 
 APIキーを追加するには、テキストフィールドに値を入力して`Save`をクリックします。既存のキーを置き換えるには、`Edit`をクリックします。キーが正常に機能しているか確認するには、`Test`をクリックします。OllamaのベースURLの場合は、接続確認のために常に`Test`をクリックしてください。
 

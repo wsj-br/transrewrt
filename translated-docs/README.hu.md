@@ -3,14 +3,14 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.0-blue" alt="Version"></a>
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.1-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
   <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react" alt="React 19">
   <img src="https://img.shields.io/badge/Electron-41-47848F?logo=electron" alt="Electron 41">
 </p>
 
-Mesterséges intelligencián alapuló szövegeszköz: fordítás több tucat nyelv között, átírás különböző stílusokban, és átalakítás egyéni parancsokkal – több MI-szolgáltatót használva (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI és helyi Ollama). Asztali alkalmazásként (Electron) vagy önállóan üzemeltethető webalkalmazásként (Docker) futtatható.
+AI-alapú szöveges eszköz: fordítás nyelvek között, átírás különböző stílusokban, és átalakítás egyéni utasításokkal – több AI szolgáltató (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, bármely OpenAI-kompatibilis szolgáltató, és helyi Ollama) használatával. Asztali alkalmazásként (Electron) vagy önállóan üzemeltetett webalkalmazásként (Docker) fut.
 
 - **Fordítás** - több tucat nyelv között, automatikus forrásfelismeréssel
 - **Átírás** - helyesírás javítása, érthetőség javítása, formális/informális, rövidítés, bővítés, technikai
@@ -27,7 +27,7 @@ Mesterséges intelligencián alapuló szövegeszköz: fordítás több tucat nye
 A telepítést követően tekintse meg a [**Felhasználói útmutatót**](USER-GUIDE.hu.md) az összes funkció részletes ismertetéséhez.
 
 <small>**Olvassa más nyelveken:** </small>
-<small id="lang-list">[English (GB)](../README.md) · [Português (Brasil)](./README.pt-BR.md) · [العربية](./README.ar.md) · [বাংলা](./README.bn.md) · [Català](./README.ca.md) · [中文 (中国大陆)](./README.zh-CN.md) · [中文 (台灣)](./README.zh-TW.md) · [Hrvatski](./README.hr.md) · [Čeština](./README.cs.md) · [Nederlands](./README.nl.md) · [English (US)](./README.en-US.md) · [Tagalog](./README.tl.md) · [Français](./README.fr.md) · [Deutsch](./README.de.md) · [Ελληνικά](./README.el.md) · [हिन्दी](./README.hi.md) · [Magyar](./README.hu.md) · [Italiano](./README.it.md) · [日本語](./README.ja.md) · [한국어](./README.ko.md) · [Bahasa Melayu](./README.ms.md) · [فارسی](./README.fa.md) · [Polski](./README.pl.md) · [Basa Jawa](./README.jv.md) · [Português](./README.pt.md) · [ਪੰਜਾਬੀ](./README.pa.md) · [Română](./README.ro.md) · [Русский](./README.ru.md) · [Slovenčina](./README.sk.md) · [Español](./README.es.md) · [Kiswahili](./README.sw.md) · [Svenska](./README.sv.md) · [తెలుగు](./README.te.md) · [ไทย](./README.th.md) · [Türkçe](./README.tr.md) · [Українська](./README.uk.md) · [Tiếng Việt](./README.vi.md)</small>
+<small id="lang-list">[English (UK)](../README.md) · [Português (Brasil)](./README.pt-BR.md) · [العربية](./README.ar.md) · [বাংলা](./README.bn.md) · [Català](./README.ca.md) · [简体中文](./README.zh-Hans.md) · [繁體中文](./README.zh-Hant.md) · [Hrvatski](./README.hr.md) · [Čeština](./README.cs.md) · [Nederlands](./README.nl.md) · [English (US)](./README.en-US.md) · [Tagalog](./README.tl.md) · [Français](./README.fr.md) · [Deutsch](./README.de.md) · [Ελληνικά](./README.el.md) · [Hindi (Roman)](./README.hi-Latn.md) · [Magyar](./README.hu.md) · [Italiano](./README.it.md) · [日本語](./README.ja.md) · [한국어](./README.ko.md) · [Bahasa Melayu](./README.ms.md) · [فارسی](./README.fa.md) · [Polski](./README.pl.md) · [Basa Jawa](./README.jv.md) · [Português](./README.pt.md) · [پنجابی](./README.pa-PK.md) · [Română](./README.ro.md) · [Русский](./README.ru.md) · [Slovenčina](./README.sk.md) · [Español](./README.es.md) · [Kiswahili](./README.sw.md) · [Svenska](./README.sv.md) · [తెలుగు](./README.te.md) · [ไทย](./README.th.md) · [Türkçe](./README.tr.md) · [Українська](./README.uk.md) · [Tiếng Việt](./README.vi.md)</small>
 
 <small>
 
@@ -254,7 +254,7 @@ A Transrewrt több AI-szolgáltatót is támogat. Az [OpenRouter](https://openro
 
 Ne használja az OpenRouter **Body Builder** modelljét ([`openrouter/bodybuilder`](https://openrouter.ai/openrouter/bodybuilder)) fordításhoz, átíráshoz vagy átalakításhoz: ez a modell JSON kéréscsomagokat ad vissza, nem a feladatokhoz szükséges befejezett szöveget. Lásd: [Beállítások → Modellek](USER-GUIDE.hu.md#models) a Felhasználói útmutatóban.
 
-Más szolgáltatókat is használhat (OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras) vagy helyben futtathat modelleket az [Ollama](https://ollama.com) segítségével. Lásd: [Konfiguráció](#configuration-and-environment) a támogatott szolgáltatók és környezeti változók teljes listájáért.
+Használhat más szolgáltatókat is (OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, bármely OpenAI-kompatibilis szolgáltató), vagy futtathat modelleket helyileg az [Ollama](https://ollama.com) segítségével. Tekintse meg a [Konfigurációt](#configuration-and-environment) a támogatott szolgáltatók és környezeti változók teljes listájáért.
 
 </br>
 
@@ -280,9 +280,9 @@ Más szolgáltatókat is használhat (OpenAI, Anthropic, Google Gemini, DeepSeek
 
 **Környezeti változók** (csak web/Docker; az Electron a helyi konfigurációs fájlt használja)
 
-| Változó | Leírás |
-|----------------------|------------------------------------------------------------------------------|
-| `PORT` | A kiszolgáló figyelő portja (alapértelmezett: `5000`) |
+| Változó                   | Leírás                                                                                  |
+|---------------------------|-----------------------------------------------------------------------------------------|
+| `PORT`                    | Szerver figyelési portja (alapértelmezetten `5000`)                                             |
 | `CONFIG_PATH`        | A konfigurációs fájl elérési útja (alapértelmezett: `/app/data/config.json`)                |
 | `TZ` | A kiszolgáló oldali időzóna (naplózás stb.) (alapértelmezett: `Europe/London`) |
 | `HISTORY_DISABLED`   | Kikényszeríti az előzmények kikapcsolását (nem kötelező, alapértelmezett érték: `false`)                  |
@@ -296,11 +296,14 @@ Más szolgáltatókat is használhat (OpenAI, Anthropic, Google Gemini, DeepSeek
 | `MISTRAL_API_KEY` | Mistral API-kulcs |
 | `OLLAMA_URL` | Ollama alap URL-je (pl. `http://host.docker.internal:11434`) |
 | `XAI_API_KEY`        | xAI API-kulcs                                                                  |
+| `NVIDIA_API_KEY`          | NVIDIA API kulcs                                                                        |
+| `ALIBABA_API_KEY`         | Alibaba Cloud (DashScope) API kulcs                                                     |
+| `APIFUN_API_KEY`          | apikey.fun API kulcs                                                                    |
 | `CUSTOM_PROVIDER_NAME` | Megjelenítendő név egy egyedi OpenAI-kompatibilis szolgáltatóhoz (mindhárom egyéni változó szükséges) |
-| `CUSTOM_PROVIDER_URL`  | Alap URL egy egyedi OpenAI-kompatibilis szolgáltatóhoz (pl. `https://integrate.api.nvidia.com/v1`) |
+| `CUSTOM_PROVIDER_URL`     | Egyéni OpenAI-kompatibilis szolgáltató alap URL-je (pl. `https://my-llm.example.com/v1`) |
 | `CUSTOM_PROVIDER_API_KEY` | API kulcs egy egyedi OpenAI-kompatibilis szolgáltatóhoz                         |
 
-**Egyedi OpenAI-kompatibilis szolgáltató (web/Docker):** állítsa be mindhárom `CUSTOM_PROVIDER_*` változót. Példa a [NVIDIA NIM](https://build.nvidia.com/) szolgáltatóhoz: `CUSTOM_PROVIDER_NAME=NVIDIA`, `CUSTOM_PROVIDER_URL=https://integrate.api.nvidia.com/v1`, és egy API kulcs a [build.nvidia.com](https://build.nvidia.com/) webhelyről. A modellek a **Haladó** módban jelennek meg a Beállítások → Modellek menüpont alatt, olyan azonosítókkal, mint a `NVIDIA/…` (szolgáltató neve előtagként).
+**Egyéni OpenAI-kompatibilis szolgáltató (web/Docker):** bármely OpenAI-kompatibilis végpont esetén, amely nem szerepel a fenti beépített listában (pl. egy önállóan üzemeltetett szerver vagy átjáró), állítsa be mindhárom `CUSTOM_PROVIDER_*` változót – például `CUSTOM_PROVIDER_NAME=MyProvider`, `CUSTOM_PROVIDER_URL=https://my-llm.example.com/v1`, és a hozzá tartozó API kulcsot. A modellek a **Haladó** módban jelennek meg a Beállítások → Modellek alatt, olyan azonosítókkal, mint a `MyProvider/…` (szolgáltató neve előtagként).
 
 **Adatvédelmi mód:** Az előzmények nyomon követésének kikényszerítéséhez, függetlenül a `config.json` beállítástól vagy a felhasználónkénti preferenciáktól, állítsa a `HISTORY_DISABLED` értékét `true` vagy `1` értékre (kis- és nagybetűk megkülönböztetése nélkül) a **web/Docker szerverfolyamathoz** és/vagy az **Electron asztali főfolyamathoz** (pl. rendszer- vagy indítási környezetben — nem csak a renderelő részhez). Ez letiltja a bemenet/kimenet előzmények tárolását, zárolja a **Beállítások → Általános beállítások → Előzmények** menüpontot, és blokkolja az Előzményekhez kapcsolódó API-kat.
 

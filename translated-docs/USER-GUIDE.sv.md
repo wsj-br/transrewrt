@@ -26,7 +26,7 @@ Den här guiden förklarar hur du använder appen när den är installerad och i
 > Transrewrt finns tillgängligt som skrivbordsapp för Windows och Linux, och som en självvärd webbapp. Den här guiden fokuserar på daglig användning av appen. När något endast gäller en version är det tydligt markerat.
 
 <small>**Läs på andra språk:** </small>
-<small id="lang-list">[English (GB)](../USER-GUIDE.md) · [Português (Brasil)](./USER-GUIDE.pt-BR.md) · [العربية](./USER-GUIDE.ar.md) · [বাংলা](./USER-GUIDE.bn.md) · [Català](./USER-GUIDE.ca.md) · [中文 (中国大陆)](./USER-GUIDE.zh-CN.md) · [中文 (台灣)](./USER-GUIDE.zh-TW.md) · [Hrvatski](./USER-GUIDE.hr.md) · [Čeština](./USER-GUIDE.cs.md) · [Nederlands](./USER-GUIDE.nl.md) · [English (US)](./USER-GUIDE.en-US.md) · [Tagalog](./USER-GUIDE.tl.md) · [Français](./USER-GUIDE.fr.md) · [Deutsch](./USER-GUIDE.de.md) · [Ελληνικά](./USER-GUIDE.el.md) · [हिन्दी](./USER-GUIDE.hi.md) · [Magyar](./USER-GUIDE.hu.md) · [Italiano](./USER-GUIDE.it.md) · [日本語](./USER-GUIDE.ja.md) · [한국어](./USER-GUIDE.ko.md) · [Bahasa Melayu](./USER-GUIDE.ms.md) · [فارسی](./USER-GUIDE.fa.md) · [Polski](./USER-GUIDE.pl.md) · [Basa Jawa](./USER-GUIDE.jv.md) · [Português](./USER-GUIDE.pt.md) · [ਪੰਜਾਬੀ](./USER-GUIDE.pa.md) · [Română](./USER-GUIDE.ro.md) · [Русский](./USER-GUIDE.ru.md) · [Slovenčina](./USER-GUIDE.sk.md) · [Español](./USER-GUIDE.es.md) · [Kiswahili](./USER-GUIDE.sw.md) · [Svenska](./USER-GUIDE.sv.md) · [తెలుగు](./USER-GUIDE.te.md) · [ไทย](./USER-GUIDE.th.md) · [Türkçe](./USER-GUIDE.tr.md) · [Українська](./USER-GUIDE.uk.md) · [Tiếng Việt](./USER-GUIDE.vi.md)</small>
+<small id="lang-list">[English (UK)](../USER-GUIDE.md) · [Português (Brasil)](./USER-GUIDE.pt-BR.md) · [العربية](./USER-GUIDE.ar.md) · [বাংলা](./USER-GUIDE.bn.md) · [Català](./USER-GUIDE.ca.md) · [简体中文](./USER-GUIDE.zh-Hans.md) · [繁體中文](./USER-GUIDE.zh-Hant.md) · [Hrvatski](./USER-GUIDE.hr.md) · [Čeština](./USER-GUIDE.cs.md) · [Nederlands](./USER-GUIDE.nl.md) · [English (US)](./USER-GUIDE.en-US.md) · [Tagalog](./USER-GUIDE.tl.md) · [Français](./USER-GUIDE.fr.md) · [Deutsch](./USER-GUIDE.de.md) · [Ελληνικά](./USER-GUIDE.el.md) · [Hindi (Roman)](./USER-GUIDE.hi-Latn.md) · [Magyar](./USER-GUIDE.hu.md) · [Italiano](./USER-GUIDE.it.md) · [日本語](./USER-GUIDE.ja.md) · [한국어](./USER-GUIDE.ko.md) · [Bahasa Melayu](./USER-GUIDE.ms.md) · [فارسی](./USER-GUIDE.fa.md) · [Polski](./USER-GUIDE.pl.md) · [Basa Jawa](./USER-GUIDE.jv.md) · [Português](./USER-GUIDE.pt.md) · [پنجابی](./USER-GUIDE.pa-PK.md) · [Română](./USER-GUIDE.ro.md) · [Русский](./USER-GUIDE.ru.md) · [Slovenčina](./USER-GUIDE.sk.md) · [Español](./USER-GUIDE.es.md) · [Kiswahili](./USER-GUIDE.sw.md) · [Svenska](./USER-GUIDE.sv.md) · [తెలుగు](./USER-GUIDE.te.md) · [ไทย](./USER-GUIDE.th.md) · [Türkçe](./USER-GUIDE.tr.md) · [Українська](./USER-GUIDE.uk.md) · [Tiếng Việt](./USER-GUIDE.vi.md)</small>
 
 <small>
 
@@ -104,7 +104,7 @@ Den här guiden förklarar hur du använder appen när den är installerad och i
 <a id="before-you-start"></a>
 ## Innan du börjar
 
-För att använda Transrewrt behöver du åtkomst till minst en AI-leverantör. De leverantörer som stöds är: [OpenRouter](https://openrouter.ai) (som samlar många modeller), OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras och [Ollama](https://ollama.com) för lokala modeller.
+För att använda Transrewrt behöver du tillgång till minst en AI-leverantör. De leverantörer som stöds är: [OpenRouter](https://openrouter.ai) (som aggregerar många modeller), OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, alla OpenAI-kompatibla leverantörer och [Ollama](https://ollama.com) för lokala modeller.
 
 Du behöver inte välja en betald modell för att komma igång. Så snart du lägger till din OpenRouter API-nyckel aktiveras automatiskt ett inbyggt **gratis** OpenRouter-alternativ i appen. Detta låter dig börja översätta, skriva om och transformera text direkt. Alternativt kan du även skaffa en gratis API-nyckel från Cerebras, Google, Groq, Mistral AI eller [NVIDIA](https://build.nvidia.com/) (OpenAI-kompatibelt API).
 
@@ -762,7 +762,7 @@ Använd **Användare** för att hantera användarkonton i webbversionen. Du kan 
 <a id="api-config"></a>
 ### API-konfiguration
 
-De stödda leverantörerna är: OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, **Ollama** (lokala modeller via en bas-URL) och en valfri **anpassad OpenAI-kompatibel leverantör** (namn, URL och API-nyckel — endast i Avancerat läge). Du behöver bara konfigurera de leverantörer du använder.
+De leverantörer som stöds är: OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, **Ollama** (lokala modeller via en bas-URL) och en valfri **anpassad OpenAI-kompatibel leverantör** (namn, URL och API-nyckel — endast i Avancerat läge). Du behöver bara konfigurera de leverantörer du använder.
 
 **Webbapplikation: endast administratör**
 
@@ -782,7 +782,7 @@ API-nycklar konfigureras via system- eller Docker-miljövariabler – de anges i
 
 **Skrivbordsapplikation**
 
-Använd **API-konfiguration** för att lagra API-nycklar för varje leverantör du använder. För Ollama anger du **bas-URL** istället för en API-nyckel. För en anpassad OpenAI-kompatibel leverantör (t.ex. [NVIDIA NIM](https://build.nvidia.com/)), ange ett **leverantörsnamn**, **bas-URL** (som `https://integrate.api.nvidia.com/v1`) och **API-nyckel**; alla tre krävs. URL:en och namnet redigeras inline; använd **Redigera** för att ersätta API-nyckeln. Modeller från anpassade leverantörer visas endast i **Avancerat** läge (Inställningar → Modeller).
+Använd **API-konfiguration** för att lagra API-nycklar för varje leverantör du använder. För Ollama anger du **bas-URL** istället för en API-nyckel. För en anpassad OpenAI-kompatibel leverantör (en slutpunkt som inte finns i den inbyggda listan, till exempel en själv-hostad server eller gateway), ange ett **leverantörsnamn**, en **bas-URL** (till exempel `https://my-llm.example.com/v1`) och en **API-nyckel**; alla tre krävs. URL:en och namnet redigeras inline; använd **Redigera** för att ersätta API-nyckeln. Modeller från anpassade leverantörer visas endast i **Avancerat** läge (Inställningar → Modeller).
 
 <br/>
 
@@ -791,7 +791,7 @@ Använd **API-konfiguration** för att lagra API-nycklar för varje leverantör 
 
 <br/>
 
-- Lägg till endast de leverantörer du behöver. I **Inställningar** > **Modeller** börjar varje modell-ID med leverantören (till exempel `openrouter/openrouter/free`, `openai/gpt-4o`, `ollama/llama3`, `NVIDIA/nvidia/nemotron-nano-3-30b-a3b` för en anpassad slutpunkt som heter NVIDIA).
+- Lägg bara till de leverantörer du behöver. I **Inställningar** > **Modeller** börjar varje modell-ID med leverantören (till exempel `openrouter/openrouter/free`, `openai/gpt-4o`, `nvidia/nvidia/nemotron-nano-3-30b-a3b`, `ollama/llama3`, `MyProvider/…` för en anpassad slutpunkt med namnet `MyProvider`).
 
 För att lägga till en API-nyckel anger du värdet i textfältet och klickar på `Save`. För att ersätta en befintlig nyckel klickar du på `Edit`. För att verifiera att en nyckel fungerar klickar du på `Test`. För Ollama bas-URL klickar du alltid på `Test` för att kontrollera anslutningen.
 

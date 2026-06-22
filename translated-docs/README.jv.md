@@ -3,14 +3,14 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.0-blue" alt="Version"></a>
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.1-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
   <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react" alt="React 19">
   <img src="https://img.shields.io/badge/Electron-41-47848F?logo=electron" alt="Electron 41">
 </p>
 
-Alat teks sing didhukung AI: terjemahake antar basa, tulis ulang gaya beda, lan ubah nganggo prompt khusus - nggunakake pirang-pirang panyedhiya AI (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, lan Ollama lokal). Jalan minangka aplikasi desktop (Electron) utawa aplikasi web sing bisa digawe dhewe (Docker).
+Piranti tèks nganggo AI: terjemahake antarane basa, tulis ulang ing gaya sing beda, lan ubah nganggo pituduh khusus - nggunakake macem-macem panyedhiya AI (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, panyedhiya apa wae sing kompatibel karo OpenAI, lan Ollama lokal). Mlaku minangka aplikasi desktop (Electron) utawa aplikasi web sing di-host dhewe (Docker).
 
 - **Terjemahake** - antarane puluhan basa, kanthi deteksi sumber otomatis
 - **Transrewrt** - ndandani tata basa, tingkatake kejernihan, formal/informal, pendhekake, tambahi, teknis
@@ -27,7 +27,7 @@ Alat teks sing didhukung AI: terjemahake antar basa, tulis ulang gaya beda, lan 
 Sawise dipasang, deleng [**Pandhuan Pangguna**](USER-GUIDE.jv.md) kanggo pandhuan lengkap babagan kabeh fitur.
 
 <small>**Macaa ing basa liya:** </small>
-<small id="lang-list">[English (GB)](../README.md) · [Português (Brasil)](./README.pt-BR.md) · [العربية](./README.ar.md) · [বাংলা](./README.bn.md) · [Català](./README.ca.md) · [中文 (中国大陆)](./README.zh-CN.md) · [中文 (台灣)](./README.zh-TW.md) · [Hrvatski](./README.hr.md) · [Čeština](./README.cs.md) · [Nederlands](./README.nl.md) · [English (US)](./README.en-US.md) · [Tagalog](./README.tl.md) · [Français](./README.fr.md) · [Deutsch](./README.de.md) · [Ελληνικά](./README.el.md) · [हिन्दी](./README.hi.md) · [Magyar](./README.hu.md) · [Italiano](./README.it.md) · [日本語](./README.ja.md) · [한국어](./README.ko.md) · [Bahasa Melayu](./README.ms.md) · [فارسی](./README.fa.md) · [Polski](./README.pl.md) · [Basa Jawa](./README.jv.md) · [Português](./README.pt.md) · [ਪੰਜਾਬੀ](./README.pa.md) · [Română](./README.ro.md) · [Русский](./README.ru.md) · [Slovenčina](./README.sk.md) · [Español](./README.es.md) · [Kiswahili](./README.sw.md) · [Svenska](./README.sv.md) · [తెలుగు](./README.te.md) · [ไทย](./README.th.md) · [Türkçe](./README.tr.md) · [Українська](./README.uk.md) · [Tiếng Việt](./README.vi.md)</small>
+<small id="lang-list">[English (UK)](../README.md) · [Português (Brasil)](./README.pt-BR.md) · [العربية](./README.ar.md) · [বাংলা](./README.bn.md) · [Català](./README.ca.md) · [简体中文](./README.zh-Hans.md) · [繁體中文](./README.zh-Hant.md) · [Hrvatski](./README.hr.md) · [Čeština](./README.cs.md) · [Nederlands](./README.nl.md) · [English (US)](./README.en-US.md) · [Tagalog](./README.tl.md) · [Français](./README.fr.md) · [Deutsch](./README.de.md) · [Ελληνικά](./README.el.md) · [Hindi (Roman)](./README.hi-Latn.md) · [Magyar](./README.hu.md) · [Italiano](./README.it.md) · [日本語](./README.ja.md) · [한국어](./README.ko.md) · [Bahasa Melayu](./README.ms.md) · [فارسی](./README.fa.md) · [Polski](./README.pl.md) · [Basa Jawa](./README.jv.md) · [Português](./README.pt.md) · [پنجابی](./README.pa-PK.md) · [Română](./README.ro.md) · [Русский](./README.ru.md) · [Slovenčina](./README.sk.md) · [Español](./README.es.md) · [Kiswahili](./README.sw.md) · [Svenska](./README.sv.md) · [తెలుగు](./README.te.md) · [ไทย](./README.th.md) · [Türkçe](./README.tr.md) · [Українська](./README.uk.md) · [Tiếng Việt](./README.vi.md)</small>
 
 <small>
 
@@ -254,7 +254,7 @@ Transrewrt ndhukung akeh panyedhiya AI. [OpenRouter](https://openrouter.ai) pili
 
 Aja nggunakake model **Body Builder** OpenRouter ([`openrouter/bodybuilder`](https://openrouter.ai/openrouter/bodybuilder)) kanggo terjemahake, tulis maneh, utawa owah: iku maringi muatan JSON, ora teks rampung kanggo tugas kasebut. Deleng [Setelan → Model](USER-GUIDE.jv.md#models) ing Pandhuan Pangguna.
 
-Sampeyan uga bisa nggunakake panyedhiya liyane (OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras) utawa mlakuake model lokal nganggo [Ollama](https://ollama.com). Deleng [Konfigurasi](#configuration-and-environment) kanggo daftar lengkap panyedhiya sing didhukung lan variabel lingkungan.
+Sampeyan uga bisa nggunakake panyedhiya liyane (OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, panyedhiya apa wae sing kompatibel karo OpenAI) utawa mlakuake model kanthi lokal nganggo [Ollama](https://ollama.com). Delengen [Konfigurasi](#configuration-and-environment) kanggo dhaptar lengkap panyedhiya sing didhukung lan variabel lingkungan.
 
 </br>
 
@@ -280,9 +280,9 @@ Sampeyan uga bisa nggunakake panyedhiya liyane (OpenAI, Anthropic, Google Gemini
 
 **Variabel lingkungan** (khusus web/Docker; Electron nggunakake berkas konfigurasi lokal)
 
-| Variabel             | Katerangan                                                                  |
-|----------------------|------------------------------------------------------------------------------|
-| `PORT`               | port pendengaran server  (minangka baku yaiku `5000`)                                  |
+| Variabel                  | Katrangan                                                                             |
+|---------------------------|-----------------------------------------------------------------------------------------|
+| `PORT`                    | Port pangrungon server  (standar `5000`)                                             |
 | `CONFIG_PATH`        | Path menyang berkas konfigurasi (minangka baku yaiku `/app/data/config.json`)                |
 | `TZ`                 | zona wektu kanggo wektu sisi server (pencatatan log, lsp.) (minangka baku yaiku  `Europe/London`) |
 | `HISTORY_DISABLED`   | Paksa riwayat eksekusi mati (opsional, bawaan ke `false`)                  |
@@ -296,11 +296,14 @@ Sampeyan uga bisa nggunakake panyedhiya liyane (OpenAI, Anthropic, Google Gemini
 | `MISTRAL_API_KEY`    | Kunci API Mistral                                                              |
 | `OLLAMA_URL`         | URL dhasar Ollama (contone `http://host.docker.internal:11434`)                   |
 | `XAI_API_KEY`        | xAI API key                                                                  |
+| `NVIDIA_API_KEY`          | Kunci API NVIDIA                                                                          |
+| `ALIBABA_API_KEY`         | Kunci API Alibaba Cloud (DashScope)                                                       |
+| `APIFUN_API_KEY`          | Kunci API apikey.fun                                                                      |
 | `CUSTOM_PROVIDER_NAME` | Jeneng tampilan kanggo penyedia kustom sing kompatibel karo OpenAI (kabeh telu var kustom dibutuhake) |
-| `CUSTOM_PROVIDER_URL`  | URL dhasar kanggo penyedia kustom sing kompatibel karo OpenAI (contone `https://integrate.api.nvidia.com/v1`) |
+| `CUSTOM_PROVIDER_URL`     | URL dhasar kanggo panyedhiya sing kompatibel karo OpenAI khusus (umpamane `https://my-llm.example.com/v1`) |
 | `CUSTOM_PROVIDER_API_KEY` | Kunci API kanggo penyedia kustom sing kompatibel karo OpenAI                         |
 
-**Penyedia kustom sing kompatibel karo OpenAI (web/Docker):** setel kabeh telu variabel `CUSTOM_PROVIDER_*`. Tuladha kanggo [NVIDIA NIM](https://build.nvidia.com/): `CUSTOM_PROVIDER_NAME=NVIDIA`, `CUSTOM_PROVIDER_URL=https://integrate.api.nvidia.com/v1`, lan kunci API saka [build.nvidia.com](https://build.nvidia.com/). Model katon ing mode **Lanjutan** ing Pengaturan → Model kanthi ID kaya `NVIDIA/…` (jeneng penyedia minangka prefiks).
+**Panyedhiya sing kompatibel karo OpenAI khusus (web/Docker):** kanggo titik akhir apa wae sing kompatibel karo OpenAI sing ora ana ing dhaptar sing dibangun ing ndhuwur (umpamane server utawa gateway sing di-host dhewe), atur kabeh telung variabel `CUSTOM_PROVIDER_*` — umpamane `CUSTOM_PROVIDER_NAME=MyProvider`, `CUSTOM_PROVIDER_URL=https://my-llm.example.com/v1`, lan kunci API sing cocog. Model katon ing mode **Lanjutan** ing Setelan → Model kanthi ID kaya `MyProvider/…` (jeneng panyedhiya minangka prefiks).
 
 **Modus privasi:** Kanggo memaksa pelacakan riwayat mati tanpa nggatekake `config.json` utawa preferensi saben pangguna, setel `HISTORY_DISABLED` dadi `true` utawa `1` (ora nggatekake kapitalisasi) kanggo **proses server web/Docker** lan/utawa **proses utama desktop Electron** (contone lingkungan sistem utawa peluncur — ora mung renderer). Iki mateni nyimpen riwayat input/output, ngunci **Setelan → Setelan Umum → Riwayat**, lan mblokir API sing ana gandhèngan karo Riwayat.
 

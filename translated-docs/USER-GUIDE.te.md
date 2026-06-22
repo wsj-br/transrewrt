@@ -26,7 +26,7 @@
 > Transrewrt విండోస్ మరియు లినక్స్ కోసం డెస్క్‌టాప్ యాప్ గా, మరియు స్వంతంగా హోస్ట్ చేయబడిన వెబ్ యాప్ గా అందుబాటులో ఉంది. ఈ మార్గదర్శకం యాప్ యొక్క రోజువారీ ఉపయోగాన్ని ప్రధానంగా చూస్తుంది. ఏదైనా ఒక వెర్షన్‌కు మాత్రమే వర్తించే పరిస్థితిలో, అది స్పష్టంగా గుర్తించబడుతుంది.
 
 <small>**ఇతర భాషలలో చదవండి:** </small>
-<small id="lang-list">[English (GB)](../USER-GUIDE.md) · [Português (Brasil)](./USER-GUIDE.pt-BR.md) · [العربية](./USER-GUIDE.ar.md) · [বাংলা](./USER-GUIDE.bn.md) · [Català](./USER-GUIDE.ca.md) · [中文 (中国大陆)](./USER-GUIDE.zh-CN.md) · [中文 (台灣)](./USER-GUIDE.zh-TW.md) · [Hrvatski](./USER-GUIDE.hr.md) · [Čeština](./USER-GUIDE.cs.md) · [Nederlands](./USER-GUIDE.nl.md) · [English (US)](./USER-GUIDE.en-US.md) · [Tagalog](./USER-GUIDE.tl.md) · [Français](./USER-GUIDE.fr.md) · [Deutsch](./USER-GUIDE.de.md) · [Ελληνικά](./USER-GUIDE.el.md) · [हिन्दी](./USER-GUIDE.hi.md) · [Magyar](./USER-GUIDE.hu.md) · [Italiano](./USER-GUIDE.it.md) · [日本語](./USER-GUIDE.ja.md) · [한국어](./USER-GUIDE.ko.md) · [Bahasa Melayu](./USER-GUIDE.ms.md) · [فارسی](./USER-GUIDE.fa.md) · [Polski](./USER-GUIDE.pl.md) · [Basa Jawa](./USER-GUIDE.jv.md) · [Português](./USER-GUIDE.pt.md) · [ਪੰਜਾਬੀ](./USER-GUIDE.pa.md) · [Română](./USER-GUIDE.ro.md) · [Русский](./USER-GUIDE.ru.md) · [Slovenčina](./USER-GUIDE.sk.md) · [Español](./USER-GUIDE.es.md) · [Kiswahili](./USER-GUIDE.sw.md) · [Svenska](./USER-GUIDE.sv.md) · [తెలుగు](./USER-GUIDE.te.md) · [ไทย](./USER-GUIDE.th.md) · [Türkçe](./USER-GUIDE.tr.md) · [Українська](./USER-GUIDE.uk.md) · [Tiếng Việt](./USER-GUIDE.vi.md)</small>
+<small id="lang-list">[English (UK)](../USER-GUIDE.md) · [Português (Brasil)](./USER-GUIDE.pt-BR.md) · [العربية](./USER-GUIDE.ar.md) · [বাংলা](./USER-GUIDE.bn.md) · [Català](./USER-GUIDE.ca.md) · [简体中文](./USER-GUIDE.zh-Hans.md) · [繁體中文](./USER-GUIDE.zh-Hant.md) · [Hrvatski](./USER-GUIDE.hr.md) · [Čeština](./USER-GUIDE.cs.md) · [Nederlands](./USER-GUIDE.nl.md) · [English (US)](./USER-GUIDE.en-US.md) · [Tagalog](./USER-GUIDE.tl.md) · [Français](./USER-GUIDE.fr.md) · [Deutsch](./USER-GUIDE.de.md) · [Ελληνικά](./USER-GUIDE.el.md) · [Hindi (Roman)](./USER-GUIDE.hi-Latn.md) · [Magyar](./USER-GUIDE.hu.md) · [Italiano](./USER-GUIDE.it.md) · [日本語](./USER-GUIDE.ja.md) · [한국어](./USER-GUIDE.ko.md) · [Bahasa Melayu](./USER-GUIDE.ms.md) · [فارسی](./USER-GUIDE.fa.md) · [Polski](./USER-GUIDE.pl.md) · [Basa Jawa](./USER-GUIDE.jv.md) · [Português](./USER-GUIDE.pt.md) · [پنجابی](./USER-GUIDE.pa-PK.md) · [Română](./USER-GUIDE.ro.md) · [Русский](./USER-GUIDE.ru.md) · [Slovenčina](./USER-GUIDE.sk.md) · [Español](./USER-GUIDE.es.md) · [Kiswahili](./USER-GUIDE.sw.md) · [Svenska](./USER-GUIDE.sv.md) · [తెలుగు](./USER-GUIDE.te.md) · [ไทย](./USER-GUIDE.th.md) · [Türkçe](./USER-GUIDE.tr.md) · [Українська](./USER-GUIDE.uk.md) · [Tiếng Việt](./USER-GUIDE.vi.md)</small>
 
 <small>
 
@@ -104,7 +104,7 @@
 <a id="before-you-start"></a>
 ## ప్రారంభించేక ముందు
 
-Transrewrt ఉపయోగించడానికి, మీరు కనీసం ఒక ఏఐ ప్రొవైడర్‌కు ప్రాప్యత కలిగి ఉండాలి. మద్దతు ఇచ్చే ప్రొవైడర్లు: [OpenRouter](https://openrouter.ai) (ఇది చాలా మోడల్‌లను సమాహారపరుస్తుంది), OpenAI, యాంథ్రోపిక్, Google Gemini, డీప్‌సీక్, గ్రోక్, మిస్ట్రల్, ఎక్స్ఏఐ, సెరెబ్రస్ మరియు స్థానిక మోడల్‌ల కోసం [Ollama](https://ollama.com).
+Transrewrtని ఉపయోగించడానికి, మీకు కనీసం ఒక AI ప్రొవైడర్‌కు యాక్సెస్ అవసరం. మద్దతు ఉన్న ప్రొవైడర్లు: [OpenRouter](https://openrouter.ai) (ఇది అనేక మోడళ్లను సమగ్రపరుస్తుంది), OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, ఏదైనా OpenAI-కంపాటిబుల్ ప్రొవైడర్, మరియు స్థానిక మోడళ్ల కోసం [Ollama](https://ollama.com).
 
 మీరు ప్రారంభించడానికి చెల్లింపు మాడల్‌ను ఎంచుకోవలసిన అవసరం లేదు. మీరు మీ OpenRouter API కీని జోడించిన వెంటనే, యాప్ స్వయంచాలకంగా అంతర్నిర్మిత **ఉచిత** OpenRouter ఎంపికను ప్రారంభిస్తుంది. ఇది మీరు టెక్స్ట్‌ను అనువదించడం, తిరిగి వ్రాయడం మరియు మార్చడం ప్రారంభించడానికి మిమ్మల్ని అనుమతిస్తుంది. ప్రత్యామ్నాయంగా, మీరు Cerebras, Google, Groq, Mistral AI, లేదా [NVIDIA](https://build.nvidia.com/) (OpenAI-కంపాటిబుల్ API) నుండి ఉచిత API కీని కూడా పొందవచ్చు.
 
@@ -761,7 +761,7 @@ Transrewrt ఉపయోగించడానికి, మీరు కనీస
 <a id="api-config"></a>
 ### API కాన్ఫిగ్
 
-మద్దతు ఉన్న ప్రొవైడర్లు: OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, **Ollama** (బేస్ URL ద్వారా స్థానిక మాడల్స్), మరియు ఐచ్ఛిక **కస్టమ్ OpenAI-కంపాటిబుల్ ప్రొవైడర్** (పేరు, URL, మరియు API కీ — అధునాతన మోడ్ మాత్రమే). మీరు ఉపయోగించే ప్రొవైడర్లను మాత్రమే కాన్ఫిగర్ చేయాలి.
+మద్దతు ఉన్న ప్రొవైడర్లు: OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, **Ollama** (బేస్ URL ద్వారా స్థానిక మోడల్స్), మరియు ఐచ్ఛిక **కస్టమ్ OpenAI-కంపాటిబుల్ ప్రొవైడర్** (పేరు, URL, మరియు API కీ — అధునాతన మోడ్ మాత్రమే). మీరు ఉపయోగించే ప్రొవైడర్లను మాత్రమే కాన్ఫిగర్ చేయాలి.
 
 **వెబ్ అప్లికేషన్: కేవలం నిర్వాహకుడు మాత్రమే**
 
@@ -781,7 +781,7 @@ API కీలు సిస్టమ్ లేదా Docker ఎన్విరా
 
 **డెస్క్‌టాప్ అప్లికేషన్**
 
-మీరు ఉపయోగించే ప్రతి ప్రొవైడర్ కోసం API కీలను నిల్వ చేయడానికి **API కాన్ఫిగరేషన్**ను ఉపయోగించండి. Ollama కోసం, API కీకి బదులుగా **బేస్ URL**ను నమోదు చేయండి. కస్టమ్ OpenAI-కంపాటిబుల్ ప్రొవైడర్ కోసం (ఉదా. [NVIDIA NIM](https://build.nvidia.com/)), **ప్రొవైడర్ పేరు**, **బేస్ URL** (`https://integrate.api.nvidia.com/v1` వంటివి), మరియు **API కీ**ను నమోదు చేయండి; ఈ మూడు అవసరం. URL మరియు పేరు ఇన్లైన్లో సవరించబడతాయి; API కీని భర్తీ చేయడానికి **సవరించండి**ను ఉపయోగించండి. కస్టమ్ ప్రొవైడర్ మాడల్స్ **అధునాతన** మోడ్‌లో మాత్రమే కనిపిస్తాయి (సెట్టింగ్స్ → మాడల్స్).
+మీరు ఉపయోగించే ప్రతి ప్రొవైడర్ కోసం API కీలను నిల్వ చేయడానికి **API కాన్ఫిగరేషన్**ను ఉపయోగించండి. Ollama కోసం, API కీకి బదులుగా **బేస్ URL**ను నమోదు చేయండి. కస్టమ్ OpenAI-కంపాటిబుల్ ప్రొవైడర్ కోసం (స్వీయ-హోస్ట్ చేసిన సర్వర్ లేదా గేట్‌వే వంటి అంతర్నిర్మిత జాబితాలో లేని ఏదైనా ఎండ్‌పాయింట్), **ప్రొవైడర్ పేరు**, **బేస్ URL** (`https://my-llm.example.com/v1` వంటివి), మరియు **API కీ**ను నమోదు చేయండి; ఈ మూడూ అవసరం. URL మరియు పేరు ఇన్లైన్లో సవరించబడతాయి; API కీని భర్తీ చేయడానికి **సవరించండి**ను ఉపయోగించండి. కస్టమ్ ప్రొవైడర్ మోడల్స్ **అధునాతన** మోడ్‌లో మాత్రమే కనిపిస్తాయి (సెట్టింగ్స్ → మోడల్స్).
 
 <br/>
 
@@ -790,7 +790,7 @@ API కీలు సిస్టమ్ లేదా Docker ఎన్విరా
 
 <br/>
 
-- మీకు అవసరమైన ప్రొవైడర్లను మాత్రమే జోడించండి. **సెట్టింగ్స్** > **మాడల్స్**లో, ప్రతి మాడల్ ID ప్రొవైడర్‌తో ప్రారంభమవుతుంది (ఉదాహరణకు NVIDIA అనే కస్టమ్ ఎండ్‌పాయింట్ కోసం `openrouter/openrouter/free`, `openai/gpt-4o`, `ollama/llama3`, `NVIDIA/nvidia/nemotron-nano-3-30b-a3b`).
+- మీకు అవసరమైన ప్రొవైడర్లను మాత్రమే జోడించండి. **సెట్టింగ్స్** > **మోడల్స్**లో, ప్రతి మోడల్ ID ప్రొవైడర్‌తో ప్రారంభమవుతుంది (ఉదాహరణకు `openrouter/openrouter/free`, `openai/gpt-4o`, `nvidia/nvidia/nemotron-nano-3-30b-a3b`, `ollama/llama3`, `MyProvider/…` `MyProvider` అనే పేరుతో ఉన్న కస్టమ్ ఎండ్‌పాయింట్ కోసం).
 
 API కీని జోడించడానికి, పాఠ్య రంగంలో విలువను నమోదు చేసి `Save`పై క్లిక్ చేయండి. ఇప్పటికే ఉన్న కీని భర్తీ చేయడానికి, `Edit`పై క్లిక్ చేయండి. కీ పనిచేస్తుందో లేదో ధృవీకరించడానికి, `Test`పై క్లిక్ చేయండి. ఓలామా బేస్ URL కోసం, కనెక్షన్‌ని తనిఖీ చేయడానికి ఎల్లప్పుడూ `Test`పై క్లిక్ చేయండి.
 

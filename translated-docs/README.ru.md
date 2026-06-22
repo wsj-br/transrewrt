@@ -3,14 +3,14 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.0-blue" alt="Version"></a>
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.1-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
   <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react" alt="React 19">
   <img src="https://img.shields.io/badge/Electron-41-47848F?logo=electron" alt="Electron 41">
 </p>
 
-Инструмент для работы с текстом на базе ИИ: перевод между языками, переписывание в разных стилях и трансформация с помощью пользовательских промптов — с использованием нескольких поставщиков ИИ (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI и локально установленного Ollama). Работает как настольное приложение (Electron) или как веб-приложение для самостоятельного размещения (Docker).
+Инструмент для работы с текстом на базе ИИ: перевод между языками, переписывание в разных стилях и преобразование с помощью пользовательских запросов — с использованием нескольких ИИ-провайдеров (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, любой OpenAI-совместимый провайдер и локальный Ollama). Работает как настольное приложение (Electron) или как веб-приложение с самостоятельным хостингом (Docker).
 
 - **Перевести** - между десятками языков с автоматическим определением исходного языка
 - **Перезаписать** - исправить грамматику, улучшить ясность, формальный/неформальный стиль, сократить, расширить, технический
@@ -27,7 +27,7 @@
 После установки ознакомьтесь с [**Руководством пользователя**](USER-GUIDE.ru.md), где подробно описаны все функции.
 
 <small>**Читать на других языках:** </small>
-<small id="lang-list">[English (GB)](../README.md) · [Português (Brasil)](./README.pt-BR.md) · [العربية](./README.ar.md) · [বাংলা](./README.bn.md) · [Català](./README.ca.md) · [中文 (中国大陆)](./README.zh-CN.md) · [中文 (台灣)](./README.zh-TW.md) · [Hrvatski](./README.hr.md) · [Čeština](./README.cs.md) · [Nederlands](./README.nl.md) · [English (US)](./README.en-US.md) · [Tagalog](./README.tl.md) · [Français](./README.fr.md) · [Deutsch](./README.de.md) · [Ελληνικά](./README.el.md) · [हिन्दी](./README.hi.md) · [Magyar](./README.hu.md) · [Italiano](./README.it.md) · [日本語](./README.ja.md) · [한국어](./README.ko.md) · [Bahasa Melayu](./README.ms.md) · [فارسی](./README.fa.md) · [Polski](./README.pl.md) · [Basa Jawa](./README.jv.md) · [Português](./README.pt.md) · [ਪੰਜਾਬੀ](./README.pa.md) · [Română](./README.ro.md) · [Русский](./README.ru.md) · [Slovenčina](./README.sk.md) · [Español](./README.es.md) · [Kiswahili](./README.sw.md) · [Svenska](./README.sv.md) · [తెలుగు](./README.te.md) · [ไทย](./README.th.md) · [Türkçe](./README.tr.md) · [Українська](./README.uk.md) · [Tiếng Việt](./README.vi.md)</small>
+<small id="lang-list">[English (UK)](../README.md) · [Português (Brasil)](./README.pt-BR.md) · [العربية](./README.ar.md) · [বাংলা](./README.bn.md) · [Català](./README.ca.md) · [简体中文](./README.zh-Hans.md) · [繁體中文](./README.zh-Hant.md) · [Hrvatski](./README.hr.md) · [Čeština](./README.cs.md) · [Nederlands](./README.nl.md) · [English (US)](./README.en-US.md) · [Tagalog](./README.tl.md) · [Français](./README.fr.md) · [Deutsch](./README.de.md) · [Ελληνικά](./README.el.md) · [Hindi (Roman)](./README.hi-Latn.md) · [Magyar](./README.hu.md) · [Italiano](./README.it.md) · [日本語](./README.ja.md) · [한국어](./README.ko.md) · [Bahasa Melayu](./README.ms.md) · [فارسی](./README.fa.md) · [Polski](./README.pl.md) · [Basa Jawa](./README.jv.md) · [Português](./README.pt.md) · [پنجابی](./README.pa-PK.md) · [Română](./README.ro.md) · [Русский](./README.ru.md) · [Slovenčina](./README.sk.md) · [Español](./README.es.md) · [Kiswahili](./README.sw.md) · [Svenska](./README.sv.md) · [తెలుగు](./README.te.md) · [ไทย](./README.th.md) · [Türkçe](./README.tr.md) · [Українська](./README.uk.md) · [Tiếng Việt](./README.vi.md)</small>
 
 <small>
 
@@ -255,7 +255,7 @@ Transrewrt поддерживает несколько провайдеров И
 
 Не используйте модель **Body Builder** от OpenRouter ([`openrouter/bodybuilder`](https://openrouter.ai/openrouter/bodybuilder)) для перевода, рерайта или трансформации: она возвращает JSON-полезные нагрузки запросов, а не готовый текст для этих задач. См. [Настройки → Модели](USER-GUIDE.ru.md#models) в Руководстве пользователя.
 
-Вы также можете использовать других провайдеров (OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras) или запускать модели локально с помощью [Ollama](https://ollama.com). Полный список поддерживаемых провайдеров и переменных окружения см. в разделе [Конфигурация](#configuration-and-environment).
+Вы также можете использовать другие провайдеры (OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, любой OpenAI-совместимый провайдер) или запускать модели локально с помощью [Ollama](https://ollama.com). Полный список поддерживаемых провайдеров и переменных окружения см. в разделе [Конфигурация](#configuration-and-environment).
 
 </br>
 
@@ -281,9 +281,9 @@ Transrewrt поддерживает несколько провайдеров И
 
 **Переменные окружения** (только для веб-версии/Docker; Electron использует локальный файл конфигурации)
 
-| Переменная             | Описание                                                                  |
-|----------------------|------------------------------------------------------------------------------|
-| `PORT`               | Порт, на котором слушает сервер (по умолчанию `5000`)                                  |
+| Переменная                | Описание                                                                            |
+|---------------------------|-----------------------------------------------------------------------------------------|
+| `PORT`                    | Порт прослушивания сервера (по умолчанию `5000`)                                             |
 | `CONFIG_PATH`        | Путь к файлу конфигурации (по умолчанию `/app/data/config.json`)                |
 | `TZ`                 | часовой пояс для серверного времени (логи и т.д.) (по умолчанию `Europe/London`) |
 | `HISTORY_DISABLED`   | Принудительное отключение истории выполнения (необязательно, по умолчанию `false`)                  |
@@ -297,11 +297,14 @@ Transrewrt поддерживает несколько провайдеров И
 | `MISTRAL_API_KEY`    | Ключ API Mistral                                                              |
 | `OLLAMA_URL`         | Базовый URL Ollama (например, `http://host.docker.internal:11434`)                   |
 | `XAI_API_KEY`        | Ключ API xAI                                                                  |
+| `NVIDIA_API_KEY`          | Ключ API NVIDIA                                                                         |
+| `ALIBABA_API_KEY`         | Ключ API Alibaba Cloud (DashScope)                                                      |
+| `APIFUN_API_KEY`          | Ключ API apikey.fun                                                                     |
 | `CUSTOM_PROVIDER_NAME` | Отображаемое имя для пользовательского OpenAI-совместимого провайдера (требуются все три пользовательских переменных) |
-| `CUSTOM_PROVIDER_URL`  | Базовый URL для пользовательского OpenAI-совместимого провайдера (например, `https://integrate.api.nvidia.com/v1`) |
+| `CUSTOM_PROVIDER_URL`     | Базовый URL для пользовательского OpenAI-совместимого провайдера (например, `https://my-llm.example.com/v1`) |
 | `CUSTOM_PROVIDER_API_KEY` | API-ключ для пользовательского OpenAI-совместимого провайдера                         |
 
-**Пользовательский OpenAI-совместимый провайдер (web/Docker):** установите все три переменные `CUSTOM_PROVIDER_*`. Пример для [NVIDIA NIM](https://build.nvidia.com/): `CUSTOM_PROVIDER_NAME=NVIDIA`, `CUSTOM_PROVIDER_URL=https://integrate.api.nvidia.com/v1` и API-ключ с [build.nvidia.com](https://build.nvidia.com/). Модели отображаются в **Расширенном** режиме в разделе Настройки → Модели с идентификаторами, такими как `NVIDIA/…` (имя провайдера в качестве префикса).
+**Пользовательский OpenAI-совместимый провайдер (веб/Docker):** для любого OpenAI-совместимого конечного узла, не входящего в приведенный выше встроенный список (например, сервер с самостоятельным хостингом или шлюз), установите все три переменные `CUSTOM_PROVIDER_*` — например, `CUSTOM_PROVIDER_NAME=MyProvider`, `CUSTOM_PROVIDER_URL=https://my-llm.example.com/v1` и соответствующий ключ API. Модели появятся в **Расширенном** режиме в разделе Настройки → Модели с идентификаторами вида `MyProvider/…` (префикс — имя провайдера).
 
 **Режим конфиденциальности:** Чтобы принудительно отключить отслеживание истории независимо от `config.json` или предпочтений пользователя, установите для `HISTORY_DISABLED` значение `true` или `1` (без учёта регистра) в **веб-/Docker-серверном процессе** и/или **главном процессе настольного приложения Electron** (например, в системе или среде запуска — не только в процессе отрисовки). Это отключает сохранение истории ввода/вывода, блокирует раздел **Настройки → Основные настройки → История** и запрещает использование API, связанных с историей.
 

@@ -82,7 +82,7 @@ export function compareModelIdsByFooterDisplay(modelIdA: unknown, modelIdB: unkn
 }
 
 /**
- * First path segment must match a configured multi-llm-ts engine (same set as `src/shared/llm`
+ * First path segment must match a configured provider engine (same set as `src/shared/llm`
  * `ENGINE_IDS`). OpenRouter catalog slugs look like `qwen/qwen3.5-flash` and must be stored as
  * `openrouter/qwen/qwen3.5-flash` for `resolveEngine`. Preset JSON often omits the `openrouter/`
  * prefix; this normalizes those ids for API calls.
@@ -98,6 +98,9 @@ const DIRECT_LLM_ENGINE_PREFIXES = new Set([
   "ollama",
   "xai",
   "cerebras",
+  "nvidia",
+  "alibaba",
+  "apifun",
 ]);
 
 /** Retired or invalid OpenRouter paths still found in older presets.json → current catalog id. */

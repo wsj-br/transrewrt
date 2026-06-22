@@ -3,14 +3,14 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.0-blue" alt="Version"></a>
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.1-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
   <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react" alt="React 19">
   <img src="https://img.shields.io/badge/Electron-41-47848F?logo=electron" alt="Electron 41">
 </p>
 
-أداة نصية مدعومة بالذكاء الاصطناعي: ترجمة بين اللغات، وإعادة صياغة بأساليب مختلفة، وتحويل باستخدام أوامر مخصصة — باستخدام موفري ذكاء اصطناعي متعددين (أوبن روتر، أوبن إي آي، أنثروبيك، جوجل جيميني، ديب سيك، غروك، ميسترال، إكس إيه آي، وأولاما محلي). تعمل كتطبيق سطح مكتب (إلكترون) أو تطبيق ويب قابل الاستضافة ذاتيًا (داكر).
+أداة نصية مدعومة بالذكاء الاصطناعي: ترجمة بين اللغات، إعادة كتابة بأنماط مختلفة، وتحويل باستخدام مطالبات مخصصة - باستخدام مزودين متعددين للذكاء الاصطناعي (OpenRouter، OpenAI، Anthropic، Google Gemini، DeepSeek، Groq، Mistral، xAI، Cerebras، NVIDIA، Alibaba Cloud، apikey.fun، أي مزود متوافق مع OpenAI، و Ollama المحلي). يعمل كتطبيق سطح مكتب (Electron) أو كتطبيق ويب مستضاف ذاتيًا (Docker).
 
 - **ترجمة** - بين عشرات اللغات، مع اكتشاف تلقائي للمصدر
 - **إعادة كتابة** - إصلاح القواعد، تحسين الوضوح، رسمي/غير رسمي، اختصار، توسيع، تقني
@@ -27,7 +27,7 @@
 بمجرد التثبيت، راجع [**دليل المستخدم**](USER-GUIDE.ar.md) للحصول على شرح كامل لجميع الميزات.
 
 <small>**اقرأ باللغات الأخرى:** </small>
-<small id="lang-list">[English (GB)](../README.md) · [Português (Brasil)](./README.pt-BR.md) · [العربية](./README.ar.md) · [বাংলা](./README.bn.md) · [Català](./README.ca.md) · [中文 (中国大陆)](./README.zh-CN.md) · [中文 (台灣)](./README.zh-TW.md) · [Hrvatski](./README.hr.md) · [Čeština](./README.cs.md) · [Nederlands](./README.nl.md) · [English (US)](./README.en-US.md) · [Tagalog](./README.tl.md) · [Français](./README.fr.md) · [Deutsch](./README.de.md) · [Ελληνικά](./README.el.md) · [हिन्दी](./README.hi.md) · [Magyar](./README.hu.md) · [Italiano](./README.it.md) · [日本語](./README.ja.md) · [한국어](./README.ko.md) · [Bahasa Melayu](./README.ms.md) · [فارسی](./README.fa.md) · [Polski](./README.pl.md) · [Basa Jawa](./README.jv.md) · [Português](./README.pt.md) · [ਪੰਜਾਬੀ](./README.pa.md) · [Română](./README.ro.md) · [Русский](./README.ru.md) · [Slovenčina](./README.sk.md) · [Español](./README.es.md) · [Kiswahili](./README.sw.md) · [Svenska](./README.sv.md) · [తెలుగు](./README.te.md) · [ไทย](./README.th.md) · [Türkçe](./README.tr.md) · [Українська](./README.uk.md) · [Tiếng Việt](./README.vi.md)</small>
+<small id="lang-list">[English (UK)](../README.md) · [Português (Brasil)](./README.pt-BR.md) · [العربية](./README.ar.md) · [বাংলা](./README.bn.md) · [Català](./README.ca.md) · [简体中文](./README.zh-Hans.md) · [繁體中文](./README.zh-Hant.md) · [Hrvatski](./README.hr.md) · [Čeština](./README.cs.md) · [Nederlands](./README.nl.md) · [English (US)](./README.en-US.md) · [Tagalog](./README.tl.md) · [Français](./README.fr.md) · [Deutsch](./README.de.md) · [Ελληνικά](./README.el.md) · [Hindi (Roman)](./README.hi-Latn.md) · [Magyar](./README.hu.md) · [Italiano](./README.it.md) · [日本語](./README.ja.md) · [한국어](./README.ko.md) · [Bahasa Melayu](./README.ms.md) · [فارسی](./README.fa.md) · [Polski](./README.pl.md) · [Basa Jawa](./README.jv.md) · [Português](./README.pt.md) · [پنجابی](./README.pa-PK.md) · [Română](./README.ro.md) · [Русский](./README.ru.md) · [Slovenčina](./README.sk.md) · [Español](./README.es.md) · [Kiswahili](./README.sw.md) · [Svenska](./README.sv.md) · [తెలుగు](./README.te.md) · [ไทย](./README.th.md) · [Türkçe](./README.tr.md) · [Українська](./README.uk.md) · [Tiếng Việt](./README.vi.md)</small>
 
 <small>
 
@@ -255,7 +255,7 @@ sudo apt install -y libfuse2 libgtk-3-0 libnotify4 libnss3 libnspr4 libxss1 libx
 
 لا تستخدم نموذج **Body Builder** من أوبن روتر ([`openrouter/bodybuilder`](https://openrouter.ai/openrouter/bodybuilder)) للترجمة أو إعادة الصياغة أو التحويل: فهو يُرجع حُمولات طلب JSON، وليس النص المكتمل لهذه المهام. راجع [الإعدادات → النماذج](USER-GUIDE.ar.md#models) في دليل المستخدم.
 
-يمكنك أيضًا استخدام موفرين آخرين (أوبن إي آي، أنثروبيك، جوجل جيميني، ديب سيك، غروك، ميسترال، إكس إيه آي، Cerebras) أو تشغيل النماذج محليًا باستخدام [أولاما](https://ollama.com). راجع [التهيئة](#configuration-and-environment) للحصول على القائمة الكاملة للموفرين المدعومين ومتغيرات البيئة.
+يمكنك أيضًا استخدام مزودين آخرين (OpenAI، Anthropic، Google Gemini، DeepSeek، Groq، Mistral، xAI، Cerebras، NVIDIA، Alibaba Cloud، apikey.fun، أي مزود متوافق مع OpenAI) أو تشغيل النماذج محليًا باستخدام [Ollama](https://ollama.com). راجع [التكوين](#configuration-and-environment) للحصول على القائمة الكاملة للمزودين المدعومين ومتغيرات البيئة.
 
 </br>
 
@@ -281,9 +281,9 @@ sudo apt install -y libfuse2 libgtk-3-0 libnotify4 libnss3 libnspr4 libxss1 libx
 
 **المتغيرات البيئية** (للويب/دوكر فقط؛ يستخدم إلكترون ملف التهيئة المحلي)
 
-| المتغير             | الوصف                                                                  |
-|----------------------|------------------------------------------------------------------------------|
-| `PORT`               | منفذ الاستماع للخادم (القيمة الافتراضية هي `5000`)                                  |
+| المتغير                  | الوصف                                                                             |
+|---------------------------|-----------------------------------------------------------------------------------------|
+| `PORT`                    | منفذ الاستماع للخادم (الافتراضي هو `5000`)                                             |
 | `CONFIG_PATH`        | مسار ملف التهيئة (القيمة الافتراضية هي `/app/data/config.json`)                |
 | `TZ`                 | التوقيت الزمني للخادم (للسجلات، إلخ) (القيمة الافتراضية هي `Europe/London`) |
 | `HISTORY_DISABLED`   | يفرض إيقاف سجل التنفيذ (اختياري، يتم تعيينه تلقائيًا إلى `false`)                  |
@@ -297,11 +297,14 @@ sudo apt install -y libfuse2 libgtk-3-0 libnotify4 libnss3 libnspr4 libxss1 libx
 | `MISTRAL_API_KEY`    | مفتاح واجهة برمجة تطبيقات Mistral                                                              |
 | `OLLAMA_URL`         | عنوان URL الأساسي لـ Ollama (مثلاً `http://host.docker.internal:11434`)                   |
 | `XAI_API_KEY`        | مفتاح واجهة برمجة تطبيقات xAI                                                                  |
+| `NVIDIA_API_KEY`          | مفتاح API الخاص بـ NVIDIA                                                                          |
+| `ALIBABA_API_KEY`         | مفتاح API الخاص بـ Alibaba Cloud (DashScope)                                                       |
+| `APIFUN_API_KEY`          | مفتاح API الخاص بـ apikey.fun                                                                      |
 | `CUSTOM_PROVIDER_NAME` | اسم العرض لمزود مخصص متوافق مع OpenAI (جميع المتغيرات المخصصة الثلاثة مطلوبة) |
-| `CUSTOM_PROVIDER_URL`  | عنوان URL الأساسي لمزود مخصص متوافق مع OpenAI (مثل `https://integrate.api.nvidia.com/v1`) |
+| `CUSTOM_PROVIDER_URL`     | عنوان URL الأساسي لمزود مخصص متوافق مع OpenAI (على سبيل المثال `https://my-llm.example.com/v1`) |
 | `CUSTOM_PROVIDER_API_KEY` | مفتاح API لمزود مخصص متوافق مع OpenAI                         |
 
-**مزود مخصص متوافق مع OpenAI (ويب/Docker):** قم بتعيين المتغيرات الثلاثة `CUSTOM_PROVIDER_*`. مثال لـ [NVIDIA NIM](https://build.nvidia.com/): `CUSTOM_PROVIDER_NAME=NVIDIA`، `CUSTOM_PROVIDER_URL=https://integrate.api.nvidia.com/v1`، ومفتاح API من [build.nvidia.com](https://build.nvidia.com/). تظهر النماذج في وضع **متقدم** ضمن الإعدادات → النماذج بمعرفات مثل `NVIDIA/…` (اسم المزود كبادئة).
+**مزود مخصص متوافق مع OpenAI (ويب/Docker):** لأي نقطة نهاية متوافقة مع OpenAI غير موجودة في القائمة المضمنة أعلاه (على سبيل المثال، خادم مستضاف ذاتيًا أو بوابة)، قم بتعيين متغيرات `CUSTOM_PROVIDER_*` الثلاثة — على سبيل المثال `CUSTOM_PROVIDER_NAME=MyProvider`، `CUSTOM_PROVIDER_URL=https://my-llm.example.com/v1`، ومفتاح API المطابق. تظهر النماذج في وضع **متقدم** ضمن الإعدادات → النماذج بمعرفات مثل `MyProvider/…` (اسم المزود كبادئة).
 
 **وضع الخصوصية:** لإجبار إيقاف تتبع السجل بغض النظر عن `config.json` أو تفضيلات المستخدم الفردية، قم بتعيين `HISTORY_DISABLED` إلى `true` أو `1` (بدون تمييز بين الأحرف الكبيرة والصغيرة) لعملية **خادم الويب/دوكير** و/أو عملية **إلكترون الرئيسية على سطح المكتب** (مثلاً بيئة النظام أو برنامج التشغيل — وليس العارض فقط). هذا يعطل تخزين سجل المدخلات/المخرجات، ويُقفل **الإعدادات → الإعدادات العامة → السجل**، ويمنع واجهات برمجة التطبيقات المتعلقة بالسجل.
 

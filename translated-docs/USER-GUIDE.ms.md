@@ -26,7 +26,7 @@ Panduan ini menerangkan cara menggunakan aplikasi setelah dipasang dan dijalanka
 > Transrewrt tersedia sebagai aplikasi desktop untuk Windows dan Linux, dan sebagai aplikasi web yang dihos sendiri. Panduan ini memberi tumpuan kepada penggunaan harian aplikasi. Di mana sesuatu hanya terpakai kepada satu versi, ia akan ditandakan dengan jelas.
 
 <small>**Baca dalam bahasa lain:** </small>
-<small id="lang-list">[English (GB)](../USER-GUIDE.md) · [Português (Brasil)](./USER-GUIDE.pt-BR.md) · [العربية](./USER-GUIDE.ar.md) · [বাংলা](./USER-GUIDE.bn.md) · [Català](./USER-GUIDE.ca.md) · [中文 (中国大陆)](./USER-GUIDE.zh-CN.md) · [中文 (台灣)](./USER-GUIDE.zh-TW.md) · [Hrvatski](./USER-GUIDE.hr.md) · [Čeština](./USER-GUIDE.cs.md) · [Nederlands](./USER-GUIDE.nl.md) · [English (US)](./USER-GUIDE.en-US.md) · [Tagalog](./USER-GUIDE.tl.md) · [Français](./USER-GUIDE.fr.md) · [Deutsch](./USER-GUIDE.de.md) · [Ελληνικά](./USER-GUIDE.el.md) · [हिन्दी](./USER-GUIDE.hi.md) · [Magyar](./USER-GUIDE.hu.md) · [Italiano](./USER-GUIDE.it.md) · [日本語](./USER-GUIDE.ja.md) · [한국어](./USER-GUIDE.ko.md) · [Bahasa Melayu](./USER-GUIDE.ms.md) · [فارسی](./USER-GUIDE.fa.md) · [Polski](./USER-GUIDE.pl.md) · [Basa Jawa](./USER-GUIDE.jv.md) · [Português](./USER-GUIDE.pt.md) · [ਪੰਜਾਬੀ](./USER-GUIDE.pa.md) · [Română](./USER-GUIDE.ro.md) · [Русский](./USER-GUIDE.ru.md) · [Slovenčina](./USER-GUIDE.sk.md) · [Español](./USER-GUIDE.es.md) · [Kiswahili](./USER-GUIDE.sw.md) · [Svenska](./USER-GUIDE.sv.md) · [తెలుగు](./USER-GUIDE.te.md) · [ไทย](./USER-GUIDE.th.md) · [Türkçe](./USER-GUIDE.tr.md) · [Українська](./USER-GUIDE.uk.md) · [Tiếng Việt](./USER-GUIDE.vi.md)</small>
+<small id="lang-list">[English (UK)](../USER-GUIDE.md) · [Português (Brasil)](./USER-GUIDE.pt-BR.md) · [العربية](./USER-GUIDE.ar.md) · [বাংলা](./USER-GUIDE.bn.md) · [Català](./USER-GUIDE.ca.md) · [简体中文](./USER-GUIDE.zh-Hans.md) · [繁體中文](./USER-GUIDE.zh-Hant.md) · [Hrvatski](./USER-GUIDE.hr.md) · [Čeština](./USER-GUIDE.cs.md) · [Nederlands](./USER-GUIDE.nl.md) · [English (US)](./USER-GUIDE.en-US.md) · [Tagalog](./USER-GUIDE.tl.md) · [Français](./USER-GUIDE.fr.md) · [Deutsch](./USER-GUIDE.de.md) · [Ελληνικά](./USER-GUIDE.el.md) · [Hindi (Roman)](./USER-GUIDE.hi-Latn.md) · [Magyar](./USER-GUIDE.hu.md) · [Italiano](./USER-GUIDE.it.md) · [日本語](./USER-GUIDE.ja.md) · [한국어](./USER-GUIDE.ko.md) · [Bahasa Melayu](./USER-GUIDE.ms.md) · [فارسی](./USER-GUIDE.fa.md) · [Polski](./USER-GUIDE.pl.md) · [Basa Jawa](./USER-GUIDE.jv.md) · [Português](./USER-GUIDE.pt.md) · [پنجابی](./USER-GUIDE.pa-PK.md) · [Română](./USER-GUIDE.ro.md) · [Русский](./USER-GUIDE.ru.md) · [Slovenčina](./USER-GUIDE.sk.md) · [Español](./USER-GUIDE.es.md) · [Kiswahili](./USER-GUIDE.sw.md) · [Svenska](./USER-GUIDE.sv.md) · [తెలుగు](./USER-GUIDE.te.md) · [ไทย](./USER-GUIDE.th.md) · [Türkçe](./USER-GUIDE.tr.md) · [Українська](./USER-GUIDE.uk.md) · [Tiếng Việt](./USER-GUIDE.vi.md)</small>
 
 <small>
 
@@ -104,7 +104,7 @@ Panduan ini menerangkan cara menggunakan aplikasi setelah dipasang dan dijalanka
 <a id="before-you-start"></a>
 ## Sebelum anda mula
 
-Untuk menggunakan Transrewrt, anda perlu akses kepada sekurang-kurangnya satu penyedia AI. Penyedia yang disokong ialah: [OpenRouter](https://openrouter.ai) (yang menggabungkan banyak model), OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, dan [Ollama](https://ollama.com) untuk model tempatan.
+Untuk menggunakan Transrewrt, anda memerlukan akses kepada sekurang-kurangnya satu pembekal AI. Pembekal yang disokong ialah: [OpenRouter](https://openrouter.ai) (yang menggabungkan banyak model), OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, mana-mana pembekal yang serasi dengan OpenAI, dan [Ollama](https://ollama.com) untuk model tempatan.
 
 Anda tidak perlu memilih model berbayar untuk bermula. Sebaik sahaja anda menambah kunci API OpenRouter anda, aplikasi akan mendayakan pilihan OpenRouter **percuma** terbina dalam secara automatik. Ini membolehkan anda mula menterjemah, menulis semula dan mengubah teks dengan segera. Sebagai alternatif, anda juga boleh mendapatkan kunci API percuma daripada Cerebras, Google, Groq, Mistral AI, atau [NVIDIA](https://build.nvidia.com/) (API serasi OpenAI).
 
@@ -762,7 +762,7 @@ Gunakan **Pengguna** untuk mengurus akaun pengguna dalam versi web. Anda boleh m
 <a id="api-config"></a>
 ### Konfigurasi API
 
-Pembekal yang disokong ialah: OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, **Ollama** (model tempatan melalui URL asas), dan **pembekal serasi OpenAI tersuai** pilihan (nama, URL dan kunci API — Mod Lanjutan sahaja). Anda hanya perlu mengkonfigurasi pembekal yang anda gunakan.
+Pembekal yang disokong ialah: OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, **Ollama** (model tempatan melalui URL asas), dan **pembekal tersuai serasi OpenAI** pilihan (nama, URL, dan kunci API — mod Lanjutan sahaja). Anda hanya perlu mengkonfigurasi pembekal yang anda gunakan.
 
 **Aplikasi web: pentadbir sahaja**
 
@@ -782,7 +782,7 @@ Kunci API dikonfigurasikan melalui pembolehubah persekitaran sistem atau Docker 
 
 **Aplikasi desktop**
 
-Gunakan **Konfigurasi API** untuk menyimpan kunci API bagi setiap pembekal yang anda gunakan. Untuk Ollama, masukkan **URL asas** dan bukannya kunci API. Untuk pembekal serasi OpenAI tersuai (cth. [NVIDIA NIM](https://build.nvidia.com/)), masukkan **nama pembekal**, **URL asas** (seperti `https://integrate.api.nvidia.com/v1`), dan **kunci API**; ketiga-tiganya diperlukan. URL dan nama diedit secara setempat; gunakan **Edit** untuk menggantikan kunci API. Model pembekal tersuai muncul dalam mod **Lanjutan** sahaja (Tetapan → Model).
+Gunakan **Konfigurasi API** untuk menyimpan kunci API bagi setiap pembekal yang anda gunakan. Untuk Ollama, masukkan **URL asas** dan bukannya kunci API. Untuk pembekal tersuai serasi OpenAI (mana-mana titik akhir yang tiada dalam senarai terbina, seperti pelayan atau gerbang yang dihoskan sendiri), masukkan **nama pembekal**, **URL asas** (seperti `https://my-llm.example.com/v1`), dan **kunci API**; ketiga-tiganya diperlukan. URL dan nama diedit secara sebaris; gunakan **Edit** untuk menggantikan kunci API. Model pembekal tersuai muncul dalam mod **Lanjutan** sahaja (Tetapan → Model).
 
 <br/>
 
@@ -791,7 +791,7 @@ Gunakan **Konfigurasi API** untuk menyimpan kunci API bagi setiap pembekal yang 
 
 <br/>
 
-- Tambah hanya pembekal yang anda perlukan. Dalam **Tetapan** > **Model**, setiap ID model bermula dengan pembekal (contohnya `openrouter/openrouter/free`, `openai/gpt-4o`, `ollama/llama3`, `NVIDIA/nvidia/nemotron-nano-3-30b-a3b` untuk titik akhir tersuai bernama NVIDIA).
+- Tambah hanya pembekal yang anda perlukan. Dalam **Tetapan** > **Model**, setiap ID model bermula dengan pembekal (contohnya `openrouter/openrouter/free`, `openai/gpt-4o`, `nvidia/nvidia/nemotron-nano-3-30b-a3b`, `ollama/llama3`, `MyProvider/…` untuk titik akhir tersuai bernama `MyProvider`).
 
 Untuk menambah kunci API, masukkan nilai dalam ruang teks dan klik `Save`. Untuk menggantikan kunci sedia ada, klik `Edit`. Untuk mengesahkan kunci berfungsi, klik `Test`. Untuk URL asas Ollama, sentiasa klik `Test` untuk menyemak sambungan.
 

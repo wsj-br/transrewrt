@@ -10,6 +10,13 @@ const pkg = require("./package.json");
 module.exports = (env, argv) => {
   const isDevelopment = argv.mode === "development";
 
+  // @babel/preset-react chooses the dev vs prod JSX runtime from api.env() (BABEL_ENV || NODE_ENV).
+  // webpack --mode does not set NODE_ENV for the build process, so a production build with NODE_ENV
+  // unset would emit dev-only jsxDEV() calls that crash against React's production jsx runtime.
+  if (!isDevelopment && !process.env.NODE_ENV) {
+    process.env.NODE_ENV = "production";
+  }
+
   return {
   mode: isDevelopment ? "development" : "production",
   // Use "web" in dev so the bundle served by webpack-dev-server has no runtime require() calls

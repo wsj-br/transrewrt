@@ -3,14 +3,14 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.0-blue" alt="Version"></a>
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.1-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
   <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react" alt="React 19">
   <img src="https://img.shields.io/badge/Electron-41-47848F?logo=electron" alt="Electron 41">
 </p>
 
-AI搭載のテキストツール：複数のAIプロバイダー（OpenRouter、OpenAI、Anthropic、Google Gemini、DeepSeek、Groq、Mistral、xAI、およびローカルOllama）を使用して、言語間の翻訳、スタイルの書き直し、カスタムプロンプトによる変換が可能。デスクトップアプリ（Electron）またはセルフホスト型Webアプリ（Docker）として動作。
+AI搭載テキストツール：言語間の翻訳、さまざまなスタイルでの書き換え、カスタムプロンプトによる変換を行います。複数のAIプロバイダー（OpenRouter、OpenAI、Anthropic、Google Gemini、DeepSeek、Groq、Mistral、xAI、Cerebras、NVIDIA、Alibaba Cloud、apikey.fun、任意のOpenAI互換プロバイダー、ローカルOllama）を使用します。デスクトップアプリ（Electron）またはセルフホスト型Webアプリ（Docker）として実行できます。
 
 - **翻訳** - 自動ソース検出機能付きで、数十言語に対応
 - **書き換え** - 文法修正、明確性の向上、フォーマル/インフォーマル、短縮、拡張、技術的な内容に対応
@@ -27,7 +27,7 @@ AI搭載のテキストツール：複数のAIプロバイダー（OpenRouter、
 インストール後は、すべての機能の詳細な説明について、[**ユーザーガイド**](USER-GUIDE.ja.md)を参照してください。
 
 <small>**他の言語で読む：** </small>
-<small id="lang-list">[English (GB)](../README.md) · [Português (Brasil)](./README.pt-BR.md) · [العربية](./README.ar.md) · [বাংলা](./README.bn.md) · [Català](./README.ca.md) · [中文 (中国大陆)](./README.zh-CN.md) · [中文 (台灣)](./README.zh-TW.md) · [Hrvatski](./README.hr.md) · [Čeština](./README.cs.md) · [Nederlands](./README.nl.md) · [English (US)](./README.en-US.md) · [Tagalog](./README.tl.md) · [Français](./README.fr.md) · [Deutsch](./README.de.md) · [Ελληνικά](./README.el.md) · [हिन्दी](./README.hi.md) · [Magyar](./README.hu.md) · [Italiano](./README.it.md) · [日本語](./README.ja.md) · [한국어](./README.ko.md) · [Bahasa Melayu](./README.ms.md) · [فارسی](./README.fa.md) · [Polski](./README.pl.md) · [Basa Jawa](./README.jv.md) · [Português](./README.pt.md) · [ਪੰਜਾਬੀ](./README.pa.md) · [Română](./README.ro.md) · [Русский](./README.ru.md) · [Slovenčina](./README.sk.md) · [Español](./README.es.md) · [Kiswahili](./README.sw.md) · [Svenska](./README.sv.md) · [తెలుగు](./README.te.md) · [ไทย](./README.th.md) · [Türkçe](./README.tr.md) · [Українська](./README.uk.md) · [Tiếng Việt](./README.vi.md)</small>
+<small id="lang-list">[English (UK)](../README.md) · [Português (Brasil)](./README.pt-BR.md) · [العربية](./README.ar.md) · [বাংলা](./README.bn.md) · [Català](./README.ca.md) · [简体中文](./README.zh-Hans.md) · [繁體中文](./README.zh-Hant.md) · [Hrvatski](./README.hr.md) · [Čeština](./README.cs.md) · [Nederlands](./README.nl.md) · [English (US)](./README.en-US.md) · [Tagalog](./README.tl.md) · [Français](./README.fr.md) · [Deutsch](./README.de.md) · [Ελληνικά](./README.el.md) · [Hindi (Roman)](./README.hi-Latn.md) · [Magyar](./README.hu.md) · [Italiano](./README.it.md) · [日本語](./README.ja.md) · [한국어](./README.ko.md) · [Bahasa Melayu](./README.ms.md) · [فارسی](./README.fa.md) · [Polski](./README.pl.md) · [Basa Jawa](./README.jv.md) · [Português](./README.pt.md) · [پنجابی](./README.pa-PK.md) · [Română](./README.ro.md) · [Русский](./README.ru.md) · [Slovenčina](./README.sk.md) · [Español](./README.es.md) · [Kiswahili](./README.sw.md) · [Svenska](./README.sv.md) · [తెలుగు](./README.te.md) · [ไทย](./README.th.md) · [Türkçe](./README.tr.md) · [Українська](./README.uk.md) · [Tiếng Việt](./README.vi.md)</small>
 
 <small>
 
@@ -254,7 +254,7 @@ Transrewrtは複数のAIプロバイダーをサポートしています。[Open
 
 翻訳、書き直し、変換には、OpenRouterの**Body Builder**モデル（[`openrouter/bodybuilder`](https://openrouter.ai/openrouter/bodybuilder)）を使用しないでください。このモデルはそれらのタスクの完了したテキストではなく、JSONリクエストペイロードを返します。詳しくはユーザーガイドの[設定 → モデル](USER-GUIDE.ja.md#models)を参照してください。
 
-他のプロバイダー（OpenAI、Anthropic、Google Gemini、DeepSeek、Groq、Mistral、xAI、Cerebras）を使用したり、[Ollama](https://ollama.com)を使ってローカルでモデルを実行することもできます。サポートされているプロバイダーと環境変数の完全なリストについては、[設定](#configuration-and-environment)を参照してください。
+他のプロバイダー（OpenAI、Anthropic、Google Gemini、DeepSeek、Groq、Mistral、xAI、Cerebras、NVIDIA、Alibaba Cloud、apikey.fun、任意のOpenAI互換プロバイダー）を使用することも、[Ollama](https://ollama.com)でモデルをローカルで実行することもできます。サポートされているプロバイダーと環境変数の全リストについては、[設定](#configuration-and-environment)を参照してください。
 
 </br>
 
@@ -280,9 +280,9 @@ Transrewrtは複数のAIプロバイダーをサポートしています。[Open
 
 **環境変数** (Web / Docker のみ対象。Electron はローカルの設定ファイルを使用)
 
-| 変数             | 説明                                                                  |
-|----------------------|------------------------------------------------------------------------------|
-| `PORT`               | サーバーのリスンポート（デフォルトは `5000`）                                  |
+| 変数                  | 説明                                                                             |
+|---------------------------|-----------------------------------------------------------------------------------------|
+| `PORT`                    | サーバーリスニングポート（デフォルトは`5000`）                                             |
 | `CONFIG_PATH`        | 設定ファイルのパス（デフォルトは `/app/data/config.json`）                |
 | `TZ`                 | サーバー側のタイムゾーン（ログなど用。デフォルトは `Europe/London`） |
 | `HISTORY_DISABLED`   | 履歴の実行をオフに強制（オプション、デフォルトは `false`）                  |
@@ -296,11 +296,14 @@ Transrewrtは複数のAIプロバイダーをサポートしています。[Open
 | `MISTRAL_API_KEY`    | Mistral APIキー                                                              |
 | `OLLAMA_URL`         | OllamaのベースURL（例: `http://host.docker.internal:11434`）                   |
 | `XAI_API_KEY`        | xAI API キー                                                                  |
+| `NVIDIA_API_KEY`          | NVIDIA APIキー                                                                          |
+| `ALIBABA_API_KEY`         | Alibaba Cloud（DashScope）APIキー                                                       |
+| `APIFUN_API_KEY`          | apikey.fun APIキー                                                                      |
 | `CUSTOM_PROVIDER_NAME` | カスタムOpenAI互換プロバイダーの表示名（カスタム変数3つすべて必須） |
-| `CUSTOM_PROVIDER_URL`  | カスタムOpenAI互換プロバイダーのベースURL（例: `https://integrate.api.nvidia.com/v1`） |
+| `CUSTOM_PROVIDER_URL`     | カスタムOpenAI互換プロバイダーのベースURL（例：`https://my-llm.example.com/v1`） |
 | `CUSTOM_PROVIDER_API_KEY` | カスタムOpenAI互換プロバイダーのAPIキー                         |
 
-**カスタムOpenAI互換プロバイダー (web/Docker):** 3つの `CUSTOM_PROVIDER_*` 変数をすべて設定してください。[NVIDIA NIM](https://build.nvidia.com/) の例：`CUSTOM_PROVIDER_NAME=NVIDIA`、`CUSTOM_PROVIDER_URL=https://integrate.api.nvidia.com/v1`、および [build.nvidia.com](https://build.nvidia.com/) で取得したAPIキー。**高度** モードの [設定] → [モデル] に、`NVIDIA/…`（接頭辞としてプロバイダー名が付いたもの）のようなIDでモデルが表示されます。
+**カスタムOpenAI互換プロバイダー（Web/Docker）：** 上記の組み込みリストにないOpenAI互換エンドポイント（例：セルフホスト型サーバーまたはゲートウェイ）の場合は、3つの`CUSTOM_PROVIDER_*`変数をすべて設定します。例えば`CUSTOM_PROVIDER_NAME=MyProvider`、`CUSTOM_PROVIDER_URL=https://my-llm.example.com/v1`、および対応するAPIキーを設定します。モデルは、設定→モデルの**高度**モードで、`MyProvider/…`（プロバイダー名をプレフィックスとして）のようなIDで表示されます。
 
 **プライバシーモード：** `config.json` やユーザーごとの設定に関係なく、履歴の記録を強制的にオフにするには、**web/Dockerサーバープロセス** および／または **Electronデスクトップメインプロセス** に対して `HISTORY_DISABLED` を `true` または `1`（大文字小文字を区別しない）に設定します（例：システムまたはランチャの環境 — レンダラープロセス単体ではなく）。これにより、入力／出力履歴の保存が無効になり、**設定 → 一般設定 → 履歴** がロックされ、履歴関連のAPIがブロックされます。
 

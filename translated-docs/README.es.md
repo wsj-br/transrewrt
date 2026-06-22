@@ -3,14 +3,14 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.0-blue" alt="Version"></a>
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.1-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
   <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react" alt="React 19">
   <img src="https://img.shields.io/badge/Electron-41-47848F?logo=electron" alt="Electron 41">
 </p>
 
-Herramienta de texto con IA: traduce entre idiomas, reescribe en diferentes estilos y transforma con prompts personalizados, utilizando múltiples proveedores de IA (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI y Ollama local). Funciona como aplicación de escritorio (Electron) o como aplicación web autohospedada (Docker).
+Herramienta de texto impulsada por IA: traduce entre idiomas, reescribe en diferentes estilos y transforma con indicaciones personalizadas, utilizando múltiples proveedores de IA (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, cualquier proveedor compatible con OpenAI y Ollama local). Se ejecuta como una aplicación de escritorio (Electron) o una aplicación web autoalojada (Docker).
 
 - **Traducir** - entre docenas de idiomas, con detección automática de origen
 - **Reescritura** - corregir gramática, mejorar claridad, formal/informal, acortar, expandir, técnico
@@ -27,7 +27,7 @@ Herramienta de texto con IA: traduce entre idiomas, reescribe en diferentes esti
 Una vez instalado, consulte la [**Guía del usuario**](USER-GUIDE.es.md) para una descripción completa de todas las funciones.
 
 <small>**Leer en otros idiomas:** </small>
-<small id="lang-list">[English (GB)](../README.md) · [Português (Brasil)](./README.pt-BR.md) · [العربية](./README.ar.md) · [বাংলা](./README.bn.md) · [Català](./README.ca.md) · [中文 (中国大陆)](./README.zh-CN.md) · [中文 (台灣)](./README.zh-TW.md) · [Hrvatski](./README.hr.md) · [Čeština](./README.cs.md) · [Nederlands](./README.nl.md) · [English (US)](./README.en-US.md) · [Tagalog](./README.tl.md) · [Français](./README.fr.md) · [Deutsch](./README.de.md) · [Ελληνικά](./README.el.md) · [हिन्दी](./README.hi.md) · [Magyar](./README.hu.md) · [Italiano](./README.it.md) · [日本語](./README.ja.md) · [한국어](./README.ko.md) · [Bahasa Melayu](./README.ms.md) · [فارسی](./README.fa.md) · [Polski](./README.pl.md) · [Basa Jawa](./README.jv.md) · [Português](./README.pt.md) · [ਪੰਜਾਬੀ](./README.pa.md) · [Română](./README.ro.md) · [Русский](./README.ru.md) · [Slovenčina](./README.sk.md) · [Español](./README.es.md) · [Kiswahili](./README.sw.md) · [Svenska](./README.sv.md) · [తెలుగు](./README.te.md) · [ไทย](./README.th.md) · [Türkçe](./README.tr.md) · [Українська](./README.uk.md) · [Tiếng Việt](./README.vi.md)</small>
+<small id="lang-list">[English (UK)](../README.md) · [Português (Brasil)](./README.pt-BR.md) · [العربية](./README.ar.md) · [বাংলা](./README.bn.md) · [Català](./README.ca.md) · [简体中文](./README.zh-Hans.md) · [繁體中文](./README.zh-Hant.md) · [Hrvatski](./README.hr.md) · [Čeština](./README.cs.md) · [Nederlands](./README.nl.md) · [English (US)](./README.en-US.md) · [Tagalog](./README.tl.md) · [Français](./README.fr.md) · [Deutsch](./README.de.md) · [Ελληνικά](./README.el.md) · [Hindi (Roman)](./README.hi-Latn.md) · [Magyar](./README.hu.md) · [Italiano](./README.it.md) · [日本語](./README.ja.md) · [한국어](./README.ko.md) · [Bahasa Melayu](./README.ms.md) · [فارسی](./README.fa.md) · [Polski](./README.pl.md) · [Basa Jawa](./README.jv.md) · [Português](./README.pt.md) · [پنجابی](./README.pa-PK.md) · [Română](./README.ro.md) · [Русский](./README.ru.md) · [Slovenčina](./README.sk.md) · [Español](./README.es.md) · [Kiswahili](./README.sw.md) · [Svenska](./README.sv.md) · [తెలుగు](./README.te.md) · [ไทย](./README.th.md) · [Türkçe](./README.tr.md) · [Українська](./README.uk.md) · [Tiếng Việt](./README.vi.md)</small>
 
 <small>
 
@@ -255,7 +255,7 @@ Transrewrt admite múltiples proveedores de IA. [OpenRouter](https://openrouter.
 
 No use el modelo **Body Builder** de OpenRouter ([`openrouter/bodybuilder`](https://openrouter.ai/openrouter/bodybuilder)) para traducir, reescribir o transformar: devuelve cargas útiles de solicitud JSON, no el texto completado para esas tareas. Consulte [Configuración → Modelos](USER-GUIDE.es.md#models) en la Guía del Usuario.
 
-También puede usar otros proveedores (OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras) o ejecutar modelos localmente con [Ollama](https://ollama.com). Consulte [Configuración](#configuration-and-environment) para obtener la lista completa de proveedores compatibles y variables de entorno.
+También puedes usar otros proveedores (OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, cualquier proveedor compatible con OpenAI) o ejecutar modelos localmente con [Ollama](https://ollama.com). Consulta [Configuración](#configuration-and-environment) para ver la lista completa de proveedores admitidos y variables de entorno.
 
 </br>
 
@@ -281,9 +281,9 @@ También puede usar otros proveedores (OpenAI, Anthropic, Google Gemini, DeepSee
 
 **Variables de entorno** (solo web/Docker; Electron usa el archivo de configuración local)
 
-| Variable             | Descripción                                                                  |
-|----------------------|------------------------------------------------------------------------------|
-| `PORT`               | Puerto en el que escucha el servidor (valor predeterminado: `5000`)                                  |
+| Variable                  | Descripción                                                                             |
+|---------------------------|-----------------------------------------------------------------------------------------|
+| `PORT`                    | Puerto de escucha del servidor (por defecto es `5000`)                                             |
 | `CONFIG_PATH`        | Ruta al archivo de configuración (valor predeterminado: `/app/data/config.json`)                |
 | `TZ`                 | zona horaria para la hora del servidor (registros, etc.) (valor predeterminado: `Europe/London`) |
 | `HISTORY_DISABLED`   | Forzar la desactivación del historial de ejecución (opcional, por defecto `false`)                  |
@@ -297,11 +297,14 @@ También puede usar otros proveedores (OpenAI, Anthropic, Google Gemini, DeepSee
 | `MISTRAL_API_KEY`    | Clave API de Mistral                                                              |
 | `OLLAMA_URL`         | URL base de Ollama (por ejemplo, `http://host.docker.internal:11434`)                   |
 | `XAI_API_KEY`        | Clave de API de xAI                                                                  |
+| `NVIDIA_API_KEY`          | Clave API de NVIDIA                                                                          |
+| `ALIBABA_API_KEY`         | Clave API de Alibaba Cloud (DashScope)                                                       |
+| `APIFUN_API_KEY`          | Clave API de apikey.fun                                                                      |
 | `CUSTOM_PROVIDER_NAME` | Nombre para mostrar de un proveedor personalizado compatible con OpenAI (se requieren las tres variables personalizadas) |
-| `CUSTOM_PROVIDER_URL`  | URL base de un proveedor personalizado compatible con OpenAI (p. ej., `https://integrate.api.nvidia.com/v1`) |
+| `CUSTOM_PROVIDER_URL`     | URL base para un proveedor personalizado compatible con OpenAI (por ejemplo, `https://my-llm.example.com/v1`) |
 | `CUSTOM_PROVIDER_API_KEY` | Clave API de un proveedor personalizado compatible con OpenAI                         |
 
-**Proveedor personalizado compatible con OpenAI (web/Docker):** configure las tres variables `CUSTOM_PROVIDER_*`. Ejemplo para [NVIDIA NIM](https://build.nvidia.com/): `CUSTOM_PROVIDER_NAME=NVIDIA`, `CUSTOM_PROVIDER_URL=https://integrate.api.nvidia.com/v1` y una clave API de [build.nvidia.com](https://build.nvidia.com/). Los modelos aparecen en el modo **Avanzado** en Configuración → Modelos con IDs como `NVIDIA/…` (nombre del proveedor como prefijo).
+**Proveedor personalizado compatible con OpenAI (web/Docker):** para cualquier punto final compatible con OpenAI que no esté en la lista integrada anterior (por ejemplo, un servidor o puerta de enlace autoalojado), establece las tres variables `CUSTOM_PROVIDER_*` — por ejemplo `CUSTOM_PROVIDER_NAME=MyProvider`, `CUSTOM_PROVIDER_URL=https://my-llm.example.com/v1` y la clave API correspondiente. Los modelos aparecen en el modo **Avanzado** en Configuración → Modelos con identificadores como `MyProvider/…` (nombre del proveedor como prefijo).
 
 **Modo privacidad:** Para forzar la desactivación del historial independientemente de `config.json` o de las preferencias por usuario, establezca `HISTORY_DISABLED` en `true` o `1` (sin distinguir mayúsculas ni minúsculas) para el **proceso del servidor web/Docker** y/o el **proceso principal del escritorio Electron** (por ejemplo, entorno del sistema o del lanzador, no solo del renderizador). Esto desactiva el almacenamiento del historial de entrada/salida, bloquea **Configuración → Configuración general → Historial** e impide el uso de las API relacionadas con el Historial.
 

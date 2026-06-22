@@ -1,17 +1,13 @@
 /**
- * Node-only LLM layer: multi-llm-ts + OpenRouter streaming for generation-id / exact cost.
+ * Node-only LLM layer: Vercel AI SDK (`ai`) + `@ai-sdk/openai-compatible` transport.
+ * Every provider is reached over its OpenAI-compatible endpoint via a pre-configured base URL.
  * Used by Electron main and the web Express server.
  */
 
-const {
-  igniteModel,
-  loadModels,
-  Message,
-  defaultCapabilities,
-} = require("multi-llm-ts");
+const { streamText } = require("ai");
+const { createOpenAICompatible } = require("@ai-sdk/openai-compatible");
 
 const { OPENROUTER_PROVIDER } = require("../openRouterProviderRouting");
-const { streamChoiceToString } = require("./streamDeltaContent");
 const {
   extractApiErrorMessage,
   isOpenRouterKeyAuthFailureMessage,
@@ -20,7 +16,17 @@ const {
 
 const OPENROUTER_BASE = "https://openrouter.ai/api/v1";
 
-/** @type {Record<string, string>} config key / env internal name -> multi-llm-ts engine id */
+/** OpenRouter attribution headers (also used for the public /models + /generation calls). */
+const ATTRIBUTION_REFERER = "https://github.com/wsj-br/transrewrt";
+const ATTRIBUTION_TITLE = "Transrewrt";
+
+/** Anthropic native `GET /models` needs `x-api-key` + this version header instead of a Bearer token. */
+const ANTHROPIC_VERSION = "2023-06-01";
+
+/** Provider id used for OpenRouter-specific behaviour (routing field, exact cost, attribution). */
+const OPENROUTER_PROVIDER_KEY = "openrouter";
+
+/** @type {string[]} ordered provider engine ids (canonical model id prefix). */
 const ENGINE_IDS = [
   "openrouter",
   "openai",
@@ -33,7 +39,29 @@ const ENGINE_IDS = [
   "xai",
   "custom",
   "cerebras",
+  "nvidia",
+  "alibaba",
+  "apifun",
 ];
+
+/**
+ * Built-in OpenAI-compatible base URLs per engine. `ollama` and `custom` are resolved at runtime
+ * from config (`ollama_base_url` / `custom_provider_url`), so they are not listed here.
+ */
+const PROVIDER_PRESETS = {
+  openrouter: { baseUrl: "https://openrouter.ai/api/v1" },
+  openai: { baseUrl: "https://api.openai.com/v1" },
+  anthropic: { baseUrl: "https://api.anthropic.com/v1" },
+  google: { baseUrl: "https://generativelanguage.googleapis.com/v1beta/openai" },
+  deepseek: { baseUrl: "https://api.deepseek.com" },
+  groq: { baseUrl: "https://api.groq.com/openai/v1" },
+  mistralai: { baseUrl: "https://api.mistral.ai/v1" },
+  xai: { baseUrl: "https://api.x.ai/v1" },
+  cerebras: { baseUrl: "https://api.cerebras.ai/v1" },
+  nvidia: { baseUrl: "https://integrate.api.nvidia.com/v1" },
+  alibaba: { baseUrl: "https://dashscope-intl.aliyuncs.com/compatible-mode/v1" },
+  apifun: { baseUrl: "https://api.apikey.fun/v1" },
+};
 
 const CONFIG_KEY_BY_ENGINE = {
   openrouter: "openrouter_api_key",
@@ -47,6 +75,9 @@ const CONFIG_KEY_BY_ENGINE = {
   xai: "xai_api_key",
   custom: "custom_provider_api_key",
   cerebras: "cerebras_api_key",
+  nvidia: "nvidia_api_key",
+  alibaba: "alibaba_api_key",
+  apifun: "apifun_api_key",
 };
 
 /** Extra config/env keys for the custom OpenAI-compatible provider (name + URL). */
@@ -81,9 +112,12 @@ const ENV_KEY_BY_ENGINE = {
   xai: "XAI_API_KEY",
   custom: "CUSTOM_PROVIDER_API_KEY",
   cerebras: "CEREBRAS_API_KEY",
+  nvidia: "NVIDIA_API_KEY",
+  alibaba: "ALIBABA_API_KEY",
+  apifun: "APIFUN_API_KEY",
 };
 
-/** In-memory catalog: engine -> ChatModel[] (from last getAllModels). */
+/** In-memory catalog: engine -> Array<{ id, name, pricing? }> (from last getAllModels). */
 const catalogByEngine = {};
 
 /** OpenRouter list-models pricing: id -> { prompt, completion } as dollars per token. */
@@ -212,6 +246,9 @@ const PROVIDER_LABELS = {
   xai: "xAI",
   custom: "Custom provider",
   cerebras: "Cerebras",
+  nvidia: "NVIDIA",
+  alibaba: "Alibaba Cloud",
+  apifun: "apikey.fun",
 };
 
 /**
@@ -278,24 +315,19 @@ function buildProviderTestRequest(provider, value, extras = {}) {
           method: "GET",
           headers: {
             Authorization: `Bearer ${normalized}`,
-            "HTTP-Referer": "https://github.com/wsj-br/transrewrt",
-            "X-Title": "Transrewrt",
+            "HTTP-Referer": ATTRIBUTION_REFERER,
+            "X-Title": ATTRIBUTION_TITLE,
           },
         },
       };
-    case "openai":
-      return {
-        url: "https://api.openai.com/v1/models",
-        options: { method: "GET", headers: { Authorization: `Bearer ${normalized}` } },
-      };
     case "anthropic":
       return {
-        url: "https://api.anthropic.com/v1/models",
+        url: `${PROVIDER_PRESETS.anthropic.baseUrl}/models`,
         options: {
           method: "GET",
           headers: {
             "x-api-key": normalized,
-            "anthropic-version": "2023-06-01",
+            "anthropic-version": ANTHROPIC_VERSION,
           },
         },
       };
@@ -304,31 +336,24 @@ function buildProviderTestRequest(provider, value, extras = {}) {
         url: `https://generativelanguage.googleapis.com/v1beta/models?key=${encodeURIComponent(normalized)}`,
         options: { method: "GET" },
       };
+    case "openai":
     case "deepseek":
-      return {
-        url: "https://api.deepseek.com/models",
-        options: { method: "GET", headers: { Authorization: `Bearer ${normalized}` } },
-      };
     case "groq":
-      return {
-        url: "https://api.groq.com/openai/v1/models",
-        options: { method: "GET", headers: { Authorization: `Bearer ${normalized}` } },
-      };
     case "mistralai":
-      return {
-        url: "https://api.mistral.ai/v1/models",
-        options: { method: "GET", headers: { Authorization: `Bearer ${normalized}` } },
-      };
     case "xai":
-      return {
-        url: "https://api.x.ai/v1/models",
-        options: { method: "GET", headers: { Authorization: `Bearer ${normalized}` } },
-      };
     case "cerebras":
+    case "nvidia":
+    case "alibaba":
+    case "apifun": {
+      const baseURL = PROVIDER_PRESETS[provider]?.baseUrl;
+      if (!baseURL) {
+        return { missingMessage: `Unsupported provider "${provider}"` };
+      }
       return {
-        url: "https://api.cerebras.ai/v1/models",
+        url: `${baseURL}/models`,
         options: { method: "GET", headers: { Authorization: `Bearer ${normalized}` } },
       };
+    }
     default:
       return { missingMessage: `Unsupported provider "${provider}"` };
   }
@@ -435,22 +460,46 @@ function listLlmEnvVarsPresent(env = process.env) {
 }
 
 /**
+ * Resolve the OpenAI-compatible base URL for an engine (preset, or runtime config for ollama/custom).
  * @param {string} engine
- * @param {Record<string, string>} keysMap - mergeKeys() output
+ * @param {Record<string, string>} keysMap
+ * @returns {string}
  */
-function buildConfig(engine, keysMap) {
+function providerBaseUrl(engine, keysMap) {
   if (engine === "ollama") {
     const url = (keysMap.ollama_base_url || "").trim() || "http://localhost:11434";
-    return { baseURL: url.replace(/\/+$/, "") };
+    return `${url.replace(/\/+$/, "")}/v1`;
   }
   if (engine === "custom") {
-    const baseURL = (keysMap[CUSTOM_CONFIG_KEYS.url] || "").trim().replace(/\/+$/, "");
-    const apiKey = (keysMap[CUSTOM_CONFIG_KEYS.apiKey] || "").trim();
-    return { baseURL, apiKey };
+    return (keysMap[CUSTOM_CONFIG_KEYS.url] || "").trim().replace(/\/+$/, "");
   }
+  const preset = PROVIDER_PRESETS[engine];
+  return preset ? preset.baseUrl.replace(/\/+$/, "") : "";
+}
+
+/**
+ * Resolve the API key for an engine ("" for keyless Ollama).
+ * @param {string} engine
+ * @param {Record<string, string>} keysMap
+ * @returns {string}
+ */
+function providerApiKey(engine, keysMap) {
+  if (engine === "ollama") return "";
+  if (engine === "custom") return (keysMap[CUSTOM_CONFIG_KEYS.apiKey] || "").trim();
   const ck = CONFIG_KEY_BY_ENGINE[engine];
-  const apiKey = (keysMap[ck] || "").trim();
-  return { apiKey };
+  return (keysMap[ck] || "").trim();
+}
+
+/**
+ * @param {string} engine
+ * @param {Record<string, string>} keysMap - mergeKeys() output
+ * @returns {{ baseURL: string, apiKey: string }}
+ */
+function buildConfig(engine, keysMap) {
+  return {
+    baseURL: providerBaseUrl(engine, keysMap),
+    apiKey: providerApiKey(engine, keysMap),
+  };
 }
 
 function engineConfigured(engine, keysMap) {
@@ -471,8 +520,8 @@ function engineConfigured(engine, keysMap) {
 const OLLAMA_PROBE_MS = 4000;
 
 /**
- * Cheap GET /api/tags so we skip loadModels when Ollama is down (avoids multi-llm-ts console spam).
- * @param {string} baseURL - e.g. http://localhost:11434
+ * Cheap GET /api/tags so we skip model listing when Ollama is down (avoids noisy errors).
+ * @param {string} baseURL - e.g. http://localhost:11434 (root, not the /v1 path)
  */
 async function isOllamaReachable(baseURL) {
   const base = String(baseURL || "").replace(/\/+$/, "");
@@ -515,8 +564,8 @@ async function refreshOpenRouterPricingIfNeeded(openrouterApiKey) {
   }
   try {
     const headers = {
-      "HTTP-Referer": "https://github.com/wsj-br/transrewrt",
-      "X-Title": "Transrewrt",
+      "HTTP-Referer": ATTRIBUTION_REFERER,
+      "X-Title": ATTRIBUTION_TITLE,
     };
     if (key) {
       headers.Authorization = `Bearer ${key}`;
@@ -546,28 +595,6 @@ async function refreshOpenRouterPricingIfNeeded(openrouterApiKey) {
 }
 
 /**
- * @param {import('multi-llm-ts').ChatModel} chatModel
- * @param {string} engine
- * @returns {{ prompt: number, completion: number, known: boolean }}
- */
-function pricingDetailsFromChatModel(chatModel, engine) {
-  const meta = chatModel?.meta;
-  if (engine === "openrouter" && meta?.pricing != null) {
-    const p = parseFloat(meta.pricing.prompt);
-    const c = parseFloat(meta.pricing.completion);
-    return {
-      prompt: Number.isFinite(p) ? p : 0,
-      completion: Number.isFinite(c) ? c : 0,
-      known: true,
-    };
-  }
-  if (engine === "openrouter") {
-    return { prompt: 0, completion: 0, known: false };
-  }
-  return { prompt: 0, completion: 0, known: false };
-}
-
-/**
  * Normalize a model id segment so minor formatting differences still match the OpenRouter
  * catalog (e.g. `Qwen3 14B` vs `Qwen 3 14B`, hyphen vs space). Case-insensitive; strips
  * whitespace, hyphens, and underscores; keeps "." so `2.5` does not merge with `25`.
@@ -586,7 +613,7 @@ function normalizePricingSlugForMatch(s) {
  * Find OpenRouter /models pricing row by matching the trailing segment of each OpenRouter id
  * (e.g. `gemini-2.5-flash` matches `google/gemini-2.5-flash`). Case-insensitive on both sides.
  * If no exact suffix match, falls back to {@link normalizePricingSlugForMatch} on the suffix.
- * @param {string} engine - multi-llm-ts engine id (tie-break only when several vendors share one slug)
+ * @param {string} engine - engine id (tie-break only when several vendors share one slug)
  * @param {string} innerModelId - model id from that provider's catalog
  * @returns {{ prompt: number, completion: number } | null}
  */
@@ -650,35 +677,67 @@ function estimateCostDollars(engine, innerModelId, usage) {
 }
 
 /**
- * List models from a custom OpenAI-compatible endpoint.
- * @param {Record<string, string>} keysMap
- * @returns {Promise<import('multi-llm-ts').ChatModel[]>}
+ * Auth headers for an engine's OpenAI-compatible `GET /models` request.
+ * Anthropic uses native `x-api-key`; OpenRouter adds attribution headers; others use Bearer.
+ * @param {string} engine
+ * @param {string} apiKey
+ * @returns {Record<string, string>}
  */
-async function loadCustomModels(keysMap) {
-  const conf = buildConfig("custom", keysMap);
-  const { baseURL, apiKey } = conf;
-  if (!baseURL || !apiKey) return [];
+function modelsListAuthHeaders(engine, apiKey) {
+  if (engine === "anthropic") {
+    return {
+      "x-api-key": apiKey,
+      "anthropic-version": ANTHROPIC_VERSION,
+    };
+  }
+  /** @type {Record<string, string>} */
+  const headers = {};
+  if (apiKey) headers.Authorization = `Bearer ${apiKey}`;
+  if (engine === "openrouter") {
+    headers["HTTP-Referer"] = ATTRIBUTION_REFERER;
+    headers["X-Title"] = ATTRIBUTION_TITLE;
+  }
+  return headers;
+}
+
+/**
+ * List models from an engine's OpenAI-compatible `GET /models` endpoint.
+ * @param {string} engine
+ * @param {Record<string, string>} keysMap
+ * @returns {Promise<Array<{ id: string, name: string, pricing?: { prompt: number, completion: number } }>>}
+ */
+async function fetchModelsForEngine(engine, keysMap) {
+  const baseURL = providerBaseUrl(engine, keysMap);
+  if (!baseURL) return [];
+  const apiKey = providerApiKey(engine, keysMap);
   const res = await fetch(`${baseURL}/models`, {
-    headers: { Authorization: `Bearer ${apiKey}` },
+    headers: modelsListAuthHeaders(engine, apiKey),
   });
   if (!res.ok) {
     throw new Error(`HTTP ${res.status}`);
   }
   const json = await res.json();
-  const rows = json.data || [];
-  const cap = defaultCapabilities?.capabilities || {
-    tools: true,
-    vision: false,
-    reasoning: false,
-    caching: false,
-  };
+  const rows = Array.isArray(json.data)
+    ? json.data
+    : Array.isArray(json.models)
+      ? json.models
+      : [];
   return rows
-    .filter((row) => row?.id)
-    .map((row) => ({
-      id: row.id,
-      name: row.name || row.id,
-      capabilities: cap,
-    }));
+    .filter((row) => row && (row.id || row.name))
+    .map((row) => {
+      const id = String(row.id || row.name);
+      /** @type {{ id: string, name: string, pricing?: { prompt: number, completion: number } }} */
+      const out = { id, name: row.name || id };
+      if (engine === "openrouter" && row.pricing != null) {
+        const p = parseFloat(row.pricing.prompt);
+        const c = parseFloat(row.pricing.completion);
+        out.pricing = {
+          prompt: Number.isFinite(p) ? p : 0,
+          completion: Number.isFinite(c) ? c : 0,
+        };
+      }
+      return out;
+    });
 }
 
 /**
@@ -696,28 +755,23 @@ async function getAllModels(keysMap) {
       catalogByEngine[engine] = [];
       continue;
     }
-    const conf = buildConfig(engine, keysMap);
-    if (engine === "ollama" && !(await isOllamaReachable(conf.baseURL))) {
-      catalogByEngine[engine] = [];
-      continue;
-    }
-    let list;
-    let chat;
-    try {
-      if (engine === "custom") {
-        chat = await loadCustomModels(keysMap);
-        list = { chat };
-      } else {
-        list = await loadModels(engine, conf);
-        chat = list?.chat || [];
+    if (engine === "ollama") {
+      const root = (keysMap.ollama_base_url || "").trim() || "http://localhost:11434";
+      if (!(await isOllamaReachable(root))) {
+        catalogByEngine[engine] = [];
+        continue;
       }
+    }
+    let rows;
+    try {
+      rows = await fetchModelsForEngine(engine, keysMap);
     } catch (e) {
-      console.error(`[llm] loadModels(${engine}) failed:`, e.message);
+      console.error(`[llm] list models(${engine}) failed:`, e.message);
       catalogByEngine[engine] = [];
       continue;
     }
-    catalogByEngine[engine] = chat;
-    for (const m of chat) {
+    catalogByEngine[engine] = rows;
+    for (const m of rows) {
       let canonical;
       if (engine === "custom") {
         const prefix = customProviderPrefix(keysMap);
@@ -726,12 +780,15 @@ async function getAllModels(keysMap) {
       } else {
         canonical = `${engine}/${m.id}`;
       }
-      const raw = pricingDetailsFromChatModel(m, engine);
-      let prompt = raw.prompt;
-      let completion = raw.completion;
-      let pricingKnown = raw.known;
+      let prompt = 0;
+      let completion = 0;
+      let pricingKnown = false;
       let pricingEstimated = false;
-      if (engine !== "openrouter" && orKey) {
+      if (engine === "openrouter" && m.pricing) {
+        prompt = m.pricing.prompt;
+        completion = m.pricing.completion;
+        pricingKnown = true;
+      } else if (engine !== "openrouter" && orKey) {
         const est = lookupOpenRouterPricingRow(engine, m.id);
         if (est) {
           prompt = est.prompt;
@@ -760,19 +817,12 @@ async function getAllModels(keysMap) {
         pricingKnown: true,
       });
     }
-    const cap = defaultCapabilities?.capabilities || {
-      tools: true,
-      vision: false,
-      reasoning: false,
-      caching: false,
-    };
     catalogByEngine.openrouter = catalogByEngine.openrouter || [];
     if (!catalogByEngine.openrouter.some((m) => m.id === FREE_INNER_ID)) {
       catalogByEngine.openrouter.push({
         id: FREE_INNER_ID,
         name: "OpenRouter (free)",
-        capabilities: cap,
-        meta: { pricing: { prompt: "0", completion: "0" } },
+        pricing: { prompt: 0, completion: 0 },
       });
     }
   }
@@ -790,38 +840,19 @@ async function ensureCatalogForEngine(engine, keysMap) {
   const existing = catalogByEngine[engine];
   if (existing && existing.length > 0) return;
   if (!engineConfigured(engine, keysMap)) return;
-  const conf = buildConfig(engine, keysMap);
-  if (engine === "ollama" && !(await isOllamaReachable(conf.baseURL))) {
-    catalogByEngine[engine] = [];
-    return;
+  if (engine === "ollama") {
+    const root = (keysMap.ollama_base_url || "").trim() || "http://localhost:11434";
+    if (!(await isOllamaReachable(root))) {
+      catalogByEngine[engine] = [];
+      return;
+    }
   }
   try {
-    if (engine === "custom") {
-      catalogByEngine[engine] = await loadCustomModels(keysMap);
-    } else {
-      const list = await loadModels(engine, conf);
-      catalogByEngine[engine] = list?.chat || [];
-    }
+    catalogByEngine[engine] = await fetchModelsForEngine(engine, keysMap);
   } catch (e) {
     console.error(`[llm] ensureCatalogForEngine(${engine}):`, e.message);
     catalogByEngine[engine] = [];
   }
-}
-
-/**
- * @param {string} engine
- * @param {string} innerModelId
- * @returns {import('multi-llm-ts').ChatModel}
- */
-function getChatModelFromCatalog(engine, innerModelId) {
-  const list = catalogByEngine[engine] || [];
-  const found = list.find((m) => m.id === innerModelId);
-  if (!found) {
-    throw new Error(
-      `Model not in catalog: ${engine}/${innerModelId}. Refresh models list.`,
-    );
-  }
-  return found;
 }
 
 /**
@@ -835,8 +866,8 @@ async function fetchOpenRouterGenerationUsage(openrouterApiKey, generationId) {
   const res = await fetch(url, {
     headers: {
       Authorization: `Bearer ${key}`,
-      "HTTP-Referer": "https://github.com/wsj-br/transrewrt",
-      "X-Title": "Transrewrt",
+      "HTTP-Referer": ATTRIBUTION_REFERER,
+      "X-Title": ATTRIBUTION_TITLE,
     },
   });
   if (!res.ok) return null;
@@ -873,235 +904,119 @@ function normalizeUsage(u, cost, costKnown) {
 }
 
 /**
- * Stream OpenRouter chat completions via fetch (preserves chunk id for /generation).
- * @param {{ onSseLine?: (line: string) => void, onText?: (text: string) => void }} handlers
+ * OpenRouter returns `usage.cost` (USD) on chat responses; surface it through
+ * `providerMetadata.openrouter.cost` for both non-streaming and streaming responses.
+ * @type {import('@ai-sdk/openai-compatible').MetadataExtractor}
  */
-async function streamOpenRouterCompletion({
-  keysMap,
-  innerModelId,
-  messages,
-  temperature,
-  signal,
-  handlers = {},
-}) {
-  const { onSseLine, onText } = handlers;
-  const apiKey = (keysMap.openrouter_api_key || "").trim();
-  if (!apiKey) throw new Error("OpenRouter API key is not configured");
+const openRouterMetadataExtractor = {
+  extractMetadata: ({ parsedBody }) => {
+    const body = parsedBody || {};
+    const cost = body?.usage?.cost ?? body?.cost;
+    return Promise.resolve(
+      typeof cost === "number" ? { [OPENROUTER_PROVIDER_KEY]: { cost } } : undefined,
+    );
+  },
+  createStreamExtractor: () => {
+    let cost;
+    return {
+      processChunk(chunk) {
+        const c = chunk?.usage?.cost ?? chunk?.cost;
+        if (typeof c === "number") cost = c;
+      },
+      buildMetadata() {
+        return typeof cost === "number"
+          ? { [OPENROUTER_PROVIDER_KEY]: { cost } }
+          : undefined;
+      },
+    };
+  },
+};
 
-  const body = {
-    model: innerModelId,
-    messages,
-    temperature,
-    provider: OPENROUTER_PROVIDER,
-    stream: true,
-    stream_options: { include_usage: true },
+/**
+ * Build an OpenAI-compatible provider for the engine, applying OpenRouter routing/attribution/cost.
+ * @param {string} engine
+ * @param {Record<string, string>} keysMap
+ */
+function buildSdkProvider(engine, keysMap) {
+  const baseURL = providerBaseUrl(engine, keysMap);
+  if (!baseURL) {
+    throw new Error(`No base URL configured for provider "${engine}"`);
+  }
+  const apiKey = providerApiKey(engine, keysMap);
+  const isOpenRouter = engine === "openrouter";
+  const name =
+    engine === "custom" ? customProviderPrefix(keysMap) || "custom" : engine;
+
+  /** @type {Record<string, string>} */
+  const headers = {};
+  if (isOpenRouter) {
+    headers["HTTP-Referer"] = ATTRIBUTION_REFERER;
+    headers["X-Title"] = ATTRIBUTION_TITLE;
+  }
+
+  /** @type {import('@ai-sdk/openai-compatible').OpenAICompatibleProviderSettings} */
+  const settings = {
+    name,
+    baseURL,
+    includeUsage: true,
   };
+  if (apiKey) settings.apiKey = apiKey;
+  if (Object.keys(headers).length > 0) settings.headers = headers;
+  if (isOpenRouter) {
+    settings.transformRequestBody = (args) => ({
+      ...args,
+      provider: OPENROUTER_PROVIDER,
+    });
+    settings.metadataExtractor = openRouterMetadataExtractor;
+  }
+  return createOpenAICompatible(settings);
+}
 
-  const res = await fetch(`${OPENROUTER_BASE}/chat/completions`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${apiKey}`,
-      "HTTP-Referer": "https://github.com/wsj-br/transrewrt",
-      "X-Title": "Transrewrt",
-    },
-    body: JSON.stringify(body),
-    signal,
-  });
+function isAbortError(error) {
+  if (!error) return false;
+  const name = error.name || "";
+  return (
+    name === "AbortError" ||
+    name === "TimeoutError" ||
+    name === "ResponseAborted" ||
+    /abort/i.test(String(error.message || ""))
+  );
+}
 
-  if (!res.ok) {
-    let errText = await res.text().catch(() => "");
-    let msg = `OpenRouter HTTP ${res.status}`;
+/**
+ * Map an AI SDK / fetch error into an Error carrying a clean message and `.status` (when available),
+ * so the web SSE route and renderer can preserve 401/404 handling.
+ * @param {unknown} e
+ * @param {string} engine
+ * @returns {Error}
+ */
+function normalizeSdkError(e, engine) {
+  const err = e || {};
+  const status = err.statusCode ?? err.status ?? err.responseStatus;
+  let msg = err.message ? String(err.message) : String(e);
+  const body = err.responseBody ?? err.data ?? err.body;
+  if (body != null) {
     try {
-      const j = errText ? JSON.parse(errText) : {};
-      msg = extractApiErrorMessage(j, msg);
+      const parsed = typeof body === "string" ? JSON.parse(body) : body;
+      msg = extractApiErrorMessage(parsed, msg);
     } catch {
-      if (errText) msg = errText.slice(0, 500);
+      if (typeof body === "string" && body) msg = body.slice(0, 500);
     }
+  }
+  if (engine === "openrouter") {
     msg = normalizeOpenRouterKeyErrorMessage(msg) || msg;
-    const err = new Error(msg);
-    err.status = res.status;
-    throw err;
   }
-
-  if (!res.body) throw new Error("Empty response body");
-
-  const reader = res.body.getReader();
-  const decoder = new TextDecoder();
-  let buffer = "";
-  let generationId = null;
-  let lastUsage = null;
-
-  try {
-    while (true) {
-      if (signal?.aborted) {
-        await reader.cancel().catch(() => {});
-        break;
-      }
-      const { done, value } = await reader.read();
-      if (value) buffer += decoder.decode(value, { stream: true });
-      const lines = buffer.split("\n");
-      buffer = lines.pop() ?? "";
-      for (const line of lines) {
-        const trimmed = line.trim();
-        if (!trimmed) continue;
-        if (trimmed === "data: [DONE]") {
-          if (onSseLine) onSseLine(trimmed);
-          continue;
-        }
-        if (!trimmed.startsWith("data: ")) continue;
-        const jsonStr = trimmed.slice(6);
-        let data;
-        try {
-          data = JSON.parse(jsonStr);
-        } catch {
-          continue;
-        }
-        if (data.id && !generationId) generationId = data.id;
-        if (data.usage) lastUsage = data.usage;
-        const deltaPiece = streamChoiceToString(data.choices?.[0]);
-        if (deltaPiece && onText) onText(deltaPiece);
-        if (onSseLine) onSseLine(trimmed);
-      }
-      if (done) break;
-    }
-  } finally {
-    reader.releaseLock?.();
-  }
-
-  let usage = null;
-  if (lastUsage) {
-    usage = normalizeUsage(lastUsage, lastUsage.cost ?? 0, true);
-  }
-  if ((!usage || Number(usage.cost) === 0) && generationId) {
-    const gen = await fetchOpenRouterGenerationUsage(apiKey, generationId);
-    if (gen) {
-      usage = normalizeUsage(
-        {
-          prompt_tokens: gen.prompt_tokens,
-          completion_tokens: gen.completion_tokens,
-        },
-        gen.cost,
-        true,
-      );
-    }
-  }
-  if (!usage) {
-    usage = normalizeUsage({ prompt_tokens: 0, completion_tokens: 0 }, 0, true);
-  }
-  return { generationId, usage };
+  const out = new Error(msg);
+  if (status) out.status = status;
+  return out;
 }
 
 /**
- * Stream chat completions from a custom OpenAI-compatible endpoint.
- * @param {{ onSseLine?: (line: string) => void, onText?: (text: string) => void }} handlers
- */
-async function streamCustomCompletion({
-  keysMap,
-  innerModelId,
-  messages,
-  temperature,
-  signal,
-  handlers = {},
-}) {
-  const { onSseLine, onText } = handlers;
-  const conf = buildConfig("custom", keysMap);
-  const { baseURL, apiKey } = conf;
-  if (!baseURL || !apiKey) {
-    throw new Error("Custom provider URL and API key are not configured");
-  }
-
-  const body = {
-    model: innerModelId,
-    messages,
-    temperature,
-    stream: true,
-    stream_options: { include_usage: true },
-  };
-
-  const res = await fetch(`${baseURL}/chat/completions`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${apiKey}`,
-    },
-    body: JSON.stringify(body),
-    signal,
-  });
-
-  if (!res.ok) {
-    let errText = await res.text().catch(() => "");
-    let msg = `Custom provider HTTP ${res.status}`;
-    try {
-      const j = errText ? JSON.parse(errText) : {};
-      msg = extractApiErrorMessage(j, msg);
-    } catch {
-      if (errText) msg = errText.slice(0, 500);
-    }
-    const err = new Error(msg);
-    err.status = res.status;
-    throw err;
-  }
-
-  if (!res.body) throw new Error("Empty response body");
-
-  const reader = res.body.getReader();
-  const decoder = new TextDecoder();
-  let buffer = "";
-  let lastUsage = null;
-
-  try {
-    while (true) {
-      if (signal?.aborted) {
-        await reader.cancel().catch(() => {});
-        break;
-      }
-      const { done, value } = await reader.read();
-      if (value) buffer += decoder.decode(value, { stream: true });
-      const lines = buffer.split("\n");
-      buffer = lines.pop() ?? "";
-      for (const line of lines) {
-        const trimmed = line.trim();
-        if (!trimmed) continue;
-        if (trimmed === "data: [DONE]") {
-          if (onSseLine) onSseLine(trimmed);
-          continue;
-        }
-        if (!trimmed.startsWith("data: ")) continue;
-        const jsonStr = trimmed.slice(6);
-        let data;
-        try {
-          data = JSON.parse(jsonStr);
-        } catch {
-          continue;
-        }
-        if (data.usage) lastUsage = data.usage;
-        const deltaPiece = streamChoiceToString(data.choices?.[0]);
-        if (deltaPiece && onText) onText(deltaPiece);
-        if (onSseLine) onSseLine(trimmed);
-      }
-      if (done) break;
-    }
-  } finally {
-    reader.releaseLock?.();
-  }
-
-  await refreshOpenRouterPricingIfNeeded((keysMap.openrouter_api_key || "").trim());
-  const accumulated = {
-    prompt_tokens: lastUsage?.prompt_tokens ?? 0,
-    completion_tokens: lastUsage?.completion_tokens ?? 0,
-  };
-  const pricingRow = lookupOpenRouterPricingRow("custom", innerModelId);
-  const cost = estimateCostDollars("custom", innerModelId, accumulated);
-  const usage = normalizeUsage(accumulated, cost, pricingRow != null);
-  if (onSseLine) {
-    onSseLine(`data: ${JSON.stringify({ usage })}`);
-    onSseLine("data: [DONE]");
-  }
-  return { usage };
-}
-
-/**
+ * Stream chat completions for any engine through the OpenAI-compatible AI SDK transport.
+ * Emits text via `onText` and synthesized OpenAI-style SSE lines via `onSseLine`, then a final
+ * usage line + `[DONE]`. Cost is exact for OpenRouter (provider metadata / generation lookup) and
+ * estimated from the OpenRouter pricing catalog for other engines.
+ *
  * @param {string} canonicalModelId
  * @param {Array<{role: string, content: string}>} messages
  * @param {{ temperature?: number, signal?: AbortSignal, keysMap: Record<string,string> }} opts
@@ -1115,81 +1030,102 @@ async function streamCompletion(canonicalModelId, messages, opts, handlers = {})
   const { engine, innerModelId } = resolveEngine(canonicalModelId, keysMap);
   const temperature = opts.temperature ?? 0.3;
   const signal = opts.signal;
+  const { onSseLine, onText } = handlers;
 
   if (!engineConfigured(engine, keysMap)) {
     throw new Error(`No API key or URL configured for provider "${engine}"`);
   }
 
-  if (engine === "openrouter") {
-    const { usage } = await streamOpenRouterCompletion({
-      keysMap,
-      innerModelId,
-      messages,
-      temperature,
-      signal,
-      handlers,
-    });
-    return { usage };
-  }
+  const provider = buildSdkProvider(engine, keysMap);
 
-  if (engine === "custom") {
-    const { usage } = await streamCustomCompletion({
-      keysMap,
-      innerModelId,
-      messages,
-      temperature,
-      signal,
-      handlers,
-    });
-    return { usage };
-  }
+  const systemText = messages
+    .filter((m) => m.role === "system")
+    .map((m) => m.content)
+    .join("\n\n");
+  const chatMessages = messages
+    .filter((m) => m.role !== "system")
+    .map((m) => ({ role: m.role, content: m.content }));
 
-  await ensureCatalogForEngine(engine, keysMap);
-
-  await refreshOpenRouterPricingIfNeeded((keysMap.openrouter_api_key || "").trim());
-
-  const chatModel = getChatModelFromCatalog(engine, innerModelId);
-  const conf = buildConfig(engine, keysMap);
-  const llm = igniteModel(engine, chatModel, conf);
-  const thread = messages.map((m) => new Message(m.role, m.content));
-
-  let accumulated = {
-    prompt_tokens: 0,
-    completion_tokens: 0,
-  };
-
-  const { onSseLine, onText } = handlers;
-
-  for await (const chunk of llm.generate(thread, {
+  const result = streamText({
+    model: provider(innerModelId),
+    ...(systemText ? { system: systemText } : {}),
+    messages: chatMessages,
     temperature,
-    usage: true,
     abortSignal: signal,
-    // Avoid multi-llm-ts auto-injecting tools for capable models (e.g. gpt-3.5-* ids
-    // match tools:true); otherwise the API may stream tool_calls with no visible content.
-    tools: false,
-  })) {
-    if (chunk.type === "content" || chunk.type === "reasoning") {
-      const text = chunk.text || "";
-      if (text) {
-        if (onText) onText(text);
-        if (onSseLine) {
-          const fake = {
-            choices: [{ delta: { content: text } }],
-            id: `mlts-${engine}`,
-          };
-          onSseLine(`data: ${JSON.stringify(fake)}`);
-        }
+  });
+
+  let aborted = false;
+  try {
+    for await (const piece of result.textStream) {
+      if (!piece) continue;
+      if (onText) onText(piece);
+      if (onSseLine) {
+        onSseLine(
+          `data: ${JSON.stringify({
+            choices: [{ delta: { content: piece } }],
+            id: `aisdk-${engine}`,
+          })}`,
+        );
       }
     }
-    if (chunk.type === "usage" && chunk.usage) {
-      accumulated.prompt_tokens = chunk.usage.prompt_tokens ?? 0;
-      accumulated.completion_tokens = chunk.usage.completion_tokens ?? 0;
+  } catch (e) {
+    if (signal?.aborted || isAbortError(e)) {
+      aborted = true;
+    } else {
+      throw normalizeSdkError(e, engine);
     }
   }
 
-  const pricingRow = lookupOpenRouterPricingRow(engine, innerModelId);
-  const cost = estimateCostDollars(engine, innerModelId, accumulated);
-  const usage = normalizeUsage(accumulated, cost, pricingRow != null);
+  let sdkUsage = null;
+  let providerMetadata = null;
+  let generationId = null;
+  if (!aborted) {
+    try {
+      sdkUsage = await result.usage;
+    } catch {
+      /* usage unavailable */
+    }
+    try {
+      providerMetadata = await result.providerMetadata;
+    } catch {
+      /* metadata unavailable */
+    }
+    try {
+      const response = await result.response;
+      generationId = response?.id || null;
+    } catch {
+      /* response metadata unavailable */
+    }
+  }
+
+  const accumulated = {
+    prompt_tokens: sdkUsage?.inputTokens ?? 0,
+    completion_tokens: sdkUsage?.outputTokens ?? 0,
+  };
+
+  let usage;
+  if (engine === "openrouter") {
+    const metaCost = providerMetadata?.[OPENROUTER_PROVIDER_KEY]?.cost;
+    let cost = typeof metaCost === "number" ? metaCost : null;
+    if ((cost == null || cost === 0) && generationId) {
+      const gen = await fetchOpenRouterGenerationUsage(
+        (keysMap.openrouter_api_key || "").trim(),
+        generationId,
+      );
+      if (gen) {
+        accumulated.prompt_tokens = gen.prompt_tokens;
+        accumulated.completion_tokens = gen.completion_tokens;
+        cost = gen.cost;
+      }
+    }
+    usage = normalizeUsage(accumulated, cost ?? 0, true);
+  } else {
+    await refreshOpenRouterPricingIfNeeded((keysMap.openrouter_api_key || "").trim());
+    const pricingRow = lookupOpenRouterPricingRow(engine, innerModelId);
+    const cost = estimateCostDollars(engine, innerModelId, accumulated);
+    usage = normalizeUsage(accumulated, cost, pricingRow != null);
+  }
+
   if (onSseLine) {
     onSseLine(`data: ${JSON.stringify({ usage })}`);
     onSseLine("data: [DONE]");
@@ -1199,6 +1135,7 @@ async function streamCompletion(canonicalModelId, messages, opts, handlers = {})
 
 module.exports = {
   ENGINE_IDS,
+  PROVIDER_PRESETS,
   CONFIG_KEY_BY_ENGINE,
   ENV_KEY_BY_ENGINE,
   CUSTOM_CONFIG_KEYS,
@@ -1215,6 +1152,7 @@ module.exports = {
   isOpenRouterKeyAuthFailureMessage,
   normalizeOpenRouterKeyErrorMessage,
   testProviderAuth,
+  buildProviderTestRequest,
   listLlmEnvVarsPresent,
   buildConfig,
   engineConfigured,

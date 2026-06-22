@@ -343,6 +343,9 @@ const SettingsPanel = ({ openToTab, onOpenToTabConsumed }) => {
       { value: "mistralai", label: t("Mistral") },
       { value: "ollama", label: t("Ollama") },
       { value: "xai", label: t("xAI") },
+      { value: "nvidia", label: t("NVIDIA") },
+      { value: "alibaba", label: t("Alibaba Cloud") },
+      { value: "apifun", label: t("apikey.fun") },
       ...(customName ? [{ value: customFilterKey, label: customName }] : []),
     ];
     const allLabel = { value: "", label: t("All providers") };

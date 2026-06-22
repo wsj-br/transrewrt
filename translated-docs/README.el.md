@@ -3,14 +3,14 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.0-blue" alt="Version"></a>
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.1-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
   <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react" alt="React 19">
   <img src="https://img.shields.io/badge/Electron-41-47848F?logo=electron" alt="Electron 41">
 </p>
 
-Εργαλείο κειμένου με τεχνητή νοημοσύνη: μετάφραση μεταξύ γλωσσών, αναδιατύπωση σε διαφορετικά στυλ και μετασχηματισμός με προσαρμοσμένα ερωτήματα — χρησιμοποιώντας πολλαπλούς παρόχους ΤΝ (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, και τοπικό Ollama). Λειτουργεί ως εφαρμογή επιφάνειας εργασίας (Electron) ή ως εγκατεστημένη ιστοεφαρμογή (Docker).
+Εργαλείο κειμένου με τεχνητή νοημοσύνη: μετάφραση μεταξύ γλωσσών, επαναγραφή σε διαφορετικά στυλ και μετασχηματισμός με προσαρμοσμένες προτροπές - χρησιμοποιώντας πολλούς παρόχους τεχνητής νοημοσύνης (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, οποιονδήποτε πάροχο συμβατό με OpenAI και τοπικό Ollama). Εκτελείται ως εφαρμογή επιτραπέζιου υπολογιστή (Electron) ή ως αυτο-φιλοξενούμενη διαδικτυακή εφαρμογή (Docker).
 
 - **Μετάφραση** - μεταξύ δεκάδων γλωσσών, με αυτόματη ανίχνευση πηγής
 - **Επαναγραφή** - διόρθωση γραμματικής, βελτίωση σαφήνειας, επίσημο/ανεπίσημο, συντόμευση, επέκταση, τεχνικό
@@ -27,7 +27,7 @@
 Μετά την εγκατάσταση, δείτε τον [**Οδηγό Χρήστη**](USER-GUIDE.el.md) για πλήρη καθοδήγηση όλων των λειτουργιών.
 
 <small>**Διαβάστε σε άλλες γλώσσες:** </small>
-<small id="lang-list">[English (GB)](../README.md) · [Português (Brasil)](./README.pt-BR.md) · [العربية](./README.ar.md) · [বাংলা](./README.bn.md) · [Català](./README.ca.md) · [中文 (中国大陆)](./README.zh-CN.md) · [中文 (台灣)](./README.zh-TW.md) · [Hrvatski](./README.hr.md) · [Čeština](./README.cs.md) · [Nederlands](./README.nl.md) · [English (US)](./README.en-US.md) · [Tagalog](./README.tl.md) · [Français](./README.fr.md) · [Deutsch](./README.de.md) · [Ελληνικά](./README.el.md) · [हिन्दी](./README.hi.md) · [Magyar](./README.hu.md) · [Italiano](./README.it.md) · [日本語](./README.ja.md) · [한국어](./README.ko.md) · [Bahasa Melayu](./README.ms.md) · [فارسی](./README.fa.md) · [Polski](./README.pl.md) · [Basa Jawa](./README.jv.md) · [Português](./README.pt.md) · [ਪੰਜਾਬੀ](./README.pa.md) · [Română](./README.ro.md) · [Русский](./README.ru.md) · [Slovenčina](./README.sk.md) · [Español](./README.es.md) · [Kiswahili](./README.sw.md) · [Svenska](./README.sv.md) · [తెలుగు](./README.te.md) · [ไทย](./README.th.md) · [Türkçe](./README.tr.md) · [Українська](./README.uk.md) · [Tiếng Việt](./README.vi.md)</small>
+<small id="lang-list">[English (UK)](../README.md) · [Português (Brasil)](./README.pt-BR.md) · [العربية](./README.ar.md) · [বাংলা](./README.bn.md) · [Català](./README.ca.md) · [简体中文](./README.zh-Hans.md) · [繁體中文](./README.zh-Hant.md) · [Hrvatski](./README.hr.md) · [Čeština](./README.cs.md) · [Nederlands](./README.nl.md) · [English (US)](./README.en-US.md) · [Tagalog](./README.tl.md) · [Français](./README.fr.md) · [Deutsch](./README.de.md) · [Ελληνικά](./README.el.md) · [Hindi (Roman)](./README.hi-Latn.md) · [Magyar](./README.hu.md) · [Italiano](./README.it.md) · [日本語](./README.ja.md) · [한국어](./README.ko.md) · [Bahasa Melayu](./README.ms.md) · [فارسی](./README.fa.md) · [Polski](./README.pl.md) · [Basa Jawa](./README.jv.md) · [Português](./README.pt.md) · [پنجابی](./README.pa-PK.md) · [Română](./README.ro.md) · [Русский](./README.ru.md) · [Slovenčina](./README.sk.md) · [Español](./README.es.md) · [Kiswahili](./README.sw.md) · [Svenska](./README.sv.md) · [తెలుగు](./README.te.md) · [ไทย](./README.th.md) · [Türkçe](./README.tr.md) · [Українська](./README.uk.md) · [Tiếng Việt](./README.vi.md)</small>
 
 <small>
 
@@ -255,7 +255,7 @@ sudo apt install -y libfuse2 libgtk-3-0 libnotify4 libnss3 libnspr4 libxss1 libx
 
 Μην χρησιμοποιείτε το μοντέλο **Body Builder** του OpenRouter ([`openrouter/bodybuilder`](https://openrouter.ai/openrouter/bodybuilder)) για μετάφραση, αναδιατύπωση ή μετασχηματισμό· επιστρέφει φορτία αιτημάτων JSON, όχι το ολοκληρωμένο κείμενο για αυτές τις εργασίες. Δείτε [Ρυθμίσεις → Μοντέλα](USER-GUIDE.el.md#models) στο Εγχειρίδιο Χρήστη.
 
-Μπορείτε επίσης να χρησιμοποιήσετε άλλους παρόχους (OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras) ή να εκτελέσετε μοντέλα τοπικά με το [Ollama](https://ollama.com). Δείτε [Διαμόρφωση](#configuration-and-environment) για την πλήρη λίστα των υποστηριζόμενων παρόχων και των μεταβλητών περιβάλλοντος.
+Μπορείτε επίσης να χρησιμοποιήσετε άλλους παρόχους (OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, οποιονδήποτε πάροχο συμβατό με OpenAI) ή να εκτελέσετε μοντέλα τοπικά με το [Ollama](https://ollama.com). Δείτε [Ρυθμίσεις](#configuration-and-environment) για την πλήρη λίστα υποστηριζόμενων παρόχων και μεταβλητών περιβάλλοντος.
 
 </br>
 
@@ -281,9 +281,9 @@ sudo apt install -y libfuse2 libgtk-3-0 libnotify4 libnss3 libnspr4 libxss1 libx
 
 **Μεταβλητές περιβάλλοντος** (μόνο για web/Docker· το Electron χρησιμοποιεί το τοπικό αρχείο ρυθμίσεων)
 
-| Μεταβλητή | Περιγραφή |
-|----------------------|------------------------------------------------------------------------------|
-| `PORT` | Θύρα ακρόασης του διακομιστή (προεπιλογή `5000`) |
+| Μεταβλητή                  | Περιγραφή                                                                             |
+|---------------------------|-----------------------------------------------------------------------------------------|
+| `PORT`                    | Θύρα ακρόασης διακομιστή  (προεπιλογή `5000`)                                             |
 | `CONFIG_PATH`        | Διαδρομή προς το αρχείο ρυθμίσεων (προεπιλογή: `/app/data/config.json`)                |
 | `TZ` | ζώνη ώρας για την ώρα του διακομιστή (καταγραφή κ.λπ.) (προεπιλογή `Europe/London`) |
 | `HISTORY_DISABLED`   | Εξαναγκάζει την απενεργοποίηση του ιστορικού εκτέλεσης (προαιρετικό, προεπιλογή `false`)                  |
@@ -297,11 +297,14 @@ sudo apt install -y libfuse2 libgtk-3-0 libnotify4 libnss3 libnspr4 libxss1 libx
 | `MISTRAL_API_KEY` | Κλειδί API Mistral |
 | `OLLAMA_URL` | Βασικό URL Ollama (π.χ. `http://host.docker.internal:11434`) |
 | `XAI_API_KEY`        | Κλειδί API xAI                                                                  |
+| `NVIDIA_API_KEY`          | Κλειδί API NVIDIA                                                                          |
+| `ALIBABA_API_KEY`         | Κλειδί API Alibaba Cloud (DashScope)                                                       |
+| `APIFUN_API_KEY`          | Κλειδί API apikey.fun                                                                      |
 | `CUSTOM_PROVIDER_NAME` | Όνομα εμφάνισης για προσαρμοσμένο πάροχο συμβατό με OpenAI (απαιτούνται και οι τρεις προσαρμοσμένες μεταβλητές) |
-| `CUSTOM_PROVIDER_URL`  | Βασική διεύθυνση URL για προσαρμοσμένο πάροχο συμβατό με OpenAI (π.χ. `https://integrate.api.nvidia.com/v1`) |
+| `CUSTOM_PROVIDER_URL`     | Βασική διεύθυνση URL για έναν προσαρμοσμένο πάροχο συμβατό με OpenAI (π.χ. `https://my-llm.example.com/v1`) |
 | `CUSTOM_PROVIDER_API_KEY` | Κλειδί API για προσαρμοσμένο πάροχο συμβατό με OpenAI                         |
 
-**Προσαρμοσμένος πάροχος συμβατός με OpenAI (web/Docker):** ορίστε και τις τρεις μεταβλητές `CUSTOM_PROVIDER_*`. Παράδειγμα για [NVIDIA NIM](https://build.nvidia.com/): `CUSTOM_PROVIDER_NAME=NVIDIA`, `CUSTOM_PROVIDER_URL=https://integrate.api.nvidia.com/v1`, και ένα κλειδί API από το [build.nvidia.com](https://build.nvidia.com/). Τα μοντέλα εμφανίζονται σε **Προχωρημένη** λειτουργία στην ενότητα Ρυθμίσεις → Μοντέλα με αναγνωριστικά όπως `NVIDIA/…` (όνομα παρόχου ως πρόθεμα).
+**Προσαρμοσμένος πάροχος συμβατός με OpenAI (web/Docker):** για οποιοδήποτε συμβατό με OpenAI τελικό σημείο που δεν περιλαμβάνεται στην παραπάνω ενσωματωμένη λίστα (π.χ. ένας αυτο-φιλοξενούμενος διακομιστής ή πύλη), ορίστε και τις τρεις μεταβλητές `CUSTOM_PROVIDER_*` — για παράδειγμα `CUSTOM_PROVIDER_NAME=MyProvider`, `CUSTOM_PROVIDER_URL=https://my-llm.example.com/v1`, και το αντίστοιχο κλειδί API. Τα μοντέλα εμφανίζονται σε **Προχωρημένη** λειτουργία στις Ρυθμίσεις → Μοντέλα με αναγνωριστικά όπως `MyProvider/…` (όνομα παρόχου ως πρόθεμα).
 
 **Λειτουργία ιδιωτικότητας:** Για να εξαναγκάσετε την απενεργοποίηση της παρακολούθησης του ιστορικού, ανεξάρτητα από το `config.json` ή τις προτιμήσεις ανά χρήστη, ορίστε το `HISTORY_DISABLED` σε `true` ή `1` (χωρίς διάκριση πεζών/κεφαλαίων) για τη **διεργασία web/Docker server** και/ή τη **κύρια διεργασία desktop Electron** (π.χ. περιβάλλον συστήματος ή εκκινητή — όχι μόνο το renderer). Αυτό απενεργοποιεί την αποθήκευση του ιστορικού εισόδου/εξόδου, κλειδώνει τις **Ρυθμίσεις → Γενικές ρυθμίσεις → Ιστορικό** και αποκλείει τις σχετικές με το Ιστορικό APIs.
 

@@ -26,7 +26,7 @@ Bu kılavuz, uygulama yüklendikten ve çalıştırıldıktan sonra nasıl kulla
 > Transrewrt, Windows ve Linux için masaüstü uygulaması olarak ve kendin barındırılan bir web uygulaması olarak mevcuttur. Bu kılavuz, uygulamanın günlük kullanımına odaklanır. Bir şey yalnızca bir sürüme uygulanıyorsa, bunun açıkça belirtilir.
 
 <small>**Diğer dillerde oku:** </small>
-<small id="lang-list">[English (GB)](../USER-GUIDE.md) · [Português (Brasil)](./USER-GUIDE.pt-BR.md) · [العربية](./USER-GUIDE.ar.md) · [বাংলা](./USER-GUIDE.bn.md) · [Català](./USER-GUIDE.ca.md) · [中文 (中国大陆)](./USER-GUIDE.zh-CN.md) · [中文 (台灣)](./USER-GUIDE.zh-TW.md) · [Hrvatski](./USER-GUIDE.hr.md) · [Čeština](./USER-GUIDE.cs.md) · [Nederlands](./USER-GUIDE.nl.md) · [English (US)](./USER-GUIDE.en-US.md) · [Tagalog](./USER-GUIDE.tl.md) · [Français](./USER-GUIDE.fr.md) · [Deutsch](./USER-GUIDE.de.md) · [Ελληνικά](./USER-GUIDE.el.md) · [हिन्दी](./USER-GUIDE.hi.md) · [Magyar](./USER-GUIDE.hu.md) · [Italiano](./USER-GUIDE.it.md) · [日本語](./USER-GUIDE.ja.md) · [한국어](./USER-GUIDE.ko.md) · [Bahasa Melayu](./USER-GUIDE.ms.md) · [فارسی](./USER-GUIDE.fa.md) · [Polski](./USER-GUIDE.pl.md) · [Basa Jawa](./USER-GUIDE.jv.md) · [Português](./USER-GUIDE.pt.md) · [ਪੰਜਾਬੀ](./USER-GUIDE.pa.md) · [Română](./USER-GUIDE.ro.md) · [Русский](./USER-GUIDE.ru.md) · [Slovenčina](./USER-GUIDE.sk.md) · [Español](./USER-GUIDE.es.md) · [Kiswahili](./USER-GUIDE.sw.md) · [Svenska](./USER-GUIDE.sv.md) · [తెలుగు](./USER-GUIDE.te.md) · [ไทย](./USER-GUIDE.th.md) · [Türkçe](./USER-GUIDE.tr.md) · [Українська](./USER-GUIDE.uk.md) · [Tiếng Việt](./USER-GUIDE.vi.md)</small>
+<small id="lang-list">[English (UK)](../USER-GUIDE.md) · [Português (Brasil)](./USER-GUIDE.pt-BR.md) · [العربية](./USER-GUIDE.ar.md) · [বাংলা](./USER-GUIDE.bn.md) · [Català](./USER-GUIDE.ca.md) · [简体中文](./USER-GUIDE.zh-Hans.md) · [繁體中文](./USER-GUIDE.zh-Hant.md) · [Hrvatski](./USER-GUIDE.hr.md) · [Čeština](./USER-GUIDE.cs.md) · [Nederlands](./USER-GUIDE.nl.md) · [English (US)](./USER-GUIDE.en-US.md) · [Tagalog](./USER-GUIDE.tl.md) · [Français](./USER-GUIDE.fr.md) · [Deutsch](./USER-GUIDE.de.md) · [Ελληνικά](./USER-GUIDE.el.md) · [Hindi (Roman)](./USER-GUIDE.hi-Latn.md) · [Magyar](./USER-GUIDE.hu.md) · [Italiano](./USER-GUIDE.it.md) · [日本語](./USER-GUIDE.ja.md) · [한국어](./USER-GUIDE.ko.md) · [Bahasa Melayu](./USER-GUIDE.ms.md) · [فارسی](./USER-GUIDE.fa.md) · [Polski](./USER-GUIDE.pl.md) · [Basa Jawa](./USER-GUIDE.jv.md) · [Português](./USER-GUIDE.pt.md) · [پنجابی](./USER-GUIDE.pa-PK.md) · [Română](./USER-GUIDE.ro.md) · [Русский](./USER-GUIDE.ru.md) · [Slovenčina](./USER-GUIDE.sk.md) · [Español](./USER-GUIDE.es.md) · [Kiswahili](./USER-GUIDE.sw.md) · [Svenska](./USER-GUIDE.sv.md) · [తెలుగు](./USER-GUIDE.te.md) · [ไทย](./USER-GUIDE.th.md) · [Türkçe](./USER-GUIDE.tr.md) · [Українська](./USER-GUIDE.uk.md) · [Tiếng Việt](./USER-GUIDE.vi.md)</small>
 
 <small>
 
@@ -104,7 +104,7 @@ Bu kılavuz, uygulama yüklendikten ve çalıştırıldıktan sonra nasıl kulla
 <a id="before-you-start"></a>
 ## Başlamadan önce
 
-Transrewrt'ı kullanmak için en az bir yapay zeka sağlayıcısına erişim sahibi olmanız gerekir. Desteklenen sağlayıcılar şunlardır: [OpenRouter](https://openrouter.ai) (birçok modeli bir araya getirir), OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras ve yerel modeller için [Ollama](https://ollama.com).
+Transrewrt'i kullanmak için en az bir AI sağlayıcısına erişiminiz olmalıdır. Desteklenen sağlayıcılar şunlardır: [OpenRouter](https://openrouter.ai) (birçok modeli bir araya getirir), OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, herhangi bir OpenAI uyumlu sağlayıcı ve [Ollama](https://ollama.com) yerel modeller için.
 
 Başlamak için ücretli bir model seçmeniz gerekmez. OpenRouter API anahtarınızı eklediğiniz anda uygulama otomatik olarak yerleşik bir **ücretsiz** OpenRouter seçeneğini etkinleştirir. Bu, metni hemen çevirmeye, yeniden yazmaya ve dönüştürmeye başlamanızı sağlar. Alternatif olarak, Cerebras, Google, Groq, Mistral AI veya [NVIDIA](https://build.nvidia.com/) (OpenAI uyumlu API) adresinden de ücretsiz bir API anahtarı alabilirsiniz.
 
@@ -761,7 +761,7 @@ Web sürümünde kullanıcı hesaplarını yönetmek için **Kullanıcılar** b�
 <a id="api-config"></a>
 ### API yapılandırması
 
-Desteklenen sağlayıcılar şunlardır: OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, **Ollama** (temel URL aracılığıyla yerel modeller) ve isteğe bağlı **özel OpenAI uyumlu sağlayıcı** (ad, URL ve API anahtarı — yalnızca Gelişmiş mod). Yalnızca kullandığınız sağlayıcıları yapılandırmanız gerekir.
+Desteklenen sağlayıcılar şunlardır: OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, **Ollama** (yerel modeller için bir temel URL aracılığıyla), ve isteğe bağlı **özel OpenAI uyumlu sağlayıcı** (ad, URL ve API anahtarı — yalnızca Gelişmiş mod). Sadece kullandığınız sağlayıcıları yapılandırmanız gerekir.
 
 **Web uygulaması: yalnızca yönetici**
 
@@ -781,7 +781,7 @@ API anahtarları sistem veya Docker ortam değişkenleri aracılığıyla yapıl
 
 **Masaüstü uygulaması**
 
-Kullandığınız her sağlayıcı için API anahtarlarını depolamak üzere **API Yapılandırması**'nı kullanın. Ollama için API anahtarı yerine **temel URL**'yi girin. Özel bir OpenAI uyumlu sağlayıcı (örneğin [NVIDIA NIM](https://build.nvidia.com/)) için **sağlayıcı adı**, **temel URL** (örneğin `https://integrate.api.nvidia.com/v1`) ve **API anahtarı** girin; her üçü de gereklidir. URL ve ad satır içi düzenlenir; API anahtarını değiştirmek için **Düzenle**'yi kullanın. Özel sağlayıcı modelleri yalnızca **Gelişmiş** modda görünür (Ayarlar → Modeller).
+Her sağlayıcı için API anahtarlarını depolamak için **API Yapılandırması**'nı kullanın. Ollama için API anahtarı yerine **temel URL**'yi girin. Özel OpenAI uyumlu bir sağlayıcı için (yerleşik listede olmayan herhangi bir son nokta, örneğin kendi sunucunuz veya ağ geçidi), bir **sağlayıcı adı**, **temel URL** (örneğin `https://my-llm.example.com/v1`) ve **API anahtarı** girin; üçü de gereklidir. URL ve ad yerinde düzenlenebilir; API anahtarını değiştirmek için **Düzenle**'yi kullanın. Özel sağlayıcı modelleri yalnızca **Gelişmiş** modda görünür (Ayarlar → Modeller).
 
 <br/>
 
@@ -790,7 +790,7 @@ Kullandığınız her sağlayıcı için API anahtarlarını depolamak üzere **
 
 <br/>
 
-- Yalnızca ihtiyacınız olan sağlayıcıları ekleyin. **Ayarlar** > **Modeller**'de, her model kimliği sağlayıcıyla başlar (örneğin, NVIDIA adında özel bir uç nokta için `openrouter/openrouter/free`, `openai/gpt-4o`, `ollama/llama3`, `NVIDIA/nvidia/nemotron-nano-3-30b-a3b`).
+- Sadece ihtiyacınız olan sağlayıcıları ekleyin. **Ayarlar** > **Modeller**'de, her model kimliği sağlayıcı ile başlar (örneğin `openrouter/openrouter/free`, `openai/gpt-4o`, `nvidia/nvidia/nemotron-nano-3-30b-a3b`, `ollama/llama3`, `MyProvider/…` için `MyProvider` adlı bir özel son nokta için).
 
 Bir API anahtarı eklemek için metin alanına değeri girin ve `Save` düğmesine tıklayın. Mevcut bir anahtarı değiştirmek için `Edit` düğmesine tıklayın. Bir anahtarın çalışıp çalışmadığını doğrulamak için `Test` düğmesine tıklayın. Ollama temel URL'si için bağlantıyı kontrol etmek üzere her zaman `Test` düğmesine tıklayın.
 

@@ -26,7 +26,7 @@ Transrewrt는 텍스트 작업을 다음 세 가지 주요 방식으로 지원�
 > Transrewrt는 Windows 및 Linux용 데스크톱 앱과 자체 호스팅 웹 앱으로 제공됩니다. 이 가이드는 앱의 일상적인 사용에 중점을 둡니다. 특정 기능이 한 버전에만 해당하는 경우 명확히 표시합니다.
 
 <small>**다른 언어로 읽기:** </small>
-<small id="lang-list">[English (GB)](../USER-GUIDE.md) · [Português (Brasil)](./USER-GUIDE.pt-BR.md) · [العربية](./USER-GUIDE.ar.md) · [বাংলা](./USER-GUIDE.bn.md) · [Català](./USER-GUIDE.ca.md) · [中文 (中国大陆)](./USER-GUIDE.zh-CN.md) · [中文 (台灣)](./USER-GUIDE.zh-TW.md) · [Hrvatski](./USER-GUIDE.hr.md) · [Čeština](./USER-GUIDE.cs.md) · [Nederlands](./USER-GUIDE.nl.md) · [English (US)](./USER-GUIDE.en-US.md) · [Tagalog](./USER-GUIDE.tl.md) · [Français](./USER-GUIDE.fr.md) · [Deutsch](./USER-GUIDE.de.md) · [Ελληνικά](./USER-GUIDE.el.md) · [हिन्दी](./USER-GUIDE.hi.md) · [Magyar](./USER-GUIDE.hu.md) · [Italiano](./USER-GUIDE.it.md) · [日本語](./USER-GUIDE.ja.md) · [한국어](./USER-GUIDE.ko.md) · [Bahasa Melayu](./USER-GUIDE.ms.md) · [فارسی](./USER-GUIDE.fa.md) · [Polski](./USER-GUIDE.pl.md) · [Basa Jawa](./USER-GUIDE.jv.md) · [Português](./USER-GUIDE.pt.md) · [ਪੰਜਾਬੀ](./USER-GUIDE.pa.md) · [Română](./USER-GUIDE.ro.md) · [Русский](./USER-GUIDE.ru.md) · [Slovenčina](./USER-GUIDE.sk.md) · [Español](./USER-GUIDE.es.md) · [Kiswahili](./USER-GUIDE.sw.md) · [Svenska](./USER-GUIDE.sv.md) · [తెలుగు](./USER-GUIDE.te.md) · [ไทย](./USER-GUIDE.th.md) · [Türkçe](./USER-GUIDE.tr.md) · [Українська](./USER-GUIDE.uk.md) · [Tiếng Việt](./USER-GUIDE.vi.md)</small>
+<small id="lang-list">[English (UK)](../USER-GUIDE.md) · [Português (Brasil)](./USER-GUIDE.pt-BR.md) · [العربية](./USER-GUIDE.ar.md) · [বাংলা](./USER-GUIDE.bn.md) · [Català](./USER-GUIDE.ca.md) · [简体中文](./USER-GUIDE.zh-Hans.md) · [繁體中文](./USER-GUIDE.zh-Hant.md) · [Hrvatski](./USER-GUIDE.hr.md) · [Čeština](./USER-GUIDE.cs.md) · [Nederlands](./USER-GUIDE.nl.md) · [English (US)](./USER-GUIDE.en-US.md) · [Tagalog](./USER-GUIDE.tl.md) · [Français](./USER-GUIDE.fr.md) · [Deutsch](./USER-GUIDE.de.md) · [Ελληνικά](./USER-GUIDE.el.md) · [Hindi (Roman)](./USER-GUIDE.hi-Latn.md) · [Magyar](./USER-GUIDE.hu.md) · [Italiano](./USER-GUIDE.it.md) · [日本語](./USER-GUIDE.ja.md) · [한국어](./USER-GUIDE.ko.md) · [Bahasa Melayu](./USER-GUIDE.ms.md) · [فارسی](./USER-GUIDE.fa.md) · [Polski](./USER-GUIDE.pl.md) · [Basa Jawa](./USER-GUIDE.jv.md) · [Português](./USER-GUIDE.pt.md) · [پنجابی](./USER-GUIDE.pa-PK.md) · [Română](./USER-GUIDE.ro.md) · [Русский](./USER-GUIDE.ru.md) · [Slovenčina](./USER-GUIDE.sk.md) · [Español](./USER-GUIDE.es.md) · [Kiswahili](./USER-GUIDE.sw.md) · [Svenska](./USER-GUIDE.sv.md) · [తెలుగు](./USER-GUIDE.te.md) · [ไทย](./USER-GUIDE.th.md) · [Türkçe](./USER-GUIDE.tr.md) · [Українська](./USER-GUIDE.uk.md) · [Tiếng Việt](./USER-GUIDE.vi.md)</small>
 
 <small>
 
@@ -103,7 +103,7 @@ Transrewrt는 텍스트 작업을 다음 세 가지 주요 방식으로 지원�
 <a id="before-you-start"></a>
 ## 시작하기 전에
 
-Transrewrt를 사용하려면 최소한 하나의 AI 제공업체에 접근할 수 있어야 합니다. 지원되는 제공업체는 다음과 같습니다: [OpenRouter](https://openrouter.ai) (다양한 모델을 통합), OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras 및 로컬 모델용 [Ollama](https://ollama.com).
+Transrewrt를 사용하려면 최소한 하나의 AI 공급자에 액세스할 수 있어야 합니다. 지원되는 공급자는 다음과 같습니다: [OpenRouter](https://openrouter.ai)(다양한 모델을 집계함), OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, 모든 OpenAI 호환 공급자 및 로컬 모델용 [Ollama](https://ollama.com).
 
 유료 모델을 선택하지 않아도 됩니다. OpenRouter API 키를 추가하면 앱에서 자동으로 내장된 **무료** OpenRouter 옵션을 활성화합니다. 이를 통해 즉시 텍스트 번역, 다시 작성 및 변환을 시작할 수 있습니다. 또는 Cerebras, Google, Groq, Mistral AI 또는 [NVIDIA](https://build.nvidia.com/)(OpenAI 호환 API)에서 무료 API 키를 받을 수도 있습니다.
 
@@ -761,7 +761,7 @@ Transrewrt를 처음 사용하는 경우 다음 순서를 따르세요:
 <a id="api-config"></a>
 ### API 설정
 
-지원되는 공급자는 다음과 같습니다: OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, **Ollama**(기본 URL을 통한 로컬 모델) 및 선택적 **사용자 지정 OpenAI 호환 제공자**(이름, URL 및 API 키 - 고급 모드 전용). 사용하는 공급자만 구성하면 됩니다.
+지원되는 공급자는 다음과 같습니다: OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, **Ollama**(기본 URL을 통한 로컬 모델) 및 선택적 **사용자 지정 OpenAI 호환 공급자**(이름, URL 및 API 키 — 고급 모드 전용). 사용하는 공급자만 구성하면 됩니다.
 
 **웹 애플리케이션: 관리자 전용**
 
@@ -781,7 +781,7 @@ API 키는 시스템 또는 Docker 환경 변수를 통해 구성되며 웹 UI�
 
 **데스크톱 애플리케이션**
 
-**API 구성**을 사용하여 사용하는 각 공급자의 API 키를 저장합니다. Ollama의 경우 API 키 대신 **기본 URL**을 입력합니다. 사용자 지정 OpenAI 호환 공급자(예: [NVIDIA NIM](https://build.nvidia.com/))의 경우 **공급자 이름**, **기본 URL**(예: `https://integrate.api.nvidia.com/v1`) 및 **API 키**를 입력합니다. 세 가지 모두 필수입니다. URL과 이름은 인라인으로 편집됩니다. **편집**을 사용하여 API 키를 바꿉니다. 사용자 지정 공급자 모델은 **고급** 모드에서만 표시됩니다(설정 → 모델).
+사용하는 각 공급자의 API 키를 저장하려면 **API 구성**을 사용합니다. Ollama의 경우 API 키 대신 **기본 URL**을 입력합니다. 사용자 지정 OpenAI 호환 공급자(자체 호스팅 서버 또는 게이트웨이와 같은 내장 목록에 없는 모든 엔드포인트)의 경우 **공급자 이름**, **기본 URL**(예: `https://my-llm.example.com/v1`) 및 **API 키**를 입력합니다. 세 가지 모두 필수입니다. URL과 이름은 인라인으로 편집됩니다. **편집**을 사용하여 API 키를 바꿉니다. 사용자 지정 공급자 모델은 **고급** 모드에서만 나타납니다(설정 → 모델).
 
 <br/>
 
@@ -790,7 +790,7 @@ API 키는 시스템 또는 Docker 환경 변수를 통해 구성되며 웹 UI�
 
 <br/>
 
-- 필요한 공급자만 추가합니다. **설정** > **모델**에서 각 모델 ID는 공급자로 시작합니다(예: NVIDIA라는 사용자 지정 엔드포인트의 경우 `openrouter/openrouter/free`, `openai/gpt-4o`, `ollama/llama3`, `NVIDIA/nvidia/nemotron-nano-3-30b-a3b`).
+- 필요한 공급자만 추가합니다. **설정** > **모델**에서 각 모델 ID는 공급자로 시작합니다(예: `MyProvider`라는 사용자 지정 엔드포인트의 경우 `openrouter/openrouter/free`, `openai/gpt-4o`, `nvidia/nvidia/nemotron-nano-3-30b-a3b`, `ollama/llama3`, `MyProvider/…`).
 
 API 키를 추가하려면 텍스트 필드에 값을 입력하고 `Save`을 클릭하세요. 기존 키를 교체하려면 `Edit`을 클릭하세요. 키가 작동하는지 확인하려면 `Test`을 클릭하세요. Ollama 기본 URL의 경우 연결을 확인하려면 항상 `Test`을 클릭하세요.
 

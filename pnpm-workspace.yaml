@@ -1,5 +1,4 @@
 allowBuilds:
-  '@google/genai': true
   argon2: true
   better-sqlite3: true
   core-js-pure: true
@@ -19,8 +18,18 @@ minimumReleaseAgeExclude:
   - lucide-react@1.17.0 || 1.21.0
   - webpack-cli@7.0.3
   - electron@42.4.1
-  - ai-i18n-tools@1.6.1
-  - http-proxy-middleware@3.0.6
+  - ai-i18n-tools@1.6.1 || 1.7.1
+
+# GHSA-64mm-vxmg-q3vj (http-proxy-middleware router host+path bypass) is fixed
+# upstream in 2.0.10, 3.0.6 and 4.1.0. webpack-dev-server@5 calls the v2
+# createProxyMiddleware(context, options) API, so we must stay on the patched v2
+# backport 2.0.10 (see overrides below). The npm advisory range pnpm audit reads
+# collapses to "<3.0.6", so it flags the genuinely-patched 2.0.10 as vulnerable;
+# ignore that single advisory so audit stays green and `audit --fix override`
+# does not re-bump us to the API-incompatible v3 line.
+auditConfig:
+  ignoreGhsas:
+    - GHSA-64mm-vxmg-q3vj
 
 overrides:
   tmp: ^0.2.6
@@ -36,4 +45,4 @@ overrides:
   uuid: '>=14.0.0'
   postcss: '>=8.5.10'
   js-yaml: ^4.2.0
-  http-proxy-middleware@>=0.16.0 <3.0.6: ^3.0.6
+  http-proxy-middleware@>=0.16.0 <2.0.10: ^2.0.10

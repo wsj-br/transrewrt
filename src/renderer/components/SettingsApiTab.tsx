@@ -204,6 +204,9 @@ const PROVIDER_SECRET_FIELDS = [
 
 const PROVIDER_SECRET_FIELDS_AFTER_CUSTOM = [
   { key: "cerebras_api_key", labelKey: "Cerebras API key", placeholder: "" },
+  { key: "nvidia_api_key", labelKey: "NVIDIA API key", placeholder: "nvapi-..." },
+  { key: "alibaba_api_key", labelKey: "Alibaba Cloud API key", placeholder: "" },
+  { key: "apifun_api_key", labelKey: "apikey.fun API key", placeholder: "" },
 ];
 
 const CUSTOM_PROVIDER_KEY = "custom_provider_api_key";

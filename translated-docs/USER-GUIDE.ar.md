@@ -26,7 +26,7 @@
 > يتوفر Transrewrt كتطبيق سطح مكتب لنظامي التشغيل Windows وLinux، وكتطبيق ويب قابل للاستضافة الذاتية. يركز هذا الدليل على الاستخدام اليومي للتطبيق. حيثما ينطبق شيء ما على إصدار واحد فقط، يتم تمييزه بوضوح.
 
 <small>**اقرأ باللغات الأخرى:** </small>
-<small id="lang-list">[English (GB)](../USER-GUIDE.md) · [Português (Brasil)](./USER-GUIDE.pt-BR.md) · [العربية](./USER-GUIDE.ar.md) · [বাংলা](./USER-GUIDE.bn.md) · [Català](./USER-GUIDE.ca.md) · [中文 (中国大陆)](./USER-GUIDE.zh-CN.md) · [中文 (台灣)](./USER-GUIDE.zh-TW.md) · [Hrvatski](./USER-GUIDE.hr.md) · [Čeština](./USER-GUIDE.cs.md) · [Nederlands](./USER-GUIDE.nl.md) · [English (US)](./USER-GUIDE.en-US.md) · [Tagalog](./USER-GUIDE.tl.md) · [Français](./USER-GUIDE.fr.md) · [Deutsch](./USER-GUIDE.de.md) · [Ελληνικά](./USER-GUIDE.el.md) · [हिन्दी](./USER-GUIDE.hi.md) · [Magyar](./USER-GUIDE.hu.md) · [Italiano](./USER-GUIDE.it.md) · [日本語](./USER-GUIDE.ja.md) · [한국어](./USER-GUIDE.ko.md) · [Bahasa Melayu](./USER-GUIDE.ms.md) · [فارسی](./USER-GUIDE.fa.md) · [Polski](./USER-GUIDE.pl.md) · [Basa Jawa](./USER-GUIDE.jv.md) · [Português](./USER-GUIDE.pt.md) · [ਪੰਜਾਬੀ](./USER-GUIDE.pa.md) · [Română](./USER-GUIDE.ro.md) · [Русский](./USER-GUIDE.ru.md) · [Slovenčina](./USER-GUIDE.sk.md) · [Español](./USER-GUIDE.es.md) · [Kiswahili](./USER-GUIDE.sw.md) · [Svenska](./USER-GUIDE.sv.md) · [తెలుగు](./USER-GUIDE.te.md) · [ไทย](./USER-GUIDE.th.md) · [Türkçe](./USER-GUIDE.tr.md) · [Українська](./USER-GUIDE.uk.md) · [Tiếng Việt](./USER-GUIDE.vi.md)</small>
+<small id="lang-list">[English (UK)](../USER-GUIDE.md) · [Português (Brasil)](./USER-GUIDE.pt-BR.md) · [العربية](./USER-GUIDE.ar.md) · [বাংলা](./USER-GUIDE.bn.md) · [Català](./USER-GUIDE.ca.md) · [简体中文](./USER-GUIDE.zh-Hans.md) · [繁體中文](./USER-GUIDE.zh-Hant.md) · [Hrvatski](./USER-GUIDE.hr.md) · [Čeština](./USER-GUIDE.cs.md) · [Nederlands](./USER-GUIDE.nl.md) · [English (US)](./USER-GUIDE.en-US.md) · [Tagalog](./USER-GUIDE.tl.md) · [Français](./USER-GUIDE.fr.md) · [Deutsch](./USER-GUIDE.de.md) · [Ελληνικά](./USER-GUIDE.el.md) · [Hindi (Roman)](./USER-GUIDE.hi-Latn.md) · [Magyar](./USER-GUIDE.hu.md) · [Italiano](./USER-GUIDE.it.md) · [日本語](./USER-GUIDE.ja.md) · [한국어](./USER-GUIDE.ko.md) · [Bahasa Melayu](./USER-GUIDE.ms.md) · [فارسی](./USER-GUIDE.fa.md) · [Polski](./USER-GUIDE.pl.md) · [Basa Jawa](./USER-GUIDE.jv.md) · [Português](./USER-GUIDE.pt.md) · [پنجابی](./USER-GUIDE.pa-PK.md) · [Română](./USER-GUIDE.ro.md) · [Русский](./USER-GUIDE.ru.md) · [Slovenčina](./USER-GUIDE.sk.md) · [Español](./USER-GUIDE.es.md) · [Kiswahili](./USER-GUIDE.sw.md) · [Svenska](./USER-GUIDE.sv.md) · [తెలుగు](./USER-GUIDE.te.md) · [ไทย](./USER-GUIDE.th.md) · [Türkçe](./USER-GUIDE.tr.md) · [Українська](./USER-GUIDE.uk.md) · [Tiếng Việt](./USER-GUIDE.vi.md)</small>
 
 <small>
 
@@ -104,7 +104,7 @@
 <a id="before-you-start"></a>
 ## قبل أن تبدأ
 
-للاستخدام Transrewrt، تحتاج إلى الوصول إلى موفر ذكاء اصطناعي واحد على الأقل. الموفرات المدعومة هي: [أوبن روتر](https://openrouter.ai) (الذي يجمع العديد من النماذج)، أوبن إي آي، أنثروبيك، جوجل جيميني، ديب سيك، غروك، ميسترال، إكس إيه آي، Cerebras، و[أولاما](https://ollama.com) للنماذج المحلية.
+لاستخدام Transrewrt، تحتاج إلى الوصول إلى مزود ذكاء اصطناعي واحد على الأقل. المزودون المدعومون هم: [OpenRouter](https://openrouter.ai) (الذي يجمع العديد من النماذج)، OpenAI، Anthropic، Google Gemini، DeepSeek، Groq، Mistral، xAI، Cerebras، NVIDIA، Alibaba Cloud، apikey.fun، أي مزود متوافق مع OpenAI، و [Ollama](https://ollama.com) للنماذج المحلية.
 
 لا تحتاج إلى تحديد نموذج مدفوع للبدء. بمجرد إضافة مفتاح OpenRouter API الخاص بك، يقوم التطبيق تلقائيًا بتمكين خيار OpenRouter مجاني مدمج **مجاني**. يتيح لك ذلك البدء في ترجمة النصوص وإعادة كتابتها وتحويلها على الفور. بدلاً من ذلك، يمكنك أيضًا الحصول على مفتاح API مجاني من Cerebras أو Google أو Groq أو Mistral AI أو [NVIDIA](https://build.nvidia.com/) (واجهة برمجة تطبيقات متوافقة مع OpenAI).
 
@@ -762,7 +762,7 @@
 <a id="api-config"></a>
 ### إعدادات API
 
-المزودون المدعومون هم: OpenRouter، OpenAI، Anthropic، Google Gemini، DeepSeek، Groq، Mistral، xAI، Cerebras، **Ollama** (نماذج محلية عبر عنوان URL أساسي)، و **مزود مخصص متوافق مع OpenAI** اختياري (الاسم، عنوان URL، ومفتاح API - وضع متقدم فقط). تحتاج فقط إلى تكوين المزودين الذين تستخدمهم.
+المزودون المدعومون هم: OpenRouter، OpenAI، Anthropic، Google Gemini، DeepSeek، Groq، Mistral، xAI، Cerebras، NVIDIA، Alibaba Cloud، apikey.fun، **Ollama** (نماذج محلية عبر عنوان URL أساسي)، و **مزود مخصص متوافق مع OpenAI** اختياري (الاسم، عنوان URL، ومفتاح API - وضع متقدم فقط). تحتاج فقط إلى تكوين المزودين الذين تستخدمهم.
 
 **التطبيق الويب: للمشرف فقط**
 
@@ -782,7 +782,7 @@
 
 **التطبيق المكتبي**
 
-استخدم **تكوين API** لتخزين مفاتيح API لكل مزود تستخدمه. بالنسبة لـ Ollama، أدخل **عنوان URL الأساسي** بدلاً من مفتاح API. بالنسبة لمزود متوافق مع OpenAI مخصص (مثل [NVIDIA NIM](https://build.nvidia.com/))، أدخل **اسم المزود** و **عنوان URL الأساسي** (مثل `https://integrate.api.nvidia.com/v1`) و **مفتاح API**؛ جميعها مطلوبة. يتم تحرير عنوان URL والاسم بشكل مضمن؛ استخدم **تحرير** لاستبدال مفتاح API. تظهر نماذج المزود المخصص في وضع **متقدم** فقط (الإعدادات → النماذج).
+استخدم **تكوين API** لتخزين مفاتيح API لكل مزود تستخدمه. بالنسبة لـ Ollama، أدخل **عنوان URL الأساسي** بدلاً من مفتاح API. بالنسبة لمزود مخصص متوافق مع OpenAI (أي نقطة نهاية غير موجودة في القائمة المضمنة، مثل خادم مستضاف ذاتيًا أو بوابة)، أدخل **اسم المزود**، **عنوان URL الأساسي** (مثل `https://my-llm.example.com/v1`)، و **مفتاح API**؛ الثلاثة مطلوبة. يتم تحرير عنوان URL والاسم في سطر واحد؛ استخدم **تحرير** لاستبدال مفتاح API. تظهر نماذج المزود المخصص في **الوضع المتقدم** فقط (الإعدادات → النماذج).
 
 <br/>
 
@@ -791,7 +791,7 @@
 
 <br/>
 
-- أضف فقط المزودين الذين تحتاجهم. في **الإعدادات** > **النماذج**، يبدأ كل معرف نموذج باسم المزود (على سبيل المثال `openrouter/openrouter/free` و `openai/gpt-4o` و `ollama/llama3` و `NVIDIA/nvidia/nemotron-nano-3-30b-a3b` لنقطة نهاية مخصصة تسمى NVIDIA).
+- أضف فقط المزودين الذين تحتاجهم. في **الإعدادات** > **النماذج**، يبدأ كل معرف نموذج باسم المزود (على سبيل المثال `openrouter/openrouter/free`، `openai/gpt-4o`، `nvidia/nvidia/nemotron-nano-3-30b-a3b`، `ollama/llama3`، `MyProvider/…` لنقطة نهاية مخصصة تسمى `MyProvider`).
 
 لإضافة مفتاح واجهة برمجة تطبيقات (API)، أدخل القيمة في حقل النص ثم انقر على `Save`. لاستبدال مفتاح موجود، انقر على `Edit`. للتحقق من أن المفتاح يعمل، انقر على `Test`. بالنسبة إلى عنوان URL الأساسي لـ Ollama، انقر دائمًا على `Test` للتحقق من الاتصال.
 

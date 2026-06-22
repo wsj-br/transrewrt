@@ -26,7 +26,7 @@
 > Το Transrewrt είναι διαθέσιμο ως εφαρμογή επιτραπεζίου για Windows και Linux, καθώς και ως εφαρμογή ιστού που μπορείτε να φιλοξενήσετε μόνοι σας. Αυτό το εγχειρίδιο επικεντρώνεται στην καθημερινή χρήση της εφαρμογής. Όπου κάτι ισχύει μόνο για μία έκδοση, αναφέρεται ρητά.
 
 <small>**Διαβάστε σε άλλες γλώσσες:** </small>
-<small id="lang-list">[English (GB)](../USER-GUIDE.md) · [Português (Brasil)](./USER-GUIDE.pt-BR.md) · [العربية](./USER-GUIDE.ar.md) · [বাংলা](./USER-GUIDE.bn.md) · [Català](./USER-GUIDE.ca.md) · [中文 (中国大陆)](./USER-GUIDE.zh-CN.md) · [中文 (台灣)](./USER-GUIDE.zh-TW.md) · [Hrvatski](./USER-GUIDE.hr.md) · [Čeština](./USER-GUIDE.cs.md) · [Nederlands](./USER-GUIDE.nl.md) · [English (US)](./USER-GUIDE.en-US.md) · [Tagalog](./USER-GUIDE.tl.md) · [Français](./USER-GUIDE.fr.md) · [Deutsch](./USER-GUIDE.de.md) · [Ελληνικά](./USER-GUIDE.el.md) · [हिन्दी](./USER-GUIDE.hi.md) · [Magyar](./USER-GUIDE.hu.md) · [Italiano](./USER-GUIDE.it.md) · [日本語](./USER-GUIDE.ja.md) · [한국어](./USER-GUIDE.ko.md) · [Bahasa Melayu](./USER-GUIDE.ms.md) · [فارسی](./USER-GUIDE.fa.md) · [Polski](./USER-GUIDE.pl.md) · [Basa Jawa](./USER-GUIDE.jv.md) · [Português](./USER-GUIDE.pt.md) · [ਪੰਜਾਬੀ](./USER-GUIDE.pa.md) · [Română](./USER-GUIDE.ro.md) · [Русский](./USER-GUIDE.ru.md) · [Slovenčina](./USER-GUIDE.sk.md) · [Español](./USER-GUIDE.es.md) · [Kiswahili](./USER-GUIDE.sw.md) · [Svenska](./USER-GUIDE.sv.md) · [తెలుగు](./USER-GUIDE.te.md) · [ไทย](./USER-GUIDE.th.md) · [Türkçe](./USER-GUIDE.tr.md) · [Українська](./USER-GUIDE.uk.md) · [Tiếng Việt](./USER-GUIDE.vi.md)</small>
+<small id="lang-list">[English (UK)](../USER-GUIDE.md) · [Português (Brasil)](./USER-GUIDE.pt-BR.md) · [العربية](./USER-GUIDE.ar.md) · [বাংলা](./USER-GUIDE.bn.md) · [Català](./USER-GUIDE.ca.md) · [简体中文](./USER-GUIDE.zh-Hans.md) · [繁體中文](./USER-GUIDE.zh-Hant.md) · [Hrvatski](./USER-GUIDE.hr.md) · [Čeština](./USER-GUIDE.cs.md) · [Nederlands](./USER-GUIDE.nl.md) · [English (US)](./USER-GUIDE.en-US.md) · [Tagalog](./USER-GUIDE.tl.md) · [Français](./USER-GUIDE.fr.md) · [Deutsch](./USER-GUIDE.de.md) · [Ελληνικά](./USER-GUIDE.el.md) · [Hindi (Roman)](./USER-GUIDE.hi-Latn.md) · [Magyar](./USER-GUIDE.hu.md) · [Italiano](./USER-GUIDE.it.md) · [日本語](./USER-GUIDE.ja.md) · [한국어](./USER-GUIDE.ko.md) · [Bahasa Melayu](./USER-GUIDE.ms.md) · [فارسی](./USER-GUIDE.fa.md) · [Polski](./USER-GUIDE.pl.md) · [Basa Jawa](./USER-GUIDE.jv.md) · [Português](./USER-GUIDE.pt.md) · [پنجابی](./USER-GUIDE.pa-PK.md) · [Română](./USER-GUIDE.ro.md) · [Русский](./USER-GUIDE.ru.md) · [Slovenčina](./USER-GUIDE.sk.md) · [Español](./USER-GUIDE.es.md) · [Kiswahili](./USER-GUIDE.sw.md) · [Svenska](./USER-GUIDE.sv.md) · [తెలుగు](./USER-GUIDE.te.md) · [ไทย](./USER-GUIDE.th.md) · [Türkçe](./USER-GUIDE.tr.md) · [Українська](./USER-GUIDE.uk.md) · [Tiếng Việt](./USER-GUIDE.vi.md)</small>
 
 <small>
 
@@ -104,7 +104,7 @@
 <a id="before-you-start"></a>
 ## Πριν ξεκινήσετε
 
-Για να χρησιμοποιήσετε το Transrewrt, χρειάζεστε πρόσβαση σε τουλάχιστον έναν πάροχο τεχνητής νοημοσύνης. Οι υποστηριζόμενοι πάροχοι είναι: [OpenRouter](https://openrouter.ai) (ο οποίος συγκεντρώνει πολλά μοντέλα), OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras και [Ollama](https://ollama.com) για τοπικά μοντέλα.
+Για να χρησιμοποιήσετε το Transrewrt, χρειάζεστε πρόσβαση σε τουλάχιστον έναν πάροχο AI. Οι υποστηριζόμενοι πάροχοι είναι: [OpenRouter](https://openrouter.ai) (ο οποίος συγκεντρώνει πολλά μοντέλα), OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, οποιοσδήποτε πάροχος συμβατός με OpenAI και [Ollama](https://ollama.com) για τοπικά μοντέλα.
 
 Δεν χρειάζεται να επιλέξετε ένα επί πληρωμή μοντέλο για να ξεκινήσετε. Μόλις προσθέσετε το κλειδί API του OpenRouter, η εφαρμογή ενεργοποιεί αυτόματα μια ενσωματωμένη **δωρεάν** επιλογή OpenRouter. Αυτό σας επιτρέπει να μεταφράζετε, να ξαναγράφετε και να μετασχηματίζετε κείμενο αμέσως. Εναλλακτικά, μπορείτε επίσης να αποκτήσετε ένα δωρεάν κλειδί API από την Cerebras, την Google, την Groq, την Mistral AI ή την [NVIDIA](https://build.nvidia.com/) (API συμβατή με OpenAI).
 
@@ -762,7 +762,7 @@
 <a id="api-config"></a>
 ### Διαμόρφωση API
 
-Οι υποστηριζόμενοι πάροχοι είναι: OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, **Ollama** (τοπικά μοντέλα μέσω μιας βασικής διεύθυνσης URL) και ένας προαιρετικός **προσαρμοσμένος πάροχος συμβατός με OpenAI** (όνομα, διεύθυνση URL και κλειδί API — μόνο σε προχωρημένη λειτουργία). Χρειάζεται μόνο να διαμορφώσετε τους παρόχους που χρησιμοποιείτε.
+Οι υποστηριζόμενοι πάροχοι είναι: OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, **Ollama** (τοπικά μοντέλα μέσω μιας διεύθυνσης URL βάσης) και ένας προαιρετικός **προσαρμοσμένος πάροχος συμβατός με OpenAI** (όνομα, διεύθυνση URL και κλειδί API — μόνο σε προχωρημένη λειτουργία). Χρειάζεται μόνο να διαμορφώσετε τους παρόχους που χρησιμοποιείτε.
 
 **Εφαρμογή ιστού: μόνο διαχειριστής**
 
@@ -782,7 +782,7 @@
 
 **Εφαρμογή υπολογιστή**
 
-Χρησιμοποιήστε τη **Ρύθμιση API** για να αποθηκεύσετε κλειδιά API για κάθε πάροχο που χρησιμοποιείτε. Για το Ollama, εισαγάγετε τη **βασική διεύθυνση URL** αντί για ένα κλειδί API. Για έναν προσαρμοσμένο πάροχο συμβατό με OpenAI (π.χ. [NVIDIA NIM](https://build.nvidia.com/)), εισαγάγετε ένα **όνομα παρόχου**, μια **βασική διεύθυνση URL** (όπως `https://integrate.api.nvidia.com/v1`) και ένα **κλειδί API**· και τα τρία απαιτούνται. Η διεύθυνση URL και το όνομα επεξεργάζονται ενσωματωμένα· χρησιμοποιήστε **Επεξεργασία** για να αντικαταστήσετε το κλειδί API. Τα μοντέλα προσαρμοσμένου παρόχου εμφανίζονται μόνο σε **Προχωρημένη** λειτουργία (Ρυθμίσεις → Μοντέλα).
+Χρησιμοποιήστε τη **Ρύθμιση API** για να αποθηκεύσετε κλειδιά API για κάθε πάροχο που χρησιμοποιείτε. Για το Ollama, εισαγάγετε τη **διεύθυνση URL βάσης** αντί για κλειδί API. Για έναν προσαρμοσμένο πάροχο συμβατό με OpenAI (οποιοδήποτε τελικό σημείο που δεν περιλαμβάνεται στην ενσωματωμένη λίστα, όπως ένας αυτο-φιλοξενούμενος διακομιστής ή πύλη), εισαγάγετε ένα **όνομα παρόχου**, μια **διεύθυνση URL βάσης** (όπως `https://my-llm.example.com/v1`) και ένα **κλειδί API**· και τα τρία είναι υποχρεωτικά. Η διεύθυνση URL και το όνομα επεξεργάζονται ενσωματωμένα· χρησιμοποιήστε **Επεξεργασία** για να αντικαταστήσετε το κλειδί API. Τα μοντέλα προσαρμοσμένου παρόχου εμφανίζονται μόνο σε **Προχωρημένη** λειτουργία (Ρυθμίσεις → Μοντέλα).
 
 <br/>
 
@@ -791,7 +791,7 @@
 
 <br/>
 
-- Προσθέστε μόνο τους παρόχους που χρειάζεστε. Στις **Ρυθμίσεις** > **Μοντέλα**, κάθε αναγνωριστικό μοντέλου ξεκινά με τον πάροχο (για παράδειγμα `openrouter/openrouter/free`, `openai/gpt-4o`, `ollama/llama3`, `NVIDIA/nvidia/nemotron-nano-3-30b-a3b` για ένα προσαρμοσμένο τελικό σημείο με όνομα NVIDIA).
+- Προσθέστε μόνο τους παρόχους που χρειάζεστε. Στις **Ρυθμίσεις** > **Μοντέλα**, κάθε αναγνωριστικό μοντέλου ξεκινά με τον πάροχο (για παράδειγμα `openrouter/openrouter/free`, `openai/gpt-4o`, `nvidia/nvidia/nemotron-nano-3-30b-a3b`, `ollama/llama3`, `MyProvider/…` για ένα προσαρμοσμένο τελικό σημείο με όνομα `MyProvider`).
 
 Για να προσθέσετε ένα κλειδί API, εισάγετε την τιμή στο πεδίο κειμένου και κάντε κλικ στο `Save`. Για να αντικαταστήσετε ένα υπάρχον κλειδί, κάντε κλικ στο `Edit`. Για να επαληθεύσετε ότι ένα κλειδί λειτουργεί, κάντε κλικ στο `Test`. Για το βασικό URL του Ollama, κάντε πάντα κλικ στο `Test` για να ελέγξετε τη σύνδεση.
 

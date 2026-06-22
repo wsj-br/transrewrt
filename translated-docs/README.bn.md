@@ -3,14 +3,14 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.0-blue" alt="Version"></a>
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.1-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
   <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react" alt="React 19">
   <img src="https://img.shields.io/badge/Electron-41-47848F?logo=electron" alt="Electron 41">
 </p>
 
-এআই-চালিত টেক্সট টুল: বিভিন্ন ভাষায় অনুবাদ, বিভিন্ন ধরনে পুনর্লিখন এবং কাস্টম প্রম্পট ব্যবহার করে রূপান্তর করুন - একাধিক এআই প্রদানকারী (ওপেনরাউটার, ওপেনএআই, অ্যানথ্রোপিক, গুগল জেমিনি, ডিপসিক, গ্রোক, মিস্ট্রাল, এক্সএআই এবং স্থানীয় ওলামা) ব্যবহার করে। ডেস্কটপ অ্যাপ (ইলেকট্রন) বা স্ব-হোস্টেড ওয়েব অ্যাপ (ডকার) হিসাবে চলে।
+AI-চালিত টেক্সট টুল: ভাষাগুলির মধ্যে অনুবাদ করুন, বিভিন্ন স্টাইলে পুনরায় লিখুন এবং কাস্টম প্রম্পট ব্যবহার করে রূপান্তর করুন - একাধিক AI প্রদানকারী (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, যেকোনো OpenAI-সামঞ্জস্যপূর্ণ প্রোভাইডার এবং স্থানীয় Ollama) ব্যবহার করে। ডেস্কটপ অ্যাপ (Electron) বা সেলফ-হোস্টেড ওয়েব অ্যাপ (Docker) হিসাবে চলে।
 
 - **অনুবাদ করুন** - স্বয়ংক্রিয় উৎস সনাক্তকরণ সহ কয়েক ডজন ভাষার মধ্যে
 - **পুনরায় লিখন** - ব্যাকরণ ঠিক করুন, স্পষ্টতা উন্নত করুন, আনুষ্ঠানিক/অনানুষ্ঠানিক, সংক্ষিপ্ত করুন, প্রসারিত করুন, প্রযুক্তিগত
@@ -27,7 +27,7 @@
 ইনস্টল করার পরে, সমস্ত বৈশিষ্ট্যের সম্পূর্ণ গাইড দেখুন [**ব্যবহারকারী গাইড**](USER-GUIDE.bn.md) এ।
 
 <small>**অন্যান্য ভাষায় পড়ুন:** </small>
-<small id="lang-list">[English (GB)](../README.md) · [Português (Brasil)](./README.pt-BR.md) · [العربية](./README.ar.md) · [বাংলা](./README.bn.md) · [Català](./README.ca.md) · [中文 (中国大陆)](./README.zh-CN.md) · [中文 (台灣)](./README.zh-TW.md) · [Hrvatski](./README.hr.md) · [Čeština](./README.cs.md) · [Nederlands](./README.nl.md) · [English (US)](./README.en-US.md) · [Tagalog](./README.tl.md) · [Français](./README.fr.md) · [Deutsch](./README.de.md) · [Ελληνικά](./README.el.md) · [हिन्दी](./README.hi.md) · [Magyar](./README.hu.md) · [Italiano](./README.it.md) · [日本語](./README.ja.md) · [한국어](./README.ko.md) · [Bahasa Melayu](./README.ms.md) · [فارسی](./README.fa.md) · [Polski](./README.pl.md) · [Basa Jawa](./README.jv.md) · [Português](./README.pt.md) · [ਪੰਜਾਬੀ](./README.pa.md) · [Română](./README.ro.md) · [Русский](./README.ru.md) · [Slovenčina](./README.sk.md) · [Español](./README.es.md) · [Kiswahili](./README.sw.md) · [Svenska](./README.sv.md) · [తెలుగు](./README.te.md) · [ไทย](./README.th.md) · [Türkçe](./README.tr.md) · [Українська](./README.uk.md) · [Tiếng Việt](./README.vi.md)</small>
+<small id="lang-list">[English (UK)](../README.md) · [Português (Brasil)](./README.pt-BR.md) · [العربية](./README.ar.md) · [বাংলা](./README.bn.md) · [Català](./README.ca.md) · [简体中文](./README.zh-Hans.md) · [繁體中文](./README.zh-Hant.md) · [Hrvatski](./README.hr.md) · [Čeština](./README.cs.md) · [Nederlands](./README.nl.md) · [English (US)](./README.en-US.md) · [Tagalog](./README.tl.md) · [Français](./README.fr.md) · [Deutsch](./README.de.md) · [Ελληνικά](./README.el.md) · [Hindi (Roman)](./README.hi-Latn.md) · [Magyar](./README.hu.md) · [Italiano](./README.it.md) · [日本語](./README.ja.md) · [한국어](./README.ko.md) · [Bahasa Melayu](./README.ms.md) · [فارسی](./README.fa.md) · [Polski](./README.pl.md) · [Basa Jawa](./README.jv.md) · [Português](./README.pt.md) · [پنجابی](./README.pa-PK.md) · [Română](./README.ro.md) · [Русский](./README.ru.md) · [Slovenčina](./README.sk.md) · [Español](./README.es.md) · [Kiswahili](./README.sw.md) · [Svenska](./README.sv.md) · [తెలుగు](./README.te.md) · [ไทย](./README.th.md) · [Türkçe](./README.tr.md) · [Українська](./README.uk.md) · [Tiếng Việt](./README.vi.md)</small>
 
 <small>
 
@@ -255,7 +255,7 @@ Transrewrt একাধিক AI প্রদানকারীকে সমর�
 
 অনুবাদ, পুনর্লিখন বা রূপান্তরের জন্য ওপেনরাউটারের **বডি বিল্ডার** মডেল ([`openrouter/bodybuilder`](https://openrouter.ai/openrouter/bodybuilder)) ব্যবহার করবেন না: এটি সম্পূর্ণ পাঠ্য নয়, JSON অনুরোধ পেলোড ফেরত দেয়। ব্যবহারকারী গাইডে [সেটিংস → মডেল](USER-GUIDE.bn.md#models) দেখুন।
 
-আপনি অন্যান্য প্রদানকারীদেরও (ওপেনএআই, অ্যানথ্রোপিক, গুগল জেমিনি, ডিপসিক, গ্রোক, মিস্ট্রাল, এক্সএআই, Cerebras) ব্যবহার করতে পারেন বা [ওলামা](https://ollama.com) সহ স্থানীয়ভাবে মডেল চালাতে পারেন। সমর্থিত প্রদানকারীদের এবং পরিবেশ ভেরিয়েবলগুলির সম্পূর্ণ তালিকার জন্য [কনফিগারেশন](#configuration-and-environment) দেখুন।
+আপনি অন্যান্য প্রদানকারী (OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, যেকোনো OpenAI-সামঞ্জস্যপূর্ণ প্রোভাইডার) ব্যবহার করতে পারেন অথবা [Ollama](https://ollama.com) দিয়ে স্থানীয়ভাবে মডেল চালাতে পারেন। সমর্থিত প্রদানকারী এবং পরিবেশ ভেরিয়েবলের সম্পূর্ণ তালিকার জন্য [কনফিগারেশন](#configuration-and-environment) দেখুন।
 
 </br>
 
@@ -281,9 +281,9 @@ Transrewrt একাধিক AI প্রদানকারীকে সমর�
 
 **পরিবেশ চলকসমূহ** (শুধুমাত্র ওয়েব/ডকারের জন্য; ইলেকট্রন স্থানীয় কনফিগ ফাইল ব্যবহার করে)
 
-| ভেরিয়েবল | বিবরণ |
-|----------------------|------------------------------------------------------------------------------|
-| `PORT` | সার্ভার শোনার পোর্ট (ডিফল্ট `5000` এ) |
+| ভেরিয়েবল                  | বিবরণ                                                                             |
+|---------------------------|-----------------------------------------------------------------------------------------|
+| `PORT`                    | সার্ভার লিসেনিং পোর্ট (ডিফল্ট `5000`)                                             |
 | `CONFIG_PATH`        | কনফিগ ফাইলের পাথ (ডিফল্ট `/app/data/config.json`)                |
 | `TZ` | সার্ভার-সাইড সময়ের জন্য সময় অঞ্চল (লগিং ইত্যাদি) (ডিফল্ট `Europe/London` এ) |
 | `HISTORY_DISABLED`   | ইতিহাস চালানো বাধ্যতামূলকভাবে বন্ধ করুন (ঐচ্ছিক, ডিফল্ট `false` এ)                  |
@@ -297,11 +297,14 @@ Transrewrt একাধিক AI প্রদানকারীকে সমর�
 | `MISTRAL_API_KEY` | মিস্ট্রাল API কী |
 | `OLLAMA_URL` | ওলামা বেস URL (যেমন `http://host.docker.internal:11434`) |
 | `XAI_API_KEY`        | xAI API কী                                                                  |
+| `NVIDIA_API_KEY`          | NVIDIA API কী                                                                          |
+| `ALIBABA_API_KEY`         | Alibaba Cloud (DashScope) API কী                                                       |
+| `APIFUN_API_KEY`          | apikey.fun API কী                                                                      |
 | `CUSTOM_PROVIDER_NAME` | একটি কাস্টম OpenAI-সামঞ্জস্যপূর্ণ প্রদানকারীর জন্য প্রদর্শনের নাম (তিনটি কাস্টম ভেরিয়েবলই প্রয়োজন) |
-| `CUSTOM_PROVIDER_URL`  | একটি কাস্টম OpenAI-সামঞ্জস্যপূর্ণ প্রদানকারীর জন্য বেস URL (যেমন `https://integrate.api.nvidia.com/v1`) |
+| `CUSTOM_PROVIDER_URL`     | একটি কাস্টম OpenAI-সামঞ্জস্যপূর্ণ প্রোভাইডারের জন্য বেস URL (যেমন `https://my-llm.example.com/v1`) |
 | `CUSTOM_PROVIDER_API_KEY` | একটি কাস্টম OpenAI-সামঞ্জস্যপূর্ণ প্রদানকারীর জন্য API কী                         |
 
-**কাস্টম OpenAI-সামঞ্জস্যপূর্ণ প্রদানকারী (ওয়েব/Docker):** তিনটি `CUSTOM_PROVIDER_*` ভেরিয়েবল সেট করুন। [NVIDIA NIM](https://build.nvidia.com/) এর জন্য উদাহরণ: `CUSTOM_PROVIDER_NAME=NVIDIA`, `CUSTOM_PROVIDER_URL=https://integrate.api.nvidia.com/v1`, এবং [build.nvidia.com](https://build.nvidia.com/) থেকে একটি API কী। মডেলগুলি সেটিংস → মডেলগুলির অধীনে **উন্নত** মোডে `NVIDIA/…` এর মতো আইডি সহ প্রদর্শিত হবে (প্রদানকারীর নাম উপসর্গ হিসাবে)।
+**কাস্টম OpenAI-সামঞ্জস্যপূর্ণ প্রোভাইডার (ওয়েব/Docker):** উপরের বিল্ট-ইন তালিকায় নেই এমন যেকোনো OpenAI-সামঞ্জস্যপূর্ণ এন্ডপয়েন্টের জন্য (যেমন একটি সেলফ-হোস্টেড সার্ভার বা গেটওয়ে), তিনটি `CUSTOM_PROVIDER_*` ভেরিয়েবল সেট করুন — উদাহরণস্বরূপ `CUSTOM_PROVIDER_NAME=MyProvider`, `CUSTOM_PROVIDER_URL=https://my-llm.example.com/v1`, এবং সংশ্লিষ্ট API কী। মডেলগুলি সেটিংস → মডেলগুলির অধীনে **উন্নত** মোডে `MyProvider/…` এর মতো আইডি সহ প্রদর্শিত হবে (প্রোভাইডারের নাম প্রিফিক্স হিসাবে)।
 
 **গোপনীয়তা মোড:** `config.json` বা ব্যবহারকারী অনুযায়ী পছন্দের উপর নির্ভর না করে ইতিহাস ট্র্যাক বাধ্যতামূলকভাবে বন্ধ করতে, **ওয়েব/ডকার সার্ভার প্রক্রিয়া** এবং/অথবা **ইলেকট্রন ডেস্কটপ মূল প্রক্রিয়া**-এর জন্য `HISTORY_DISABLED` কে `true` বা `1` (কেস-অসংবেদী) সেট করুন (যেমন সিস্টেম বা লঞ্চার পরিবেশ — শুধুমাত্র রেন্ডারার নয়)। এটি ইনপুট/আউটপুট ইতিহাস সংরক্ষণ বন্ধ করে, **সেটিংস → সাধারণ সেটিংস → ইতিহাস** লক করে এবং ইতিহাস-সংক্রান্ত API গুলি ব্লক করে।
 

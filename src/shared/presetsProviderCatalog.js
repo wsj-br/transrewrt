@@ -385,7 +385,7 @@ function modelIdTail(id) {
 }
 
 /**
- * Models Transrewrt can drive via multi-llm-ts chat completions.
+ * Models Transrewrt can drive via OpenAI-compatible chat completions.
  * @param {{ id?: string, displayId?: string, name?: string }} m
  */
 function isTransrewrtWorkflowModel(m) {

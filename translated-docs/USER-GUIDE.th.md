@@ -26,7 +26,7 @@ Transrewrt ช่วยให้คุณทำงานกับข้อคว
 > Transrewrt มีให้ใช้งานเป็นแอปเดสก์ท็อปสำหรับ Windows และ Linux และเป็นแอปเว็บที่สามารถโฮสต์เองได้ คู่มือนี้เน้นการใช้งานทั่วไปของแอป หากมีข้อมูลใดที่ใช้ได้กับเฉพาะเวอร์ชันใดเวอร์ชันหนึ่ง จะระบุไว้อย่างชัดเจน
 
 <small>**อ่านเป็นภาษาอื่น:** </small>
-<small id="lang-list">[English (GB)](../USER-GUIDE.md) · [Português (Brasil)](./USER-GUIDE.pt-BR.md) · [العربية](./USER-GUIDE.ar.md) · [বাংলা](./USER-GUIDE.bn.md) · [Català](./USER-GUIDE.ca.md) · [中文 (中国大陆)](./USER-GUIDE.zh-CN.md) · [中文 (台灣)](./USER-GUIDE.zh-TW.md) · [Hrvatski](./USER-GUIDE.hr.md) · [Čeština](./USER-GUIDE.cs.md) · [Nederlands](./USER-GUIDE.nl.md) · [English (US)](./USER-GUIDE.en-US.md) · [Tagalog](./USER-GUIDE.tl.md) · [Français](./USER-GUIDE.fr.md) · [Deutsch](./USER-GUIDE.de.md) · [Ελληνικά](./USER-GUIDE.el.md) · [हिन्दी](./USER-GUIDE.hi.md) · [Magyar](./USER-GUIDE.hu.md) · [Italiano](./USER-GUIDE.it.md) · [日本語](./USER-GUIDE.ja.md) · [한국어](./USER-GUIDE.ko.md) · [Bahasa Melayu](./USER-GUIDE.ms.md) · [فارسی](./USER-GUIDE.fa.md) · [Polski](./USER-GUIDE.pl.md) · [Basa Jawa](./USER-GUIDE.jv.md) · [Português](./USER-GUIDE.pt.md) · [ਪੰਜਾਬੀ](./USER-GUIDE.pa.md) · [Română](./USER-GUIDE.ro.md) · [Русский](./USER-GUIDE.ru.md) · [Slovenčina](./USER-GUIDE.sk.md) · [Español](./USER-GUIDE.es.md) · [Kiswahili](./USER-GUIDE.sw.md) · [Svenska](./USER-GUIDE.sv.md) · [తెలుగు](./USER-GUIDE.te.md) · [ไทย](./USER-GUIDE.th.md) · [Türkçe](./USER-GUIDE.tr.md) · [Українська](./USER-GUIDE.uk.md) · [Tiếng Việt](./USER-GUIDE.vi.md)</small>
+<small id="lang-list">[English (UK)](../USER-GUIDE.md) · [Português (Brasil)](./USER-GUIDE.pt-BR.md) · [العربية](./USER-GUIDE.ar.md) · [বাংলা](./USER-GUIDE.bn.md) · [Català](./USER-GUIDE.ca.md) · [简体中文](./USER-GUIDE.zh-Hans.md) · [繁體中文](./USER-GUIDE.zh-Hant.md) · [Hrvatski](./USER-GUIDE.hr.md) · [Čeština](./USER-GUIDE.cs.md) · [Nederlands](./USER-GUIDE.nl.md) · [English (US)](./USER-GUIDE.en-US.md) · [Tagalog](./USER-GUIDE.tl.md) · [Français](./USER-GUIDE.fr.md) · [Deutsch](./USER-GUIDE.de.md) · [Ελληνικά](./USER-GUIDE.el.md) · [Hindi (Roman)](./USER-GUIDE.hi-Latn.md) · [Magyar](./USER-GUIDE.hu.md) · [Italiano](./USER-GUIDE.it.md) · [日本語](./USER-GUIDE.ja.md) · [한국어](./USER-GUIDE.ko.md) · [Bahasa Melayu](./USER-GUIDE.ms.md) · [فارسی](./USER-GUIDE.fa.md) · [Polski](./USER-GUIDE.pl.md) · [Basa Jawa](./USER-GUIDE.jv.md) · [Português](./USER-GUIDE.pt.md) · [پنجابی](./USER-GUIDE.pa-PK.md) · [Română](./USER-GUIDE.ro.md) · [Русский](./USER-GUIDE.ru.md) · [Slovenčina](./USER-GUIDE.sk.md) · [Español](./USER-GUIDE.es.md) · [Kiswahili](./USER-GUIDE.sw.md) · [Svenska](./USER-GUIDE.sv.md) · [తెలుగు](./USER-GUIDE.te.md) · [ไทย](./USER-GUIDE.th.md) · [Türkçe](./USER-GUIDE.tr.md) · [Українська](./USER-GUIDE.uk.md) · [Tiếng Việt](./USER-GUIDE.vi.md)</small>
 
 <small>
 
@@ -104,7 +104,7 @@ Transrewrt ช่วยให้คุณทำงานกับข้อคว
 <a id="before-you-start"></a>
 ## ก่อนที่คุณจะเริ่มต้น
 
-ในการใช้งาน Transrewrt คุณต้องมีการเข้าถึงผู้ให้บริการ AI อย่างน้อยหนึ่งราย ผู้ให้บริการที่รองรับ ได้แก่ [OpenRouter](https://openrouter.ai) (ซึ่งรวมโมเดลหลายตัวเข้าด้วยกัน), OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras และ [Ollama](https://ollama.com) สำหรับโมเดลในเครื่อง
+หากต้องการใช้ Transrewrt คุณต้องสามารถเข้าถึงผู้ให้บริการ AI อย่างน้อยหนึ่งราย ผู้ให้บริการที่รองรับ ได้แก่: [OpenRouter](https://openrouter.ai) (ซึ่งรวบรวมโมเดลจำนวนมาก), OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, ผู้ให้บริการที่เข้ากันได้กับ OpenAI และ [Ollama](https://ollama.com) สำหรับโมเดลในเครื่อง
 
 คุณไม่จำเป็นต้องเลือกโมเดลแบบชำระเงินเพื่อเริ่มต้น ทันทีที่คุณเพิ่มคีย์ API OpenRouter ของคุณ แอปจะเปิดใช้งานตัวเลือก OpenRouter **ฟรี** ที่มีมาให้โดยอัตโนมัติ ซึ่งช่วยให้คุณเริ่มแปล เขียนใหม่ และแปลงข้อความได้ทันที หรือคุณสามารถรับคีย์ API ฟรีจาก Cerebras, Google, Groq, Mistral AI หรือ [NVIDIA](https://build.nvidia.com/) (API ที่เข้ากันได้กับ OpenAI) ได้เช่นกัน
 
@@ -762,7 +762,7 @@ Transrewrt ช่วยให้คุณทำงานกับข้อคว
 <a id="api-config"></a>
 ### การตั้งค่า API
 
-ผู้ให้บริการที่รองรับ ได้แก่: OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, **Ollama** (โมเดลภายในเครื่องผ่าน URL พื้นฐาน) และ **ผู้ให้บริการที่เข้ากันได้กับ OpenAI แบบกำหนดเอง** (ชื่อ, URL และคีย์ API — โหมดขั้นสูงเท่านั้น) คุณต้องกำหนดค่าเฉพาะผู้ให้บริการที่คุณใช้เท่านั้น
+ผู้ให้บริการที่รองรับ ได้แก่ OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, **Ollama** (โมเดลในเครื่องผ่าน URL พื้นฐาน) และ **ผู้ให้บริการที่เข้ากันได้กับ OpenAI แบบกำหนดเอง** (ชื่อ, URL และคีย์ API - โหมดขั้นสูงเท่านั้น) คุณต้องกำหนดค่าเฉพาะผู้ให้บริการที่คุณใช้เท่านั้น
 
 **แอปพลิเคชันเว็บ: ผู้ดูแลระบบเท่านั้น**
 
@@ -782,7 +782,7 @@ Transrewrt ช่วยให้คุณทำงานกับข้อคว
 
 **แอปพลิเคชันเดสก์ท็อป**
 
-ใช้ **การกำหนดค่า API** เพื่อจัดเก็บคีย์ API สำหรับผู้ให้บริการแต่ละรายที่คุณใช้ สำหรับ Ollama ให้ป้อน **URL พื้นฐาน** แทนคีย์ API สำหรับผู้ให้บริการที่เข้ากันได้กับ OpenAI แบบกำหนดเอง (เช่น [NVIDIA NIM](https://build.nvidia.com/)) ให้ป้อน **ชื่อผู้ให้บริการ**, **URL พื้นฐาน** (เช่น `https://integrate.api.nvidia.com/v1`) และ **คีย์ API**; ทั้งสามรายการจำเป็น URL และชื่อจะถูกแก้ไขแบบอินไลน์ ใช้ **แก้ไข** เพื่อแทนที่คีย์ API โมเดลของผู้ให้บริการที่กำหนดเองจะปรากฏในโหมด **ขั้นสูง** เท่านั้น (การตั้งค่า → โมเดล)
+ใช้ **การกำหนดค่า API** เพื่อจัดเก็บคีย์ API สำหรับผู้ให้บริการแต่ละรายที่คุณใช้ สำหรับ Ollama ให้ป้อน **URL พื้นฐาน** แทนคีย์ API สำหรับผู้ให้บริการที่เข้ากันได้กับ OpenAI แบบกำหนดเอง (จุดสิ้นสุดใดๆ ที่ไม่อยู่ในรายการในตัว เช่น เซิร์ฟเวอร์ที่โฮสต์เองหรือเกตเวย์) ให้ป้อน **ชื่อผู้ให้บริการ**, **URL พื้นฐาน** (เช่น `https://my-llm.example.com/v1`) และ **คีย์ API** ทั้งสามอย่างจำเป็นต้องมี URL และชื่อจะถูกแก้ไขแบบอินไลน์ ใช้ **แก้ไข** เพื่อแทนที่คีย์ API โมเดลของผู้ให้บริการที่กำหนดเองจะปรากฏในโหมด **ขั้นสูง** เท่านั้น (การตั้งค่า → โมเดล)
 
 <br/>
 
@@ -791,7 +791,7 @@ Transrewrt ช่วยให้คุณทำงานกับข้อคว
 
 <br/>
 
-- เพิ่มเฉพาะผู้ให้บริการที่คุณต้องการ ใน **การตั้งค่า** > **โมเดล** ID โมเดลแต่ละรายการจะขึ้นต้นด้วยผู้ให้บริการ (เช่น `openrouter/openrouter/free`, `openai/gpt-4o`, `ollama/llama3`, `NVIDIA/nvidia/nemotron-nano-3-30b-a3b` สำหรับจุดสิ้นสุดที่กำหนดเองชื่อ NVIDIA)
+- เพิ่มเฉพาะผู้ให้บริการที่คุณต้องการ ใน **การตั้งค่า** > **โมเดล** ID โมเดลแต่ละรายการจะขึ้นต้นด้วยผู้ให้บริการ (เช่น `openrouter/openrouter/free`, `openai/gpt-4o`, `nvidia/nvidia/nemotron-nano-3-30b-a3b`, `ollama/llama3`, `MyProvider/…` สำหรับจุดสิ้นสุดที่กำหนดเองชื่อ `MyProvider`)
 
 ในการเพิ่มคีย์ API ให้ป้อนค่าลงในช่องข้อความแล้วคลิก `Save` เพื่อเปลี่ยนคีย์ที่มีอยู่ ให้คลิก `Edit` เพื่อยืนยันว่าคีย์ทำงานได้ ให้คลิก `Test` สำหรับ URL พื้นฐานของ Ollama ให้คลิก `Test` เพื่อตรวจสอบการเชื่อมต่อเสมอ
 

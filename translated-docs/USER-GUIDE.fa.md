@@ -26,7 +26,7 @@ Transrewrt به شما در کار با متن به سه روش اصلی کمک 
 > Transrewrt به صورت برنامه دسکتاپ برای ویندوز و لینوکس و همچنین به صورت برنامه تحت وب قابل میزبانی شخصی در دسترس است. این راهنما بر استفاده روزمره از برنامه تمرکز دارد. هرگاه موردی فقط به یک نسخه مربوط باشد، به وضوح مشخص شده است.
 
 <small>**خواندن به زبان‌های دیگر:** </small>
-<small id="lang-list">[English (GB)](../USER-GUIDE.md) · [Português (Brasil)](./USER-GUIDE.pt-BR.md) · [العربية](./USER-GUIDE.ar.md) · [বাংলা](./USER-GUIDE.bn.md) · [Català](./USER-GUIDE.ca.md) · [中文 (中国大陆)](./USER-GUIDE.zh-CN.md) · [中文 (台灣)](./USER-GUIDE.zh-TW.md) · [Hrvatski](./USER-GUIDE.hr.md) · [Čeština](./USER-GUIDE.cs.md) · [Nederlands](./USER-GUIDE.nl.md) · [English (US)](./USER-GUIDE.en-US.md) · [Tagalog](./USER-GUIDE.tl.md) · [Français](./USER-GUIDE.fr.md) · [Deutsch](./USER-GUIDE.de.md) · [Ελληνικά](./USER-GUIDE.el.md) · [हिन्दी](./USER-GUIDE.hi.md) · [Magyar](./USER-GUIDE.hu.md) · [Italiano](./USER-GUIDE.it.md) · [日本語](./USER-GUIDE.ja.md) · [한국어](./USER-GUIDE.ko.md) · [Bahasa Melayu](./USER-GUIDE.ms.md) · [فارسی](./USER-GUIDE.fa.md) · [Polski](./USER-GUIDE.pl.md) · [Basa Jawa](./USER-GUIDE.jv.md) · [Português](./USER-GUIDE.pt.md) · [ਪੰਜਾਬੀ](./USER-GUIDE.pa.md) · [Română](./USER-GUIDE.ro.md) · [Русский](./USER-GUIDE.ru.md) · [Slovenčina](./USER-GUIDE.sk.md) · [Español](./USER-GUIDE.es.md) · [Kiswahili](./USER-GUIDE.sw.md) · [Svenska](./USER-GUIDE.sv.md) · [తెలుగు](./USER-GUIDE.te.md) · [ไทย](./USER-GUIDE.th.md) · [Türkçe](./USER-GUIDE.tr.md) · [Українська](./USER-GUIDE.uk.md) · [Tiếng Việt](./USER-GUIDE.vi.md)</small>
+<small id="lang-list">[English (UK)](../USER-GUIDE.md) · [Português (Brasil)](./USER-GUIDE.pt-BR.md) · [العربية](./USER-GUIDE.ar.md) · [বাংলা](./USER-GUIDE.bn.md) · [Català](./USER-GUIDE.ca.md) · [简体中文](./USER-GUIDE.zh-Hans.md) · [繁體中文](./USER-GUIDE.zh-Hant.md) · [Hrvatski](./USER-GUIDE.hr.md) · [Čeština](./USER-GUIDE.cs.md) · [Nederlands](./USER-GUIDE.nl.md) · [English (US)](./USER-GUIDE.en-US.md) · [Tagalog](./USER-GUIDE.tl.md) · [Français](./USER-GUIDE.fr.md) · [Deutsch](./USER-GUIDE.de.md) · [Ελληνικά](./USER-GUIDE.el.md) · [Hindi (Roman)](./USER-GUIDE.hi-Latn.md) · [Magyar](./USER-GUIDE.hu.md) · [Italiano](./USER-GUIDE.it.md) · [日本語](./USER-GUIDE.ja.md) · [한국어](./USER-GUIDE.ko.md) · [Bahasa Melayu](./USER-GUIDE.ms.md) · [فارسی](./USER-GUIDE.fa.md) · [Polski](./USER-GUIDE.pl.md) · [Basa Jawa](./USER-GUIDE.jv.md) · [Português](./USER-GUIDE.pt.md) · [پنجابی](./USER-GUIDE.pa-PK.md) · [Română](./USER-GUIDE.ro.md) · [Русский](./USER-GUIDE.ru.md) · [Slovenčina](./USER-GUIDE.sk.md) · [Español](./USER-GUIDE.es.md) · [Kiswahili](./USER-GUIDE.sw.md) · [Svenska](./USER-GUIDE.sv.md) · [తెలుగు](./USER-GUIDE.te.md) · [ไทย](./USER-GUIDE.th.md) · [Türkçe](./USER-GUIDE.tr.md) · [Українська](./USER-GUIDE.uk.md) · [Tiếng Việt](./USER-GUIDE.vi.md)</small>
 
 <small>
 
@@ -104,7 +104,7 @@ Transrewrt به شما در کار با متن به سه روش اصلی کمک 
 <a id="before-you-start"></a>
 ## قبل از شروع
 
-برای استفاده از Transrewrt، باید دسترسی به حداقل یک ارائه‌دهنده هوش مصنوعی داشته باشید. ارائه‌دهندگان پشتیبانی‌شده عبارتند از: [OpenRouter](https://openrouter.ai) (که مدل‌های زیادی را تجمیع می‌کند)، OpenAI، Anthropic، Google Gemini، DeepSeek، Groq، Mistral، xAI، Cerebras و [Ollama](https://ollama.com) برای مدل‌های محلی.
+برای استفاده از Transrewrt، شما به دسترسی به حداقل یک ارائه‌دهنده هوش مصنوعی نیاز دارید. ارائه‌دهندگان پشتیبانی شده عبارتند از: [OpenRouter](https://openrouter.ai) (که بسیاری از مدل‌ها را تجمیع می‌کند)، OpenAI، Anthropic، Google Gemini، DeepSeek، Groq، Mistral، xAI، Cerebras، NVIDIA، Alibaba Cloud، apikey.fun، هر ارائه‌دهنده سازگار با OpenAI، و [Ollama](https://ollama.com) برای مدل‌های محلی.
 
 برای شروع نیازی به انتخاب یک مدل پولی ندارید. به محض افزودن کلید API OpenRouter خود، برنامه به طور خودکار یک گزینه **رایگان** داخلی OpenRouter را فعال می‌کند. این به شما امکان می‌دهد فوراً شروع به ترجمه، بازنویسی و تبدیل متن کنید. به طور متناوب، شما همچنین می‌توانید یک کلید API رایگان از Cerebras، Google، Groq، Mistral AI، یا [NVIDIA](https://build.nvidia.com/) (API سازگار با OpenAI) دریافت کنید.
 
@@ -762,7 +762,7 @@ Transrewrt به شما در کار با متن به سه روش اصلی کمک 
 <a id="api-config"></a>
 ### پیکربندی API
 
-ارائه‌دهندگان پشتیبانی شده عبارتند از: OpenRouter، OpenAI، Anthropic، Google Gemini، DeepSeek، Groq، Mistral، xAI، Cerebras، **Ollama** (مدل‌های محلی از طریق URL پایه)، و یک **ارائه‌دهنده سفارشی سازگار با OpenAI** اختیاری (نام، URL و کلید API — فقط در حالت پیشرفته). شما فقط باید ارائه‌دهندگان مورد استفاده خود را پیکربندی کنید.
+ارائه‌دهندگان پشتیبانی شده عبارتند از: OpenRouter، OpenAI، Anthropic، Google Gemini، DeepSeek، Groq، Mistral، xAI، Cerebras، NVIDIA، Alibaba Cloud، apikey.fun، **Ollama** (مدل‌های محلی از طریق یک URL پایه)، و یک **ارائه‌دهنده سفارشی سازگار با OpenAI** اختیاری (نام، URL و کلید API — فقط در حالت پیشرفته). شما فقط باید ارائه‌دهندگانی را که استفاده می‌کنید پیکربندی کنید.
 
 **برنامه وب: فقط مدیر سیستم**
 
@@ -782,7 +782,7 @@ Transrewrt به شما در کار با متن به سه روش اصلی کمک 
 
 **برنامه دسکتاپ**
 
-از **پیکربندی API** برای ذخیره کلیدهای API برای هر ارائه‌دهنده که استفاده می‌کنید استفاده کنید. برای Ollama، به جای کلید API، **URL پایه** را وارد کنید. برای یک ارائه‌دهنده سفارشی سازگار با OpenAI (مانند [NVIDIA NIM](https://build.nvidia.com/))، یک **نام ارائه‌دهنده**، **URL پایه** (مانند `https://integrate.api.nvidia.com/v1`) و **کلید API** را وارد کنید؛ هر سه مورد نیاز است. URL و نام به صورت درون خطی ویرایش می‌شوند؛ برای جایگزینی کلید API از **ویرایش** استفاده کنید. مدل‌های ارائه‌دهنده سفارشی فقط در حالت **پیشرفته** ظاهر می‌شوند (تنظیمات → مدل‌ها).
+از **پیکربندی API** برای ذخیره کلیدهای API برای هر ارائه‌دهنده که استفاده می‌کنید استفاده کنید. برای Ollama، به جای کلید API، **URL پایه** را وارد کنید. برای یک ارائه‌دهنده سفارشی سازگار با OpenAI (هر نقطه پایانی که در لیست داخلی نیست، مانند یک سرور خود میزبان یا دروازه)، یک **نام ارائه‌دهنده**، **URL پایه** (مانند `https://my-llm.example.com/v1`) و **کلید API** را وارد کنید؛ هر سه مورد الزامی هستند. URL و نام به صورت درون خطی ویرایش می‌شوند؛ برای جایگزینی کلید API از **ویرایش** استفاده کنید. مدل‌های ارائه‌دهنده سفارشی فقط در حالت **پیشرفته** ظاهر می‌شوند (تنظیمات → مدل‌ها).
 
 <br/>
 
@@ -791,7 +791,7 @@ Transrewrt به شما در کار با متن به سه روش اصلی کمک 
 
 <br/>
 
-- فقط ارائه‌دهندگانی را که نیاز دارید اضافه کنید. در **تنظیمات** > **مدل‌ها**، هر شناسه مدل با ارائه‌دهنده شروع می‌شود (به عنوان مثال `openrouter/openrouter/free`، `openai/gpt-4o`، `ollama/llama3`، `NVIDIA/nvidia/nemotron-nano-3-30b-a3b` برای یک نقطه پایانی سفارشی به نام NVIDIA).
+- فقط ارائه‌دهندگانی را که نیاز دارید اضافه کنید. در **تنظیمات** > **مدل‌ها**، هر شناسه مدل با ارائه‌دهنده شروع می‌شود (به عنوان مثال `openrouter/openrouter/free`، `openai/gpt-4o`، `nvidia/nvidia/nemotron-nano-3-30b-a3b`، `ollama/llama3`، `MyProvider/…` برای یک نقطه پایانی سفارشی به نام `MyProvider`).
 
 برای افزودن یک کلید API، مقدار آن را در کادر متنی وارد کرده و روی دکمهٔ `Save` کلیک کنید. برای جایگزینی یک کلید موجود، روی `Edit` کلیک کنید. برای بررسی صحت کارکرد یک کلید، روی `Test` کلیک کنید. برای آدرس پایهٔ Ollama، همیشه روی `Test` کلیک کنید تا اتصال بررسی شود.
 

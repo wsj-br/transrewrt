@@ -3,14 +3,14 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.0-blue" alt="Version"></a>
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.1-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
   <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react" alt="React 19">
   <img src="https://img.shields.io/badge/Electron-41-47848F?logo=electron" alt="Electron 41">
 </p>
 
-Alat teks bertenaga AI: terjemah antara bahasa, tulis semula dalam gaya berbeza, dan transformasi dengan prompt tersuai — menggunakan pelbagai penyedia AI (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, dan Ollama tempatan). Berjalan sebagai aplikasi desktop (Electron) atau aplikasi web yang dihos sendiri (Docker).
+Alat teks berkuasa AI: terjemah antara bahasa, tulis semula dalam gaya berbeza, dan transformasikan dengan gesaan tersuai - menggunakan pelbagai pembekal AI (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, mana-mana pembekal serasi OpenAI, dan Ollama setempat). Berjalan sebagai aplikasi desktop (Electron) atau aplikasi web yang dihoskan sendiri (Docker).
 
 - **Terjemah** - antara berpuluh-puluh bahasa, dengan pengesanan sumber automatik
 - **Menulis semula** - betulkan tatabahasa, tingkatkan kejelasan, formal/informal, pendekkan, panjangkan, teknikal
@@ -27,7 +27,7 @@ Alat teks bertenaga AI: terjemah antara bahasa, tulis semula dalam gaya berbeza,
 Selepas dipasang, rujuk [**Panduan Pengguna**](USER-GUIDE.ms.md) untuk penerangan lengkap semua ciri.
 
 <small>**Baca dalam bahasa lain:** </small>
-<small id="lang-list">[English (GB)](../README.md) · [Português (Brasil)](./README.pt-BR.md) · [العربية](./README.ar.md) · [বাংলা](./README.bn.md) · [Català](./README.ca.md) · [中文 (中国大陆)](./README.zh-CN.md) · [中文 (台灣)](./README.zh-TW.md) · [Hrvatski](./README.hr.md) · [Čeština](./README.cs.md) · [Nederlands](./README.nl.md) · [English (US)](./README.en-US.md) · [Tagalog](./README.tl.md) · [Français](./README.fr.md) · [Deutsch](./README.de.md) · [Ελληνικά](./README.el.md) · [हिन्दी](./README.hi.md) · [Magyar](./README.hu.md) · [Italiano](./README.it.md) · [日本語](./README.ja.md) · [한국어](./README.ko.md) · [Bahasa Melayu](./README.ms.md) · [فارسی](./README.fa.md) · [Polski](./README.pl.md) · [Basa Jawa](./README.jv.md) · [Português](./README.pt.md) · [ਪੰਜਾਬੀ](./README.pa.md) · [Română](./README.ro.md) · [Русский](./README.ru.md) · [Slovenčina](./README.sk.md) · [Español](./README.es.md) · [Kiswahili](./README.sw.md) · [Svenska](./README.sv.md) · [తెలుగు](./README.te.md) · [ไทย](./README.th.md) · [Türkçe](./README.tr.md) · [Українська](./README.uk.md) · [Tiếng Việt](./README.vi.md)</small>
+<small id="lang-list">[English (UK)](../README.md) · [Português (Brasil)](./README.pt-BR.md) · [العربية](./README.ar.md) · [বাংলা](./README.bn.md) · [Català](./README.ca.md) · [简体中文](./README.zh-Hans.md) · [繁體中文](./README.zh-Hant.md) · [Hrvatski](./README.hr.md) · [Čeština](./README.cs.md) · [Nederlands](./README.nl.md) · [English (US)](./README.en-US.md) · [Tagalog](./README.tl.md) · [Français](./README.fr.md) · [Deutsch](./README.de.md) · [Ελληνικά](./README.el.md) · [Hindi (Roman)](./README.hi-Latn.md) · [Magyar](./README.hu.md) · [Italiano](./README.it.md) · [日本語](./README.ja.md) · [한국어](./README.ko.md) · [Bahasa Melayu](./README.ms.md) · [فارسی](./README.fa.md) · [Polski](./README.pl.md) · [Basa Jawa](./README.jv.md) · [Português](./README.pt.md) · [پنجابی](./README.pa-PK.md) · [Română](./README.ro.md) · [Русский](./README.ru.md) · [Slovenčina](./README.sk.md) · [Español](./README.es.md) · [Kiswahili](./README.sw.md) · [Svenska](./README.sv.md) · [తెలుగు](./README.te.md) · [ไทย](./README.th.md) · [Türkçe](./README.tr.md) · [Українська](./README.uk.md) · [Tiếng Việt](./README.vi.md)</small>
 
 <small>
 
@@ -255,7 +255,7 @@ Transrewrt menyokong banyak penyedia AI. [OpenRouter](https://openrouter.ai) ada
 
 Jangan gunakan model **Body Builder** OpenRouter ([`openrouter/bodybuilder`](https://openrouter.ai/openrouter/bodybuilder)) untuk terjemah, tulis semula, atau transformasi: ia mengembalikan muatan permintaan JSON, bukan teks siap untuk tugas-tugas tersebut. Rujuk [Tetapan → Model](USER-GUIDE.ms.md#models) dalam Panduan Pengguna.
 
-Anda juga boleh gunakan penyedia lain (OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras) atau jalankan model secara tempatan dengan [Ollama](https://ollama.com). Rujuk [Konfigurasi](#configuration-and-environment) untuk senarai penuh penyedia yang disokong dan pemboleh ubah persekitaran.
+Anda juga boleh menggunakan pembekal lain (OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, mana-mana pembekal serasi OpenAI) atau jalankan model secara setempat dengan [Ollama](https://ollama.com). Lihat [Konfigurasi](#configuration-and-environment) untuk senarai penuh pembekal yang disokong dan pembolehubah persekitaran.
 
 </br>
 
@@ -281,9 +281,9 @@ Anda juga boleh gunakan penyedia lain (OpenAI, Anthropic, Google Gemini, DeepSee
 
 **Pemboleh ubah persekitaran** (web/Docker sahaja; Electron menggunakan fail konfigurasi tempatan)
 
-| Pemboleh ubah             | Penerangan                                                                  |
-|----------------------|------------------------------------------------------------------------------|
-| `PORT`               | Port pendengaran pelayan (lalai ke `5000`)                                  |
+| Pembolehubah                | Huraian                                                                                 |
+|---------------------------|-----------------------------------------------------------------------------------------|
+| `PORT`                    | Port pendengaran pelayan (lalai kepada `5000`)                                          |
 | `CONFIG_PATH`        | Laluan ke fail konfigurasi (lalai ke `/app/data/config.json`)                |
 | `TZ`                 | zon masa untuk masa sisi pelayan (log, dll.) (lalai ke `Europe/London`) |
 | `HISTORY_DISABLED`   | Paksa sejarah pelaksanaan dimatikan (pilihan, lalai kepada `false`)                  |
@@ -297,11 +297,14 @@ Anda juga boleh gunakan penyedia lain (OpenAI, Anthropic, Google Gemini, DeepSee
 | `MISTRAL_API_KEY`    | Kunci API Mistral                                                              |
 | `OLLAMA_URL`         | URL asas Ollama (contoh: `http://host.docker.internal:11434`)                   |
 | `XAI_API_KEY`        | kunci API xAI                                                                  |
+| `NVIDIA_API_KEY`          | Kunci API NVIDIA                                                                        |
+| `ALIBABA_API_KEY`         | Kunci API Alibaba Cloud (DashScope)                                                     |
+| `APIFUN_API_KEY`          | Kunci API apikey.fun                                                                    |
 | `CUSTOM_PROVIDER_NAME` | Nama paparan untuk pembekal tersuai serasi OpenAI (ketiga-tiga pemboleh ubah tersuai diperlukan) |
-| `CUSTOM_PROVIDER_URL`  | URL asas untuk pembekal tersuai serasi OpenAI (contohnya `https://integrate.api.nvidia.com/v1`) |
+| `CUSTOM_PROVIDER_URL`     | URL asas untuk pembekal serasi OpenAI tersuai (cth. `https://my-llm.example.com/v1`) |
 | `CUSTOM_PROVIDER_API_KEY` | Kunci API untuk pembekal tersuai serasi OpenAI                         |
 
-**Pembekal tersuai serasi OpenAI (web/Docker):** tetapkan ketiga-tiga pemboleh ubah `CUSTOM_PROVIDER_*`. Contoh untuk [NVIDIA NIM](https://build.nvidia.com/): `CUSTOM_PROVIDER_NAME=NVIDIA`, `CUSTOM_PROVIDER_URL=https://integrate.api.nvidia.com/v1`, dan kunci API daripada [build.nvidia.com](https://build.nvidia.com/). Model muncul dalam mod **Lanjutan** di bawah Tetapan → Model dengan ID seperti `NVIDIA/…` (nama pembekal sebagai awalan).
+**Pembekal serasi OpenAI tersuai (web/Docker):** untuk mana-mana hujung OpenAI yang serasi yang tidak terdapat dalam senarai terbina di atas (cth. pelayan atau gerbang yang dihoskan sendiri), tetapkan ketiga-tiga pembolehubah `CUSTOM_PROVIDER_*` — contohnya `CUSTOM_PROVIDER_NAME=MyProvider`, `CUSTOM_PROVIDER_URL=https://my-llm.example.com/v1`, dan kunci API yang sepadan. Model muncul dalam mod **Lanjutan** di bawah Tetapan → Model dengan ID seperti `MyProvider/…` (nama pembekal sebagai awalan).
 
 **Mod privasi:** Untuk memaksa pemecatan pengesanan sejarah tanpa mengira `config.json` atau keutamaan pengguna, tetapkan `HISTORY_DISABLED` kepada `true` atau `1` (tidak sensitif kepada huruf besar/kecil) untuk proses **pelayan web/Docker** dan/atau proses utama **Electron desktop** (contohnya persekitaran sistem atau pelancar — bukan hanya perender). Ini melumpuhkan penyimpanan sejarah input/output, mengunci **Tetapan → Tetapan Umum → Sejarah**, dan menyekat API berkaitan Sejarah.
 

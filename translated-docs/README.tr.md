@@ -3,14 +3,14 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.0-blue" alt="Version"></a>
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.1-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
   <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react" alt="React 19">
   <img src="https://img.shields.io/badge/Electron-41-47848F?logo=electron" alt="Electron 41">
 </p>
 
-Yapay zekâ destekli metin aracı: çoklu yapay zekâ sağlayıcılarını (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI ve yerel Ollama) kullanarak diller arasında çevirin, farklı stillerde yeniden yazın ve özel istemlerle dönüştürün - Masaüstü uygulaması (Electron) veya kendi barındırılan web uygulaması (Docker) olarak çalışır.
+Yapay zeka destekli metin aracı: diller arasında çeviri yapın, farklı tarzlarda yeniden yazın ve özel komutlarla dönüştürün - birden fazla yapay zeka sağlayıcısı (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, herhangi bir OpenAI uyumlu sağlayıcı ve yerel Ollama) kullanarak. Masaüstü uygulaması (Electron) veya kendi kendine barındırılan web uygulaması (Docker) olarak çalışır.
 
 - **Çevir** - düzinelerce dil arasında, otomatik kaynak algılama ile
 - **Yeniden yazma** - dilbilgisini düzelt, netliği geliştir, resmi/gayriresmi, kısalt, genişlet, teknik
@@ -27,7 +27,7 @@ Yapay zekâ destekli metin aracı: çoklu yapay zekâ sağlayıcılarını (Open
 Kurulduktan sonra tüm özelliklerin tam bir kılavuzu için [**Kullanıcı Kılavuzu**](USER-GUIDE.tr.md) bölümüne bakın.
 
 <small>**Diğer dillerde oku:** </small>
-<small id="lang-list">[English (GB)](../README.md) · [Português (Brasil)](./README.pt-BR.md) · [العربية](./README.ar.md) · [বাংলা](./README.bn.md) · [Català](./README.ca.md) · [中文 (中国大陆)](./README.zh-CN.md) · [中文 (台灣)](./README.zh-TW.md) · [Hrvatski](./README.hr.md) · [Čeština](./README.cs.md) · [Nederlands](./README.nl.md) · [English (US)](./README.en-US.md) · [Tagalog](./README.tl.md) · [Français](./README.fr.md) · [Deutsch](./README.de.md) · [Ελληνικά](./README.el.md) · [हिन्दी](./README.hi.md) · [Magyar](./README.hu.md) · [Italiano](./README.it.md) · [日本語](./README.ja.md) · [한국어](./README.ko.md) · [Bahasa Melayu](./README.ms.md) · [فارسی](./README.fa.md) · [Polski](./README.pl.md) · [Basa Jawa](./README.jv.md) · [Português](./README.pt.md) · [ਪੰਜਾਬੀ](./README.pa.md) · [Română](./README.ro.md) · [Русский](./README.ru.md) · [Slovenčina](./README.sk.md) · [Español](./README.es.md) · [Kiswahili](./README.sw.md) · [Svenska](./README.sv.md) · [తెలుగు](./README.te.md) · [ไทย](./README.th.md) · [Türkçe](./README.tr.md) · [Українська](./README.uk.md) · [Tiếng Việt](./README.vi.md)</small>
+<small id="lang-list">[English (UK)](../README.md) · [Português (Brasil)](./README.pt-BR.md) · [العربية](./README.ar.md) · [বাংলা](./README.bn.md) · [Català](./README.ca.md) · [简体中文](./README.zh-Hans.md) · [繁體中文](./README.zh-Hant.md) · [Hrvatski](./README.hr.md) · [Čeština](./README.cs.md) · [Nederlands](./README.nl.md) · [English (US)](./README.en-US.md) · [Tagalog](./README.tl.md) · [Français](./README.fr.md) · [Deutsch](./README.de.md) · [Ελληνικά](./README.el.md) · [Hindi (Roman)](./README.hi-Latn.md) · [Magyar](./README.hu.md) · [Italiano](./README.it.md) · [日本語](./README.ja.md) · [한국어](./README.ko.md) · [Bahasa Melayu](./README.ms.md) · [فارسی](./README.fa.md) · [Polski](./README.pl.md) · [Basa Jawa](./README.jv.md) · [Português](./README.pt.md) · [پنجابی](./README.pa-PK.md) · [Română](./README.ro.md) · [Русский](./README.ru.md) · [Slovenčina](./README.sk.md) · [Español](./README.es.md) · [Kiswahili](./README.sw.md) · [Svenska](./README.sv.md) · [తెలుగు](./README.te.md) · [ไทย](./README.th.md) · [Türkçe](./README.tr.md) · [Українська](./README.uk.md) · [Tiếng Việt](./README.vi.md)</small>
 
 <small>
 
@@ -255,7 +255,7 @@ Transrewrt, birden fazla yapay zeka sağlayıcısını destekler. [OpenRouter](h
 
 Çeviri, yeniden yazma veya dönüştürme işlemleri için OpenRouter'ın **Body Builder** modelini ([`openrouter/bodybuilder`](https://openrouter.ai/openrouter/bodybuilder)) kullanmayın: bu model tamamlanmış metin yerine JSON istek yükleri döndürür. Kullanıcı Kılavuzu'ndaki [Ayarlar → Modeller](USER-GUIDE.tr.md#models) bölümüne bakın.
 
-Ayrıca diğer sağlayıcıları (OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras) kullanabilir veya [Ollama](https://ollama.com) ile yerel olarak modeller çalıştırabilirsiniz. Desteklenen sağlayıcıların ve ortam değişkenlerinin tam listesi için [Yapılandırma](#configuration-and-environment) bölümüne bakın.
+Diğer sağlayıcıları (OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, herhangi bir OpenAI uyumlu sağlayıcı) da kullanabilir veya modelleri yerel olarak [Ollama](https://ollama.com) ile çalıştırabilirsiniz. Desteklenen sağlayıcıların ve ortam değişkenlerinin tam listesi için [Yapılandırma](#configuration-and-environment) bölümüne bakın.
 
 </br>
 
@@ -281,9 +281,9 @@ Ayrıca diğer sağlayıcıları (OpenAI, Anthropic, Google Gemini, DeepSeek, Gr
 
 **Ortam değişkenleri** (sadece web/Docker; Electron yerel yapılandırma dosyasını kullanır)
 
-| Değişken             | Açıklama                                                                  |
-|----------------------|------------------------------------------------------------------------------|
-| `PORT`               | Sunucunun dinlediği port (varsayılan: `5000`)                                  |
+| Değişken                  | Açıklama                                                                             |
+|---------------------------|-----------------------------------------------------------------------------------------|
+| `PORT`                    | Sunucu dinleme portu (varsayılan `5000`'dir)                                             |
 | `CONFIG_PATH`        | Yapılandırma dosyasının yolu (varsayılan: `/app/data/config.json`)                |
 | `TZ`                 | Sunucu tarafı saat dilimi (günlük kaydı vb.) (varsayılan: `Europe/London`) |
 | `HISTORY_DISABLED`   | Geçmiş izlemeyi devre dışı bırakır (isteğe bağlı, varsayılan olarak `false`)                  |
@@ -297,11 +297,14 @@ Ayrıca diğer sağlayıcıları (OpenAI, Anthropic, Google Gemini, DeepSeek, Gr
 | `MISTRAL_API_KEY`    | Mistral API anahtarı                                                              |
 | `OLLAMA_URL`         | Ollama temel URL'si (örneğin `http://host.docker.internal:11434`)                   |
 | `XAI_API_KEY`        | xAI API anahtarı                                                                  |
+| `NVIDIA_API_KEY`          | NVIDIA API anahtarı                                                                         |
+| `ALIBABA_API_KEY`         | Alibaba Cloud (DashScope) API anahtarı                                                       |
+| `APIFUN_API_KEY`          | apikey.fun API anahtarı                                                                      |
 | `CUSTOM_PROVIDER_NAME` | Özel bir OpenAI uyumlu sağlayıcı için görünen ad (her üç özel değişken de gereklidir) |
-| `CUSTOM_PROVIDER_URL`  | Özel bir OpenAI uyumlu sağlayıcı için temel URL (örneğin, `https://integrate.api.nvidia.com/v1`) |
+| `CUSTOM_PROVIDER_URL`     | Özel bir OpenAI uyumlu sağlayıcı için temel URL (örneğin `https://my-llm.example.com/v1`) |
 | `CUSTOM_PROVIDER_API_KEY` | Özel bir OpenAI uyumlu sağlayıcı için API anahtarı                         |
 
-**Özel OpenAI uyumlu sağlayıcı (web/Docker):** üç `CUSTOM_PROVIDER_*` değişkenini de ayarlayın. [NVIDIA NIM](https://build.nvidia.com/) için örnek: `CUSTOM_PROVIDER_NAME=NVIDIA`, `CUSTOM_PROVIDER_URL=https://integrate.api.nvidia.com/v1` ve [build.nvidia.com](https://build.nvidia.com/) adresinden bir API anahtarı. Modeller, Ayarlar → Modeller altında **Gelişmiş** modda `NVIDIA/…` gibi kimliklerle görünür (sağlayıcı adı önek olarak kullanılır).
+**Özel OpenAI uyumlu sağlayıcı (web/Docker):** yerleşik listede olmayan herhangi bir OpenAI uyumlu uç nokta için (örneğin kendi kendine barındırılan bir sunucu veya ağ geçidi), üç `CUSTOM_PROVIDER_*` değişkenini de ayarlayın — örneğin `CUSTOM_PROVIDER_NAME=MyProvider`, `CUSTOM_PROVIDER_URL=https://my-llm.example.com/v1` ve eşleşen API anahtarı. Modeller, Ayarlar → Modeller altında **Gelişmiş** modda `MyProvider/…` gibi kimliklerle görünür (sağlayıcı adı önek olarak).
 
 **Gizlilik modu:** `config.json` veya kullanıcı tercihlerinden bağımsız olarak geçmiş izlemeyi devre dışı bırakmak için **web/Docker sunucu süreci** ve/veya **Electron masaüstü ana süreci** için `HISTORY_DISABLED` değerini `true` veya `1` olarak ayarlayın (büyük/küçük harf duyarsız) (örneğin sistem veya başlatıcı ortamı — yalnızca renderer değil). Bu, girdi/çıktı geçmişinin kaydedilmesini devre dışı bırakır, **Ayarlar → Genel Ayarlar → Geçmiş** bölümünü kilitler ve Geçmiş ile ilgili API'leri engeller.
 

@@ -28,7 +28,7 @@ This guide explains how to use the app once it is installed and running. For ins
 > Transrewrt is available as a desktop app for Windows and Linux, and as a self-hosted web app. This guide focuses on everyday use of the app. Where something only applies to one version, it is clearly marked.
 
 <small>**Read in other languages:** </small>
-<small id="lang-list">[English (GB)](./USER-GUIDE.md) · [Português (Brasil)](./translated-docs/USER-GUIDE.pt-BR.md) · [العربية](./translated-docs/USER-GUIDE.ar.md) · [বাংলা](./translated-docs/USER-GUIDE.bn.md) · [Català](./translated-docs/USER-GUIDE.ca.md) · [中文 (中国大陆)](./translated-docs/USER-GUIDE.zh-CN.md) · [中文 (台灣)](./translated-docs/USER-GUIDE.zh-TW.md) · [Hrvatski](./translated-docs/USER-GUIDE.hr.md) · [Čeština](./translated-docs/USER-GUIDE.cs.md) · [Nederlands](./translated-docs/USER-GUIDE.nl.md) · [English (US)](./translated-docs/USER-GUIDE.en-US.md) · [Tagalog](./translated-docs/USER-GUIDE.tl.md) · [Français](./translated-docs/USER-GUIDE.fr.md) · [Deutsch](./translated-docs/USER-GUIDE.de.md) · [Ελληνικά](./translated-docs/USER-GUIDE.el.md) · [हिन्दी](./translated-docs/USER-GUIDE.hi.md) · [Magyar](./translated-docs/USER-GUIDE.hu.md) · [Italiano](./translated-docs/USER-GUIDE.it.md) · [日本語](./translated-docs/USER-GUIDE.ja.md) · [한국어](./translated-docs/USER-GUIDE.ko.md) · [Bahasa Melayu](./translated-docs/USER-GUIDE.ms.md) · [فارسی](./translated-docs/USER-GUIDE.fa.md) · [Polski](./translated-docs/USER-GUIDE.pl.md) · [Basa Jawa](./translated-docs/USER-GUIDE.jv.md) · [Português](./translated-docs/USER-GUIDE.pt.md) · [ਪੰਜਾਬੀ](./translated-docs/USER-GUIDE.pa.md) · [Română](./translated-docs/USER-GUIDE.ro.md) · [Русский](./translated-docs/USER-GUIDE.ru.md) · [Slovenčina](./translated-docs/USER-GUIDE.sk.md) · [Español](./translated-docs/USER-GUIDE.es.md) · [Kiswahili](./translated-docs/USER-GUIDE.sw.md) · [Svenska](./translated-docs/USER-GUIDE.sv.md) · [తెలుగు](./translated-docs/USER-GUIDE.te.md) · [ไทย](./translated-docs/USER-GUIDE.th.md) · [Türkçe](./translated-docs/USER-GUIDE.tr.md) · [Українська](./translated-docs/USER-GUIDE.uk.md) · [Tiếng Việt](./translated-docs/USER-GUIDE.vi.md)</small>
+<small id="lang-list">[English (UK)](./USER-GUIDE.md) · [Português (Brasil)](./translated-docs/USER-GUIDE.pt-BR.md) · [العربية](./translated-docs/USER-GUIDE.ar.md) · [বাংলা](./translated-docs/USER-GUIDE.bn.md) · [Català](./translated-docs/USER-GUIDE.ca.md) · [简体中文](./translated-docs/USER-GUIDE.zh-Hans.md) · [繁體中文](./translated-docs/USER-GUIDE.zh-Hant.md) · [Hrvatski](./translated-docs/USER-GUIDE.hr.md) · [Čeština](./translated-docs/USER-GUIDE.cs.md) · [Nederlands](./translated-docs/USER-GUIDE.nl.md) · [English (US)](./translated-docs/USER-GUIDE.en-US.md) · [Tagalog](./translated-docs/USER-GUIDE.tl.md) · [Français](./translated-docs/USER-GUIDE.fr.md) · [Deutsch](./translated-docs/USER-GUIDE.de.md) · [Ελληνικά](./translated-docs/USER-GUIDE.el.md) · [Hindi (Roman)](./translated-docs/USER-GUIDE.hi-Latn.md) · [Magyar](./translated-docs/USER-GUIDE.hu.md) · [Italiano](./translated-docs/USER-GUIDE.it.md) · [日本語](./translated-docs/USER-GUIDE.ja.md) · [한국어](./translated-docs/USER-GUIDE.ko.md) · [Bahasa Melayu](./translated-docs/USER-GUIDE.ms.md) · [فارسی](./translated-docs/USER-GUIDE.fa.md) · [Polski](./translated-docs/USER-GUIDE.pl.md) · [Basa Jawa](./translated-docs/USER-GUIDE.jv.md) · [Português](./translated-docs/USER-GUIDE.pt.md) · [پنجابی](./translated-docs/USER-GUIDE.pa-PK.md) · [Română](./translated-docs/USER-GUIDE.ro.md) · [Русский](./translated-docs/USER-GUIDE.ru.md) · [Slovenčina](./translated-docs/USER-GUIDE.sk.md) · [Español](./translated-docs/USER-GUIDE.es.md) · [Kiswahili](./translated-docs/USER-GUIDE.sw.md) · [Svenska](./translated-docs/USER-GUIDE.sv.md) · [తెలుగు](./translated-docs/USER-GUIDE.te.md) · [ไทย](./translated-docs/USER-GUIDE.th.md) · [Türkçe](./translated-docs/USER-GUIDE.tr.md) · [Українська](./translated-docs/USER-GUIDE.uk.md) · [Tiếng Việt](./translated-docs/USER-GUIDE.vi.md)</small>
 
 <small>
 
@@ -107,7 +107,7 @@ This guide explains how to use the app once it is installed and running. For ins
 <a id="before-you-start"></a>
 ## Before you start
 
-To use Transrewrt, you need access to at least one AI provider. The supported providers are: [OpenRouter](https://openrouter.ai) (which aggregates many models), OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, and [Ollama](https://ollama.com) for local models.
+To use Transrewrt, you need access to at least one AI provider. The supported providers are: [OpenRouter](https://openrouter.ai) (which aggregates many models), OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, any OpenAI-compatible provider, and [Ollama](https://ollama.com) for local models.
 
 You do not need to select a paid model to begin. As soon as you add your OpenRouter API key, the app automatically enables a built-in **free** OpenRouter option. This lets you start translating, rewriting, and transforming text right away. Alternatively, you can also obtain a free API key from Cerebras, Google, Groq, Mistral AI, or [NVIDIA](https://build.nvidia.com/) (OpenAI-compatible API).
 
@@ -774,7 +774,7 @@ Use **Users** to manage user accounts in the web version. You can add users, upd
 <a id="api-config"></a>
 ### API config
 
-The supported providers are: OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, **Ollama** (local models via a base URL), and an optional **custom OpenAI-compatible provider** (name, URL, and API key — Advanced mode only). You only need to configure the providers you use.
+The supported providers are: OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, **Ollama** (local models via a base URL), and an optional **custom OpenAI-compatible provider** (name, URL, and API key — Advanced mode only). You only need to configure the providers you use.
 
 **Web application: administrator only**
 
@@ -794,7 +794,7 @@ API keys are configured through system or Docker environment variables - they ar
 
 **Desktop application**
 
-Use **API Config** to store API keys for each provider you use. For Ollama, enter the **base URL** instead of an API key. For a custom OpenAI-compatible provider (e.g. [NVIDIA NIM](https://build.nvidia.com/)), enter a **provider name**, **base URL** (such as `https://integrate.api.nvidia.com/v1`), and **API key**; all three are required. The URL and name are edited inline; use **Edit** to replace the API key. Custom provider models appear in **Advanced** mode only (Settings → Models).
+Use **API Config** to store API keys for each provider you use. For Ollama, enter the **base URL** instead of an API key. For a custom OpenAI-compatible provider (any endpoint not in the built-in list, such as a self-hosted server or gateway), enter a **provider name**, **base URL** (such as `https://my-llm.example.com/v1`), and **API key**; all three are required. The URL and name are edited inline; use **Edit** to replace the API key. Custom provider models appear in **Advanced** mode only (Settings → Models).
 
 
 <br/>
@@ -804,7 +804,7 @@ Use **API Config** to store API keys for each provider you use. For Ollama, ente
 
 <br/>
 
-- Add only the providers you need. In **Settings** > **Models**, each model id starts with the provider (for example `openrouter/openrouter/free`, `openai/gpt-4o`, `ollama/llama3`, `NVIDIA/nvidia/nemotron-nano-3-30b-a3b` for a custom endpoint named NVIDIA).
+- Add only the providers you need. In **Settings** > **Models**, each model id starts with the provider (for example `openrouter/openrouter/free`, `openai/gpt-4o`, `nvidia/nvidia/nemotron-nano-3-30b-a3b`, `ollama/llama3`, `MyProvider/…` for a custom endpoint named `MyProvider`).
 
 To add an API key, enter the value in the text field and click `Save`. To replace an existing key, click `Edit`. To verify that a key is working, click `Test`. For the Ollama base URL, always click `Test` to check the connection.
 

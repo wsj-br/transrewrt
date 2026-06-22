@@ -26,7 +26,7 @@ Transrewrt помогает работать с текстом тремя осн
 > Transrewrt доступен как настольное приложение для Windows и Linux, а также как веб-приложение для самостоятельного размещения. В этом руководстве основное внимание уделяется повседневному использованию приложения. Если какая-то функция относится только к одной версии, это четко указано.
 
 <small>**Читать на других языках:** </small>
-<small id="lang-list">[English (GB)](../USER-GUIDE.md) · [Português (Brasil)](./USER-GUIDE.pt-BR.md) · [العربية](./USER-GUIDE.ar.md) · [বাংলা](./USER-GUIDE.bn.md) · [Català](./USER-GUIDE.ca.md) · [中文 (中国大陆)](./USER-GUIDE.zh-CN.md) · [中文 (台灣)](./USER-GUIDE.zh-TW.md) · [Hrvatski](./USER-GUIDE.hr.md) · [Čeština](./USER-GUIDE.cs.md) · [Nederlands](./USER-GUIDE.nl.md) · [English (US)](./USER-GUIDE.en-US.md) · [Tagalog](./USER-GUIDE.tl.md) · [Français](./USER-GUIDE.fr.md) · [Deutsch](./USER-GUIDE.de.md) · [Ελληνικά](./USER-GUIDE.el.md) · [हिन्दी](./USER-GUIDE.hi.md) · [Magyar](./USER-GUIDE.hu.md) · [Italiano](./USER-GUIDE.it.md) · [日本語](./USER-GUIDE.ja.md) · [한국어](./USER-GUIDE.ko.md) · [Bahasa Melayu](./USER-GUIDE.ms.md) · [فارسی](./USER-GUIDE.fa.md) · [Polski](./USER-GUIDE.pl.md) · [Basa Jawa](./USER-GUIDE.jv.md) · [Português](./USER-GUIDE.pt.md) · [ਪੰਜਾਬੀ](./USER-GUIDE.pa.md) · [Română](./USER-GUIDE.ro.md) · [Русский](./USER-GUIDE.ru.md) · [Slovenčina](./USER-GUIDE.sk.md) · [Español](./USER-GUIDE.es.md) · [Kiswahili](./USER-GUIDE.sw.md) · [Svenska](./USER-GUIDE.sv.md) · [తెలుగు](./USER-GUIDE.te.md) · [ไทย](./USER-GUIDE.th.md) · [Türkçe](./USER-GUIDE.tr.md) · [Українська](./USER-GUIDE.uk.md) · [Tiếng Việt](./USER-GUIDE.vi.md)</small>
+<small id="lang-list">[English (UK)](../USER-GUIDE.md) · [Português (Brasil)](./USER-GUIDE.pt-BR.md) · [العربية](./USER-GUIDE.ar.md) · [বাংলা](./USER-GUIDE.bn.md) · [Català](./USER-GUIDE.ca.md) · [简体中文](./USER-GUIDE.zh-Hans.md) · [繁體中文](./USER-GUIDE.zh-Hant.md) · [Hrvatski](./USER-GUIDE.hr.md) · [Čeština](./USER-GUIDE.cs.md) · [Nederlands](./USER-GUIDE.nl.md) · [English (US)](./USER-GUIDE.en-US.md) · [Tagalog](./USER-GUIDE.tl.md) · [Français](./USER-GUIDE.fr.md) · [Deutsch](./USER-GUIDE.de.md) · [Ελληνικά](./USER-GUIDE.el.md) · [Hindi (Roman)](./USER-GUIDE.hi-Latn.md) · [Magyar](./USER-GUIDE.hu.md) · [Italiano](./USER-GUIDE.it.md) · [日本語](./USER-GUIDE.ja.md) · [한국어](./USER-GUIDE.ko.md) · [Bahasa Melayu](./USER-GUIDE.ms.md) · [فارسی](./USER-GUIDE.fa.md) · [Polski](./USER-GUIDE.pl.md) · [Basa Jawa](./USER-GUIDE.jv.md) · [Português](./USER-GUIDE.pt.md) · [پنجابی](./USER-GUIDE.pa-PK.md) · [Română](./USER-GUIDE.ro.md) · [Русский](./USER-GUIDE.ru.md) · [Slovenčina](./USER-GUIDE.sk.md) · [Español](./USER-GUIDE.es.md) · [Kiswahili](./USER-GUIDE.sw.md) · [Svenska](./USER-GUIDE.sv.md) · [తెలుగు](./USER-GUIDE.te.md) · [ไทย](./USER-GUIDE.th.md) · [Türkçe](./USER-GUIDE.tr.md) · [Українська](./USER-GUIDE.uk.md) · [Tiếng Việt](./USER-GUIDE.vi.md)</small>
 
 <small>
 
@@ -104,7 +104,7 @@ Transrewrt помогает работать с текстом тремя осн
 <a id="before-you-start"></a>
 ## Перед началом
 
-Чтобы использовать Transrewrt, вам нужен доступ хотя бы к одному поставщику ИИ. Поддерживаемые поставщики: [OpenRouter](https://openrouter.ai) (объединяет множество моделей), OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras и [Ollama](https://ollama.com) для локальных моделей.
+Для использования Transrewrt вам нужен доступ хотя бы к одному ИИ-провайдеру. Поддерживаемые провайдеры: [OpenRouter](https://openrouter.ai) (который агрегирует множество моделей), OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, любой OpenAI-совместимый провайдер и [Ollama](https://ollama.com) для локальных моделей.
 
 Вам не нужно выбирать платную модель для начала работы. Как только вы добавите свой ключ API OpenRouter, приложение автоматически включит встроенный **бесплатный** вариант OpenRouter. Это позволит вам сразу же начать переводить, переписывать и преобразовывать текст. В качестве альтернативы вы также можете получить бесплатный ключ API от Cerebras, Google, Groq, Mistral AI или [NVIDIA](https://build.nvidia.com/) (API, совместимый с OpenAI).
 
@@ -762,7 +762,7 @@ Transrewrt помогает работать с текстом тремя осн
 <a id="api-config"></a>
 ### Конфигурация API
 
-Поддерживаемые провайдеры: OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, **Ollama** (локальные модели через базовый URL) и необязательный **пользовательский OpenAI-совместимый провайдер** (имя, URL и ключ API — только в расширенном режиме). Вам нужно настроить только те провайдеры, которые вы используете.
+Поддерживаемые провайдеры: OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, **Ollama** (локальные модели через базовый URL) и необязательный **пользовательский OpenAI-совместимый провайдер** (имя, URL и API-ключ — только в расширенном режиме). Вам нужно настроить только те провайдеры, которые вы используете.
 
 **Веб-приложение: только администратор**
 
@@ -782,7 +782,7 @@ Transrewrt помогает работать с текстом тремя осн
 
 **Приложение для ПК**
 
-Используйте **Конфигурация API** для хранения ключей API для каждого используемого вами провайдера. Для Ollama введите **базовый URL** вместо ключа API. Для пользовательского OpenAI-совместимого провайдера (например, [NVIDIA NIM](https://build.nvidia.com/)) введите **имя провайдера**, **базовый URL** (например, `https://integrate.api.nvidia.com/v1`) и **ключ API**; все три поля обязательны. URL и имя редактируются в строке; используйте **Изменить**, чтобы заменить ключ API. Модели пользовательского провайдера отображаются только в **Расширенном** режиме (Настройки → Модели).
+Используйте **Конфигурация API** для хранения API-ключей для каждого используемого вами провайдера. Для Ollama вместо API-ключа введите **базовый URL**. Для пользовательского OpenAI-совместимого провайдера (любой конечной точки, не входящей в встроенный список, например, собственный сервер или шлюз) введите **имя провайдера**, **базовый URL** (например, `https://my-llm.example.com/v1`) и **API-ключ**; все три поля обязательны. URL и имя редактируются в строке; используйте **Изменить** для замены API-ключа. Модели пользовательского провайдера отображаются только в **Расширенном** режиме (Настройки → Модели).
 
 <br/>
 
@@ -791,7 +791,7 @@ Transrewrt помогает работать с текстом тремя осн
 
 <br/>
 
-- Добавляйте только те провайдеры, которые вам нужны. В **Настройки** > **Модели** каждый идентификатор модели начинается с имени провайдера (например, `openrouter/openrouter/free`, `openai/gpt-4o`, `ollama/llama3`, `NVIDIA/nvidia/nemotron-nano-3-30b-a3b` для пользовательского конечного узла с именем NVIDIA).
+- Добавляйте только те провайдеры, которые вам нужны. В **Настройки** > **Модели** идентификатор каждой модели начинается с имени провайдера (например, `openrouter/openrouter/free`, `openai/gpt-4o`, `nvidia/nvidia/nemotron-nano-3-30b-a3b`, `ollama/llama3`, `MyProvider/…` для пользовательской конечной точки с именем `MyProvider`).
 
 Чтобы добавить ключ API, введите значение в текстовое поле и нажмите `Save`. Чтобы заменить существующий ключ, нажмите `Edit`. Чтобы проверить работоспособность ключа, нажмите `Test`. Для базового URL Ollama всегда нажимайте `Test`, чтобы проверить подключение.
 
