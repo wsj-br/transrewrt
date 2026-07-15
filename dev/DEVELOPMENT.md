@@ -1,6 +1,6 @@
 # Transrewrt - Development Guide
 
-Setup, build, test, and deploy instructions for the Transrewrt application (Electron, React, Web, Docker). For architecture (Electron vs web, **multi-llm-ts** / `/api/llm/*`, Easy mode / presets catalog, config and SQLite `user_preferences`, security and encryption), see **[SYSTEM-OVERVIEW.md](SYSTEM-OVERVIEW.md)**.
+Setup, build, test, and deploy instructions for the Transrewrt application (Electron, React, Web, Docker). For architecture (Electron vs web, Vercel AI SDK / `/api/llm/*`, Easy mode / presets catalog, config and SQLite `user_preferences`, security and encryption), see **[SYSTEM-OVERVIEW.md](SYSTEM-OVERVIEW.md)**.
 
 ---
 
@@ -51,12 +51,12 @@ Setup, build, test, and deploy instructions for the Transrewrt application (Elec
 
 ## Prerequisites
 
-- **Node.js 24** (LTS). The project uses Electron 41, which bundles Node 24. Use [.nvmrc](../.nvmrc) and `engines` in [package.json](../package.json). Run `nvm use` from the project root if using nvm.
+- **Node.js 24** (LTS). The project uses Electron 42, which bundles Node 24. Use [.nvmrc](../.nvmrc) and `engines` in [package.json](../package.json). Run `nvm use` from the project root if using nvm.
 - **pnpm** (package manager). Install globally: `npm install -g pnpm`.
 - **Git**.
 - **direnv** (recommended): Loads environment variables when you enter the project directory. The repo’s [.envrc](../.envrc) sources `.env` and `.env.local` if present (copy [.env.example](../.env.example) to `.env` and adjust). **Install:** macOS `brew install direnv`; Debian/Ubuntu `sudo apt install direnv`; other systems see [direnv installation](https://direnv.net/docs/installation.html). **Use:** Add a shell hook - Bash: `eval "$(direnv hook bash)"` in `~/.bashrc`; Zsh: `eval "$(direnv hook zsh)"` in `~/.zshrc`; Fish: `direnv hook fish | source` in `~/.config/fish/config.fish`. Open a new shell (or `source` the file), `cd` into the repo, then run `direnv allow` once to approve `.envrc`. On Windows, use WSL or Git Bash with the same hook pattern, or use the PowerShell helpers in [scripts/Load-DotEnv.ps1](../scripts/Load-DotEnv.ps1) instead.
-- **Chromium** (for `pnpm take-screenshots`). The screenshot script uses Puppeteer; on Linux (e.g. Raspberry Pi) the bundled Puppeteer binary may be x64, so install Chromium and set `PUPPETEER_EXECUTABLE_PATH` if needed. On Debian-based systems, install **Noto fonts** so the language-selector screenshot renders Korean/Telugu/Thai correctly: `fonts-noto-cjk`, `fonts-noto-core` (see [Linux](#linux-debian-based-ubuntu-debian-mint) below).
-- **Security:** Run `pnpm audit` periodically. The project uses pnpm `overrides` in package.json for patched transitive dependencies; keep them updated. 
+- **Chromium** (for `pnpm take-screenshots`). The screenshot script uses Puppeteer; on Linux (e.g. Raspberry Pi) the bundled Puppeteer binary may be x64, so install Chromium and set `PUPPETEER_EXECUTABLE_PATH` if needed. On Debian-based systems, install **Noto fonts** so the language-selector screenshot renders Korean/Telugu/Thai correctly: `fonts-noto-cjk`, `fonts-noto-core` (see [Linux](#linux-debian-based-ubuntu-debian-zorin-mint) below).
+- **Security:** Run `pnpm audit` periodically. The project uses pnpm `overrides` in [pnpm-workspace.yaml](../pnpm-workspace.yaml) for patched transitive dependencies; keep them updated.
 
 ### Windows 11
 
@@ -258,7 +258,7 @@ Opens [http://127.0.0.1:8765/](http://127.0.0.1:8765/) by default (or the port i
 | **Catalog cache** | `presets-editor-provider-catalogs.json` at repo root (gitignored, 2 h TTL) |
 | **Server log** | `presets-editor.log` at repo root (previous run rotated to `presets-editor-<timestamp>.log` on startup); both removed by [clean-workspace](#cleaning-the-workspace) scripts |
 
-Architecture and runtime sync (6 h GitHub pull, Easy-only Electron sync, `POST /api/presets/sync` on web): **[SYSTEM-OVERVIEW.md](SYSTEM-OVERVIEW.md#easy-mode-and-skills-catalog)**.
+Architecture and runtime sync (6 h GitHub pull, Easy-only Electron sync, `POST /api/presets/sync` on web): **[SYSTEM-OVERVIEW.md](SYSTEM-OVERVIEW.md#easy-mode-and-presets-catalog)**.
 
 ### Skill-check cron (development)
 
@@ -394,11 +394,11 @@ The UI uses **react-i18next** with a key-as-default pattern (English in source i
 | `pnpm run i18n:cleanup`                         | Remove stale i18n pipeline artifacts (see `ai-i18n-tools cleanup --help`)                                                                                                                    |
 | `pnpm run clean-temp`                           | Find and remove `*.log` and `cache.db.backup*.sqlite` under a tree (`ai-i18n-tools clean-temp`; use `--force` to skip prompt)                                                              |
 | `pnpm run i18n:editor`                          | Open the string editor when configured                                                                                                                                                     |
-| `pnpm exec ai-i18n-tools generate-ui-languages` | Regenerate [`src/renderer/locales/ui-languages.json`](../src/renderer/locales/ui-languages.json) from config (includes `direction` per locale)                                             |
+| `pnpm run i18n:locales`                         | Regenerate [`src/renderer/locales/ui-languages.json`](../src/renderer/locales/ui-languages.json) from config (includes `direction` per locale); alias for `ai-i18n-tools generate-ui-languages` |
 
 **OpenRouter model ids** (default and fallback order) live under `openrouter.translationModels` in `ai-i18n-tools.config.json` — **not** app `config.json`. The same list is consumed by [`scripts/generate-test-data.js`](../scripts/generate-test-data.js). Override for a single run where supported (e.g. `pnpm run i18n:translate:ui -- --model <id>`).
 
-**Add a new UI language:** (1) Add the locale to `targetLocales` in `ai-i18n-tools.config.json`, (2) run `pnpm exec ai-i18n-tools generate-ui-languages` and review `ui-languages.json`, (3) run `pnpm run i18n:extract` then `pnpm run i18n:translate:ui` (or `i18n:sync`). Document and layout direction use `direction` in `ui-languages.json` via `applyDirection` in [`src/renderer/i18n.js`](../src/renderer/i18n.js) — see [i18n.md](i18n.md).
+**Add a new UI language:** (1) Add the locale to `targetLocales` in `ai-i18n-tools.config.json`, (2) run `pnpm run i18n:locales` (or `pnpm exec ai-i18n-tools generate-ui-languages`) and review `ui-languages.json`, (3) run `pnpm run i18n:extract` then `pnpm run i18n:translate:ui` (or `i18n:sync`). Document and layout direction use `direction` in `ui-languages.json` via `applyDirection` in [`src/renderer/i18n.ts`](../src/renderer/i18n.ts) — see [i18n.md](i18n.md).
 
 **Documentation translation:** The `documentations` array in `ai-i18n-tools.config.json` lists content paths (e.g. `README.md`, `USER-GUIDE.md`), `outputDir` (e.g. `translated-docs/`), and post-processing (screenshot paths, language-list block). Outputs are typically `basename.<locale>.md`. Caching uses `cacheDir` (default `.translation-cache`); it is **not** compatible with a legacy custom cache under `translated-docs/.cache` — archive or remove old caches when migrating.
 
@@ -419,11 +419,11 @@ Regenerate the **production** dependency license bundle for releases and complia
 
 
 
-Implementation: [scripts/write-third-party-licenses.js](../scripts/write-third-party-licenses.js) runs `license-checker-rseidelsohn` (devDependency) with `--production`, `--json`, [3p-lic-clarifications.json](../3p-lic-clarifications.json), and [scripts/license-checker-custom-format.json](../scripts/license-checker-custom-format.json). The custom-format file is required so clarifications can supply `licenseText` (upstream only merges that field when a custom format includes `licenseText`). The script then emits the same vertical layout as the stock `--plainVertical` output but **prefers `licenseText` from clarifications** when present, so packages that ship **no `LICENSE` file** (and would otherwise use `README.md` as the license source) can show real license text instead of the readme.
+Implementation: [scripts/write-third-party-notices.js](../scripts/write-third-party-notices.js) runs `license-checker-rseidelsohn` (devDependency) with `--production`, `--json`, [3p-lic-clarifications.json](../3p-lic-clarifications.json), and [scripts/license-checker-custom-format.json](../scripts/license-checker-custom-format.json). The custom-format file is required so clarifications can supply `licenseText` (upstream only merges that field when a custom format includes `licenseText`). The script then emits the same vertical layout as the stock `--plainVertical` output but **prefers `licenseText` from clarifications** when present, so packages that ship **no `LICENSE` file** (and would otherwise use `README.md` as the license source) can show real license text instead of the readme.
 
 **When to run:** After adding, removing, or bumping **production** dependencies, or when you edit `3p-lic-clarifications.json`. Commit the updated `NOTICES` with the dependency change when appropriate.
 
-**Overrides:** Edit [3p-lic-clarifications.json](../3p-lic-clarifications.json). Keys are `packageName@versionOrRange`: the part after the **last** `@` is matched with `semver.satisfies` (or exact equality), so you can use **ranges** such as `embla-carousel@^8.0.0` or `multi-llm-ts@>=5.1.0-beta4 <7.0.0-0` and avoid editing the file on every patch bump. Use a new major-specific range (or an extra entry) when a major upgrade might change license text. See the [license-checker-rseidelsohn](https://www.npmjs.com/package/license-checker-rseidelsohn) readme (*Clarifications*). Scoped packages: `@scope/name@^1.2.3`. Typical fields: `licenseText` (full text), optionally `licenses`, `licenseFile`, `checksum`, `licenseStart` / `licenseEnd`.
+**Overrides:** Edit [3p-lic-clarifications.json](../3p-lic-clarifications.json). Keys are `packageName@versionOrRange`: the part after the **last** `@` is matched with `semver.satisfies` (or exact equality), so you can use **ranges** such as `embla-carousel@^8.0.0` or `ai@^7.0.0` and avoid editing the file on every patch bump. Use a new major-specific range (or an extra entry) when a major upgrade might change license text. See the [license-checker-rseidelsohn](https://www.npmjs.com/package/license-checker-rseidelsohn) readme (*Clarifications*). Scoped packages: `@scope/name@^1.2.3`. Typical fields: `licenseText` (full text), optionally `licenses`, `licenseFile`, `checksum`, `licenseStart` / `licenseEnd`.
 
 ---
 
@@ -443,7 +443,7 @@ There is no automated test suite (`pnpm test` exits with an error placeholder). 
 
 Optional: `pnpm generate-test-data` to generate test data for the cost dashboard. For **Transform** mode, use “Load sample prompts” in the UI to import prompts from `src/config-defaults/transform-prompts.json`, or manage prompts in **Settings → Transform prompts**. The **History** sidebar view lists execution history when **Keep execution history** is enabled (**Settings → General**); web mode loads rows via `/api/calls/history` ([src/server/routes/calls.js](../src/server/routes/calls.js)).
 
-**Easy mode:** Default `mode` is `"easy"` ([config_default.json](../src/config-defaults/config_default.json)). Test skill selection in the toolbar and **Settings → General** (Provider, catalog version/refresh). Switch to **Advanced** in the same panel to exercise **Settings → Models**. Edit the catalog with `pnpm run presets-editor` (see [Presets catalog editor](#skills-catalog-editor-development)).
+**Easy mode:** Default `mode` is `"easy"` ([config_default.json](../src/config-defaults/config_default.json)). Test skill selection in the toolbar and **Settings → General** (Provider, catalog version/refresh). Switch to **Advanced** in the same panel to exercise **Settings → Models**. Edit the catalog with `pnpm run presets-editor` (see [Presets catalog editor](#presets-catalog-editor-development)).
 
 ---
 
@@ -461,7 +461,7 @@ Publishing the release creates tag **`vX.Y.Z`** at **HEAD**, pushes it to **`ori
 
 Before cutting a release, run checks that mirror what CI exercises before packaging:
 
-1. **`pnpm lint`**
+1. **`pnpm lint`** (ESLint + `pnpm typecheck`)
 2. **`pnpm build`** then **`pnpm run build:main`**
 
 Fix any failures. Optionally run **`pnpm package`** locally for a full Electron packaging smoke test (slow; CI runs this on Windows and Linux).
@@ -628,7 +628,7 @@ All npm scripts defined in [package.json](../package.json) are listed below (gro
 | `pnpm dev`                           | Electron development: runs Webpack on **:4030**, enables hot reload, and performs native rebuild for Electron.                                              |
 | `pnpm dev:web`                       | Web development: runs Webpack on **:5500**, and API server on **:4030** (proxied as `/api`).                                                                |
 | `pnpm run presets-editor`         | Dev-only Easy-mode catalog editor on **:8765** (see [presets-editor/README.md](presets-editor/README.md)).                                                    |
-| `pnpm run presets-check`               | Validate/replace Easy-mode model ids (see [Skill-check cron](#presets-check-cron-development); pass `-- --local`, `--dry-run`, etc.)                          |
+| `pnpm run presets-check`               | Validate/replace Easy-mode model ids (see [Skill-check cron](#skill-check-cron-development); pass `-- --local`, `--dry-run`, etc.)                          |
 | `pnpm run presets-check:install`       | Install isolated presets-check runtime for cron (e.g. `-- --target /opt/transrewrt-presets-check`)                                                              |
 | `pnpm build` / `pnpm build-renderer` | Creates a production Webpack build in the `dist/` directory.                                                                                                |
 | `pnpm run build:main`                | Webpack build of Electron main/preload → `dist-main/` (included in `package` / `package-arm64`).                                                            |
@@ -644,8 +644,9 @@ All npm scripts defined in [package.json](../package.json) are listed below (gro
 
 | Command         | Purpose                                                                 |
 |-----------------|-------------------------------------------------------------------------|
-| `pnpm lint`     | Run ESLint on the repo                                                  |
-| `pnpm lint:fix` | ESLint with `--fix`                                                     |
+| `pnpm lint`     | Run ESLint, then `pnpm typecheck`                                       |
+| `pnpm lint:fix` | ESLint with `--fix` (does not run typecheck)                            |
+| `pnpm typecheck`| TypeScript check (`tsc --noEmit`) for the React renderer                |
 | `pnpm test`     | Placeholder only (no automated test suite yet; exits with an error)     |
 
 ### UI translations and docs (ai-i18n-tools)
@@ -661,9 +662,10 @@ See also [UI translations and documentation (ai-i18n-tools)](#ui-translations-an
 | `pnpm run i18n:translate`      | `translate-ui`, then `translate-docs`                                                                |
 | `pnpm run i18n:sync`           | Full pipeline: extract + translate UI (+ SVG/docs per config); see `ai-i18n-tools sync --help`         |
 | `pnpm run i18n:status`         | Coverage report                                                                                        |
+| `pnpm run i18n:locales`        | Regenerate `src/renderer/locales/ui-languages.json` from config                                        |
 | `pnpm run i18n:cleanup`        | Remove stale i18n pipeline artifacts (`ai-i18n-tools cleanup --help`)                                  |
 | `pnpm run clean-temp`          | Remove `*.log` and `cache.db.backup*.sqlite` under a tree (`ai-i18n-tools clean-temp`; `--force` to skip prompt) |
-| `pnpm run i18n:editor`         | Open the string editor when configured in `ai-i18n-tools.config.json`                                  |
+| `pnpm run i18n:dashboard` / `i18n:editor` | Open the ai-i18n-tools dashboard / string editor when configured                            |
 
 Models and fallbacks: `openrouter.translationModels` in [`ai-i18n-tools.config.json`](../ai-i18n-tools.config.json) — not app `config.json`.
 
@@ -676,6 +678,7 @@ Models and fallbacks: `openrouter.translationModels` in [`ai-i18n-tools.config.j
 | `pnpm generate-banner`         | Write `images/transrewrt_banner.svg` and `.png`                                                                                          |
 | `pnpm reset-web-password`      | In web multi-user mode, set a password in SQLite (`[username] <password>`; default is `admin`; uses `CONFIG_PATH` or `data/config.json`) |
 | `pnpm check-api-key`           | Show the masked OpenRouter key and limit info (`OPENROUTER_API_KEY` or `node scripts/check-api-key.js --key …`)                          |
+| `pnpm check-custom-provider`   | Probe a custom OpenAI-compatible provider URL/key (see `scripts/check-custom-provider.js`)                                               |
 | `pnpm update-version`          | Propagate the `package.json` version into the README badge and other references (run after manually bumping the version)                 |
 | `pnpm run 3p-notices`          | Regenerate [NOTICES](../NOTICES) from production dependencies (see [Third-party notices](#third-party-notices-3p-notices))               |
 
@@ -723,14 +726,11 @@ See [Upgrading Node and dependencies (nvm)](#upgrading-node-and-dependencies-nvm
 - **Native module build failed (better-sqlite3 / argon2) on Windows:** Install build tools (Python + Visual Studio C++ workload) as in [Prerequisites](#prerequisites). Restart the terminal and run `pnpm install` again.
 - **NODE_MODULE_VERSION mismatch in Electron:** Run `pnpm postinstall` so native addons are rebuilt for Electron's Node. Ensure build tools are installed.
 - **NODE_MODULE_VERSION mismatch when running `pnpm dev:web` or `pnpm start:server`:** The server runs with system Node; native addons were built for Electron's Node. Use **Node 24** in the same terminal (e.g. `nvm use 24` then `pnpm dev:web`). See [troubleshooting-node-version.md](troubleshooting-node-version.md).
-- **Security vulnerabilities found by `pnpm audit`:** Check if the vulnerable package is a transitive dependency. If so, add it to `pnpm.overrides` in [package.json](../package.json) with a patched version range, then run `pnpm install`. For example:
+- **Security vulnerabilities found by `pnpm audit`:** Check if the vulnerable package is a transitive dependency. If so, add it under `overrides` in [pnpm-workspace.yaml](../pnpm-workspace.yaml) (pnpm 11 ignores top-level `overrides` in `package.json`) with a patched version range, then run `pnpm install`. For example:
 
-  ```json
-  "pnpm": {
-    "overrides": {
-      "lodash": ">=4.18.0"
-    }
-  }
+  ```yaml
+  overrides:
+    lodash: ">=4.18.0"
   ```
 
   After adding the override, verify with `pnpm audit` - it should report no vulnerabilities.
@@ -743,7 +743,7 @@ For more detail (including Node version alignment and Windows-specific issues), 
 
 ## Related documentation
 
-- **[SYSTEM-OVERVIEW.md](SYSTEM-OVERVIEW.md)** — Product and **runtime architecture** (Electron IPC `llm:*` vs web `/api/llm/stream` SSE), **multi-llm-ts** and supported providers, **Easy mode / presets catalog** (sync, `model_ids`, providers), **config/state** (desktop `config.json` + encryption; web global config vs `user_preferences` / `transrewrt.db`), **security** (sanitized IPC, Argon2, cookies), settings UI summary, native modules.
+- **[SYSTEM-OVERVIEW.md](SYSTEM-OVERVIEW.md)** — Product and **runtime architecture** (Electron IPC `llm:*` vs web `/api/llm/stream` SSE), **Vercel AI SDK** LLM layer and supported providers, **Easy mode / presets catalog** (sync, `model_ids`, providers), **config/state** (desktop `config.json` + encryption; web global config vs `user_preferences` / `transrewrt.db`), **security** (sanitized IPC, Argon2, cookies), settings UI summary, native modules.
 - **[presets-editor/README.md](presets-editor/README.md)** — Development catalog editor (`pnpm run presets-editor`), env vars, mirror paths, AI Suggestion / translate-missing APIs.
 - **[i18n.md](i18n.md)** — UI strings: extract/translate workflow, key-as-default, RTL, native `t(key, vars)` interpolation.
 - **[USER-GUIDE.md](../USER-GUIDE.md)** — End-user Easy vs Advanced, skills, provider, and settings (not maintainer tooling).
@@ -761,8 +761,8 @@ For more detail (including Node version alignment and Windows-specific issues), 
 | [src/main/main.js](../src/main/main.js)                                                     | Electron main process entry                                                                                   |
 | [src/main/preload.js](../src/main/preload.js)                                               | Preload script exposing APIs to renderer                                                                      |
 | [src/main/appDb.js](../src/main/appDb.js)                                                   | Electron app DB (api_calls, action_content, custom_prompts); IPC                                              |
-| [src/server/index.js](../src/server/index.js)                                               | Express server (web/Docker): static app, auth, `/api/config`, `/api/llm/*`, calls, users, prompts             |
-| [src/shared/llm/index.js](../src/shared/llm/index.js)                                       | **multi-llm-ts** bridge, provider key map, streaming; used by **main** and **server**                         |
+| [src/server/index.js](../src/server/index.js)                                               | Express server (web/Docker): static app, auth, `/api/config`, `/api/llm/*`, presets, glossary, calls, users, prompts |
+| [src/shared/llm/index.js](../src/shared/llm/index.js)                                       | Vercel AI SDK (`ai` + `@ai-sdk/openai-compatible`) bridge, provider key map, streaming; used by **main** and **server** |
 | [src/main/ipc/llmIpc.js](../src/main/ipc/llmIpc.js)                                         | Electron `llm:stream` / `llm:abort` / `llm:models` IPC                                                        |
 | [src/server/routes/apiLlm.js](../src/server/routes/apiLlm.js)                               | Web `POST /api/llm/stream` (SSE) and related LLM routes                                                       |
 | [src/server/db/appDb.js](../src/server/db/appDb.js)                                         | Web SQLite init, `user_preferences`, migrations, session cleanup                                              |
@@ -771,18 +771,18 @@ For more detail (including Node version alignment and Windows-specific issues), 
 | [src/main/encryption.js](../src/main/encryption.js)                                         | Electron: **AES-256-CBC** for provider secrets at rest; `transrewrt.key` beside `config.json`                 |
 | [src/shared/db/appSchema.js](../src/shared/db/appSchema.js)                                 | Shared DB schema and SQL (used by main + server)                                                              |
 | [src/server/routes/calls.js](../src/server/routes/calls.js)                                 | Web: API call logging, execution history, dashboard aggregates                                                |
-| [src/renderer/components/HistoryPage.js](../src/renderer/components/HistoryPage.js)         | Execution history browser (Electron IPC / web REST)                                                           |
+| [src/renderer/components/HistoryPage.tsx](../src/renderer/components/HistoryPage.tsx)       | Execution history browser (Electron IPC / web REST)                                                           |
 | [src/renderer/components/SettingsPanel.tsx](../src/renderer/components/SettingsPanel.tsx)   | Settings tabs; **Models** only in Advanced mode; General includes AI experience / Provider                    |
 | [easy-mode-config/presets.json](../easy-mode-config/presets.json)                             | Canonical Easy-mode presets catalog (shipped as `config/presets.json` in Electron builds)                       |
 | [src/shared/presetsCatalog.js](../src/shared/presetsCatalog.js)                               | Remote URL, version/`updated_at` merge rules, 6 h sync throttle (Electron + web)                              |
 | [src/main/ipc/presetsIpc.js](../src/main/ipc/presetsIpc.js)                                   | Electron `skills:read` / `skills:sync`                                                                        |
 | [src/server/routes/presets.js](../src/server/routes/presets.js)                               | Web `GET /api/presets`, `POST /api/presets/sync`, periodic server sync                                          |
-| [src/renderer/utils/skills/presetsManager.ts](../src/renderer/utils/skills/presetsManager.ts) | Renderer load/resolve skills for Easy mode                                                                    |
+| [src/renderer/utils/presets/presetsManager.ts](../src/renderer/utils/presets/presetsManager.ts) | Renderer load/resolve skills for Easy mode                                                                 |
 | [dev/presets-editor/README.md](presets-editor/README.md)                                      | Dev catalog editor (`pnpm run presets-editor`)                                                             |
 | [Dockerfile](../Dockerfile)                                                                 | Multi-stage Docker build; copies `easy-mode-config/`                                                          |
 | [docker-compose.yml](../docker-compose.yml)                                                 | Compose for local web run                                                                                     |
 | [src/config-defaults/transform-prompts.json](../src/config-defaults/transform-prompts.json) | Sample transform prompts (used by "Load sample prompts")                                                      |
-| [src/renderer/i18n.js](../src/renderer/i18n.js)                                             | i18n init, RTL handling, dynamic locale loaders                                                               |
+| [src/renderer/i18n.ts](../src/renderer/i18n.ts)                                             | i18n init, RTL handling, dynamic locale loaders                                                               |
 | [src/renderer/locales/strings.json](../src/renderer/locales/strings.json)                   | Extracted UI strings and translation state (from i18n:extract)                                                |
 | [ai-i18n-tools.config.json](../ai-i18n-tools.config.json)                                   | **ai-i18n-tools**: locales, OpenRouter models, UI extract paths, glossaries, doc `documentations`, `cacheDir` |
 | [3p-lic-clarifications.json](../3p-lic-clarifications.json)                                 | Per-package license overrides for `pnpm run 3p-notices` (`licenseText`, etc.)                                 |

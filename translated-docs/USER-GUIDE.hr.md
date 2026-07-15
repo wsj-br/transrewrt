@@ -1,4 +1,4 @@
-![Transrewrt banner](../images/transrewrt_banner.png)
+![Transrewrt natpis](../images/transrewrt_banner.png)
 
 <a id="transrewrt-user-guide"></a>
 # Korisnički vodič
@@ -55,6 +55,8 @@ Ovaj vodič objašnjava kako koristiti aplikaciju nakon što je instalirana i po
   - [Dotjerivanje prijevoda](#refining-your-translation)
   - [Korištenje rječnika](#using-the-glossary)
 - [Prepisivanje](#rewrite)
+  - [Prepisivanje teksta](#rewrite-text)
+  - [Pročišćavanje prepisanog teksta](#refining-your-rewrite)
 - [Transformacija](#transform)
   - [Pokretanje postojećeg upita](#run-an-existing-prompt)
   - [Ako još nemate upita](#if-you-have-no-prompts-yet)
@@ -81,16 +83,16 @@ Ovaj vodič objašnjava kako koristiti aplikaciju nakon što je instalirana i po
   - [O programu](#about)
 - [Uobičajeni problemi](#common-issues)
   - [Aplikacija neće prevesti, prepisati ili transformirati tekst](#the-app-will-not-translate-rewrite-or-transform-text)
-  - [Lista modela je prazna](#the-model-list-is-empty)
-  - [Rezultat je prespor ili previše skup](#the-result-is-too-slow-or-too-expensive)
+  - [Popis modela je prazan](#the-model-list-is-empty)
+  - [Rezultat je prespor ili preskup](#the-result-is-too-slow-or-too-expensive)
   - [Sučelje je na pogrešnom jeziku](#the-interface-is-in-the-wrong-language)
-  - [Tekst je premalen ili ga je teško čitati](#the-text-is-too-small-or-hard-to-read)
-  - [Sažetak nadzorne ploče je prazan](#dashboard-summary-looks-empty)
-  - [Trošak prikazuje "nedostupno" ili se čini pogrešan](#cost-shows-not-available-or-seems-wrong)
-  - [Ukupni trošak se ne podudara s mojim računom davatelja usluga](#total-cost-does-not-match-my-provider-bill)
-  - [Stranica Povijest nedostaje s bočne trake](#the-history-page-is-missing-from-the-sidebar)
-  - [Web aplikacija: neočekivano preusmjeren na stranicu za prijavu](#web-app-redirected-to-the-login-page-unexpectedly)
-  - [Web administrator: zaboravljena ili izgubljena lozinka](#web-admin-forgot-or-lost-a-password)
+  - [Tekst je premalen ili teško čitljiv](#the-text-is-too-small-or-hard-to-read)
+  - [Sažetak nadzorne ploče izgleda prazno](#dashboard-summary-looks-empty)
+  - [Trošak prikazuje „nije dostupno” ili se čini pogrešnim](#cost-shows-not-available-or-seems-wrong)
+  - [Ukupni trošak ne odgovara računu davatelja usluga](#total-cost-does-not-match-my-provider-bill)
+  - [Stranica Povijest nedostaje na bočnoj traci](#the-history-page-is-missing-from-the-sidebar)
+  - [Web-aplikacija: neočekivano preusmjerena na stranicu za prijavu](#web-app-redirected-to-the-login-page-unexpectedly)
+  - [Web-administrator: zaboravljena ili izgubljena lozinka](#web-admin-forgot-or-lost-a-password)
   - [Nadzorna ploča ne prikazuje podatke za druge korisnike (web)](#dashboard-shows-no-data-for-other-users-web)
   - [Promijenio sam upit i izgubio izmjene](#i-changed-a-prompt-and-lost-the-edits)
 - [Brzi savjeti](#quick-tips)
@@ -206,7 +208,7 @@ U **Lako** načinu rada, alatna traka prikazuje **odabir unaprijed postavljene v
 
 U **naprednom** načinu rada, **odabir modela** omogućuje vam da odaberete koji AI motor koristiti za trenutni zadatak.
 
-![Model selector](../images/screenshots/hr/preset-selector.png)
+![Odabir modela](../images/screenshots/hr/preset-selector.png)
 
 U naprednom načinu rada, neki besplatni modeli možda nisu uvijek dostupni — mogu biti isključeni ili dosegnuti ograničenje korištenja. Aplikacija može automatski ukloniti taj model s vašeg popisa. Da biste kontrolirali koji se modeli prikazuju, idite na [**Postavke** > **Modeli**](#models). Postavke modela možete otvoriti s ikone davatelja usluga s lijeve strane naziva modela na alatnoj traci.
 
@@ -214,7 +216,7 @@ U naprednom načinu rada, neki besplatni modeli možda nisu uvijek dostupni — 
 
 Ikona **zemaljskog globusa + kôd jezika** mijenja jezik sučelja aplikacije, kao što su izbornici i tipke. Ona **ne** mijenja jezike prijevoda koji se koriste u funkciji **Prevedi**.
 
-![Interface language selector](../images/screenshots/hr/language-selector.png)
+![Odabir jezika sučelja](../images/screenshots/hr/language-selector.png)
 
 <br/>
 
@@ -247,7 +249,7 @@ Također možete pratiti trošak svake operacije (ako je dostupan) i ukupni tro�
 
 Koristite **Prevedi** kada želite pretvoriti tekst s jednog jezika na drugi.
 
-![Translate workspace](../images/screenshots/hr/translate.png)
+![Radni prostor za prevođenje](../images/screenshots/hr/translate.png)
 
 <br/>
 
@@ -296,9 +298,9 @@ U [**Postavke** > **Opće postavke**](#general-settings) možete promijeniti kak
 
 Nakon uspješnog prijevoda, **Preformuliraj…** i padajući izbornik verzija pojavljuju se u zaglavlju izlaza, pored odabira jezika **Do:**. Tamo možete poboljšati rezultat:
 
-1. **Preformuliraj…** — bez odabranog teksta u izlazu, dobijate još jedan puni prijevod istog unosa s drugačijim riječima. Model prima svaku verziju koju već imate tako da se nova formulacija može razlikovati od svih njih. Možete pohraniti do **pet** verzija i prelaziti između njih u padajućem izborniku verzija. Kada je tekst odabran, **Preformuliraj…** otvara alternative za riječi blizu odabira (isto kao desni klik). Bez odabira, **Preformuliraj…** je onemogućen kada dosegnete pet verzija; s odabirom, i dalje radi na pet verzija (samo alternativne riječi, ažurira verziju 5). Dok se puni preformuliranje izvršava, kliknite **Zaustavi Prevod** da otkažete; izlaz se vraća na verziju koja je bila aktivna kada je preformuliranje započelo.
-2. **Alternativne riječi** — odaberite jednu ili više riječi ili kratku frazu u izlazu (ako odaberete samo dio riječi, aplikacija proširuje odabir na cijele riječi), zatim desni klik ili kliknite **Preformuliraj…**. Kratki popis alternativa pojavljuje se blizu odabira; kliknite jednu da je zamijenite. Svaka opcija može zamijeniti nešto širi raspon od vašeg odabira (na primjer, susjedna prijedloga ili član) tako da rečenica ostane gramatička. Ako imate manje od pet verzija, uređeni izlaz se sprema kao nova verzija; pri pet verzija, samo se **verzija 5** ažurira. Desni klik bez odabira ne radi ništa. Pritisnite **Esc** ili kliknite izvan popisa da otkažete bez promjene izlaza.
-3. **Troškovi** — svaki puni **Preformuliraj…** (bez odabira) i svaki zahtjev za alternativama riječi ponovno koristi model i može povećati trošak korištenja (isto kao normalno prevođenje).
+1. **Preformuliraj…** — bez odabranog teksta u izlazu, dobijte još jedan potpuni prijevod istog unosa s drugačijim formulacijama. Model prima svaku verziju koju već imate, tako da se nova formulacija može razlikovati od svih njih. Možete pohraniti do **pet** verzija i prebacivati se između njih u padajućem izborniku verzija. S odabranim tekstom, **Preformuliraj…** otvara alternative riječi blizu odabira (isto kao desni klik). Bez odabira, **Preformuliraj…** je onemogućen kada dosegnete pet verzija; s odabirom, i dalje radi na pet verzija (samo alternative riječi, ažuriranje verzije 5). Dok je potpuno preformuliranje u tijeku, kliknite **Zaustavi prevođenje** za otkazivanje; izlaz se vraća na verziju koja je bila aktivna kada je preformuliranje započelo.
+2. **Alternative riječi** — odaberite jednu ili više riječi ili kratku frazu u izlazu (ako odaberete samo dio riječi, aplikacija proširuje odabir na cijele riječi), zatim desnom tipkom miša kliknite ili kliknite **Preformuliraj…**. Kratak popis alternativa pojavljuje se blizu odabira; kliknite jednu da biste je zamijenili. Svaka opcija može zamijeniti nešto širi raspon od vašeg odabira (na primjer, susjedni prijedlog ili član) tako da rečenica ostane gramatički ispravna. Ako imate manje od pet verzija, uređeni izlaz sprema se kao nova verzija; na pet verzija, ažurira se samo **verzija 5**. Desni klik bez odabira odabire riječ ispod pokazivača (ili ne radi ništa ako tamo nema riječi). Pritisnite **Esc** ili kliknite izvan popisa za otkazivanje bez promjene izlaza.
+3. **Troškovi** — svako potpuno **Preformuliraj…** (bez odabira) i svaki zahtjev za alternativu riječi ponovno koristi model i može povećati troškove korištenja (isto kao i uobičajeno prevođenje).
 
 <br/>
 
@@ -326,9 +328,9 @@ Pojmove dodajete, uređujete, uvozite i izvozite na kartici [**Postavke** > **Rj
 <a id="rewrite"></a>
 ## Prepisi
 
-Koristite **Prepisi** kada želite poboljšati formulaciju bez mijenjanja glavne poruke.
+Koristite **Prepisivanje** kada želite poboljšati formulaciju bez promjene glavnog značenja. Tekst ostaje na istom jeziku (ne prevodi se).
 
-![Rewrite workspace](../images/screenshots/hr/rewrite.png)
+![Radni prostor za prepisivanje](../images/screenshots/hr/rewrite.png)
 
 Ovo je korisno za:
 
@@ -341,9 +343,38 @@ Ovo je korisno za:
 
 <br/>
 
+<a id="rewrite-text"></a>
+### Prepisivanje teksta
+
+1. Otvorite **Prepisivanje**.
+2. Odaberite **Način** (na primjer **Poboljšajte jasnoću** ili **Učini formalno**).
+3. Po želji postavite **Od** na jezik vašeg teksta (ili ostavite **Otkrij jezik**).
+4. Upišite ili zalijepite tekst u **Unos**.
+5. Kliknite **Prepisivanje**.
+6. Pročitajte rezultat u **Izlaz**.
+7. Po želji doradite rezultat pomoću **Preformuliraj…** ili alternativnih riječi — pogledajte [Dorada vašeg prepisivanja](#refining-rewrite).
+
+<br/>
+
 > 💡 **SAVJET**<br/>
 > Kada koristite način "**Provjeri pravopis i gramatiku**", u izlaznom panelu pojavit će se prekidač **Prikaži promjene** (kraj **Kopiraj**).
 > Uključite ili isključite kako biste prikazali ili sakrili specifične ispravke primijenjene na vaš tekst.
+
+<br/>
+
+> ℹ️ **NAPOMENA**<br/>
+> Način prepisivanja **Alternativne verzije** vraća nekoliko preformulacija u **jednom** pokretanju, odvojenih s `----` u izlazu. To se razlikuje od **Preformuliraj…**, koji s vremenom gradi povijest verzija (jedna nova varijanta po kliku). Pogledajte [Dorada vašeg prepisivanja](#refining-rewrite).
+
+<br/>
+
+<a id="refining-rewrite"></a>
+### Dorada vašeg prepisivanja
+
+Nakon uspješnog prepisivanja, **Preformuliraj…** i padajući izbornik verzija pojavljuju se na izlaznoj strani radnog prostora (u podijeljenom izgledu, u gornjoj alatnoj traci iznad izlaznog stupca, pored metrike pokretanja; u složenom izgledu, iznad izlazne ploče pored **Od:**). Tamo možete doraditi rezultat — ista ideja kao [Dorada vašeg prijevoda](#refining-translation), ali tekst ostaje na istom jeziku i zadržava trenutni **Način** prepisivanja:
+
+1. **Preformuliraj…** — bez odabranog teksta u izlazu, dobijte još jedno potpuno prepisivanje istog unosa s drugačijim formuliranjem, i dalje primjenjujući odabrani način (na primjer jasnije, kraće ili formalnije). Model prima svaku verziju koju već imate tako da se novo formuliranje može razlikovati od svih njih. Možete pohraniti do **pet** verzija i prebacivati se između njih u padajućem izborniku verzija. S odabranim tekstom, **Preformuliraj…** otvara alternativne riječi blizu odabira (isto kao desni klik). Bez odabira, **Preformuliraj…** je onemogućen kada dosegnete pet verzija; s odabirom, i dalje radi na pet verzija (samo alternativne riječi, ažurirajući verziju 5). Dok je potpuno preformuliranje u tijeku, kliknite **Zaustavi prepisivanje** za otkazivanje; izlaz se vraća na verziju koja je bila aktivna kada je preformuliranje započelo.
+2. **Alternativne riječi** — odaberite jednu ili više riječi ili kratku frazu u izlazu (ako odaberete samo dio riječi, aplikacija proširuje odabir na cijele riječi), zatim desnom tipkom miša kliknite ili kliknite **Preformuliraj…**. Kratak popis alternativa pojavljuje se blizu odabira; kliknite jednu da biste je zamijenili. Svaka opcija može zamijeniti nešto širi raspon od vašeg odabira tako da rečenica ostane gramatički ispravna. Ako imate manje od pet verzija, uređeni izlaz se sprema kao nova verzija; na pet verzija, ažurira se samo **verzija 5**. Desni klik bez odabira odabire riječ ispod pokazivača (ili ne radi ništa ako tamo nema riječi). Pritisnite **Esc** ili kliknite izvan popisa za otkazivanje bez promjene izlaza.
+3. **Troškovi** — svako potpuno **Preformuliraj…** (bez odabira) i svaki zahtjev za alternativne riječi ponovno koristi model i može povećati troškove korištenja (isto kao i normalno pokretanje prepisivanja).
 
 <br/><br/>
 
@@ -354,7 +385,7 @@ Ovo je korisno za:
 
 Koristite **Transformiraj** kada želite da AI slijedi prilagođeni skup uputa.
 
-![Transform workspace](../images/screenshots/hr/transform.png)
+![Radni prostor za transformaciju](../images/screenshots/hr/transform.png)
 
 Ovo je najfleksibilniji dio aplikacije. Možete ga koristiti za zadatke poput:
 
@@ -402,7 +433,7 @@ Najbrži način za stvaranje upita je:
 5. Dopustite aplikaciji da stvori skicu za vas.
 6. Pregledajte skicu i kliknite **Spremi**.
 
-![Generate prompt](../images/screenshots/hr/transform-generate.png)
+![Generiraj upit](../images/screenshots/hr/transform-generate.png)
 
 <br/>
 
@@ -411,7 +442,7 @@ Najbrži način za stvaranje upita je:
 
 Kada kreirate ili uređujete upit, urednik se pojavljuje s lijeve strane, a područje za testiranje s desne strane.
 
-![Transform prompt editor](../images/screenshots/hr/transform-prompt-edit.png)
+![Uređivač upita za transformaciju](../images/screenshots/hr/transform-prompt-edit.png)
 
 Glavna polja su:
 
@@ -467,7 +498,7 @@ Kada koristite **Generiraj upit**, **Unaprijedi upit** ili **Prevedi upit** u ur
 
 Koristite **Nadzornu ploču** da biste vidjeli koliko koristite aplikaciju i koliko vas to košta (za naplaćivane modele).
 
-![Dashboard summary](../images/screenshots/hr/dashboard-summary.png)
+![Sažetak nadzorne ploče](../images/screenshots/hr/dashboard-summary.png)
 
 <br/>
 
@@ -481,7 +512,7 @@ Koristite **Nadzornu ploču** da biste vidjeli koliko koristite aplikaciju i kol
 
 Koristite gumbe za filtriranje na vrhu za promjenu vremenskog raspona.
 
-![Dashboard filters](../images/screenshots/hr/dashboard-filter.png)
+![Filtri nadzorne ploče](../images/screenshots/hr/dashboard-filter.png)
 
 <br/>
 
@@ -531,7 +562,7 @@ Da biste izbrisali sve podatke ili uklonili zapise na temelju njihove starosti, 
 
 Kliknite na **Povijest** da biste vidjeli povijest svojih akcija unutar **Transrewrt**, uključujući ulaz i izlaz svake operacije.
 
-![History page](../images/screenshots/hr/history.png)
+![Stranica povijesti](../images/screenshots/hr/history.png)
 
 <br/>
 
@@ -540,7 +571,7 @@ Kliknite na **Povijest** da biste vidjeli povijest svojih akcija unutar **Transr
 
 **Povijest** koristi iste filtre vremenskog raspona kao i stranica **Nadzorne ploče**.
 
-![Dashboard filters](../images/screenshots/hr/dashboard-filter.png)
+![Filtri nadzorne ploče](../images/screenshots/hr/dashboard-filter.png)
 
 <br/>
 
@@ -641,7 +672,7 @@ Sigurnosne kopije stvorene u web ili desktop verziji mogu se vratiti u drugoj. K
 
 Ova kartica je dostupna samo kada je **AI iskustvo** postavljeno na **Napredno** u [**Opće postavke**](#general-settings). Koristite **Postavke** > **Modeli** da odaberete koje modele želite prikazati na alatnoj traci.
 
-![Settings Models tab](../images/screenshots/hr/settings-general.png)
+![Kartica Modeli postavki](../images/screenshots/hr/settings-general.png)
 
 Stranica ima dvije liste:
 

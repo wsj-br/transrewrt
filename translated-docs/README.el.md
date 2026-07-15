@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.1-blue" alt="Version"></a>
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.0-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
   <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react" alt="React 19">
@@ -62,27 +62,27 @@
 
 **Επιλογέας γλώσσας**
 
-![Language selector](../images/screenshots/el/language-selector.png)
+![Επιλογέας γλώσσας](../images/screenshots/el/language-selector.png)
 
 **Μετάφραση**
 
-![Translate](../images/screenshots/el/translate.png)
+![Μετάφραση](../images/screenshots/el/translate.png)
 
 **Μετασχηματισμός - επεξεργαστής ερωτήματος**
 
-![Transform - prompt editor](../images/screenshots/el/transform-prompt-edit.png)
+![Μετασχηματισμός - επεξεργαστής προτροπών](../images/screenshots/el/transform-prompt-edit.png)
 
 **Ταμπλό**
 
-![Dashboard summary - usage](../images/screenshots/el/dashboard-summary.png)
+![Σύνοψη Πίνακα ελέγχου - χρήση](../images/screenshots/el/dashboard-summary.png)
 
 **Ιστορικό**
 
-![History](../images/screenshots/el/history.png)
+![Ιστορικό](../images/screenshots/el/history.png)
 
 **Ρυθμίσεις - επιλογή μοντέλου**
 
-![Settings - model selection](../images/screenshots/el/settings-general.png)
+![Ρυθμίσεις - επιλογή μοντέλου](../images/screenshots/el/settings-general.png)
 
 <br/><br/>
 

@@ -11,6 +11,7 @@ import {
 } from "./workspaceLayoutClasses";
 import { WorkspaceOutputMeta } from "./WorkspaceOutputMeta";
 import { WorkspaceBehaviourSwitch } from "./WorkspaceBehaviourSwitch";
+import { RephraseControls } from "./RephraseControls";
 import { Button } from "@/components/ui/button";
 import { Zap, Square, Trash2, Clipboard, Copy } from "lucide-react";
 import { getRewriteModeOptions, REWRITE_MODE_KEYS } from "../../constants";
@@ -34,10 +35,15 @@ export function getRewritePanels({ common, input, output, options }) {
     isProcessing,
     processingMode,
     handleRunAction,
+    handleRewriteRephraseClick,
+    handleRewriteVersionChange,
+    rewriteOutputHasSelection,
     lastRunModel,
     outputMeta,
     outputMetaCostTooltip,
     layoutMode,
+    rewriteVersions = [],
+    selectedRewriteVersion = 1,
     autoExecuteOnPaste,
     autoCopy,
     onAutoExecuteChange,
@@ -55,6 +61,22 @@ export function getRewritePanels({ common, input, output, options }) {
   } = options;
   const isGrammarMode = rewriteMode === REWRITE_MODE_GRAMMAR;
 
+  const rephraseControls = (
+    <RephraseControls
+      t={t}
+      isProcessing={isProcessing}
+      outputIsModelResult={!!outputIsModelResult}
+      versions={rewriteVersions}
+      selectedVersion={selectedRewriteVersion}
+      outputHasSelection={!!rewriteOutputHasSelection}
+      onRephrase={handleRewriteRephraseClick}
+      onVersionChange={handleRewriteVersionChange}
+      rephraseButtonTestId="rewrite-rephrase-button"
+      versionSelectAriaLabel={t("Version")}
+      maxVersionsTooltip={t("Maximum of 5 versions reached")}
+    />
+  );
+
   const shortcutLabel =
     settings?.enter_behavior === "Shift-Execute"
       ? `(${stripKeySymbols(t("⇧ SHIFT"))}+${stripKeySymbols(t("ENTER ↵"))})`
@@ -62,36 +84,51 @@ export function getRewritePanels({ common, input, output, options }) {
 
   const modelId = lastRunModel ? modelFooterDisplayId(lastRunModel) : "";
 
-  const workspaceTopBar = (
+  const modeSelector = (
+    <StyleSelector
+      label={t("Mode:")}
+      value={rewriteMode}
+      onChange={setRewriteMode}
+      options={getRewriteModeOptions(t)}
+      className="mx-0 mb-0 w-fit shrink-0"
+      hugSelectWidth
+    />
+  );
+
+  const fromSelector = (
+    <LanguageSelector
+      label={t("From:")}
+      value={sourceLanguage}
+      onChange={setSourceLanguage}
+      detectLanguage={true}
+      dataTestId="rewrite-from"
+      hugSelectWidth
+      hideLabel
+      iconClassName="text-blue-400"
+      iconStrokeWidth={1.6}
+    />
+  );
+
+  // Split: Mode/From (left) and Rephrase/meta (right) share one row aligned to the two columns.
+  // Stack: top bar keeps Mode only; From + Rephrase + meta sit above the output panel.
+  const workspaceTopBar = isStack ? (
     <div className="flex w-full min-w-0 flex-wrap items-center justify-start gap-x-6 gap-y-2">
-      <StyleSelector
-        label={t("Mode:")}
-        value={rewriteMode}
-        onChange={setRewriteMode}
-        options={getRewriteModeOptions(t)}
-        className="mx-0 mb-0 w-fit shrink-0"
-        hugSelectWidth
-      />
-      {!isStack ? (
-        <>
-          <LanguageSelector
-            label={t("From:")}
-            value={sourceLanguage}
-            onChange={setSourceLanguage}
-            detectLanguage={true}
-            dataTestId="rewrite-from"
-            hugSelectWidth
-            hideLabel
-            iconClassName="text-blue-400"
-            iconStrokeWidth={1.6}
-          />
-          {outputMeta ? (
-            <WorkspaceOutputMeta tooltip={outputMetaCostTooltip}>
-              {outputMeta}
-            </WorkspaceOutputMeta>
-          ) : null}
-        </>
-      ) : null}
+      {modeSelector}
+    </div>
+  ) : (
+    <div className="grid w-full min-w-0 grid-cols-1 gap-4 md:grid-cols-2 md:[grid-template-columns:minmax(0,1fr)_minmax(0,1fr)]">
+      <div className="flex min-h-10 min-w-0 flex-wrap items-center gap-x-6 gap-y-2">
+        {modeSelector}
+        {fromSelector}
+      </div>
+      <div className={cn(workspaceOutputPanelHeaderRowClassName, "min-h-10")}>
+        {rephraseControls}
+        {outputMeta ? (
+          <WorkspaceOutputMeta tooltip={outputMetaCostTooltip}>
+            {outputMeta}
+          </WorkspaceOutputMeta>
+        ) : null}
+      </div>
     </div>
   );
 
@@ -137,20 +174,11 @@ export function getRewritePanels({ common, input, output, options }) {
   );
 
   const rightPanel = (
-    <div className="flex flex-col h-full gap-2">
+    <div className="flex flex-col h-full gap-2" data-panel="output">
       {isStack ? (
         <div className={cn(workspaceOutputPanelHeaderRowClassName, "shrink-0")}>
-          <LanguageSelector
-            label={t("From:")}
-            value={sourceLanguage}
-            onChange={setSourceLanguage}
-            detectLanguage={true}
-            dataTestId="rewrite-from"
-            hugSelectWidth
-            hideLabel
-            iconClassName="text-blue-400"
-            iconStrokeWidth={1.6}
-          />
+          {fromSelector}
+          {rephraseControls}
           {outputMeta ? (
             <WorkspaceOutputMeta tooltip={outputMetaCostTooltip}>
               {outputMeta}
@@ -165,6 +193,8 @@ export function getRewritePanels({ common, input, output, options }) {
           onTextChange={output.setText}
           placeholder={t("Output will appear here...")}
           readOnly={true}
+          onContextMenu={output.onContextMenu}
+          textareaRefCallback={output.textareaRefCallback}
           fontFamily={settings?.font_family}
           fontSize={settings?.font_size}
           outputTint={true}
@@ -257,7 +287,7 @@ export function getRewritePanels({ common, input, output, options }) {
       >
         {isProcessing ? <Square className="h-4 w-4" /> : <Zap className="h-4 w-4" />}
         {isProcessing
-          ? `${t("Stop")} ${processingMode === "rewrite" ? t("Rewrite") : t("Translate")}`
+          ? `${t("Stop")} ${processingMode === "rewrite" || processingMode === "rewrite_alternative" ? t("Rewrite") : t("Translate")}`
           : t("Rewrite")}
         {!isProcessing && (
           <span className="text-xs opacity-80 font-normal">{shortcutLabel}</span>

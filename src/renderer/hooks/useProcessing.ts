@@ -9,6 +9,8 @@ import { formatApiErrorLine } from "../utils/misc/apiErrorDisplay";
 import { SOURCE_LOCALE } from "../i18n";
 import { MAX_TRANSLATE_VERSIONS } from "../constants/translateVersions";
 
+const MAX_REWRITE_VERSIONS = MAX_TRANSLATE_VERSIONS;
+
 /**
  * Centralizes run/timer/cost state and handlers for translate, rewrite, and transform.
  * Caller provides API functions and mode-specific state/setters; hook returns processing
@@ -18,6 +20,7 @@ export function useProcessing({
   translate,
   translateAlternative,
   rewrite,
+  rewriteAlternative,
   transform,
   activeModel,
   settings,
@@ -32,6 +35,7 @@ export function useProcessing({
   sourceLanguage,
   // Rewrite
   inputTextRewrite,
+  outputTextRewrite,
   setOutputTextRewrite,
   rewriteMode,
   // Transform
@@ -52,6 +56,8 @@ export function useProcessing({
   const [translateOutputIsModelResult, setTranslateOutputIsModelResult] = useState(false);
   const [translateVersions, setTranslateVersions] = useState([]);
   const [selectedTranslateVersion, setSelectedTranslateVersion] = useState(1);
+  const [rewriteVersions, setRewriteVersions] = useState([]);
+  const [selectedRewriteVersion, setSelectedRewriteVersion] = useState(1);
   const [rewriteOutputIsModelResult, setRewriteOutputIsModelResult] = useState(false);
   const { t, i18n } = useTranslation();
   const locale = i18n.language || SOURCE_LOCALE;
@@ -76,10 +82,15 @@ export function useProcessing({
   }, []);
   const currentModeRef = useRef(currentMode);
   const translateVersionsRef = useRef([]);
+  const rewriteVersionsRef = useRef([]);
 
   useEffect(() => {
     translateVersionsRef.current = translateVersions;
   }, [translateVersions]);
+
+  useEffect(() => {
+    rewriteVersionsRef.current = rewriteVersions;
+  }, [rewriteVersions]);
 
   useEffect(() => {
     currentModeRef.current = currentMode;
@@ -92,6 +103,14 @@ export function useProcessing({
       setSelectedTranslateVersion(1);
     }
   }, [outputTextTranslate]);
+
+  useEffect(() => {
+    if (!outputTextRewrite?.trim()) {
+      setRewriteOutputIsModelResult(false);
+      setRewriteVersions([]);
+      setSelectedRewriteVersion(1);
+    }
+  }, [outputTextRewrite]);
 
   useEffect(() => {
     return () => {
@@ -437,6 +456,8 @@ export function useProcessing({
     if (isProcessing) {
       cancelledByUserRef.current = true;
       setRewriteOutputIsModelResult(false);
+      setRewriteVersions([]);
+      setSelectedRewriteVersion(1);
       setOutputTextRewrite(t("Rewrite stopped by user."));
       if (abortControllerRef.current) abortControllerRef.current.abort();
       stopProcessing();
@@ -448,6 +469,8 @@ export function useProcessing({
 
     setIsProcessing(true);
     setRewriteOutputIsModelResult(false);
+    setRewriteVersions([]);
+    setSelectedRewriteVersion(1);
     setOutputTextRewrite(t("rewriting..."));
     setLastRunCost(0);
     setLastRunCostKind("none");
@@ -496,6 +519,8 @@ export function useProcessing({
 
       if (result.content) {
         const cleaned = result.content.replace(/^\s*\n+/, "");
+        setRewriteVersions([cleaned]);
+        setSelectedRewriteVersion(1);
         setRewriteOutputIsModelResult(true);
         setOutputTextRewrite(cleaned);
         if (settings.auto_copy) void copyTextToClipboard(cleaned).catch((err) => {
@@ -503,12 +528,16 @@ export function useProcessing({
         });
       } else if (!result.cancelled && !result.error) {
         setRewriteOutputIsModelResult(false);
+        setRewriteVersions([]);
+        setSelectedRewriteVersion(1);
         setOutputTextRewrite(
           t("Rewrite finished but returned no text. Try again or choose another model."),
         );
       }
       if (result.cancelled) {
         setRewriteOutputIsModelResult(false);
+        setRewriteVersions([]);
+        setSelectedRewriteVersion(1);
         if (cancelledByUserRef.current) {
           const msg = result.content
             ? `${t("Rewrite stopped by user.")}\n\n${t("Partial result captured ({{tokens}} tokens, {{cost}})", { tokens: totalTokens, cost: formatPartialRunCostLabel(result, locale, t) })}`
@@ -572,6 +601,173 @@ export function useProcessing({
     updateSettings,
     setActiveProcessingMode,
   ]);
+
+  const rewriteAlternativeText = useCallback(
+    async (signal) => {
+      const text = inputTextRewrite;
+      const versions = rewriteVersionsRef.current;
+      if (!text?.trim() || !versions.length || versions.length >= MAX_REWRITE_VERSIONS) return;
+
+      const previousVersionText = versions[selectedRewriteVersion - 1] || versions[versions.length - 1];
+
+      setActiveProcessingMode("rewrite_alternative");
+      setIsProcessing(true);
+      setOutputTextRewrite(t("Rephrasing..."));
+      setLastRunCost(0);
+      setLastRunCostKind("none");
+      setLastRunModel(null);
+      setElapsedTime(0);
+      setTokensPerSecond(0);
+      startTimeRef.current = Date.now();
+      if (timerRef.current) clearInterval(timerRef.current);
+      timerRef.current = setInterval(() => {
+        if (!startTimeRef.current) return;
+        setElapsedTime((Date.now() - startTimeRef.current) / 1000);
+      }, 100);
+      tpsCalculationRef.current = { startTime: Date.now(), tokens: 0 };
+
+      try {
+        const result = await rewriteAlternative(
+          text,
+          versions,
+          rewriteMode,
+          activeModel,
+          sourceLanguage === "Detect Language" ? null : sourceLanguage,
+          signal,
+        );
+
+        if (timerRef.current) {
+          clearInterval(timerRef.current);
+          timerRef.current = null;
+        }
+        startTimeRef.current = null;
+        setIsProcessing(false);
+
+        const totalTokens =
+          (result.usage?.prompt_tokens || 0) + (result.usage?.completion_tokens || 0);
+        const durationSeconds = (Date.now() - tpsCalculationRef.current.startTime) / 1000;
+        const tps = durationSeconds > 0 ? totalTokens / durationSeconds : 0;
+        setTokensPerSecond(tps);
+        const costLine = resolveRunCostLine({
+          calculated_cost: result.calculated_cost,
+          usage: result.usage,
+          model_used: result.model_used || result.model || activeModel,
+        });
+        setLastRunCost(costLine.kind === "amount" ? costLine.value : 0);
+        setLastRunCostKind(costLine.kind);
+        setLastRunModel(result.model_used || result.model || null);
+
+        if (cancelledByUserRef.current) return;
+
+        if (result.content) {
+          const cleaned = result.content.replace(/^\s*\n+/, "");
+          setRewriteVersions((prev) => {
+            const next = [...prev, cleaned].slice(0, MAX_REWRITE_VERSIONS);
+            setSelectedRewriteVersion(next.length);
+            return next;
+          });
+          setRewriteOutputIsModelResult(true);
+          setOutputTextRewrite(cleaned);
+          if (settings.auto_copy) void copyTextToClipboard(cleaned).catch((err) => {
+            console.warn("Auto-copy to clipboard failed:", err);
+          });
+        } else if (!result.cancelled && !result.error) {
+          setRewriteOutputIsModelResult(true);
+          setOutputTextRewrite(
+            t("Rephrase finished but returned no text. Try again or choose another model."),
+          );
+        }
+        if (result.cancelled) {
+          setRewriteOutputIsModelResult(true);
+          if (cancelledByUserRef.current) {
+            setOutputTextRewrite(previousVersionText);
+          } else {
+            setOutputTextRewrite(
+              result.content
+                ? `${t("The request ended before completion.")}\n\n${result.content}`
+                : t("The request ended before completion. Try again."),
+            );
+          }
+        } else if (result.error) {
+          setRewriteOutputIsModelResult(true);
+          if (isAbortMessage(result.error)) {
+            setOutputTextRewrite(previousVersionText);
+          } else {
+            setOutputTextRewrite(formatApiErrorLine(result.error, t));
+          }
+        }
+      } catch (error) {
+        if (timerRef.current) {
+          clearInterval(timerRef.current);
+          timerRef.current = null;
+        }
+        startTimeRef.current = null;
+        setIsProcessing(false);
+        setLastRunCost(0);
+        setLastRunModel(null);
+        setRewriteOutputIsModelResult(true);
+        const userAbort =
+          cancelledByUserRef.current ||
+          error.name === "AbortError" ||
+          (error.message && isAbortMessage(error.message));
+        if (userAbort) {
+          setOutputTextRewrite(previousVersionText);
+        } else {
+          setOutputTextRewrite(formatApiErrorLine(error.message, t));
+        }
+      } finally {
+        abortControllerRef.current = null;
+        setActiveProcessingMode(null);
+      }
+    },
+    [
+      t,
+      isAbortMessage,
+      inputTextRewrite,
+      selectedRewriteVersion,
+      rewriteMode,
+      sourceLanguage,
+      activeModel,
+      settings.auto_copy,
+      rewriteAlternative,
+      setOutputTextRewrite,
+      setActiveProcessingMode,
+    ],
+  );
+
+  const handleRewriteAlternative = useCallback(() => {
+    if (isProcessing) {
+      if (processingModeRef.current === "rewrite_alternative") {
+        cancelledByUserRef.current = true;
+        const versions = rewriteVersionsRef.current;
+        const restore = versions[selectedRewriteVersion - 1];
+        if (restore) setOutputTextRewrite(restore);
+        if (abortControllerRef.current) abortControllerRef.current.abort();
+        stopProcessing();
+      }
+      return;
+    }
+    if (rewriteVersionsRef.current.length >= MAX_REWRITE_VERSIONS) return;
+    cancelledByUserRef.current = false;
+    abortControllerRef.current = new AbortController();
+    rewriteAlternativeText(abortControllerRef.current.signal);
+  }, [
+    isProcessing,
+    stopProcessing,
+    rewriteAlternativeText,
+    selectedRewriteVersion,
+    setOutputTextRewrite,
+  ]);
+
+  const handleRewriteVersionChange = useCallback(
+    (version) => {
+      const index = Number(version) - 1;
+      if (index < 0 || index >= rewriteVersions.length) return;
+      setSelectedRewriteVersion(Number(version));
+      setOutputTextRewrite(rewriteVersions[index]);
+    },
+    [rewriteVersions, setOutputTextRewrite],
+  );
 
   const runTransform = useCallback(
     async (signal) => {
@@ -756,6 +952,7 @@ export function useProcessing({
       if (processingModeRef.current === "translate") handleTranslate();
       else if (processingModeRef.current === "translate_alternative") handleAlternative();
       else if (processingModeRef.current === "rewrite") handleRewrite();
+      else if (processingModeRef.current === "rewrite_alternative") handleRewriteAlternative();
       else if (processingModeRef.current === "transform") handleTransform();
       return;
     }
@@ -768,6 +965,7 @@ export function useProcessing({
     handleTranslate,
     handleAlternative,
     handleRewrite,
+    handleRewriteAlternative,
     handleTransform,
   ]);
 
@@ -786,11 +984,17 @@ export function useProcessing({
     setTranslateOutputIsModelResult,
     applyRunCostFromResult,
     rewriteOutputIsModelResult,
+    rewriteVersions,
+    selectedRewriteVersion,
+    setRewriteVersions,
+    setSelectedRewriteVersion,
     stopProcessing,
     handleTranslate,
     handleAlternative,
     handleTranslateVersionChange,
     handleRewrite,
+    handleRewriteAlternative,
+    handleRewriteVersionChange,
     runTransform,
     handleTransform,
     processingMode,

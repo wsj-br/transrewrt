@@ -1186,7 +1186,276 @@ export const AppProvider = ({ children }) => {
     }
   };
 
+  // Rephrase rewrite: alternative wording for an existing rewrite
+  const rewriteAlternative = async (
+    originalText,
+    existingVersions,
+    mode,
+    model,
+    sourceLang = null,
+    signal = null,
+  ) => {
+    setLoading(true);
+    setError(null);
+
+    const { effectiveModel: presetModel, fallbackModel, promptHint, fromPresetCatalog } = resolvePresetRuntime();
+    const effectiveModel = presetModel ?? model;
+
+    const finalizeRewriteAlternative = async (apiResult, modelToUse) => {
+      const result = apiResult;
+      result.model_used = result.model || modelToUse;
+      await applyCostToResult(setSetting, result);
+
+      await writeLastApiResult({
+        type: "rewrite_alternative",
+        model: result.model_used,
+        usage: result.usage,
+        calculated_cost: result.calculated_cost,
+        total_cost: result.total_cost,
+        raw: result,
+      });
+
+      logApiCall("rewrite_alternative", result, {
+        source_lang: sourceLang || "",
+        rewrite_mode: mode || "",
+      });
+
+      const altInputStats = getTextStats(typeof originalText === "string" ? originalText : "");
+      const altOutputStats = getTextStats(result.content ?? "");
+      const altPayload: Record<string, unknown> = {
+        timestamp: new Date().toISOString(),
+        type: "rewrite_alternative",
+        model: result.model_used || modelToUse,
+        source_lang: sourceLang || null,
+        rewrite_mode: mode || null,
+        prompt_tokens:
+          result.usage?.prompt_tokens ??
+          (result.request_bytes != null ? Math.round(result.request_bytes / 4) : null),
+        completion_tokens:
+          result.usage?.completion_tokens ??
+          (result.response_bytes != null ? Math.round(result.response_bytes / 4) : null),
+        duration_ms: result.duration_ms ?? null,
+        cost: result.calculated_cost ?? result.usage?.cost ?? null,
+        total_cost: result.total_cost ?? null,
+        tps: (() => {
+          const totalTokens = (result.usage?.prompt_tokens || 0) + (result.usage?.completion_tokens || 0);
+          const durationSec = result.duration_ms ? result.duration_ms / 1000 : 0;
+          return durationSec > 0 ? totalTokens / durationSec : null;
+        })(),
+        username: currentUser?.username ?? null,
+        input_chars: altInputStats.chars,
+        input_words: altInputStats.words,
+        input_paragraphs: altInputStats.paragraphs,
+        output_chars: altOutputStats.chars,
+        output_words: altOutputStats.words,
+        output_paragraphs: altOutputStats.paragraphs,
+      };
+      if (settings.keep_execution_history !== false) {
+        altPayload.input_text = typeof originalText === "string" ? originalText : "";
+        altPayload.output_text = result.content ?? "";
+      }
+      if (typeof window !== "undefined" && window.electronAPI?.logApiCall) {
+        window.electronAPI.logApiCall(altPayload).catch((err) => console.warn("[Electron] appDb log failed:", err));
+      }
+      if (typeof window !== "undefined" && !window.electronAPI?.getConfig && webAPI.logApiCall) {
+        webAPI.logApiCall(altPayload);
+      }
+
+      return result;
+    };
+
+    try {
+      const result = (await apiService.rewriteAlternative(
+        originalText,
+        existingVersions,
+        mode,
+        effectiveModel,
+        sourceLang,
+        promptHint ?? null,
+        signal,
+      )) as LlmCallResult;
+      return await finalizeRewriteAlternative(result, effectiveModel);
+    } catch (err) {
+      if (err.name === "AbortError") throw err;
+      if (err && err.status === 401) setNeedsLogin(true);
+      let finalErr = err;
+      if (isUnavailableModelError(err)) {
+        if (fromPresetCatalog && fallbackModel) {
+          try {
+            const fallbackResult = await apiService.rewriteAlternative(
+              originalText,
+              existingVersions,
+              mode,
+              fallbackModel,
+              sourceLang,
+              promptHint ?? null,
+              signal,
+            );
+            return await finalizeRewriteAlternative(fallbackResult, fallbackModel);
+          } catch (fallbackErr) {
+            finalErr = fallbackErr;
+            if (fallbackErr && fallbackErr.status === 401) setNeedsLogin(true);
+            if (fallbackErr && fallbackErr.name === "AbortError") throw fallbackErr;
+          }
+        }
+        if (isUnavailableModelError(finalErr)) {
+          if (fromPresetCatalog) {
+            setError(
+              i18n.t(
+                "The provider rejected this preset's model (missing, invalid, or not allowed). Try another preset, or switch to Advanced mode to pick a different model.",
+              ),
+            );
+            return { error: finalErr.message };
+          }
+          return await handleUnavailableModel(effectiveModel);
+        }
+      }
+      setError("Rewrite alternative failed");
+      console.error(err);
+      return { error: finalErr.message };
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // Suggest word alternatives for a selected phrase in a rewrite output
+  const rewriteWordAlternatives = async (
+    fullRewrite,
+    phrase,
+    originalText,
+    model,
+    sourceLang = null,
+    signal = null,
+  ) => {
+    setLoading(true);
+    setError(null);
+
+    const { effectiveModel: presetModel, fallbackModel, fromPresetCatalog } = resolvePresetRuntime();
+    const effectiveModel = presetModel ?? model;
+
+    const finalizeRewriteWordAlternatives = async (apiResult, modelToUse) => {
+      const result = apiResult;
+      result.model_used = result.model || modelToUse;
+      await applyCostToResult(setSetting, result);
+
+      await writeLastApiResult({
+        type: "rewrite_word_alternatives",
+        model: result.model_used,
+        usage: result.usage,
+        calculated_cost: result.calculated_cost,
+        total_cost: result.total_cost,
+        raw: result,
+      });
+
+      logApiCall("rewrite_word_alternatives", result, {
+        source_lang: sourceLang || "",
+      });
+
+      const inputStats = getTextStats(typeof originalText === "string" ? originalText : "");
+      const outputStats = getTextStats(
+        Array.isArray(result.alternatives)
+          ? result.alternatives.map(wordAlternativeDisplayText).join(" | ")
+          : "",
+      );
+      const payload: Record<string, unknown> = {
+        timestamp: new Date().toISOString(),
+        type: "rewrite_word_alternatives",
+        model: result.model_used || modelToUse,
+        prompt_tokens:
+          result.usage?.prompt_tokens ??
+          (result.request_bytes != null ? Math.round(result.request_bytes / 4) : null),
+        completion_tokens:
+          result.usage?.completion_tokens ??
+          (result.response_bytes != null ? Math.round(result.response_bytes / 4) : null),
+        duration_ms: result.duration_ms ?? null,
+        cost: result.calculated_cost ?? result.usage?.cost ?? null,
+        total_cost: result.total_cost ?? null,
+        tps: (() => {
+          const totalTokens =
+            (result.usage?.prompt_tokens || 0) + (result.usage?.completion_tokens || 0);
+          const durationSec = result.duration_ms ? result.duration_ms / 1000 : 0;
+          return durationSec > 0 ? totalTokens / durationSec : null;
+        })(),
+        username: currentUser?.username ?? null,
+        input_chars: inputStats.chars,
+        input_words: inputStats.words,
+        input_paragraphs: inputStats.paragraphs,
+        output_chars: outputStats.chars,
+        output_words: outputStats.words,
+        output_paragraphs: outputStats.paragraphs,
+      };
+      if (settings.keep_execution_history !== false) {
+        payload.input_text = typeof originalText === "string" ? originalText : "";
+        payload.output_text = Array.isArray(result.alternatives)
+          ? result.alternatives.map(wordAlternativeDisplayText).join("\n")
+          : "";
+      }
+      if (typeof window !== "undefined" && window.electronAPI?.logApiCall) {
+        window.electronAPI.logApiCall(payload).catch((err) => console.warn("[Electron] appDb log failed:", err));
+      }
+      if (typeof window !== "undefined" && !window.electronAPI?.getConfig && webAPI.logApiCall) {
+        webAPI.logApiCall(payload);
+      }
+
+      return result;
+    };
+
+    try {
+      const result = (await apiService.rewriteWordAlternatives(
+        fullRewrite,
+        phrase,
+        originalText,
+        effectiveModel,
+        sourceLang,
+        signal,
+      )) as LlmCallResult;
+      return await finalizeRewriteWordAlternatives(result, effectiveModel);
+    } catch (err) {
+      if (err.name === "AbortError") throw err;
+      if (err && err.status === 401) setNeedsLogin(true);
+      if (isUnavailableModelError(err)) {
+        let finalErr = err;
+
+        if (fromPresetCatalog && fallbackModel) {
+          try {
+            const fallbackResult = await apiService.rewriteWordAlternatives(
+              fullRewrite,
+              phrase,
+              originalText,
+              fallbackModel,
+              sourceLang,
+              signal,
+            );
+            return await finalizeRewriteWordAlternatives(fallbackResult, fallbackModel);
+          } catch (fallbackErr) {
+            finalErr = fallbackErr;
+            if (fallbackErr && fallbackErr.status === 401) setNeedsLogin(true);
+            if (fallbackErr && fallbackErr.name === "AbortError") throw fallbackErr;
+          }
+        }
+
+        if (isUnavailableModelError(finalErr)) {
+          if (fromPresetCatalog) {
+            setError(
+              i18n.t(
+                "The provider rejected this preset's model (missing, invalid, or not allowed). Try another preset, or switch to Advanced mode to pick a different model.",
+              ),
+            );
+            return { error: finalErr.message };
+          }
+          return await handleUnavailableModel(effectiveModel);
+        }
+      }
+      setError("Rewrite word alternatives failed");
+      console.error(err);
+      return { error: err.message };
+    } finally {
+      setLoading(false);
+    }
+  };
+
   // Transform text with custom prompt (cost tracking: same as translate/rewrite - updates total_cost for Settings > Cost tracking)
+
   const transform = async (text, promptConfig, model, signal = null, statedFromLang = null) => {
     setLoading(true);
     setError(null);
@@ -1462,6 +1731,8 @@ export const AppProvider = ({ children }) => {
     improvePromptConfig,
     generatePromptConfig,
     rewrite,
+    rewriteAlternative,
+    rewriteWordAlternatives,
     transform,
     fetchModels,
     removeModelFromList,

@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.1-blue" alt="Version"></a>
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.0-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
   <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react" alt="React 19">
@@ -62,27 +62,27 @@ Un cop instal·lat, consulteu la [**Guia de l'usuari**](USER-GUIDE.ca.md) per ob
 
 **Selector d'idioma**
 
-![Language selector](../images/screenshots/ca/language-selector.png)
+![Selector d'idioma](../images/screenshots/ca/language-selector.png)
 
 **Tradueix**
 
-![Translate](../images/screenshots/ca/translate.png)
+![Tradueix](../images/screenshots/ca/translate.png)
 
 **Transformació - editor de prompts**
 
-![Transform - prompt editor](../images/screenshots/ca/transform-prompt-edit.png)
+![Transformació - editor d'indicadors](../images/screenshots/ca/transform-prompt-edit.png)
 
 **Tauler**
 
-![Dashboard summary - usage](../images/screenshots/ca/dashboard-summary.png)
+![Resum del Tauler de control - ús](../images/screenshots/ca/dashboard-summary.png)
 
 **Historial**
 
-![History](../images/screenshots/ca/history.png)
+![Historial](../images/screenshots/ca/history.png)
 
 **Configuració - selecció de model**
 
-![Settings - model selection](../images/screenshots/ca/settings-general.png)
+![Configuració - selecció de model](../images/screenshots/ca/settings-general.png)
 
 <br/><br/>
 

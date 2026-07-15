@@ -1,4 +1,4 @@
-![Transrewrt banner](../images/transrewrt_banner.png)
+![Baner Transrewrt](../images/transrewrt_banner.png)
 
 <a id="transrewrt-user-guide"></a>
 # Przewodnik użytkownika
@@ -55,8 +55,10 @@ Ten przewodnik wyjaśnia, jak korzystać z aplikacji po jej zainstalowaniu i uru
   - [Dopracowywanie tłumaczenia](#refining-your-translation)
   - [Korzystanie ze słownika](#using-the-glossary)
 - [Przeróbka](#rewrite)
+  - [Przeróbka tekstu](#rewrite-text)
+  - [Udoskonalanie przeróbki](#refining-your-rewrite)
 - [Transformacja](#transform)
-  - [Uruchom istniejący monit](#run-an-existing-prompt)
+  - [Uruchamianie istniejącego monitu](#run-an-existing-prompt)
   - [Jeśli nie masz jeszcze żadnych monitów](#if-you-have-no-prompts-yet)
   - [Szybkie tworzenie monitu](#create-a-prompt-quickly)
   - [Edytowanie monitu](#edit-a-prompt)
@@ -65,7 +67,7 @@ Ten przewodnik wyjaśnia, jak korzystać z aplikacji po jej zainstalowaniu i uru
   - [Filtrowanie danych](#filter-the-data)
   - [Zakładki panelu](#dashboard-tabs)
   - [Eksportowanie danych](#export-data)
-  - [Usuwanie zapisanych rekordów dla modelu](#delete-stored-records-for-a-model)
+  - [Usuwanie przechowywanych rekordów dla modelu](#delete-stored-records-for-a-model)
 - [Historia](#history)
   - [Filtrowanie historii](#filter-the-history)
   - [Eksportowanie danych historii](#export-history-data)
@@ -79,18 +81,18 @@ Ten przewodnik wyjaśnia, jak korzystać z aplikacji po jej zainstalowaniu i uru
   - [Użytkownicy](#users)
   - [Konfiguracja API](#api-config)
   - [O aplikacji](#about)
-- [Typowe problemy](#common-issues)
+- [Częste problemy](#common-issues)
   - [Aplikacja nie tłumaczy, nie przerabia ani nie transformuje tekstu](#the-app-will-not-translate-rewrite-or-transform-text)
   - [Lista modeli jest pusta](#the-model-list-is-empty)
   - [Wynik jest zbyt wolny lub zbyt drogi](#the-result-is-too-slow-or-too-expensive)
-  - [Interfejs jest w złym języku](#the-interface-is-in-the-wrong-language)
+  - [Interfejs jest w niewłaściwym języku](#the-interface-is-in-the-wrong-language)
   - [Tekst jest za mały lub trudny do odczytania](#the-text-is-too-small-or-hard-to-read)
   - [Podsumowanie panelu wygląda na puste](#dashboard-summary-looks-empty)
-  - [Koszt pokazuje „niedostępny” lub wydaje się nieprawidłowy](#cost-shows-not-available-or-seems-wrong)
-  - [Całkowity koszt nie zgadza się z moim rachunkiem od dostawcy](#total-cost-does-not-match-my-provider-bill)
+  - [Koszt pokazuje „niedostępne” lub wydaje się błędny](#cost-shows-not-available-or-seems-wrong)
+  - [Całkowity koszt nie zgadza się z rachunkiem dostawcy](#total-cost-does-not-match-my-provider-bill)
   - [Strona Historia brakuje na pasku bocznym](#the-history-page-is-missing-from-the-sidebar)
   - [Aplikacja internetowa: nieoczekiwane przekierowanie do strony logowania](#web-app-redirected-to-the-login-page-unexpectedly)
-  - [Panel administratora: zapomniane lub utracone hasło](#web-admin-forgot-or-lost-a-password)
+  - [Administrator sieci: zapomniane lub utracone hasło](#web-admin-forgot-or-lost-a-password)
   - [Panel nie pokazuje danych dla innych użytkowników (sieć)](#dashboard-shows-no-data-for-other-users-web)
   - [Zmieniłem monit i straciłem edycje](#i-changed-a-prompt-and-lost-the-edits)
 - [Szybkie wskazówki](#quick-tips)
@@ -206,7 +208,7 @@ W trybie **Łatwy** pasek narzędzi zawiera selektor **ustawień wstępnych** z 
 
 W trybie **Zaawansowany** selektor **modelu** pozwala wybrać, którego silnika AI użyć do bieżącego zadania.
 
-![Model selector](../images/screenshots/pl/preset-selector.png)
+![Selektor modelu](../images/screenshots/pl/preset-selector.png)
 
 W trybie zaawansowanym niektóre darmowe modele mogą nie być zawsze dostępne — mogą być wyłączone lub osiągnąć limit użycia. Aplikacja może automatycznie usunąć taki model z listy. Aby kontrolować, które modele się pojawiają, przejdź do [**Ustawienia** > **Modele**](#models). Możesz otworzyć ustawienia modelu, klikając ikonę dostawcy po lewej stronie nazwy modelu na pasku narzędzi.
 
@@ -214,7 +216,7 @@ W trybie zaawansowanym niektóre darmowe modele mogą nie być zawsze dostępne 
 
 Ikona **globusa i kod języka** zmienia język interfejsu aplikacji, np. menu i przyciski. **Nie** zmienia to języków tłumaczenia używanych w funkcji **Tłumacz**.
 
-![Interface language selector](../images/screenshots/pl/language-selector.png)
+![Selektor języka interfejsu](../images/screenshots/pl/language-selector.png)
 
 <br/>
 
@@ -247,7 +249,7 @@ Możesz również monitorować koszt każdej operacji (jeśli dostępny) oraz ca
 
 Użyj opcji **Tłumacz**, gdy chcesz przetłumaczyć tekst z jednego języka na inny.
 
-![Translate workspace](../images/screenshots/pl/translate.png)
+![Obszar roboczy tłumaczenia](../images/screenshots/pl/translate.png)
 
 <br/>
 
@@ -296,9 +298,9 @@ W sekcji [**Ustawienia** > **Ustawienia ogólne**](#general-settings) możesz zm
 
 Po udanym tłumaczeniu, **Przeformułuj…** oraz rozwijane menu wersji pojawiają się w nagłówku wyjścia, obok selektora języka **Do:**. Możesz tam udoskonalić wynik:
 
-1. **Przeformułuj…** — bez zaznaczonego tekstu w wyjściu, uzyskaj pełne tłumaczenie tego samego wejścia z innym sformułowaniem. Model otrzymuje każdą wersję, którą już masz, więc nowe sformułowanie może różnić się od wszystkich. Możesz przechowywać do **pięciu** wersji i przełączać się między nimi w rozwijanym menu wersji. Przy zaznaczonym tekście, **Przeformułuj…** otwiera alternatywy słów w pobliżu zaznaczenia (tak jak kliknięcie prawym przyciskiem myszy). Bez zaznaczenia, **Przeformułuj…** jest wyłączone, gdy osiągniesz pięć wersji; przy zaznaczeniu nadal działa przy pięciu wersjach (tylko alternatywy słów, aktualizując wersję 5). Gdy pełne przeformułowanie jest w toku, kliknij **Zatrzymaj Tłumaczenie**, aby anulować; wyjście wraca do wersji, która była aktywna, gdy rozpoczęło się przeformułowanie.
-2. **Alternatywy słów** — zaznacz jedno lub więcej słów lub krótką frazę w wyjściu (jeśli zaznaczysz tylko część słowa, aplikacja rozszerza zaznaczenie do pełnych słów), a następnie kliknij prawym przyciskiem myszy lub kliknij **Przeformułuj…**. Krótka lista alternatyw pojawia się w pobliżu zaznaczenia; kliknij jedną, aby ją zastąpić. Każda opcja może zastąpić nieco szerszy zakres niż twoje zaznaczenie (na przykład sąsiedni przyimek lub artykuł), aby zdanie pozostało gramatyczne. Jeśli masz mniej niż pięć wersji, edytowane wyjście jest zapisywane jako nowa wersja; przy pięciu wersjach, tylko **wersja 5** jest aktualizowana. Kliknięcie prawym przyciskiem myszy bez zaznaczenia nic nie robi. Naciśnij **Esc** lub kliknij poza listą, aby anulować bez zmiany wyjścia.
-3. **Koszty** — każde pełne **Przeformułuj…** (bez zaznaczenia) i każde żądanie alternatywy słów ponownie wykorzystuje model i może zwiększyć koszt użytkowania (tak jak normalne uruchomienie tłumaczenia).
+1. **Przeformułuj…** — bez zaznaczonego tekstu w wyjściu, uzyskaj kolejne pełne tłumaczenie tego samego wejścia z innym sformułowaniem. Model otrzymuje każdą wersję, którą już masz, więc nowe sformułowanie może różnić się od wszystkich poprzednich. Możesz przechowywać do **pięciu** wersji i przełączać się między nimi w rozwijanej liście wersji. Po zaznaczeniu tekstu, **Przeformułuj…** otwiera alternatywy słów w pobliżu zaznaczenia (tak samo jak prawy przycisk myszy). Bez zaznaczenia, **Przeformułuj…** jest wyłączone po osiągnięciu pięciu wersji; z zaznaczeniem nadal działa przy pięciu wersjach (tylko alternatywy słów, aktualizując wersję 5). Podczas gdy trwa pełne przeformułowanie, kliknij **Zatrzymaj tłumaczenie**, aby anulować; wyjście powróci do wersji, która była aktywna, gdy rozpoczęto przeformułowanie.
+2. **Alternatywy słów** — zaznacz jedno lub więcej słów albo krótką frazę w wyjściu (jeśli zaznaczysz tylko część słowa, aplikacja rozszerzy zaznaczenie do pełnych słów), a następnie kliknij prawym przyciskiem myszy lub kliknij **Przeformułuj…**. Krótka lista alternatyw pojawi się w pobliżu zaznaczenia; kliknij jedną, aby ją zastąpić. Każda opcja może zastąpić nieco szerszy zakres niż Twoje zaznaczenie (na przykład przylegający przyimek lub rodzajnik), aby zdanie pozostało gramatyczne. Jeśli masz mniej niż pięć wersji, edytowane wyjście jest zapisywane jako nowa wersja; przy pięciu wersjach aktualizowana jest tylko **wersja 5**. Kliknięcie prawym przyciskiem myszy bez zaznaczenia zaznacza słowo pod kursorem (lub nic nie robi, jeśli nie ma tam słowa). Naciśnij **Esc** lub kliknij poza listą, aby anulować bez zmiany wyjścia.
+3. **Koszty** — każde pełne **Przeformułowanie…** (bez zaznaczenia) i każde żądanie alternatyw słów ponownie używa modelu i może zwiększyć koszt użytkowania (tak samo jak normalne uruchomienie tłumaczenia).
 
 <br/>
 
@@ -326,9 +328,9 @@ Terminy dodajesz, edytujesz, importujesz i eksportujesz w zakładce [**Ustawieni
 <a id="rewrite"></a>
 ## Przepisz
 
-Skorzystaj z opcji **Przepisz**, gdy chcesz poprawić sformułowanie bez zmiany głównej treści.
+Użyj opcji **Przeróbka**, gdy chcesz poprawić sformułowanie bez zmiany głównego znaczenia. Tekst pozostaje w tym samym języku (nie jest tłumaczony).
 
-![Rewrite workspace](../images/screenshots/pl/rewrite.png)
+![Obszar roboczy przeróbki](../images/screenshots/pl/rewrite.png)
 
 To przydatne w przypadku:
 
@@ -341,9 +343,38 @@ To przydatne w przypadku:
 
 <br/>
 
+<a id="rewrite-text"></a>
+### Przeróbka tekstu
+
+1. Otwórz **Przeróbka**.
+2. Wybierz **Tryb** (na przykład **Popraw jasność** lub **Uczyń formalnym**).
+3. Opcjonalnie ustaw **Z** na język tekstu (lub pozostaw **Wykryj język**).
+4. Wpisz lub wklej tekst do pola **Wejście**.
+5. Kliknij **Przeróbka**.
+6. Przeczytaj wynik w polu **Wyjście**.
+7. Opcjonalnie dopracuj wynik za pomocą opcji **Przeformułuj…** lub alternatywnych słów — zobacz [Dopracowywanie przeróbki](#refining-rewrite).
+
+<br/>
+
 > 💡 **WSKAZÓWKA**<br/>
 > Gdy korzystasz z trybu "**Sprawdzanie pisowni i gramatyki**", w panelu wyników (obok przycisku **Kopiuj**) pojawia się przełącznik **Pokaż zmiany**.
 > Włącz lub wyłącz go, aby pokazać lub ukryć konkretne poprawki wprowadzone w tekście.
+
+<br/>
+
+> ℹ️ **UWAGA**<br/>
+> Tryb przeróbki **Alternatywne wersje** zwraca kilka przeformułowań w **jednym** przebiegu, oddzielonych `----` w wynikach. Różni się to od opcji **Przeformułuj…**, która tworzy historię wersji w czasie (jeden nowy wariant na kliknięcie). Zobacz [Dopracowywanie przeróbki](#refining-rewrite).
+
+<br/>
+
+<a id="refining-rewrite"></a>
+### Dopracowywanie przeróbki
+
+Po udanej przeróbce, opcja **Przeformułuj…** i rozwijana lista wersji pojawiają się po stronie wyjściowej obszaru roboczego (w układzie podzielonym, w górnym pasku narzędzi nad kolumną wyjściową, obok metryk uruchomienia; w układzie ułożonym, nad panelem wyjściowym obok **Z:**). Możesz tam dopracować wynik — to samo, co [Dopracowywanie tłumaczenia](#refining-translation), ale tekst pozostaje w tym samym języku i zachowuje bieżący **Tryb** przeróbki:
+
+1. **Przeformułuj…** — bez zaznaczonego tekstu w wynikach, uzyskaj kolejną pełną przeróbkę tego samego tekstu wejściowego z innym sformułowaniem, nadal stosując wybrany tryb (na przykład jaśniejszy, krótszy lub bardziej formalny). Model otrzymuje każdą już posiadaną wersję, dzięki czemu nowe sformułowanie może różnić się od wszystkich poprzednich. Możesz zapisać do **pięciu** wersji i przełączać się między nimi w rozwijanej liście wersji. Po zaznaczeniu tekstu, **Przeformułuj…** otwiera alternatywne słowa w pobliżu zaznaczenia (tak samo jak kliknięcie prawym przyciskiem myszy). Bez zaznaczenia, **Przeformułuj…** jest wyłączone po osiągnięciu pięciu wersji; z zaznaczeniem nadal działa przy pięciu wersjach (tylko alternatywne słowa, aktualizując wersję 5). Podczas pełnego przeformułowania, kliknij **Zatrzymaj przeróbkę**, aby anulować; wynik powróci do wersji, która była aktywna, gdy rozpoczęto przeformułowanie.
+2. **Alternatywy słów** — zaznacz jedno lub więcej słów lub krótką frazę w wynikach (jeśli zaznaczysz tylko część słowa, aplikacja rozszerzy zaznaczenie do pełnych słów), a następnie kliknij prawym przyciskiem myszy lub kliknij **Przeformułuj…**. W pobliżu zaznaczenia pojawi się krótka lista alternatyw; kliknij jedną, aby ją zastąpić. Każda opcja może zastąpić nieco szerszy zakres niż Twoje zaznaczenie, aby zdanie pozostało gramatyczne. Jeśli masz mniej niż pięć wersji, edytowany wynik zostanie zapisany jako nowa wersja; przy pięciu wersjach aktualizowana jest tylko **wersja 5**. Kliknięcie prawym przyciskiem myszy bez zaznaczenia zaznacza słowo pod kursorem (lub nic nie robi, jeśli nie ma tam słowa). Naciśnij **Esc** lub kliknij poza listą, aby anulować bez zmiany wyników.
+3. **Koszty** — każde pełne **Przeformułuj…** (bez zaznaczenia) i każde żądanie alternatywnych słów ponownie używa modelu i może zwiększyć koszt użytkowania (tak samo jak normalne uruchomienie przeróbki).
 
 <br/><br/>
 
@@ -354,7 +385,7 @@ To przydatne w przypadku:
 
 Skorzystaj z opcji **Przekształć**, gdy chcesz, by AI wykonało zadanie zgodnie z niestandardowym zestawem instrukcji.
 
-![Transform workspace](../images/screenshots/pl/transform.png)
+![Obszar roboczy transformacji](../images/screenshots/pl/transform.png)
 
 To najbardziej elastyczna część aplikacji. Można jej używać do zadań takich jak:
 
@@ -402,7 +433,7 @@ Najszybszy sposób na utworzenie zachęty to:
 5. Pozwól aplikacji utworzyć wersję roboczą.
 6. Przejrzyj wersję roboczą i kliknij **Zapisz**.
 
-![Generate prompt](../images/screenshots/pl/transform-generate.png)
+![Generuj podpowiedź](../images/screenshots/pl/transform-generate.png)
 
 <br/>
 
@@ -411,7 +442,7 @@ Najszybszy sposób na utworzenie zachęty to:
 
 Gdy tworzysz lub edytujesz zachętę, edytor pojawia się po lewej stronie, a po prawej pojawia się obszar testowy.
 
-![Transform prompt editor](../images/screenshots/pl/transform-prompt-edit.png)
+![Edytor podpowiedzi transformacji](../images/screenshots/pl/transform-prompt-edit.png)
 
 Główne pola to:
 
@@ -467,7 +498,7 @@ Gdy korzystasz z opcji **Wygeneruj zachętę**, **Ulepsz zachętę** lub **Tłum
 
 Użyj **Panelu głównego**, aby zobaczyć, w jakim stopniu korzystasz z aplikacji i ile to kosztuje (dla modeli płatnych).
 
-![Dashboard summary](../images/screenshots/pl/dashboard-summary.png)
+![Podsumowanie panelu](../images/screenshots/pl/dashboard-summary.png)
 
 <br/>
 
@@ -481,7 +512,7 @@ Użyj **Panelu głównego**, aby zobaczyć, w jakim stopniu korzystasz z aplikac
 
 Użyj przycisków filtrów u góry, aby zmienić zakres czasu.
 
-![Dashboard filters](../images/screenshots/pl/dashboard-filter.png)
+![Filtry panelu](../images/screenshots/pl/dashboard-filter.png)
 
 <br/>
 
@@ -531,7 +562,7 @@ Aby usunąć wszystkie dane lub rekordy na podstawie ich wieku, przejdź do [**U
 
 Kliknij **Historia**, aby zobaczyć historię Twoich działań w aplikacji **Transrewrt**, w tym wejście i wyjście każdej operacji.
 
-![History page](../images/screenshots/pl/history.png)
+![Strona historii](../images/screenshots/pl/history.png)
 
 <br/>
 
@@ -540,7 +571,7 @@ Kliknij **Historia**, aby zobaczyć historię Twoich działań w aplikacji **Tra
 
 **Historia** używa tych samych filtrów zakresu czasu co strona **Panel główny**.
 
-![Dashboard filters](../images/screenshots/pl/dashboard-filter.png)
+![Filtry panelu](../images/screenshots/pl/dashboard-filter.png)
 
 <br/>
 
@@ -641,7 +672,7 @@ Kopie zapasowe utworzone w wersji webowej lub desktopowej mogą być przywracane
 
 Ta karta jest dostępna tylko wtedy, gdy w [**Ustawienia ogólne**](#general-settings) ustawiono opcję **Doświadczenie AI** na **Zaawansowany**. Skorzystaj z opcji **Ustawienia** > **Modele**, aby wybrać, które modele będą wyświetlane na pasku narzędzi.
 
-![Settings Models tab](../images/screenshots/pl/settings-general.png)
+![Karta Modele w Ustawieniach](../images/screenshots/pl/settings-general.png)
 
 Strona zawiera dwie listy:
 

@@ -55,6 +55,8 @@ This guide explains how to use the app once it is installed and running. For ins
   - [Refining your translation](#refining-your-translation)
   - [Using the glossary](#using-the-glossary)
 - [Rewrite](#rewrite)
+  - [Rewrite text](#rewrite-text)
+  - [Refining your rewrite](#refining-your-rewrite)
 - [Transform](#transform)
   - [Run an existing prompt](#run-an-existing-prompt)
   - [If you have no prompts yet](#if-you-have-no-prompts-yet)
@@ -296,8 +298,8 @@ In [**Settings** > **General Settings**](#general-settings), you can change how 
 
 After a successful translation, **Rephrase…** and the version dropdown appear in the output header, next to the **To:** language selector. You can refine the result there:
 
-1. **Rephrase…** — with no text selected in the output, get another full translation of the same input with different wording. The model receives every version you already have so the new wording can differ from all of them. You can store up to **five** versions and switch between them in the version dropdown. With text selected, **Rephrase…** opens word alternatives near the selection (same as right-click). Without a selection, **Rephrase…** is disabled once you reach five versions; with a selection, it still works at five versions (word alternatives only, updating version 5). While a full rephrase is running, click **Stop Translate** to cancel; the output returns to the version that was active when the rephrase started.
-2. **Word alternatives** — select one or more words or a short phrase in the output (if you select only part of a word, the app expands the selection to full words), then right-click or click **Rephrase…**. A short list of alternatives appears near the selection; click one to replace it. Each option may replace a slightly wider span than your selection (for example an adjacent preposition or article) so the sentence stays grammatical. If you have fewer than five versions, the edited output is saved as a new version; at five versions, only **version 5** is updated. Right-click with no selection does nothing. Press **Esc** or click outside the list to cancel without changing the output.
+1. **Rephrase…** — with no text selected in the output, get another full translation of the same input with different wording. The model receives every version you already have so the new wording can differ from all of them. You can store up to **five** versions and switch between them in the version dropdown. With text selected, **Rephrase…** opens word options near the selection (same as right-click). Without a selection, **Rephrase…** is disabled once you reach five versions; with a selection, it still works at five versions (word options only, updating version 5). While a full rephrase is running, click **Stop Translate** to cancel; the output returns to the version that was active when the rephrase started.
+2. **Word options** — select one or more words or a short phrase in the output (if you select only part of a word, the app expands the selection to full words), then right-click or click **Rephrase…**. A short list of options appears near the selection; click one to replace it. Each option may replace a slightly wider span than your selection (for example an adjacent preposition or article) so the sentence stays grammatical. If you have fewer than five versions, the edited output is saved as a new version; at five versions, only **version 5** is updated. Right-click with no selection selects the word under the cursor (or does nothing if there is no word there). Press **Esc** or click outside the list to cancel without changing the output.
 3. **Costs** — each full **Rephrase…** (no selection) and each word-alternative request uses the model again and may add to usage cost (same as a normal translate run).
 
 <br/>
@@ -326,7 +328,7 @@ You add, edit, import, and export terms in the [**Settings** > **Glossary**](#gl
 <a id="rewrite"></a>
 ## Rewrite
 
-Use **Rewrite** when you want to improve wording without changing the main meaning.
+Use **Rewrite** when you want to improve wording without changing the main meaning. The text stays in the same language (it is not translated).
 
 ![Rewrite workspace](../images/screenshots/en-US/rewrite.png)
 
@@ -341,9 +343,38 @@ This is useful for:
 
 <br/>
 
+<a id="rewrite-text"></a>
+### Rewrite text
+
+1. Open **Rewrite**.
+2. Choose a **Mode** (for example **Improve Clarity** or **Make Formal**).
+3. Optionally set **From** to the language of your text (or leave **Detect Language**).
+4. Type or paste text into **Input**.
+5. Click **Rewrite**.
+6. Read the result in **Output**.
+7. Optionally refine the result with **Rephrase…** or word options — see [Refining your rewrite](#refining-rewrite).
+
+<br/>
+
 > 💡 **TIP**<br/>
 > When you use the "**Check Spelling & Grammar**" mode, a **Show changes** switch appears in the output panel (next to **Copy**).
 > Turn it on or off to show or hide the specific corrections applied to your text.
+
+<br/>
+
+> ℹ️ **NOTE**<br/>
+> The rewrite mode **Alternative versions** returns several reformulations in a **single** run, separated by `----` in the output. That is different from **Rephrase…**, which builds a version history over time (one new variant per click). See [Refining your rewrite](#refining-rewrite).
+
+<br/>
+
+<a id="refining-rewrite"></a>
+### Refining your rewrite
+
+After a successful rewrite, **Rephrase…** and the version dropdown appear on the output side of the workspace (in split layout, in the top toolbar above the output column, next to the run metrics; in stacked layout, above the output panel next to **From:**). You can refine the result there — same idea as [Refining your translation](#refining-translation), but the text stays in the same language and keeps the current rewrite **Mode**:
+
+1. **Rephrase…** — with no text selected in the output, get another full rewrite of the same input with different wording, still applying the selected mode (for example clearer, shorter, or more formal). The model receives every version you already have so the new wording can differ from all of them. You can store up to **five** versions and switch between them in the version dropdown. With text selected, **Rephrase…** opens word options near the selection (same as right-click). Without a selection, **Rephrase…** is disabled once you reach five versions; with a selection, it still works at five versions (word options only, updating version 5). While a full rephrase is running, click **Stop Rewrite** to cancel; the output returns to the version that was active when the rephrase started.
+2. **Word options** — select one or more words or a short phrase in the output (if you select only part of a word, the app expands the selection to full words), then right-click or click **Rephrase…**. A short list of options appears near the selection; click one to replace it. Each option may replace a slightly wider span than your selection so the sentence stays grammatical. If you have fewer than five versions, the edited output is saved as a new version; at five versions, only **version 5** is updated. Right-click with no selection selects the word under the cursor (or does nothing if there is no word there). Press **Esc** or click outside the list to cancel without changing the output.
+3. **Costs** — each full **Rephrase…** (no selection) and each word-option request uses the model again and may add to usage cost (same as a normal rewrite run).
 
 <br/><br/>
 

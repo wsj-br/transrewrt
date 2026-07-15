@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.1-blue" alt="Version"></a>
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.0-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
   <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react" alt="React 19">
@@ -62,27 +62,27 @@ Odată instalat, consultați [**Ghidul utilizatorului**](USER-GUIDE.ro.md) pentr
 
 **Selector de limbă**
 
-![Language selector](../images/screenshots/ro/language-selector.png)
+![Selector de limbă](../images/screenshots/ro/language-selector.png)
 
 **Traduce**
 
-![Translate](../images/screenshots/ro/translate.png)
+![Traducere](../images/screenshots/ro/translate.png)
 
 **Transformare - editor de prompturi**
 
-![Transform - prompt editor](../images/screenshots/ro/transform-prompt-edit.png)
+![Transformare - editor de prompt](../images/screenshots/ro/transform-prompt-edit.png)
 
 **Panou de control**
 
-![Dashboard summary - usage](../images/screenshots/ro/dashboard-summary.png)
+![Sumar tablou de bord - utilizare](../images/screenshots/ro/dashboard-summary.png)
 
 **Istoric**
 
-![History](../images/screenshots/ro/history.png)
+![Istoric](../images/screenshots/ro/history.png)
 
 **Setări - selecție model**
 
-![Settings - model selection](../images/screenshots/ro/settings-general.png)
+![Setări - selecție model](../images/screenshots/ro/settings-general.png)
 
 <br/><br/>
 

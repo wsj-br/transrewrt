@@ -8,7 +8,7 @@ import { wordAlternativeDisplayText } from "../utils/misc/wordAlternativeUtils";
 const POPOVER_OFFSET = 4;
 const VIEWPORT_PADDING = 8;
 
-type TranslateWordAlternativesPopoverProps = {
+type WordAlternativesPopoverProps = {
   open: boolean;
   x: number;
   y: number;
@@ -17,9 +17,11 @@ type TranslateWordAlternativesPopoverProps = {
   error: string | null;
   onDismiss: () => void;
   onSelect: (choice: WordAlternativeChoice) => void;
+  /** Accessible label for the listbox. Defaults to "Word alternatives". */
+  ariaLabel?: string;
 };
 
-export function TranslateWordAlternativesPopover({
+export function WordAlternativesPopover({
   open,
   x,
   y,
@@ -28,7 +30,8 @@ export function TranslateWordAlternativesPopover({
   error,
   onDismiss,
   onSelect,
-}: TranslateWordAlternativesPopoverProps) {
+  ariaLabel,
+}: WordAlternativesPopoverProps) {
   const { t } = useTranslation();
   const popoverRef = useRef<HTMLDivElement>(null);
   const [coords, setCoords] = useState({ left: x, top: y });
@@ -77,7 +80,7 @@ export function TranslateWordAlternativesPopover({
       <div
         ref={popoverRef}
         role="listbox"
-        aria-label={t("Translation word alternatives")}
+        aria-label={ariaLabel ?? t("Word alternatives")}
         className={cn(
           "fixed z-[10050] min-w-[10rem] max-w-[min(24rem,calc(100vw-16px))] overflow-hidden rounded-md border bg-popover p-1 text-popover-foreground shadow-md",
         )}

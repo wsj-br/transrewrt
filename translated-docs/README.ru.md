@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.1-blue" alt="Version"></a>
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.0-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
   <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react" alt="React 19">
@@ -62,27 +62,27 @@
 
 **Выбор языка**
 
-![Language selector](../images/screenshots/ru/language-selector.png)
+![Выбор языка](../images/screenshots/ru/language-selector.png)
 
 **Перевести**
 
-![Translate](../images/screenshots/ru/translate.png)
+![Перевести](../images/screenshots/ru/translate.png)
 
 **Трансформация — редактор промптов**
 
-![Transform - prompt editor](../images/screenshots/ru/transform-prompt-edit.png)
+![Преобразование — редактор подсказок](../images/screenshots/ru/transform-prompt-edit.png)
 
 **Панель мониторинга**
 
-![Dashboard summary - usage](../images/screenshots/ru/dashboard-summary.png)
+![Сводка панели управления — использование](../images/screenshots/ru/dashboard-summary.png)
 
 **История**
 
-![History](../images/screenshots/ru/history.png)
+![История](../images/screenshots/ru/history.png)
 
 **Настройки — выбор модели**
 
-![Settings - model selection](../images/screenshots/ru/settings-general.png)
+![Настройки — выбор модели](../images/screenshots/ru/settings-general.png)
 
 <br/><br/>
 

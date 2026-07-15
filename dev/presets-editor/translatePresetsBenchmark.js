@@ -1,9 +1,9 @@
 /**
- * Dev presets-editor: translate benchmark per Easy-mode preset (OpenRouter main + fallback).
+ * Dev presets-editor: translate benchmark per Easy-mode preset (per-provider main + fallback).
  * Same prompts and streamCompletion path as the main app translate flow.
  */
 
-const { mergeKeys, streamCompletion } = require("../../src/shared/llm");
+const { mergeKeys, streamCompletion, engineConfigured, ENV_KEY_BY_ENGINE } = require("../../src/shared/llm");
 const { streamTextChunkToString } = require("../../src/shared/llm/streamDeltaContent");
 const prompts = require("../../src/config-defaults/prompts.json");
 
@@ -83,49 +83,91 @@ function usageToCostFields(usage) {
   };
 }
 
+function missingKeyMessage(engine) {
+  const ek = ENV_KEY_BY_ENGINE[engine] || String(engine).toUpperCase() + "_API_KEY";
+  return (
+    ek +
+    " is not set. Export it in the shell before starting the presets editor."
+  );
+}
+
 /**
  * @param {object} preset
+ * @param {string} engine
  * @param {boolean} [includeFallback]
- * @returns {Array<{ slot: "main" | "fallback", model_id: string }>}
+ * @returns {Array<{ slot: "main" | "fallback", model_id: string, engine: string }>}
  */
-function openRouterBenchmarkRunsForPreset(preset, includeFallback = true) {
+function benchmarkRunsForPreset(preset, engine, includeFallback = true) {
+  const eng = String(engine || "").trim();
+  if (!eng) return [];
+  // free-router only maps OpenRouter (same as editor providersForPreset).
+  if (preset?.id === "free-router" && eng !== "openrouter") {
+    return [];
+  }
   const runs = [];
   const main =
-    preset?.model_ids?.openrouter != null
-      ? String(preset.model_ids.openrouter).trim()
-      : "";
+    preset?.model_ids?.[eng] != null ? String(preset.model_ids[eng]).trim() : "";
   const fallback =
-    preset?.fallback_ids?.openrouter != null
-      ? String(preset.fallback_ids.openrouter).trim()
+    preset?.fallback_ids?.[eng] != null
+      ? String(preset.fallback_ids[eng]).trim()
       : "";
-  if (main) runs.push({ slot: "main", model_id: main });
+  if (main) runs.push({ slot: "main", model_id: main, engine: eng });
   if (includeFallback && fallback && fallback !== main) {
-    runs.push({ slot: "fallback", model_id: fallback });
+    runs.push({ slot: "fallback", model_id: fallback, engine: eng });
   }
   return runs;
 }
 
 /**
  * @param {object[]} presets
+ * @param {string[]} engines
  * @param {boolean} [includeFallback]
- * @returns {Array<{ preset: object, preset_id: string, slot: string, model_id: string }>}
+ * @returns {Array<{ preset: object, preset_id: string, slot: string, model_id: string, engine: string }>}
  */
-function buildBenchmarkRunQueue(presets, includeFallback = true) {
+function buildBenchmarkRunQueue(presets, engines, includeFallback = true) {
+  const engineList = Array.isArray(engines) ? engines : [];
   const queue = [];
   for (const preset of presets) {
     if (!preset) continue;
     const presetId = preset.id || "<no-id>";
-    const runs = openRouterBenchmarkRunsForPreset(preset, includeFallback);
-    for (const run of runs) {
-      queue.push({
-        preset,
-        preset_id: presetId,
-        slot: run.slot,
-        model_id: run.model_id,
-      });
+    for (const engine of engineList) {
+      const runs = benchmarkRunsForPreset(preset, engine, includeFallback);
+      for (const run of runs) {
+        queue.push({
+          preset,
+          preset_id: presetId,
+          slot: run.slot,
+          model_id: run.model_id,
+          engine: run.engine,
+        });
+      }
     }
   }
   return queue;
+}
+
+/**
+ * @param {string[]} engines
+ * @param {Record<string, string>} keysMap
+ * @param {boolean} skipUnconfigured
+ * @returns {string[]}
+ */
+function resolveActiveBenchmarkEngines(engines, keysMap, skipUnconfigured) {
+  const list = Array.isArray(engines) ? engines.map((e) => String(e).trim()).filter(Boolean) : [];
+  const active = [];
+  for (const engine of list) {
+    if (engineConfigured(engine, keysMap)) {
+      active.push(engine);
+    } else if (!skipUnconfigured) {
+      throw new Error(missingKeyMessage(engine));
+    }
+  }
+  if (!active.length) {
+    throw new Error(
+      "No configured providers to benchmark. Export the relevant API keys in the shell before starting the presets editor.",
+    );
+  }
+  return active;
 }
 
 /**
@@ -165,28 +207,39 @@ async function translateWithPresetModel(canonicalModelId, sampleText, promptHint
   };
 }
 
-function makeBenchmarkRow(presetId, slot, modelId, result, error) {
+function formatBenchmarkError(error) {
+  if (!error) return "Unknown error";
+  const msg = error.message ? String(error.message).trim() : String(error).trim();
+  const status = error.status ?? error.statusCode;
+  if (status && msg) return "HTTP " + status + ": " + msg;
+  return msg || "Unknown error";
+}
+
+function makeBenchmarkRow(presetId, slot, modelId, engine, result, error) {
+  const base = {
+    preset_id: presetId,
+    engine: engine || "",
+    slot,
+    model_id: modelId,
+  };
   if (error) {
+    const errText = formatBenchmarkError(error);
     return {
-      preset_id: presetId,
-      slot,
-      model_id: modelId,
+      ...base,
       ok: false,
       duration_ms: null,
       duration_fmt: null,
-      content_preview: "",
-      content: "",
+      content_preview: contentPreview(errText),
+      content: errText,
       cost_usd: null,
       cost_known: false,
       prompt_tokens: null,
       completion_tokens: null,
-      error: error?.message || String(error),
+      error: errText,
     };
   }
   return {
-    preset_id: presetId,
-    slot,
-    model_id: modelId,
+    ...base,
     ok: true,
     duration_ms: result.duration_ms,
     duration_fmt: formatDurationMs(result.duration_ms),
@@ -201,21 +254,31 @@ function makeBenchmarkRow(presetId, slot, modelId, result, error) {
 }
 
 /**
- * @param {{ presets: object[], keysMap: Record<string, string>, sample_text?: string, include_fallback?: boolean, onProgress?: (p: { index: number, total: number, preset_id: string, slot: string }) => void, onRow?: (row: object) => void }} opts
+ * @param {{ presets: object[], keysMap: Record<string, string>, sample_text?: string, include_fallback?: boolean, engines?: string[], skip_unconfigured?: boolean, onProgress?: (p: { index: number, total: number, preset_id: string, slot: string, engine: string }) => void, onRow?: (row: object, ctx?: object) => void }} opts
  */
 async function runTranslatePresetsBenchmark(opts) {
   const presets = Array.isArray(opts.presets) ? opts.presets : [];
   const keysMap = opts.keysMap || mergeKeys({});
   const sampleText = normalizeSampleText(opts.sample_text);
   const includeFallback = opts.include_fallback !== false;
+  const skipUnconfigured = opts.skip_unconfigured === true;
+  const engines = Array.isArray(opts.engines) && opts.engines.length
+    ? opts.engines
+    : ["openrouter"];
 
-  if (!(keysMap.openrouter_api_key || "").trim()) {
+  const activeEngines = resolveActiveBenchmarkEngines(
+    engines,
+    keysMap,
+    skipUnconfigured,
+  );
+
+  const queue = buildBenchmarkRunQueue(presets, activeEngines, includeFallback);
+  if (!queue.length) {
     throw new Error(
-      "OPENROUTER_API_KEY is not set. Export it in the shell before starting the presets editor.",
+      "No models to benchmark for the selected presets and provider(s). Check model_ids (and fallback_ids if enabled).",
     );
   }
 
-  const queue = buildBenchmarkRunQueue(presets, includeFallback);
   const total = queue.length;
   const rows = [];
   let totalCostUsd = 0;
@@ -223,9 +286,21 @@ async function runTranslatePresetsBenchmark(opts) {
 
   for (let index = 0; index < queue.length; index += 1) {
     const item = queue[index];
-    const { preset, preset_id: presetId, slot, model_id: modelId } = item;
+    const {
+      preset,
+      preset_id: presetId,
+      slot,
+      model_id: modelId,
+      engine,
+    } = item;
     if (opts.onProgress) {
-      opts.onProgress({ index: index + 1, total, preset_id: presetId, slot });
+      opts.onProgress({
+        index: index + 1,
+        total,
+        preset_id: presetId,
+        slot,
+        engine,
+      });
     }
     try {
       const result = await translateWithPresetModel(
@@ -239,17 +314,29 @@ async function runTranslatePresetsBenchmark(opts) {
       } else {
         totalCostPartial = true;
       }
-      const row = makeBenchmarkRow(presetId, slot, modelId, result, null);
+      const row = makeBenchmarkRow(presetId, slot, modelId, engine, result, null);
       rows.push(row);
       if (opts.onRow) {
-        opts.onRow(row, { index: index + 1, total, preset_id: presetId, slot });
+        opts.onRow(row, {
+          index: index + 1,
+          total,
+          preset_id: presetId,
+          slot,
+          engine,
+        });
       }
     } catch (e) {
       totalCostPartial = true;
-      const row = makeBenchmarkRow(presetId, slot, modelId, null, e);
+      const row = makeBenchmarkRow(presetId, slot, modelId, engine, null, e);
       rows.push(row);
       if (opts.onRow) {
-        opts.onRow(row, { index: index + 1, total, preset_id: presetId, slot });
+        opts.onRow(row, {
+          index: index + 1,
+          total,
+          preset_id: presetId,
+          slot,
+          engine,
+        });
       }
     }
   }
@@ -261,6 +348,7 @@ async function runTranslatePresetsBenchmark(opts) {
     sample_text: sampleText,
     source_lang: BENCHMARK_SOURCE_LANG,
     target_lang: BENCHMARK_TARGET_LANG,
+    engines: activeEngines,
     rows,
     total_cost_usd: totalCostUsd,
     total_cost_known: totalCostKnown,
@@ -275,7 +363,8 @@ module.exports = {
   buildTranslatePrompt,
   formatDurationMs,
   normalizeSampleText,
-  openRouterBenchmarkRunsForPreset,
+  benchmarkRunsForPreset,
   buildBenchmarkRunQueue,
+  resolveActiveBenchmarkEngines,
   runTranslatePresetsBenchmark,
 };

@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.1-blue" alt="Version"></a>
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.0-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
   <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react" alt="React 19">
@@ -62,27 +62,27 @@ AI-پاورڈ ٹیکسٹ ٹول: زبانوں کے درمیان ترجمہ کر�
 
 **زبان چُنن والا**
 
-![Language selector](../images/screenshots/pa-PK/language-selector.png)
+![زبان منتخب کنندہ](../images/screenshots/pa-PK/language-selector.png)
 
 **ترجمہ کریں**
 
-![Translate](../images/screenshots/pa-PK/translate.png)
+![ترجمہ کریں](../images/screenshots/pa-PK/translate.png)
 
 **تبدیل کرو - پرامپٹ ایڈیٹر**
 
-![Transform - prompt editor](../images/screenshots/pa-PK/transform-prompt-edit.png)
+![تبدیل کرو - پرامپٹ ایڈیٹر](../images/screenshots/pa-PK/transform-prompt-edit.png)
 
 **ڈیش بورڈ**
 
-![Dashboard summary - usage](../images/screenshots/pa-PK/dashboard-summary.png)
+![ڈیش بورڈ خلاصہ - استعمال](../images/screenshots/pa-PK/dashboard-summary.png)
 
 **تاریخچہ**
 
-![History](../images/screenshots/pa-PK/history.png)
+![تاریخچہ](../images/screenshots/pa-PK/history.png)
 
 **سیٹنگاں - ماڈل سلیکشن**
 
-![Settings - model selection](../images/screenshots/pa-PK/settings-general.png)
+![سیٹنگاں - ماڈل انتخاب](../images/screenshots/pa-PK/settings-general.png)
 
 <br/><br/>
 

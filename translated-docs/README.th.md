@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.1-blue" alt="Version"></a>
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.0-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
   <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react" alt="React 19">
@@ -62,27 +62,27 @@
 
 **ตัวเลือกภาษา**
 
-![Language selector](../images/screenshots/th/language-selector.png)
+![ตัวเลือกภาษา](../images/screenshots/th/language-selector.png)
 
 **แปล**
 
-![Translate](../images/screenshots/th/translate.png)
+![แปล](../images/screenshots/th/translate.png)
 
 **แปลง - ตัวแก้ไขคำสั่ง**
 
-![Transform - prompt editor](../images/screenshots/th/transform-prompt-edit.png)
+![การแปลง - ตัวแก้ไขคำแนะนำ](../images/screenshots/th/transform-prompt-edit.png)
 
 **แดชบอร์ด**
 
-![Dashboard summary - usage](../images/screenshots/th/dashboard-summary.png)
+![สรุปแดชบอร์ด - การใช้งาน](../images/screenshots/th/dashboard-summary.png)
 
 **ประวัติ**
 
-![History](../images/screenshots/th/history.png)
+![ประวัติ](../images/screenshots/th/history.png)
 
 **ตั้งค่า - การเลือกโมเดล**
 
-![Settings - model selection](../images/screenshots/th/settings-general.png)
+![การตั้งค่า - การเลือกโมเดล](../images/screenshots/th/settings-general.png)
 
 <br/><br/>
 

@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.1-blue" alt="Version"></a>
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.0-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
   <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react" alt="React 19">
@@ -62,27 +62,27 @@ AI-ఆధారిత టెక్స్ట్ సాధనం: భాషల మ
 
 **భాష ఎంపికదారు**
 
-![Language selector](../images/screenshots/te/language-selector.png)
+![భాషా ఎంపిక](../images/screenshots/te/language-selector.png)
 
 **అనువదించు**
 
-![Translate](../images/screenshots/te/translate.png)
+![అనువదించు](../images/screenshots/te/translate.png)
 
 **ట్రాన్స్‌ఫార్మ్ - ప్రాంప్ట్ ఎడిటర్**
 
-![Transform - prompt editor](../images/screenshots/te/transform-prompt-edit.png)
+![రూపాంతరం - ప్రాంప్ట్ ఎడిటర్](../images/screenshots/te/transform-prompt-edit.png)
 
 **డ్యాష్‌బోర్డ్**
 
-![Dashboard summary - usage](../images/screenshots/te/dashboard-summary.png)
+![డాష్బోర్డ్ సారాంశం - వినియోగం](../images/screenshots/te/dashboard-summary.png)
 
 **చరిత్ర**
 
-![History](../images/screenshots/te/history.png)
+![చరిత్ర](../images/screenshots/te/history.png)
 
 **సెట్టింగ్‌లు - మోడల్ ఎంపిక**
 
-![Settings - model selection](../images/screenshots/te/settings-general.png)
+![సెట్టింగ్స్ - మాడల్ ఎంపిక](../images/screenshots/te/settings-general.png)
 
 <br/><br/>
 

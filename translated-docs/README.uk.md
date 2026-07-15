@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.1-blue" alt="Version"></a>
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.0-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
   <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react" alt="React 19">
@@ -62,27 +62,27 @@
 
 **Вибір мови**
 
-![Language selector](../images/screenshots/uk/language-selector.png)
+![Вибір мови](../images/screenshots/uk/language-selector.png)
 
 **Перекласти**
 
-![Translate](../images/screenshots/uk/translate.png)
+![Перекласти](../images/screenshots/uk/translate.png)
 
 **Трансформація — редактор промптів**
 
-![Transform - prompt editor](../images/screenshots/uk/transform-prompt-edit.png)
+![Трансформація — редактор підказок](../images/screenshots/uk/transform-prompt-edit.png)
 
 **Панель**
 
-![Dashboard summary - usage](../images/screenshots/uk/dashboard-summary.png)
+![Підсумок панелі керування — використання](../images/screenshots/uk/dashboard-summary.png)
 
 **Історія**
 
-![History](../images/screenshots/uk/history.png)
+![Історія](../images/screenshots/uk/history.png)
 
 **Налаштування — вибір моделі**
 
-![Settings - model selection](../images/screenshots/uk/settings-general.png)
+![Налаштування — вибір моделі](../images/screenshots/uk/settings-general.png)
 
 <br/><br/>
 

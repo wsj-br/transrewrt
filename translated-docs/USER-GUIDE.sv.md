@@ -1,4 +1,4 @@
-![Transrewrt banner](../images/transrewrt_banner.png)
+![Transrewrt-banderoll](../images/transrewrt_banner.png)
 
 <a id="transrewrt-user-guide"></a>
 # Användarhandbok
@@ -55,6 +55,8 @@ Den här guiden förklarar hur du använder appen när den är installerad och i
   - [Förfina din översättning](#refining-your-translation)
   - [Använda ordlistan](#using-the-glossary)
 - [Omskrivning](#rewrite)
+  - [Skriv om text](#rewrite-text)
+  - [Förfina din omskrivning](#refining-your-rewrite)
 - [Transformera](#transform)
   - [Kör en befintlig prompt](#run-an-existing-prompt)
   - [Om du inte har några prompter än](#if-you-have-no-prompts-yet)
@@ -86,15 +88,15 @@ Den här guiden förklarar hur du använder appen när den är installerad och i
   - [Gränssnittet är på fel språk](#the-interface-is-in-the-wrong-language)
   - [Texten är för liten eller svår att läsa](#the-text-is-too-small-or-hard-to-read)
   - [Instrumentpanelens sammanfattning ser tom ut](#dashboard-summary-looks-empty)
-  - [Kostnad visar "inte tillgänglig" eller verkar felaktig](#cost-shows-not-available-or-seems-wrong)
-  - [Totalkostnad matchar inte min leverantörsfaktura](#total-cost-does-not-match-my-provider-bill)
+  - [Kostnaden visar "inte tillgänglig" eller verkar felaktig](#cost-shows-not-available-or-seems-wrong)
+  - [Totalkostnaden matchar inte min leverantörsfaktura](#total-cost-does-not-match-my-provider-bill)
   - [Historiksidan saknas i sidofältet](#the-history-page-is-missing-from-the-sidebar)
-  - [Webbapp: omdirigerad till inloggningssidan oväntat](#web-app-redirected-to-the-login-page-unexpectedly)
-  - [Webbadmin: glömt eller tappat bort ett lösenord](#web-admin-forgot-or-lost-a-password)
+  - [Webbapp: omdirigerades oväntat till inloggningssidan](#web-app-redirected-to-the-login-page-unexpectedly)
+  - [Webbadministratör: glömt eller tappat bort ett lösenord](#web-admin-forgot-or-lost-a-password)
   - [Instrumentpanelen visar inga data för andra användare (webb)](#dashboard-shows-no-data-for-other-users-web)
   - [Jag ändrade en prompt och förlorade ändringarna](#i-changed-a-prompt-and-lost-the-edits)
-- [Snabbtips](#quick-tips)
-- [Ansvarsfriskrivning](#disclaimer)
+- [Snabba tips](#quick-tips)
+- [Friskrivning](#disclaimer)
 - [Licens](#license)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -206,7 +208,7 @@ I **Enkel**-läge visar verktygsfältet en **val av förinställning** med de in
 
 I **Avancerad** läge låter **modellväljaren** dig välja vilken AI-motor som ska användas för den aktuella uppgiften.
 
-![Model selector](../images/screenshots/sv/preset-selector.png)
+![Modellväljare](../images/screenshots/sv/preset-selector.png)
 
 I Avancerat läge kanske vissa kostnadsfria modeller inte alltid är tillgängliga – de kan vara offline eller ha nått en användningsgräns. Appen kan automatiskt ta bort modellen från din lista. För att styra vilka modeller som visas, gå till [**Inställningar** > **Modeller**](#models). Du kan öppna modellinställningar från leverantörsikonen till vänster om modellnamnet i verktygsfältet.
 
@@ -214,7 +216,7 @@ I Avancerat läge kanske vissa kostnadsfria modeller inte alltid är tillgängli
 
 Med **globikonen + språkkod** kan du ändra gränssnittsspråket i appen, till exempel menyer och knappar. Det ändrar **inte** översättningsspråken som används i **Översätt**.
 
-![Interface language selector](../images/screenshots/sv/language-selector.png)
+![Väljare för gränssnittsspråk](../images/screenshots/sv/language-selector.png)
 
 <br/>
 
@@ -247,7 +249,7 @@ Du kan också övervaka kostnaden för varje åtgärd (om tillgängligt) och den
 
 Använd **Översätt** när du vill konvertera text från ett språk till ett annat.
 
-![Translate workspace](../images/screenshots/sv/translate.png)
+![Översätt arbetsyta](../images/screenshots/sv/translate.png)
 
 <br/>
 
@@ -296,9 +298,9 @@ I [**Inställningar** > **Allmänna inställningar**](#general-settings) kan du 
 
 Efter en lyckad översättning visas **Överskriv…** och versionsrullgardinsmenyn i utdatahuvudet, bredvid språkvalet **Till:**. Du kan förfina resultatet där:
 
-1. **Överskriv…** — med ingen text vald i utdata, få en annan fullständig översättning av samma inmatning med olika formuleringar. Modellen får varje version du redan har så den nya formuleringen kan skilja sig från alla. Du kan spara upp till **fem** versioner och växla mellan dem i versionsrullgardinsmenyn. Med text vald öppnar **Överskriv…** ordalternativ nära valet (samma som högerklick). Utan ett val är **Överskriv…** inaktiverat när du når fem versioner; med ett val fungerar det fortfarande vid fem versioner (endast ordalternativ, uppdaterar version 5). När en fullständig omformulering pågår, klicka på **Stoppa översättning** för att avbryta; utdata återgår till den version som var aktiv när omformuleringen startade.
-2. **Ordalternativ** — välj ett eller flera ord eller en kort fras i utdata (om du endast väljer en del av ett ord, utökar appen valet till hela ord), klicka sedan med höger musknapp eller klicka på **Överskriv…**. En kort lista med alternativ visas nära valet; klicka på ett för att ersätta det. Varje alternativ kan ersätta ett något bredare spann än ditt val (till exempel en angränsande preposition eller artikel) så att meningen förblir grammatisk. Om du har färre än fem versioner sparas den redigerade utdata som en ny version; vid fem versioner uppdateras endast **version 5**. Högerklicka utan val gör ingenting. Tryck på **Esc** eller klicka utanför listan för att avbryta utan att ändra utdata.
-3. **Kostnader** — varje fullständig **Överskriv…** (ingen val) och varje begäran om ordalternativ använder modellen igen och kan öka användningskostnaden (samma som en normal översättningskörning).
+1. **Omformulera…** – utan markerad text i utdata får du en annan fullständig översättning av samma indata med annorlunda formulering. Modellen får varje version du redan har så att den nya formuleringen kan skilja sig från alla dem. Du kan lagra upp till **fem** versioner och växla mellan dem i rullgardinsmenyn för versioner. Med markerad text öppnar **Omformulera…** ordalternativ nära markeringen (samma som högerklick). Utan en markering är **Omformulera…** inaktiverad när du når fem versioner; med en markering fungerar den fortfarande vid fem versioner (endast ordalternativ, uppdaterar version 5). Medan en fullständig omformulering körs, klicka på **Stoppa översättning** för att avbryta; utdata återgår till den version som var aktiv när omformuleringen startade.
+2. **Ord-alternativ** – markera ett eller flera ord eller en kort fras i utdata (om du bara markerar en del av ett ord, utökar appen markeringen till hela ord), högerklicka sedan eller klicka på **Omformulera…**. En kort lista med alternativ visas nära markeringen; klicka på ett för att ersätta det. Varje alternativ kan ersätta ett något bredare spann än din markering (till exempel en intilliggande preposition eller artikel) så att meningen förblir grammatisk. Om du har färre än fem versioner sparas den redigerade utdata som en ny version; vid fem versioner uppdateras endast **version 5**. Högerklicka utan markering markerar ordet under markören (eller gör ingenting om det inte finns något ord där). Tryck på **Esc** eller klicka utanför listan för att avbryta utan att ändra utdata.
+3. **Kostnader** – varje fullständig **Omformulera…** (ingen markering) och varje begäran om ordalternativ använder modellen igen och kan lägga till användningskostnaden (samma som en normal översättningskörning).
 
 <br/>
 
@@ -326,9 +328,9 @@ Du lägger till, redigerar, importerar och exporterar termer i fliken [**Instäl
 <a id="rewrite"></a>
 ## Omskriv
 
-Använd **Omskriv** när du vill förbättra formuleringen utan att ändra huvudsakliga meningen.
+Använd **Omskrivning** när du vill förbättra formuleringen utan att ändra huvudbetydelsen. Texten förblir på samma språk (den översätts inte).
 
-![Rewrite workspace](../images/screenshots/sv/rewrite.png)
+![Arbetsyta för omskrivning](../images/screenshots/sv/rewrite.png)
 
 Detta är användbart för:
 
@@ -341,9 +343,38 @@ Detta är användbart för:
 
 <br/>
 
+<a id="rewrite-text"></a>
+### Skriv om text
+
+1. Öppna **Omskrivning**.
+2. Välj ett **Läge** (till exempel **Förbättra tydlighet** eller **Gör formell**).
+3. Ställ eventuellt in **Från** till språket för din text (eller lämna **Identifiera språk**).
+4. Skriv eller klistra in text i **Inmatning**.
+5. Klicka på **Omskrivning**.
+6. Läs resultatet i **Utdata**.
+7. Förfina eventuellt resultatet med **Omformulera...** eller ord-alternativ – se [Förfina din omskrivning](#refining-rewrite).
+
+<br/>
+
 > 💡 **TIP**<br/>
 > När du använder läget "**Kontrollera stavning och grammatik**" visas en växel **Visa ändringar** i utmatningsfönstret (bredvid **Kopiera**).
 > Slå på eller av den för att visa eller dölja de specifika korrigeringar som tillämpats på din text.
+
+<br/>
+
+> ℹ️ **OBS**<br/>
+> Omskrivningsläget **Alternativa versioner** returnerar flera omformuleringar i en **enda** körning, separerade med `----` i utdata. Detta skiljer sig från **Omformulera...**, som bygger en versionshistorik över tid (en ny variant per klick). Se [Förfina din omskrivning](#refining-rewrite).
+
+<br/>
+
+<a id="refining-rewrite"></a>
+### Förfina din omskrivning
+
+Efter en lyckad omskrivning visas **Omformulera...** och versionsrullgardinsmenyn på utdatasidan av arbetsytan (i delad layout, i den övre verktygsraden ovanför utdatakolumnen, bredvid körningsmåtten; i staplad layout, ovanför utdatapanelen bredvid **Från:**). Du kan förfina resultatet där – samma idé som [Förfina din översättning](#refining-translation), men texten förblir på samma språk och behåller det aktuella omskrivnings**läget**:
+
+1. **Omformulera...** – utan att text är markerad i utdata får du en ny fullständig omskrivning av samma inmatning med annorlunda formulering, fortfarande med det valda läget (till exempel tydligare, kortare eller mer formell). Modellen får varje version du redan har så den nya formuleringen kan skilja sig från alla dem. Du kan lagra upp till **fem** versioner och växla mellan dem i versionsrullgardinsmenyn. Med text markerad öppnar **Omformulera...** ord-alternativ nära markeringen (samma som högerklick). Utan markering är **Omformulera...** inaktiverad när du når fem versioner; med en markering fungerar det fortfarande vid fem versioner (endast ord-alternativ, uppdaterar version 5). Medan en fullständig omformulering körs, klicka på **Stoppa omskrivning** för att avbryta; utdata återgår till den version som var aktiv när omformuleringen startade.
+2. **Ord-alternativ** – markera ett eller flera ord eller en kort fras i utdata (om du bara markerar en del av ett ord, utökar appen markeringen till hela ord), högerklicka sedan eller klicka på **Omformulera...**. En kort lista med alternativ visas nära markeringen; klicka på ett för att ersätta det. Varje alternativ kan ersätta ett något bredare spann än din markering så att meningen förblir grammatisk. Om du har färre än fem versioner sparas den redigerade utdata som en ny version; vid fem versioner uppdateras endast **version 5**. Högerklicka utan markering markerar ordet under markören (eller gör inget om det inte finns något ord där). Tryck på **Esc** eller klicka utanför listan för att avbryta utan att ändra utdata.
+3. **Kostnader** – varje fullständig **Omformulera...** (ingen markering) och varje begäran om ord-alternativ använder modellen igen och kan lägga till användningskostnad (samma som en normal omskrivningskörning).
 
 <br/><br/>
 
@@ -354,7 +385,7 @@ Detta är användbart för:
 
 Använd **Transformera** när du vill att AI:n ska följa en anpassad uppsättning instruktioner.
 
-![Transform workspace](../images/screenshots/sv/transform.png)
+![Transformera arbetsyta](../images/screenshots/sv/transform.png)
 
 Detta är den mest flexibla delen av appen. Du kan använda den för uppgifter som:
 
@@ -402,7 +433,7 @@ Det snabbaste sättet att skapa en prompt är:
 5. Låt appen skapa ett utkast åt dig.
 6. Granska utkastet och klicka på **Spara**.
 
-![Generate prompt](../images/screenshots/sv/transform-generate.png)
+![Generera prompt](../images/screenshots/sv/transform-generate.png)
 
 <br/>
 
@@ -411,7 +442,7 @@ Det snabbaste sättet att skapa en prompt är:
 
 När du skapar eller redigerar en prompt visas redigeraren till vänster och ett testområde till höger.
 
-![Transform prompt editor](../images/screenshots/sv/transform-prompt-edit.png)
+![Transformera promptredigerare](../images/screenshots/sv/transform-prompt-edit.png)
 
 De viktigaste fälten är:
 
@@ -467,7 +498,7 @@ När du använder **Generera prompt**, **Förbättra prompt** eller **Översätt
 
 Använd **Översiktspanel** för att se hur mycket du använder appen och vad det kostar (för betalda modeller).
 
-![Dashboard summary](../images/screenshots/sv/dashboard-summary.png)
+![Instrumentpanelöversikt](../images/screenshots/sv/dashboard-summary.png)
 
 <br/>
 
@@ -481,7 +512,7 @@ Använd **Översiktspanel** för att se hur mycket du använder appen och vad de
 
 Använd filterknapparna längst upp för att ändra tidsintervallet.
 
-![Dashboard filters](../images/screenshots/sv/dashboard-filter.png)
+![Instrumentpanelfilter](../images/screenshots/sv/dashboard-filter.png)
 
 <br/>
 
@@ -531,7 +562,7 @@ Om du vill ta bort alla data eller ta bort poster baserat på deras ålder går 
 
 Klicka på **Historik** för att se historiken över dina åtgärder i **Transrewrt**, inklusive inmatning och utmatning för varje åtgärd.
 
-![History page](../images/screenshots/sv/history.png)
+![Historiksida](../images/screenshots/sv/history.png)
 
 <br/>
 
@@ -540,7 +571,7 @@ Klicka på **Historik** för att se historiken över dina åtgärder i **Transre
 
 **Historik** använder samma tidsintervallfilter som sidan **Översiktspanel**.
 
-![Dashboard filters](../images/screenshots/sv/dashboard-filter.png)
+![Instrumentpanelfilter](../images/screenshots/sv/dashboard-filter.png)
 
 <br/>
 
@@ -641,7 +672,7 @@ Säkerhetskopior skapade i antingen webb- eller skrivbordsversionen kan återst�
 
 Den här fliken är endast tillgänglig när **AI-upplevelse** är inställd på **Avancerad** i [**Allmänna inställningar**](#general-settings). Använd **Inställningar** > **Modeller** för att välja vilka modeller som ska visas i verktygsfältet.
 
-![Settings Models tab](../images/screenshots/sv/settings-general.png)
+![Inställningar fliken Modeller](../images/screenshots/sv/settings-general.png)
 
 Sidan har två listor:
 

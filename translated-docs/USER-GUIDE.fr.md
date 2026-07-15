@@ -1,4 +1,4 @@
-![Transrewrt banner](../images/transrewrt_banner.png)
+![Bannière Transrewrt](../images/transrewrt_banner.png)
 
 <a id="transrewrt-user-guide"></a>
 # Guide de l'utilisateur
@@ -55,16 +55,18 @@ Ce guide explique comment utiliser l'application une fois installée et en cours
   - [Affiner votre traduction](#refining-your-translation)
   - [Utilisation du glossaire](#using-the-glossary)
 - [Réécriture](#rewrite)
+  - [Réécrire du texte](#rewrite-text)
+  - [Affiner votre réécriture](#refining-your-rewrite)
 - [Transformation](#transform)
   - [Exécuter une invite existante](#run-an-existing-prompt)
   - [Si vous n'avez pas encore d'invites](#if-you-have-no-prompts-yet)
-  - [Créer rapidement une invite](#create-a-prompt-quickly)
+  - [Créer une invite rapidement](#create-a-prompt-quickly)
   - [Modifier une invite](#edit-a-prompt)
   - [Tester une invite avant de l'utiliser](#test-a-prompt-before-using-it)
 - [Tableau de bord](#dashboard)
   - [Filtrer les données](#filter-the-data)
   - [Onglets du tableau de bord](#dashboard-tabs)
-  - [Exporter les données](#export-data)
+  - [Exporter des données](#export-data)
   - [Supprimer les enregistrements stockés pour un modèle](#delete-stored-records-for-a-model)
 - [Historique](#history)
   - [Filtrer l'historique](#filter-the-history)
@@ -74,25 +76,25 @@ Ce guide explique comment utiliser l'application une fois installée et en cours
   - [Modèles](#models)
   - [Langues](#languages)
   - [Suivi des coûts](#cost-tracking)
-  - [Transformation (onglet Paramètres)](#transform-settings-tab)
-  - [Glossaire (onglet Paramètres)](#glossary-settings-tab)
+  - [Transformation (onglet des paramètres)](#transform-settings-tab)
+  - [Glossaire (onglet des paramètres)](#glossary-settings-tab)
   - [Utilisateurs](#users)
   - [Config. API](#api-config)
   - [À propos](#about)
 - [Problèmes courants](#common-issues)
-  - [L'application ne traduit, ne réécrit ni ne transforme le texte](#the-app-will-not-translate-rewrite-or-transform-text)
+  - [L'application ne traduit pas, ne réécrit pas ou ne transforme pas le texte](#the-app-will-not-translate-rewrite-or-transform-text)
   - [La liste des modèles est vide](#the-model-list-is-empty)
-  - [Le résultat est trop lent ou trop coûteux](#the-result-is-too-slow-or-too-expensive)
+  - [Le résultat est trop lent ou trop cher](#the-result-is-too-slow-or-too-expensive)
   - [L'interface est dans la mauvaise langue](#the-interface-is-in-the-wrong-language)
   - [Le texte est trop petit ou difficile à lire](#the-text-is-too-small-or-hard-to-read)
-  - [Résumé du tableau de bord est vide](#dashboard-summary-looks-empty)
-  - [Le coût affiche "non disponible" ou semble incorrect](#cost-shows-not-available-or-seems-wrong)
-  - [Le coût total ne correspond pas à ma facture du fournisseur](#total-cost-does-not-match-my-provider-bill)
+  - [Le résumé du tableau de bord semble vide](#dashboard-summary-looks-empty)
+  - [Le coût indique « non disponible » ou semble incorrect](#cost-shows-not-available-or-seems-wrong)
+  - [Le coût total ne correspond pas à ma facture de fournisseur](#total-cost-does-not-match-my-provider-bill)
   - [La page Historique est manquante dans la barre latérale](#the-history-page-is-missing-from-the-sidebar)
-  - [Application web : redirection inattendue vers la page de connexion](#web-app-redirected-to-the-login-page-unexpectedly)
-  - [Admin web : mot de passe oublié ou perdu](#web-admin-forgot-or-lost-a-password)
+  - [Application web : redirigé vers la page de connexion de manière inattendue](#web-app-redirected-to-the-login-page-unexpectedly)
+  - [Administrateur web : mot de passe oublié ou perdu](#web-admin-forgot-or-lost-a-password)
   - [Le tableau de bord n'affiche aucune donnée pour les autres utilisateurs (web)](#dashboard-shows-no-data-for-other-users-web)
-  - [J'ai modifié une invite et perdu les modifications](#i-changed-a-prompt-and-lost-the-edits)
+  - [J'ai modifié une invite et j'ai perdu les modifications](#i-changed-a-prompt-and-lost-the-edits)
 - [Conseils rapides](#quick-tips)
 - [Avertissement](#disclaimer)
 - [Licence](#license)
@@ -206,7 +208,7 @@ En mode **Facile**, la barre d'outils affiche un sélecteur de **préréglage** 
 
 En mode **Avancé**, le sélecteur de **modèle** vous permet de choisir quel moteur d'IA utiliser pour la tâche en cours.
 
-![Model selector](../images/screenshots/fr/preset-selector.png)
+![Sélecteur de modèle](../images/screenshots/fr/preset-selector.png)
 
 En mode Avancé, certains modèles gratuits peuvent ne pas être toujours disponibles — ils peuvent être hors ligne ou avoir atteint une limite d'utilisation. L'application peut supprimer automatiquement ce modèle de votre liste. Pour contrôler quels modèles apparaissent, rendez-vous dans [**Paramètres** > **Modèles**](#models). Vous pouvez accéder aux paramètres du modèle depuis l'icône du fournisseur située à gauche du nom du modèle dans la barre d'outils.
 
@@ -214,7 +216,7 @@ En mode Avancé, certains modèles gratuits peuvent ne pas être toujours dispon
 
 L'**icône de globe + code de langue** permet de changer la langue de l'interface de l'application, comme les menus et les boutons. Cela ne change **pas** les langues de traduction utilisées dans **Traduire**.
 
-![Interface language selector](../images/screenshots/fr/language-selector.png)
+![Sélecteur de langue de l'interface](../images/screenshots/fr/language-selector.png)
 
 <br/>
 
@@ -247,7 +249,7 @@ Vous pouvez également surveiller le coût de chaque opération (si disponible) 
 
 Utilisez **Traduire** lorsque vous souhaitez convertir un texte d'une langue à une autre.
 
-![Translate workspace](../images/screenshots/fr/translate.png)
+![Espace de travail de traduction](../images/screenshots/fr/translate.png)
 
 <br/>
 
@@ -296,9 +298,9 @@ Dans [**Paramètres** > **Paramètres généraux**](#general-settings), vous pou
 
 Après une traduction réussie, **Reformuler…** et le menu déroulant de version apparaissent dans l'en-tête de sortie, à côté du sélecteur de langue **Vers :**. Vous pouvez affiner le résultat là :
 
-1. **Reformuler…** — sans texte sélectionné dans la sortie, obtenez une autre traduction complète du même input avec des formulations différentes. Le modèle reçoit chaque version que vous avez déjà afin que la nouvelle formulation puisse différer de toutes les autres. Vous pouvez stocker jusqu'à **cinq** versions et basculer entre elles dans le menu déroulant de version. Avec du texte sélectionné, **Reformuler…** ouvre des alternatives de mots près de la sélection (comme un clic droit). Sans sélection, **Reformuler…** est désactivé une fois que vous atteignez cinq versions ; avec une sélection, cela fonctionne toujours à cinq versions (alternatives de mots uniquement, mise à jour de la version 5). Pendant qu'une reformulation complète est en cours, cliquez sur **Arrêter Traduire** pour annuler ; la sortie revient à la version qui était active lorsque la reformulation a commencé.
-2. **Alternatives de mots** — sélectionnez un ou plusieurs mots ou une courte phrase dans la sortie (si vous sélectionnez seulement une partie d'un mot, l'application étend la sélection à des mots complets), puis cliquez avec le bouton droit ou cliquez sur **Reformuler…**. Une courte liste d'alternatives apparaît près de la sélection ; cliquez sur l'une d'elles pour la remplacer. Chaque option peut remplacer une portée légèrement plus large que votre sélection (par exemple, une préposition ou un article adjacent) afin que la phrase reste grammaticale. Si vous avez moins de cinq versions, la sortie modifiée est enregistrée comme une nouvelle version ; à cinq versions, seule **la version 5** est mise à jour. Un clic droit sans sélection ne fait rien. Appuyez sur **Échap** ou cliquez en dehors de la liste pour annuler sans changer la sortie.
-3. **Coûts** — chaque **Reformuler…** complet (sans sélection) et chaque demande d'alternative de mot utilise à nouveau le modèle et peut ajouter au coût d'utilisation (comme lors d'une exécution de traduction normale).
+1. **Reformuler…** — sans texte sélectionné dans la sortie, obtenir une autre traduction complète de la même entrée avec une formulation différente. Le modèle reçoit toutes les versions que vous avez déjà afin que la nouvelle formulation puisse différer de toutes. Vous pouvez stocker jusqu'à **cinq** versions et basculer entre elles dans le menu déroulant des versions. Avec du texte sélectionné, **Reformuler…** ouvre les alternatives de mots près de la sélection (identique au clic droit). Sans sélection, **Reformuler…** est désactivé une fois que vous avez atteint cinq versions ; avec une sélection, cela fonctionne toujours à cinq versions (alternatives de mots uniquement, mise à jour de la version 5). Pendant qu'une reformulation complète est en cours, cliquez sur **Arrêter la traduction** pour annuler ; la sortie revient à la version qui était active au début de la reformulation.
+2. **Alternatives de mots** — sélectionnez un ou plusieurs mots ou une courte phrase dans la sortie (si vous ne sélectionnez qu'une partie d'un mot, l'application étend la sélection à des mots complets), puis cliquez avec le bouton droit ou cliquez sur **Reformuler…**. Une courte liste d'alternatives apparaît près de la sélection ; cliquez sur l'une d'elles pour la remplacer. Chaque option peut remplacer une étendue légèrement plus large que votre sélection (par exemple, une préposition ou un article adjacent) afin que la phrase reste grammaticalement correcte. Si vous avez moins de cinq versions, la sortie modifiée est enregistrée comme une nouvelle version ; à cinq versions, seule la **version 5** est mise à jour. Un clic droit sans sélection sélectionne le mot sous le curseur (ou ne fait rien s'il n'y a pas de mot). Appuyez sur **Échap** ou cliquez en dehors de la liste pour annuler sans modifier la sortie.
+3. **Coûts** — chaque **Reformulation…** complète (sans sélection) et chaque demande d'alternative de mot utilise à nouveau le modèle et peut augmenter le coût d'utilisation (identique à une exécution de traduction normale).
 
 <br/>
 
@@ -326,9 +328,9 @@ Vous ajoutez, modifiez, importez et exportez des termes dans l'onglet [**Paramè
 <a id="rewrite"></a>
 ## Réécriture
 
-Utilisez **Réécriture** lorsque vous souhaitez améliorer l'expression sans en changer le sens principal.
+Utilisez **Réécrire** lorsque vous souhaitez améliorer la formulation sans changer le sens principal. Le texte reste dans la même langue (il n'est pas traduit).
 
-![Rewrite workspace](../images/screenshots/fr/rewrite.png)
+![Espace de travail de réécriture](../images/screenshots/fr/rewrite.png)
 
 Ceci est utile pour :
 
@@ -341,9 +343,38 @@ Ceci est utile pour :
 
 <br/>
 
+<a id="rewrite-text"></a>
+### Réécrire du texte
+
+1. Ouvrez **Réécriture**.
+2. Choisissez un **Mode** (par exemple **Améliorer la clarté** ou **Rendre formel**).
+3. Vous pouvez éventuellement définir **De :** sur la langue de votre texte (ou laisser **Détecter la langue**).
+4. Saisissez ou collez du texte dans **Entrée**.
+5. Cliquez sur **Réécriture**.
+6. Lisez le résultat dans **Sortie**.
+7. Vous pouvez affiner le résultat avec **Reformuler…** ou des alternatives de mots — voir [Affiner votre réécriture](#refining-rewrite).
+
+<br/>
+
 > 💡 **ASTUCE**<br/>
 > Lorsque vous utilisez le mode "**Vérifier l'orthographe et la grammaire**", un commutateur **Afficher les modifications** apparaît dans le panneau de sortie (à côté de **Copier**).
 > Activez-le ou désactivez-le pour afficher ou masquer les corrections spécifiques appliquées à votre texte.
+
+<br/>
+
+> ℹ️ **REMARQUE**<br/>
+> Le mode de réécriture **Versions alternatives** renvoie plusieurs reformulations en une **seule** exécution, séparées par `----` dans la sortie. C'est différent de **Reformuler…**, qui construit un historique des versions au fil du temps (une nouvelle variante par clic). Voir [Affiner votre réécriture](#refining-rewrite).
+
+<br/>
+
+<a id="refining-rewrite"></a>
+### Affiner votre réécriture
+
+Après une réécriture réussie, **Reformuler…** et le menu déroulant des versions apparaissent du côté de la sortie de l'espace de travail (en mode fractionné, dans la barre d'outils supérieure au-dessus de la colonne de sortie, à côté des métriques d'exécution ; en mode empilé, au-dessus du panneau de sortie à côté de **De :**). Vous pouvez affiner le résultat à cet endroit — même idée que [Affiner votre traduction](#refining-translation), mais le texte reste dans la même langue et conserve le **Mode** de réécriture actuel :
+
+1. **Reformuler…** — sans texte sélectionné dans la sortie, obtenez une autre réécriture complète de la même entrée avec une formulation différente, en appliquant toujours le mode sélectionné (par exemple plus clair, plus court ou plus formel). Le modèle reçoit toutes les versions que vous avez déjà afin que la nouvelle formulation puisse différer de toutes. Vous pouvez stocker jusqu'à **cinq** versions et basculer entre elles dans le menu déroulant des versions. Avec du texte sélectionné, **Reformuler…** ouvre des alternatives de mots près de la sélection (identique au clic droit). Sans sélection, **Reformuler…** est désactivé une fois que vous avez atteint cinq versions ; avec une sélection, il fonctionne toujours à cinq versions (alternatives de mots uniquement, mise à jour de la version 5). Pendant qu'une reformulation complète est en cours, cliquez sur **Arrêter la réécriture** pour annuler ; la sortie revient à la version qui était active lorsque la reformulation a commencé.
+2. **Alternatives de mots** — sélectionnez un ou plusieurs mots ou une courte phrase dans la sortie (si vous ne sélectionnez qu'une partie d'un mot, l'application étend la sélection à des mots entiers), puis cliquez avec le bouton droit ou cliquez sur **Reformuler…**. Une courte liste d'alternatives apparaît près de la sélection ; cliquez sur l'une d'elles pour la remplacer. Chaque option peut remplacer une étendue légèrement plus large que votre sélection afin que la phrase reste grammaticalement correcte. Si vous avez moins de cinq versions, la sortie modifiée est enregistrée comme une nouvelle version ; à cinq versions, seule la **version 5** est mise à jour. Un clic droit sans sélection sélectionne le mot sous le curseur (ou ne fait rien s'il n'y a pas de mot à cet endroit). Appuyez sur **Échap** ou cliquez en dehors de la liste pour annuler sans modifier la sortie.
+3. **Coût** — chaque **Reformuler…** complet (sans sélection) et chaque demande d'alternative de mot utilise à nouveau le modèle et peut augmenter le coût d'utilisation (identique à une exécution de réécriture normale).
 
 <br/><br/>
 
@@ -354,7 +385,7 @@ Ceci est utile pour :
 
 Utilisez **Transformer** lorsque vous souhaitez que l'IA suive un ensemble d'instructions personnalisé.
 
-![Transform workspace](../images/screenshots/fr/transform.png)
+![Transformer l'espace de travail](../images/screenshots/fr/transform.png)
 
 C'est la zone la plus souple de l'application. Vous pouvez l'utiliser pour des tâches telles que :
 
@@ -402,7 +433,7 @@ La façon la plus rapide de créer une invite est la suivante :
 5. Laissez l'application créer un brouillon pour vous.
 6. Examinez le brouillon puis cliquez sur **Enregistrer**.
 
-![Generate prompt](../images/screenshots/fr/transform-generate.png)
+![Générer l'invite](../images/screenshots/fr/transform-generate.png)
 
 <br/>
 
@@ -411,7 +442,7 @@ La façon la plus rapide de créer une invite est la suivante :
 
 Lorsque vous créez ou modifiez une invite, l'éditeur s'affiche à gauche et une zone de test apparaît à droite.
 
-![Transform prompt editor](../images/screenshots/fr/transform-prompt-edit.png)
+![Éditeur d'invite de transformation](../images/screenshots/fr/transform-prompt-edit.png)
 
 Les principaux champs sont :
 
@@ -467,7 +498,7 @@ Lorsque vous utilisez **Générer l'invite**, **Améliorer l'invite** ou **Tradu
 
 Utilisez le **Tableau de bord** pour voir dans quelle mesure vous utilisez l'application et ce que cela vous coûte (pour les modèles payants).
 
-![Dashboard summary](../images/screenshots/fr/dashboard-summary.png)
+![Résumé du tableau de bord](../images/screenshots/fr/dashboard-summary.png)
 
 <br/>
 
@@ -481,7 +512,7 @@ Utilisez le **Tableau de bord** pour voir dans quelle mesure vous utilisez l'app
 
 Utilisez les boutons de filtre en haut pour modifier la plage de temps.
 
-![Dashboard filters](../images/screenshots/fr/dashboard-filter.png)
+![Filtres du tableau de bord](../images/screenshots/fr/dashboard-filter.png)
 
 <br/>
 
@@ -531,7 +562,7 @@ Pour supprimer toutes les données ou supprimer des enregistrements en fonction 
 
 Cliquez sur **Historique** pour afficher l'historique de vos actions dans **Transrewrt**, y compris l'entrée et la sortie de chaque opération.
 
-![History page](../images/screenshots/fr/history.png)
+![Page d'historique](../images/screenshots/fr/history.png)
 
 <br/>
 
@@ -540,7 +571,7 @@ Cliquez sur **Historique** pour afficher l'historique de vos actions dans **Tran
 
 **Historique** utilise les mêmes filtres de plage horaire que la page **Tableau de bord**.
 
-![Dashboard filters](../images/screenshots/fr/dashboard-filter.png)
+![Filtres du tableau de bord](../images/screenshots/fr/dashboard-filter.png)
 
 <br/>
 
@@ -641,7 +672,7 @@ Les sauvegardes créées dans la version web ou de bureau peuvent être restaur�
 
 Cet onglet est disponible uniquement lorsque l'**expérience IA** est définie sur **Avancé** dans [**Paramètres généraux**](#general-settings). Utilisez **Paramètres** > **Modèles** pour choisir quels modèles apparaissent dans la barre d'outils.
 
-![Settings Models tab](../images/screenshots/fr/settings-general.png)
+![Onglet Modèles des paramètres](../images/screenshots/fr/settings-general.png)
 
 La page comporte deux listes :
 

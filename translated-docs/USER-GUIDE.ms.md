@@ -1,4 +1,4 @@
-![Transrewrt banner](../images/transrewrt_banner.png)
+![Sepanduk Transrewrt](../images/transrewrt_banner.png)
 
 <a id="transrewrt-user-guide"></a>
 # Panduan Pengguna
@@ -54,18 +54,20 @@ Panduan ini menerangkan cara menggunakan aplikasi setelah dipasang dan dijalanka
   - [Tetapan terjemahan yang berguna](#helpful-translation-settings)
   - [Memperhalusi terjemahan anda](#refining-your-translation)
   - [Menggunakan glosari](#using-the-glossary)
-- [Tulis semula](#rewrite)
+- [Menulis semula](#rewrite)
+  - [Menulis semula teks](#rewrite-text)
+  - [Memperhalusi penulisan semula anda](#refining-your-rewrite)
 - [Transformasi](#transform)
   - [Jalankan arahan sedia ada](#run-an-existing-prompt)
-  - [Jika anda belum mempunyai sebarang arahan](#if-you-have-no-prompts-yet)
-  - [Cipta arahan dengan pantas](#create-a-prompt-quickly)
+  - [Jika anda belum mempunyai arahan](#if-you-have-no-prompts-yet)
+  - [Cipta arahan dengan cepat](#create-a-prompt-quickly)
   - [Edit arahan](#edit-a-prompt)
   - [Uji arahan sebelum menggunakannya](#test-a-prompt-before-using-it)
 - [Papan pemuka](#dashboard)
   - [Tapis data](#filter-the-data)
   - [Tab papan pemuka](#dashboard-tabs)
   - [Eksport data](#export-data)
-  - [Padam rekod yang disimpan untuk model](#delete-stored-records-for-a-model)
+  - [Padam rekod tersimpan untuk model](#delete-stored-records-for-a-model)
 - [Sejarah](#history)
   - [Tapis sejarah](#filter-the-history)
   - [Eksport data sejarah](#export-history-data)
@@ -79,20 +81,20 @@ Panduan ini menerangkan cara menggunakan aplikasi setelah dipasang dan dijalanka
   - [Pengguna](#users)
   - [Konfigurasi API](#api-config)
   - [Tentang](#about)
-- [Isu lazim](#common-issues)
-  - [Aplikasi tidak akan menterjemah, menulis semula atau mengubah teks](#the-app-will-not-translate-rewrite-or-transform-text)
+- [Isu biasa](#common-issues)
+  - [Aplikasi tidak akan menterjemah, menulis semula, atau mengubah teks](#the-app-will-not-translate-rewrite-or-transform-text)
   - [Senarai model kosong](#the-model-list-is-empty)
-  - [Hasil terlalu perlahan atau terlalu mahal](#the-result-is-too-slow-or-too-expensive)
+  - [Hasilnya terlalu perlahan atau terlalu mahal](#the-result-is-too-slow-or-too-expensive)
   - [Antara muka dalam bahasa yang salah](#the-interface-is-in-the-wrong-language)
   - [Teks terlalu kecil atau sukar dibaca](#the-text-is-too-small-or-hard-to-read)
-  - [Ringkasan Papan pemuka kelihatan kosong](#dashboard-summary-looks-empty)
+  - [Ringkasan Papan Pemuka kelihatan kosong](#dashboard-summary-looks-empty)
   - [Kos menunjukkan "tidak tersedia" atau kelihatan salah](#cost-shows-not-available-or-seems-wrong)
   - [Jumlah kos tidak sepadan dengan bil pembekal saya](#total-cost-does-not-match-my-provider-bill)
-  - [Halaman Sejarah tiada dalam bar sisi](#the-history-page-is-missing-from-the-sidebar)
-  - [Aplikasi web: diarahkan semula ke halaman log masuk secara tidak sengaja](#web-app-redirected-to-the-login-page-unexpectedly)
-  - [Admin web: terlupa atau hilang kata laluan](#web-admin-forgot-or-lost-a-password)
+  - [Halaman Sejarah tiada dari bar sisi](#the-history-page-is-missing-from-the-sidebar)
+  - [Aplikasi web: dialihkan ke halaman log masuk secara tidak dijangka](#web-app-redirected-to-the-login-page-unexpectedly)
+  - [Pentadbir web: terlupa atau kehilangan kata laluan](#web-admin-forgot-or-lost-a-password)
   - [Papan pemuka tidak menunjukkan data untuk pengguna lain (web)](#dashboard-shows-no-data-for-other-users-web)
-  - [Saya menukar arahan dan kehilangan edit](#i-changed-a-prompt-and-lost-the-edits)
+  - [Saya menukar arahan dan kehilangan suntingan](#i-changed-a-prompt-and-lost-the-edits)
 - [Petua pantas](#quick-tips)
 - [Penafian](#disclaimer)
 - [Lesen](#license)
@@ -206,7 +208,7 @@ Dalam mod **Mudah**, bar alat menunjukkan pemilih **pratetap** dengan pratetap b
 
 Dalam mod **Lanjutan**, **pemilih model** membolehkan anda memilih enjin AI mana yang digunakan untuk tugas semasa.
 
-![Model selector](../images/screenshots/ms/preset-selector.png)
+![Pemilih model](../images/screenshots/ms/preset-selector.png)
 
 Dalam mod Lanjutan, sesetengah model percuma mungkin tidak sentiasa tersedia—ia boleh tidak dalam talian atau telah mencapai had penggunaan. Aplikasi mungkin mengalih keluar model tersebut daripada senarai anda secara automatik. Untuk mengawal model yang dipaparkan, pergi ke [**Tetapan** > **Model**](#models). Anda boleh membuka tetapan model daripada ikon penyedia di sebelah kiri nama model dalam bar alat.
 
@@ -214,7 +216,7 @@ Dalam mod Lanjutan, sesetengah model percuma mungkin tidak sentiasa tersedia—i
 
 Ikon **dunia + kod bahasa** menukar bahasa antara muka aplikasi, seperti menu dan butang. Ia **tidak** menukar bahasa terjemahan yang digunakan dalam **Terjemahkan**.
 
-![Interface language selector](../images/screenshots/ms/language-selector.png)
+![Pemilih bahasa antara muka](../images/screenshots/ms/language-selector.png)
 
 <br/>
 
@@ -247,7 +249,7 @@ Anda juga boleh memantau kos bagi setiap operasi (jika tersedia) dan jumlah kos,
 
 Gunakan **Terjemahkan** apabila anda ingin menukar teks daripada satu bahasa ke bahasa lain.
 
-![Translate workspace](../images/screenshots/ms/translate.png)
+![Ruang kerja terjemahan](../images/screenshots/ms/translate.png)
 
 <br/>
 
@@ -296,9 +298,9 @@ Dalam [**Tetapan** > **Tetapan Umum**](#general-settings), anda boleh mengubah c
 
 Selepas terjemahan berjaya, **Terjemah Semula…** dan dropdown versi muncul di tajuk output, di sebelah pemilih bahasa **Ke:**. Anda boleh memperhalusi hasil di sana:
 
-1. **Terjemah Semula…** — tanpa teks yang dipilih dalam output, dapatkan terjemahan penuh yang lain bagi input yang sama dengan perkataan yang berbeza. Model menerima setiap versi yang anda sudah ada supaya perkataan baru boleh berbeza daripada semua versi tersebut. Anda boleh menyimpan sehingga **lima** versi dan bertukar antara mereka dalam dropdown versi. Dengan teks yang dipilih, **Terjemah Semula…** membuka alternatif perkataan berhampiran pilihan (sama seperti klik kanan). Tanpa pilihan, **Terjemah Semula…** dinyahdayakan setelah anda mencapai lima versi; dengan pilihan, ia masih berfungsi pada lima versi (alternatif perkataan sahaja, mengemas kini versi 5). Semasa terjemahan penuh sedang berjalan, klik **Henti Terjemah** untuk membatalkan; output kembali kepada versi yang aktif apabila terjemahan semula dimulakan.
-2. **Alternatif perkataan** — pilih satu atau lebih perkataan atau frasa pendek dalam output (jika anda hanya memilih sebahagian daripada perkataan, aplikasi akan mengembangkan pilihan kepada perkataan penuh), kemudian klik kanan atau klik **Terjemah Semula…**. Senarai pendek alternatif muncul berhampiran pilihan; klik satu untuk menggantikannya. Setiap pilihan mungkin menggantikan jangkauan yang sedikit lebih luas daripada pilihan anda (contohnya, preposisi atau artikel yang bersebelahan) supaya ayat tetap gramatis. Jika anda mempunyai kurang daripada lima versi, output yang diedit disimpan sebagai versi baru; pada lima versi, hanya **versi 5** yang dikemas kini. Klik kanan tanpa pilihan tidak melakukan apa-apa. Tekan **Esc** atau klik di luar senarai untuk membatalkan tanpa mengubah output.
-3. **Kos** — setiap **Terjemah Semula…** penuh (tanpa pilihan) dan setiap permintaan alternatif perkataan menggunakan model sekali lagi dan mungkin menambah kepada kos penggunaan (sama seperti larian terjemahan biasa).
+1. **Menulis semula…** — tanpa teks dipilih dalam output, dapatkan terjemahan penuh lain bagi input yang sama dengan perkataan yang berbeza. Model menerima setiap versi yang anda sudah ada supaya perkataan baharu boleh berbeza daripada kesemuanya. Anda boleh menyimpan sehingga **lima** versi dan bertukar antara versi tersebut dalam menu lungsur versi. Dengan teks dipilih, **Menulis semula…** membuka pilihan perkataan lain berhampiran pilihan (sama seperti klik kanan). Tanpa pilihan, **Menulis semula…** dilumpuhkan setelah anda mencapai lima versi; dengan pilihan, ia masih berfungsi pada lima versi (pilihan perkataan lain sahaja, mengemas kini versi 5). Semasa penulisan semula penuh sedang berjalan, klik **Henti Terjemah** untuk membatalkan; output kembali kepada versi yang aktif apabila penulisan semula bermula.
+2. **Pilihan perkataan lain** — pilih satu atau lebih perkataan atau frasa pendek dalam output (jika anda memilih hanya sebahagian daripada perkataan, aplikasi mengembangkan pilihan kepada perkataan penuh), kemudian klik kanan atau klik **Menulis semula…**. Senarai pendek pilihan lain muncul berhampiran pilihan; klik satu untuk menggantikannya. Setiap pilihan mungkin menggantikan rentang yang sedikit lebih luas daripada pilihan anda (contohnya kata sendi atau artikel bersebelahan) supaya ayat kekal tatabahasa. Jika anda mempunyai kurang daripada lima versi, output yang diedit disimpan sebagai versi baharu; pada lima versi, hanya **versi 5** yang dikemas kini. Klik kanan tanpa pilihan memilih perkataan di bawah kursor (atau tidak melakukan apa-apa jika tiada perkataan di sana). Tekan **Esc** atau klik di luar senarai untuk membatalkan tanpa mengubah output.
+3. **Kos** — setiap **Menulis semula…** penuh (tiada pilihan) dan setiap permintaan pilihan perkataan lain menggunakan model sekali lagi dan mungkin menambah kos penggunaan (sama seperti terjemahan biasa).
 
 <br/>
 
@@ -326,9 +328,9 @@ Anda menambah, mengedit, mengimport dan mengeksport istilah dalam tab [**Tetapan
 <a id="rewrite"></a>
 ## Tulis semula
 
-Gunakan **Tulis semula** apabila anda ingin memperbaiki perkataan tanpa mengubah maksud utama.
+Gunakan **Menulis semula** apabila anda ingin meningkatkan perkataan tanpa mengubah makna utama. Teks kekal dalam bahasa yang sama (ia tidak diterjemahkan).
 
-![Rewrite workspace](../images/screenshots/ms/rewrite.png)
+![Ruang kerja menulis semula](../images/screenshots/ms/rewrite.png)
 
 Ini berguna untuk:
 
@@ -341,9 +343,38 @@ Ini berguna untuk:
 
 <br/>
 
+<a id="rewrite-text"></a>
+### Menulis semula teks
+
+1. Buka **Menulis semula**.
+2. Pilih **Mod** (contohnya **Tingkatkan Kejelasan** atau **Buat Formal**).
+3. Secara pilihan tetapkan **Dari** kepada bahasa teks anda (atau biarkan **Kesan Bahasa**).
+4. Taip atau tampal teks ke dalam **Input**.
+5. Klik **Menulis semula**.
+6. Baca hasilnya dalam **Output**.
+7. Secara pilihan perhalusi hasil dengan **Menulis semula…** atau pilihan perkataan lain — lihat [Memperhalusi penulisan semula anda](#refining-rewrite).
+
+<br/>
+
 > 💡 **TIP**<br/>
 > Apabila anda menggunakan mod "**Periksa Ejaan & Tatabahasa**", suis **Tunjukkan perubahan** akan muncul di panel output (bersebelahan **Salin**).
 > Hidupkan atau matikan untuk menunjukkan atau menyembunyikan pembetulan khusus yang dikenakan ke atas teks anda.
+
+<br/>
+
+> ℹ️ **NOTA**<br/>
+> Mod menulis semula **Versi alternatif** mengembalikan beberapa pembentukan semula dalam satu larian **tunggal**, dipisahkan oleh `----` dalam output. Ini berbeza daripada **Menulis semula…**, yang membina sejarah versi dari semasa ke semasa (satu varian baharu setiap klik). Lihat [Memperhalusi penulisan semula anda](#refining-rewrite).
+
+<br/>
+
+<a id="refining-rewrite"></a>
+### Memperhalusi penulisan semula anda
+
+Selepas penulisan semula yang berjaya, **Menulis semula…** dan juntai bawah versi muncul di bahagian output ruang kerja (dalam susun atur pisah, dalam bar alat atas di atas lajur output, di sebelah metrik larian; dalam susun atur bertindan, di atas panel output di sebelah **Dari:**). Anda boleh memperhalusi hasilnya di sana — idea yang sama seperti [Memperhalusi terjemahan anda](#refining-translation), tetapi teks kekal dalam bahasa yang sama dan mengekalkan **Mod** penulisan semula semasa:
+
+1. **Menulis semula…** — tanpa teks dipilih dalam output, dapatkan penulisan semula penuh lain bagi input yang sama dengan perkataan yang berbeza, masih menggunakan mod yang dipilih (contohnya lebih jelas, lebih pendek, atau lebih formal). Model menerima setiap versi yang anda sudah ada supaya perkataan baharu boleh berbeza daripada kesemuanya. Anda boleh menyimpan sehingga **lima** versi dan bertukar antara mereka dalam juntai bawah versi. Dengan teks dipilih, **Menulis semula…** membuka pilihan perkataan lain berhampiran pilihan (sama seperti klik kanan). Tanpa pilihan, **Menulis semula…** dilumpuhkan sebaik sahaja anda mencapai lima versi; dengan pilihan, ia masih berfungsi pada lima versi (pilihan perkataan lain sahaja, mengemas kini versi 5). Semasa penulisan semula penuh sedang berjalan, klik **Henti Menulis semula** untuk membatalkan; output kembali kepada versi yang aktif apabila penulisan semula bermula.
+2. **Pilihan perkataan lain** — pilih satu atau lebih perkataan atau frasa pendek dalam output (jika anda memilih hanya sebahagian daripada perkataan, aplikasi mengembangkan pilihan kepada perkataan penuh), kemudian klik kanan atau klik **Menulis semula…**. Senarai pendek pilihan muncul berhampiran pilihan; klik satu untuk menggantikannya. Setiap pilihan mungkin menggantikan rentang yang sedikit lebih luas daripada pilihan anda supaya ayat kekal tatabahasa. Jika anda mempunyai kurang daripada lima versi, output yang diedit disimpan sebagai versi baharu; pada lima versi, hanya **versi 5** dikemas kini. Klik kanan tanpa pilihan memilih perkataan di bawah kursor (atau tidak melakukan apa-apa jika tiada perkataan di sana). Tekan **Esc** atau klik di luar senarai untuk membatalkan tanpa mengubah output.
+3. **Kos** — setiap **Menulis semula…** penuh (tiada pilihan) dan setiap permintaan pilihan perkataan lain menggunakan model sekali lagi dan mungkin menambah kos penggunaan (sama seperti larian penulisan semula biasa).
 
 <br/><br/>
 
@@ -354,7 +385,7 @@ Ini berguna untuk:
 
 Gunakan **Transformasikan** apabila anda mahu AI mengikuti satu set arahan tersuai.
 
-![Transform workspace](../images/screenshots/ms/transform.png)
+![Ruang kerja transformasi](../images/screenshots/ms/transform.png)
 
 Ini adalah kawasan paling fleksibel dalam aplikasi. Anda boleh menggunakannya untuk tugas seperti:
 
@@ -402,7 +433,7 @@ Cara terpantas untuk mencipta arahan adalah:
 5. Biarkan aplikasi mencipta draf untuk anda.
 6. Semak draf tersebut dan klik **Simpan**.
 
-![Generate prompt](../images/screenshots/ms/transform-generate.png)
+![Janakan prompt](../images/screenshots/ms/transform-generate.png)
 
 <br/>
 
@@ -411,7 +442,7 @@ Cara terpantas untuk mencipta arahan adalah:
 
 Apabila anda mencipta atau mengedit arahan, editor akan muncul di sebelah kiri dan kawasan ujian akan muncul di sebelah kanan.
 
-![Transform prompt editor](../images/screenshots/ms/transform-prompt-edit.png)
+![Editor prompt transformasi](../images/screenshots/ms/transform-prompt-edit.png)
 
 Medan utama adalah:
 
@@ -467,7 +498,7 @@ Apabila anda menggunakan **Jana arahan**, **Tingkatkan arahan**, atau **Terjemah
 
 Gunakan **Papan pemuka** untuk melihat sejauh mana anda menggunakan aplikasi ini dan kos yang terlibat (untuk model berbayar).
 
-![Dashboard summary](../images/screenshots/ms/dashboard-summary.png)
+![Ringkasan papan pemuka](../images/screenshots/ms/dashboard-summary.png)
 
 <br/>
 
@@ -481,7 +512,7 @@ Gunakan **Papan pemuka** untuk melihat sejauh mana anda menggunakan aplikasi ini
 
 Gunakan butang penapis di bahagian atas untuk menukar julat masa.
 
-![Dashboard filters](../images/screenshots/ms/dashboard-filter.png)
+![Penapis papan pemuka](../images/screenshots/ms/dashboard-filter.png)
 
 <br/>
 
@@ -531,7 +562,7 @@ Untuk memadam semua data atau mengalih keluar rekod berdasarkan umur mereka, per
 
 Klik pada **Sejarah** untuk melihat sejarah tindakan anda di dalam **Transrewrt**, termasuk input dan output bagi setiap operasi.
 
-![History page](../images/screenshots/ms/history.png)
+![Halaman sejarah](../images/screenshots/ms/history.png)
 
 <br/>
 
@@ -540,7 +571,7 @@ Klik pada **Sejarah** untuk melihat sejarah tindakan anda di dalam **Transrewrt*
 
 **Sejarah** menggunakan penapis julat masa yang sama seperti halaman **Papan pemuka**.
 
-![Dashboard filters](../images/screenshots/ms/dashboard-filter.png)
+![Penapis papan pemuka](../images/screenshots/ms/dashboard-filter.png)
 
 <br/>
 
@@ -641,7 +672,7 @@ Sandaran yang dibuat dalam versi web atau desktop boleh dipulihkan dalam yang la
 
 Tab ini hanya tersedia apabila **Pengalaman AI** ditetapkan kepada **Lanjutan** di [**Tetapan Umum**](#general-settings). Gunakan **Tetapan** > **Model** untuk memilih model yang muncul di bar alat.
 
-![Settings Models tab](../images/screenshots/ms/settings-general.png)
+![Tab Model Tetapan](../images/screenshots/ms/settings-general.png)
 
 Halaman ini mempunyai dua senarai:
 

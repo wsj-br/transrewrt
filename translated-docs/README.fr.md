@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.1-blue" alt="Version"></a>
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.0-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
   <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react" alt="React 19">
@@ -62,27 +62,27 @@ Une fois installé, consultez le [**Guide de l'utilisateur**](USER-GUIDE.fr.md) 
 
 **Sélecteur de langue**
 
-![Language selector](../images/screenshots/fr/language-selector.png)
+![Sélecteur de langue](../images/screenshots/fr/language-selector.png)
 
 **Traduire**
 
-![Translate](../images/screenshots/fr/translate.png)
+![Traduire](../images/screenshots/fr/translate.png)
 
 **Transformation - éditeur de prompt**
 
-![Transform - prompt editor](../images/screenshots/fr/transform-prompt-edit.png)
+![Transformation - éditeur d'invite](../images/screenshots/fr/transform-prompt-edit.png)
 
 **Tableau de bord**
 
-![Dashboard summary - usage](../images/screenshots/fr/dashboard-summary.png)
+![Résumé du Tableau de bord - utilisation](../images/screenshots/fr/dashboard-summary.png)
 
 **Historique**
 
-![History](../images/screenshots/fr/history.png)
+![Historique](../images/screenshots/fr/history.png)
 
 **Paramètres - sélection du modèle**
 
-![Settings - model selection](../images/screenshots/fr/settings-general.png)
+![Paramètres - sélection du modèle](../images/screenshots/fr/settings-general.png)
 
 <br/><br/>
 

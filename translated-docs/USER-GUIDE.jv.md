@@ -1,4 +1,4 @@
-![Transrewrt banner](../images/transrewrt_banner.png)
+![Spanduk Transrewrt](../images/transrewrt_banner.png)
 
 <a id="transrewrt-user-guide"></a>
 # Pandhuan Pangguna
@@ -55,46 +55,48 @@ Pandhuan iki nerangake carane nggunakake aplikasi sawise diinstal lan dijalanake
   - [Nyaring terjemahanmu](#refining-your-translation)
   - [Nggunakake glosarium](#using-the-glossary)
 - [Transrewrt](#rewrite)
+  - [Transrewrt teks](#rewrite-text)
+  - [Nyaring transrewrt sampeyan](#refining-your-rewrite)
 - [Transformasi](#transform)
-  - [Njalanke prompt sing wis ana](#run-an-existing-prompt)
-  - [Yen durung duwe prompt](#if-you-have-no-prompts-yet)
-  - [Gawé prompt kanthi cepet](#create-a-prompt-quickly)
-  - [Sunting prompt](#edit-a-prompt)
-  - [Tes prompt sadurung digunakake](#test-a-prompt-before-using-it)
+  - [Mbukak prompt sing wis ana](#run-an-existing-prompt)
+  - [Yen sampeyan durung duwe prompt](#if-you-have-no-prompts-yet)
+  - [Nggawe prompt kanthi cepet](#create-a-prompt-quickly)
+  - [Nyunting prompt](#edit-a-prompt)
+  - [Nyoba prompt sadurunge digunakake](#test-a-prompt-before-using-it)
 - [Dashboard](#dashboard)
-  - [Filter data](#filter-the-data)
+  - [Nyaring data](#filter-the-data)
   - [Tab Dashboard](#dashboard-tabs)
   - [Ekspor data](#export-data)
-  - [Hapus rekaman sing disimpen kanggo model](#delete-stored-records-for-a-model)
+  - [Mbusak rekaman sing disimpen kanggo model](#delete-stored-records-for-a-model)
 - [Sejarah](#history)
-  - [Filter sajarah](#filter-the-history)
-  - [Ekspor data sajarah](#export-history-data)
+  - [Nyaring sejarah](#filter-the-history)
+  - [Ekspor data sejarah](#export-history-data)
 - [Pengaturan](#settings)
   - [Pengaturan umum](#general-settings)
   - [Model](#models)
-  - [Basa](#languages)
+  - [Bahasa](#languages)
   - [Pelacakan biaya](#cost-tracking)
-  - [Transformasi (tab setelan)](#transform-settings-tab)
-  - [Glosarium (tab setelan)](#glossary-settings-tab)
+  - [Transformasi (tab pengaturan)](#transform-settings-tab)
+  - [Glosarium (tab pengaturan)](#glossary-settings-tab)
   - [Pengguna](#users)
   - [Konfigurasi API](#api-config)
   - [Ngenani](#about)
 - [Masalah umum](#common-issues)
   - [Aplikasi ora bakal nerjemahake, nulis ulang, utawa ngowahi teks](#the-app-will-not-translate-rewrite-or-transform-text)
-  - [Dhaptar model kosong](#the-model-list-is-empty)
-  - [Asil kakehan alon utawa larang](#the-result-is-too-slow-or-too-expensive)
-  - [Antarmuka ing basa sing salah](#the-interface-is-in-the-wrong-language)
-  - [Teks kakehan cilik utawa angel diwaca](#the-text-is-too-small-or-hard-to-read)
-  - [Ringkesan Dashboard katon kosong](#dashboard-summary-looks-empty)
+  - [Daftar model kosong](#the-model-list-is-empty)
+  - [Asil kasebut alon banget utawa larang banget](#the-result-is-too-slow-or-too-expensive)
+  - [Antarmuka nganggo basa sing salah](#the-interface-is-in-the-wrong-language)
+  - [Teks cilik banget utawa angel diwaca](#the-text-is-too-small-or-hard-to-read)
+  - [Ringkasan Dashboard katon kosong](#dashboard-summary-looks-empty)
   - [Biaya nuduhake "ora kasedhiya" utawa katon salah](#cost-shows-not-available-or-seems-wrong)
-  - [Total biaya ora cocog karo tagihan panyedhakku](#total-cost-does-not-match-my-provider-bill)
+  - [Total biaya ora cocog karo tagihan panyedhiya](#total-cost-does-not-match-my-provider-bill)
   - [Kaca Sejarah ilang saka sidebar](#the-history-page-is-missing-from-the-sidebar)
-  - [Aplikasi web: dialihake menyang kaca login kanthi ora dikarepke](#web-app-redirected-to-the-login-page-unexpectedly)
+  - [Aplikasi web: dialihake menyang kaca login kanthi ora sengaja](#web-app-redirected-to-the-login-page-unexpectedly)
   - [Admin web: lali utawa ilang sandi](#web-admin-forgot-or-lost-a-password)
-  - [Dashboard nuduhake ora ana data kanggo pangguna liyane (web)](#dashboard-shows-no-data-for-other-users-web)
-  - [Aku ngowahi prompt lan ilang suntingan](#i-changed-a-prompt-and-lost-the-edits)
+  - [Dashboard ora nuduhake data kanggo pangguna liyane (web)](#dashboard-shows-no-data-for-other-users-web)
+  - [Aku ngowahi prompt lan kelangan suntingan](#i-changed-a-prompt-and-lost-the-edits)
 - [Tips cepet](#quick-tips)
-- [Sanggahan](#disclaimer)
+- [Penafian](#disclaimer)
 - [Lisènsi](#license)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -206,7 +208,7 @@ Ing modus **Gampang**, toolbar nuduhake **pemilih preset** kanthi preset sing wi
 
 Ing modus **Lanjutan**, **pemilih model** ngidini sampeyan milih mesin AI sing digunakake kanggo tugas saiki.
 
-![Model selector](../images/screenshots/jv/preset-selector.png)
+![Pamilih model](../images/screenshots/jv/preset-selector.png)
 
 Ing modus Lanjutan, sawetara model gratis bisa uga ora tansah tersedia—bisa mati (offline) utawa wis tekan wates panggunaan. Aplikasi bisa mbusak model kasebut saka dhaptar sampeyan sacara otomatis. Kanggo ngontrol model apa wae sing katon, menyang [**Setelan** > **Model**](#models). Sampeyan bisa mbukak setelan model saka ikon panyedhiya ing sisih kiwa jeneng model ing bilah gawe.
 
@@ -214,7 +216,7 @@ Ing modus Lanjutan, sawetara model gratis bisa uga ora tansah tersedia—bisa ma
 
 Ikon **globe + kode basa** ngganti basa antarmuka app, kayata menu lan tombol. Iku ora **ngganti** basa terjemahan sing digunakake ing **Terjemahake**.
 
-![Interface language selector](../images/screenshots/jv/language-selector.png)
+![Pamilih basa antarmuka](../images/screenshots/jv/language-selector.png)
 
 <br/>
 
@@ -247,7 +249,7 @@ Sampeyan uga bisa ngawasi biaya saben operasi (manawa tersedia) lan total biaya,
 
 Gunakake **Terjemahake** nalika sampeyan pengin ngowahi teks saka siji basa menyang basa liyane.
 
-![Translate workspace](../images/screenshots/jv/translate.png)
+![Terjemahake ruang kerja](../images/screenshots/jv/translate.png)
 
 <br/>
 
@@ -296,9 +298,9 @@ Ing [**Setelan** > **Setelan Umum**](#general-settings), sampeyan bisa ngganti c
 
 Sawise terjemahan sukses, **Rephrase…** lan dropdown versi muncul ing header output, ing jejere selector basa **Menyang:**. Sampeyan bisa nyaring asil ing kana:
 
-1. **Rephrase…** — tanpa teks sing dipilih ing output, entuk terjemahan lengkap liyane saka input sing padha kanthi wording sing beda. Model nampa saben versi sing wis sampeyan duwe supaya wording anyar bisa beda saka kabeh. Sampeyan bisa nyimpen nganti **lima** versi lan ganti antarane versi kasebut ing dropdown versi. Kanthi teks sing dipilih, **Rephrase…** mbukak alternatif tembung cedhak pilihan (sama kaya klik-tengen). Tanpa pilihan, **Rephrase…** dinonaktifake sawise sampeyan tekan lima versi; kanthi pilihan, isih bisa digunakake ing lima versi (alternatif tembung wae, nganyari versi 5). Nalika rephrase lengkap lagi mlaku, klik **Mandheg Terjemah** kanggo mbatalake; output bali menyang versi sing aktif nalika rephrase diwiwiti.
-2. **Alternatif tembung** — pilih siji utawa luwih tembung utawa frasa cekak ing output (yen sampeyan mung milih bagean saka tembung, aplikasi bakal ngembangake pilihan dadi tembung lengkap), banjur klik-tengen utawa klik **Rephrase…**. Dhaptar cekak alternatif muncul cedhak pilihan; klik siji kanggo ngganti. Saben pilihan bisa ngganti rentang sing luwih jembar tinimbang pilihan sampeyan (contone, preposisi utawa artikel sing cedhak) supaya ukara tetep gramatikal. Yen sampeyan duwe kurang saka lima versi, output sing diedit disimpen minangka versi anyar; ing lima versi, mung **versi 5** sing diupdate. Klik-tengen tanpa pilihan ora nindakake apa-apa. Pencet **Esc** utawa klik ing njaba dhaptar kanggo mbatalake tanpa ngganti output.
-3. **Biaya** — saben **Rephrase…** lengkap (tanpa pilihan) lan saben permintaan alternatif tembung nggunakake model maneh lan bisa nambah biaya panggunaan (sama kaya jalur terjemahan normal).
+1. **Transrewrt…** — tanpa teks sing dipilih ing output, entuk terjemahan lengkap liyane saka input sing padha kanthi tembung sing beda. Model nampa saben versi sing wis sampeyan duwe supaya tembung anyar bisa beda karo kabeh. Sampeyan bisa nyimpen nganti **limang** versi lan ngalih ing antarane ing dropdown versi. Kanthi teks sing dipilih, **Transrewrt…** mbukak alternatif tembung ing cedhak pilihan (padha karo klik-tengen). Tanpa pilihan, **Transrewrt…** dipateni yen sampeyan wis tekan limang versi; kanthi pilihan, isih bisa digunakake ing limang versi (alternatif tembung mung, nganyari versi 5). Nalika transrewrt lengkap mlaku, klik **Mandheg Terjemahake** kanggo mbatalake; output bali menyang versi sing aktif nalika transrewrt diwiwiti.
+2. **Alternatif tembung** — pilih siji utawa luwih tembung utawa frasa cendhak ing output (yen sampeyan milih mung bagean saka tembung, aplikasi ngembangake pilihan menyang tembung lengkap), banjur klik-tengen utawa klik **Transrewrt…**. Dhaptar cendhak alternatif katon ing cedhak pilihan; klik siji kanggo ngganti. Saben pilihan bisa ngganti span sing rada amba tinimbang pilihan sampeyan (contone, preposisi utawa artikel sing jejer) supaya ukara tetep gramatikal. Yen sampeyan duwe kurang saka limang versi, output sing diowahi disimpen minangka versi anyar; ing limang versi, mung **versi 5** sing dianyari. Klik-tengen tanpa pilihan milih tembung ing ngisor kursor (utawa ora nindakake apa-apa yen ora ana tembung ing kana). Pencet **Esc** utawa klik ing njaba dhaptar kanggo mbatalake tanpa ngowahi output.
+3. **Biaya** — saben **Transrewrt…** lengkap (ora ana pilihan) lan saben panjaluk alternatif tembung nggunakake model maneh lan bisa nambah biaya panggunaan (padha karo terjemahan normal).
 
 <br/>
 
@@ -326,9 +328,9 @@ Sampeyan nambah, nyunting, ngimpor, lan ngekspor istilah ing tab [**Pengaturan**
 <a id="rewrite"></a>
 ## Tulis ulang
 
-Gunakake **Tulis ulang** nalika sampeyan pengin nambahi gaya basa tanpa ngganti teges utama.
+Gunakake **Transrewrt** nalika sampeyan pengin ngundhakake tembung tanpa ngowahi makna utama. Teks tetep ing basa sing padha (ora diterjemahake).
 
-![Rewrite workspace](../images/screenshots/jv/rewrite.png)
+![Ruang kerja transrewrt](../images/screenshots/jv/rewrite.png)
 
 Fitur iki migunani kanggo:
 
@@ -341,9 +343,38 @@ Fitur iki migunani kanggo:
 
 <br/>
 
+<a id="rewrite-text"></a>
+### Transrewrt teks
+
+1. Bukak **Transrewrt**.
+2. Pilih **Mode** (umpamane **Tingkatake Kejernihan** utawa **Gawe Formal**).
+3. Opsional atur **Saka** menyang basa teks sampeyan (utawa tinggalake **Deteksi Basa**).
+4. Ketik utawa tempel teks menyang **Input**.
+5. Klik **Transrewrt**.
+6. Waca asil ing **Output**.
+7. Opsional nyaring asil nganggo **Rephrase…** utawa alternatif tembung — deleng [Nyaring transrewrt sampeyan](#refining-rewrite).
+
+<br/>
+
 > 💡 **TIP**<br/>
 > Nalika nggunakake modus "**Periksa Ejaan & Tata Bahasa**", tombol **Tampilake owah-owahan** bakal katon ing panel output (sebelah **Salin**).
 > Aktifake utawa mateni kanggo nuduhake utawa ndhelikake koreksi tartamtu sing diterapake ing teks sampeyan.
+
+<br/>
+
+> ℹ️ **CATATAN**<br/>
+> Mode Transrewrt **Versi alternatif** ngasilake sawetara reformulasi ing **siji** eksekusi, dipisahake dening `----` ing output. Iki beda karo **Rephrase…**, sing mbangun sejarah versi saka wektu ke wektu (siji varian anyar saben klik). Deleng [Ngluwari transrewrt sampeyan](#refining-rewrite).
+
+<br/>
+
+<a id="refining-rewrite"></a>
+### Nyaring transrewrt sampeyan
+
+Sawise transrewrt sukses, **Rephrase…** lan dropdown versi katon ing sisih output workspace (ing tata letak pamisah, ing toolbar ndhuwur ing ndhuwur kolom output, jejere metrik run; ing tata letak tumpuk, ing ndhuwur panel output jejere **Saka:**). Sampeyan bisa nyaring asil ing kana — ide sing padha karo [Nyaring terjemahan sampeyan](#refining-translation), nanging teks tetep ing basa sing padha lan njaga **Mode** transrewrt saiki:
+
+1. **Rephrase…** — tanpa teks sing dipilih ing output, entuk transrewrt lengkap liyane saka input sing padha kanthi tembung sing beda, isih ngetrapake mode sing dipilih (umpamane luwih jelas, luwih cendhak, utawa luwih formal). Model nampa saben versi sing wis sampeyan duwe supaya tembung anyar bisa beda karo kabeh mau. Sampeyan bisa nyimpen nganti **limang** versi lan ngalih ing antarane ing dropdown versi. Kanthi teks sing dipilih, **Rephrase…** mbukak alternatif tembung cedhak pilihan (padha karo klik-tengen). Tanpa pilihan, **Rephrase…** dipateni yen sampeyan wis tekan limang versi; kanthi pilihan, isih bisa digunakake ing limang versi (alternatif tembung mung, nganyari versi 5). Nalika rephrase lengkap mlaku, klik **Mandheg Transrewrt** kanggo mbatalake; output bali menyang versi sing aktif nalika rephrase diwiwiti.
+2. **Alternatif tembung** — pilih siji utawa luwih tembung utawa frasa cendhak ing output (yen sampeyan mung milih bagean saka tembung, aplikasi ngembangake pilihan menyang tembung lengkap), banjur klik-tengen utawa klik **Rephrase…**. Dhaptar cendhak alternatif katon cedhak pilihan; klik siji kanggo ngganti. Saben pilihan bisa ngganti span sing luwih amba tinimbang pilihan sampeyan supaya ukara tetep gramatikal. Yen sampeyan duwe kurang saka limang versi, output sing diowahi disimpen minangka versi anyar; ing limang versi, mung **versi 5** sing dianyari. Klik-tengen tanpa pilihan milih tembung ing ngisor kursor (utawa ora nindakake apa-apa yen ora ana tembung ing kana). Pencet **Esc** utawa klik ing njaba dhaptar kanggo mbatalake tanpa ngganti output.
+3. **Biaya** — saben **Rephrase…** lengkap (tanpa pilihan) lan saben panjaluk alternatif tembung nggunakake model maneh lan bisa nambah biaya panggunaan (padha karo run transrewrt normal).
 
 <br/><br/>
 
@@ -354,7 +385,7 @@ Fitur iki migunani kanggo:
 
 Gunakake **Ubah** nalika sampeyan pengin AI nututi dhaptar instruksi khusus.
 
-![Transform workspace](../images/screenshots/jv/transform.png)
+![Transformasi workspace](../images/screenshots/jv/transform.png)
 
 Iki minangka bagéyan paling fleksibel saka aplikasi. Sampeyan bisa nggunakake kanggo tugas-tugas kaya:
 
@@ -402,7 +433,7 @@ Cara paling cepet kanggo nggawe prompt yaiku:
 5. Bebaske aplikasi nggawe rancangan kanggo sampeyan.
 6. Priksa rancangane lan klik **Simpen**.
 
-![Generate prompt](../images/screenshots/jv/transform-generate.png)
+![Nggawe prompt](../images/screenshots/jv/transform-generate.png)
 
 <br/>
 
@@ -411,7 +442,7 @@ Cara paling cepet kanggo nggawe prompt yaiku:
 
 Kala sampeyan nggawe utawa nyunting prompt, éditor bakal mucul ing sisih kiwa lan wilayah tes bakal mucul ing sisih tengen.
 
-![Transform prompt editor](../images/screenshots/jv/transform-prompt-edit.png)
+![Editor prompt transformasi](../images/screenshots/jv/transform-prompt-edit.png)
 
 Bidang utama yaiku:
 
@@ -467,7 +498,7 @@ Nalika nggunakake **Nggawe prompt**, **Tingkatake prompt**, utawa **Terjemahkan 
 
 Gunakaké **Dasbor** kanggo ndeleng sepira akeh aplikasi digunakaké lan biayane (kanggo model bayar).
 
-![Dashboard summary](../images/screenshots/jv/dashboard-summary.png)
+![Ringkasan Dashboard](../images/screenshots/jv/dashboard-summary.png)
 
 <br/>
 
@@ -481,7 +512,7 @@ Gunakaké **Dasbor** kanggo ndeleng sepira akeh aplikasi digunakaké lan biayane
 
 Gunakaké tombol saringan ing ndhuwur kanggo ngowahi rentang wektu.
 
-![Dashboard filters](../images/screenshots/jv/dashboard-filter.png)
+![Filter Dashboard](../images/screenshots/jv/dashboard-filter.png)
 
 <br/>
 
@@ -531,7 +562,7 @@ Kanggo ngapus kabeh data utawa mbusak rekaman berdasar umur, menyang [**Setelan*
 
 Klik **Riwayat** kanggo ndeleng riwayat tindakan sampeyan ing jero **Transrewrt**, kalebu input lan output saben operasi.
 
-![History page](../images/screenshots/jv/history.png)
+![Kaca Sejarah](../images/screenshots/jv/history.png)
 
 <br/>
 
@@ -540,7 +571,7 @@ Klik **Riwayat** kanggo ndeleng riwayat tindakan sampeyan ing jero **Transrewrt*
 
 **Riwayat** nggunakake filter rentang wektu sing padha karo kaca **Dasbor**.
 
-![Dashboard filters](../images/screenshots/jv/dashboard-filter.png)
+![Filter Dashboard](../images/screenshots/jv/dashboard-filter.png)
 
 <br/>
 
@@ -641,7 +672,7 @@ Cadangan sing digawe ing versi web utawa desktop bisa dibalekake ing liyane. Nal
 
 Tab iki mung tersedia nalika **Pengalaman AI** disetel dadi **Lanjutan** ing [**Setelan Umum**](#general-settings). Gunakna **Setelan** > **Model** kanggo milih model apa wae sing katon ing toolbar.
 
-![Settings Models tab](../images/screenshots/jv/settings-general.png)
+![Tab Model Pengaturan](../images/screenshots/jv/settings-general.png)
 
 Kaca iki duwe loro dhaptar:
 

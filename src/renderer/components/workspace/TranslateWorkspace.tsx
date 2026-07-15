@@ -8,7 +8,7 @@ import {
   workspacePaneStatsTextClassName,
 } from "./workspaceLayoutClasses";
 import { getTranslateStackPanels } from "./TranslateStackPanels";
-import { TranslateRephraseControls } from "./TranslateRephraseControls";
+import { RephraseControls } from "./RephraseControls";
 import { WorkspaceOutputMeta } from "./WorkspaceOutputMeta";
 import { WorkspaceBehaviourSwitch } from "./WorkspaceBehaviourSwitch";
 import { Button } from "@/components/ui/button";
@@ -145,15 +145,18 @@ export function getTranslatePanels({ common, input, output, options }) {
           iconClassName="text-emerald-500"
           iconStrokeWidth={1.6}
         />
-        <TranslateRephraseControls
+        <RephraseControls
           t={t}
           isProcessing={isProcessing}
-          translateOutputIsModelResult={!!translateOutputIsModelResult}
-          translateVersions={translateVersions}
-          selectedTranslateVersion={selectedTranslateVersion}
+          outputIsModelResult={!!translateOutputIsModelResult}
+          versions={translateVersions}
+          selectedVersion={selectedTranslateVersion}
           outputHasSelection={!!outputHasSelection}
           onRephrase={handleRephraseClick}
           onVersionChange={handleTranslateVersionChange}
+          rephraseButtonTestId="translate-rephrase-button"
+          versionSelectAriaLabel={t("Translation version")}
+          maxVersionsTooltip={t("Maximum of 5 translation versions reached")}
         />
         {outputMeta ? (
           <WorkspaceOutputMeta tooltip={outputMetaCostTooltip}>

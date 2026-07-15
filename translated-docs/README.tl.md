@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.1-blue" alt="Version"></a>
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.0-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
   <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react" alt="React 19">
@@ -62,11 +62,11 @@ Kapag nainstall na, tingnan ang [**User Guide**](USER-GUIDE.tl.md) para sa kompl
 
 **Tagapili ng wika**
 
-![Language selector](../images/screenshots/tl/language-selector.png)
+![Tagapili ng wika](../images/screenshots/tl/language-selector.png)
 
 **Isalin**
 
-![Translate](../images/screenshots/tl/translate.png)
+![Isalin](../images/screenshots/tl/translate.png)
 
 **Transform - editor ng prompt**
 
@@ -74,7 +74,7 @@ Kapag nainstall na, tingnan ang [**User Guide**](USER-GUIDE.tl.md) para sa kompl
 
 **Dashboard**
 
-![Dashboard summary - usage](../images/screenshots/tl/dashboard-summary.png)
+![Buod ng Dashboard - paggamit](../images/screenshots/tl/dashboard-summary.png)
 
 **Kasaysayan**
 
@@ -82,7 +82,7 @@ Kapag nainstall na, tingnan ang [**User Guide**](USER-GUIDE.tl.md) para sa kompl
 
 **Mga Setting - pagpili ng modelo**
 
-![Settings - model selection](../images/screenshots/tl/settings-general.png)
+![Mga Setting - pagpili ng modelo](../images/screenshots/tl/settings-general.png)
 
 <br/><br/>
 

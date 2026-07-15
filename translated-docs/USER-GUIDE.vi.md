@@ -1,4 +1,4 @@
-![Transrewrt banner](../images/transrewrt_banner.png)
+![Biểu ngữ Transrewrt](../images/transrewrt_banner.png)
 
 <a id="transrewrt-user-guide"></a>
 # Hướng dẫn Người dùng
@@ -53,8 +53,10 @@ Hướng dẫn này giải thích cách sử dụng ứng dụng sau khi đã c�
   - [Chọn ngôn ngữ](#language-selection)
   - [Các cài đặt dịch hữu ích](#helpful-translation-settings)
   - [Tinh chỉnh bản dịch của bạn](#refining-your-translation)
-  - [Sử dụng từ điển](#using-the-glossary)
-- [Chỉnh sửa lại](#rewrite)
+  - [Sử dụng từ điển thuật ngữ](#using-the-glossary)
+- [Viết lại](#rewrite)
+  - [Viết lại văn bản](#rewrite-text)
+  - [Tinh chỉnh bản viết lại của bạn](#refining-your-rewrite)
 - [Chuyển đổi](#transform)
   - [Chạy một lời nhắc hiện có](#run-an-existing-prompt)
   - [Nếu bạn chưa có lời nhắc nào](#if-you-have-no-prompts-yet)
@@ -65,7 +67,7 @@ Hướng dẫn này giải thích cách sử dụng ứng dụng sau khi đã c�
   - [Lọc dữ liệu](#filter-the-data)
   - [Các tab Bảng điều khiển](#dashboard-tabs)
   - [Xuất dữ liệu](#export-data)
-  - [Xóa bản ghi đã lưu cho một mô hình](#delete-stored-records-for-a-model)
+  - [Xóa các bản ghi đã lưu cho một mô hình](#delete-stored-records-for-a-model)
 - [Lịch sử](#history)
   - [Lọc lịch sử](#filter-the-history)
   - [Xuất dữ liệu lịch sử](#export-history-data)
@@ -75,26 +77,26 @@ Hướng dẫn này giải thích cách sử dụng ứng dụng sau khi đã c�
   - [Ngôn ngữ](#languages)
   - [Theo dõi chi phí](#cost-tracking)
   - [Chuyển đổi (tab cài đặt)](#transform-settings-tab)
-  - [Từ điển (tab cài đặt)](#glossary-settings-tab)
+  - [Từ điển thuật ngữ (tab cài đặt)](#glossary-settings-tab)
   - [Người dùng](#users)
   - [Cấu hình API](#api-config)
   - [Giới thiệu](#about)
 - [Các vấn đề thường gặp](#common-issues)
-  - [Ứng dụng sẽ không dịch, chỉnh sửa lại hoặc chuyển đổi văn bản](#the-app-will-not-translate-rewrite-or-transform-text)
+  - [Ứng dụng sẽ không dịch, viết lại hoặc chuyển đổi văn bản](#the-app-will-not-translate-rewrite-or-transform-text)
   - [Danh sách mô hình trống](#the-model-list-is-empty)
-  - [Kết quả quá chậm hoặc quá tốn kém](#the-result-is-too-slow-or-too-expensive)
-  - [Giao diện sai ngôn ngữ](#the-interface-is-in-the-wrong-language)
+  - [Kết quả quá chậm hoặc quá đắt](#the-result-is-too-slow-or-too-expensive)
+  - [Giao diện hiển thị sai ngôn ngữ](#the-interface-is-in-the-wrong-language)
   - [Văn bản quá nhỏ hoặc khó đọc](#the-text-is-too-small-or-hard-to-read)
   - [Tóm tắt Bảng điều khiển trống](#dashboard-summary-looks-empty)
-  - [Chi phí hiển thị "không khả dụng" hoặc có vẻ sai](#cost-shows-not-available-or-seems-wrong)
-  - [Tổng chi phí không khớp với hóa đơn của nhà cung cấp](#total-cost-does-not-match-my-provider-bill)
-  - [Trang Lịch sử bị thiếu khỏi thanh bên](#the-history-page-is-missing-from-the-sidebar)
-  - [Ứng dụng web: bị chuyển hướng bất ngờ đến trang đăng nhập](#web-app-redirected-to-the-login-page-unexpectedly)
+  - [Chi phí hiển thị "không có sẵn" hoặc có vẻ sai](#cost-shows-not-available-or-seems-wrong)
+  - [Tổng chi phí không khớp với hóa đơn nhà cung cấp của tôi](#total-cost-does-not-match-my-provider-bill)
+  - [Trang Lịch sử bị thiếu trong thanh bên](#the-history-page-is-missing-from-the-sidebar)
+  - [Ứng dụng web: bị chuyển hướng đến trang đăng nhập một cách bất ngờ](#web-app-redirected-to-the-login-page-unexpectedly)
   - [Quản trị viên web: quên hoặc mất mật khẩu](#web-admin-forgot-or-lost-a-password)
   - [Bảng điều khiển không hiển thị dữ liệu cho người dùng khác (web)](#dashboard-shows-no-data-for-other-users-web)
   - [Tôi đã thay đổi lời nhắc và mất các chỉnh sửa](#i-changed-a-prompt-and-lost-the-edits)
 - [Mẹo nhanh](#quick-tips)
-- [Tuyên bố miễn trừ trách nhiệm](#disclaimer)
+- [Tuyên bố từ chối trách nhiệm](#disclaimer)
 - [Giấy phép](#license)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -206,7 +208,7 @@ Thanh công cụ thay đổi nhẹ tùy theo vị trí bạn đang ở trong ứ
 
 Ở chế độ **Nâng cao**, **bộ chọn mô hình** cho phép bạn chọn công cụ AI nào sẽ dùng cho tác vụ hiện tại.
 
-![Model selector](../images/screenshots/vi/preset-selector.png)
+![Bộ chọn mô hình](../images/screenshots/vi/preset-selector.png)
 
 Ở chế độ Nâng cao, một số mô hình miễn phí có thể không luôn khả dụng — chúng có thể ngoại tuyến hoặc đã đạt giới hạn sử dụng. Ứng dụng có thể tự động xóa mô hình đó khỏi danh sách của bạn. Để kiểm soát các mô hình hiển thị, hãy vào [**Cài đặt** > **Mô hình**](#models). Bạn có thể mở cài đặt mô hình từ biểu tượng nhà cung cấp nằm bên trái tên mô hình trên thanh công cụ.
 
@@ -214,7 +216,7 @@ Thanh công cụ thay đổi nhẹ tùy theo vị trí bạn đang ở trong ứ
 
 Biểu tượng **hình quả địa cầu + mã ngôn ngữ** thay đổi ngôn ngữ giao diện ứng dụng, ví dụ như menu và nút bấm. Nó **không** thay đổi ngôn ngữ dịch được dùng trong chức năng **Dịch**.
 
-![Interface language selector](../images/screenshots/vi/language-selector.png)
+![Bộ chọn ngôn ngữ giao diện](../images/screenshots/vi/language-selector.png)
 
 <br/>
 
@@ -247,7 +249,7 @@ Bạn cũng có thể theo dõi chi phí cho mỗi thao tác (nếu có sẵn) v
 
 Sử dụng **Dịch** khi bạn muốn chuyển đổi văn bản từ một ngôn ngữ sang ngôn ngữ khác.
 
-![Translate workspace](../images/screenshots/vi/translate.png)
+![Không gian làm việc dịch](../images/screenshots/vi/translate.png)
 
 <br/>
 
@@ -296,9 +298,9 @@ Trong [**Cài đặt** > **Cài đặt chung**](#general-settings), bạn có th
 
 Sau khi bản dịch thành công, **Dịch lại…** và menu thả xuống phiên bản xuất hiện trong tiêu đề đầu ra, bên cạnh bộ chọn ngôn ngữ **Đến:**. Bạn có thể tinh chỉnh kết quả ở đó:
 
-1. **Dịch lại…** — khi không có văn bản nào được chọn trong đầu ra, nhận một bản dịch đầy đủ khác của cùng một đầu vào với cách diễn đạt khác. Mô hình nhận mọi phiên bản bạn đã có để cách diễn đạt mới có thể khác với tất cả chúng. Bạn có thể lưu tối đa **năm** phiên bản và chuyển đổi giữa chúng trong menu thả xuống phiên bản. Khi có văn bản được chọn, **Dịch lại…** mở các từ thay thế gần lựa chọn (giống như nhấp chuột phải). Nếu không có lựa chọn, **Dịch lại…** sẽ bị vô hiệu hóa khi bạn đạt năm phiên bản; với một lựa chọn, nó vẫn hoạt động ở năm phiên bản (chỉ từ thay thế, cập nhật phiên bản 5). Trong khi một lần dịch lại đầy đủ đang chạy, nhấp vào **Dừng Dịch** để hủy; đầu ra sẽ trở lại phiên bản đang hoạt động khi lần dịch lại bắt đầu.
-2. **Từ thay thế** — chọn một hoặc nhiều từ hoặc một cụm từ ngắn trong đầu ra (nếu bạn chỉ chọn một phần của một từ, ứng dụng sẽ mở rộng lựa chọn thành các từ đầy đủ), sau đó nhấp chuột phải hoặc nhấp vào **Dịch lại…**. Một danh sách ngắn các lựa chọn xuất hiện gần lựa chọn; nhấp vào một để thay thế. Mỗi tùy chọn có thể thay thế một khoảng rộng hơn một chút so với lựa chọn của bạn (ví dụ như một giới từ hoặc mạo từ liền kề) để câu vẫn giữ được ngữ pháp. Nếu bạn có ít hơn năm phiên bản, đầu ra đã chỉnh sửa sẽ được lưu dưới dạng một phiên bản mới; ở năm phiên bản, chỉ **phiên bản 5** được cập nhật. Nhấp chuột phải mà không có lựa chọn sẽ không có tác dụng. Nhấn **Esc** hoặc nhấp ra ngoài danh sách để hủy mà không thay đổi đầu ra.
-3. **Chi phí** — mỗi lần **Dịch lại…** đầy đủ (không có lựa chọn) và mỗi yêu cầu từ thay thế đều sử dụng lại mô hình và có thể làm tăng chi phí sử dụng (giống như một lần dịch bình thường).
+1. **Diễn đạt lại…** — khi không có văn bản nào được chọn trong đầu ra, hãy nhận một bản dịch đầy đủ khác của cùng một đầu vào với cách diễn đạt khác. Mô hình nhận mọi phiên bản bạn đã có để cách diễn đạt mới có thể khác với tất cả các phiên bản đó. Bạn có thể lưu trữ tối đa **năm** phiên bản và chuyển đổi giữa chúng trong menu thả xuống phiên bản. Khi có văn bản được chọn, **Diễn đạt lại…** sẽ mở các từ thay thế gần vùng chọn (tương tự như nhấp chuột phải). Nếu không có vùng chọn, **Diễn đạt lại…** bị tắt khi bạn đạt năm phiên bản; với vùng chọn, nó vẫn hoạt động ở năm phiên bản (chỉ các từ thay thế, cập nhật phiên bản 5). Trong khi một bản diễn đạt lại đầy đủ đang chạy, hãy nhấp vào **Dừng dịch** để hủy; đầu ra trở về phiên bản đang hoạt động khi quá trình diễn đạt lại bắt đầu.
+2. **Các từ thay thế** — chọn một hoặc nhiều từ hoặc một cụm từ ngắn trong đầu ra (nếu bạn chỉ chọn một phần của từ, ứng dụng sẽ mở rộng vùng chọn thành các từ đầy đủ), sau đó nhấp chuột phải hoặc nhấp vào **Diễn đạt lại…**. Một danh sách ngắn các từ thay thế xuất hiện gần vùng chọn; nhấp vào một từ để thay thế nó. Mỗi tùy chọn có thể thay thế một khoảng rộng hơn một chút so với vùng chọn của bạn (ví dụ: một giới từ hoặc mạo từ liền kề) để câu vẫn đúng ngữ pháp. Nếu bạn có ít hơn năm phiên bản, đầu ra đã chỉnh sửa sẽ được lưu dưới dạng phiên bản mới; ở năm phiên bản, chỉ **phiên bản 5** được cập nhật. Nhấp chuột phải mà không có vùng chọn sẽ chọn từ dưới con trỏ (hoặc không làm gì nếu không có từ nào ở đó). Nhấn **Esc** hoặc nhấp ra ngoài danh sách để hủy mà không thay đổi đầu ra.
+3. **Chi phí** — mỗi lần **Diễn đạt lại…** đầy đủ (không có vùng chọn) và mỗi yêu cầu từ thay thế đều sử dụng lại mô hình và có thể làm tăng chi phí sử dụng (tương tự như một lần dịch thông thường).
 
 <br/>
 
@@ -326,9 +328,9 @@ Bạn thêm, chỉnh sửa, nhập và xuất thuật ngữ trong tab [**Cài đ
 <a id="rewrite"></a>
 ## Viết lại
 
-Sử dụng **Viết lại** khi bạn muốn cải thiện cách diễn đạt mà không làm thay đổi ý chính.
+Sử dụng **Viết lại** khi bạn muốn cải thiện cách diễn đạt mà không thay đổi ý nghĩa chính. Văn bản vẫn giữ nguyên ngôn ngữ (không được dịch).
 
-![Rewrite workspace](../images/screenshots/vi/rewrite.png)
+![Không gian làm việc viết lại](../images/screenshots/vi/rewrite.png)
 
 Tính năng này hữu ích để:
 
@@ -341,9 +343,38 @@ Tính năng này hữu ích để:
 
 <br/>
 
+<a id="rewrite-text"></a>
+### Viết lại văn bản
+
+1. Mở **Chỉnh sửa lại**.
+2. Chọn một **Chế độ** (ví dụ: **Cải thiện Rõ ràng** hoặc **Làm Chính thức**).
+3. Tùy chọn đặt **Từ** thành ngôn ngữ của văn bản của bạn (hoặc để **Phát hiện ngôn ngữ**).
+4. Gõ hoặc dán văn bản vào **Đầu vào**.
+5. Nhấp vào **Chỉnh sửa lại**.
+6. Đọc kết quả trong **Đầu ra**.
+7. Tùy chọn tinh chỉnh kết quả bằng **Chỉnh sửa lại…** hoặc các từ thay thế — xem [Tinh chỉnh bản chỉnh sửa lại của bạn](#refining-rewrite).
+
+<br/>
+
 > 💡 **MẸO**<br/>
 > Khi bạn sử dụng chế độ "**Kiểm tra chính tả & ngữ pháp**", một công tắc **Hiển thị thay đổi** sẽ xuất hiện ở bảng đầu ra (bên cạnh **Sao chép**).
 > Bật hoặc tắt để hiển thị hoặc ẩn các sửa đổi cụ thể được áp dụng cho văn bản của bạn.
+
+<br/>
+
+> ℹ️ **LƯU Ý**<br/>
+> Chế độ chỉnh sửa lại **Các phiên bản thay thế** trả về một số cách diễn đạt lại trong **một** lần chạy, được phân tách bằng `----` trong đầu ra. Điều đó khác với **Chỉnh sửa lại…**, xây dựng lịch sử phiên bản theo thời gian (một biến thể mới cho mỗi lần nhấp). Xem [Tinh chỉnh bản chỉnh sửa lại của bạn](#refining-rewrite).
+
+<br/>
+
+<a id="refining-rewrite"></a>
+### Tinh chỉnh bản chỉnh sửa lại của bạn
+
+Sau khi chỉnh sửa lại thành công, **Chỉnh sửa lại…** và menu thả xuống phiên bản xuất hiện ở phía đầu ra của không gian làm việc (trong bố cục chia đôi, trong thanh công cụ trên cùng phía trên cột đầu ra, bên cạnh các số liệu chạy; trong bố cục xếp chồng, phía trên bảng đầu ra bên cạnh **Từ:**). Bạn có thể tinh chỉnh kết quả ở đó — ý tưởng tương tự như [Tinh chỉnh bản dịch của bạn](#refining-translation), nhưng văn bản vẫn giữ nguyên ngôn ngữ và giữ nguyên **Chế độ** chỉnh sửa lại hiện tại:
+
+1. **Chỉnh sửa lại…** — khi không có văn bản nào được chọn trong đầu ra, hãy nhận một bản chỉnh sửa lại đầy đủ khác của cùng một đầu vào với cách diễn đạt khác, vẫn áp dụng chế độ đã chọn (ví dụ: rõ ràng hơn, ngắn gọn hơn hoặc trang trọng hơn). Mô hình nhận mọi phiên bản bạn đã có để cách diễn đạt mới có thể khác với tất cả chúng. Bạn có thể lưu trữ tối đa **năm** phiên bản và chuyển đổi giữa chúng trong menu thả xuống phiên bản. Với văn bản được chọn, **Chỉnh sửa lại…** mở các từ thay thế gần vùng chọn (tương tự như nhấp chuột phải). Nếu không có vùng chọn, **Chỉnh sửa lại…** bị tắt khi bạn đạt năm phiên bản; với vùng chọn, nó vẫn hoạt động ở năm phiên bản (chỉ các từ thay thế, cập nhật phiên bản 5). Trong khi một bản chỉnh sửa lại đầy đủ đang chạy, nhấp vào **Dừng Chỉnh sửa lại** để hủy; đầu ra trở về phiên bản đang hoạt động khi quá trình chỉnh sửa lại bắt đầu.
+2. **Các từ thay thế** — chọn một hoặc nhiều từ hoặc một cụm từ ngắn trong đầu ra (nếu bạn chỉ chọn một phần của từ, ứng dụng sẽ mở rộng vùng chọn thành các từ đầy đủ), sau đó nhấp chuột phải hoặc nhấp vào **Chỉnh sửa lại…**. Một danh sách ngắn các từ thay thế xuất hiện gần vùng chọn; nhấp vào một từ để thay thế nó. Mỗi tùy chọn có thể thay thế một khoảng rộng hơn một chút so với vùng chọn của bạn để câu vẫn đúng ngữ pháp. Nếu bạn có ít hơn năm phiên bản, đầu ra đã chỉnh sửa sẽ được lưu dưới dạng một phiên bản mới; ở năm phiên bản, chỉ **phiên bản 5** được cập nhật. Nhấp chuột phải mà không có vùng chọn sẽ chọn từ dưới con trỏ (hoặc không làm gì nếu không có từ nào ở đó). Nhấn **Esc** hoặc nhấp ra ngoài danh sách để hủy mà không thay đổi đầu ra.
+3. **Chi phí** — mỗi lần **Chỉnh sửa lại…** đầy đủ (không có vùng chọn) và mỗi yêu cầu từ thay thế đều sử dụng lại mô hình và có thể làm tăng chi phí sử dụng (tương tự như một lần chạy chỉnh sửa lại thông thường).
 
 <br/><br/>
 
@@ -354,7 +385,7 @@ Tính năng này hữu ích để:
 
 Sử dụng **Chuyển đổi** khi bạn muốn AI tuân theo một tập hướng dẫn tùy chỉnh.
 
-![Transform workspace](../images/screenshots/vi/transform.png)
+![Không gian làm việc chuyển đổi](../images/screenshots/vi/transform.png)
 
 Đây là khu vực linh hoạt nhất của ứng dụng. Bạn có thể dùng để thực hiện các tác vụ như:
 
@@ -402,7 +433,7 @@ Cách nhanh nhất để tạo một lời nhắc là:
 5. Để ứng dụng tạo bản nháp cho bạn.
 6. Xem lại bản nháp và nhấp **Lưu**.
 
-![Generate prompt](../images/screenshots/vi/transform-generate.png)
+![Tạo lời nhắc](../images/screenshots/vi/transform-generate.png)
 
 <br/>
 
@@ -411,7 +442,7 @@ Cách nhanh nhất để tạo một lời nhắc là:
 
 Khi bạn tạo hoặc chỉnh sửa một lời nhắc, trình soạn thảo sẽ xuất hiện bên trái và khu vực kiểm tra sẽ xuất hiện bên phải.
 
-![Transform prompt editor](../images/screenshots/vi/transform-prompt-edit.png)
+![Trình chỉnh sửa lời nhắc chuyển đổi](../images/screenshots/vi/transform-prompt-edit.png)
 
 Các trường chính gồm:
 
@@ -467,7 +498,7 @@ Khi bạn sử dụng **Tạo lời nhắc**, **Cải thiện lời nhắc** ho�
 
 Sử dụng **Bảng điều khiển** để xem bạn đang sử dụng ứng dụng bao nhiêu và chi phí là bao nhiêu (đối với các mô hình có trả phí).
 
-![Dashboard summary](../images/screenshots/vi/dashboard-summary.png)
+![Tóm tắt bảng điều khiển](../images/screenshots/vi/dashboard-summary.png)
 
 <br/>
 
@@ -481,7 +512,7 @@ Sử dụng **Bảng điều khiển** để xem bạn đang sử dụng ứng d
 
 Sử dụng các nút bộ lọc ở đầu để thay đổi khoảng thời gian.
 
-![Dashboard filters](../images/screenshots/vi/dashboard-filter.png)
+![Bộ lọc bảng điều khiển](../images/screenshots/vi/dashboard-filter.png)
 
 <br/>
 
@@ -531,7 +562,7 @@ Trong **Theo mô hình** hoặc **Tất cả các cuộc gọi**, bạn có th�
 
 Nhấp vào **Lịch sử** để xem lịch sử các hành động của bạn trong **Transrewrt**, bao gồm đầu vào và đầu ra của từng thao tác.
 
-![History page](../images/screenshots/vi/history.png)
+![Trang lịch sử](../images/screenshots/vi/history.png)
 
 <br/>
 
@@ -540,7 +571,7 @@ Nhấp vào **Lịch sử** để xem lịch sử các hành động của bạn
 
 **Lịch sử** sử dụng các bộ lọc khoảng thời gian giống như trang **Bảng điều khiển**.
 
-![Dashboard filters](../images/screenshots/vi/dashboard-filter.png)
+![Bộ lọc bảng điều khiển](../images/screenshots/vi/dashboard-filter.png)
 
 <br/>
 
@@ -641,7 +672,7 @@ Các bản sao lưu được tạo trong phiên bản web hoặc máy tính đ�
 
 Tab này chỉ khả dụng khi **Trải nghiệm AI** được đặt thành **Nâng cao** trong [**Cài đặt chung**](#general-settings). Sử dụng **Cài đặt** > **Mô hình** để chọn các mô hình xuất hiện trên thanh công cụ.
 
-![Settings Models tab](../images/screenshots/vi/settings-general.png)
+![Cài đặt tab Mô hình](../images/screenshots/vi/settings-general.png)
 
 Trang này có hai danh sách:
 

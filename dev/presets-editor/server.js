@@ -1571,7 +1571,8 @@ function formatBenchmarkCostUsd(costUsd, costKnown) {
 }
 
 function logTranslateBenchmarkRowComplete(ctx, row) {
-  const { index, total, preset_id, slot } = ctx || {};
+  const { index, total, preset_id, slot, engine } = ctx || {};
+  const enginePart = engine ? ` ${engine}` : "";
   const slotPart = slot ? ` ${slot}` : "";
   let suffix = "";
   if (row && row.ok) {
@@ -1583,8 +1584,28 @@ function logTranslateBenchmarkRowComplete(ctx, row) {
     suffix = " — failed";
   }
   console.log(
-    `[presets-editor] translate-benchmark: ${index}/${total} (${preset_id}${slotPart})${suffix}`,
+    `[presets-editor] translate-benchmark: ${index}/${total} (${preset_id}${enginePart}${slotPart})${suffix}`,
   );
+}
+
+/** @returns {{ engines: string[], skipUnconfigured: boolean } | { error: string }} */
+function resolveTranslateBenchmarkProvider(providerRaw) {
+  const knownIds = EASY_CLOUD_ENGINES.map((p) => p.id);
+  const knownSet = new Set(knownIds);
+  const provider =
+    providerRaw == null || providerRaw === ""
+      ? "openrouter"
+      : String(providerRaw).trim();
+  if (provider === "all") {
+    return { engines: knownIds, skipUnconfigured: true };
+  }
+  if (!knownSet.has(provider)) {
+    return {
+      error:
+        'provider must be "all" or one of: ' + knownIds.join(", "),
+    };
+  }
+  return { engines: [provider], skipUnconfigured: false };
 }
 
 function logTranslateBenchmarkFinished(startedAt, finishedAt, result) {
@@ -1627,10 +1648,27 @@ app.post("/api/presets/translate-benchmark", async (req, res) => {
     const catalog = editorPresetsCatalog || loadRepoPresetsCatalogFromDisk();
     const presets = Array.isArray(catalog?.presets) ? catalog.presets : [];
     const keysMap = mergeKeys({}, process.env);
-    if (!engineConfigured("openrouter", keysMap)) {
+
+    const providerResolved = resolveTranslateBenchmarkProvider(req.body?.provider);
+    if (providerResolved.error) {
+      return res.status(400).json({ error: providerResolved.error });
+    }
+    const { engines, skipUnconfigured } = providerResolved;
+
+    if (!skipUnconfigured) {
+      const engine = engines[0];
+      if (!engineConfigured(engine, keysMap)) {
+        const ek = envKeyForEngine(engine) || String(engine).toUpperCase() + "_API_KEY";
+        return res.status(400).json({
+          error:
+            ek +
+            " is not set. Export it in the shell before starting the presets editor.",
+        });
+      }
+    } else if (!engines.some((eng) => engineConfigured(eng, keysMap))) {
       return res.status(400).json({
         error:
-          "OPENROUTER_API_KEY is not set. Export it in the shell before starting the presets editor.",
+          "No configured providers to benchmark. Export at least one Easy-mode provider API key in the shell before starting the presets editor.",
       });
     }
 
@@ -1658,12 +1696,24 @@ app.post("/api/presets/translate-benchmark", async (req, res) => {
       String(req.query.stream || "") === "1";
 
     const startedAt = new Date().toISOString();
+    const engineLabel =
+      engines.length === 1 ? engines[0] : "all (" + engines.join(", ") + ")";
     console.log(
       "[presets-editor] translate-benchmark: starting…" +
+        " provider=" +
+        engineLabel +
         (includeFallback ? " (main + fallback)" : " (main only)"),
     );
 
     const hooks = {};
+    const runOpts = {
+      presets: selectedPresets,
+      keysMap,
+      sample_text: sampleText,
+      include_fallback: includeFallback,
+      engines,
+      skip_unconfigured: skipUnconfigured,
+    };
 
     if (wantStream) {
       res.setHeader("Content-Type", "text/event-stream; charset=utf-8");
@@ -1681,10 +1731,7 @@ app.post("/api/presets/translate-benchmark", async (req, res) => {
 
       try {
         const result = await runTranslatePresetsBenchmark({
-          presets: selectedPresets,
-          keysMap,
-          sample_text: sampleText,
-          include_fallback: includeFallback,
+          ...runOpts,
           onProgress: hooks.onProgress,
           onRow: hooks.onRow,
         });
@@ -1710,10 +1757,7 @@ app.post("/api/presets/translate-benchmark", async (req, res) => {
     };
 
     const result = await runTranslatePresetsBenchmark({
-      presets: selectedPresets,
-      keysMap,
-      sample_text: sampleText,
-      include_fallback: includeFallback,
+      ...runOpts,
       onProgress: hooks.onProgress,
       onRow: hooks.onRow,
     });
@@ -1724,8 +1768,15 @@ app.post("/api/presets/translate-benchmark", async (req, res) => {
     res.json(buildTranslateBenchmarkResponsePayload(startedAt, finishedAt, result));
   } catch (e) {
     console.error("[presets-editor] POST /api/presets/translate-benchmark:", e);
-    const status = e.message && e.message.includes("OPENROUTER_API_KEY") ? 400 : 500;
-    res.status(status).json({ error: e.message || String(e) });
+    const msg = e.message || String(e);
+    const status =
+      msg.includes("API_KEY") ||
+      msg.includes("not set") ||
+      msg.includes("No configured providers") ||
+      msg.includes("No models to benchmark")
+        ? 400
+        : 500;
+    res.status(status).json({ error: msg });
   }
 });
 
@@ -1982,6 +2033,8 @@ app.post("/api/presets/suggest-models", async (req, res) => {
 
 const publicDir = path.join(__dirname, "public");
 app.use(express.static(publicDir));
+/** Shared brand assets (same files as the main app). */
+app.use("/images", express.static(path.join(ROOT, "images")));
 
 // Do not pass a listen callback: Express wires that same function to `error` via `once()`,
 // so EADDRINUSE still runs "success" logs while the server never binds, then Node exits ~0.

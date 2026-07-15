@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.1-blue" alt="Version"></a>
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.0-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
   <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react" alt="React 19">
@@ -62,27 +62,27 @@ Po zainstalowaniu zapoznaj się z [**Podręcznikiem użytkownika**](USER-GUIDE.p
 
 **Wybór języka**
 
-![Language selector](../images/screenshots/pl/language-selector.png)
+![Selektor języka](../images/screenshots/pl/language-selector.png)
 
 **Przetłumacz**
 
-![Translate](../images/screenshots/pl/translate.png)
+![Tłumacz](../images/screenshots/pl/translate.png)
 
 **Transformacja — edytor promptów**
 
-![Transform - prompt editor](../images/screenshots/pl/transform-prompt-edit.png)
+![Transformacja — edytor monitów](../images/screenshots/pl/transform-prompt-edit.png)
 
 **Panel**
 
-![Dashboard summary - usage](../images/screenshots/pl/dashboard-summary.png)
+![Podsumowanie panelu — użycie](../images/screenshots/pl/dashboard-summary.png)
 
 **Historia**
 
-![History](../images/screenshots/pl/history.png)
+![Historia](../images/screenshots/pl/history.png)
 
 **Ustawienia — wybór modelu**
 
-![Settings - model selection](../images/screenshots/pl/settings-general.png)
+![Ustawienia — wybór modelu](../images/screenshots/pl/settings-general.png)
 
 <br/><br/>
 

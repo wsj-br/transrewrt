@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.1-blue" alt="Version"></a>
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.0-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
   <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react" alt="React 19">
@@ -62,27 +62,27 @@ Sau khi cài đặt, hãy xem [**Hướng dẫn Người dùng**](USER-GUIDE.vi.
 
 **Bộ chọn ngôn ngữ**
 
-![Language selector](../images/screenshots/vi/language-selector.png)
+![Bộ chọn ngôn ngữ](../images/screenshots/vi/language-selector.png)
 
 **Dịch**
 
-![Translate](../images/screenshots/vi/translate.png)
+![Dịch](../images/screenshots/vi/translate.png)
 
 **Chuyển đổi - trình soạn thảo lời nhắc**
 
-![Transform - prompt editor](../images/screenshots/vi/transform-prompt-edit.png)
+![Chuyển đổi - trình chỉnh sửa lời nhắc](../images/screenshots/vi/transform-prompt-edit.png)
 
 **Bảng điều khiển**
 
-![Dashboard summary - usage](../images/screenshots/vi/dashboard-summary.png)
+![Tóm tắt Bảng điều khiển - mức sử dụng](../images/screenshots/vi/dashboard-summary.png)
 
 **Lịch sử**
 
-![History](../images/screenshots/vi/history.png)
+![Lịch sử](../images/screenshots/vi/history.png)
 
 **Cài đặt - lựa chọn mô hình**
 
-![Settings - model selection](../images/screenshots/vi/settings-general.png)
+![Cài đặt - lựa chọn mô hình](../images/screenshots/vi/settings-general.png)
 
 <br/><br/>
 

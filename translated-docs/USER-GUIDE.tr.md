@@ -1,4 +1,4 @@
-![Transrewrt banner](../images/transrewrt_banner.png)
+![Transrewrt başlığı](../images/transrewrt_banner.png)
 
 <a id="transrewrt-user-guide"></a>
 # Kullanıcı Kılavuzu
@@ -55,16 +55,18 @@ Bu kılavuz, uygulama yüklendikten ve çalıştırıldıktan sonra nasıl kulla
   - [Çevirinizi iyileştirme](#refining-your-translation)
   - [Sözlüğü kullanma](#using-the-glossary)
 - [Yeniden yazma](#rewrite)
+  - [Metni yeniden yazma](#rewrite-text)
+  - [Yeniden yazmanızı iyileştirme](#refining-your-rewrite)
 - [Dönüştürme](#transform)
-  - [Mevcut bir isteği çalıştırma](#run-an-existing-prompt)
-  - [Henüz isteğiniz yoksa](#if-you-have-no-prompts-yet)
-  - [Hızlı bir istek oluşturma](#create-a-prompt-quickly)
-  - [Bir isteği düzenleme](#edit-a-prompt)
-  - [Kullanmadan önce bir isteği test etme](#test-a-prompt-before-using-it)
+  - [Mevcut bir istemi çalıştırma](#run-an-existing-prompt)
+  - [Henüz isteminiz yoksa](#if-you-have-no-prompts-yet)
+  - [Hızlıca bir istem oluşturma](#create-a-prompt-quickly)
+  - [Bir istemi düzenleme](#edit-a-prompt)
+  - [Kullanmadan önce bir istemi test etme](#test-a-prompt-before-using-it)
 - [Pano](#dashboard)
   - [Verileri filtreleme](#filter-the-data)
   - [Pano sekmeleri](#dashboard-tabs)
-  - [Veri dışa aktarma](#export-data)
+  - [Verileri dışa aktarma](#export-data)
   - [Bir model için depolanan kayıtları silme](#delete-stored-records-for-a-model)
 - [Geçmiş](#history)
   - [Geçmişi filtreleme](#filter-the-history)
@@ -80,19 +82,19 @@ Bu kılavuz, uygulama yüklendikten ve çalıştırıldıktan sonra nasıl kulla
   - [API yapılandırması](#api-config)
   - [Hakkında](#about)
 - [Yaygın sorunlar](#common-issues)
-  - [Uygulama metni çevirmeyecek, yeniden yazmayacak veya dönüştürmeyecek](#the-app-will-not-translate-rewrite-or-transform-text)
+  - [Uygulama metni çevirmiyor, yeniden yazmıyor veya dönüştürmüyor](#the-app-will-not-translate-rewrite-or-transform-text)
   - [Model listesi boş](#the-model-list-is-empty)
   - [Sonuç çok yavaş veya çok pahalı](#the-result-is-too-slow-or-too-expensive)
   - [Arayüz yanlış dilde](#the-interface-is-in-the-wrong-language)
   - [Metin çok küçük veya okunması zor](#the-text-is-too-small-or-hard-to-read)
   - [Pano Özeti boş görünüyor](#dashboard-summary-looks-empty)
-  - [Maliyet "kullanılamıyor" gösteriyor veya yanlış görünüyor](#cost-shows-not-available-or-seems-wrong)
+  - [Maliyet "mevcut değil" gösteriyor veya yanlış görünüyor](#cost-shows-not-available-or-seems-wrong)
   - [Toplam maliyet sağlayıcı faturamla eşleşmiyor](#total-cost-does-not-match-my-provider-bill)
   - [Geçmiş sayfası kenar çubuğunda eksik](#the-history-page-is-missing-from-the-sidebar)
   - [Web uygulaması: beklenmedik bir şekilde oturum açma sayfasına yönlendirildi](#web-app-redirected-to-the-login-page-unexpectedly)
-  - [Web yöneticisi: parola unutuldu veya kaybedildi](#web-admin-forgot-or-lost-a-password)
-  - [Pano, diğer kullanıcılar için veri göstermiyor (web)](#dashboard-shows-no-data-for-other-users-web)
-  - [Bir isteği değiştirdim ve düzenlemeleri kaybettim](#i-changed-a-prompt-and-lost-the-edits)
+  - [Web yöneticisi: parolayı unuttu veya kaybetti](#web-admin-forgot-or-lost-a-password)
+  - [Pano diğer kullanıcılar için veri göstermiyor (web)](#dashboard-shows-no-data-for-other-users-web)
+  - [Bir istemi değiştirdim ve düzenlemeleri kaybettim](#i-changed-a-prompt-and-lost-the-edits)
 - [Hızlı ipuçları](#quick-tips)
 - [Yasal Uyarı](#disclaimer)
 - [Lisans](#license)
@@ -206,7 +208,7 @@ Araç çubuğu, uygulama içinde nerede olduğunuza göre hafifçe değişir.
 
 **Gelişmiş** modda, **model seçici** geçerli görev için hangi yapay zekâ motorunun kullanılacağını seçmenizi sağlar.
 
-![Model selector](../images/screenshots/tr/preset-selector.png)
+![Model seçici](../images/screenshots/tr/preset-selector.png)
 
 Gelişmiş modda, bazı ücretsiz modeller her zaman mevcut olmayabilir—çevrimdışı olabilir veya kullanım sınırına ulaşmış olabilir. Uygulama bu modeli listeden otomatik olarak kaldırabilir. Hangi modellerin görünmesini kontrol etmek için [**Ayarlar** > **Modeller**](#models) bölümüne gidin. Araç çubuğundaki model adının solundaki sağlayıcı simgesinden model ayarlarını açabilirsiniz.
 
@@ -214,7 +216,7 @@ Gelişmiş modda, bazı ücretsiz modeller her zaman mevcut olmayabilir—çevri
 
 **Dünya simgesi + dil kodu**, menüler ve düğmeler gibi uygulama arayüz dilini değiştirir. **Çevir** işlevinde kullanılan çeviri dillerini **değiştirmez**.
 
-![Interface language selector](../images/screenshots/tr/language-selector.png)
+![Arayüz dili seçici](../images/screenshots/tr/language-selector.png)
 
 <br/>
 
@@ -247,7 +249,7 @@ Her işlemin maliyetini (mevcutsa) ve toplam maliyeti de [**Ayarlar** > **Genel 
 
 Metni bir dilden başka bir dile çevirmek istediğinizde **Çevir** seçeneğini kullanın.
 
-![Translate workspace](../images/screenshots/tr/translate.png)
+![Çeviri çalışma alanı](../images/screenshots/tr/translate.png)
 
 <br/>
 
@@ -296,9 +298,9 @@ Seçtiğiniz **Üst diller** listede en üstte görünür. Bunları [**Ayarlar**
 
 Başarılı bir çeviriden sonra, **Ekle…** ve sürüm açılır menüsü çıktı başlığında, **Hedef:** dil seçicisinin yanında görünür. Sonucu burada geliştirebilirsiniz:
 
-1. **Ekle…** — çıktıdaki metin seçilmeden, aynı girdi için farklı kelimelerle başka bir tam çeviri alın. Model, zaten sahip olduğunuz her sürümü alır, böylece yeni kelimeler hepsinden farklı olabilir. En fazla **beş** sürüm saklayabilir ve sürüm açılır menüsünde bunlar arasında geçiş yapabilirsiniz. Metin seçildiğinde, **Ekle…** seçiminiz yakınında kelime alternatiflerini açar (sağ tıklama ile aynı). Seçim olmadan, **Ekle…** beş sürüme ulaştığınızda devre dışı kalır; bir seçim ile, yine de beş sürümde çalışır (sadece kelime alternatifleri, sürüm 5'i günceller). Tam bir yeniden ifade işlemi devam ederken, iptal etmek için **Durdur Çevir** butonuna tıklayın; çıktı, yeniden ifade işlemi başladığında aktif olan sürüme döner.
-2. **Kelime alternatifleri** — çıktıda bir veya daha fazla kelimeyi veya kısa bir ifadeyi seçin (eğer sadece bir kelimenin bir kısmını seçerseniz, uygulama seçimi tam kelimelere genişletir), ardından sağ tıklayın veya **Ekle…** butonuna tıklayın. Seçiminiz yakınında kısa bir alternatif listesi görünür; birine tıklayarak onu değiştirebilirsiniz. Her seçenek, seçiminizden biraz daha geniş bir aralığı değiştirebilir (örneğin, bitişik bir edat veya tanım) böylece cümle gramatik kalır. Beşten az sürümünüz varsa, düzenlenmiş çıktı yeni bir sürüm olarak kaydedilir; beş sürümde, yalnızca **sürüm 5** güncellenir. Seçim olmadan sağ tıklamak hiçbir şey yapmaz. Çıktıyı değiştirmeden iptal etmek için **Esc** tuşuna basın veya liste dışında bir yere tıklayın.
-3. **Maliyetler** — her tam **Ekle…** (seçim yok) ve her kelime-alternatif isteği modeli tekrar kullanır ve kullanım maliyetine ekleyebilir (normal bir çeviri çalışmasıyla aynı).
+1. **Yeniden ifade et…** — çıktıda metin seçili değilken, aynı girdinin farklı bir ifadeyle başka bir tam çevirisini alın. Model, zaten sahip olduğunuz her sürümü alır, böylece yeni ifade hepsinden farklı olabilir. En fazla **beş** sürüm saklayabilir ve sürüm açılır menüsünden aralarında geçiş yapabilirsiniz. Metin seçiliyken, **Yeniden ifade et…** seçimin yakınında kelime alternatiflerini açar (sağ tıklama ile aynı). Seçim yokken, beş sürüme ulaştığınızda **Yeniden ifade et…** devre dışı kalır; seçim varken, beş sürümde hala çalışır (yalnızca kelime alternatifleri, sürüm 5'i günceller). Tam bir yeniden ifade çalışırken, iptal etmek için **Çeviriyi Durdur**'a tıklayın; çıktı, yeniden ifade başladığında etkin olan sürüme döner.
+2. **Kelime alternatifleri** — çıktıda bir veya daha fazla kelimeyi veya kısa bir ifadeyi seçin (kelimenin yalnızca bir kısmını seçerseniz, uygulama seçimi tam kelimelere genişletir), ardından sağ tıklayın veya **Yeniden ifade et…**'e tıklayın. Seçimin yakınında kısa bir alternatif listesi görünür; değiştirmek için birine tıklayın. Her seçenek, cümlenin dilbilgisel kalması için seçiminizden biraz daha geniş bir alanı (örneğin bitişik bir edat veya makale) değiştirebilir. Beşten az sürümünüz varsa, düzenlenen çıktı yeni bir sürüm olarak kaydedilir; beş sürümde, yalnızca **sürüm 5** güncellenir. Seçim yokken sağ tıklama, imlecin altındaki kelimeyi seçer (veya orada kelime yoksa hiçbir şey yapmaz). Çıktıyı değiştirmeden iptal etmek için **Esc** tuşuna basın veya listenin dışına tıklayın.
+3. **Maliyetler** — her tam **Yeniden ifade et…** (seçim yok) ve her kelime alternatifi isteği modeli tekrar kullanır ve kullanım maliyetine eklenebilir (normal bir çeviri çalıştırmasıyla aynı).
 
 <br/>
 
@@ -326,9 +328,9 @@ Terimleri [**Ayarlar** > **Sözlük**](#glossary-settings) sekmesinde ekler, dü
 <a id="rewrite"></a>
 ## Yeniden yaz
 
-Ana anlamı değiştirmeden metnin ifade biçimini iyileştirmek istediğinizde **Yeniden yaz** seçeneğini kullanın.
+Ana anlamı değiştirmeden ifadeyi iyileştirmek istediğinizde **Yeniden Yaz**'ı kullanın. Metin aynı dilde kalır (çevrilmez).
 
-![Rewrite workspace](../images/screenshots/tr/rewrite.png)
+![Yeniden yazma çalışma alanı](../images/screenshots/tr/rewrite.png)
 
 Bu işlem şu durumlarda yararlıdır:
 
@@ -341,9 +343,38 @@ Bu işlem şu durumlarda yararlıdır:
 
 <br/>
 
+<a id="rewrite-text"></a>
+### Metni yeniden yaz
+
+1. **Yeniden Yazma**'yı açın.
+2. Bir **Mod** seçin (örneğin **Netliği Geliştir** veya **Resmi Yap**).
+3. İsteğe bağlı olarak **Kaynak** dilini metninizin diline ayarlayın (veya **Dili Algıla**'yı bırakın).
+4. Metni **Giriş**'e yazın veya yapıştırın.
+5. **Yeniden Yazma**'ya tıklayın.
+6. **Çıkış**'taki sonucu okuyun.
+7. İsteğe bağlı olarak **Yeniden İfade Et…** veya kelime alternatifleriyle sonucu iyileştirin — bkz. [Yeniden yazmanızı iyileştirme](#refining-rewrite).
+
+<br/>
+
 > 💡 **İPUCU**<br/>
 > "**İmla ve Dil Bilgisini Denetle**" modunu kullandığınızda, çıktı panelinde (**Kopyala**'nın yanında) bir **Değişiklikleri göster** anahtarı belirir.
 > Metninizde uygulanan belirli düzeltmeleri göstermek veya gizlemek için onu açıp kapatabilirsiniz.
+
+<br/>
+
+> ℹ️ **NOT**<br/>
+> Yeniden yazma modu **Alternatif sürümler**, çıktıda `----` ile ayrılmış olarak **tek** bir çalıştırmada birkaç yeniden formülasyon döndürür. Bu, zaman içinde bir sürüm geçmişi oluşturan **Yeniden İfade Et…**'ten farklıdır (her tıklamada bir yeni varyant). Bkz. [Yeniden yazmanızı iyileştirme](#refining-rewrite).
+
+<br/>
+
+<a id="refining-rewrite"></a>
+### Yeniden yazmanızı iyileştirme
+
+Başarılı bir yeniden yazmadan sonra, **Yeniden İfade Et…** ve sürüm açılır menüsü çalışma alanının çıktı tarafında görünür (bölünmüş düzende, çıktı sütununun üzerindeki üst araç çubuğunda, çalıştırma metriklerinin yanında; yığılmış düzende, çıktı panelinin üzerinde **Kaynak:**'ın yanında). Sonucu orada iyileştirebilirsiniz — [Çevirinizi iyileştirme](#refining-translation) ile aynı fikir, ancak metin aynı dilde kalır ve mevcut yeniden yazma **Modu**'nu korur:
+
+1. **Yeniden ifade et…** — çıktıda metin seçili değilken, aynı girdinin farklı bir ifadeyle, seçilen modun (örneğin daha net, daha kısa veya daha resmi) hala uygulandığı başka bir tam yeniden yazımını alın. model, yeni ifadenin hepsinden farklı olabilmesi için sahip olduğunuz her sürümü alır. En fazla **beş** sürüm depolayabilir ve sürüm açılır menüsünde bunlar arasında geçiş yapabilirsiniz. Metin seçiliyken, **Yeniden ifade et…** seçimin yakınında kelime alternatiflerini açar (sağ tıklama ile aynı). Seçim yokken, beş sürüme ulaştığınızda **Yeniden ifade et…** devre dışı bırakılır; seçim varken, beş sürümde bile çalışır (yalnızca kelime alternatifleri, sürüm 5'i günceller). Tam bir yeniden ifade çalışırken, iptal etmek için **Yeniden Yazmayı Durdur**'a tıklayın; çıktı, yeniden ifade başladığında etkin olan sürüme geri döner.
+2. **Kelime alternatifleri** — çıktıda bir veya daha fazla kelimeyi veya kısa bir ifadeyi seçin (yalnızca bir kelimenin bir kısmını seçerseniz, uygulama seçimi tam kelimelere genişletir), ardından sağ tıklayın veya **Yeniden ifade et…**'e tıklayın. Seçimin yakınında kısa bir alternatif listesi görünür; değiştirmek için birine tıklayın. Her seçenek, cümlenin dilbilgisel kalması için seçiminizden biraz daha geniş bir alanı değiştirebilir. Beşten az sürümünüz varsa, düzenlenen çıktı yeni bir sürüm olarak kaydedilir; beş sürümde, yalnızca **sürüm 5** güncellenir. Seçim olmadan sağ tıklama, imlecin altındaki kelimeyi seçer (veya orada kelime yoksa hiçbir şey yapmaz). Çıktıyı değiştirmeden iptal etmek için **Esc** tuşuna basın veya listenin dışına tıklayın.
+3. **Maliyetler** — her tam **Yeniden ifade et…** (seçim yok) ve her kelime alternatifi isteği, modeli tekrar kullanır ve kullanım maliyetine eklenebilir (normal bir yeniden yazma çalıştırmasıyla aynı).
 
 <br/><br/>
 
@@ -354,7 +385,7 @@ Bu işlem şu durumlarda yararlıdır:
 
 Yapay zekanın özel talimatlar takip etmesini istediğinizde **Dönüştür** seçeneğini kullanın.
 
-![Transform workspace](../images/screenshots/tr/transform.png)
+![Dönüştürme çalışma alanı](../images/screenshots/tr/transform.png)
 
 Bu, uygulamanın en esnek bölümüdür. Bunu şu tür görevler için kullanabilirsiniz:
 
@@ -402,7 +433,7 @@ Bir istem oluşturmanın en hızlı yolu:
 5. Uygulamanın sizin için bir taslak oluşturmasına izin verin.
 6. Taslağı gözden geçirin ve **Kaydet**'e tıklayın.
 
-![Generate prompt](../images/screenshots/tr/transform-generate.png)
+![İstem oluştur](../images/screenshots/tr/transform-generate.png)
 
 <br/>
 
@@ -411,7 +442,7 @@ Bir istem oluşturmanın en hızlı yolu:
 
 Bir istem oluşturduğunuzda veya düzenlediğinizde, düzenleyici solda görünür ve sağda bir test alanı görünür.
 
-![Transform prompt editor](../images/screenshots/tr/transform-prompt-edit.png)
+![İstem düzenleyiciyi dönüştür](../images/screenshots/tr/transform-prompt-edit.png)
 
 Ana alanlar şunlardır:
 
@@ -467,7 +498,7 @@ Bu durumlarda kullanışlıdır:
 
 **Kontrol Paneli**'ni kullanarak uygulamayı ne kadar kullandığınızı ve maliyetinin ne kadar olduğunu görebilirsiniz (ücretli modeller için).
 
-![Dashboard summary](../images/screenshots/tr/dashboard-summary.png)
+![Pano özeti](../images/screenshots/tr/dashboard-summary.png)
 
 <br/>
 
@@ -481,7 +512,7 @@ Bu durumlarda kullanışlıdır:
 
 Zaman aralığını değiştirmek için üstteki filtre düğmelerini kullanın.
 
-![Dashboard filters](../images/screenshots/tr/dashboard-filter.png)
+![Pano filtreleri](../images/screenshots/tr/dashboard-filter.png)
 
 <br/>
 
@@ -531,7 +562,7 @@ Tüm verileri silmek veya kayıtları yaşlarına göre kaldırmak için [**Ayar
 
 **Transrewrt** içindeki işlemlerinizin geçmişini görmek için **Geçmiş**'e tıklayın. Her işlemin girdi ve çıktısını buradan inceleyebilirsiniz.
 
-![History page](../images/screenshots/tr/history.png)
+![Geçmiş sayfası](../images/screenshots/tr/history.png)
 
 <br/>
 
@@ -540,7 +571,7 @@ Tüm verileri silmek veya kayıtları yaşlarına göre kaldırmak için [**Ayar
 
 **Geçmiş**, **Kontrol Paneli** sayfasıyla aynı zaman aralığı filtrelerini kullanır.
 
-![Dashboard filters](../images/screenshots/tr/dashboard-filter.png)
+![Pano filtreleri](../images/screenshots/tr/dashboard-filter.png)
 
 <br/>
 
@@ -641,7 +672,7 @@ Web veya masaüstü sürümünde oluşturulan yedeklemeler diğerinde geri yükl
 
 Bu sekme yalnızca [**Genel Ayarlar**](#general-settings) bölümünde **Yapay zeka deneyimi** **Gelişmiş** olarak ayarlandığında kullanılabilir. Araç çubuğunda hangi modellerin görüneceğini seçmek için **Ayarlar** > **Modeller** seçeneğini kullanın.
 
-![Settings Models tab](../images/screenshots/tr/settings-general.png)
+![Ayarlar Modeller sekmesi](../images/screenshots/tr/settings-general.png)
 
 Sayfada iki liste bulunur:
 

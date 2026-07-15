@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.1-blue" alt="Version"></a>
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.0-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
   <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react" alt="React 19">
@@ -62,27 +62,27 @@ Po nainštalovaní si pozrite [**Používateľskú príručku**](USER-GUIDE.sk.m
 
 **Výber jazyka**
 
-![Language selector](../images/screenshots/sk/language-selector.png)
+![Výber jazyka](../images/screenshots/sk/language-selector.png)
 
 **Preložiť**
 
-![Translate](../images/screenshots/sk/translate.png)
+![Preložiť](../images/screenshots/sk/translate.png)
 
 **Transformovať – editor výziev**
 
-![Transform - prompt editor](../images/screenshots/sk/transform-prompt-edit.png)
+![Transformovať – editor výziev](../images/screenshots/sk/transform-prompt-edit.png)
 
 **Nástenka**
 
-![Dashboard summary - usage](../images/screenshots/sk/dashboard-summary.png)
+![Súhrn ovládacieho panela – použitie](../images/screenshots/sk/dashboard-summary.png)
 
 **História**
 
-![History](../images/screenshots/sk/history.png)
+![História](../images/screenshots/sk/history.png)
 
 **Nastavenia – výber modelu**
 
-![Settings - model selection](../images/screenshots/sk/settings-general.png)
+![Nastavenia – výber modelu](../images/screenshots/sk/settings-general.png)
 
 <br/><br/>
 

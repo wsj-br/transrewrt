@@ -1,4 +1,4 @@
-![Transrewrt banner](../images/transrewrt_banner.png)
+![Transrewrt 横幅](../images/transrewrt_banner.png)
 
 <a id="transrewrt-user-guide"></a>
 # 用户指南
@@ -55,44 +55,46 @@ Transrewrt 帮助您通过三种主要方式处理文本：
   - [优化您的翻译](#refining-your-translation)
   - [使用术语表](#using-the-glossary)
 - [改写](#rewrite)
+  - [改写文本](#rewrite-text)
+  - [改进你的改写](#refining-your-rewrite)
 - [转换](#transform)
   - [运行现有提示](#run-an-existing-prompt)
-  - [如果您还没有提示](#if-you-have-no-prompts-yet)
+  - [如果你还没有提示](#if-you-have-no-prompts-yet)
   - [快速创建提示](#create-a-prompt-quickly)
   - [编辑提示](#edit-a-prompt)
-  - [在使用提示前进行测试](#test-a-prompt-before-using-it)
+  - [在使用前测试提示](#test-a-prompt-before-using-it)
 - [仪表板](#dashboard)
   - [筛选数据](#filter-the-data)
-  - [仪表板选项卡](#dashboard-tabs)
+  - [仪表板标签页](#dashboard-tabs)
   - [导出数据](#export-data)
   - [删除模型的已存储记录](#delete-stored-records-for-a-model)
 - [历史记录](#history)
   - [筛选历史记录](#filter-the-history)
-  - [导出历史记录数据](#export-history-data)
+  - [导出历史数据](#export-history-data)
 - [设置](#settings)
   - [常规设置](#general-settings)
   - [模型](#models)
   - [语言](#languages)
   - [成本跟踪](#cost-tracking)
-  - [转换（设置选项卡）](#transform-settings-tab)
-  - [术语表（设置选项卡）](#glossary-settings-tab)
+  - [转换（设置标签页）](#transform-settings-tab)
+  - [术语表（设置标签页）](#glossary-settings-tab)
   - [用户](#users)
   - [API 配置](#api-config)
   - [关于](#about)
 - [常见问题](#common-issues)
-  - [应用程序无法翻译、改写或转换文本](#the-app-will-not-translate-rewrite-or-transform-text)
+  - [应用无法翻译、改写或转换文本](#the-app-will-not-translate-rewrite-or-transform-text)
   - [模型列表为空](#the-model-list-is-empty)
-  - [结果太慢或太昂贵](#the-result-is-too-slow-or-too-expensive)
-  - [界面语言错误](#the-interface-is-in-the-wrong-language)
-  - [文本太小或难以阅读](#the-text-is-too-small-or-hard-to-read)
-  - [仪表板摘要为空](#dashboard-summary-looks-empty)
-  - [成本显示“不可用”或似乎不正确](#cost-shows-not-available-or-seems-wrong)
-  - [总费用与我的提供商账单不符](#total-cost-does-not-match-my-provider-bill)
-  - [历史记录页面在侧边栏中丢失](#the-history-page-is-missing-from-the-sidebar)
-  - [Web 应用：意外重定向到登录页面](#web-app-redirected-to-the-login-page-unexpectedly)
+  - [结果太慢或太贵](#the-result-is-too-slow-or-too-expensive)
+  - [界面语言不正确](#the-interface-is-in-the-wrong-language)
+  - [文字太小或难以阅读](#the-text-is-too-small-or-hard-to-read)
+  - [仪表板摘要看起来是空的](#dashboard-summary-looks-empty)
+  - [成本显示为"不可用"或似乎不正确](#cost-shows-not-available-or-seems-wrong)
+  - [总费用与提供商账单不一致](#total-cost-does-not-match-my-provider-bill)
+  - [侧边栏中缺少历史记录页面](#the-history-page-is-missing-from-the-sidebar)
+  - [Web 应用：意外被重定向到登录页面](#web-app-redirected-to-the-login-page-unexpectedly)
   - [Web 管理员：忘记或丢失密码](#web-admin-forgot-or-lost-a-password)
-  - [仪表板显示其他用户的无数据（Web）](#dashboard-shows-no-data-for-other-users-web)
-  - [我更改了提示并丢失了编辑](#i-changed-a-prompt-and-lost-the-edits)
+  - [仪表板不显示其他用户的数据（Web）](#dashboard-shows-no-data-for-other-users-web)
+  - [我修改了提示但丢失了编辑内容](#i-changed-a-prompt-and-lost-the-edits)
 - [快速提示](#quick-tips)
 - [免责声明](#disclaimer)
 - [许可证](#license)
@@ -206,7 +208,7 @@ Transrewrt 帮助您通过三种主要方式处理文本：
 
 在 **高级** 模式下，**模型选择器**允许您选择要用于当前任务的 AI 引擎。
 
-![Model selector](../images/screenshots/zh-Hans/preset-selector.png)
+![模型选择器](../images/screenshots/zh-Hans/preset-selector.png)
 
 在高级模式下，某些免费模型可能不总是可用 — 它们可能已离线或已达到使用上限。应用程序可能会自动从您的列表中移除该模型。要控制显示哪些模型，请转到 [**设置** > **模型**](#models)。您可以从工具栏中模型名称左侧的提供商图标打开模型设置。
 
@@ -214,7 +216,7 @@ Transrewrt 帮助您通过三种主要方式处理文本：
 
 **地球图标 + 语言代码** 用于更改应用程序界面语言，例如菜单和按钮。它 **不会** 更改 **翻译** 中使用的翻译语言。
 
-![Interface language selector](../images/screenshots/zh-Hans/language-selector.png)
+![界面语言选择器](../images/screenshots/zh-Hans/language-selector.png)
 
 <br/>
 
@@ -247,7 +249,7 @@ Transrewrt 帮助您通过三种主要方式处理文本：
 
 当您想将文本从一种语言转换为另一种语言时，请使用 **翻译**。
 
-![Translate workspace](../images/screenshots/zh-Hans/translate.png)
+![翻译工作区](../images/screenshots/zh-Hans/translate.png)
 
 <br/>
 
@@ -296,9 +298,9 @@ Transrewrt 帮助您通过三种主要方式处理文本：
 
 成功翻译后，**Rephrase…** 和版本下拉菜单会出现在输出标题中，位于 **To:** 语言选择器的旁边。您可以在那里优化结果：
 
-1. **Rephrase…** — 在未选择输出文本的情况下，获取相同输入的另一种完整翻译，措辞不同。模型会接收您已有的所有版本，因此新措辞可以与所有版本都不同。您可以存储最多 **五个** 版本并在版本下拉菜单中切换。选择文本后，**Rephrase…** 会在选区附近打开词语替换选项（与右键单击相同）。未选择文本时，达到五个版本后 **Rephrase…** 将被禁用；选择文本后，即使有五个版本，它仍然可用（仅限词语替换，更新第 5 版）。在进行完整改写时，单击 **Stop Translate** 可取消；输出将恢复到改写开始时处于活动状态的版本。
-2. **Word alternatives** — 选择输出中的一个或多个单词或短语（如果只选择单词的一部分，应用程序会将其扩展到整个单词），然后右键单击或单击 **Rephrase…**。一个简短的选项列表会出现在选区附近；单击其中一个进行替换。每个选项可能会替换比您选择的范围稍宽的范围（例如相邻的介词或冠词），以使句子保持语法正确。如果您拥有的版本少于五个，则编辑后的输出将保存为新版本；达到五个版本时，仅更新 **version 5**。未选择文本时右键单击无效。按 **Esc** 或单击列表外部可取消，而不更改输出。
-3. **Costs** — 每次完整的 **Rephrase…**（未选择文本）和每次词语替换请求都会再次使用模型，并可能增加使用成本（与正常翻译运行相同）。
+1. **改写措辞…** — 在输出中未选中文本时，获取同一输入的另一个完整翻译，措辞不同。模型会接收你已有的每个版本，以便新措辞与所有版本都不同。你最多可以存储 **五个** 版本，并在版本下拉菜单中切换。选中文本时，**改写措辞…** 会在选中内容附近打开词语替换（与右键相同）。未选中时，达到五个版本后 **改写措辞…** 将被禁用；选中时，即使达到五个版本仍可使用（仅词语替换，更新版本 5）。在完整改写措辞运行期间，点击 **停止翻译** 取消；输出会返回到改写开始时处于活动状态的版本。
+2. **词语替换** — 在输出中选择一个或多个词或一个短短语（如果你只选中了某个词的一部分，应用会将选中范围扩展到完整词），然后右键点击或点击 **改写措辞…**。选中内容附近会出现一个简短的替换列表；点击其中一个即可替换。每个选项可能会替换比你的选中范围稍大的跨度（例如相邻的介词或冠词），以保持句子语法正确。如果你的版本少于五个，编辑后的输出会保存为新版本；达到五个版本时，仅更新 **版本 5**。未选中时右键点击会选中光标下的词（如果该处没有词则不做任何操作）。按 **Esc** 或点击列表外部可取消而不更改输出。
+3. **成本** — 每次完整 **改写措辞…**（未选中）和每次词语替换请求都会再次使用模型，并可能增加使用成本（与正常翻译运行相同）。
 
 <br/>
 
@@ -326,9 +328,9 @@ Transrewrt 帮助您通过三种主要方式处理文本：
 <a id="rewrite"></a>
 ## Rewrite
 
-当您想在不改变主要含义的情况下改进措辞时，请使用 **Rewrite**。
+当你想在不改变主要含义的情况下改进措辞时，请使用 **改写**。文本保持同一语言（不会被翻译）。
 
-![Rewrite workspace](../images/screenshots/zh-Hans/rewrite.png)
+![改写工作区](../images/screenshots/zh-Hans/rewrite.png)
 
 这对于以下情况很有用：
 
@@ -341,9 +343,38 @@ Transrewrt 帮助您通过三种主要方式处理文本：
 
 <br/>
 
+<a id="rewrite-text"></a>
+### 改写文本
+
+1. 打开 **改写**。
+2. 选择一个 **模式**（例如 **提高清晰度** 或 **设为正式**）。
+3. 可选：将 **从** 设置为你的文本语言（或保留 **检测语言**）。
+4. 在 **输入** 中输入或粘贴文本。
+5. 点击 **改写**。
+6. 在 **输出** 中查看结果。
+7. 可选：使用 **重新措辞…** 或词语替换来优化结果 — 参见[优化你的改写](#refining-rewrite)。
+
+<br/>
+
 > 💡 **提示**<br/>
 > 当您使用“**检查拼写和语法**”模式时，输出面板中会出现一个“**显示更改**”开关（位于**复制**旁边）。
 > 打开或关闭它，以显示或隐藏应用于您文本的具体更正。
+
+<br/>
+
+> ℹ️ **注意**<br/>
+> 改写模式 **其他版本** 会在 **单次** 运行中返回多个改写版本，在输出中以 `----` 分隔。这与 **重新措辞…** 不同，后者会随时间积累版本历史（每次点击生成一个新变体）。参见[优化你的改写](#refining-rewrite)。
+
+<br/>
+
+<a id="refining-rewrite"></a>
+### 优化你的改写
+
+改写成功后，**重新措辞…** 和版本下拉菜单会出现在工作区的输出侧（在分栏布局中，位于输出列上方的顶部工具栏中，运行指标旁边；在堆叠布局中，位于输出面板上方 **从：** 旁边）。你可以在那里优化结果 — 与[优化你的翻译](#refining-translation) 的思路相同，但文本保持同一语言，并保留当前的改写 **模式**：
+
+1. **重新措辞…** — 在输出中未选择文本时，对相同输入获取另一个完整的改写，使用不同的措辞，仍应用所选模式（例如更清晰、更简短或更正式）。模型会接收你已有的每个版本，因此新措辞可以与所有版本都不同。你最多可以存储 **五个** 版本，并在版本下拉菜单中切换。选择文本后，**重新措辞…** 会在选区附近打开词语替换（与右键相同）。未选择时，达到五个版本后 **重新措辞…** 会禁用；选择文本后，在五个版本时仍然可用（仅词语替换，更新版本 5）。在完整重新措辞运行期间，点击 **停止改写** 取消；输出会返回到重新措辞开始时活动的版本。
+2. **词语替换** — 在输出中选择一个或多个词或一个短词组（如果你只选择了词的一部分，应用会将选区扩展到完整词），然后右键点击或点击 **重新措辞…**。选区附近会出现一个简短的替换列表；点击其中一个进行替换。每个选项可能会替换比你的选区稍大的范围，以保持句子语法正确。如果你少于五个版本，编辑后的输出会保存为新版本；在五个版本时，仅更新 **版本 5**。未选择时右键点击会选择光标下的词（如果光标下没有词则不做任何操作）。按 **Esc** 或点击列表外部可取消而不更改输出。
+3. **成本** — 每次完整的 **重新措辞…**（未选择）和每次词语替换请求都会再次使用模型，并可能增加使用成本（与正常改写运行相同）。
 
 <br/><br/>
 
@@ -354,7 +385,7 @@ Transrewrt 帮助您通过三种主要方式处理文本：
 
 当您希望 AI 遵循自定义指令集时，请使用 **转换**。
 
-![Transform workspace](../images/screenshots/zh-Hans/transform.png)
+![转换工作区](../images/screenshots/zh-Hans/transform.png)
 
 这是应用程序中最灵活的区域。您可以将其用于以下任务：
 
@@ -402,7 +433,7 @@ Transrewrt 帮助您通过三种主要方式处理文本：
 5. 让应用程序为您创建草稿。
 6. 查看草稿并点击 **保存**。
 
-![Generate prompt](../images/screenshots/zh-Hans/transform-generate.png)
+![生成提示](../images/screenshots/zh-Hans/transform-generate.png)
 
 <br/>
 
@@ -411,7 +442,7 @@ Transrewrt 帮助您通过三种主要方式处理文本：
 
 创建或编辑提示时，编辑器显示在左侧，测试区域显示在右侧。
 
-![Transform prompt editor](../images/screenshots/zh-Hans/transform-prompt-edit.png)
+![转换提示编辑器](../images/screenshots/zh-Hans/transform-prompt-edit.png)
 
 主要字段包括：
 
@@ -467,7 +498,7 @@ Transrewrt 帮助您通过三种主要方式处理文本：
 
 使用 **仪表板** 查看您使用了多少应用程序以及需要支付多少费用（针对付费模型）。
 
-![Dashboard summary](../images/screenshots/zh-Hans/dashboard-summary.png)
+![仪表板摘要](../images/screenshots/zh-Hans/dashboard-summary.png)
 
 <br/>
 
@@ -481,7 +512,7 @@ Transrewrt 帮助您通过三种主要方式处理文本：
 
 使用顶部的筛选按钮更改时间范围。
 
-![Dashboard filters](../images/screenshots/zh-Hans/dashboard-filter.png)
+![仪表板筛选器](../images/screenshots/zh-Hans/dashboard-filter.png)
 
 <br/>
 
@@ -531,7 +562,7 @@ Transrewrt 帮助您通过三种主要方式处理文本：
 
 点击 **历史记录** 可查看您在 **Transrewrt** 内操作的历史记录，包括每次操作的输入和输出。
 
-![History page](../images/screenshots/zh-Hans/history.png)
+![历史记录页面](../images/screenshots/zh-Hans/history.png)
 
 <br/>
 
@@ -540,7 +571,7 @@ Transrewrt 帮助您通过三种主要方式处理文本：
 
 **历史记录** 使用与 **仪表板** 页面相同的日期范围筛选器。
 
-![Dashboard filters](../images/screenshots/zh-Hans/dashboard-filter.png)
+![仪表板筛选器](../images/screenshots/zh-Hans/dashboard-filter.png)
 
 <br/>
 
@@ -641,7 +672,7 @@ Transrewrt 帮助您通过三种主要方式处理文本：
 
 此选项卡仅在 [**常规设置**](#general-settings) 中将 **AI 体验** 设置为 **高级** 时可用。使用 **设置** > **模型** 选择要在工具栏中显示的模型的。 
 
-![Settings Models tab](../images/screenshots/zh-Hans/settings-general.png)
+![设置模型标签页](../images/screenshots/zh-Hans/settings-general.png)
 
 该页面包含两个列表：
 

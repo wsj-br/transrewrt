@@ -161,6 +161,75 @@ export function getTextareaExpandedSelectionAnchor(
   return { start, end, phrase, x, y };
 }
 
+/**
+ * Approximate character index in a textarea for a viewport point (e.g. context-menu click).
+ * Uses binary search against the same mirror layout as getTextareaSelectionClientPoint.
+ */
+export function getTextareaCaretIndexFromPoint(
+  textarea: HTMLTextAreaElement,
+  clientX: number,
+  clientY: number,
+): number {
+  const text = textarea.value;
+  if (!text) return 0;
+
+  const textareaRect = textarea.getBoundingClientRect();
+  const localX = clientX - textareaRect.left + textarea.scrollLeft;
+  const localY = clientY - textareaRect.top + textarea.scrollTop;
+
+  let low = 0;
+  let high = text.length;
+  while (low < high) {
+    const mid = Math.ceil((low + high) / 2);
+    const point = getTextareaSelectionClientPoint(textarea, mid);
+    const midX = point.x - textareaRect.left + textarea.scrollLeft;
+    const midY = point.y - textareaRect.top + textarea.scrollTop;
+    const computed = window.getComputedStyle(textarea);
+    const lineHeight = Number.parseFloat(computed.lineHeight) || Number.parseFloat(computed.fontSize) * 1.2;
+
+    if (midY + lineHeight < localY || (midY <= localY && midX < localX)) {
+      low = mid;
+    } else {
+      high = mid - 1;
+    }
+  }
+
+  return Math.max(0, Math.min(low, text.length));
+}
+
+/** Expand a caret/selection to word bounds, or resolve the word under a click point when empty. */
+export function getTextareaWordAnchor(
+  textarea: HTMLTextAreaElement,
+  fullText: string,
+  clientX?: number,
+  clientY?: number,
+): { start: number; end: number; phrase: string; x: number; y: number } | null {
+  const { selectionStart, selectionEnd } = textarea;
+
+  if (selectionStart !== selectionEnd) {
+    return getTextareaExpandedSelectionAnchor(textarea, fullText);
+  }
+
+  if (clientX == null || clientY == null) return null;
+
+  const caret = getTextareaCaretIndexFromPoint(textarea, clientX, clientY);
+  // Prefer the character under the cursor; if between words, try the previous char.
+  let probe = caret;
+  if (probe > 0 && probe < fullText.length && !isWordChar(fullText[probe]) && isWordChar(fullText[probe - 1])) {
+    probe = caret - 1;
+  } else if (probe >= fullText.length && fullText.length > 0) {
+    probe = fullText.length - 1;
+  }
+
+  if (!isWordChar(fullText[probe])) return null;
+
+  const { start, end, phrase } = expandSelectionToWordBoundaries(fullText, probe, probe + 1);
+  if (!isNonEmptyPhrase(phrase)) return null;
+
+  const { x, y } = getTextareaSelectionClientPoint(textarea, end);
+  return { start, end, phrase, x, y };
+}
+
 export function textareaHasNonEmptySelection(textarea: HTMLTextAreaElement | null): boolean {
   if (!textarea) return false;
   return textarea.selectionStart !== textarea.selectionEnd;

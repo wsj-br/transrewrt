@@ -1,10 +1,10 @@
 {
-  "version": "1.3.14",
-  "updated_at": "2026-06-15T23:06:06.950Z",
-  "translation_model": "openrouter/qwen/qwen3.6-35b-a3b",
+  "version": "1.3.19",
+  "updated_at": "2026-07-15T20:12:44.688Z",
+  "translation_model": "openrouter/z-ai/glm-5.2",
   "translation_model_fallback": "openrouter/anthropic/claude-3-haiku",
-  "suggestion_model": "openrouter/moonshotai/kimi-k2.5",
-  "suggestion_model_fallback": "openrouter/qwen/qwen3.6-35b-a3b",
+  "suggestion_model": "openrouter/~anthropic/claude-haiku-latest",
+  "suggestion_model_fallback": "openrouter/z-ai/glm-5.2",
   "presets": [
     {
       "id": "free-router",
@@ -54,7 +54,11 @@
         "th": "ฟรี (OpenRouter)",
         "uk": "Безкоштовно (OpenRouter)",
         "vi": "Miễn phí (OpenRouter)",
-        "en-GB": "Free (OpenRouter)"
+        "en-GB": "Free (OpenRouter)",
+        "zh-Hant": "免費 (OpenRouter)",
+        "zh-Hans": "免费 (OpenRouter)",
+        "hi-Latn": "Muft (OpenRouter)",
+        "pa-PK": "مفت (اوپن روٹر)"
       },
       "translated_description": {
         "ar": "خيار مجاني يوجه إلى النماذج المجانية المتاحة. لا توجد تكاليف؛ قد تختلف جودة الإخراج وتوافر النموذج.",
@@ -93,7 +97,11 @@
         "th": "ตัวเลือกฟรีที่ส่งไปยังโมเดลฟรีที่มีอยู่ ไม่มีค่าใช้จ่าย; คุณภาพเอาต์พุตและการมีอยู่ของโมเดลอาจแตกต่างกัน",
         "uk": "Безкоштовний варіант, який направляє запити до доступних безкоштовних моделей. Без оплати; якість виводу та доступність моделей можуть варіюватися.",
         "vi": "Tùy chọn không mất phí, định tuyến đến các mô hình miễn phí sẵn có. Không tính phí; chất lượng đầu ra và khả dụng mô hình có thể thay đổi.",
-        "en-GB": "Zero-cost option that routes to available free models. No charges; output quality and model availability may vary."
+        "en-GB": "Zero-cost option that routes to available free models. No charges; output quality and model availability may vary.",
+        "zh-Hant": "零成本選項，路由至可用的免費模型。無需付費；輸出品質與模型可用性可能有所變動。",
+        "zh-Hans": "零成本选项，路由至可用的免费模型。不收费；输出质量和模型可用性可能有所不同。",
+        "hi-Latn": "Zero-cost option jo uplabdh muft models par route karta hai. Koi charges nahi; output quality aur model availability badal sakti hai.",
+        "pa-PK": "صفر لاگت والا آپشن جو دستیاب مفت ماڈلز تے روٹ کردا اے۔ کوئی چارجز نہیں؛ آؤٹ پٹ کوالٹی تے ماڈل دی دستیابی تبدیل ہو سکدی اے۔"
       }
     },
     {
@@ -102,7 +110,7 @@
       "description": "Standard, lightweight, and cost-efficient. Best for short texts, quick drafts, and high-volume use.",
       "prompt_hint": "Be concise and direct. Prioritise speed over elaboration. Do not add explanations, commentary, or alternatives unless explicitly requested.",
       "model_ids": {
-        "openrouter": "openrouter/google/gemini-2.5-flash-lite",
+        "openrouter": "openrouter/google/gemini-3.1-flash-lite",
         "openai": "openai/gpt-4.1-nano",
         "anthropic": "anthropic/claude-haiku-4-5-20251001",
         "google": "google/gemini-2.0-flash-lite",
@@ -113,7 +121,7 @@
         "cerebras": "cerebras/gpt-oss-120b"
       },
       "fallback_ids": {
-        "openrouter": "openrouter/openai/gpt-4.1-nano",
+        "openrouter": "openrouter/meta-llama/llama-3.1-70b-instruct",
         "openai": "openai/gpt-4o-mini",
         "anthropic": "anthropic/claude-opus-4-8",
         "google": "google/gemini-2.5-flash",
@@ -160,7 +168,11 @@
         "te": "స్టాండర్డ్",
         "uk": "Стандартний",
         "vi": "Tiêu chuẩn",
-        "en-GB": "Standard"
+        "en-GB": "Standard",
+        "zh-Hans": "标准",
+        "zh-Hant": "標準",
+        "hi-Latn": "Standard",
+        "pa-PK": "معیاری"
       },
       "translated_description": {
         "ar": "قياسي، خفيف، وفعال من حيث التكلفة. الأفضل للنصوص القصيرة، المسودات السريعة، والاستخدام بكميات كبيرة.",
@@ -199,7 +211,11 @@
         "te": "స్టాండర్డ్, హల్కుగా, ఖర్చు ప్రయోజనకరం. చిన్న పాఠ్యాలు, త్వరిత ప్రారూపాలు, ఎక్కువ పరిమాణంలో ఉపయోగం కోసం ఉత్తమం.",
         "uk": "Стандартний, легковагний та економічний. Ідеальний для коротких текстів, швидких чернеток та масового використання.",
         "vi": "Nhẹ, tiết kiệm chi phí. Phù hợp nhất cho văn bản ngắn, bản nháp nhanh và sử dụng với khối lượng lớn.",
-        "en-GB": "Standard, lightweight, and cost-efficient. Best for short texts, quick drafts, and high-volume use."
+        "en-GB": "Standard, lightweight, and cost-efficient. Best for short texts, quick drafts, and high-volume use.",
+        "zh-Hans": "标准、轻量且高性价比。最适合短文本、快速草稿和高频使用。",
+        "zh-Hant": "標準、輕量且具成本效益。最適合短文、快速草稿及大量使用。",
+        "hi-Latn": "Standard, halka aur lagat-prabhavi. Chote texts, jaldi drafts aur high-volume use ke liye best.",
+        "pa-PK": "معیاری، ہلکا، تے لاگت-موثر۔ مختصر عبارتاں، تیز مسودیاں، تے زیادہ ورتون لئی بہترین۔"
       }
     },
     {
@@ -209,7 +225,7 @@
       "prompt_hint": "Prioritise accuracy and contextual fidelity. Preserve the tone, register, and intent of the original text. Avoid unnecessary simplification.",
       "model_ids": {
         "openrouter": "openrouter/~anthropic/claude-sonnet-latest",
-        "openai": "openai/gpt-4o",
+        "openai": "openai/gpt-5-mini",
         "anthropic": "anthropic/claude-opus-4-7",
         "google": "google/gemini-2.5-pro",
         "deepseek": "deepseek/deepseek-v4-pro",
@@ -220,7 +236,7 @@
       },
       "fallback_ids": {
         "openrouter": "openrouter/anthropic/claude-sonnet-4.5",
-        "openai": "openai/gpt-4-turbo",
+        "openai": "openai/gpt-5.4-mini",
         "anthropic": "anthropic/claude-sonnet-4-6",
         "google": "google/gemini-2.5-flash",
         "deepseek": "deepseek/deepseek-v4-flash",
@@ -266,7 +282,11 @@
         "te": "అడ్వాన్స్డ్",
         "uk": "Розширений",
         "vi": "Nâng cao",
-        "en-GB": "Advanced"
+        "en-GB": "Advanced",
+        "zh-Hans": "高级",
+        "zh-Hant": "進階",
+        "hi-Latn": "Unnat",
+        "pa-PK": "ترقی یافتہ"
       },
       "translated_description": {
         "ar": "نموذج دقيق عاليًا مع فهم سياقي متقدم. الأفضل للمحتوى المعقد أو الدقيق، لكن بتكلفة أعلى.",
@@ -305,7 +325,11 @@
         "te": "అడ్వాన్స్డ్ కంటెక్స్ట్ అవగాహనతో ఎక్కువ ఖచ్చితత్వం గల మోడల్. సంక్లిష్టమైన లేదా సూక్ష్మమైన కంటెంట్ కోసం ఉత్తమం, కానీ ఎక్కువ ఖర్చుతో.",
         "uk": "Модель з високою точністю та розумінням контексту. Ідеальна для складного або нюансованого контенту, але з вищою вартістю.",
         "vi": "Mô hình độ chính xác cao với khả năng hiểu ngữ cảnh nâng cao. Tối ưu cho nội dung phức tạp hoặc tinh vi, nhưng có chi phí cao hơn.",
-        "en-GB": "High-accuracy model with advanced contextual understanding. Best for complex or nuanced content, but at a higher cost."
+        "en-GB": "High-accuracy model with advanced contextual understanding. Best for complex or nuanced content, but at a higher cost.",
+        "zh-Hans": "高精度模型，具备高级上下文理解能力。最适合复杂或细微的内容，但成本较高。",
+        "zh-Hant": "高準確度模型，具備進階上下文理解能力。最適合複雜或細微的內容，但成本較高。",
+        "hi-Latn": "Unnat sandarbh samajh wala uchch-satata model. Jatil ya sukshm content ke liye sabse achha, par zyada lagat par.",
+        "pa-PK": "اُچّی درستگی والا ماڈل جیہڑا ترقی یافتہ سیاق و سباق دی سمجھ رکھدا ہے۔ پیچیدہ یا باریک مواد کیتے بہترین ہے، پر زیادہ قیمت تے۔"
       }
     },
     {
@@ -314,26 +338,26 @@
       "description": "Tuned for code, APIs, developer docs, and structured content. Preserves formatting and technical terminology.",
       "prompt_hint": "Treat this as technical content. Preserve all code blocks, variable names, function names, CLI commands, and technical terminology exactly as written. Do not paraphrase, simplify, or reword technical terms. Maintain markdown formatting, indentation, and structure.",
       "model_ids": {
-        "openrouter": "openrouter/anthropic/claude-sonnet-4.6",
-        "openai": "openai/gpt-4o",
-        "anthropic": "anthropic/claude-sonnet-4-6",
-        "google": "google/gemini-2.5-pro",
+        "openrouter": "openrouter/mistralai/codestral-2508",
+        "openai": "openai/gpt-4.1",
+        "anthropic": "anthropic/claude-opus-4-8",
+        "google": "google/models/gemini-2.5-pro",
         "deepseek": "deepseek/deepseek-v4-pro",
         "groq": "groq/llama-3.3-70b-versatile",
-        "mistralai": "mistralai/devstral-2512",
-        "xai": "xai/grok-4.3",
-        "cerebras": "cerebras/zai-glm-4.7"
+        "mistralai": "mistralai/codestral-2508",
+        "xai": "xai/grok-4.5",
+        "cerebras": "cerebras/gpt-oss-120b"
       },
       "fallback_ids": {
-        "openrouter": "openrouter/anthropic/claude-haiku-4.5",
-        "openai": "openai/gpt-4.1-mini",
-        "anthropic": "anthropic/claude-haiku-4-5-20251001",
-        "google": "google/gemini-2.5-flash",
+        "openrouter": "openrouter/meta-llama/llama-3.1-70b-instruct",
+        "openai": "openai/gpt-4o",
+        "anthropic": "anthropic/claude-sonnet-4-6",
+        "google": "google/models/gemini-2.5-flash",
         "deepseek": "deepseek/deepseek-v4-flash",
-        "groq": "groq/qwen/qwen3-32b",
-        "mistralai": "mistralai/mistral-large-latest",
-        "xai": "xai/grok-4.20-0309-non-reasoning",
-        "cerebras": "cerebras/gpt-oss-120b"
+        "groq": "groq/llama-3.1-8b-instant",
+        "mistralai": "mistralai/mistral-large-2512",
+        "xai": "xai/grok-4.3",
+        "cerebras": "cerebras/gemma-4-31b"
       },
       "translated_name": {
         "pt-BR": "Técnico",
@@ -372,7 +396,11 @@
         "te": "టెక్నికల్",
         "uk": "Технічний",
         "vi": "Kỹ thuật",
-        "en-GB": "Technical"
+        "en-GB": "Technical",
+        "zh-Hans": "技术",
+        "zh-Hant": "技術",
+        "hi-Latn": "Technical",
+        "pa-PK": "تکنیکی"
       },
       "translated_description": {
         "pt-BR": "Otimizado para código, APIs, documentação de desenvolvedor e conteúdo estruturado. Preserva formatação e terminologia técnica.",
@@ -411,7 +439,11 @@
         "te": "కోడ్, APIలు, డెవలపర్ డాక్యుమెంటేషన్ మరియు నిర్మాణాత్మక కంటెంట్ కోసం అనుకూలీకరించబడింది. ఫార్మాటింగ్ మరియు టెక్నికల్ పదాలను నిలుపుకుంటుంది.",
         "uk": "Оптимізований для коду, API, документації для розробників та структурованого контенту. Зберігає форматування та технічну термінологію.",
         "vi": "Tối ưu cho mã, API, tài liệu nhà phát triển và nội dung có cấu trúc. Giữ nguyên định dạng và thuật ngữ kỹ thuật.",
-        "en-GB": "Tuned for code, APIs, developer docs, and structured content. Preserves formatting and technical terminology."
+        "en-GB": "Tuned for code, APIs, developer docs, and structured content. Preserves formatting and technical terminology.",
+        "zh-Hans": "专为代码、API、开发者文档和结构化内容优化。保留格式与技术术语。",
+        "zh-Hant": "專為程式碼、API、開發者文件及結構化內容調校。保留格式與技術術語。",
+        "hi-Latn": "Code, APIs, developer docs, aur structured content ke liye tuned. Formatting aur technical terminology ko preserve karta hai.",
+        "pa-PK": "کوڈ، APIs، ڈویلپر دستاویزات تے ڈھانچہ بند مواد کیتے موافق کیتا گیا۔ فارمیٹنگ تے تکنیکی اصطلاحات کوں برقرار رکھدا اے۔"
       }
     }
   ]

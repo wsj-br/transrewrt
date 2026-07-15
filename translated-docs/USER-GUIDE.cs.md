@@ -53,8 +53,10 @@ Tato příručka vysvětluje, jak aplikaci používat po její instalaci a spuš
   - [Výběr jazyka](#language-selection)
   - [Užitečná nastavení překladu](#helpful-translation-settings)
   - [Zpřesnění překladu](#refining-your-translation)
-  - [Použití slovníku](#using-the-glossary)
+  - [Používání slovníku](#using-the-glossary)
 - [Přepis](#rewrite)
+  - [Přepsat text](#rewrite-text)
+  - [Zpřesnění přepisu](#refining-your-rewrite)
 - [Transformace](#transform)
   - [Spustit existující výzvu](#run-an-existing-prompt)
   - [Pokud ještě nemáte žádné výzvy](#if-you-have-no-prompts-yet)
@@ -80,19 +82,19 @@ Tato příručka vysvětluje, jak aplikaci používat po její instalaci a spuš
   - [Konfigurace API](#api-config)
   - [O aplikaci](#about)
 - [Běžné problémy](#common-issues)
-  - [Aplikace nebude překládat, přepisovat ani transformovat text](#the-app-will-not-translate-rewrite-or-transform-text)
+  - [Aplikace nepřekládá, nepřepisuje ani netransformuje text](#the-app-will-not-translate-rewrite-or-transform-text)
   - [Seznam modelů je prázdný](#the-model-list-is-empty)
   - [Výsledek je příliš pomalý nebo příliš drahý](#the-result-is-too-slow-or-too-expensive)
-  - [Rozhraní je ve špatném jazyce](#the-interface-is-in-the-wrong-language)
-  - [Text je příliš malý nebo špatně čitelný](#the-text-is-too-small-or-hard-to-read)
-  - [Souhrn nástěnky je prázdný](#dashboard-summary-looks-empty)
-  - [Náklady zobrazují "nedostupné" nebo se zdají být nesprávné](#cost-shows-not-available-or-seems-wrong)
-  - [Celkové náklady neodpovídají mé faktuře od poskytovatele](#total-cost-does-not-match-my-provider-bill)
-  - [Stránka Historie chybí v postranním panelu](#the-history-page-is-missing-from-the-sidebar)
-  - [Webová aplikace: neočekávaně přesměrován na přihlašovací stránku](#web-app-redirected-to-the-login-page-unexpectedly)
+  - [Rozhraní je v nesprávném jazyce](#the-interface-is-in-the-wrong-language)
+  - [Text je příliš malý nebo obtížně čitelný](#the-text-is-too-small-or-hard-to-read)
+  - [Souhrn nástěnky vypadá prázdný](#dashboard-summary-looks-empty)
+  - [Náklady ukazují „není k dispozici“ nebo se zdají nesprávné](#cost-shows-not-available-or-seems-wrong)
+  - [Celkové náklady neodpovídají mému účtu poskytovatele](#total-cost-does-not-match-my-provider-bill)
+  - [Stránka Historie chybí na postranním panelu](#the-history-page-is-missing-from-the-sidebar)
+  - [Webová aplikace: neočekávaně přesměrována na přihlašovací stránku](#web-app-redirected-to-the-login-page-unexpectedly)
   - [Webový administrátor: zapomenuté nebo ztracené heslo](#web-admin-forgot-or-lost-a-password)
-  - [Nástěnka nezobrazuje žádná data pro jiné uživatele (web)](#dashboard-shows-no-data-for-other-users-web)
-  - [Změnil jsem výzvu a ztratil jsem úpravy](#i-changed-a-prompt-and-lost-the-edits)
+  - [Nástěnka nezobrazuje data pro ostatní uživatele (web)](#dashboard-shows-no-data-for-other-users-web)
+  - [Změnil jsem výzvu a ztratil úpravy](#i-changed-a-prompt-and-lost-the-edits)
 - [Rychlé tipy](#quick-tips)
 - [Zřeknutí se odpovědnosti](#disclaimer)
 - [Licence](#license)
@@ -206,7 +208,7 @@ V režimu **Snadný** panel nástrojů obsahuje **výběr předvolby** s vestav�
 
 V režimu **Pokročilý** vám **výběr modelu** umožňuje zvolit, který AI modul použít pro aktuální úkol.
 
-![Model selector](../images/screenshots/cs/preset-selector.png)
+![Selektor modelu](../images/screenshots/cs/preset-selector.png)
 
 V pokročilém režimu některé bezplatné modely nemusí být vždy k dispozici – mohou být offline nebo dosáhly limitu využití. Aplikace může tento model automaticky odebrat ze seznamu. Chcete-li ovlivnit, které modely se zobrazují, přejděte do [**Nastavení** > **Modely**](#models). Nastavení modelu můžete otevřít kliknutím na ikonu poskytovatele vlevo od názvu modelu na panelu nástrojů.
 
@@ -214,7 +216,7 @@ V pokročilém režimu některé bezplatné modely nemusí být vždy k dispozic
 
 Ikona **světa + kód jazyka** změní jazyk uživatelského rozhraní, například nabídek a tlačítek. **Neovlivňuje** jazyky použité pro překlad v sekci **Překlad**.
 
-![Interface language selector](../images/screenshots/cs/language-selector.png)
+![Selektor jazyka rozhraní](../images/screenshots/cs/language-selector.png)
 
 <br/>
 
@@ -247,7 +249,7 @@ Náklady každé operace (pokud jsou k dispozici) a celkové náklady můžete s
 
 Použijte **Překlad**, chcete-li převést text z jednoho jazyka do druhého.
 
-![Translate workspace](../images/screenshots/cs/translate.png)
+![Pracovní prostor pro překlad](../images/screenshots/cs/translate.png)
 
 <br/>
 
@@ -296,9 +298,9 @@ V části [**Nastavení** > **Obecné nastavení**](#general-settings) můžete 
 
 Po úspěšném překladu se **Přefrázovat…** a rozbalovací nabídka verzí objeví v záhlaví výstupu, vedle výběru jazyka **Na:**. Můžete tam vylepšit výsledek:
 
-1. **Přefrázovat…** — pokud není v výstupu vybrán žádný text, získejte další plný překlad stejného vstupu s jinými slovy. Model obdrží každou verzi, kterou již máte, takže nová slova se mohou lišit od všech ostatních. Můžete uložit až **pět** verzí a přepínat mezi nimi v rozbalovací nabídce verzí. Pokud je text vybrán, **Přefrázovat…** otevře alternativy slov blízko výběru (stejně jako pravé kliknutí). Bez výběru je **Přefrázovat…** zakázáno, jakmile dosáhnete pěti verzí; s výběrem to stále funguje na pěti verzích (pouze alternativy slov, aktualizace verze 5). Když probíhá plné přefrázování, klikněte na **Zastavit překlad**, abyste zrušili; výstup se vrátí k verzi, která byla aktivní, když přefrázování začalo.
-2. **Alternativy slov** — vyberte jedno nebo více slov nebo krátkou frázi ve výstupu (pokud vyberete pouze část slova, aplikace rozšíří výběr na celá slova), poté klikněte pravým tlačítkem nebo klikněte na **Přefrázovat…**. Krátký seznam alternativ se objeví blízko výběru; klikněte na jednu, abyste ji nahradili. Každá možnost může nahradit mírně širší rozsah než váš výběr (například sousední předložku nebo článek), takže věta zůstává gramatická. Pokud máte méně než pět verzí, upravený výstup je uložen jako nová verze; při pěti verzích je aktualizována pouze **verze 5**. Pravé kliknutí bez výběru nic nedělá. Stiskněte **Esc** nebo klikněte mimo seznam, abyste zrušili bez změny výstupu.
-3. **Náklady** — každé plné **Přefrázovat…** (bez výběru) a každá žádost o alternativu slov znovu využívá model a může přidat k nákladům na použití (stejně jako běžný překlad).
+1. **Přeformulovat…** — bez vybraného textu ve výstupu získáte další úplný překlad stejného vstupu s jiným zněním. Model obdrží všechny verze, které již máte, takže se nové znění může lišit od všech z nich. Můžete uložit až **pět** verzí a přepínat mezi nimi v rozevíracím seznamu verzí. S vybraným textem **Přeformulovat…** otevře alternativy slov v blízkosti výběru (stejně jako pravé tlačítko myši). Bez výběru je **Přeformulovat…** zakázáno, jakmile dosáhnete pěti verzí; s výběrem stále funguje u pěti verzí (pouze alternativy slov, aktualizace verze 5). Zatímco probíhá úplné přeformulování, klikněte na **Zastavit překlad** pro zrušení; výstup se vrátí k verzi, která byla aktivní, když přeformulování začalo.
+2. **Alternativy slov** — vyberte jedno nebo více slov nebo krátkou frázi ve výstupu (pokud vyberete pouze část slova, aplikace rozšíří výběr na celá slova), poté klikněte pravým tlačítkem myši nebo klikněte na **Přeformulovat…**. V blízkosti výběru se objeví krátký seznam alternativ; kliknutím na jednu ji nahradíte. Každá možnost může nahradit o něco širší rozsah než váš výběr (například sousední předložku nebo člen), aby věta zůstala gramaticky správná. Pokud máte méně než pět verzí, upravený výstup se uloží jako nová verze; u pěti verzí se aktualizuje pouze **verze 5**. Kliknutím pravým tlačítkem myši bez výběru se vybere slovo pod kurzorem (nebo se nic nestane, pokud tam žádné slovo není). Stiskněte **Esc** nebo klikněte mimo seznam pro zrušení bez změny výstupu.
+3. **Náklady** — každé úplné **Přeformulování…** (bez výběru) a každý požadavek na alternativu slova znovu použije model a může zvýšit náklady na použití (stejně jako běžný překlad).
 
 <br/>
 
@@ -326,9 +328,9 @@ Termíny přidáváte, upravujete, importujete a exportujete na kartě [**Nastav
 <a id="rewrite"></a>
 ## Přepsat
 
-Použijte **Přepsat**, pokud chcete vylepšit formulaci, aniž byste změnili hlavní význam.
+Použijte **Přepis**, když chcete vylepšit formulaci, aniž byste změnili hlavní význam. Text zůstává ve stejném jazyce (není přeložen).
 
-![Rewrite workspace](../images/screenshots/cs/rewrite.png)
+![Pracovní prostor pro přepis](../images/screenshots/cs/rewrite.png)
 
 To je užitečné pro:
 
@@ -341,9 +343,38 @@ To je užitečné pro:
 
 <br/>
 
+<a id="rewrite-text"></a>
+### Přepsat text
+
+1. Otevřete **Přepis**.
+2. Zvolte **Režim** (například **Zlepšit srozumitelnost** nebo **Formální**).
+3. Volitelně nastavte **Z:** na jazyk vašeho textu (nebo ponechte **Detekovat jazyk**).
+4. Napište nebo vložte text do **Vstup**.
+5. Klikněte na **Přepis**.
+6. Přečtěte si výsledek v **Výstup**.
+7. Volitelně upřesněte výsledek pomocí **Přepracovat…** nebo náhradních slov – viz [Upřesnění přepisu](#refining-rewrite).
+
+<br/>
+
 > 💡 **TIP**<br/>
 > Když použijete režim "**Kontrolovat pravopis a gramatiku**", v panelu výstupu se (vedle **Kopírovat**) objeví přepínač **Zobrazit změny**.
 > Zapněte nebo vypněte jej, abyste zobrazili nebo skryli konkrétní opravy provedené ve vašem textu.
+
+<br/>
+
+> ℹ️ **POZNÁMKA**<br/>
+> Režim přepisu **Alternativní verze** vrací několik přeformulování v **jednom** spuštění, oddělených `----` ve výstupu. To se liší od **Přepracovat…**, které postupně vytváří historii verzí (jedna nová varianta na jedno kliknutí). Viz [Upřesnění přepisu](#refining-rewrite).
+
+<br/>
+
+<a id="refining-rewrite"></a>
+### Upřesnění přepisu
+
+Po úspěšném přepisu se na výstupní straně pracovního prostoru objeví **Přepracovat…** a rozbalovací nabídka verzí (v rozděleném rozvržení v horním panelu nástrojů nad výstupním sloupcem, vedle metrik spuštění; ve skládaném rozvržení nad výstupním panelem vedle **Z:**). Zde můžete výsledek upřesnit – stejný princip jako [Upřesnění překladu](#refining-translation), ale text zůstává ve stejném jazyce a zachovává aktuální **Režim** přepisu:
+
+1. **Přepracovat…** – bez vybraného textu ve výstupu získáte další úplný přepis stejného vstupu s jiným zněním, stále s použitím vybraného režimu (například jasnější, kratší nebo formálnější). Model obdrží každou verzi, kterou již máte, takže nové znění se může lišit od všech. Můžete uložit až **pět** verzí a přepínat mezi nimi v rozbalovací nabídce verzí. S vybraným textem **Přepracovat…** otevře náhradní slova poblíž výběru (stejně jako pravé kliknutí). Bez výběru je **Přepracovat…** zakázáno, jakmile dosáhnete pěti verzí; s výběrem stále funguje u pěti verzí (pouze náhradní slova, aktualizace verze 5). Během spuštění úplného přepracování klikněte na **Zastavit přepis** pro zrušení; výstup se vrátí k verzi, která byla aktivní při spuštění přepracování.
+2. **Náhradní slova** – vyberte jedno nebo více slov nebo krátkou frázi ve výstupu (pokud vyberete pouze část slova, aplikace rozšíří výběr na celá slova), poté klikněte pravým tlačítkem nebo klikněte na **Přepracovat…**. V blízkosti výběru se objeví krátký seznam alternativ; kliknutím na jednu ji nahradíte. Každá možnost může nahradit o něco širší rozsah než váš výběr, aby věta zůstala gramaticky správná. Pokud máte méně než pět verzí, upravený výstup se uloží jako nová verze; u pěti verzí se aktualizuje pouze **verze 5**. Pravé kliknutí bez výběru vybere slovo pod kurzorem (nebo nic neudělá, pokud tam žádné slovo není). Stiskněte **Esc** nebo klikněte mimo seznam pro zrušení bez změny výstupu.
+3. **Náklady** – každé úplné **Přepracování…** (bez výběru) a každý požadavek na náhradní slova znovu použije model a může zvýšit náklady na použití (stejně jako běžné spuštění přepisu).
 
 <br/><br/>
 
@@ -354,7 +385,7 @@ To je užitečné pro:
 
 Použijte **Transformovat**, když chcete, aby AI postupovala podle vlastních pokynů.
 
-![Transform workspace](../images/screenshots/cs/transform.png)
+![Pracovní prostor Transformace](../images/screenshots/cs/transform.png)
 
 Toto je nejpružnější část aplikace. Můžete ji použít například pro:
 
@@ -402,7 +433,7 @@ Nejrychlejší způsob, jak vytvořit výzvu:
 5. Nechte aplikaci vytvořit koncept pro vás.
 6. Zkontrolujte koncept a klikněte na **Uložit**.
 
-![Generate prompt](../images/screenshots/cs/transform-generate.png)
+![Generovat výzvu](../images/screenshots/cs/transform-generate.png)
 
 <br/>
 
@@ -411,7 +442,7 @@ Nejrychlejší způsob, jak vytvořit výzvu:
 
 Když vytváříte nebo upravujete výzvu, zobrazí se editor vlevo a vpravo se objeví testovací oblast.
 
-![Transform prompt editor](../images/screenshots/cs/transform-prompt-edit.png)
+![Editor výzev pro transformaci](../images/screenshots/cs/transform-prompt-edit.png)
 
 Hlavní pole jsou:
 
@@ -467,7 +498,7 @@ Když použijete **Vygenerovat výzvu**, **Vylepšit výzvu** nebo **Přeložit 
 
 Použijte **Přehled**, abyste viděli, jak hodně aplikaci používáte a kolik vás to stojí (pro placené modely).
 
-![Dashboard summary](../images/screenshots/cs/dashboard-summary.png)
+![Souhrn nástěnky](../images/screenshots/cs/dashboard-summary.png)
 
 <br/>
 
@@ -481,7 +512,7 @@ Použijte **Přehled**, abyste viděli, jak hodně aplikaci používáte a kolik
 
 Pomocí tlačítek filtru nahoře změňte časové období.
 
-![Dashboard filters](../images/screenshots/cs/dashboard-filter.png)
+![Filtry nástěnky](../images/screenshots/cs/dashboard-filter.png)
 
 <br/>
 
@@ -531,7 +562,7 @@ Chcete-li odstranit všechna data nebo záznamy na základě jejich stáří, p�
 
 Kliknutím na **Historie** zobrazíte přehled vašich akcí v aplikaci **Transrewrt**, včetně vstupu a výstupu každé operace.
 
-![History page](../images/screenshots/cs/history.png)
+![Stránka Historie](../images/screenshots/cs/history.png)
 
 <br/>
 
@@ -540,7 +571,7 @@ Kliknutím na **Historie** zobrazíte přehled vašich akcí v aplikaci **Transr
 
 **Historie** používá stejné filtry časového rozsahu jako stránka **Přehled**.
 
-![Dashboard filters](../images/screenshots/cs/dashboard-filter.png)
+![Filtry nástěnky](../images/screenshots/cs/dashboard-filter.png)
 
 <br/>
 
@@ -641,7 +672,7 @@ Zálohy vytvořené v desktopové nebo webové verzi mohou být obnoveny v druh�
 
 Tato karta je k dispozici pouze v případě, že je v části [**Obecné nastavení**](#general-settings) nastavena možnost **AI zkušenost** na **Pokročilý**. Pomocí **Nastavení** > **Modely** vyberte, které modely se zobrazí na panelu nástrojů.
 
-![Settings Models tab](../images/screenshots/cs/settings-general.png)
+![Karta Modely v Nastavení](../images/screenshots/cs/settings-general.png)
 
 Stránka obsahuje dva seznamy:
 

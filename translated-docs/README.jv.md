@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.1-blue" alt="Version"></a>
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.0-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
   <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react" alt="React 19">
@@ -62,27 +62,27 @@ Sawise dipasang, deleng [**Pandhuan Pangguna**](USER-GUIDE.jv.md) kanggo pandhua
 
 **Pemilih basa**
 
-![Language selector](../images/screenshots/jv/language-selector.png)
+![Pamilih basa](../images/screenshots/jv/language-selector.png)
 
 **Terjemahake**
 
-![Translate](../images/screenshots/jv/translate.png)
+![Terjemahake](../images/screenshots/jv/translate.png)
 
 **Ubah - editor prompt**
 
-![Transform - prompt editor](../images/screenshots/jv/transform-prompt-edit.png)
+![Transformasi - editor prompt](../images/screenshots/jv/transform-prompt-edit.png)
 
 **Dasbor**
 
-![Dashboard summary - usage](../images/screenshots/jv/dashboard-summary.png)
+![Ringkesan Dashboard - panggunaan](../images/screenshots/jv/dashboard-summary.png)
 
 **Riwayat**
 
-![History](../images/screenshots/jv/history.png)
+![Sejarah](../images/screenshots/jv/history.png)
 
 **Setelan - pilihan model**
 
-![Settings - model selection](../images/screenshots/jv/settings-general.png)
+![Pengaturan - pilihan model](../images/screenshots/jv/settings-general.png)
 
 <br/><br/>
 

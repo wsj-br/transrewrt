@@ -1,4 +1,4 @@
-![Transrewrt banner](../images/transrewrt_banner.png)
+![Banner do Transrewrt](../images/transrewrt_banner.png)
 
 <a id="transrewrt-user-guide"></a>
 # Guia do Utilizador
@@ -53,8 +53,10 @@ Este guia explica como utilizar a aplicação depois de instalada e em execuçã
   - [Seleção de idioma](#language-selection)
   - [Configurações úteis de tradução](#helpful-translation-settings)
   - [Refinar sua tradução](#refining-your-translation)
-  - [Usar o glossário](#using-the-glossary)
+  - [Usando o glossário](#using-the-glossary)
 - [Reescrita](#rewrite)
+  - [Reescrever texto](#rewrite-text)
+  - [Refinando sua reescrita](#refining-your-rewrite)
 - [Transformar](#transform)
   - [Executar um prompt existente](#run-an-existing-prompt)
   - [Se você ainda não tem prompts](#if-you-have-no-prompts-yet)
@@ -63,7 +65,7 @@ Este guia explica como utilizar a aplicação depois de instalada e em execuçã
   - [Testar um prompt antes de usá-lo](#test-a-prompt-before-using-it)
 - [Painel](#dashboard)
   - [Filtrar os dados](#filter-the-data)
-  - [Abas do painel](#dashboard-tabs)
+  - [Abas do Painel](#dashboard-tabs)
   - [Exportar dados](#export-data)
   - [Excluir registros armazenados para um modelo](#delete-stored-records-for-a-model)
 - [Histórico](#history)
@@ -80,21 +82,21 @@ Este guia explica como utilizar a aplicação depois de instalada e em execuçã
   - [Configuração da API](#api-config)
   - [Sobre](#about)
 - [Problemas comuns](#common-issues)
-  - [O aplicativo não traduzirá, reescreverá ou transformará texto](#the-app-will-not-translate-rewrite-or-transform-text)
+  - [O aplicativo não traduz, reescreve ou transforma texto](#the-app-will-not-translate-rewrite-or-transform-text)
   - [A lista de modelos está vazia](#the-model-list-is-empty)
   - [O resultado é muito lento ou muito caro](#the-result-is-too-slow-or-too-expensive)
   - [A interface está no idioma errado](#the-interface-is-in-the-wrong-language)
   - [O texto é muito pequeno ou difícil de ler](#the-text-is-too-small-or-hard-to-read)
-  - [Resumo do painel parece vazio](#dashboard-summary-looks-empty)
-  - [Custo mostra "não disponível" ou parece incorreto](#cost-shows-not-available-or-seems-wrong)
-  - [Custo total não corresponde à minha fatura do provedor](#total-cost-does-not-match-my-provider-bill)
+  - [O Resumo do Painel parece vazio](#dashboard-summary-looks-empty)
+  - [O Custo mostra "não disponível" ou parece errado](#cost-shows-not-available-or-seems-wrong)
+  - [O custo total não corresponde à minha fatura do provedor](#total-cost-does-not-match-my-provider-bill)
   - [A página Histórico está faltando na barra lateral](#the-history-page-is-missing-from-the-sidebar)
-  - [Aplicativo web: redirecionado inesperadamente para a página de login](#web-app-redirected-to-the-login-page-unexpectedly)
-  - [Admin web: senha esquecida ou perdida](#web-admin-forgot-or-lost-a-password)
-  - [O painel não mostra dados para outros usuários (web)](#dashboard-shows-no-data-for-other-users-web)
-  - [Alterei um prompt e perdi as edições](#i-changed-a-prompt-and-lost-the-edits)
+  - [Aplicativo web: redirecionado para a página de login inesperadamente](#web-app-redirected-to-the-login-page-unexpectedly)
+  - [Administrador web: esqueceu ou perdeu uma senha](#web-admin-forgot-or-lost-a-password)
+  - [O Painel não mostra dados para outros usuários (web)](#dashboard-shows-no-data-for-other-users-web)
+  - [Mudei um prompt e perdi as edições](#i-changed-a-prompt-and-lost-the-edits)
 - [Dicas rápidas](#quick-tips)
-- [Aviso legal](#disclaimer)
+- [Isenção de responsabilidade](#disclaimer)
 - [Licença](#license)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -206,7 +208,7 @@ No modo **Fácil**, a barra de ferramentas mostra um seletor de **predefiniçõe
 
 No modo **Avançado**, o **seletor de modelo** permite escolher qual mecanismo de IA usar para a tarefa atual.
 
-![Model selector](../images/screenshots/pt/preset-selector.png)
+![Seletor de modelo](../images/screenshots/pt/preset-selector.png)
 
 No modo Avançado, alguns modelos gratuitos podem não estar sempre disponíveis — podem estar offline ou atingir um limite de uso. O aplicativo pode remover automaticamente esse modelo da sua lista. Para controlar quais modelos aparecem, vá para [**Definições** > **Modelos**](#models). Você pode abrir as configurações do modelo a partir do ícone do fornecedor à esquerda do nome do modelo na barra de ferramentas.
 
@@ -214,7 +216,7 @@ No modo Avançado, alguns modelos gratuitos podem não estar sempre disponíveis
 
 O **ícone de globo + código de idioma** altera o idioma da interface da aplicação, como menus e botões. **Não** altera os idiomas de tradução utilizados na funcionalidade **Traduzir**.
 
-![Interface language selector](../images/screenshots/pt/language-selector.png)
+![Seletor de idioma da interface](../images/screenshots/pt/language-selector.png)
 
 <br/>
 
@@ -247,7 +249,7 @@ Também pode monitorizar o custo de cada operação (se disponível) e o custo t
 
 Utilize **Traduzir** quando quiser converter texto de um idioma para outro.
 
-![Translate workspace](../images/screenshots/pt/translate.png)
+![Espaço de trabalho de tradução](../images/screenshots/pt/translate.png)
 
 <br/>
 
@@ -296,9 +298,9 @@ Em [**Definições** > **Configurações Gerais**](#general-settings), pode alte
 
 Após uma tradução bem-sucedida, **Reformular…** e o menu suspenso de versões aparecem no cabeçalho de saída, ao lado do seletor de idioma **Para:**. Você pode refinar o resultado lá:
 
-1. **Reformular…** — sem texto selecionado na saída, obtenha outra tradução completa da mesma entrada com uma redação diferente. O modelo recebe todas as versões que você já possui, então a nova redação pode diferir de todas elas. Você pode armazenar até **cinco** versões e alternar entre elas no menu suspenso de versões. Com texto selecionado, **Reformular…** abre alternativas de palavras próximas à seleção (igual ao clique com o botão direito). Sem uma seleção, **Reformular…** é desativado uma vez que você atinge cinco versões; com uma seleção, ainda funciona com cinco versões (apenas alternativas de palavras, atualizando a versão 5). Enquanto uma reformulação completa está em execução, clique em **Parar Traduzir** para cancelar; a saída retorna à versão que estava ativa quando a reformulação começou.
-2. **Alternativas de palavras** — selecione uma ou mais palavras ou uma frase curta na saída (se você selecionar apenas parte de uma palavra, o aplicativo expande a seleção para palavras completas), então clique com o botão direito ou clique em **Reformular…**. Uma lista curta de alternativas aparece próxima à seleção; clique em uma para substituí-la. Cada opção pode substituir um intervalo ligeiramente mais amplo do que sua seleção (por exemplo, uma preposição ou artigo adjacente) para que a frase permaneça gramatical. Se você tiver menos de cinco versões, a saída editada é salva como uma nova versão; com cinco versões, apenas **versão 5** é atualizada. Clicar com o botão direito sem seleção não faz nada. Pressione **Esc** ou clique fora da lista para cancelar sem alterar a saída.
-3. **Custos** — cada **Reformular…** completo (sem seleção) e cada solicitação de alternativa de palavra utiliza o modelo novamente e pode adicionar ao custo de uso (igual a uma execução de tradução normal).
+1. **Refrasear…** — sem texto selecionado na saída, obtenha outra tradução completa da mesma entrada com uma redação diferente. O modelo recebe todas as versões que você já tem para que a nova redação possa diferir de todas elas. Você pode armazenar até **cinco** versões e alternar entre elas no menu suspenso de versões. Com o texto selecionado, **Refrasear…** abre alternativas de palavras perto da seleção (o mesmo que clicar com o botão direito). Sem uma seleção, **Refrasear…** é desativado quando você atinge cinco versões; com uma seleção, ainda funciona em cinco versões (apenas alternativas de palavras, atualizando a versão 5). Enquanto uma reescrita completa está em execução, clique em **Parar Tradução** para cancelar; a saída retorna à versão que estava ativa quando a reescrita começou.
+2. **Alternativas de palavras** — selecione uma ou mais palavras ou uma frase curta na saída (se você selecionar apenas parte de uma palavra, o aplicativo expande a seleção para palavras completas), então clique com o botão direito ou clique em **Refrasear…**. Uma pequena lista de alternativas aparece perto da seleção; clique em uma para substituí-la. Cada opção pode substituir um trecho ligeiramente mais amplo do que sua seleção (por exemplo, uma preposição ou artigo adjacente) para que a frase permaneça gramaticalmente correta. Se você tiver menos de cinco versões, a saída editada é salva como uma nova versão; em cinco versões, apenas a **versão 5** é atualizada. Clicar com o botão direito sem seleção seleciona a palavra sob o cursor (ou não faz nada se não houver palavra lá). Pressione **Esc** ou clique fora da lista para cancelar sem alterar a saída.
+3. **Custos** — cada **Refrasear…** completo (sem seleção) e cada solicitação de alternativa de palavra usa o modelo novamente e pode aumentar o custo de uso (o mesmo que uma execução de tradução normal).
 
 <br/>
 
@@ -326,9 +328,9 @@ Você adiciona, edita, importa e exporta termos na aba [**Configurações** > **
 <a id="rewrite"></a>
 ## Reescrever
 
-Use **Reescrever** quando quiser melhorar a redação sem alterar o significado principal.
+Use **Reescrever** quando quiser melhorar a redação sem alterar o significado principal. O texto permanece no mesmo idioma (não é traduzido).
 
-![Rewrite workspace](../images/screenshots/pt/rewrite.png)
+![Espaço de trabalho de reescrita](../images/screenshots/pt/rewrite.png)
 
 Isto é útil para:
 
@@ -341,9 +343,38 @@ Isto é útil para:
 
 <br/>
 
+<a id="rewrite-text"></a>
+### Reescrever texto
+
+1. Abra **Reescrita**.
+2. Escolha um **Modo** (por exemplo, **Melhorar Clareza** ou **Tornar Formal**).
+3. Opcionalmente, defina **De** para o idioma do seu texto (ou deixe **Detectar idioma**).
+4. Digite ou cole o texto em **Entrada**.
+5. Clique em **Reescrita**.
+6. Leia o resultado em **Saída**.
+7. Opcionalmente, refine o resultado com **Refrasear…** ou alternativas de palavras — consulte [Refinando sua reescrita](#refining-rewrite).
+
+<br/>
+
 > 💡 **DICA**<br/>
 > Quando utiliza o modo "**Verificar ortografia e gramática**", aparece um interruptor **Mostrar alterações** no painel de saída (ao lado de **Copiar**).
 > Ative ou desative para mostrar ou ocultar as correções específicas aplicadas ao seu texto.
+
+<br/>
+
+> ℹ️ **NOTA**<br/>
+> O modo de reescrita **Versões alternativas** retorna várias reformulações em uma **única** execução, separadas por `----` na saída. Isso é diferente de **Refrasear…**, que constrói um histórico de versões ao longo do tempo (uma nova variante por clique). Consulte [Refinando sua reescrita](#refining-rewrite).
+
+<br/>
+
+<a id="refining-rewrite"></a>
+### Refinando sua reescrita
+
+Após uma reescrita bem-sucedida, **Refrasear…** e o menu suspenso de versão aparecem no lado da saída do espaço de trabalho (no layout dividido, na barra de ferramentas superior acima da coluna de saída, ao lado das métricas de execução; no layout empilhado, acima do painel de saída ao lado de **De:**). Você pode refinar o resultado lá — a mesma ideia de [Refinando sua tradução](#refining-translation), mas o texto permanece no mesmo idioma e mantém o **Modo** de reescrita atual:
+
+1. **Refrasear…** — sem texto selecionado na saída, obtenha outra reescrita completa da mesma entrada com palavras diferentes, ainda aplicando o modo selecionado (por exemplo, mais claro, mais curto ou mais formal). O modelo recebe todas as versões que você já tem para que a nova redação possa diferir de todas elas. Você pode armazenar até **cinco** versões e alternar entre elas no menu suspenso de versão. Com o texto selecionado, **Refrasear…** abre alternativas de palavras perto da seleção (o mesmo que clicar com o botão direito). Sem uma seleção, **Refrasear…** é desativado quando você atinge cinco versões; com uma seleção, ainda funciona em cinco versões (apenas alternativas de palavras, atualizando a versão 5). Enquanto uma refrase completa está em execução, clique em **Parar Reescrita** para cancelar; a saída retorna à versão que estava ativa quando a refrase começou.
+2. **Alternativas de palavras** — selecione uma ou mais palavras ou uma frase curta na saída (se você selecionar apenas parte de uma palavra, o aplicativo expande a seleção para palavras completas), então clique com o botão direito ou clique em **Refrasear…**. Uma pequena lista de alternativas aparece perto da seleção; clique em uma para substituí-la. Cada opção pode substituir um trecho ligeiramente mais amplo do que sua seleção para que a frase permaneça gramatical. Se você tiver menos de cinco versões, a saída editada é salva como uma nova versão; em cinco versões, apenas a **versão 5** é atualizada. Clicar com o botão direito sem seleção seleciona a palavra sob o cursor (ou não faz nada se não houver palavra lá). Pressione **Esc** ou clique fora da lista para cancelar sem alterar a saída.
+3. **Custos** — cada **Refrasear…** completo (sem seleção) e cada solicitação de alternativa de palavra usa o modelo novamente e pode aumentar o custo de uso (o mesmo que uma execução de reescrita normal).
 
 <br/><br/>
 
@@ -354,7 +385,7 @@ Isto é útil para:
 
 Use **Transformar** quando quiser que a IA siga um conjunto personalizado de instruções.
 
-![Transform workspace](../images/screenshots/pt/transform.png)
+![Espaço de trabalho de transformação](../images/screenshots/pt/transform.png)
 
 Esta é a área mais flexível da aplicação. Pode utilizá-la para tarefas como:
 
@@ -402,7 +433,7 @@ A forma mais rápida de criar um prompt é:
 5. Deixe a aplicação criar um rascunho para si.
 6. Revise o rascunho e clique em **Salvar**.
 
-![Generate prompt](../images/screenshots/pt/transform-generate.png)
+![Gerar prompt](../images/screenshots/pt/transform-generate.png)
 
 <br/>
 
@@ -411,7 +442,7 @@ A forma mais rápida de criar um prompt é:
 
 Quando criar ou editar um prompt, o editor aparece à esquerda e uma área de teste aparece à direita.
 
-![Transform prompt editor](../images/screenshots/pt/transform-prompt-edit.png)
+![Editor de prompt de transformação](../images/screenshots/pt/transform-prompt-edit.png)
 
 Os campos principais são:
 
@@ -467,7 +498,7 @@ Quando você usa **Gerar prompt**, **Melhorar prompt** ou **Traduzir prompt** no
 
 Utilize **Painel** para ver o quanto está a utilizar a aplicação e qual o custo (para modelos pagos).
 
-![Dashboard summary](../images/screenshots/pt/dashboard-summary.png)
+![Resumo do painel](../images/screenshots/pt/dashboard-summary.png)
 
 <br/>
 
@@ -481,7 +512,7 @@ Utilize **Painel** para ver o quanto está a utilizar a aplicação e qual o cus
 
 Utilize os botões de filtro no topo para alterar o intervalo de tempo.
 
-![Dashboard filters](../images/screenshots/pt/dashboard-filter.png)
+![Filtros do painel](../images/screenshots/pt/dashboard-filter.png)
 
 <br/>
 
@@ -531,7 +562,7 @@ Para eliminar todos os dados ou remover registos com base na sua idade, aceda a 
 
 Clique em **Histórico** para ver o histórico das suas ações dentro do **Transrewrt**, incluindo a entrada e saída de cada operação.
 
-![History page](../images/screenshots/pt/history.png)
+![Página de histórico](../images/screenshots/pt/history.png)
 
 <br/>
 
@@ -540,7 +571,7 @@ Clique em **Histórico** para ver o histórico das suas ações dentro do **Tran
 
 **Histórico** utiliza os mesmos filtros de intervalo de tempo da página **Painel**.
 
-![Dashboard filters](../images/screenshots/pt/dashboard-filter.png)
+![Filtros do painel](../images/screenshots/pt/dashboard-filter.png)
 
 <br/>
 
@@ -641,7 +672,7 @@ Backups criados na versão web ou desktop podem ser restaurados na outra. Ao res
 
 Este separador está disponível apenas quando a **experiência com IA** está definida como **Avançado** em [**Configurações Gerais**](#general-settings). Use **Definições** > **Modelos** para escolher quais os modelos que aparecem na barra de ferramentas.
 
-![Settings Models tab](../images/screenshots/pt/settings-general.png)
+![Guia Modelos de configurações](../images/screenshots/pt/settings-general.png)
 
 A página tem duas listas:
 

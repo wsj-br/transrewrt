@@ -11,12 +11,24 @@ Use conventional types (Added, Changed, Fixed, etc.) and short descriptions.
 
 ## Unreleased
 
+## [1.6.0] - 2026-07-15
+
+- **Fixed**: `pnpm run presets-check` no longer hardcodes `--local --dry-run`, so documented flags (`--local`, `--dry-run`, etc.) work as intended.
+- **Added**: Presets-editor topbar **Presets** button (between Reload and Performance) returns to the catalog list/detail main page from Performance, Benchmark, or AI Suggestion.
+- **Changed**: Presets-editor Benchmark — failed model calls show status `error` and the API error message in the Output column (expandable when long).
+- **Added**: Presets-editor topbar shows the Transrewrt logo beside the title.
+- **Added**: Presets-editor model picker — header shows the current selection so it stays visible while the modal covers the form fields.
+- **Added**: Presets-editor Benchmark — provider select (one Easy-mode engine or all configured providers) so runs use each preset’s `model_ids` / `fallback_ids` for the chosen provider(s), not OpenRouter only.
+- **Added**: Rewrite workspace **Rephrase…** with version history (up to 5) and right-click / selection word alternatives — same refinement flow as Translate, using `rewrite_alternative` and `rewrite_word_alternatives` prompts.
+- **Fixed**: Translate Rephrase UI after the generic `RephraseControls` / `useWordAlternatives` / `WordAlternativesPopover` refactor — callers now use the new prop APIs (old translate-named wrappers removed).
+- **Changed**: Rewrite split layout places **Rephrase…** and run meta in the right half of the top toolbar (aligned with the output column), sharing the Mode/From row so output height is not reduced.
+- **Fixed**: Right-click on translation/rewrite output with no selection selects the word under the cursor for alternatives (or does nothing if there is no word), instead of showing the browser context menu.
 - **Fixed**: `reset-web-password` wrapper in Docker resolved a doubled `scripts/scripts/reset-web-password.js` path (`$(dirname "$0")` is already `/app/scripts`) and failed with `MODULE_NOT_FOUND`; dropped the redundant `scripts/` segment so the wrapper finds the script alongside itself.
 - **Changed**: Replaced the `multi-llm-ts` dependency with the Vercel AI SDK (`ai`) + `@ai-sdk/openai-compatible`. All providers are now reached over their OpenAI-compatible endpoints via pre-configured base URLs in `src/shared/llm/index.js`; the streaming API, usage/cost shape, and engine-prefixed canonical model ids are unchanged. Removed the now-unused `@google/genai` entry from `pnpm-workspace.yaml` `allowBuilds`.
 - **Added**: Built-in support for three more LLM providers — NVIDIA (`NVIDIA_API_KEY`), Alibaba Cloud / DashScope (`ALIBABA_API_KEY`), and apikey.fun (`APIFUN_API_KEY`) — with API key fields in Settings → API Config, provider tests, and Advanced model-filter entries.
 - **Fixed**: `pnpm dev:web` failed with `[HPM] Missing "target" option` because the `http-proxy-middleware` override forced the v3 line (3.0.7), whose `createProxyMiddleware` signature is incompatible with `webpack-dev-server@5` (calls the v2 `(context, options)` API). Changed the override to the patched v2 backport `^2.0.10`, which fixes the Host-header routing bypass (GHSA-64mm-vxmg-q3vj) while keeping the v2 API; also merged the two `ai-i18n-tools` `minimumReleaseAgeExclude` entries into a single `1.6.1 || 1.7.1` disjunction (pnpm#12463).
 - **Security**: Added `auditConfig.ignoreGhsas: [GHSA-64mm-vxmg-q3vj]` to `pnpm-workspace.yaml`. The npm advisory range pnpm audit reads collapses to `<3.0.6`, so it flags the genuinely-patched `http-proxy-middleware@2.0.10` (the upstream v2 backport) as vulnerable; ignoring the advisory keeps `pnpm audit` green and stops `pnpm audit --fix override` from re-bumping the dep to the API-incompatible v3 line that breaks `webpack-dev-server@5`.
-- **Changed**: Release workflow (`.github/workflows/release.yml`) bumps `actions/checkout` v6 → v7 and `pnpm/action-setup` v5 → v6 to track the latest recommended action major versions.
+- **Changed**: Release and pnpm-audit workflows bump `actions/setup-node` v6 → v7; earlier release workflow bumps covered `actions/checkout` v6 → v7 and `pnpm/action-setup` v5 → v6.
 - **Added**: Glossary — store source/target term pairs per language pair and apply them during translation so chosen terms stay consistent. Manage terms in Settings → Glossary (add/edit/delete, CSV/XLSX import and template export); terms are stored locally in Electron and per-user on the server (web/Docker).
 - **Changed**: Translate workspace integrates the glossary — an `Add to Glossary` button beside the `From:` language selector and a `Glossary` settings link in the output footer, both hidden when the glossary switch is off.
 - **Security**: Force `js-yaml` to `^4.2.0` via `pnpm-workspace.yaml` overrides so `gray-matter` no longer pulls vulnerable `js-yaml@3.x` (GHSA-h67p-54hq-rp68 DoS); removed the ineffective top-level `overrides` block from `package.json` (pnpm reads overrides from `pnpm-workspace.yaml`).

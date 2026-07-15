@@ -1,4 +1,4 @@
-![Transrewrt banner](../images/transrewrt_banner.png)
+![Transrewrt-banner](../images/transrewrt_banner.png)
 
 <a id="transrewrt-user-guide"></a>
 # Gebruikershandleiding
@@ -55,6 +55,8 @@ Deze handleiding legt uit hoe u de app gebruikt nadat deze is geïnstalleerd en 
   - [Uw vertaling verfijnen](#refining-your-translation)
   - [De woordenlijst gebruiken](#using-the-glossary)
 - [Herschrijven](#rewrite)
+  - [Tekst herschrijven](#rewrite-text)
+  - [Uw herschrijving verfijnen](#refining-your-rewrite)
 - [Transformeren](#transform)
   - [Een bestaande prompt uitvoeren](#run-an-existing-prompt)
   - [Als u nog geen prompts hebt](#if-you-have-no-prompts-yet)
@@ -68,14 +70,14 @@ Deze handleiding legt uit hoe u de app gebruikt nadat deze is geïnstalleerd en 
   - [Opgeslagen records voor een model verwijderen](#delete-stored-records-for-a-model)
 - [Geschiedenis](#history)
   - [De geschiedenis filteren](#filter-the-history)
-  - [Historiegegevens exporteren](#export-history-data)
+  - [Geschiedenisgegevens exporteren](#export-history-data)
 - [Instellingen](#settings)
   - [Algemene instellingen](#general-settings)
   - [Modellen](#models)
   - [Talen](#languages)
   - [Kostenregistratie](#cost-tracking)
-  - [Transformeren (instellingen-tabblad)](#transform-settings-tab)
-  - [Woordenlijst (instellingen-tabblad)](#glossary-settings-tab)
+  - [Transformeren (instellingentabblad)](#transform-settings-tab)
+  - [Woordenlijst (instellingentabblad)](#glossary-settings-tab)
   - [Gebruikers](#users)
   - [API-configuratie](#api-config)
   - [Over](#about)
@@ -83,16 +85,16 @@ Deze handleiding legt uit hoe u de app gebruikt nadat deze is geïnstalleerd en 
   - [De app vertaalt, herschrijft of transformeert geen tekst](#the-app-will-not-translate-rewrite-or-transform-text)
   - [De modellijst is leeg](#the-model-list-is-empty)
   - [Het resultaat is te traag of te duur](#the-result-is-too-slow-or-too-expensive)
-  - [De interface heeft de verkeerde taal](#the-interface-is-in-the-wrong-language)
-  - [De tekst is te klein of moeilijk leesbaar](#the-text-is-too-small-or-hard-to-read)
-  - [Dashboard Samenvatting ziet er leeg uit](#dashboard-summary-looks-empty)
-  - [Kosten tonen "niet beschikbaar" of lijken onjuist](#cost-shows-not-available-or-seems-wrong)
+  - [De interface is in de verkeerde taal](#the-interface-is-in-the-wrong-language)
+  - [De tekst is te klein of moeilijk te lezen](#the-text-is-too-small-or-hard-to-read)
+  - [Dashboard-overzicht lijkt leeg](#dashboard-summary-looks-empty)
+  - [Kosten tonen 'niet beschikbaar' of lijken onjuist](#cost-shows-not-available-or-seems-wrong)
   - [Totale kosten komen niet overeen met mijn providerfactuur](#total-cost-does-not-match-my-provider-bill)
-  - [De pagina Geschiedenis ontbreekt in de zijbalk](#the-history-page-is-missing-from-the-sidebar)
-  - [Web-app: onverwacht omgeleid naar de inlogpagina](#web-app-redirected-to-the-login-page-unexpectedly)
-  - [Web beheerder: wachtwoord vergeten of kwijt](#web-admin-forgot-or-lost-a-password)
+  - [De geschiedenispagina ontbreekt in de zijbalk](#the-history-page-is-missing-from-the-sidebar)
+  - [Web-app: onverwacht omgeleid naar de aanmeldingspagina](#web-app-redirected-to-the-login-page-unexpectedly)
+  - [Webbeheerder: wachtwoord vergeten of kwijtgeraakt](#web-admin-forgot-or-lost-a-password)
   - [Dashboard toont geen gegevens voor andere gebruikers (web)](#dashboard-shows-no-data-for-other-users-web)
-  - [Ik heb een prompt gewijzigd en de wijzigingen zijn verloren gegaan](#i-changed-a-prompt-and-lost-the-edits)
+  - [Ik heb een prompt gewijzigd en de bewerkingen zijn verloren gegaan](#i-changed-a-prompt-and-lost-the-edits)
 - [Snelle tips](#quick-tips)
 - [Disclaimer](#disclaimer)
 - [Licentie](#license)
@@ -206,7 +208,7 @@ In **Eenvoudige** modus toont de werkbalk een **voorkeuzeselector** met de ingeb
 
 In **Geavanceerde** modus kunt u met de **modelselector** kiezen welke AI-engine u voor de huidige taak wilt gebruiken.
 
-![Model selector](../images/screenshots/nl/preset-selector.png)
+![Modelkiezer](../images/screenshots/nl/preset-selector.png)
 
 In Geavanceerde modus zijn sommige gratis modellen mogelijk niet altijd beschikbaar — ze kunnen offline zijn of een gebruikslimiet hebben bereikt. De app kan dat model automatisch uit uw lijst verwijderen. Om te bepalen welke modellen worden weergegeven, gaat u naar [**Instellingen** > **Modellen**](#models). U kunt de modelinstellingen openen via het leverancierspictogram links van de modelnaam in de werkbalk.
 
@@ -214,7 +216,7 @@ In Geavanceerde modus zijn sommige gratis modellen mogelijk niet altijd beschikb
 
 Het **globe-icoon + taalcode** verandert de taal van de app-interface, zoals menu's en knoppen. Het verandert **niet** de vertaaltalen die worden gebruikt in **Vertalen**.
 
-![Interface language selector](../images/screenshots/nl/language-selector.png)
+![Taalkiezer voor de interface](../images/screenshots/nl/language-selector.png)
 
 <br/>
 
@@ -247,7 +249,7 @@ U kunt ook de kosten van elke bewerking (indien beschikbaar) en de totale kosten
 
 Gebruik **Vertalen** wanneer u tekst van de ene taal naar de andere wilt omzetten.
 
-![Translate workspace](../images/screenshots/nl/translate.png)
+![Vertaalwerkruimte](../images/screenshots/nl/translate.png)
 
 <br/>
 
@@ -296,9 +298,9 @@ In [**Instellingen** > **Algemene instellingen**](#general-settings) kunt u aanp
 
 Na een succesvolle vertaling verschijnen **Herschrijven…** en de versie dropdown in de uitvoerheader, naast de **Naar:** taalselector. Je kunt het resultaat daar verfijnen:
 
-1. **Herschrijven…** — met geen tekst geselecteerd in de uitvoer, krijg je een volledige vertaling van dezelfde invoer met andere bewoording. Het model ontvangt elke versie die je al hebt, zodat de nieuwe bewoording kan verschillen van al deze. Je kunt tot **vijf** versies opslaan en tussen hen schakelen in de versie dropdown. Met geselecteerde tekst opent **Herschrijven…** woordalternatieven nabij de selectie (dezelfde als rechtsklikken). Zonder selectie is **Herschrijven…** uitgeschakeld zodra je vijf versies hebt bereikt; met een selectie werkt het nog steeds bij vijf versies (alleen woordalternatieven, versie 5 wordt bijgewerkt). Terwijl een volledige herschrijving loopt, klik op **Stop Vertalen** om te annuleren; de uitvoer keert terug naar de versie die actief was toen de herschrijving begon.
-2. **Woordalternatieven** — selecteer een of meer woorden of een korte zin in de uitvoer (als je alleen een deel van een woord selecteert, breidt de app de selectie uit naar volledige woorden), klik dan met de rechtermuisknop of klik op **Herschrijven…**. Een korte lijst met alternatieven verschijnt nabij de selectie; klik op een om deze te vervangen. Elke optie kan een iets bredere span vervangen dan je selectie (bijvoorbeeld een aangrenzende voorzetsel of lidwoord) zodat de zin grammaticaal blijft. Als je minder dan vijf versies hebt, wordt de bewerkte uitvoer opgeslagen als een nieuwe versie; bij vijf versies wordt alleen **versie 5** bijgewerkt. Rechtsklikken zonder selectie doet niets. Druk op **Esc** of klik buiten de lijst om te annuleren zonder de uitvoer te wijzigen.
-3. **Kosten** — elke volledige **Herschrijven…** (geen selectie) en elk verzoek om woordalternatieven gebruikt het model opnieuw en kan bijdragen aan de gebruikskosten (dezelfde als een normale vertaalrun).
+1. **Herschrijven…** — als er geen tekst is geselecteerd in de uitvoer, krijgt u een andere volledige vertaling van dezelfde invoer met een andere formulering. Het model ontvangt elke versie die u al hebt, zodat de nieuwe formulering kan afwijken van alle andere. U kunt maximaal **vijf** versies opslaan en ertussen schakelen in de vervolgkeuzelijst voor versies. Met geselecteerde tekst opent **Herschrijven…** woordalternatieven in de buurt van de selectie (hetzelfde als rechtsklikken). Zonder selectie is **Herschrijven…** uitgeschakeld zodra u vijf versies hebt bereikt; met een selectie werkt het nog steeds bij vijf versies (alleen woordalternatieven, versie 5 bijwerken). Terwijl een volledige herschrijving wordt uitgevoerd, klikt u op **Vertaling stoppen** om te annuleren; de uitvoer keert terug naar de versie die actief was toen de herschrijving begon.
+2. **Woordalternatieven** — selecteer een of meer woorden of een korte zin in de uitvoer (als u slechts een deel van een woord selecteert, breidt de app de selectie uit naar volledige woorden), klik dan met de rechtermuisknop of klik op **Herschrijven…**. Een korte lijst met alternatieven verschijnt in de buurt van de selectie; klik op een om deze te vervangen. Elke optie kan een iets breder bereik vervangen dan uw selectie (bijvoorbeeld een aangrenzend voorzetsel of lidwoord), zodat de zin grammaticaal blijft. Als u minder dan vijf versies hebt, wordt de bewerkte uitvoer opgeslagen als een nieuwe versie; bij vijf versies wordt alleen **versie 5** bijgewerkt. Rechtsklikken zonder selectie selecteert het woord onder de cursor (of doet niets als er geen woord is). Druk op **Esc** of klik buiten de lijst om te annuleren zonder de uitvoer te wijzigen.
+3. **Kosten** — elke volledige **Herschrijven…** (geen selectie) en elk verzoek om woordalternatieven gebruikt het model opnieuw en kan de gebruikskosten verhogen (hetzelfde als een normale vertaaluitvoering).
 
 <br/>
 
@@ -326,9 +328,9 @@ U voegt termen toe, bewerkt, importeert en exporteert ze in het tabblad [**Inste
 <a id="rewrite"></a>
 ## Herschrijven
 
-Gebruik **Herschrijven** wanneer u de formulering wilt verbeteren zonder de hoofdbetekenis te veranderen.
+Gebruik **Herschrijven** wanneer u de formulering wilt verbeteren zonder de hoofdbetekenis te wijzigen. De tekst blijft in dezelfde taal (deze wordt niet vertaald).
 
-![Rewrite workspace](../images/screenshots/nl/rewrite.png)
+![Herschrijfwerkruimte](../images/screenshots/nl/rewrite.png)
 
 Dit is handig voor:
 
@@ -341,9 +343,38 @@ Dit is handig voor:
 
 <br/>
 
+<a id="rewrite-text"></a>
+### Tekst herschrijven
+
+1. Open **Herschrijven**.
+2. Kies een **Modus** (bijvoorbeeld **Verbeter duidelijkheid** of **Maak formeel**).
+3. Stel optioneel **Van** in op de taal van uw tekst (of laat **Taal detecteren** staan).
+4. Typ of plak tekst in **Invoer**.
+5. Klik op **Herschrijven**.
+6. Lees het resultaat in **Uitvoer**.
+7. Verfijn het resultaat optioneel met **Herformuleren…** of woordalternatieven — zie [Uw herschrijving verfijnen](#refining-rewrite).
+
+<br/>
+
 > 💡 **TIP**<br/>
 > Wanneer u de modus "**Controleer spelling en grammatica**" gebruikt, verschijnt er een schakelaar **Wijzigingen weergeven** in het uitvoerpaneel (naast **Kopiëren**).
 > Schakel deze in of uit om de specifieke correcties in uw tekst te tonen of te verbergen.
+
+<br/>
+
+> ℹ️ **OPMERKING**<br/>
+> De herschrijfmodus **Alternatieve versies** retourneert verschillende herformuleringen in één **enkele** uitvoering, gescheiden door `----` in de uitvoer. Dit is anders dan **Herformuleren…**, dat in de loop van de tijd een versiegeschiedenis opbouwt (één nieuwe variant per klik). Zie [Uw herschrijving verfijnen](#refining-rewrite).
+
+<br/>
+
+<a id="refining-rewrite"></a>
+### Uw herschrijving verfijnen
+
+Na een succesvolle herschrijving verschijnen **Herformuleren…** en de versie-dropdown aan de uitvoerzijde van de werkruimte (in de gesplitste lay-out, in de bovenste werkbalk boven de uitvoerkolom, naast de uitvoermetrieken; in de gestapelde lay-out, boven het uitvoerpaneel naast **Van:**). U kunt het resultaat daar verfijnen — hetzelfde idee als [Uw vertaling verfijnen](#refining-translation), maar de tekst blijft in dezelfde taal en behoudt de huidige herschrijf**Modus**:
+
+1. **Herformuleren…** — zonder geselecteerde tekst in de uitvoer, krijgt u een andere volledige herschrijving van dezelfde invoer met andere bewoordingen, waarbij de geselecteerde modus nog steeds wordt toegepast (bijvoorbeeld duidelijker, korter of formeler). Het model ontvangt elke versie die u al hebt, zodat de nieuwe bewoordingen kunnen verschillen van alle andere. U kunt maximaal **vijf** versies opslaan en ertussen schakelen in de versie-dropdown. Met geselecteerde tekst opent **Herformuleren…** woordalternatieven in de buurt van de selectie (hetzelfde als rechtsklikken). Zonder selectie is **Herformuleren…** uitgeschakeld zodra u vijf versies hebt bereikt; met een selectie werkt het nog steeds bij vijf versies (alleen woordalternatieven, versie 5 wordt bijgewerkt). Terwijl een volledige herformulering wordt uitgevoerd, klikt u op **Herschrijven stoppen** om te annuleren; de uitvoer keert terug naar de versie die actief was toen de herformulering begon.
+2. **Woordalternatieven** — selecteer een of meer woorden of een korte zin in de uitvoer (als u slechts een deel van een woord selecteert, breidt de app de selectie uit naar volledige woorden), en klik vervolgens met de rechtermuisknop of klik op **Herformuleren…**. Een korte lijst met alternatieven verschijnt in de buurt van de selectie; klik op een om deze te vervangen. Elke optie kan een iets breder bereik vervangen dan uw selectie, zodat de zin grammaticaal blijft. Als u minder dan vijf versies hebt, wordt de bewerkte uitvoer opgeslagen als een nieuwe versie; bij vijf versies wordt alleen **versie 5** bijgewerkt. Rechtsklikken zonder selectie selecteert het woord onder de cursor (of doet niets als er geen woord is). Druk op **Esc** of klik buiten de lijst om te annuleren zonder de uitvoer te wijzigen.
+3. **Kosten** — elke volledige **Herformuleren…** (geen selectie) en elk woordalternatiefverzoek gebruikt het model opnieuw en kan de gebruikskosten verhogen (hetzelfde als een normale herschrijfbewerking).
 
 <br/><br/>
 
@@ -354,7 +385,7 @@ Dit is handig voor:
 
 Gebruik **Transformeren** wanneer u wilt dat de AI een aangepaste set instructies volgt.
 
-![Transform workspace](../images/screenshots/nl/transform.png)
+![Werkruimte transformeren](../images/screenshots/nl/transform.png)
 
 Dit is het meest flexibele gedeelte van de app. U kunt het gebruiken voor taken zoals:
 
@@ -402,7 +433,7 @@ De snelste manier om een prompt aan te maken is:
 5. Laat de app een concept voor u maken.
 6. Controleer het concept en klik op **Opslaan**.
 
-![Generate prompt](../images/screenshots/nl/transform-generate.png)
+![Prompt genereren](../images/screenshots/nl/transform-generate.png)
 
 <br/>
 
@@ -411,7 +442,7 @@ De snelste manier om een prompt aan te maken is:
 
 Wanneer u een prompt aanmaakt of bewerkt, verschijnt de editor aan de linkerkant en een testgebied aan de rechterkant.
 
-![Transform prompt editor](../images/screenshots/nl/transform-prompt-edit.png)
+![Prompteditor transformeren](../images/screenshots/nl/transform-prompt-edit.png)
 
 De belangrijkste velden zijn:
 
@@ -467,7 +498,7 @@ Wanneer u **Prompt genereren**, **Prompt verbeteren** of **Prompt vertalen** geb
 
 Gebruik **Dashboard** om te zien hoeveel u de app gebruikt en wat dit kost (voor betaalde modellen).
 
-![Dashboard summary](../images/screenshots/nl/dashboard-summary.png)
+![Dashboardoverzicht](../images/screenshots/nl/dashboard-summary.png)
 
 <br/>
 
@@ -481,7 +512,7 @@ Gebruik **Dashboard** om te zien hoeveel u de app gebruikt en wat dit kost (voor
 
 Gebruik de filterknoppen bovenaan om het tijdsbereik te wijzigen.
 
-![Dashboard filters](../images/screenshots/nl/dashboard-filter.png)
+![Dashboardfilters](../images/screenshots/nl/dashboard-filter.png)
 
 <br/>
 
@@ -531,7 +562,7 @@ Om alle gegevens te verwijderen of records te verwijderen op basis van hun leeft
 
 Klik op **Geschiedenis** om de geschiedenis van uw acties binnen **Transrewrt** te bekijken, inclusief de invoer en uitvoer van elke bewerking.
 
-![History page](../images/screenshots/nl/history.png)
+![Geschiedenispagina](../images/screenshots/nl/history.png)
 
 <br/>
 
@@ -540,7 +571,7 @@ Klik op **Geschiedenis** om de geschiedenis van uw acties binnen **Transrewrt** 
 
 **Geschiedenis** gebruikt dezelfde tijdsbereikfilters als de pagina **Dashboard**.
 
-![Dashboard filters](../images/screenshots/nl/dashboard-filter.png)
+![Dashboardfilters](../images/screenshots/nl/dashboard-filter.png)
 
 <br/>
 
@@ -641,7 +672,7 @@ Backups die in de web- of desktopversie zijn gemaakt, kunnen in de andere worden
 
 Dit tabblad is alleen beschikbaar wanneer **AI-ervaring** is ingesteld op **Geavanceerd** in [**Algemene instellingen**](#general-settings). Gebruik **Instellingen** > **Modellen** om te kiezen welke modellen in de werkbalk verschijnen.
 
-![Settings Models tab](../images/screenshots/nl/settings-general.png)
+![Instellingen tabblad Modellen](../images/screenshots/nl/settings-general.png)
 
 De pagina bevat twee lijsten:
 

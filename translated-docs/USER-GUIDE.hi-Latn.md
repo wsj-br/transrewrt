@@ -53,11 +53,13 @@ Yah guide batati hai ki app install hone aur chalne ke baad uska upyog kaise kar
   - [Bhasha ka chayan](#language-selection)
   - [Madadgar anuvaad settings](#helpful-translation-settings)
   - [Apne anuvaad ko behtar banana](#refining-your-translation)
-  - [Shabdakosh ka upyog karna](#using-the-glossary)
+  - [Glossary ka upyog karna](#using-the-glossary)
 - [Phir se likhen](#rewrite)
+  - [Text ko phir se likhen](#rewrite-text)
+  - [Apne rewrite ko behtar banana](#refining-your-rewrite)
 - [Badlen](#transform)
-  - [Ek maujooda prompt chalayein](#run-an-existing-prompt)
-  - [Yadi aapke paas abhi tak koi prompt nahin hai](#if-you-have-no-prompts-yet)
+  - [Ek maujooda prompt chalaen](#run-an-existing-prompt)
+  - [Yadi aapke paas abhi tak koi prompt nahi hai](#if-you-have-no-prompts-yet)
   - [Jaldi se ek prompt banayein](#create-a-prompt-quickly)
   - [Ek prompt edit karein](#edit-a-prompt)
   - [Upyog karne se pehle ek prompt ka parikshan karein](#test-a-prompt-before-using-it)
@@ -77,23 +79,23 @@ Yah guide batati hai ki app install hone aur chalne ke baad uska upyog kaise kar
   - [Badlen (settings tab)](#transform-settings-tab)
   - [Shabdakosh (settings tab)](#glossary-settings-tab)
   - [Upbhokta](#users)
-  - [API Config](#api-config)
+  - [API config](#api-config)
   - [Baare mein](#about)
-- [Aam samasyayein](#common-issues)
-  - [App text ka anuvaad, phir se likhna ya badalna nahin karegi](#the-app-will-not-translate-rewrite-or-transform-text)
+- [Aam samasyaein](#common-issues)
+  - [App text ka anuvaad, rewrite, ya transform nahi karega](#the-app-will-not-translate-rewrite-or-transform-text)
   - [Model list khaali hai](#the-model-list-is-empty)
   - [Parinaam bahut dheema ya bahut mahanga hai](#the-result-is-too-slow-or-too-expensive)
   - [Interface galat bhasha mein hai](#the-interface-is-in-the-wrong-language)
   - [Text bahut chhota ya padhne mein mushkil hai](#the-text-is-too-small-or-hard-to-read)
-  - [Dashboard Saraansh khaali lagta hai](#dashboard-summary-looks-empty)
-  - [Laagat "uplabdh nahin" dikhati hai ya galat lagti hai](#cost-shows-not-available-or-seems-wrong)
-  - [Kul lagat mere provider bill se mel nahin khati hai](#total-cost-does-not-match-my-provider-bill)
-  - [Itihaas page sidebar se gayab hai](#the-history-page-is-missing-from-the-sidebar)
+  - [Dashboard Summary khaali dikhta hai](#dashboard-summary-looks-empty)
+  - [Laagat "uplabdh nahi" dikhati hai ya galat lagti hai](#cost-shows-not-available-or-seems-wrong)
+  - [Kul lagat mere provider bill se mel nahi khati](#total-cost-does-not-match-my-provider-bill)
+  - [History page sidebar se gayab hai](#the-history-page-is-missing-from-the-sidebar)
   - [Web app: anapekshit roop se login page par redirect kiya gaya](#web-app-redirected-to-the-login-page-unexpectedly)
   - [Web admin: password bhool gaye ya kho gaya](#web-admin-forgot-or-lost-a-password)
   - [Dashboard mein anya upbhoktaon ke liye koi data nahi dikhta (web)](#dashboard-shows-no-data-for-other-users-web)
   - [Maine ek prompt badla aur edits kho diye](#i-changed-a-prompt-and-lost-the-edits)
-- [Turant tips](#quick-tips)
+- [Jaldi tips](#quick-tips)
 - [Disclaimer](#disclaimer)
 - [License](#license)
 
@@ -214,7 +216,7 @@ Unnat mode mein, kuch muft models hamesha uplabdh nahi ho sakte hain—ve offlin
 
 **Globe icon + bhasha code** app interface bhasha ko badalta hai, jaise menus aur buttons. Yeh **Anuvaad karein** mein upyog ki jaane wali anuvaad bhashaon ko **nahi** badalta hai.
 
-![Interface language selector](../images/screenshots/hi-Latn/language-selector.png)
+![Interface bhasha selector](../images/screenshots/hi-Latn/language-selector.png)
 
 <br/>
 
@@ -247,7 +249,7 @@ Aap har operation ki laagat (yadi uplabdh ho) aur kul laagat ki bhi nigrani kar 
 
 Jab aap text ko ek bhasha se doosri bhasha mein badalna chahte hain, to **Translate** ka upyog karein.
 
-![Translate workspace](../images/screenshots/hi-Latn/translate.png)
+![Anuvaad workspace](../images/screenshots/hi-Latn/translate.png)
 
 <br/>
 
@@ -296,9 +298,9 @@ Aapki chuni hui **Top languages** list ke sheersh par dikhai deti hain. Aap inhe
 
 Ek safal anuvaad ke baad, **Rephrase…** aur version dropdown output header mein, **To:** bhasha chayanak ke bagal mein dikhai dete hain. Aap vahan result ko sudhar sakte hain:
 
-1. **Rephrase…** — output mein koi text chuna na hone par, usi input ka ek aur poora anuvaad alag shabdon mein prapt karein. Model aapke paas pahle se maujood har version ko prapt karta hai taki naye shabd un sabhi se alag ho sakein. Aap **paanch** version tak store kar sakte hain aur version dropdown mein unke beech switch kar sakte hain. Text chune hone par, **Rephrase…** chayan ke paas shabd vikalp kholta hai (right-click ke samaan). Chayan ke bina, **Rephrase…** paanch version tak pahunchne par disable ho jata hai; chayan ke saath, yah paanch version par bhi kaam karta hai (keval shabd vikalp, version 5 ko update karte hue). Jab ek poora rephrase chal raha ho, to radd karne ke liye **Stop Translate** par click karein; output us version par laut jata hai jo rephrase shuru hone par sakriya tha.
-2. **Shabd vikalp** — output mein ek ya ek se adhik shabd ya ek chhota vakya chunein (agar aap kisi shabd ka keval ek hissa chunte hain, to app chayan ko poore shabdon tak badha deta hai), phir right-click karein ya **Rephrase…** par click karein. Chayan ke paas vikalpon ki ek chhoti list dikhai deti hai; use badalne ke liye ek par click karein. Har vikalp aapke chayan se thoda bada span badal sakta hai (jaise ki ek lagatar preposition ya article) taki vakya vyakaranik roop se sahi rahe. Agar aapke paas paanch se kam version hain, to sampadit output ek naye version ke roop mein save ho jata hai; paanch version par, keval **version 5** update hota hai. Bina chayan ke right-click karne se kuch nahin hota. Output ko badle bina radd karne ke liye **Esc** dabayein ya list ke bahar click karein.
-3. **Laagat** — har poora **Rephrase…** (koi chayan nahin) aur har shabd-vikalp anurodh model ka phir se upyog karta hai aur upyog laagat mein jod sakta hai (ek सामान्य anuvaad run ke samaan).
+1. **Phir se likhen…** — output mein koi text select na hone par, usi input ka alag shabdon mein ek aur poora anuvaad prapt karein. Model aapke paas pehle se maujood har version prapt karta hai taaki naye shabd un sabhi se alag ho sakein. Aap **paanch** version tak store kar sakte hain aur version dropdown mein unke beech switch kar sakte hain. Text select hone par, **Phir se likhen…** selection ke paas shabd vikalp kholta hai (right-click ke samaan). Selection ke bina, paanch version tak pahunchne ke baad **Phir se likhen…** disable ho jaata hai; selection ke saath, yeh paanch version par bhi kaam karta hai (keval shabd vikalp, version 5 ko update karte hue). Jab ek poora rephrase chal raha ho, to radd karne ke liye **Anuvaad rokein** par click karein; output us version par laut jaata hai jo rephrase shuru hone par sakriya tha.
+2. **Shabd vikalp** — output mein ek ya ek se adhik shabd ya ek chhota phrase select karein (yadi aap kisi shabd ka keval ek hissa select karte hain, to app selection ko poore shabdon tak badha deta hai), phir right-click karein ya **Phir se likhen…** par click karein. Selection ke paas vikalpon ki ek chhoti list dikhai deti hai; use badalne ke liye kisi ek par click karein. Har vikalp aapke selection se thoda bada hissa badal sakta hai (jaise ki ek lagatar preposition ya article) taaki vaakya vyakaranik roop se sahi rahe. Yadi aapke paas paanch se kam version hain, to edit kiya gaya output ek naye version ke roop mein save kiya jaata hai; paanch version par, keval **version 5** update hota hai. Bina selection ke right-click karne par cursor ke neeche ka shabd select hota hai (ya yadi wahan koi shabd nahi hai to kuch nahi hota). Output ko badle bina radd karne ke liye **Esc** dabayein ya list ke bahar click karein.
+3. **Laagat** — har poora **Phir se likhen…** (koi selection nahi) aur har shabd-vikalp request model ka phir se upyog karta hai aur upyog laagat mein jod sakta hai (ek samanya anuvaad run ke samaan).
 
 <br/>
 
@@ -326,7 +328,7 @@ Aap [**Settings** > **Glossary**](#glossary-settings) tab mein terms add, edit, 
 <a id="rewrite"></a>
 ## Rewrite
 
-Jab aap mukhya arth ko badle bina shabdon ko behtar banana chahte hain, to **Rewrite** ka upyog karein.
+Jab aap mukhya arth ko badle bina shabdon ko behtar banana chahte hain to **Phir se likhen** ka upyog karein. Text usi bhasha mein rehta hai (iska anuvaad nahi kiya jaata hai).
 
 ![Rewrite workspace](../images/screenshots/hi-Latn/rewrite.png)
 
@@ -341,9 +343,38 @@ Yah iske liye upyogi hai:
 
 <br/>
 
+<a id="rewrite-text"></a>
+### Text ko phir se likhen
+
+1. **Rewrite** kholein.
+2. Ek **Mode** chunein (jaise **Improve Clarity** ya **Make Formal**).
+3. Vikalpik roop se **From** ko apne text ki bhasha par set karein (ya **Detect Language** chhod dein).
+4. **Input** mein text type karein ya paste karein.
+5. **Rewrite** par click karein.
+6. **Output** mein parinaam padhein.
+7. Vikalpik roop se **Rephrase…** ya shabd vikalpon ke saath parinaam ko sudharein — dekhein [Apni rewrite ko sudharna](#refining-rewrite).
+
+<br/>
+
 > 💡 **TIP**<br/>
 > Jab aap "**Check Spelling & Grammar**" mode ka upyog karte hain, to output panel mein ek **Show changes** switch dikhai deta hai (**Copy** ke bagal mein).
 > Apne text par lagu kiye gaye vishisht sudharon ko dikhane ya chhupane ke liye ise chalu ya band karein.
+
+<br/>
+
+> ℹ️ **NOTE**<br/>
+> Rewrite mode **Alternative versions** ek **hi** run mein kai punargathan lautaata hai, jo output mein `----` dwara alag kiye jaate hain. Yeh **Rephrase…** se alag hai, jo samay ke saath ek version history banata hai (prati click ek naya variant). Dekhein [Apni rewrite ko sudharna](#refining-rewrite).
+
+<br/>
+
+<a id="refining-rewrite"></a>
+### Apni rewrite ko sudharna
+
+Ek safal rewrite ke baad, **Rephrase…** aur version dropdown workspace ke output side par dikhai dete hain (split layout mein, output column ke upar top toolbar mein, run metrics ke bagal mein; stacked layout mein, output panel ke upar **From:** ke bagal mein). Aap wahan parinaam ko sudhaar sakte hain — [Apne anuwad ko sudharna](#refining-translation) jaisa hi vichar, lekin text usi bhasha mein rehta hai aur vartaman rewrite **Mode** ko barkarar rakhta hai:
+
+1. **Rephrase…** — output mein koi text chuna na hone par, usi input ka ek aur poora rewrite alag shabdon ke saath prapt karein, abhi bhi chune hue mode ko lagu karte hue (jaise adhik spasht, chhota, ya adhik aupcharik). Model aapke paas maujood har version ko prapt karta hai taaki naye shabd un sabhi se alag ho sakein. Aap **paanch** version tak store kar sakte hain aur version dropdown mein unke beech switch kar sakte hain. Text chune hone par, **Rephrase…** selection ke paas shabd vikalp kholta hai (right-click ke samaan). Selection ke bina, **Rephrase…** ek baar jab aap paanch version tak pahunch jaate hain to disable ho jaata hai; selection ke saath, yeh paanch version par bhi kaam karta hai (keval shabd vikalp, version 5 ko update karte hue). Jab ek poora rephrase chal raha ho, to radd karne ke liye **Stop Rewrite** par click karein; output us version par wapas aa jaata hai jo rephrase shuru hone par sakriya tha.
+2. **Word alternatives** — output mein ek ya ek se adhik shabd ya ek chhota vakya chunein (yadi aap shabd ka keval ek hissa chunte hain, to app selection ko poore shabdon tak badha deta hai), phir right-click karein ya **Rephrase…** par click karein. Selection ke paas vikalpon ki ek chhoti soochi dikhai deti hai; ise badalne ke liye ek par click karein. Har vikalp aapke selection se thoda adhik vyapak span ko badal sakta hai taaki vakya vyakaranik roop se sahi rahe. Yadi aapke paas paanch se kam version hain, to sampadit output ek naye version ke roop mein save kiya jaata hai; paanch version par, keval **version 5** update kiya jaata hai. Bina selection ke right-click cursor ke neeche ke shabd ko chunta hai (ya yadi wahan koi shabd nahi hai to kuch nahi karta). Output ko badle bina radd karne ke liye **Esc** dabayein ya soochi ke bahar click karein.
+3. **Costs** — har poora **Rephrase…** (koi selection nahi) aur har shabd-vikalp anurodh model ka phir se upyog karta hai aur upyog laagat mein jod sakta hai (ek सामान्य rewrite run ke samaan).
 
 <br/><br/>
 
@@ -402,7 +433,7 @@ Ek prompt banane ka sabse tez tareeka hai:
 5. App ko aapke liye ek draft banane dein.
 6. Draft ki review karein aur **Save karen** par click karein.
 
-![Generate prompt](../images/screenshots/hi-Latn/transform-generate.png)
+![Prompt generate karen](../images/screenshots/hi-Latn/transform-generate.png)
 
 <br/>
 
@@ -467,7 +498,7 @@ Jab aap prompt editor mein **Prompt generate karen**, **Prompt behtar karein**, 
 
 App ka kitna upyog kar rahe hain aur iski laagat kya hai (paid models ke liye) yeh dekhne ke liye **Dashboard** ka upyog karein.
 
-![Dashboard summary](../images/screenshots/hi-Latn/dashboard-summary.png)
+![Dashboard saraansh](../images/screenshots/hi-Latn/dashboard-summary.png)
 
 <br/>
 
@@ -531,7 +562,7 @@ Sabhi data delete karne ya unki umra ke aadhar par records hatayein ke liye, [**
 
 **Itihaas** par click karein taaki **Transrewrt** ke andar aapki karyavahiyan ka itihaas dekh saken, jismein har operation ka input aur output shaamil hai.
 
-![History page](../images/screenshots/hi-Latn/history.png)
+![Itihaas page](../images/screenshots/hi-Latn/history.png)
 
 <br/>
 

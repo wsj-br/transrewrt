@@ -1,4 +1,4 @@
-![Transrewrt banner](../images/transrewrt_banner.png)
+![Transrewrt-Banner](../images/transrewrt_banner.png)
 
 <a id="transrewrt-user-guide"></a>
 # Benutzerhandbuch
@@ -53,14 +53,16 @@ Diese Anleitung erklärt die Verwendung der App, sobald sie installiert und ausg
   - [Sprachauswahl](#language-selection)
   - [Hilfreiche Übersetzungseinstellungen](#helpful-translation-settings)
   - [Ihre Übersetzung verfeinern](#refining-your-translation)
-  - [Glossar verwenden](#using-the-glossary)
+  - [Das Glossar verwenden](#using-the-glossary)
 - [Umschreiben](#rewrite)
+  - [Text umschreiben](#rewrite-text)
+  - [Umschreibung verfeinern](#refining-your-rewrite)
 - [Transformieren](#transform)
-  - [Einen vorhandenen Prompt ausführen](#run-an-existing-prompt)
-  - [Wenn Sie noch keine Prompts haben](#if-you-have-no-prompts-yet)
-  - [Schnell einen Prompt erstellen](#create-a-prompt-quickly)
-  - [Einen Prompt bearbeiten](#edit-a-prompt)
-  - [Einen Prompt testen, bevor Sie ihn verwenden](#test-a-prompt-before-using-it)
+  - [Eine bestehende Eingabeaufforderung ausführen](#run-an-existing-prompt)
+  - [Wenn Sie noch keine Eingabeaufforderungen haben](#if-you-have-no-prompts-yet)
+  - [Schnell eine Eingabeaufforderung erstellen](#create-a-prompt-quickly)
+  - [Eine Eingabeaufforderung bearbeiten](#edit-a-prompt)
+  - [Eine Eingabeaufforderung vor der Verwendung testen](#test-a-prompt-before-using-it)
 - [Dashboard](#dashboard)
   - [Daten filtern](#filter-the-data)
   - [Dashboard-Registerkarten](#dashboard-tabs)
@@ -74,26 +76,26 @@ Diese Anleitung erklärt die Verwendung der App, sobald sie installiert und ausg
   - [Modelle](#models)
   - [Sprachen](#languages)
   - [Kostenverfolgung](#cost-tracking)
-  - [Transformieren (Einstellungen-Registerkarte)](#transform-settings-tab)
-  - [Glossar (Einstellungen-Registerkarte)](#glossary-settings-tab)
+  - [Transformieren (Einstellungsregisterkarte)](#transform-settings-tab)
+  - [Glossar (Einstellungsregisterkarte)](#glossary-settings-tab)
   - [Benutzer](#users)
   - [API-Konfiguration](#api-config)
   - [Über](#about)
 - [Häufige Probleme](#common-issues)
-  - [Die App übersetzt, schreibt nicht um oder transformiert keinen Text](#the-app-will-not-translate-rewrite-or-transform-text)
+  - [Die App übersetzt, schreibt oder transformiert keinen Text](#the-app-will-not-translate-rewrite-or-transform-text)
   - [Die Modellliste ist leer](#the-model-list-is-empty)
   - [Das Ergebnis ist zu langsam oder zu teuer](#the-result-is-too-slow-or-too-expensive)
   - [Die Benutzeroberfläche ist in der falschen Sprache](#the-interface-is-in-the-wrong-language)
   - [Der Text ist zu klein oder schwer zu lesen](#the-text-is-too-small-or-hard-to-read)
-  - [Dashboard-Zusammenfassung sieht leer aus](#dashboard-summary-looks-empty)
-  - [Kosten zeigen „nicht verfügbar“ an oder scheinen falsch zu sein](#cost-shows-not-available-or-seems-wrong)
-  - [Gesamtkosten stimmen nicht mit meiner Anbieterrechnung überein](#total-cost-does-not-match-my-provider-bill)
-  - [Die Seite „Verlauf“ fehlt in der Seitenleiste](#the-history-page-is-missing-from-the-sidebar)
-  - [Web-App: unerwartet zur Anmeldeseite weitergeleitet](#web-app-redirected-to-the-login-page-unexpectedly)
+  - [Die Dashboard-Zusammenfassung sieht leer aus](#dashboard-summary-looks-empty)
+  - [Kosten werden als „nicht verfügbar“ angezeigt oder scheinen falsch zu sein](#cost-shows-not-available-or-seems-wrong)
+  - [Die Gesamtkosten stimmen nicht mit meiner Anbieterrechnung überein](#total-cost-does-not-match-my-provider-bill)
+  - [Die Verlaufsseite fehlt in der Seitenleiste](#the-history-page-is-missing-from-the-sidebar)
+  - [Web-App: unerwartete Weiterleitung zur Anmeldeseite](#web-app-redirected-to-the-login-page-unexpectedly)
   - [Web-Admin: Passwort vergessen oder verloren](#web-admin-forgot-or-lost-a-password)
-  - [Dashboard zeigt keine Daten für andere Benutzer (Web)](#dashboard-shows-no-data-for-other-users-web)
-  - [Ich habe einen Prompt geändert und die Änderungen verloren](#i-changed-a-prompt-and-lost-the-edits)
-- [Schnelle Tipps](#quick-tips)
+  - [Dashboard zeigt keine Daten für andere Benutzer an (Web)](#dashboard-shows-no-data-for-other-users-web)
+  - [Ich habe eine Eingabeaufforderung geändert und die Bearbeitungen verloren](#i-changed-a-prompt-and-lost-the-edits)
+- [Kurze Tipps](#quick-tips)
 - [Haftungsausschluss](#disclaimer)
 - [Lizenz](#license)
 
@@ -206,7 +208,7 @@ Im **Einfach**-Modus zeigt die Symbolleiste einen **Voreinstellungs-Selektor** m
 
 Im **Erweitert**-Modus ermöglicht der **Modell-Selektor**, auszuwählen, welche KI-Engine für die aktuelle Aufgabe verwendet werden soll.
 
-![Model selector](../images/screenshots/de/preset-selector.png)
+![Modellauswahl](../images/screenshots/de/preset-selector.png)
 
 Im Erweitert-Modus sind einige kostenlose Modelle möglicherweise nicht immer verfügbar – sie können offline sein oder ein Nutzungslimit erreicht haben. Die App kann das Modell dann automatisch aus Ihrer Liste entfernen. Um zu steuern, welche Modelle angezeigt werden, gehen Sie zu [**Einstellungen** > **Modelle**](#models). Sie können die Modelleinstellungen über das Anbietersymbol links neben dem Modellnamen in der Symbolleiste öffnen.
 
@@ -214,7 +216,7 @@ Im Erweitert-Modus sind einige kostenlose Modelle möglicherweise nicht immer ve
 
 Das **Globus-Symbol + Sprachcode** ändert die Sprache der App-Oberfläche, wie Menüs und Schaltflächen. Es ändert **nicht** die Übersetzungssprachen, die in **Übersetzen** verwendet werden.
 
-![Interface language selector](../images/screenshots/de/language-selector.png)
+![Auswahl der Schnittstellensprache](../images/screenshots/de/language-selector.png)
 
 <br/>
 
@@ -247,7 +249,7 @@ Sie können auch die Kosten jeder Operation (falls verfügbar) und die Gesamtkos
 
 Verwenden Sie **Übersetzen**, wenn Sie Text von einer Sprache in eine andere konvertieren möchten.
 
-![Translate workspace](../images/screenshots/de/translate.png)
+![Arbeitsbereich übersetzen](../images/screenshots/de/translate.png)
 
 <br/>
 
@@ -296,9 +298,9 @@ Unter [**Einstellungen** > **Allgemeine Einstellungen**](#general-settings) kön
 
 Nach einer erfolgreichen Übersetzung erscheinen **Hinzufügen…** und das Dropdown-Menü für die Version im Ausgabeheader, neben dem **Nach:**-Sprachauswahlfeld. Sie können das Ergebnis dort verfeinern:
 
-1. **Hinzufügen…** — ohne ausgewählten Text in der Ausgabe erhalten Sie eine vollständige Übersetzung des gleichen Eingangs mit anderer Formulierung. Das Modell erhält jede Version, die Sie bereits haben, sodass die neue Formulierung von allen abweichen kann. Sie können bis zu **fünf** Versionen speichern und zwischen ihnen im Dropdown-Menü für die Version wechseln. Mit ausgewähltem Text öffnet **Hinzufügen…** Wortalternativen in der Nähe der Auswahl (gleich wie Rechtsklick). Ohne Auswahl ist **Hinzufügen…** deaktiviert, sobald Sie fünf Versionen erreicht haben; mit einer Auswahl funktioniert es weiterhin bei fünf Versionen (nur Wortalternativen, Aktualisierung der Version 5). Während eine vollständige Umformulierung läuft, klicken Sie auf **Stoppen Übersetzen**, um abzubrechen; die Ausgabe kehrt zu der Version zurück, die aktiv war, als die Umformulierung begann.
-2. **Wortalternativen** — wählen Sie ein oder mehrere Wörter oder eine kurze Phrase in der Ausgabe aus (wenn Sie nur einen Teil eines Wortes auswählen, erweitert die App die Auswahl auf vollständige Wörter), dann klicken Sie mit der rechten Maustaste oder auf **Hinzufügen…**. Eine kurze Liste von Alternativen erscheint in der Nähe der Auswahl; klicken Sie auf eine, um sie zu ersetzen. Jede Option kann einen etwas breiteren Bereich als Ihre Auswahl ersetzen (zum Beispiel eine benachbarte Präposition oder einen Artikel), sodass der Satz grammatikalisch bleibt. Wenn Sie weniger als fünf Versionen haben, wird die bearbeitete Ausgabe als neue Version gespeichert; bei fünf Versionen wird nur **Version 5** aktualisiert. Rechtsklick ohne Auswahl hat keine Wirkung. Drücken Sie **Esc** oder klicken Sie außerhalb der Liste, um abzubrechen, ohne die Ausgabe zu ändern.
-3. **Kosten** — jede vollständige **Hinzufügen…** (keine Auswahl) und jede Anfrage nach Wortalternativen verwendet das Modell erneut und kann zu Nutzungskosten führen (gleich wie bei einem normalen Übersetzungsdurchlauf).
+1. **Neu formulieren…** – Wenn kein Text in der Ausgabe ausgewählt ist, erhalten Sie eine weitere vollständige Übersetzung derselben Eingabe mit einer anderen Formulierung. Das Modell erhält jede Version, die Sie bereits haben, sodass die neue Formulierung von allen abweichen kann. Sie können bis zu **fünf** Versionen speichern und im Versions-Dropdown zwischen ihnen wechseln. Wenn Text ausgewählt ist, öffnet **Neu formulieren…** Wortalternativen in der Nähe der Auswahl (wie beim Rechtsklick). Ohne Auswahl ist **Neu formulieren…** deaktiviert, sobald Sie fünf Versionen erreicht haben; mit einer Auswahl funktioniert es auch bei fünf Versionen (nur Wortalternativen, Version 5 wird aktualisiert). Während eine vollständige Neuformulierung läuft, klicken Sie auf **Übersetzung stoppen**, um abzubrechen; die Ausgabe kehrt zu der Version zurück, die aktiv war, als die Neuformulierung begann.
+2. **Wortalternativen** – Wählen Sie ein oder mehrere Wörter oder eine kurze Phrase in der Ausgabe aus (wenn Sie nur einen Teil eines Wortes auswählen, erweitert die App die Auswahl auf ganze Wörter), klicken Sie dann mit der rechten Maustaste oder klicken Sie auf **Neu formulieren…**. Eine kurze Liste von Alternativen erscheint in der Nähe der Auswahl; klicken Sie auf eine, um sie zu ersetzen. Jede Option kann einen etwas größeren Bereich als Ihre Auswahl ersetzen (z. B. eine angrenzende Präposition oder einen Artikel), damit der Satz grammatikalisch korrekt bleibt. Wenn Sie weniger als fünf Versionen haben, wird die bearbeitete Ausgabe als neue Version gespeichert; bei fünf Versionen wird nur **Version 5** aktualisiert. Ein Rechtsklick ohne Auswahl wählt das Wort unter dem Cursor aus (oder tut nichts, wenn dort kein Wort ist). Drücken Sie **Esc** oder klicken Sie außerhalb der Liste, um abzubrechen, ohne die Ausgabe zu ändern.
+3. **Kosten** – Jede vollständige **Neuformulierung…** (keine Auswahl) und jede Anfrage nach Wortalternativen verwendet das Modell erneut und kann zu Nutzungskosten führen (wie ein normaler Übersetzungsdurchlauf).
 
 <br/>
 
@@ -326,9 +328,9 @@ Sie fügen Begriffe im Tab [**Einstellungen** > **Glossar**](#glossary-settings)
 <a id="rewrite"></a>
 ## Umschreiben
 
-Verwenden Sie **Umschreiben**, wenn Sie den Wortlaut verbessern möchten, ohne die Hauptbedeutung zu ändern.
+Verwenden Sie **Umschreiben**, wenn Sie die Formulierung verbessern möchten, ohne die Hauptbedeutung zu ändern. Der Text bleibt in derselben Sprache (er wird nicht übersetzt).
 
-![Rewrite workspace](../images/screenshots/de/rewrite.png)
+![Arbeitsbereich umschreiben](../images/screenshots/de/rewrite.png)
 
 Dies ist nützlich für:
 
@@ -341,9 +343,38 @@ Dies ist nützlich für:
 
 <br/>
 
+<a id="rewrite-text"></a>
+### Text umschreiben
+
+1. Öffnen Sie **Umschreiben**.
+2. Wählen Sie einen **Modus** (z. B. **Klarheit verbessern** oder **Förmlich machen**).
+3. Optional können Sie **Von** auf die Sprache Ihres Textes einstellen (oder **Sprache erkennen** belassen).
+4. Geben Sie Text in das Feld **Eingabe** ein oder fügen Sie ihn dort ein.
+5. Klicken Sie auf **Umschreiben**.
+6. Lesen Sie das Ergebnis in **Ausgabe**.
+7. Optional können Sie das Ergebnis mit **Neu formulieren…** oder Wortalternativen verfeinern – siehe [Ihre Umschreibung verfeinern](#refining-rewrite).
+
+<br/>
+
 > 💡 **TIPP**<br/>
 > Wenn Sie den Modus „**Rechtschreibung und Grammatik prüfen**“ verwenden, erscheint im Ausgabebereich (neben **Kopieren**) ein Schalter **Änderungen anzeigen**.
 > Schalten Sie ihn ein oder aus, um die spezifischen Korrekturen anzuzeigen oder auszublenden, die auf Ihren Text angewendet wurden.
+
+<br/>
+
+> ℹ️ **HINWEIS**<br/>
+> Der Umschreibmodus **Alternative Versionen** liefert mehrere Neuformulierungen in einem **einzigen** Durchlauf, getrennt durch `----` in der Ausgabe. Das unterscheidet sich von **Neu formulieren…**, das eine Versionshistorie über die Zeit aufbaut (eine neue Variante pro Klick). Siehe [Ihre Umschreibung verfeinern](#refining-rewrite).
+
+<br/>
+
+<a id="refining-rewrite"></a>
+### Ihre Umschreibung verfeinern
+
+Nach einer erfolgreichen Umschreibung erscheinen **Neu formulieren…** und das Versions-Dropdown auf der Ausgabeseite des Arbeitsbereichs (im geteilten Layout in der oberen Symbolleiste über der Ausgabespalte, neben den Laufmetriken; im gestapelten Layout über dem Ausgabebereich neben **Von:**). Dort können Sie das Ergebnis verfeinern – die gleiche Idee wie bei [Ihrer Übersetzung verfeinern](#refining-translation), aber der Text bleibt in derselben Sprache und behält den aktuellen Umschreibungs-**Modus** bei:
+
+1. **Neu formulieren…** – Wenn kein Text in der Ausgabe ausgewählt ist, erhalten Sie eine weitere vollständige Umschreibung derselben Eingabe mit einer anderen Formulierung, wobei der ausgewählte Modus (z. B. klarer, kürzer oder formeller) weiterhin angewendet wird. Das Modell erhält jede Version, die Sie bereits haben, sodass sich die neue Formulierung von allen unterscheiden kann. Sie können bis zu **fünf** Versionen speichern und im Versions-Dropdown zwischen ihnen wechseln. Wenn Text ausgewählt ist, öffnet **Neu formulieren…** Wortalternativen in der Nähe der Auswahl (wie beim Rechtsklick). Ohne Auswahl ist **Neu formulieren…** deaktiviert, sobald Sie fünf Versionen erreicht haben; mit Auswahl funktioniert es bei fünf Versionen immer noch (nur Wortalternativen, Version 5 wird aktualisiert). Während eine vollständige Neuformulierung läuft, klicken Sie auf **Umschreibung stoppen**, um abzubrechen; die Ausgabe kehrt zu der Version zurück, die aktiv war, als die Neuformulierung begann.
+2. **Wortalternativen** – Wählen Sie ein oder mehrere Wörter oder eine kurze Phrase in der Ausgabe aus (wenn Sie nur einen Teil eines Wortes auswählen, erweitert die App die Auswahl auf ganze Wörter), klicken Sie dann mit der rechten Maustaste oder klicken Sie auf **Neu formulieren…**. Eine kurze Liste von Alternativen erscheint in der Nähe der Auswahl; klicken Sie auf eine, um sie zu ersetzen. Jede Option kann einen etwas größeren Bereich als Ihre Auswahl ersetzen, damit der Satz grammatikalisch korrekt bleibt. Wenn Sie weniger als fünf Versionen haben, wird die bearbeitete Ausgabe als neue Version gespeichert; bei fünf Versionen wird nur **Version 5** aktualisiert. Ein Rechtsklick ohne Auswahl wählt das Wort unter dem Cursor aus (oder tut nichts, wenn dort kein Wort ist). Drücken Sie **Esc** oder klicken Sie außerhalb der Liste, um abzubrechen, ohne die Ausgabe zu ändern.
+3. **Kosten** – Jede vollständige **Neu formulieren…** (keine Auswahl) und jede Wortalternativen-Anfrage verwendet das Modell erneut und kann zu den Nutzungskosten beitragen (wie ein normaler Umschreibungslauf).
 
 <br/><br/>
 
@@ -354,7 +385,7 @@ Dies ist nützlich für:
 
 Verwenden Sie **Umwandeln**, wenn Sie möchten, dass die KI einer benutzerdefinierten Anweisung folgt.
 
-![Transform workspace](../images/screenshots/de/transform.png)
+![Transformations-Arbeitsbereich](../images/screenshots/de/transform.png)
 
 Dieser Bereich der App bietet die größte Flexibilität. Sie können ihn für Aufgaben wie diese verwenden:
 
@@ -402,7 +433,7 @@ Der schnellste Weg, um einen Prompt zu erstellen, ist:
 5. Lassen Sie die App einen Entwurf für Sie erstellen.
 6. Überprüfen Sie den Entwurf und klicken Sie auf **Speichern**.
 
-![Generate prompt](../images/screenshots/de/transform-generate.png)
+![Eingabeaufforderung generieren](../images/screenshots/de/transform-generate.png)
 
 <br/>
 
@@ -411,7 +442,7 @@ Der schnellste Weg, um einen Prompt zu erstellen, ist:
 
 Wenn Sie einen Prompt erstellen oder bearbeiten, wird der Editor auf der linken Seite angezeigt und ein Testbereich auf der rechten Seite.
 
-![Transform prompt editor](../images/screenshots/de/transform-prompt-edit.png)
+![Transformations-Eingabeaufforderungseditor](../images/screenshots/de/transform-prompt-edit.png)
 
 Die wichtigsten Felder sind:
 
@@ -467,7 +498,7 @@ Wenn Sie im Prompt-Editor **Prompt generieren**, **Prompt verbessern** oder **Pr
 
 Verwenden Sie **Übersicht**, um zu sehen, wie intensiv Sie die App nutzen und welche Kosten entstehen (für kostenpflichtige Modelle).
 
-![Dashboard summary](../images/screenshots/de/dashboard-summary.png)
+![Dashboard-Zusammenfassung](../images/screenshots/de/dashboard-summary.png)
 
 <br/>
 
@@ -481,7 +512,7 @@ Verwenden Sie **Übersicht**, um zu sehen, wie intensiv Sie die App nutzen und w
 
 Verwenden Sie die Filterknöpfe oben, um den Zeitraum zu ändern.
 
-![Dashboard filters](../images/screenshots/de/dashboard-filter.png)
+![Dashboard-Filter](../images/screenshots/de/dashboard-filter.png)
 
 <br/>
 
@@ -531,7 +562,7 @@ Um alle Daten zu löschen oder Datensätze basierend auf ihrem Alter zu entferne
 
 Klicken Sie auf **Verlauf**, um den Verlauf Ihrer Aktionen in **Transrewrt** einzusehen, einschließlich der Eingabe und Ausgabe jeder Operation.
 
-![History page](../images/screenshots/de/history.png)
+![Verlaufsseite](../images/screenshots/de/history.png)
 
 <br/>
 
@@ -540,7 +571,7 @@ Klicken Sie auf **Verlauf**, um den Verlauf Ihrer Aktionen in **Transrewrt** ein
 
 **Verlauf** verwendet dieselben Zeitbereichsfilter wie die Seite **Übersicht**.
 
-![Dashboard filters](../images/screenshots/de/dashboard-filter.png)
+![Dashboard-Filter](../images/screenshots/de/dashboard-filter.png)
 
 <br/>
 
@@ -641,7 +672,7 @@ Sicherungen, die entweder in der Web- oder Desktop-Version erstellt wurden, kön
 
 Diese Registerkarte ist nur verfügbar, wenn **KI-Erlebnis** in [**Allgemeine Einstellungen**](#general-settings) auf **Erweitert** gesetzt ist. Verwenden Sie **Einstellungen** > **Modelle**, um festzulegen, welche Modelle in der Symbolleiste angezeigt werden.
 
-![Settings Models tab](../images/screenshots/de/settings-general.png)
+![Einstellungen Modelle-Tab](../images/screenshots/de/settings-general.png)
 
 Die Seite enthält zwei Listen:
 

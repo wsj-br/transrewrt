@@ -24,13 +24,23 @@
 
     <header class="topbar">
       <div class="topbar-row topbar-title-row">
-        <h1>Transrewrt — presets.json (dev)</h1>
+        <div class="topbar-brand">
+          <img
+            class="topbar-logo"
+            src="/images/transrewrt_logo.png"
+            alt="Transrewrt logo"
+            width="28"
+            height="28"
+          />
+          <h1>Transrewrt — presets.json (dev)</h1>
+        </div>
         <div class="topbar-actions">
           <span id="status-line" class="status-line"></span>
           <button type="button" id="btn-view-logs" class="btn secondary btn-view-logs">
             Server log
           </button>
           <button type="button" id="btn-reload" class="btn secondary">Reload</button>
+          <button type="button" id="btn-presets-main" class="btn secondary">Presets</button>
           <button type="button" id="btn-performance" class="btn secondary">Performance</button>
           <button type="button" id="btn-translate-benchmark" class="btn secondary">Benchmark</button>
           <button type="button" id="btn-ai-suggest" class="btn">AI Suggestion</button>
@@ -274,11 +284,12 @@
             <div class="performance-header-left">
               <h2 id="translate-benchmark-panel-title">Benchmark</h2>
               <p class="muted performance-note">
-                Runs one streamed translate per selected preset from the loaded catalog
-                (including unsaved edits). Optionally include each preset’s
-                <code>fallback_ids.openrouter</code> model.
+                Runs one streamed translate per selected preset and provider from the loaded
+                catalog (including unsaved edits). Choose one Easy-mode provider or all
+                configured providers. Optionally include each preset’s
+                <code>fallback_ids</code> for those providers.
                 Portuguese → English with the same prompts as the app. Times are end-to-end wall
-                clock (not the TTFT percentiles on the Performance page). Costs use OpenRouter
+                clock (not the TTFT percentiles on the Performance page). Costs use provider
                 usage when reported.
               </p>
             </div>
@@ -294,13 +305,19 @@
           <div class="benchmark-setup-columns">
             <div class="benchmark-setup-presets">
               <span class="header-model-label">Presets to benchmark</span>
+              <div class="benchmark-provider-row">
+                <label class="benchmark-provider-label" for="benchmark-provider">Provider</label>
+                <select id="benchmark-provider" class="benchmark-provider-select" aria-label="Provider to benchmark">
+                  <option value="openrouter">OpenRouter</option>
+                </select>
+              </div>
               <label class="benchmark-fallback-toggle ai-suggest-presets-check">
                 <input type="checkbox" id="benchmark-include-fallback" checked />
                 <span class="ai-suggest-presets-check-label">Test fallback models too</span>
               </label>
               <p class="muted benchmark-setup-presets-note">
-                Select presets to include (<code>free-router</code> is available here). One result
-                row per model tested.
+                Select presets to include (<code>free-router</code> is OpenRouter-only). One result
+                row per provider model tested.
               </p>
               <div
                 id="benchmark-presets-checkboxes"
@@ -393,7 +410,10 @@
     >
       <div class="model-picker-modal">
         <div class="model-picker-header">
-          <h2 id="model-picker-title">Select model</h2>
+          <div class="model-picker-header-text">
+            <h2 id="model-picker-title">Select model</h2>
+            <p id="model-picker-current" class="muted model-picker-current" aria-live="polite"></p>
+          </div>
           <button type="button" id="model-picker-close" class="btn secondary">Close</button>
         </div>
         <p id="model-picker-hint" class="muted model-picker-hint"></p>

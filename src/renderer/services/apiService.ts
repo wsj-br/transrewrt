@@ -816,6 +816,129 @@ Respond with ONLY the JSON object. No other text.`;
   }
 
   /**
+   * Generate an alternative rewrite of the same input using a different approach from all existing versions.
+   * @param {string} text - Original source text
+   * @param {string|string[]} existingVersions - Current rewrite(s) to avoid repeating
+   * @param {string} mode - Rewrite mode label (used in the prompt to keep style consistent)
+   * @param {string} model - Model to use
+   * @param {string|null} sourceLang - Source language (optional)
+   * @param {string|null} promptHint - Preset hint (optional)
+   * @param {AbortSignal|null} signal - Optional abort signal
+   * @returns {Promise<Object>} Result with content and usage
+   */
+  async rewriteAlternative(text, existingVersions, mode, model, sourceLang = null, promptHint = null, signal = null) {
+    try {
+      const config = prompts.rewrite_alternative;
+      const taskLines = [...config.task];
+      if (sourceLang && sourceLang !== "Detect Language" && config.withSourceLanguageLine) {
+        taskLines.unshift(
+          resolvePrompt(config.withSourceLanguageLine).replace(/\{\{sourceLang\}\}/g, sourceLang),
+        );
+      }
+      let systemPrompt = resolvePrompt([
+        "You are a professional writer.",
+        "",
+        "Your task:",
+        ...taskLines,
+        ...config.footer,
+      ]);
+      if (promptHint && String(promptHint).trim()) {
+        systemPrompt = `${systemPrompt}\n\n[Preset instruction: ${String(promptHint).trim()}]`;
+      }
+      const versions = Array.isArray(existingVersions)
+        ? existingVersions.filter((v) => typeof v === "string" && v.trim())
+        : (existingVersions ? [existingVersions] : []);
+      const versionTags = versions
+        .map((v, i) => `<version_${i + 1}>${v}</version_${i + 1}>`)
+        .join("\n");
+      const userMessage = `<original>${text}</original>\n<rewrite_mode>${mode}</rewrite_mode>\n<existing_rewrites>\n${versionTags}\n</existing_rewrites>`;
+      return await this._streamChatCompletion(
+        systemPrompt,
+        userMessage,
+        model,
+        0.6,
+        signal,
+        "rewrite_alternative",
+        { mode },
+      );
+    } catch (error) {
+      if (isAbortError(error)) {
+        return { cancelled: true, content: "", usage: null };
+      }
+      const isUnavailable = error && (
+        error.status === 404 || error.status === 400 ||
+        (error.message && /404|400|model not found|HTTP error! status: (400|404)/i.test(String(error.message)))
+      );
+      if (isUnavailable) throw error;
+      console.error("Rewrite alternative error:", error);
+      return { error: error.message };
+    }
+  }
+
+  /**
+   * Suggest alternative wordings for a phrase within an existing rewrite output.
+   * @param {string} fullRewrite - Current rewritten output
+   * @param {string} phrase - Selected phrase to replace
+   * @param {string} originalText - Source input text
+   * @param {string} model - Model to use
+   * @param {string|null} sourceLang - Source language (optional)
+   * @param {AbortSignal|null} signal - Optional abort signal
+   * @returns {Promise<Object>} { alternatives: { text, replaces }[], usage, ... } or { error: string }
+   */
+  async rewriteWordAlternatives(fullRewrite, phrase, originalText, model, sourceLang = null, signal = null) {
+    try {
+      const config = prompts.rewrite_word_alternatives;
+      const taskLines = [...config.task];
+      if (sourceLang && sourceLang !== "Detect Language" && config.withSourceLanguageLine) {
+        taskLines.unshift(
+          resolvePrompt(config.withSourceLanguageLine).replace(/\{\{sourceLang\}\}/g, sourceLang),
+        );
+      }
+      const systemPrompt = resolvePrompt([
+        "You are an expert writer and editor with a strong command of style, register, and idiomatic expression.",
+        "",
+        "Your task:",
+        ...taskLines,
+        ...config.footer,
+      ]);
+      const userMessage = `<full_rewrite>${fullRewrite}</full_rewrite>\n<phrase>${phrase}</phrase>\n<original>${originalText}</original>`;
+      const result = await this._streamChatCompletion(
+        systemPrompt,
+        userMessage,
+        model,
+        0.5,
+        signal,
+        "rewrite_word_alternatives",
+        {},
+      );
+      if (result.cancelled) {
+        return { cancelled: true, alternatives: [], usage: result.usage };
+      }
+      const parsed = parseWordAlternativesJson(result.content);
+      if (parsed.error) {
+        return { error: parsed.error, usage: result.usage, model: result.model };
+      }
+      return {
+        ...result,
+        alternatives: parsed.alternatives,
+        content: undefined,
+      };
+    } catch (error) {
+      if (isAbortError(error)) {
+        return { cancelled: true, alternatives: [], usage: null };
+      }
+      const isUnavailable = error && (
+        error.status === 404 || error.status === 400 ||
+        (error.message && /404|400|model not found|HTTP error! status: (400|404)/i.test(String(error.message)))
+      );
+      if (isUnavailable) throw error;
+      console.error("Rewrite word alternatives error:", error);
+      return { error: error.message };
+    }
+  }
+
+
+  /**
    * Transform text with a custom prompt config.
    * @param {string} text - Input text
    * @param {Object} promptConfig - Custom prompt (name, role, instructions, output_description, temperature, target_language: boolean)

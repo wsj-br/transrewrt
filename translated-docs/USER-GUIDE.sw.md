@@ -1,4 +1,4 @@
-![Transrewrt banner](../images/transrewrt_banner.png)
+![Bango la Transrewrt](../images/transrewrt_banner.png)
 
 <a id="transrewrt-user-guide"></a>
 # Mwongozo wa Mtumiaji
@@ -53,46 +53,48 @@ Mwongozo huu unaelezea jinsi ya kutumia programu baada ya kupakia na kuinua. Kwa
   - [Uchaguzi wa lugha](#language-selection)
   - [Mazingira muhimu ya tafsiri](#helpful-translation-settings)
   - [Kurekebisha tafsiri yako](#refining-your-translation)
-  - [Kutumia kamusi](#using-the-glossary)
+- [Kutumia Kamusi](#using-the-glossary)
 - [Kuandika upya](#rewrite)
+  - [Andika upya maandishi](#rewrite-text)
+  - [Kuboresha uandishi wako upya](#refining-your-rewrite)
 - [Kubadilisha](#transform)
   - [Endesha maelezo yaliyopo](#run-an-existing-prompt)
-  - [Ikiwa huna maelezo bado](#if-you-have-no-prompts-yet)
+  - [Ikiwa huna maelezo yoyote bado](#if-you-have-no-prompts-yet)
   - [Unda maelezo haraka](#create-a-prompt-quickly)
-  - [Hariri maelezo](#edit-a-prompt)
-  - [Jaribu maelezo kabla ya kuyatumia](#test-a-prompt-before-using-it)
+- [Hariri maelezo](#edit-a-prompt)
+- [Jaribu maelezo kabla ya kuyatumia](#test-a-prompt-before-using-it)
 - [Dashibodi](#dashboard)
   - [Chuja data](#filter-the-data)
-  - [Tabu za dashibodi](#dashboard-tabs)
-  - [Hamisha data](#export-data)
-  - [Futa rekodi zilizohifadhiwa kwa modeli](#delete-stored-records-for-a-model)
+ - [Vichupo vya Dashibodi](#dashboard-tabs)
+ - [Hamisha data](#export-data)
+ - [Futa rekodi zilizohifadhiwa kwa modeli](#delete-stored-records-for-a-model)
 - [Historia](#history)
-  - [Chuja historia](#filter-the-history)
-  - [Hamisha data ya historia](#export-history-data)
+- [Chuja Historia](#filter-the-history)
+- [Hamisha data ya historia](#export-history-data)
 - [Mipangilio](#settings)
-  - [Mipangilio ya jumla](#general-settings)
-  - [Modeli](#models)
-  - [Lugha](#languages)
-  - [Ufuatiliaji wa gharama](#cost-tracking)
-  - [Kubadilisha (tabu ya mipangilio)](#transform-settings-tab)
-  - [Kamusi (tabu ya mipangilio)](#glossary-settings-tab)
-  - [Watumiaji](#users)
-  - [Usanidi wa API](#api-config)
-  - [Kuhusu](#about)
+  - [Mipangilio ya Jumla](#general-settings)
+ - [Modeli](#models)
+ - [Lugha](#languages)
+ - [Ufuatiliaji wa gharama](#cost-tracking)
+ - [Badilisha (kichupo cha mipangilio)](#transform-settings-tab)
+ - [Kamusi (kichupo cha mipangilio)](#glossary-settings-tab)
+ - [Watumiaji](#users)
+ - [Usanidi wa API](#api-config)
+ - [Kuhusu](#about)
 - [Masuala ya kawaida](#common-issues)
-  - [Programu haitatambua lugha, kuandika upya, au kubadilisha maandishi](#the-app-will-not-translate-rewrite-or-transform-text)
-  - [Modeli orodha ni tupu](#the-model-list-is-empty)
+  - [Programu haitafsiri, kuandika upya, au kubadilisha maandishi](#the-app-will-not-translate-rewrite-or-transform-text)
+  - [Orodha ya modeli haina kitu](#the-model-list-is-empty)
   - [Matokeo ni polepole sana au ghali sana](#the-result-is-too-slow-or-too-expensive)
-  - [Kiolesura kiko katika lugha isiyo sahihi](#the-interface-is-in-the-wrong-language)
-  - [Maandishi ni madogo sana au magumu kusoma](#the-text-is-too-small-or-hard-to-read)
-  - [Muhtasari wa Dashibodi unaonekana tupu](#dashboard-summary-looks-empty)
-  - [Gharama inaonyesha "haipatikani" au inaonekana vibaya](#cost-shows-not-available-or-seems-wrong)
-  - [Jumla ya gharama hailingani na bili ya mtoa huduma wangu](#total-cost-does-not-match-my-provider-bill)
-  - [Ukurasa wa Historia haupo kwenye upau wa kando](#the-history-page-is-missing-from-the-sidebar)
-  - [Programu ya wavuti: ilielekezwa tena kwenye ukurasa wa kuingia bila kutarajia](#web-app-redirected-to-the-login-page-unexpectedly)
-  - [Utawala wa wavuti: umesahau au kupoteza nenosiri](#web-admin-forgot-or-lost-a-password)
-  - [Dashibodi inaonyesha hakuna data kwa watumiaji wengine (wavuti)](#dashboard-shows-no-data-for-other-users-web)
-  - [Nilibadilisha maelezo na nikapoteza marekebisho](#i-changed-a-prompt-and-lost-the-edits)
+ - [Kiolesura kiko katika lugha isiyo sahihi](#the-interface-is-in-the-wrong-language)
+ - [Maandishi ni madogo sana au magumu kusoma](#the-text-is-too-small-or-hard-to-read)
+ - [Muhtasari wa Dashibodi unaonekana tupu](#dashboard-summary-looks-empty)
+ - [Gharama inaonyesha "haipatikani" au inaonekana si sahihi](#cost-shows-not-available-or-seems-wrong)
+ - [Jumla ya gharama hailingani na bili yangu ya mtoa huduma](#total-cost-does-not-match-my-provider-bill)
+ - [Ukurasa wa Historia haupo kwenye upau wa kando](#the-history-page-is-missing-from-the-sidebar)
+ - [Programu ya wavuti: imehamishwa kwenye ukurasa wa kuingia bila kutarajiwa](#web-app-redirected-to-the-login-page-unexpectedly)
+ - [Msimamizi wa wavuti: nimesahau au nimepoteza nenosiri](#web-admin-forgot-or-lost-a-password)
+ - [Dashibodi haionyeshi data kwa watumiaji wengine (wavuti)](#dashboard-shows-no-data-for-other-users-web)
+ - [Nilibadilisha maelezo na kupoteza mabadiliko](#i-changed-a-prompt-and-lost-the-edits)
 - [Vidokezo vya haraka](#quick-tips)
 - [Kanusho](#disclaimer)
 - [Leseni](#license)
@@ -206,7 +208,7 @@ Katika namweo la **Rahisi**, barua pepe inaonyesha kichagua cha **vitanzandiko**
 
 Katika namweo la **Ubinafsi**, **kudhibiti cha mfumo** kukuwezesha kuchagua injini gani ya AI utakayotumia kwa kazi ya sasa.
 
-![Model selector](../images/screenshots/sw/preset-selector.png)
+![Kichagua modeli](../images/screenshots/sw/preset-selector.png)
 
 Katika namweo ya Ubinafsi, mifumo fulani isiyo ya malipo inaweza isipatikana mara kwa mara—inaweza kuwa imesimama au imefikia kikomo cha matumizi. Programu inaweza kuondoa mfumo huo kutoka kwenye orodha yako kiotomatiki. Ili udhibiti mifumo yanayotazamika, nenda kwenye [**Mipangilio** > **Mifano**](#models). Unaweza kufungua mipangilio ya mfumo kutoka kwenye ikoni ya mtoa huduma upande wa kushoto wa jina la mfumo kwenye barua ya zana.
 
@@ -214,7 +216,7 @@ Katika namweo ya Ubinafsi, mifumo fulani isiyo ya malipo inaweza isipatikana mar
 
 Ikoni ya **dunduma + msimbo wa lugha** inabadilisha lugha ya kuingiza ya programu, kama vile menyu na vitufe. Hai**badilishi** lugha za tafsiri zinazotumika katika **Tafsiri**.
 
-![Interface language selector](../images/screenshots/sw/language-selector.png)
+![Kichagua lugha ya kiolesura](../images/screenshots/sw/language-selector.png)
 
 <br/>
 
@@ -247,7 +249,7 @@ Unaweza pia kufuatilia gharama ya kila kitendo (ikiwa inapatikana) na jumla ya g
 
 Tumia **Tafsiri** unapotaka kubadilisha maandishi kutoka kwa lugha moja hadi nyingine.
 
-![Translate workspace](../images/screenshots/sw/translate.png)
+![Eneo-kazi la kutafsiri](../images/screenshots/sw/translate.png)
 
 <br/>
 
@@ -296,9 +298,9 @@ Katika [**Mipangilio** > **Mipangilio ya kawaida**](#general-settings), unaweza 
 
 Baada ya tafsiri kufanikiwa, **Rephrase…** na orodha ya toleo zinaonekana kwenye kichwa cha matokeo, karibu na mteuzi wa lugha **Kwa:**. Unaweza kuboresha matokeo hapo:
 
-1. **Rephrase…** — bila maandiko yoyote yaliyochaguliwa kwenye matokeo, pata tafsiri nyingine kamili ya ingizo sawa na maneno tofauti. Mfano unapata kila toleo ulilonalo tayari ili maneno mapya yawe tofauti na yote. Unaweza kuhifadhi hadi **tano** ya matoleo na kubadilisha kati yao kwenye orodha ya toleo. Ukiwa na maandiko yaliyochaguliwa, **Rephrase…** inafungua mbadala za maneno karibu na uchaguzi (sawa na kubonyeza kulia). Bila uchaguzi, **Rephrase…** inazuiliwa mara unapofikia matoleo tano; ukiwa na uchaguzi, bado inafanya kazi kwa matoleo tano (mbadala za maneno pekee, ikisasisha toleo 5). Wakati kuboresha kamili kunapofanyika, bonyeza **Simamisha Tafsiri** ili kughairi; matokeo yanarudi kwenye toleo lililokuwa hai wakati kuboresha kulianza.
-2. **Mbadala za maneno** — chagua neno moja au zaidi au kifungu kifupi kwenye matokeo (ikiwa unachagua sehemu tu ya neno, programu inapanua uchaguzi hadi maneno kamili), kisha bonyeza kulia au bonyeza **Rephrase…**. Orodha fupi ya mbadala inaonekana karibu na uchaguzi; bonyeza moja ili kuibadilisha. Kila chaguo kinaweza kubadilisha sehemu pana kidogo zaidi kuliko uchaguzi wako (kwa mfano, preposition au makala iliyo karibu) ili sentensi ibaki na sarufi. Ikiwa una matoleo chini ya tano, matokeo yaliyohariri yanahifadhiwa kama toleo jipya; kwa matoleo tano, ni **toleo 5** pekee linalosasishwa. Bonyeza kulia bila uchaguzi hakufanyi chochote. Bonyeza **Esc** au bonyeza nje ya orodha ili kughairi bila kubadilisha matokeo.
-3. **Gharama** — kila **Rephrase…** kamili (bila uchaguzi) na kila ombi la mbadala za maneno hutumia mfano tena na inaweza kuongeza gharama ya matumizi (sawa na kazi ya tafsiri ya kawaida).
+1. **Andika upya…** — bila maandishi yaliyochaguliwa katika towe, pata tafsiri nyingine kamili ya ingizo lilelile kwa maneno tofauti. Modeli inapokea kila toleo ulilonalo tayari ili maneno mapya yaweze kutofautiana na yote. Unaweza kuhifadhi hadi matoleo **matano** na kubadilisha kati yao katika menyu kunjuzi ya toleo. Ukiwa na maandishi yaliyochaguliwa, **Andika upya…** hufungua mbadala za neno karibu na uteuzi (sawa na kubofya kulia). Bila uteuzi, **Andika upya…** huzimwa mara tu unapofikia matoleo matano; ukiwa na uteuzi, bado inafanya kazi katika matoleo matano (mbadala za neno pekee, ikisasisha toleo la 5). Wakati uandishi upya kamili unaendelea, bofya **Simamisha Tafsiri** ili kughairi; towe hurudi kwenye toleo lililokuwa likifanya kazi wakati uandishi upya ulipoanza.
+2. **Mbadala za neno** — chagua neno moja au zaidi au kifungu kifupi katika towe (ukichagua sehemu tu ya neno, programu hupanua uteuzi hadi maneno kamili), kisha bofya kulia au bofya **Andika upya…**. Orodha fupi ya mbadala huonekana karibu na uteuzi; bofya moja ili kuibadilisha. Kila chaguo linaweza kubadilisha nafasi pana kidogo kuliko uteuzi wako (kwa mfano kiambishi au kifungu cha karibu) ili sentensi ibaki sahihi kisarufi. Ikiwa una matoleo chini ya matano, towe lililohaririwa huhifadhiwa kama toleo jipya; katika matoleo matano, **toleo la 5** pekee ndilo husasishwa. Bofya kulia bila uteuzi huchagua neno lililo chini ya kishale (au haifanyi chochote ikiwa hakuna neno hapo). Bonyeza **Esc** au bofya nje ya orodha ili kughairi bila kubadilisha towe.
+3. **Gharama** — kila **Andika upya…** kamili (hakuna uteuzi) na kila ombi la mbadala wa neno hutumia modeli tena na linaweza kuongeza gharama ya matumizi (sawa na utafsiri wa kawaida).
 
 <br/>
 
@@ -326,9 +328,9 @@ Unaongeza, unahariri, unaingiza, na unahamisha istilahi katika tabu ya [**Mipang
 <a id="rewrite"></a>
 ## Andika upya
 
-Tumia **Andika upya** unapotaka kuboresha maneno bila kubadilisha maana kuu.
+Tumia **Andika upya** unapotaka kuboresha maneno bila kubadilisha maana kuu. Maandishi hubaki katika lugha ileile (hayatafsiriwi).
 
-![Rewrite workspace](../images/screenshots/sw/rewrite.png)
+![Eneo-kazi la kuandika upya](../images/screenshots/sw/rewrite.png)
 
 Hii ni muhimu kwa:
 
@@ -341,9 +343,38 @@ Hii ni muhimu kwa:
 
 <br/>
 
+<a id="rewrite-text"></a>
+### Andika upya maandishi
+
+1. Fungua **Andika Upya**.
+2. Chagua **Njia** (kwa mfano **Boresha Uwazi** au **Fanya Rasmi**).
+3. Kwa hiari weka **Kutoka** kwa lugha ya maandishi yako (au acha **Tambua Lugha**).
+4. Andika au bandika maandishi kwenye **Ingiza**.
+5. Bofya **Andika Upya**.
+6. Soma matokeo katika **Toa**.
+7. Kwa hiari boresha matokeo kwa **Andika Upya…** au mbadala za neno — tazama [Kuboresha uandishi wako upya](#refining-rewrite).
+
+<br/>
+
 > 💡 **SUGGESTIONI**<br/>
 > Unapotumia njia ya "**Angalia Silabi na Sarufi**", kivinjari cha **Onyesha mabadiliko** kinaonekana kwenye panel ya pato (karibu na **Nakili**).
 > Weka juu au chini ili kuonesha au kuficha usahihisho uliofanyika kwenye maandishi yako.
+
+<br/>
+
+> ℹ️ **KUMBUKA**<br/>
+> Hali ya kuandika upya **Toleo mbadala** inarudisha uundaji upya kadhaa katika uendeshaji **mmoja**, ukitenganishwa na `----` katika matokeo. Hiyo ni tofauti na **Andika Upya…**, ambayo hujenga historia ya toleo kwa muda (lahaja mpya moja kwa kila bofya). Tazama [Kuboresha uandishi wako upya](#refining-rewrite).
+
+<br/>
+
+<a id="refining-rewrite"></a>
+### Kuboresha uandishi wako upya
+
+Baada ya uandishi upya uliofanikiwa, **Andika Upya…** na menyu kunjuzi ya toleo huonekana upande wa matokeo wa nafasi ya kazi (katika mpangilio uliogawanyika, kwenye upau wa vidhibiti wa juu juu ya safu wima ya matokeo, karibu na metriki za uendeshaji; katika mpangilio uliopangwa, juu ya paneli ya matokeo karibu na **Kutoka:**). Unaweza kuboresha matokeo hapo — wazo sawa na [Kuboresha tafsiri yako](#refining-translation), lakini maandishi hubaki katika lugha ileile na huweka **Njia** ya uandishi upya ya sasa:
+
+1. **Andika Upya…** — bila maandishi yaliyochaguliwa katika matokeo, pata uandishi upya mwingine kamili wa ingizo lilelile kwa maneno tofauti, bado ukitumia hali iliyochaguliwa (kwa mfano wazi zaidi, fupi, au rasmi zaidi). Modeli inapokea kila toleo ulilonalo tayari ili maneno mapya yaweze kutofautiana na yote. Unaweza kuhifadhi hadi matoleo **matano** na kubadili kati yao kwenye menyu kunjuzi ya toleo. Kwa maandishi yaliyochaguliwa, **Andika Upya…** hufungua mbadala za neno karibu na uteuzi (sawa na kubofya kulia). Bila uteuzi, **Andika Upya…** imezimwa mara tu unapofikia matoleo matano; kwa uteuzi, bado inafanya kazi kwa matoleo matano (mbadala za neno pekee, ikisasisha toleo la 5). Wakati uandishi upya kamili unaendelea, bofya **Simamisha Kuandika Upya** ili kughairi; matokeo hurudi kwenye toleo lililokuwa likitumika wakati uandishi upya ulipoanza.
+2. **Mbadala za neno** — chagua neno moja au zaidi au kifungu kifupi katika matokeo (ukichagua sehemu tu ya neno, programu hupanua uteuzi hadi maneno kamili), kisha bofya kulia au bofya **Andika Upya…**. Orodha fupi ya mbadala huonekana karibu na uteuzi; bofya moja ili kuibadilisha. Kila chaguo linaweza kubadilisha nafasi pana kidogo kuliko uteuzi wako ili sentensi ibaki na sarufi sahihi. Ikiwa una matoleo chini ya matano, matokeo yaliyohaririwa yanahifadhiwa kama toleo jipya; kwa matoleo matano, **toleo la 5** pekee ndilo linasasishwa. Bofya kulia bila uteuzi huchagua neno lililo chini ya kishale (au haifanyi chochote ikiwa hakuna neno hapo). Bonyeza **Esc** au bofya nje ya orodha ili kughairi bila kubadilisha matokeo.
+3. **Gharama** — kila **Andika Upya…** kamili (hakuna uteuzi) na kila ombi la mbadala za neno hutumia modeli tena na inaweza kuongeza gharama ya matumizi (sawa na uendeshaji wa kawaida wa kuandika upya).
 
 <br/><br/>
 
@@ -354,7 +385,7 @@ Hii ni muhimu kwa:
 
 Tumia **Badilisha** unapotaka AI kufuata maelekezo maalum.
 
-![Transform workspace](../images/screenshots/sw/transform.png)
+![Badili nafasi ya kazi](../images/screenshots/sw/transform.png)
 
 Hii ni sehemu yenye uwezo mkubwa zaidi ya programu. Unaweza kutumia kwa kazi kama vile:
 
@@ -402,7 +433,7 @@ Njia ya haraka ya kutengeneza maagizo ni:
 5. Weka programu iundae rasimu kwako.
 6. Soma rasimu na bonyeza **Hifadhi**.
 
-![Generate prompt](../images/screenshots/sw/transform-generate.png)
+![Zalisha kauli](../images/screenshots/sw/transform-generate.png)
 
 <br/>
 
@@ -411,7 +442,7 @@ Njia ya haraka ya kutengeneza maagizo ni:
 
 Unapotengeneza au kuhariri maagizo, kihariri kinaonekana upande wa kushoto na eneo la kujaribu kinaonekana upande wa kulia.
 
-![Transform prompt editor](../images/screenshots/sw/transform-prompt-edit.png)
+![Badili kihariri cha kauli](../images/screenshots/sw/transform-prompt-edit.png)
 
 Sehemu kuu ni:
 
@@ -467,7 +498,7 @@ Unapoitumia **Zalisha maagizo**, **Sahihisha maagizo**, au **Tafsiri maagizo** k
 
 Tumia **Dashibodi** kuona kiasi cha kutumia programu na gharama zake (kwa mifano ya malipo).
 
-![Dashboard summary](../images/screenshots/sw/dashboard-summary.png)
+![Muhtasari wa Dashibodi](../images/screenshots/sw/dashboard-summary.png)
 
 <br/>
 
@@ -481,7 +512,7 @@ Tumia **Dashibodi** kuona kiasi cha kutumia programu na gharama zake (kwa mifano
 
 Tumia vitufe vya kuchuja juu ili ubadilishe kipindi cha wakati.
 
-![Dashboard filters](../images/screenshots/sw/dashboard-filter.png)
+![Vichujio vya Dashibodi](../images/screenshots/sw/dashboard-filter.png)
 
 <br/>
 
@@ -531,7 +562,7 @@ Ili kufuta data yote au kauya rekodi kulingana na umri wao, nenda kwenye [**Mipa
 
 Bonyeza kwenye **Historia** ili uone rekodi ya vitendo vyako ndani ya **Transrewrt**, ikiwa ni pamoja na kuingiza na pato la kila shughuli.
 
-![History page](../images/screenshots/sw/history.png)
+![Ukurasa wa historia](../images/screenshots/sw/history.png)
 
 <br/>
 
@@ -540,7 +571,7 @@ Bonyeza kwenye **Historia** ili uone rekodi ya vitendo vyako ndani ya **Transrew
 
 **Historia** hutumia vichujio vya muda sawa kama ukurasa wa **Dashibodi**.
 
-![Dashboard filters](../images/screenshots/sw/dashboard-filter.png)
+![Vichujio vya Dashibodi](../images/screenshots/sw/dashboard-filter.png)
 
 <br/>
 
@@ -641,7 +672,7 @@ Hifadhi zilizoundwa katika toleo la wavuti au desktop zinaweza kurejelewa katika
 
 Lipu hii inapatikana tu wakati **Uzoefu wa AI** umewekwa kuwa **Ubinafsi** kwenye [**Mipangilio ya Kawaida**](#general-settings). Tumia **Mipangilio** > **Mifano** kuchagua mifumo itakayotazamwa kwenye barua pepe.
 
-![Settings Models tab](../images/screenshots/sw/settings-general.png)
+![Kichupo cha Modeli za Mipangilio](../images/screenshots/sw/settings-general.png)
 
 Ukurasa una orodha mbili:
 

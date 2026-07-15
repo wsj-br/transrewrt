@@ -636,6 +636,18 @@
     if (translateRow) translateRow.classList.remove("hidden");
   }
 
+  /** Topbar Presets: leave Performance / Benchmark / AI Suggestion and show the catalog list + detail. */
+  function showPresetsMainPage() {
+    aiSuggestStaging = {};
+    aiSuggestSnapshot = {};
+    aiSuggestChoice = {};
+    aiSuggestRunInFlight = false;
+    hideEditorMainPanels();
+    showEditorMainPanels();
+    updateAiSuggestBar();
+    updateTranslateBar();
+  }
+
   function setTopbarTranslateRowVisible(visible) {
     const translateRow = document.getElementById("topbar-translate-row");
     if (translateRow) translateRow.classList.toggle("hidden", !visible);
@@ -1715,6 +1727,29 @@
     return overlay && !overlay.classList.contains("hidden");
   }
 
+  function updateModelPickerCurrentSelection() {
+    const el = document.getElementById("model-picker-current");
+    if (!el) return;
+    const canonicalId = String(getSelectedModelIdForPicker() || "").trim();
+    el.replaceChildren();
+    const label = document.createTextNode("Current: ");
+    el.appendChild(label);
+    if (!canonicalId) {
+      el.appendChild(document.createTextNode("(none)"));
+      return;
+    }
+    const display = displayIdForCatalogModel(canonicalId);
+    const code = document.createElement("code");
+    code.textContent = display;
+    el.appendChild(code);
+    if (display !== canonicalId) {
+      el.appendChild(document.createTextNode(" · "));
+      const full = document.createElement("code");
+      full.textContent = canonicalId;
+      el.appendChild(full);
+    }
+  }
+
   function updateModelPickerChrome() {
     const title = document.getElementById("model-picker-title");
     const hint = document.getElementById("model-picker-hint");
@@ -1742,6 +1777,7 @@
         title.textContent = "Translation model — Fallback";
       } else title.textContent = "Select model";
     }
+    updateModelPickerCurrentSelection();
     if (hint) {
       const aiPick = parseAiSuggestPickerTarget(modelPickerTarget);
       if (aiPick) {
@@ -2648,6 +2684,13 @@
     loadAll({ reload: true });
   });
 
+  const btnPresetsMain = document.getElementById("btn-presets-main");
+  if (btnPresetsMain) {
+    btnPresetsMain.addEventListener("click", function () {
+      showPresetsMainPage();
+    });
+  }
+
   const btnViewLogs = document.getElementById("btn-view-logs");
   if (btnViewLogs) {
     btnViewLogs.addEventListener("click", function () {
@@ -3119,6 +3162,43 @@
     return getSelectedPresetIdsFromHost("benchmark-presets-checkboxes");
   }
 
+  function getSelectedBenchmarkProvider() {
+    const el = document.getElementById("benchmark-provider");
+    if (!el) return "openrouter";
+    const v = String(el.value || "").trim();
+    return v || "openrouter";
+  }
+
+  function populateBenchmarkProviderSelect() {
+    const select = document.getElementById("benchmark-provider");
+    if (!select) return;
+    const prev = select.value || "openrouter";
+    select.innerHTML = "";
+
+    const optAll = document.createElement("option");
+    optAll.value = "all";
+    optAll.textContent = "All providers";
+    select.appendChild(optAll);
+
+    const list = providers.length
+      ? providers
+      : [{ engine: "openrouter", label: "OpenRouter" }];
+    list.forEach(function (prov) {
+      const engine = prov.engine || prov.id;
+      if (!engine) return;
+      const opt = document.createElement("option");
+      opt.value = engine;
+      const label = prov.label || engine;
+      opt.textContent = prov.configured === false ? label + " (no key)" : label;
+      select.appendChild(opt);
+    });
+
+    const values = Array.prototype.map.call(select.options, function (o) {
+      return o.value;
+    });
+    select.value = values.indexOf(prev) >= 0 ? prev : "openrouter";
+  }
+
   function updateBenchmarkRunButton() {
     const btnRun = document.getElementById("btn-translate-benchmark-run");
     if (!btnRun) return;
@@ -3141,6 +3221,7 @@
     const translateRow = document.getElementById("topbar-translate-row");
     if (translateRow) translateRow.classList.add("hidden");
     if (panel) panel.classList.remove("hidden");
+    populateBenchmarkProviderSelect();
     renderBenchmarkPresetCheckboxes();
     void loadTranslateBenchmarkDefaults();
   }
@@ -3197,11 +3278,13 @@
   function formatBenchmarkProgressMessage(p) {
     if (!p || p.total == null) return "Running benchmark…";
     const slotLabel = formatBenchmarkSlotLabel(p.slot);
-    const idPart = (p.preset_id || "?") + (slotLabel ? " · " + slotLabel : "");
+    const engPart = p.engine ? " · " + p.engine : "";
+    const idPart =
+      (p.preset_id || "?") + engPart + (slotLabel ? " · " + slotLabel : "");
     return "Running " + p.index + "/" + p.total + " (" + idPart + ")…";
   }
 
-  var BENCHMARK_RESULT_TABLE_COLS = 8;
+  var BENCHMARK_RESULT_TABLE_COLS = 9;
 
   function appendBenchmarkResultRows(tbody, row) {
     const summaryTr = document.createElement("tr");
@@ -3210,8 +3293,11 @@
 
     const fullText = row.ok
       ? String(row.content || row.content_preview || "").trim()
-      : String(row.error || "").trim();
-    const canExpand = fullText.length > 0;
+      : String(row.content || row.error || "").trim();
+    const previewText = row.ok
+      ? String(row.content_preview || row.content || "").trim()
+      : String(row.content_preview || row.content || row.error || "").trim();
+    const canExpand = fullText.length > 0 && fullText.length > previewText.length;
     if (canExpand) {
       summaryTr.classList.add("benchmark-result-row-expandable");
       summaryTr.setAttribute("role", "button");
@@ -3224,6 +3310,11 @@
     tdPreset.className = "cell-setting";
     tdPreset.textContent = row.preset_id || "—";
     summaryTr.appendChild(tdPreset);
+
+    const tdProvider = document.createElement("td");
+    tdProvider.className = "cell-provider";
+    tdProvider.textContent = row.engine || "—";
+    summaryTr.appendChild(tdProvider);
 
     const tdSlot = document.createElement("td");
     tdSlot.className = "cell-slot";
@@ -3252,7 +3343,7 @@
       tdStatus.textContent = "OK";
       tdStatus.classList.add("cell-status-ok");
     } else {
-      tdStatus.textContent = row.error || "Failed";
+      tdStatus.textContent = "error";
       tdStatus.classList.add("cell-status-err", "benchmark-status-err");
     }
     summaryTr.appendChild(tdStatus);
@@ -3263,7 +3354,16 @@
       const preview = row.content_preview || "—";
       tdPreview.textContent = canExpand ? preview + " ▾" : preview;
     } else {
-      tdPreview.textContent = canExpand ? "Show error ▾" : "—";
+      const preview = previewText || "—";
+      if (!previewText) {
+        tdPreview.textContent = "—";
+      } else if (canExpand) {
+        tdPreview.textContent = preview + " ▾";
+        tdPreview.classList.add("benchmark-preview-error");
+      } else {
+        tdPreview.textContent = preview;
+        tdPreview.classList.add("benchmark-preview-error");
+      }
     }
     summaryTr.appendChild(tdPreview);
 
@@ -3285,8 +3385,10 @@
         summaryTr.classList.toggle("benchmark-result-row-expanded", open);
         const prevCell = summaryTr.querySelector(".benchmark-preview");
         if (prevCell) {
-          const base = row.ok ? row.content_preview || "—" : "Show error";
-          prevCell.textContent = open ? base + " ▴" : base + " ▾";
+          const base = row.ok
+            ? row.content_preview || "—"
+            : previewText || "—";
+          prevCell.textContent = open ? base + " ▴" : canExpand ? base + " ▾" : base;
         }
       }
       function toggleExpanded() {
@@ -3318,6 +3420,7 @@
     const headerRow = document.createElement("tr");
     [
       "Preset ID",
+      "Provider",
       "Slot",
       "Model ID",
       "Time",
@@ -3328,7 +3431,7 @@
     ].forEach(function (label, i) {
       const th = document.createElement("th");
       th.textContent = label;
-      if (i >= 3) th.className = "num";
+      if (i >= 4) th.className = "num";
       headerRow.appendChild(th);
     });
     thead.appendChild(headerRow);
@@ -3357,7 +3460,7 @@
       wrap.innerHTML = "";
       const p = document.createElement("p");
       p.className = "muted performance-empty";
-      p.textContent = "No presets with an OpenRouter primary model.";
+      p.textContent = "No models to benchmark for the selected presets and provider(s).";
       wrap.appendChild(p);
       return;
     }
@@ -3448,6 +3551,7 @@
     const sampleText = sampleEl ? sampleEl.value : "";
     const presetIds = getSelectedBenchmarkPresetIds();
     const includeFallback = benchmarkIncludeFallbackModels();
+    const provider = getSelectedBenchmarkProvider();
     if (!presetIds.length) {
       setTranslateBenchmarkStatus("Select at least one preset to benchmark.", true);
       return;
@@ -3473,6 +3577,7 @@
           sample_text: sampleText,
           preset_ids: presetIds,
           include_fallback: includeFallback,
+          provider: provider,
           stream: true,
         }),
       });

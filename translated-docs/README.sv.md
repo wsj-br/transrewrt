@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.1-blue" alt="Version"></a>
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.0-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
   <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react" alt="React 19">
@@ -62,27 +62,27 @@ När installationen är klar, se [**användarhandboken**](USER-GUIDE.sv.md) för
 
 **Språkval**
 
-![Language selector](../images/screenshots/sv/language-selector.png)
+![Språkväljare](../images/screenshots/sv/language-selector.png)
 
 **Översätt**
 
-![Translate](../images/screenshots/sv/translate.png)
+![Översätt](../images/screenshots/sv/translate.png)
 
 **Omvandla – frågeredigerare**
 
-![Transform - prompt editor](../images/screenshots/sv/transform-prompt-edit.png)
+![Transformera – promptredigerare](../images/screenshots/sv/transform-prompt-edit.png)
 
 **Översiktspanel**
 
-![Dashboard summary - usage](../images/screenshots/sv/dashboard-summary.png)
+![Instrumentpanel – sammanfattning – användning](../images/screenshots/sv/dashboard-summary.png)
 
 **Historik**
 
-![History](../images/screenshots/sv/history.png)
+![Historik](../images/screenshots/sv/history.png)
 
 **Inställningar – modellval**
 
-![Settings - model selection](../images/screenshots/sv/settings-general.png)
+![Inställningar – modellval](../images/screenshots/sv/settings-general.png)
 
 <br/><br/>
 

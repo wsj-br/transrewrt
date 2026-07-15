@@ -15,11 +15,11 @@ import { useKeyboardShortcuts } from "../hooks/useKeyboardShortcuts";
 import { usePasteHandler } from "../hooks/usePasteHandler";
 import { useDebouncedProcess } from "../hooks/useDebouncedProcess";
 import { useProcessing } from "../hooks/useProcessing";
-import { useTranslateWordAlternatives } from "../hooks/useTranslateWordAlternatives";
+import { useWordAlternatives } from "../hooks/useWordAlternatives";
 import { useTransformPrompts } from "../hooks/useTransformPrompts";
 import { useGlossaryTerms } from "../hooks/useGlossaryTerms";
 import GlossaryAddModal from "./GlossaryAddModal";
-import { TranslateWordAlternativesPopover } from "./TranslateWordAlternativesPopover";
+import { WordAlternativesPopover } from "./WordAlternativesPopover";
 import { findUILanguageEntry } from "../utils/misc/languageConstants";
 import {
   formatElapsedMmSs,
@@ -31,6 +31,7 @@ import { copyTextToClipboard } from "../utils/misc/clipboardUtils";
 import { formatCost } from "../utils/misc/costUtils";
 import { applyConfiguredTheme } from "../utils/misc/themeUtils";
 import { isWeb } from "../constants";
+import { MAX_TRANSLATE_VERSIONS } from "../constants/translateVersions";
 import { SOURCE_LOCALE } from "../i18n";
 import "../styles/main.css";
 
@@ -58,7 +59,7 @@ LoadingLogoSvg.propTypes = { className: PropTypes.string };
 const App = () => {
   const { t, i18n } = useTranslation();
   const locale = i18n.language || SOURCE_LOCALE;
-  const { settings, translate, translateAlternative, translateWordAlternatives, translatePromptFields, improvePromptConfig, generatePromptConfig, rewrite, transform, models, presets, easyProvider, ollamaEasyModels, updateSettings, setSetting, setSelectedPresetId, setEasyOllamaModel, removeModelFromList, needsLogin, sessionExpired, currentUser, handleWebLogin, handleWebLogout, apiKeyStatus, configLoading, setError } =
+  const { settings, translate, translateAlternative, translateWordAlternatives, translatePromptFields, improvePromptConfig, generatePromptConfig, rewrite, rewriteAlternative, rewriteWordAlternatives, transform, models, presets, easyProvider, ollamaEasyModels, updateSettings, setSetting, setSelectedPresetId, setEasyOllamaModel, removeModelFromList, needsLogin, sessionExpired, currentUser, handleWebLogin, handleWebLogout, apiKeyStatus, configLoading, setError } =
     useAppContext();
   const presetUiLocale = settings?.ui_locale || locale;
   const presetSourceLocale = settings?.source_locale || "en-GB";
@@ -291,16 +292,23 @@ const App = () => {
     selectedTranslateVersion,
     setTranslateVersions,
     setSelectedTranslateVersion,
+    rewriteVersions,
+    selectedRewriteVersion,
+    setRewriteVersions,
+    setSelectedRewriteVersion,
     applyRunCostFromResult,
     processingMode,
     handleRunAction,
     handleRunActionStartOnly,
     handleAlternative,
     handleTranslateVersionChange,
+    handleRewriteAlternative,
+    handleRewriteVersionChange,
   } = useProcessing({
     translate,
     translateAlternative,
     rewrite,
+    rewriteAlternative,
     transform,
     activeModel,
     settings,
@@ -313,6 +321,7 @@ const App = () => {
     targetLanguage,
     sourceLanguage,
     inputTextRewrite,
+    outputTextRewrite,
     setOutputTextRewrite,
     rewriteMode,
     inputTextTransform,
@@ -323,6 +332,27 @@ const App = () => {
     glossaryTerms: glossaryTermsForProcessing,
   });
 
+  const fetchTranslateWordAlternatives = useCallback(
+    (phrase, signal) =>
+      translateWordAlternatives(
+        outputTextTranslate,
+        phrase,
+        inputTextTranslate,
+        targetLanguage,
+        activeModel,
+        sourceLanguage === "Detect Language" ? null : sourceLanguage,
+        signal,
+      ),
+    [
+      translateWordAlternatives,
+      outputTextTranslate,
+      inputTextTranslate,
+      targetLanguage,
+      activeModel,
+      sourceLanguage,
+    ],
+  );
+
   const {
     popoverProps: translateWordAltPopoverProps,
     handleOutputContextMenu,
@@ -330,19 +360,56 @@ const App = () => {
     registerOutputTextarea,
     outputHasSelection,
     handleEscape: handleTranslateWordAltEscape,
-  } = useTranslateWordAlternatives({
-    translateWordAlternatives,
+  } = useWordAlternatives({
+    onFetchAlternatives: fetchTranslateWordAlternatives,
     outputText: outputTextTranslate,
-    inputTextTranslate,
-    sourceLanguage,
-    targetLanguage,
-    activeModel,
+    outputIsModelResult: translateOutputIsModelResult,
     isProcessing,
-    translateOutputIsModelResult,
-    translateVersions,
-    setTranslateVersions,
-    setSelectedTranslateVersion,
-    setOutputTextTranslate,
+    versions: translateVersions,
+    setVersions: setTranslateVersions,
+    setSelectedVersion: setSelectedTranslateVersion,
+    setOutputText: setOutputTextTranslate,
+    maxVersions: MAX_TRANSLATE_VERSIONS,
+    applyRunCostFromResult,
+    autoCopy: !!settings.auto_copy,
+  });
+
+  const fetchRewriteWordAlternatives = useCallback(
+    (phrase, signal) =>
+      rewriteWordAlternatives(
+        outputTextRewrite,
+        phrase,
+        inputTextRewrite,
+        activeModel,
+        sourceLanguage === "Detect Language" ? null : sourceLanguage,
+        signal,
+      ),
+    [
+      rewriteWordAlternatives,
+      outputTextRewrite,
+      inputTextRewrite,
+      activeModel,
+      sourceLanguage,
+    ],
+  );
+
+  const {
+    popoverProps: rewriteWordAltPopoverProps,
+    handleOutputContextMenu: handleRewriteOutputContextMenu,
+    tryOpenWordAlternativesFromTextarea: tryOpenRewriteWordAlternativesFromTextarea,
+    registerOutputTextarea: registerRewriteOutputTextarea,
+    outputHasSelection: rewriteOutputHasSelection,
+    handleEscape: handleRewriteWordAltEscape,
+  } = useWordAlternatives({
+    onFetchAlternatives: fetchRewriteWordAlternatives,
+    outputText: outputTextRewrite,
+    outputIsModelResult: rewriteOutputIsModelResult,
+    isProcessing,
+    versions: rewriteVersions,
+    setVersions: setRewriteVersions,
+    setSelectedVersion: setSelectedRewriteVersion,
+    setOutputText: setOutputTextRewrite,
+    maxVersions: MAX_TRANSLATE_VERSIONS,
     applyRunCostFromResult,
     autoCopy: !!settings.auto_copy,
   });
@@ -351,6 +418,17 @@ const App = () => {
     if (tryOpenWordAlternativesFromTextarea()) return;
     handleAlternative();
   }, [handleAlternative, tryOpenWordAlternativesFromTextarea]);
+
+  const handleRewriteRephraseClick = useCallback(() => {
+    if (tryOpenRewriteWordAlternativesFromTextarea()) return;
+    handleRewriteAlternative();
+  }, [handleRewriteAlternative, tryOpenRewriteWordAlternativesFromTextarea]);
+
+  const handleWordAltEscape = useCallback(() => {
+    if (handleTranslateWordAltEscape()) return true;
+    if (handleRewriteWordAltEscape()) return true;
+    return false;
+  }, [handleTranslateWordAltEscape, handleRewriteWordAltEscape]);
 
   const handleModeChange = (mode) => {
     setCurrentMode(mode);
@@ -426,7 +504,7 @@ const App = () => {
     settings.enter_behavior,
     clearInput,
     currentView,
-    handleTranslateWordAltEscape,
+    handleWordAltEscape,
   );
 
   // Apply theme — 'light' | 'dark' | 'system' (follow OS)
@@ -534,13 +612,18 @@ const App = () => {
     handleRunAction,
     handleRephraseClick,
     handleTranslateVersionChange,
+    handleRewriteRephraseClick,
+    handleRewriteVersionChange,
     outputHasSelection,
+    rewriteOutputHasSelection,
     lastRunModel,
     outputMeta,
     outputMetaCostTooltip,
     translateOutputIsModelResult,
     translateVersions,
     selectedTranslateVersion,
+    rewriteVersions,
+    selectedRewriteVersion,
     layoutMode,
     autoExecuteOnPaste: settings.auto_translate_on_paste !== false,
     autoCopy: !!settings.auto_copy,
@@ -615,6 +698,8 @@ const App = () => {
               setText: setOutputTextRewrite,
               getStats: outputStats,
               copy: copyOutput,
+              onContextMenu: handleRewriteOutputContextMenu,
+              textareaRefCallback: registerRewriteOutputTextarea,
             },
             options: {
               rewriteMode,
@@ -838,7 +923,8 @@ const App = () => {
             setCurrentView("settings");
           }}
         />
-        <TranslateWordAlternativesPopover {...translateWordAltPopoverProps} />
+        <WordAlternativesPopover {...translateWordAltPopoverProps} />
+        <WordAlternativesPopover {...rewriteWordAltPopoverProps} />
       </>
     );
   }
@@ -919,7 +1005,8 @@ const App = () => {
           setCurrentView("settings");
         }}
       />
-      <TranslateWordAlternativesPopover {...translateWordAltPopoverProps} />
+      <WordAlternativesPopover {...translateWordAltPopoverProps} />
+      <WordAlternativesPopover {...rewriteWordAltPopoverProps} />
     </div>
   );
 };

@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.1-blue" alt="Version"></a>
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.0-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
   <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react" alt="React 19">
@@ -62,27 +62,27 @@ Baada ya kusakinisha, angalia [**Mwongozo wa Mtumiaji**](USER-GUIDE.sw.md) kwa m
 
 **Kichagua cha lugha**
 
-![Language selector](../images/screenshots/sw/language-selector.png)
+![Kichagua lugha](../images/screenshots/sw/language-selector.png)
 
 **Tafsiri**
 
-![Translate](../images/screenshots/sw/translate.png)
+![Tafsiri](../images/screenshots/sw/translate.png)
 
 **Badilisha - redakti ya mandhari**
 
-![Transform - prompt editor](../images/screenshots/sw/transform-prompt-edit.png)
+![Kubadilisha - kihariri cha maelezo](../images/screenshots/sw/transform-prompt-edit.png)
 
 **Ubao**
 
-![Dashboard summary - usage](../images/screenshots/sw/dashboard-summary.png)
+![Muhtasari wa Dashibodi - matumizi](../images/screenshots/sw/dashboard-summary.png)
 
 **Historia**
 
-![History](../images/screenshots/sw/history.png)
+![Historia](../images/screenshots/sw/history.png)
 
 **Mipangilio - uteuzi wa kifaa**
 
-![Settings - model selection](../images/screenshots/sw/settings-general.png)
+![Mipangilio - uteuzi wa modeli](../images/screenshots/sw/settings-general.png)
 
 <br/><br/>
 

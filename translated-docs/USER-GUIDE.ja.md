@@ -1,4 +1,4 @@
-![Transrewrt banner](../images/transrewrt_banner.png)
+![Transrewrt バナー](../images/transrewrt_banner.png)
 
 <a id="transrewrt-user-guide"></a>
 # ユーザーガイド
@@ -54,45 +54,47 @@ Transrewrtは、テキストを以下の3つの方法で処理するのに役立
   - [翻訳の調整](#refining-your-translation)
   - [用語集の使用](#using-the-glossary)
 - [書き換え](#rewrite)
+  - [テキストの書き換え](#rewrite-text)
+  - [書き換えの改善](#refining-your-rewrite)
 - [変換](#transform)
-  - [既存のプロンプトの実行](#run-an-existing-prompt)
+  - [既存のプロンプトを実行](#run-an-existing-prompt)
   - [プロンプトがまだない場合](#if-you-have-no-prompts-yet)
   - [プロンプトをすばやく作成](#create-a-prompt-quickly)
   - [プロンプトの編集](#edit-a-prompt)
-  - [使用前のプロンプトのテスト](#test-a-prompt-before-using-it)
+  - [使用前にプロンプトをテスト](#test-a-prompt-before-using-it)
 - [ダッシュボード](#dashboard)
   - [データのフィルター](#filter-the-data)
   - [ダッシュボードのタブ](#dashboard-tabs)
   - [データのエクスポート](#export-data)
-  - [モデルの保存済みレコードの削除](#delete-stored-records-for-a-model)
+  - [モデルの保存済みレコードを削除](#delete-stored-records-for-a-model)
 - [履歴](#history)
   - [履歴のフィルター](#filter-the-history)
-  - [履歴データの書き出し](#export-history-data)
+  - [履歴データのエクスポート](#export-history-data)
 - [設定](#settings)
   - [一般設定](#general-settings)
   - [モデル](#models)
   - [言語](#languages)
   - [コスト追跡](#cost-tracking)
-  - [変換（設定タブ）](#transform-settings-tab)
-  - [用語集（設定タブ）](#glossary-settings-tab)
+  - [変換 (設定タブ)](#transform-settings-tab)
+  - [用語集 (設定タブ)](#glossary-settings-tab)
   - [ユーザー](#users)
   - [API 設定](#api-config)
   - [について](#about)
-- [よくある問題](#common-issues)
-  - [アプリがテキストを翻訳、書き換え、または変換しない](#the-app-will-not-translate-rewrite-or-transform-text)
-  - [モデルリストが空です](#the-model-list-is-empty)
-  - [結果が遅すぎるか、コストが高すぎます](#the-result-is-too-slow-or-too-expensive)
-  - [インターフェースの言語が間違っています](#the-interface-is-in-the-wrong-language)
-  - [テキストが小さすぎるか、読みにくいです](#the-text-is-too-small-or-hard-to-read)
-  - [ダッシュボードの概要が空です](#dashboard-summary-looks-empty)
-  - [コストが「利用不可」と表示されるか、間違っているようです](#cost-shows-not-available-or-seems-wrong)
-  - [合計コストがプロバイダーの請求書と一致しません](#total-cost-does-not-match-my-provider-bill)
-  - [履歴ページがサイドバーにありません](#the-history-page-is-missing-from-the-sidebar)
+- [一般的な問題](#common-issues)
+  - [アプリがテキストを翻訳、書き換え、変換しない](#the-app-will-not-translate-rewrite-or-transform-text)
+  - [モデルリストが空である](#the-model-list-is-empty)
+  - [結果が遅すぎるかコストが高すぎる](#the-result-is-too-slow-or-too-expensive)
+  - [インターフェイスの言語が間違っている](#the-interface-is-in-the-wrong-language)
+  - [テキストが小さすぎるか読みにくい](#the-text-is-too-small-or-hard-to-read)
+  - [ダッシュボードの概要が空に見える](#dashboard-summary-looks-empty)
+  - [コストに「利用不可」と表示されるか、間違っているように見える](#cost-shows-not-available-or-seems-wrong)
+  - [合計コストがプロバイダーの請求と一致しない](#total-cost-does-not-match-my-provider-bill)
+  - [履歴ページがサイドバーにない](#the-history-page-is-missing-from-the-sidebar)
   - [Web アプリ: 予期せずログインページにリダイレクトされる](#web-app-redirected-to-the-login-page-unexpectedly)
-  - [Web 管理者: パスワードを忘れたか、紛失した](#web-admin-forgot-or-lost-a-password)
-  - [ダッシュボードに他のユーザーのデータが表示されない（Web）](#dashboard-shows-no-data-for-other-users-web)
-  - [プロンプトを変更したが、編集内容が失われた](#i-changed-a-prompt-and-lost-the-edits)
-- [簡単なヒント](#quick-tips)
+  - [Web 管理者: パスワードを忘れたまたは紛失した](#web-admin-forgot-or-lost-a-password)
+  - [ダッシュボードに他のユーザーのデータが表示されない (Web)](#dashboard-shows-no-data-for-other-users-web)
+  - [プロンプトを変更して編集内容が失われた](#i-changed-a-prompt-and-lost-the-edits)
+- [クイックヒント](#quick-tips)
 - [免責事項](#disclaimer)
 - [ライセンス](#license)
 
@@ -205,7 +207,7 @@ Transrewrtを使用するには、少なくとも1つのAIプロバイダーへ�
 
 **高度**モードでは、**モデルセレクター**を使用して、現在のタスクで使用するAIエンジンを選択できます。
 
-![Model selector](../images/screenshots/ja/preset-selector.png)
+![モデルセレクター](../images/screenshots/ja/preset-selector.png)
 
 高度モードでは、一部の無料モデルが常に利用可能とは限りません。オフラインになったり、使用量の上限に達したりする可能性があります。アプリは自動的にそのモデルをリストから削除することがあります。表示されるモデルを制御するには、[**設定** > **モデル**](#models)に移動してください。ツールバーのモデル名の左にあるプロバイダーのアイコンからモデル設定を開けます。
 
@@ -213,7 +215,7 @@ Transrewrtを使用するには、少なくとも1つのAIプロバイダーへ�
 
 **地球儀のアイコン＋言語コード**は、アプリのインターフェース言語（メニューやボタンなど）を変更します。ただし、**翻訳**で使用する翻訳言語は**変更しません**。
 
-![Interface language selector](../images/screenshots/ja/language-selector.png)
+![インターフェイス言語セレクター](../images/screenshots/ja/language-selector.png)
 
 <br/>
 
@@ -246,7 +248,7 @@ Transrewrtを使用するには、少なくとも1つのAIプロバイダーへ�
 
 **翻訳**は、テキストをある言語から別の言語に変換したい場合に使用します。
 
-![Translate workspace](../images/screenshots/ja/translate.png)
+![翻訳ワークスペース](../images/screenshots/ja/translate.png)
 
 <br/>
 
@@ -295,9 +297,9 @@ Transrewrtを使用するには、少なくとも1つのAIプロバイダーへ�
 
 翻訳が成功した後、出力ヘッダーに**言い換え…** とバージョンのドロップダウンが表示され、**翻訳先:** 言語セレクターの隣に配置されます。そこで結果を洗練させることができます：
 
-1. **言い換え…** — 出力にテキストが選択されていない場合、異なる言い回しで同じ入力の別の完全な翻訳を取得します。モデルはすでに持っているすべてのバージョンを受け取るため、新しい言い回しはそれらすべてと異なることができます。最大**5**バージョンを保存し、バージョンドロップダウンで切り替えることができます。テキストが選択されている場合、**言い換え…** は選択の近くに単語の代替を表示します（右クリックと同じ）。選択がない場合、**言い換え…** は5つのバージョンに達すると無効になりますが、選択がある場合は5つのバージョンで機能し続けます（単語の代替のみ、バージョン5を更新）。完全な言い換えが実行中の間に、**翻訳を停止**をクリックしてキャンセルできます。出力は、言い換えが開始されたときにアクティブだったバージョンに戻ります。
-2. **単語の代替** — 出力内で1つ以上の単語または短いフレーズを選択します（単語の一部のみを選択した場合、アプリは選択を完全な単語に拡張します）、次に右クリックするか、**言い換え…** をクリックします。選択の近くに短い代替リストが表示されます。1つをクリックして置き換えます。各オプションは、選択よりもわずかに広い範囲を置き換える場合があります（たとえば、隣接する前置詞や冠詞など）ので、文が文法的に保たれます。5つ未満のバージョンがある場合、編集された出力は新しいバージョンとして保存されます。5つのバージョンでは、**バージョン5**のみが更新されます。選択なしで右クリックしても何も起こりません。**Esc**を押すか、リストの外をクリックして、出力を変更せずにキャンセルします。
-3. **コスト** — 各完全な**言い換え…**（選択なし）および各単語代替リクエストはモデルを再度使用し、使用コストが追加される可能性があります（通常の翻訳実行と同じです）。
+1. **言い換え…** — 出力でテキストが選択されていない場合、同じ入力の別の表現による完全な翻訳を取得します。モデルは既に持っているすべてのバージョンを受け取るため、新しい表現はそれらすべてと異なるものになります。最大 **5** つのバージョンを保存でき、バージョンのドロップダウンで切り替えることができます。テキストが選択されている場合、**言い換え…** は選択範囲の近くに単語の候補を表示します (右クリックと同じ)。選択がない場合、5 つのバージョンに達すると **言い換え…** は無効になります。選択がある場合は、5 つのバージョンでも機能します (単語の候補のみ、バージョン 5 を更新)。完全な言い換えの実行中は、**翻訳を停止** をクリックしてキャンセルできます。出力は言い換えの開始時にアクティブだったバージョンに戻ります。
+2. **単語の候補** — 出力で 1 つ以上の単語または短いフレーズを選択します (単語の一部のみを選択した場合、アプリは選択範囲を完全な単語に拡張します)。その後、右クリックするか **言い換え…** をクリックします。選択範囲の近くに候補の短いリストが表示されます。いずれかをクリックして置き換えます。各オプションは選択範囲よりわずかに広い範囲を置き換える場合があります (例: 隣接する前置詞や冠詞)。これにより文の文法が保たれます。5 つ未満のバージョンがある場合、編集された出力は新しいバージョンとして保存されます。5 つのバージョンがある場合は、**バージョン 5** のみが更新されます。選択なしで右クリックすると、カーソルの下の単語が選択されます (そこに単語がない場合は何も起こりません)。**Esc** を押すかリストの外側をクリックすると、出力を変更せずにキャンセルできます。
+3. **コスト** — 完全な **言い換え…** (選択なし) の実行と、単語の候補のリクエストはそれぞれモデルを再び使用し、使用コストが追加される場合があります (通常の翻訳実行と同じ)。
 
 <br/>
 
@@ -325,9 +327,9 @@ Transrewrtを使用するには、少なくとも1つのAIプロバイダーへ�
 <a id="rewrite"></a>
 ## 書き換え
 
-主な意味を変更せずに語句を改善したい場合は、**書き換え**を使用します。
+主な意味を変えずに表現を改善したい場合は、**書き換え** を使用します。テキストは同じ言語のままです (翻訳されません)。
 
-![Rewrite workspace](../images/screenshots/ja/rewrite.png)
+![書き換えワークスペース](../images/screenshots/ja/rewrite.png)
 
 これは以下の用途に便利です。
 
@@ -340,9 +342,38 @@ Transrewrtを使用するには、少なくとも1つのAIプロバイダーへ�
 
 <br/>
 
+<a id="rewrite-text"></a>
+### テキストの書き換え
+
+1. **書き換え**を開きます。
+2. **モード**を選択します（例: **明確性を向上**または**正式な表現に変更**）。
+3. 必要に応じて**元の言語**をテキストの言語に設定します（または**言語を検出**のままにします）。
+4. **入力**にテキストを入力または貼り付けします。
+5. **書き換え**をクリックします。
+6. **出力**で結果を確認します。
+7. 必要に応じて**Rephrase…** または単語の候補で結果を調整します — [書き換えの調整](#refining-rewrite)を参照してください。
+
+<br/>
+
 > 💡 **ヒント**<br/>
 > 「**スペルと文法をチェック**」モードを使用すると、出力パネルに **変更を表示** スイッチ（**コピー**の隣）が表示されます。
 > このスイッチをオンまたはオフにして、テキストに適用された修正内容を表示または非表示にできます。
+
+<br/>
+
+> ℹ️ **注**<br/>
+> 書き換えモード**代替バージョン**は、**単一の**実行で複数の言い換えを返し、出力内で`----`で区切られます。これは**Rephrase…** とは異なります。後者は時間をかけてバージョン履歴を構築します（クリックごとに1つの新しいバリアント）。[書き換えの調整](#refining-rewrite)を参照してください。
+
+<br/>
+
+<a id="refining-rewrite"></a>
+### 書き換えの調整
+
+書き換えが成功すると、**Rephrase…** とバージョンのドロップダウンがワークスペースの出力側に表示されます（分割レイアウトでは、出力列の上部ツールバーの実行メトリクスの隣に、スタックレイアウトでは、出力パネルの上部**元の言語:** の隣に表示されます）。そこで結果を調整できます — [翻訳の調整](#refining-translation)と同じ考え方ですが、テキストは同じ言語のままで、現在の書き換え**モード**が維持されます:
+
+1. **Rephrase…** — 出力でテキストが選択されていない場合、同じ入力の別の完全な書き換えを異なる表現で取得します。選択したモード（例: より明確、より短い、より正式）が引き続き適用されます。モデルは既存のすべてのバージョンを受け取るため、新しい表現はそれらすべてと異なるものになります。最大**5**つのバージョンを保存でき、バージョンのドロップダウンで切り替えることができます。テキストが選択されている場合、**Rephrase…** は選択範囲の近くに単語の候補を開きます（右クリックと同じ）。選択がない場合、5つのバージョンに達すると**Rephrase…** は無効になります。選択がある場合、5つのバージョンでも引き続き機能します（単語の候補のみ、バージョン5を更新）。完全な言い換えの実行中は、**書き換えを停止**をクリックしてキャンセルできます。出力は言い換えが開始された時にアクティブだったバージョンに戻ります。
+2. **単語の候補** — 出力で1つ以上の単語または短いフレーズを選択します（単語の一部のみを選択した場合、アプリは選択範囲を完全な単語に拡張します）。その後、右クリックするか**Rephrase…** をクリックします。選択範囲の近くに候補の短いリストが表示されます。いずれかをクリックして置き換えます。各オプションは選択範囲よりわずかに広い範囲を置き換える場合があり、文が文法的に正しく保たれます。5つのバージョン未満の場合、編集された出力は新しいバージョンとして保存されます。5つのバージョンの場合、**バージョン5**のみが更新されます。選択なしで右クリックすると、カーソルの下の単語が選択されます（そこに単語がない場合は何も起こりません）。**Esc**を押すか、リストの外側をクリックすると、出力を変更せずにキャンセルできます。
+3. **コスト** — 完全な**Rephrase…**（選択なし）ごと、および各単語の候補リクエストは、再度モデルを使用し、使用コストが追加される場合があります（通常の書き換え実行と同じ）。
 
 <br/><br/>
 
@@ -353,7 +384,7 @@ Transrewrtを使用するには、少なくとも1つのAIプロバイダーへ�
 
 カスタムの指示に従ってAIに処理させたい場合は、**変換**を使用します。
 
-![Transform workspace](../images/screenshots/ja/transform.png)
+![変換ワークスペース](../images/screenshots/ja/transform.png)
 
 これはアプリで最も柔軟性のある機能です。以下のようなタスクに使用できます。
 
@@ -401,7 +432,7 @@ Transrewrtを使用するには、少なくとも1つのAIプロバイダーへ�
 5. アプリが下書きを作成するのを待ちます。
 6. 下書きを確認し、**保存**をクリックします。
 
-![Generate prompt](../images/screenshots/ja/transform-generate.png)
+![プロンプトを生成する](../images/screenshots/ja/transform-generate.png)
 
 <br/>
 
@@ -410,7 +441,7 @@ Transrewrtを使用するには、少なくとも1つのAIプロバイダーへ�
 
 プロンプトを作成または編集すると、左側にエディターが、右側にテストエリアが表示されます。
 
-![Transform prompt editor](../images/screenshots/ja/transform-prompt-edit.png)
+![変換プロンプトエディター](../images/screenshots/ja/transform-prompt-edit.png)
 
 主なフィールドは以下のとおりです。
 
@@ -466,7 +497,7 @@ Transrewrtを使用するには、少なくとも1つのAIプロバイダーへ�
 
 **ダッシュボード**を使用して、アプリの使用量とコスト（有料モデルの場合）を確認できます。
 
-![Dashboard summary](../images/screenshots/ja/dashboard-summary.png)
+![ダッシュボード概要](../images/screenshots/ja/dashboard-summary.png)
 
 <br/>
 
@@ -480,7 +511,7 @@ Transrewrtを使用するには、少なくとも1つのAIプロバイダーへ�
 
 上部のフィルターボタンを使用して、期間を変更できます。
 
-![Dashboard filters](../images/screenshots/ja/dashboard-filter.png)
+![ダッシュボードフィルター](../images/screenshots/ja/dashboard-filter.png)
 
 <br/>
 
@@ -530,7 +561,7 @@ Transrewrtを使用するには、少なくとも1つのAIプロバイダーへ�
 
 **履歴**をクリックして、**Transrewrt** 内での操作履歴を確認します。各操作の入力と出力も確認できます。
 
-![History page](../images/screenshots/ja/history.png)
+![履歴ページ](../images/screenshots/ja/history.png)
 
 <br/>
 
@@ -539,7 +570,7 @@ Transrewrtを使用するには、少なくとも1つのAIプロバイダーへ�
 
 **履歴** は **ダッシュボード** ページと同じ期間フィルターを使用します。
 
-![Dashboard filters](../images/screenshots/ja/dashboard-filter.png)
+![ダッシュボードフィルター](../images/screenshots/ja/dashboard-filter.png)
 
 <br/>
 
@@ -640,7 +671,7 @@ Transrewrtを使用するには、少なくとも1つのAIプロバイダーへ�
 
 このタブは、[**一般設定**](#general-settings)で**AI体験**が**高度**に設定されている場合にのみ利用可能です。**設定** > **モデル**を使用して、ツールバーに表示するモデルを選択してください。
 
-![Settings Models tab](../images/screenshots/ja/settings-general.png)
+![設定 モデルタブ](../images/screenshots/ja/settings-general.png)
 
 このページには2つのリストがあります：
 

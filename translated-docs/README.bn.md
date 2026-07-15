@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.1-blue" alt="Version"></a>
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.0-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
   <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react" alt="React 19">
@@ -62,27 +62,27 @@ AI-চালিত টেক্সট টুল: ভাষাগুলির ম
 
 **ভাষা নির্বাচক**
 
-![Language selector](../images/screenshots/bn/language-selector.png)
+![ভাষা নির্বাচক](../images/screenshots/bn/language-selector.png)
 
 **অনুবাদ**
 
-![Translate](../images/screenshots/bn/translate.png)
+![অনুবাদ](../images/screenshots/bn/translate.png)
 
 **রূপান্তর - প্রম্পট সম্পাদক**
 
-![Transform - prompt editor](../images/screenshots/bn/transform-prompt-edit.png)
+![রূপান্তর - প্রম্পট এডিটর](../images/screenshots/bn/transform-prompt-edit.png)
 
 **ড্যাশবোর্ড**
 
-![Dashboard summary - usage](../images/screenshots/bn/dashboard-summary.png)
+![ড্যাশবোর্ড সারাংশ - ব্যবহার](../images/screenshots/bn/dashboard-summary.png)
 
 **ইতিহাস**
 
-![History](../images/screenshots/bn/history.png)
+![ইতিহাস](../images/screenshots/bn/history.png)
 
 **সেটিংস - মডেল নির্বাচন**
 
-![Settings - model selection](../images/screenshots/bn/settings-general.png)
+![সেটিংস - মডেল নির্বাচন](../images/screenshots/bn/settings-general.png)
 
 <br/><br/>
 

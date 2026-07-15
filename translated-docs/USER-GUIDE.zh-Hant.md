@@ -1,4 +1,4 @@
-![Transrewrt banner](../images/transrewrt_banner.png)
+![Transrewrt 橫幅](../images/transrewrt_banner.png)
 
 <a id="transrewrt-user-guide"></a>
 # 使用者指南
@@ -51,46 +51,48 @@ Transrewrt 可協助您透過三種主要方式處理文字：
 - [語言選擇](#language-selection)
 - [有用的翻譯設定](#helpful-translation-settings)
 - [完善你的翻譯](#refining-your-translation)
-- [使用詞彙](#using-the-glossary)
+  - [使用詞彙](#using-the-glossary)
 - [重寫](#rewrite)
+  - [重寫文字](#rewrite-text)
+  - [改善你的重寫](#refining-your-rewrite)
 - [轉換](#transform)
   - [執行現有提示](#run-an-existing-prompt)
-- [如果您還沒有提示](#if-you-have-no-prompts-yet)
-- [快速建立提示](#create-a-prompt-quickly)
-- [編輯提示](#edit-a-prompt)
-- [在使用提示之前進行測試](#test-a-prompt-before-using-it)
+  - [如果你還沒有提示](#if-you-have-no-prompts-yet)
+  - [快速建立提示](#create-a-prompt-quickly)
+  - [編輯提示](#edit-a-prompt)
+  - [在使用前測試提示](#test-a-prompt-before-using-it)
 - [儀表板](#dashboard)
   - [篩選資料](#filter-the-data)
   - [儀表板分頁](#dashboard-tabs)
   - [匯出資料](#export-data)
-- [刪除模型的已儲存記錄](#delete-stored-records-for-a-model)
+  - [刪除模型的已儲存記錄](#delete-stored-records-for-a-model)
 - [歷史](#history)
-  - [篩選歷史記錄](#filter-the-history)
-  - [匯出歷史記錄資料](#export-history-data)
+  - [篩選歷史](#filter-the-history)
+  - [匯出歷史資料](#export-history-data)
 - [設定](#settings)
   - [一般設定](#general-settings)
   - [模型](#models)
   - [語言](#languages)
   - [成本追蹤](#cost-tracking)
-  - [轉換（設定標籤頁）](#transform-settings-tab)
-  - [詞彙（設定標籤頁）](#glossary-settings-tab)
+  - [轉換（設定分頁）](#transform-settings-tab)
+  - [詞彙（設定分頁）](#glossary-settings-tab)
   - [使用者](#users)
   - [API 設定](#api-config)
   - [關於](#about)
 - [常見問題](#common-issues)
   - [應用程式無法翻譯、重寫或轉換文字](#the-app-will-not-translate-rewrite-or-transform-text)
-  - [模型列表為空](#the-model-list-is-empty)
-  - [結果太慢或太貴](#the-result-is-too-slow-or-too-expensive)
-  - [介面語言錯誤](#the-interface-is-in-the-wrong-language)
+  - [模型清單是空的](#the-model-list-is-empty)
+  - [結果太慢或太昂貴](#the-result-is-too-slow-or-too-expensive)
+  - [介面語言不正確](#the-interface-is-in-the-wrong-language)
   - [文字太小或難以閱讀](#the-text-is-too-small-or-hard-to-read)
   - [儀表板摘要看起來是空的](#dashboard-summary-looks-empty)
-  - [成本顯示「無法使用」或似乎不正確](#cost-shows-not-available-or-seems-wrong)
+  - [成本顯示「不可用」或似乎不正確](#cost-shows-not-available-or-seems-wrong)
   - [總計費用與我的提供者帳單不符](#total-cost-does-not-match-my-provider-bill)
-  - [歷史記錄頁面在側邊欄中遺失](#the-history-page-is-missing-from-the-sidebar)
-  - [網頁應用程式：意外重新導向至登入頁面](#web-app-redirected-to-the-login-page-unexpectedly)
+  - [側邊欄缺少歷史頁面](#the-history-page-is-missing-from-the-sidebar)
+  - [網頁應用程式：意外被重新導向至登入頁面](#web-app-redirected-to-the-login-page-unexpectedly)
   - [網頁管理員：忘記或遺失密碼](#web-admin-forgot-or-lost-a-password)
-  - [儀表板顯示其他使用者的資料為空（網頁版）](#dashboard-shows-no-data-for-other-users-web)
-  - [我變更了提示但遺失了編輯內容](#i-changed-a-prompt-and-lost-the-edits)
+  - [儀表板顯示其他使用者無資料（網頁）](#dashboard-shows-no-data-for-other-users-web)
+  - [我修改了提示但遺失了編輯內容](#i-changed-a-prompt-and-lost-the-edits)
 - [快速提示](#quick-tips)
 - [免責聲明](#disclaimer)
 - [授權](#license)
@@ -204,7 +206,7 @@ Transrewrt 可協助您透過三種主要方式處理文字：
 
 在 **進階** 模式下，**模型選擇器** 可讓您選擇要用於目前任務的 AI 引擎。
 
-![Model selector](../images/screenshots/zh-Hant/preset-selector.png)
+![模型選擇器](../images/screenshots/zh-Hant/preset-selector.png)
 
 在進階模式下，某些免費模型可能無法隨時使用 — 它們可能離線或達到使用上限。應用程式可能會自動從您的清單中移除該模型。若要控制顯示哪些模型，請前往 [**設定** > **模型**](#models)。您可以從工具列中模型名稱左側的提供者圖示開啟模型設定。
 
@@ -212,7 +214,7 @@ Transrewrt 可協助您透過三種主要方式處理文字：
 
 **地球圖示 + 語言代碼** 可變更應用程式的介面語言，例如選單和按鈕。它 **不會** 變更 **翻譯** 中使用的翻譯語言。
 
-![Interface language selector](../images/screenshots/zh-Hant/language-selector.png)
+![介面語言選擇器](../images/screenshots/zh-Hant/language-selector.png)
 
 <br/>
 
@@ -245,7 +247,7 @@ Transrewrt 可協助您透過三種主要方式處理文字：
 
 當您想將文字從一種語言轉換成另一種語言時，請使用 **翻譯**。
 
-![Translate workspace](../images/screenshots/zh-Hant/translate.png)
+![翻譯工作區](../images/screenshots/zh-Hant/translate.png)
 
 <br/>
 
@@ -294,9 +296,9 @@ Transrewrt 可協助您透過三種主要方式處理文字：
 
 成功翻譯後，**重述…** 和版本下拉選單會出現在輸出標頭中，位於 **至：** 語言選擇器的旁邊。您可以在此精煉結果：
 
-1. **重述…** — 當輸出中沒有選取文字時，使用不同的措辭對相同輸入進行另一次完整翻譯。模型會收到您已有的所有版本，因此新措辭可以與所有版本都不同。您可以儲存最多 **五** 個版本，並在版本下拉選單中切換。選取文字後，**重述…** 會在選取範圍附近開啟單字替代選項（與右鍵單擊相同）。沒有選取文字時，當您達到五個版本後，**重述…** 會停用；選取文字後，即使有五個版本，它仍然可用（僅限單字替代選項，更新版本 5）。當完整重述正在進行時，單擊 **停止翻譯** 以取消；輸出會恢復到重述開始時的活動版本。
-2. **單字替代選項** — 選取輸出中的一個或多個單字或短語（如果您只選取單字的一部分，應用程式會將選取範圍擴展到整個單字），然後右鍵單擊或單擊 **重述…**。一個簡短的替代選項列表會出現在選取範圍附近；單擊其中一個以替換它。每個選項可能會替換比您的選取範圍稍寬的範圍（例如相鄰的介詞或冠詞），以便句子保持語法正確。如果您擁有的版本少於五個，則編輯後的輸出將儲存為一個新版本；達到五個版本時，僅更新 **版本 5**。沒有選取文字時右鍵單擊無效。按 **Esc** 或單擊列表外部以取消，而不更改輸出。
-3. **成本** — 每次完整 **重述…**（無選取文字）和每次單字替代選項請求都會再次使用模型，並可能增加使用成本（與正常翻譯運行相同）。
+1. **改寫…** — 在輸出中未選取文字時，取得相同輸入的另一個完整翻譯，使用不同的措辭。模型會接收你已有的每個版本，使新措辭能與所有版本不同。你最多可以儲存 **五** 個版本，並在版本下拉選單中切換。選取文字後，**改寫…** 會在選取範圍附近開啟詞語替代選項（與右鍵點擊相同）。未選取時，達到五個版本後 **改寫…** 會停用；選取時，即使達到五個版本仍可使用（僅詞語替代選項，更新版本 5）。完整改寫正在執行時，點擊 **停止翻譯** 取消；輸出會回到改寫開始時的活動版本。
+2. **詞語替代選項** — 在輸出中選取一個或多個詞語或短語（如果你只選取詞語的一部分，應用程式會將選取範圍擴展至完整詞語），然後右鍵點擊或點擊 **改寫…**。選取範圍附近會出現簡短的替代選項清單；點擊其中一個來取代。每個選項可能取代比你的選取範圍稍大的跨度（例如相鄰的介詞或冠詞），以保持句子語法正確。如果你少於五個版本，編輯後的輸出會儲存為新版本；達到五個版本時，僅更新 **版本 5**。未選取時右鍵點擊會選取游標下的詞語（如果該處沒有詞語則不做任何動作）。按 **Esc** 或點擊清單外部可取消而不變更輸出。
+3. **成本** — 每次完整 **改寫…**（未選取）和每次詞語替代選項請求都會再次使用模型，並可能增加使用成本（與正常翻譯執行相同）。
 
 <br/>
 
@@ -324,9 +326,9 @@ Transrewrt 可協助您透過三種主要方式處理文字：
 <a id="rewrite"></a>
 ## 重寫
 
-當您想在不改變主要意義的情況下改進措辭時，請使用 **重寫**。
+當你想在不改變主要含義的情況下改善措辭時，請使用 **重寫**。文字會保持相同的語言（不會被翻譯）。
 
-![Rewrite workspace](../images/screenshots/zh-Hant/rewrite.png)
+![重寫工作區](../images/screenshots/zh-Hant/rewrite.png)
 
 這對於以下情況很有用：
 
@@ -339,9 +341,38 @@ Transrewrt 可協助您透過三種主要方式處理文字：
 
 <br/>
 
+<a id="rewrite-text"></a>
+### 重寫文字
+
+1. 開啟 **重寫**。
+2. 選擇 **模式**（例如 **改善清晰度** 或 **設為正式**）。
+3. 可選擇將 **從** 設為您文字的語言（或保留 **偵測語言**）。
+4. 在 **輸入** 中輸入或貼上文字。
+5. 點擊 **重寫**。
+6. 在 **輸出** 中閱讀結果。
+7. 可選擇使用 **重新措辭…** 或詞語替代選項來微調結果 — 請參閱[微調您的重寫](#refining-rewrite)。
+
+<br/>
+
 > 💡 **提示**<br/>
 > 當您使用「**檢查拼字與文法**」模式時，輸出面板中會出現一個「**顯示變更**」開關 (位於 **複製** 旁邊)。
 > 開啟或關閉此開關，即可顯示或隱藏套用到您文字的具體修正。
+
+<br/>
+
+> ℹ️ **注意**<br/>
+> 重寫模式 **其他版本** 會在 **單次** 執行中傳回數個改寫版本，在輸出中以 `----` 分隔。這與 **重新措辭…** 不同，後者會隨時間建立版本歷史（每次點擊產生一個新變體）。請參閱[微調您的重寫](#refining-rewrite)。
+
+<br/>
+
+<a id="refining-rewrite"></a>
+### 微調您的重寫
+
+成功重寫後，**重新措辭…** 和版本下拉選單會出現在工作區的輸出側（在分割版面配置中，位於輸出欄上方的頂部工具列，在執行指標旁；在堆疊版面配置中，位於輸出面板上方，在 **從：** 旁）。您可以在那裡微調結果 — 與[微調您的翻譯](#refining-translation)相同的概念，但文字保持相同語言並保留目前的重寫 **模式**：
+
+1. **重新措辭…** — 在輸出中未選取文字時，取得相同輸入的另一個完整重寫，使用不同的措辭，仍套用所選模式（例如更清晰、更簡短或更正式）。模型會接收您已有的每個版本，因此新措辭可以與所有版本不同。您最多可以儲存 **五個** 版本，並在版本下拉選單中切換它們。選取文字時，**重新措辭…** 會在選取範圍附近開啟詞語替代選項（與右鍵點擊相同）。未選取時，一旦達到五個版本，**重新措辭…** 即停用；選取時，在五個版本下仍可運作（僅詞語替代選項，更新版本 5）。完整重新措辭執行時，點擊 **停止重寫** 以取消；輸出會回到重新措辭開始時的活動版本。
+2. **詞語替代選項** — 在輸出中選取一個或多個詞語或短語（如果您只選取詞語的一部分，應用程式會將選取範圍擴展至完整詞語），然後右鍵點擊或點擊 **重新措辭…**。選取範圍附近會出現簡短的替代選項清單；點擊其中一個以取代。每個選項可能取代比您選取範圍稍大的跨度，以保持句子語法正確。如果您的版本少於五個，編輯後的輸出會儲存為新版本；在五個版本時，僅更新 **版本 5**。未選取時右鍵點擊會選取游標下的詞語（如果該處沒有詞語則不做任何動作）。按下 **Esc** 或點擊清單外部以取消而不變更輸出。
+3. **成本** — 每次完整 **重新措辭…**（未選取）和每次詞語替代請求都會再次使用模型，並可能增加使用成本（與正常重寫執行相同）。
 
 <br/><br/>
 
@@ -352,7 +383,7 @@ Transrewrt 可協助您透過三種主要方式處理文字：
 
 當您希望 AI 遵循一組自訂指示時，請使用 **轉換**。
 
-![Transform workspace](../images/screenshots/zh-Hant/transform.png)
+![轉換工作區](../images/screenshots/zh-Hant/transform.png)
 
 這是應用程式中最具彈性的區域。您可以將其用於諸如以下任務：
 
@@ -400,7 +431,7 @@ Transrewrt 可協助您透過三種主要方式處理文字：
 5. 讓應用程式為您建立草稿。
 6. 檢閱草稿並按一下 **儲存**。
 
-![Generate prompt](../images/screenshots/zh-Hant/transform-generate.png)
+![生成提示](../images/screenshots/zh-Hant/transform-generate.png)
 
 <br/>
 
@@ -409,7 +440,7 @@ Transrewrt 可協助您透過三種主要方式處理文字：
 
 當您建立或編輯提示時，編輯器會顯示在左側，測試區域會顯示在右側。
 
-![Transform prompt editor](../images/screenshots/zh-Hant/transform-prompt-edit.png)
+![轉換提示編輯器](../images/screenshots/zh-Hant/transform-prompt-edit.png)
 
 主要欄位如下：
 
@@ -465,7 +496,7 @@ Transrewrt 可協助您透過三種主要方式處理文字：
 
 使用 **儀表板** 查看您使用了多少應用程式以及需要支付多少費用（針對付費模型）。
 
-![Dashboard summary](../images/screenshots/zh-Hant/dashboard-summary.png)
+![儀表板摘要](../images/screenshots/zh-Hant/dashboard-summary.png)
 
 <br/>
 
@@ -479,7 +510,7 @@ Transrewrt 可協助您透過三種主要方式處理文字：
 
 使用頂部的篩選按鈕來變更時間範圍。
 
-![Dashboard filters](../images/screenshots/zh-Hant/dashboard-filter.png)
+![儀表板篩選器](../images/screenshots/zh-Hant/dashboard-filter.png)
 
 <br/>
 
@@ -529,7 +560,7 @@ Transrewrt 可協助您透過三種主要方式處理文字：
 
 點擊 **歷史** 可查看您在 **Transrewrt** 中執行的動作歷史記錄，包括每次操作的輸入和輸出。
 
-![History page](../images/screenshots/zh-Hant/history.png)
+![歷史頁面](../images/screenshots/zh-Hant/history.png)
 
 <br/>
 
@@ -538,7 +569,7 @@ Transrewrt 可協助您透過三種主要方式處理文字：
 
 **歷史** 使用與 **儀表板** 頁面相同的時間範圍篩選器。
 
-![Dashboard filters](../images/screenshots/zh-Hant/dashboard-filter.png)
+![儀表板篩選器](../images/screenshots/zh-Hant/dashboard-filter.png)
 
 <br/>
 
@@ -639,7 +670,7 @@ Transrewrt 可協助您透過三種主要方式處理文字：
 
 此標籤僅在 [**一般設定**](#general-settings) 中將 **AI 體驗** 設定為 **進階** 時可用。使用 **設定** > **模型** 來選擇要在工具列中顯示哪些模型。
 
-![Settings Models tab](../images/screenshots/zh-Hant/settings-general.png)
+![設定模型分頁](../images/screenshots/zh-Hant/settings-general.png)
 
 此頁面有兩個列表：
 

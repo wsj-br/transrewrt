@@ -1863,7 +1863,7 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 449
+        "line": 527
       }
     ]
   },
@@ -1956,15 +1956,15 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 456
+        "line": 534
       },
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 510
+        "line": 588
       },
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 516
+        "line": 594
       },
       {
         "file": "src/renderer/components/DashboardTabAllCalls.tsx",
@@ -2081,7 +2081,7 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 464
+        "line": 542
       },
       {
         "file": "src/renderer/components/DashboardTabByModel.tsx",
@@ -2190,11 +2190,11 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 468
+        "line": 546
       },
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 516
+        "line": 594
       },
       {
         "file": "src/renderer/utils/misc/formatUtils.ts",
@@ -2291,7 +2291,7 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 476
+        "line": 554
       },
       {
         "file": "src/renderer/components/DashboardTabAllCalls.tsx",
@@ -2396,7 +2396,7 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 518
+        "line": 596
       },
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
@@ -2497,7 +2497,7 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 702
+        "line": 787
       },
       {
         "file": "src/renderer/components/DashboardTabAllCalls.tsx",
@@ -2650,7 +2650,7 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 722
+        "line": 807
       },
       {
         "file": "src/renderer/components/SettingsTransformPromptsTab.tsx",
@@ -2755,7 +2755,7 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 723
+        "line": 808
       },
       {
         "file": "src/renderer/components/SettingsTransformPromptsTab.tsx",
@@ -2852,7 +2852,7 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 724
+        "line": 809
       },
       {
         "file": "src/renderer/components/SettingsTransformPromptsTab.tsx",
@@ -2949,7 +2949,7 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 726
+        "line": 811
       },
       {
         "file": "src/renderer/components/SelectFromPresetsModal.tsx",
@@ -3050,15 +3050,15 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 727
+        "line": 812
       },
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 821
+        "line": 906
       },
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 903
+        "line": 989
       },
       {
         "file": "src/renderer/components/ChangePasswordModal.tsx",
@@ -3215,11 +3215,11 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 818
+        "line": 903
       },
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 900
+        "line": 986
       },
       {
         "file": "src/renderer/components/SettingsTransformPromptsTab.tsx",
@@ -3316,11 +3316,11 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 819
+        "line": 904
       },
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 901
+        "line": 987
       }
     ]
   },
@@ -3413,11 +3413,11 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 819
+        "line": 904
       },
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 901
+        "line": 987
       }
     ]
   },
@@ -3510,11 +3510,11 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 820
+        "line": 905
       },
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 902
+        "line": 988
       },
       {
         "file": "src/renderer/components/DashboardPage.tsx",
@@ -11465,19 +11465,19 @@
       },
       {
         "file": "src/renderer/components/workspace/RewriteWorkspace.tsx",
-        "line": 260
+        "line": 290
       },
       {
         "file": "src/renderer/components/workspace/RewriteWorkspace.tsx",
-        "line": 261
+        "line": 291
       },
       {
         "file": "src/renderer/components/workspace/TranslateStackPanels.tsx",
-        "line": 293
+        "line": 296
       },
       {
         "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
-        "line": 251
+        "line": 254
       }
     ]
   },
@@ -13267,7 +13267,7 @@
       },
       {
         "file": "src/renderer/components/workspace/RewriteWorkspace.tsx",
-        "line": 102
+        "line": 139
       },
       {
         "file": "src/renderer/components/workspace/TransformWorkspace.tsx",
@@ -13384,7 +13384,7 @@
       },
       {
         "file": "src/renderer/components/workspace/RewriteWorkspace.tsx",
-        "line": 163
+        "line": 191
       },
       {
         "file": "src/renderer/components/workspace/TransformWorkspace.tsx",
@@ -13392,11 +13392,11 @@
       },
       {
         "file": "src/renderer/components/workspace/TranslateStackPanels.tsx",
-        "line": 218
+        "line": 221
       },
       {
         "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
-        "line": 166
+        "line": 169
       }
     ]
   },
@@ -15356,23 +15356,23 @@
       },
       {
         "file": "src/renderer/components/workspace/RewriteWorkspace.tsx",
-        "line": 260
+        "line": 290
       },
       {
         "file": "src/renderer/components/workspace/TranslateStackPanels.tsx",
-        "line": 293
+        "line": 296
       },
       {
         "file": "src/renderer/components/workspace/TranslateStackPanels.tsx",
-        "line": 294
+        "line": 297
       },
       {
         "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
-        "line": 251
+        "line": 254
       },
       {
         "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
-        "line": 252
+        "line": 255
       }
     ]
   },
@@ -17358,6 +17358,14 @@
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
         "line": 369
+      },
+      {
+        "file": "src/renderer/components/workspace/RephraseControls.tsx",
+        "line": 81
+      },
+      {
+        "file": "src/renderer/components/workspace/RewriteWorkspace.tsx",
+        "line": 75
       }
     ]
   },
@@ -27763,11 +27771,11 @@
       },
       {
         "file": "src/renderer/components/workspace/RewriteWorkspace.tsx",
-        "line": 60
+        "line": 82
       },
       {
         "file": "src/renderer/components/workspace/RewriteWorkspace.tsx",
-        "line": 61
+        "line": 83
       },
       {
         "file": "src/renderer/components/workspace/TransformWorkspace.tsx",
@@ -27985,7 +27993,7 @@
       },
       {
         "file": "src/renderer/components/workspace/RewriteWorkspace.tsx",
-        "line": 60
+        "line": 82
       },
       {
         "file": "src/renderer/components/workspace/TransformWorkspace.tsx",
@@ -28094,7 +28102,7 @@
       },
       {
         "file": "src/renderer/components/workspace/RewriteWorkspace.tsx",
-        "line": 122
+        "line": 159
       },
       {
         "file": "src/renderer/components/workspace/TransformWorkspace.tsx",
@@ -28203,7 +28211,7 @@
       },
       {
         "file": "src/renderer/components/workspace/RewriteWorkspace.tsx",
-        "line": 199
+        "line": 229
       },
       {
         "file": "src/renderer/components/workspace/TransformWorkspace.tsx",
@@ -28211,11 +28219,11 @@
       },
       {
         "file": "src/renderer/components/workspace/TranslateStackPanels.tsx",
-        "line": 251
+        "line": 254
       },
       {
         "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
-        "line": 210
+        "line": 213
       }
     ]
   },
@@ -35412,7 +35420,7 @@
       },
       {
         "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
-        "line": 202
+        "line": 205
       }
     ]
   },
@@ -45147,11 +45155,11 @@
       },
       {
         "file": "src/renderer/components/workspace/RewriteWorkspace.tsx",
-        "line": 231
+        "line": 261
       },
       {
         "file": "src/renderer/components/workspace/RewriteWorkspace.tsx",
-        "line": 232
+        "line": 262
       },
       {
         "file": "src/renderer/components/workspace/TransformWorkspace.tsx",
@@ -45163,19 +45171,19 @@
       },
       {
         "file": "src/renderer/components/workspace/TranslateStackPanels.tsx",
-        "line": 263
+        "line": 266
       },
       {
         "file": "src/renderer/components/workspace/TranslateStackPanels.tsx",
-        "line": 264
+        "line": 267
       },
       {
         "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
-        "line": 221
+        "line": 224
       },
       {
         "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
-        "line": 222
+        "line": 225
       }
     ]
   },
@@ -45644,11 +45652,11 @@
       },
       {
         "file": "src/renderer/components/workspace/RewriteWorkspace.tsx",
-        "line": 129
+        "line": 166
       },
       {
         "file": "src/renderer/components/workspace/RewriteWorkspace.tsx",
-        "line": 130
+        "line": 167
       },
       {
         "file": "src/renderer/components/workspace/TransformWorkspace.tsx",
@@ -50552,96 +50560,88 @@
       }
     ]
   },
-  "308aa69b": {
-    "source": "Translation word alternatives",
+  "1cf7c182": {
+    "source": "Word alternatives",
     "translated": {
-      "bn": "অনুবাদ শব্দের বিকল্প",
-      "zh-CN": "翻译备选词",
-      "hr": "Alternativni prijevodi riječi",
-      "zh-TW": "翻譯詞彙替代方案",
-      "ar": "بدائل ترجمة الكلمات",
-      "cs": "Alternativy překladu slova",
+      "zh-Hans": "词语替换",
+      "ar": "بدائل الكلمات",
       "ca": "Alternatives de paraules",
-      "pt-BR": "Alternativas de tradução",
-      "fr": "Alternatives de traduction",
-      "en-US": "Translation word alternatives",
-      "de": "Übersetzungsalternativen",
-      "el": "Εναλλακτικές λέξεις μετάφρασης",
-      "hi": "अनुवाद शब्द विकल्प",
-      "tl": "Mga alternatibong salita sa pagsasalin",
-      "nl": "Vertaalalternatieven",
+      "zh-Hant": "詞語替代選項",
+      "pt-BR": "Alternativas de palavras",
+      "cs": "Náhradní slova",
+      "hr": "Word alternatives",
+      "bn": "শব্দের বিকল্প",
+      "en-US": "Word options",
+      "de": "Wortalternativen",
+      "tl": "Mga alternatibo sa salita",
+      "fr": "Alternatives de mots",
+      "hi-Latn": "Shabd vikalp",
+      "nl": "Woordalternatieven",
+      "el": "Εναλλακτικές λέξεων",
       "hu": "Szóalternatívák",
-      "it": "Alternative di traduzione",
-      "ms": "Alternatif kata terjemahan",
-      "ko": "번역어 대안",
-      "pt": "Alternativas de Tradução",
-      "ja": "翻訳語の候補",
-      "pl": "Warianty tłumaczeń",
-      "jv": "Alternatif tembung terjemahan",
-      "fa": "جایگزین‌های واژه ترجمه",
-      "es": "Alternativas de traducción de palabras",
-      "ru": "Варианты перевода слова",
-      "sv": "Ordalternativ för översättning",
-      "te": "అనువాద పద ప్రత్యామ్నాయాలు",
-      "ro": "Alternative de traducere a cuvântului",
-      "sw": "Chaguo Nyingine Za Tafsiri Ya Neno",
-      "sk": "Alternatívy prekladu",
-      "pa": "ਅਨੁਵਾਦ ਸ਼ਬਦ ਵਿਕਲਪ",
-      "th": "คำแปลทางเลือก",
-      "tr": "Çeviri kelime alternatifleri",
-      "vi": "Lựa chọn từ thay thế",
-      "uk": "Варіанти перекладу слова",
-      "zh-Hans": "翻译词语备选",
-      "zh-Hant": "翻譯字詞替代選項",
-      "pa-PK": "ترجمہ لفظ دے متبادل",
-      "hi-Latn": "Anuvad shabd ke vikalp"
+      "it": "Alternative parole",
+      "pt": "Alternativas de palavras",
+      "ja": "単語の候補",
+      "ko": "단어 대안",
+      "jv": "Alternatif tembung",
+      "pl": "Alternatywy słów",
+      "fa": "جایگزین‌های کلمه",
+      "ms": "Pilihan perkataan lain",
+      "ru": "Варианты слов",
+      "es": "Alternativas de palabras",
+      "te": "పద ప్రత్యామ్నాయాలు",
+      "sk": "Alternatívy slov",
+      "ro": "Alternative cuvinte",
+      "sv": "Ord-alternativ",
+      "sw": "Mbadala za neno",
+      "pa-PK": "متبادل الفاظ",
+      "th": "คำอื่นๆ",
+      "vi": "Các từ thay thế",
+      "uk": "Варіанти слів",
+      "tr": "Kelime alternatifleri"
     },
     "models": {
-      "bn": "qwen/qwen3.6-35b-a3b",
-      "zh-CN": "qwen/qwen3.6-35b-a3b",
-      "hr": "qwen/qwen3.6-35b-a3b",
-      "zh-TW": "qwen/qwen3.6-35b-a3b",
-      "ar": "qwen/qwen3.6-35b-a3b",
-      "cs": "qwen/qwen3.6-35b-a3b",
-      "ca": "qwen/qwen3.6-35b-a3b",
-      "pt-BR": "qwen/qwen3.6-35b-a3b",
-      "fr": "qwen/qwen3.6-35b-a3b",
-      "en-US": "qwen/qwen3.6-35b-a3b",
-      "de": "qwen/qwen3.6-35b-a3b",
-      "el": "qwen/qwen3.6-35b-a3b",
-      "hi": "qwen/qwen3.6-35b-a3b",
-      "tl": "qwen/qwen3.6-35b-a3b",
-      "nl": "qwen/qwen3.6-35b-a3b",
-      "hu": "qwen/qwen3.6-35b-a3b",
-      "it": "qwen/qwen3.6-35b-a3b",
-      "ms": "qwen/qwen3.6-35b-a3b",
-      "ko": "qwen/qwen3.6-35b-a3b",
-      "pt": "qwen/qwen3.6-35b-a3b",
-      "ja": "qwen/qwen3.6-35b-a3b",
-      "pl": "qwen/qwen3.6-35b-a3b",
-      "jv": "qwen/qwen3.6-35b-a3b",
-      "fa": "qwen/qwen3.6-35b-a3b",
-      "es": "qwen/qwen3.6-35b-a3b",
-      "ru": "qwen/qwen3.6-35b-a3b",
-      "sv": "qwen/qwen3.6-35b-a3b",
-      "te": "qwen/qwen3.6-35b-a3b",
-      "ro": "qwen/qwen3.6-35b-a3b",
-      "sw": "qwen/qwen3.6-35b-a3b",
-      "sk": "qwen/qwen3.6-35b-a3b",
-      "pa": "qwen/qwen3.6-35b-a3b",
-      "th": "qwen/qwen3.6-35b-a3b",
-      "tr": "qwen/qwen3.6-35b-a3b",
-      "vi": "qwen/qwen3.6-35b-a3b",
-      "uk": "qwen/qwen3.6-35b-a3b",
       "zh-Hans": "google/gemini-2.5-flash-lite",
+      "ar": "google/gemini-2.5-flash-lite",
+      "ca": "google/gemini-2.5-flash-lite",
       "zh-Hant": "google/gemini-2.5-flash-lite",
-      "pa-PK": "google/gemini-2.5-flash",
-      "hi-Latn": "google/gemini-2.5-flash"
+      "pt-BR": "google/gemini-2.5-flash-lite",
+      "cs": "google/gemini-2.5-flash-lite",
+      "hr": "google/gemini-2.5-flash-lite",
+      "bn": "google/gemini-2.5-flash-lite",
+      "en-US": "google/gemini-2.5-flash-lite",
+      "de": "google/gemini-2.5-flash-lite",
+      "tl": "google/gemini-2.5-flash-lite",
+      "fr": "google/gemini-2.5-flash-lite",
+      "hi-Latn": "google/gemini-2.5-flash-lite",
+      "nl": "google/gemini-2.5-flash-lite",
+      "el": "google/gemini-2.5-flash-lite",
+      "hu": "google/gemini-2.5-flash-lite",
+      "it": "google/gemini-2.5-flash-lite",
+      "pt": "google/gemini-2.5-flash-lite",
+      "ja": "google/gemini-2.5-flash-lite",
+      "ko": "google/gemini-2.5-flash-lite",
+      "jv": "google/gemini-2.5-flash-lite",
+      "pl": "google/gemini-2.5-flash-lite",
+      "fa": "google/gemini-2.5-flash-lite",
+      "ms": "google/gemini-2.5-flash-lite",
+      "ru": "google/gemini-2.5-flash-lite",
+      "es": "google/gemini-2.5-flash-lite",
+      "te": "google/gemini-2.5-flash-lite",
+      "sk": "google/gemini-2.5-flash-lite",
+      "ro": "google/gemini-2.5-flash-lite",
+      "sv": "google/gemini-2.5-flash-lite",
+      "sw": "google/gemini-2.5-flash-lite",
+      "pa-PK": "google/gemini-2.5-flash-lite",
+      "th": "google/gemini-2.5-flash-lite",
+      "vi": "google/gemini-2.5-flash-lite",
+      "uk": "google/gemini-2.5-flash-lite",
+      "tr": "google/gemini-2.5-flash-lite"
     },
     "locations": [
       {
-        "file": "src/renderer/components/TranslateWordAlternativesPopover.tsx",
-        "line": 80
+        "file": "src/renderer/components/WordAlternativesPopover.tsx",
+        "line": 83
       }
     ]
   },
@@ -50733,8 +50733,8 @@
     },
     "locations": [
       {
-        "file": "src/renderer/components/TranslateWordAlternativesPopover.tsx",
-        "line": 88
+        "file": "src/renderer/components/WordAlternativesPopover.tsx",
+        "line": 91
       }
     ]
   },
@@ -51304,6 +51304,289 @@
       }
     ]
   },
+  "b52d3b12": {
+    "source": "Version {{number}}",
+    "translated": {
+      "cs": "Verze {{number}}",
+      "pt-BR": "Versão {{number}}",
+      "zh-TW": "版本 {{number}}",
+      "zh-CN": "版本 {{number}}",
+      "hr": "Verzija {{number}}",
+      "ar": "الإصدار {{number}}",
+      "bn": "সংস্করণ {{number}}",
+      "ca": "Versió {{number}}",
+      "en-US": "Version {{number}}",
+      "fr": "Version {{number}}",
+      "de": "Version {{number}}",
+      "nl": "Versie {{number}}",
+      "hu": "Verzió {{number}}",
+      "el": "Έκδοση {{number}}",
+      "hi": "संस्करण {{number}}",
+      "tl": "Bersyon {{number}}",
+      "pt": "Versão {{number}}",
+      "ko": "버전 {{number}}",
+      "pl": "Wersja {{number}}",
+      "fa": "نسخه {{number}}",
+      "ms": "Versi {{number}}",
+      "jv": "Versi {{number}}",
+      "it": "Versione {{number}}",
+      "ja": "バージョン {{number}}",
+      "sv": "Version {{number}}",
+      "sk": "Verzia {{number}}",
+      "es": "Versión {{number}}",
+      "ru": "Версия {{number}}",
+      "ro": "Versiunea {{number}}",
+      "pa": "ਸੰਸਕਰਨ {{number}}",
+      "te": "సంస్కరణ {{number}}",
+      "sw": "Toleo {{number}}",
+      "vi": "Phiên bản {{number}}",
+      "tr": "Sürüm {{number}}",
+      "uk": "Версія {{number}}",
+      "th": "เวอร์ชัน {{number}}",
+      "zh-Hans": "版本 {{number}}",
+      "zh-Hant": "版本 {{number}}",
+      "pa-PK": "ورژن {{number}}",
+      "hi-Latn": "Version {{number}}"
+    },
+    "models": {
+      "cs": "qwen/qwen3.6-35b-a3b",
+      "pt-BR": "qwen/qwen3.6-35b-a3b",
+      "zh-TW": "qwen/qwen3.6-35b-a3b",
+      "zh-CN": "qwen/qwen3.6-35b-a3b",
+      "hr": "qwen/qwen3.6-35b-a3b",
+      "ar": "qwen/qwen3.6-35b-a3b",
+      "bn": "qwen/qwen3.6-35b-a3b",
+      "ca": "qwen/qwen3.6-35b-a3b",
+      "en-US": "qwen/qwen3.6-35b-a3b",
+      "fr": "qwen/qwen3.6-35b-a3b",
+      "de": "qwen/qwen3.6-35b-a3b",
+      "nl": "qwen/qwen3.6-35b-a3b",
+      "hu": "qwen/qwen3.6-35b-a3b",
+      "el": "qwen/qwen3.6-35b-a3b",
+      "hi": "qwen/qwen3.6-35b-a3b",
+      "tl": "openai/gpt-4o-mini",
+      "pt": "qwen/qwen3.6-35b-a3b",
+      "ko": "qwen/qwen3.6-35b-a3b",
+      "pl": "qwen/qwen3.6-35b-a3b",
+      "fa": "qwen/qwen3.6-35b-a3b",
+      "ms": "qwen/qwen3.6-35b-a3b",
+      "jv": "qwen/qwen3.6-35b-a3b",
+      "it": "qwen/qwen3.6-35b-a3b",
+      "ja": "qwen/qwen3.6-35b-a3b",
+      "sv": "openai/gpt-4o-mini",
+      "sk": "qwen/qwen3.6-35b-a3b",
+      "es": "qwen/qwen3.6-35b-a3b",
+      "ru": "qwen/qwen3.6-35b-a3b",
+      "ro": "qwen/qwen3.6-35b-a3b",
+      "pa": "qwen/qwen3.6-35b-a3b",
+      "te": "qwen/qwen3.6-35b-a3b",
+      "sw": "qwen/qwen3.6-35b-a3b",
+      "vi": "qwen/qwen3.6-35b-a3b",
+      "tr": "qwen/qwen3.6-35b-a3b",
+      "uk": "qwen/qwen3.6-35b-a3b",
+      "th": "qwen/qwen3.6-35b-a3b",
+      "zh-Hans": "google/gemini-2.5-flash-lite",
+      "zh-Hant": "google/gemini-2.5-flash-lite",
+      "pa-PK": "google/gemini-2.5-flash",
+      "hi-Latn": "google/gemini-2.5-flash"
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/workspace/RephraseControls.tsx",
+        "line": 25
+      }
+    ]
+  },
+  "27ccdb09": {
+    "source": "Maximum of 5 versions reached",
+    "translated": {
+      "zh-Hans": "已达到 5 个最大版本",
+      "ar": "تم الوصول إلى الحد الأقصى وهو 5 إصدارات",
+      "ca": "S'ha assolit el màxim de 5 versions",
+      "zh-Hant": "已達 5 個版本上限",
+      "pt-BR": "Máximo de 5 versões atingido",
+      "cs": "Dosaženo maximálního počtu 5 verzí",
+      "hr": "Dosegnuto je maksimalno 5 verzija",
+      "bn": "সর্বোচ্চ ৫টি সংস্করণ পৌঁছেছে",
+      "en-US": "Maximum of 5 versions reached",
+      "de": "Maximum von 5 Versionen erreicht",
+      "tl": "Naabot ang maximum na 5 bersyon",
+      "fr": "Maximum de 5 versions atteint",
+      "hi-Latn": "5 se adhik vikalp nahi ho sakte",
+      "nl": "Maximum van 5 versies bereikt",
+      "el": "Έχει επιτευχθεί το μέγιστο των 5 εκδόσεων",
+      "hu": "Elérte az 5 verziós maximumot",
+      "it": "Raggiunto il massimo di 5 versioni",
+      "pt": "Atingido o máximo de 5 versões",
+      "ja": "最大5つのバージョンに達しました",
+      "ko": "최대 5개 버전 도달",
+      "jv": "Maksimal 5 versi wis tekan",
+      "pl": "Osiągnięto maksymalną liczbę 5 wersji",
+      "fa": "حداکثر ۵ نسخه رسیده است",
+      "ms": "Maksimum 5 versi telah dicapai",
+      "ru": "Достигнуто максимум 5 версий",
+      "es": "Se alcanzó el máximo de 5 versiones",
+      "te": "గరిష్టంగా 5 వెర్షన్లు చేరుకున్నాయి",
+      "sk": "Bol dosiahnutý maximálny počet 5 verzií",
+      "ro": "S-a atins numărul maxim de 5 versiuni",
+      "sv": "Högst 5 versioner har nåtts",
+      "sw": "Upeo wa matoleo 5 umefikiwa",
+      "pa-PK": "5 تو س زیادہ توثیق نہیں پہنچ سکی",
+      "th": "ถึงขีดจำกัด 5 เวอร์ชันแล้ว",
+      "vi": "Đã đạt tối đa 5 phiên bản",
+      "uk": "Досягнуто максимум 5 версій",
+      "tr": "En fazla 5 sürüm sınırına ulaşıldı"
+    },
+    "models": {
+      "zh-Hans": "google/gemini-2.5-flash-lite",
+      "ar": "google/gemini-2.5-flash-lite",
+      "ca": "google/gemini-2.5-flash-lite",
+      "zh-Hant": "google/gemini-2.5-flash-lite",
+      "pt-BR": "google/gemini-2.5-flash-lite",
+      "cs": "google/gemini-2.5-flash-lite",
+      "hr": "google/gemini-2.5-flash-lite",
+      "bn": "google/gemini-2.5-flash-lite",
+      "en-US": "google/gemini-2.5-flash-lite",
+      "de": "google/gemini-2.5-flash-lite",
+      "tl": "google/gemini-2.5-flash-lite",
+      "fr": "google/gemini-2.5-flash-lite",
+      "hi-Latn": "google/gemini-2.5-flash-lite",
+      "nl": "google/gemini-2.5-flash-lite",
+      "el": "google/gemini-2.5-flash-lite",
+      "hu": "google/gemini-2.5-flash-lite",
+      "it": "google/gemini-2.5-flash-lite",
+      "pt": "google/gemini-2.5-flash-lite",
+      "ja": "google/gemini-2.5-flash-lite",
+      "ko": "google/gemini-2.5-flash-lite",
+      "jv": "google/gemini-2.5-flash-lite",
+      "pl": "google/gemini-2.5-flash-lite",
+      "fa": "google/gemini-2.5-flash-lite",
+      "ms": "google/gemini-2.5-flash-lite",
+      "ru": "google/gemini-2.5-flash-lite",
+      "es": "google/gemini-2.5-flash-lite",
+      "te": "google/gemini-2.5-flash-lite",
+      "sk": "google/gemini-2.5-flash-lite",
+      "ro": "google/gemini-2.5-flash-lite",
+      "sv": "google/gemini-2.5-flash-lite",
+      "sw": "google/gemini-2.5-flash-lite",
+      "pa-PK": "google/gemini-2.5-flash-lite",
+      "th": "google/gemini-2.5-flash-lite",
+      "vi": "google/gemini-2.5-flash-lite",
+      "uk": "google/gemini-2.5-flash-lite",
+      "tr": "google/gemini-2.5-flash-lite"
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/workspace/RephraseControls.tsx",
+        "line": 64
+      },
+      {
+        "file": "src/renderer/components/workspace/RewriteWorkspace.tsx",
+        "line": 76
+      }
+    ]
+  },
+  "62419fc4": {
+    "source": "Rephrase...",
+    "translated": {
+      "cs": "Přeformulovat...",
+      "pt-BR": "Reescrever...",
+      "zh-TW": "改寫...",
+      "zh-CN": "改写...",
+      "hr": "Preformuliraj...",
+      "ar": "إعادة صياغة...",
+      "bn": "পুনরায় লিখুন...",
+      "ca": "Reformula...",
+      "en-US": "Rephrase...",
+      "fr": "Reformuler...",
+      "de": "Umformulieren...",
+      "nl": "Herschrijven...",
+      "hu": "Átfogalmazás...",
+      "el": "Επαναδιατύπωση...",
+      "hi": "पुनर्लेखन...",
+      "tl": "I-rephrase...",
+      "pt": "Reformular...",
+      "ko": "다시 작성...",
+      "pl": "Przeformułuj...",
+      "fa": "بازنویسی...",
+      "ms": "Ungkapan semula...",
+      "jv": "Ganti tembung...",
+      "it": "Riformula...",
+      "ja": "書き換え...",
+      "sv": "Omformulera...",
+      "sk": "Preformulovať...",
+      "es": "Reescribir...",
+      "ru": "Перефразировать...",
+      "ro": "Reformulează...",
+      "pa": "ਮੁੜ ਲਿਖੋ...",
+      "te": "పునర్వచనం...",
+      "sw": "Andika upya...",
+      "vi": "Viết lại...",
+      "tr": "Yeniden ifade et...",
+      "uk": "Перефразувати...",
+      "th": "เรียบเรียงใหม่...",
+      "zh-Hans": "改写...",
+      "zh-Hant": "改寫...",
+      "pa-PK": "دوبارہ لکھو...",
+      "hi-Latn": "Dobara kahein..."
+    },
+    "models": {
+      "cs": "qwen/qwen3.6-35b-a3b",
+      "pt-BR": "qwen/qwen3.6-35b-a3b",
+      "zh-TW": "qwen/qwen3.6-35b-a3b",
+      "zh-CN": "qwen/qwen3.6-35b-a3b",
+      "hr": "qwen/qwen3.6-35b-a3b",
+      "ar": "qwen/qwen3.6-35b-a3b",
+      "bn": "qwen/qwen3.6-35b-a3b",
+      "ca": "qwen/qwen3.6-35b-a3b",
+      "en-US": "qwen/qwen3.6-35b-a3b",
+      "fr": "qwen/qwen3.6-35b-a3b",
+      "de": "qwen/qwen3.6-35b-a3b",
+      "nl": "qwen/qwen3.6-35b-a3b",
+      "hu": "qwen/qwen3.6-35b-a3b",
+      "el": "qwen/qwen3.6-35b-a3b",
+      "hi": "qwen/qwen3.6-35b-a3b",
+      "tl": "openai/gpt-4o-mini",
+      "pt": "qwen/qwen3.6-35b-a3b",
+      "ko": "qwen/qwen3.6-35b-a3b",
+      "pl": "qwen/qwen3.6-35b-a3b",
+      "fa": "qwen/qwen3.6-35b-a3b",
+      "ms": "qwen/qwen3.6-35b-a3b",
+      "jv": "qwen/qwen3.6-35b-a3b",
+      "it": "qwen/qwen3.6-35b-a3b",
+      "ja": "qwen/qwen3.6-35b-a3b",
+      "sv": "openai/gpt-4o-mini",
+      "sk": "qwen/qwen3.6-35b-a3b",
+      "es": "qwen/qwen3.6-35b-a3b",
+      "ru": "qwen/qwen3.6-35b-a3b",
+      "ro": "qwen/qwen3.6-35b-a3b",
+      "pa": "qwen/qwen3.6-35b-a3b",
+      "te": "qwen/qwen3.6-35b-a3b",
+      "sw": "qwen/qwen3.6-35b-a3b",
+      "vi": "qwen/qwen3.6-35b-a3b",
+      "tr": "qwen/qwen3.6-35b-a3b",
+      "uk": "qwen/qwen3.6-35b-a3b",
+      "th": "qwen/qwen3.6-35b-a3b",
+      "zh-Hans": "google/gemini-2.5-flash-lite",
+      "zh-Hant": "google/gemini-2.5-flash-lite",
+      "pa-PK": "google/gemini-2.5-flash",
+      "hi-Latn": "google/gemini-2.5-flash"
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/workspace/RephraseControls.tsx",
+        "line": 65
+      },
+      {
+        "file": "src/renderer/components/workspace/RephraseControls.tsx",
+        "line": 67
+      },
+      {
+        "file": "src/renderer/components/workspace/RephraseControls.tsx",
+        "line": 70
+      }
+    ]
+  },
   "1ee1c44c": {
     "source": "Mode:",
     "translated": {
@@ -51393,7 +51676,7 @@
     "locations": [
       {
         "file": "src/renderer/components/workspace/RewriteWorkspace.tsx",
-        "line": 68
+        "line": 89
       }
     ]
   },
@@ -51486,11 +51769,7 @@
     "locations": [
       {
         "file": "src/renderer/components/workspace/RewriteWorkspace.tsx",
-        "line": 78
-      },
-      {
-        "file": "src/renderer/components/workspace/RewriteWorkspace.tsx",
-        "line": 144
+        "line": 100
       },
       {
         "file": "src/renderer/components/workspace/TransformWorkspace.tsx",
@@ -51595,7 +51874,7 @@
     "locations": [
       {
         "file": "src/renderer/components/workspace/RewriteWorkspace.tsx",
-        "line": 105
+        "line": 142
       },
       {
         "file": "src/renderer/components/workspace/TranslateStackPanels.tsx",
@@ -51696,7 +51975,7 @@
     "locations": [
       {
         "file": "src/renderer/components/workspace/RewriteWorkspace.tsx",
-        "line": 119
+        "line": 156
       },
       {
         "file": "src/renderer/components/workspace/TransformWorkspace.tsx",
@@ -51801,7 +52080,7 @@
     "locations": [
       {
         "file": "src/renderer/components/workspace/RewriteWorkspace.tsx",
-        "line": 166
+        "line": 194
       },
       {
         "file": "src/renderer/components/workspace/TransformWorkspace.tsx",
@@ -51809,11 +52088,11 @@
       },
       {
         "file": "src/renderer/components/workspace/TranslateStackPanels.tsx",
-        "line": 221
+        "line": 224
       },
       {
         "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
-        "line": 169
+        "line": 172
       }
     ]
   },
@@ -51906,7 +52185,7 @@
     "locations": [
       {
         "file": "src/renderer/components/workspace/RewriteWorkspace.tsx",
-        "line": 196
+        "line": 226
       },
       {
         "file": "src/renderer/components/workspace/TransformWorkspace.tsx",
@@ -51914,11 +52193,11 @@
       },
       {
         "file": "src/renderer/components/workspace/TranslateStackPanels.tsx",
-        "line": 248
+        "line": 251
       },
       {
         "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
-        "line": 207
+        "line": 210
       }
     ]
   },
@@ -52011,7 +52290,7 @@
     "locations": [
       {
         "file": "src/renderer/components/workspace/RewriteWorkspace.tsx",
-        "line": 218
+        "line": 248
       }
     ]
   },
@@ -52104,7 +52383,7 @@
     "locations": [
       {
         "file": "src/renderer/components/workspace/RewriteWorkspace.tsx",
-        "line": 251
+        "line": 281
       },
       {
         "file": "src/renderer/components/workspace/TransformWorkspace.tsx",
@@ -52112,11 +52391,11 @@
       },
       {
         "file": "src/renderer/components/workspace/TranslateStackPanels.tsx",
-        "line": 283
+        "line": 286
       },
       {
         "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
-        "line": 241
+        "line": 244
       }
     ]
   },
@@ -52209,15 +52488,15 @@
     "locations": [
       {
         "file": "src/renderer/components/workspace/RewriteWorkspace.tsx",
-        "line": 260
+        "line": 290
       },
       {
         "file": "src/renderer/components/workspace/TranslateStackPanels.tsx",
-        "line": 293
+        "line": 296
       },
       {
         "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
-        "line": 251
+        "line": 254
       }
     ]
   },
@@ -52404,386 +52683,6 @@
       {
         "file": "src/renderer/components/workspace/TransformWorkspace.tsx",
         "line": 286
-      }
-    ]
-  },
-  "b52d3b12": {
-    "source": "Version {{number}}",
-    "translated": {
-      "cs": "Verze {{number}}",
-      "pt-BR": "Versão {{number}}",
-      "zh-TW": "版本 {{number}}",
-      "zh-CN": "版本 {{number}}",
-      "hr": "Verzija {{number}}",
-      "ar": "الإصدار {{number}}",
-      "bn": "সংস্করণ {{number}}",
-      "ca": "Versió {{number}}",
-      "en-US": "Version {{number}}",
-      "fr": "Version {{number}}",
-      "de": "Version {{number}}",
-      "nl": "Versie {{number}}",
-      "hu": "Verzió {{number}}",
-      "el": "Έκδοση {{number}}",
-      "hi": "संस्करण {{number}}",
-      "tl": "Bersyon {{number}}",
-      "pt": "Versão {{number}}",
-      "ko": "버전 {{number}}",
-      "pl": "Wersja {{number}}",
-      "fa": "نسخه {{number}}",
-      "ms": "Versi {{number}}",
-      "jv": "Versi {{number}}",
-      "it": "Versione {{number}}",
-      "ja": "バージョン {{number}}",
-      "sv": "Version {{number}}",
-      "sk": "Verzia {{number}}",
-      "es": "Versión {{number}}",
-      "ru": "Версия {{number}}",
-      "ro": "Versiunea {{number}}",
-      "pa": "ਸੰਸਕਰਨ {{number}}",
-      "te": "సంస్కరణ {{number}}",
-      "sw": "Toleo {{number}}",
-      "vi": "Phiên bản {{number}}",
-      "tr": "Sürüm {{number}}",
-      "uk": "Версія {{number}}",
-      "th": "เวอร์ชัน {{number}}",
-      "zh-Hans": "版本 {{number}}",
-      "zh-Hant": "版本 {{number}}",
-      "pa-PK": "ورژن {{number}}",
-      "hi-Latn": "Version {{number}}"
-    },
-    "models": {
-      "cs": "qwen/qwen3.6-35b-a3b",
-      "pt-BR": "qwen/qwen3.6-35b-a3b",
-      "zh-TW": "qwen/qwen3.6-35b-a3b",
-      "zh-CN": "qwen/qwen3.6-35b-a3b",
-      "hr": "qwen/qwen3.6-35b-a3b",
-      "ar": "qwen/qwen3.6-35b-a3b",
-      "bn": "qwen/qwen3.6-35b-a3b",
-      "ca": "qwen/qwen3.6-35b-a3b",
-      "en-US": "qwen/qwen3.6-35b-a3b",
-      "fr": "qwen/qwen3.6-35b-a3b",
-      "de": "qwen/qwen3.6-35b-a3b",
-      "nl": "qwen/qwen3.6-35b-a3b",
-      "hu": "qwen/qwen3.6-35b-a3b",
-      "el": "qwen/qwen3.6-35b-a3b",
-      "hi": "qwen/qwen3.6-35b-a3b",
-      "tl": "openai/gpt-4o-mini",
-      "pt": "qwen/qwen3.6-35b-a3b",
-      "ko": "qwen/qwen3.6-35b-a3b",
-      "pl": "qwen/qwen3.6-35b-a3b",
-      "fa": "qwen/qwen3.6-35b-a3b",
-      "ms": "qwen/qwen3.6-35b-a3b",
-      "jv": "qwen/qwen3.6-35b-a3b",
-      "it": "qwen/qwen3.6-35b-a3b",
-      "ja": "qwen/qwen3.6-35b-a3b",
-      "sv": "openai/gpt-4o-mini",
-      "sk": "qwen/qwen3.6-35b-a3b",
-      "es": "qwen/qwen3.6-35b-a3b",
-      "ru": "qwen/qwen3.6-35b-a3b",
-      "ro": "qwen/qwen3.6-35b-a3b",
-      "pa": "qwen/qwen3.6-35b-a3b",
-      "te": "qwen/qwen3.6-35b-a3b",
-      "sw": "qwen/qwen3.6-35b-a3b",
-      "vi": "qwen/qwen3.6-35b-a3b",
-      "tr": "qwen/qwen3.6-35b-a3b",
-      "uk": "qwen/qwen3.6-35b-a3b",
-      "th": "qwen/qwen3.6-35b-a3b",
-      "zh-Hans": "google/gemini-2.5-flash-lite",
-      "zh-Hant": "google/gemini-2.5-flash-lite",
-      "pa-PK": "google/gemini-2.5-flash",
-      "hi-Latn": "google/gemini-2.5-flash"
-    },
-    "locations": [
-      {
-        "file": "src/renderer/components/workspace/TranslateRephraseControls.tsx",
-        "line": 19
-      }
-    ]
-  },
-  "4c5614e6": {
-    "source": "Maximum of 5 translation versions reached",
-    "translated": {
-      "bn": "অনুবাদের সর্বোচ্চ ৫টি সংস্করণে পৌঁছেছে",
-      "zh-CN": "翻译版本已达上限（5个）",
-      "hr": "Dosegnut je maksimalan broj od 5 verzija prijevoda",
-      "zh-TW": "已達翻譯版本上限（5 個）",
-      "ar": "تم الوصول إلى الحد الأقصى البالغ 5 نسخ ترجمة",
-      "cs": "Dosažen maximální počet 5 překladových variant",
-      "ca": "S'ha arribat al màxim de 5 versions de traducció",
-      "pt-BR": "Limite de 5 versões de tradução atingido",
-      "fr": "Limite de 5 versions de traduction atteinte",
-      "en-US": "Maximum of 5 translation versions reached",
-      "de": "Maximal 5 Übersetzungsversionen erreicht",
-      "el": "Έχει φτάσει το μέγιστο όριο 5 εκδόσεων μετάφρασης",
-      "hi": "अधिकतम 5 अनुवाद संस्करण प्राप्त हो चुके हैं",
-      "tl": "Naabot na ang maximum na 5 bersyon ng pagsasalin",
-      "nl": "Maximaal 5 vertaalversies bereikt",
-      "hu": "Maximum 5 fordítási verzió érhető el",
-      "it": "Limite massimo di 5 versioni di traduzione raggiunto",
-      "ms": "Had maksimum 5 versi terjemahan dicapai",
-      "ko": "번역 버전 최대 5개에 도달했습니다",
-      "pt": "Limite de 5 Versões de Tradução Atingido",
-      "ja": "翻訳候補は最大5つまでです",
-      "pl": "Osiągnięto limit 5 wersji tłumaczenia",
-      "jv": "Maksimal 5 versi terjemahan wis tercapai",
-      "fa": "حداکثر ۵ نسخه ترجمه مجاز است",
-      "es": "Se ha alcanzado el máximo de 5 versiones de traducción",
-      "ru": "Достигнут лимит в 5 вариантов перевода",
-      "sv": "Maximalt 5 översättningsversioner har nåtts",
-      "te": "గరిష్ఠంగా 5 అనువాద రూపాలు సాధించబడింది",
-      "ro": "S-a atins limita maximă de 5 versiuni de traducere",
-      "sw": "Imefikiwa kiwango cha juu cha toleo 5 la tafsiri",
-      "sk": "Bol dosiahnutý maximálny počet 5 verzií prekladu",
-      "pa": "ਅਨੁਵਾਦ ਰੂਪਾਂ ਦੀ ਅਧਿਕਤਮ ਸੀਮਾ 5 ਪਹੁੰਚ ਗਈ ਹੈ",
-      "th": "ถึงจำนวนคำแปลสูงสุด 5 เวอร์ชันแล้ว",
-      "tr": "5 çeviri versiyonu sınırına ulaşıldı",
-      "vi": "Đã đạt giới hạn tối đa 5 phương án dịch",
-      "uk": "Досягнуто максимальну кількість варіантів перекладу (5)",
-      "zh-Hans": "已达到 5 个翻译版本上限",
-      "zh-Hant": "已達到 5 個翻譯版本的上限",
-      "pa-PK": "ترجمہ دے 5 ورژن دی ودھ توں ودھ حد پوری ہو گئی ہے",
-      "hi-Latn": "Anuvad ke 5 version ki adhiktam seema tak pahunch gaye"
-    },
-    "models": {
-      "bn": "qwen/qwen3.6-35b-a3b",
-      "zh-CN": "qwen/qwen3.6-35b-a3b",
-      "hr": "qwen/qwen3.6-35b-a3b",
-      "zh-TW": "qwen/qwen3.6-35b-a3b",
-      "ar": "qwen/qwen3.6-35b-a3b",
-      "cs": "qwen/qwen3.6-35b-a3b",
-      "ca": "qwen/qwen3.6-35b-a3b",
-      "pt-BR": "qwen/qwen3.6-35b-a3b",
-      "fr": "qwen/qwen3.6-35b-a3b",
-      "en-US": "qwen/qwen3.6-35b-a3b",
-      "de": "qwen/qwen3.6-35b-a3b",
-      "el": "qwen/qwen3.6-35b-a3b",
-      "hi": "qwen/qwen3.6-35b-a3b",
-      "tl": "qwen/qwen3.6-35b-a3b",
-      "nl": "qwen/qwen3.6-35b-a3b",
-      "hu": "qwen/qwen3.6-35b-a3b",
-      "it": "qwen/qwen3.6-35b-a3b",
-      "ms": "qwen/qwen3.6-35b-a3b",
-      "ko": "qwen/qwen3.6-35b-a3b",
-      "pt": "qwen/qwen3.6-35b-a3b",
-      "ja": "qwen/qwen3.6-35b-a3b",
-      "pl": "qwen/qwen3.6-35b-a3b",
-      "jv": "qwen/qwen3.6-35b-a3b",
-      "fa": "qwen/qwen3.6-35b-a3b",
-      "es": "qwen/qwen3.6-35b-a3b",
-      "ru": "qwen/qwen3.6-35b-a3b",
-      "sv": "qwen/qwen3.6-35b-a3b",
-      "te": "qwen/qwen3.6-35b-a3b",
-      "ro": "qwen/qwen3.6-35b-a3b",
-      "sw": "qwen/qwen3.6-35b-a3b",
-      "sk": "qwen/qwen3.6-35b-a3b",
-      "pa": "qwen/qwen3.6-35b-a3b",
-      "th": "qwen/qwen3.6-35b-a3b",
-      "tr": "qwen/qwen3.6-35b-a3b",
-      "vi": "qwen/qwen3.6-35b-a3b",
-      "uk": "qwen/qwen3.6-35b-a3b",
-      "zh-Hans": "google/gemini-2.5-flash-lite",
-      "zh-Hant": "google/gemini-2.5-flash-lite",
-      "pa-PK": "google/gemini-2.5-flash",
-      "hi-Latn": "google/gemini-2.5-flash"
-    },
-    "locations": [
-      {
-        "file": "src/renderer/components/workspace/TranslateRephraseControls.tsx",
-        "line": 56
-      }
-    ]
-  },
-  "62419fc4": {
-    "source": "Rephrase...",
-    "translated": {
-      "cs": "Přeformulovat...",
-      "pt-BR": "Reescrever...",
-      "zh-TW": "改寫...",
-      "zh-CN": "改写...",
-      "hr": "Preformuliraj...",
-      "ar": "إعادة صياغة...",
-      "bn": "পুনরায় লিখুন...",
-      "ca": "Reformula...",
-      "en-US": "Rephrase...",
-      "fr": "Reformuler...",
-      "de": "Umformulieren...",
-      "nl": "Herschrijven...",
-      "hu": "Átfogalmazás...",
-      "el": "Επαναδιατύπωση...",
-      "hi": "पुनर्लेखन...",
-      "tl": "I-rephrase...",
-      "pt": "Reformular...",
-      "ko": "다시 작성...",
-      "pl": "Przeformułuj...",
-      "fa": "بازنویسی...",
-      "ms": "Ungkapan semula...",
-      "jv": "Ganti tembung...",
-      "it": "Riformula...",
-      "ja": "書き換え...",
-      "sv": "Omformulera...",
-      "sk": "Preformulovať...",
-      "es": "Reescribir...",
-      "ru": "Перефразировать...",
-      "ro": "Reformulează...",
-      "pa": "ਮੁੜ ਲਿਖੋ...",
-      "te": "పునర్వచనం...",
-      "sw": "Andika upya...",
-      "vi": "Viết lại...",
-      "tr": "Yeniden ifade et...",
-      "uk": "Перефразувати...",
-      "th": "เรียบเรียงใหม่...",
-      "zh-Hans": "改写...",
-      "zh-Hant": "改寫...",
-      "pa-PK": "دوبارہ لکھو...",
-      "hi-Latn": "Dobara kahein..."
-    },
-    "models": {
-      "cs": "qwen/qwen3.6-35b-a3b",
-      "pt-BR": "qwen/qwen3.6-35b-a3b",
-      "zh-TW": "qwen/qwen3.6-35b-a3b",
-      "zh-CN": "qwen/qwen3.6-35b-a3b",
-      "hr": "qwen/qwen3.6-35b-a3b",
-      "ar": "qwen/qwen3.6-35b-a3b",
-      "bn": "qwen/qwen3.6-35b-a3b",
-      "ca": "qwen/qwen3.6-35b-a3b",
-      "en-US": "qwen/qwen3.6-35b-a3b",
-      "fr": "qwen/qwen3.6-35b-a3b",
-      "de": "qwen/qwen3.6-35b-a3b",
-      "nl": "qwen/qwen3.6-35b-a3b",
-      "hu": "qwen/qwen3.6-35b-a3b",
-      "el": "qwen/qwen3.6-35b-a3b",
-      "hi": "qwen/qwen3.6-35b-a3b",
-      "tl": "openai/gpt-4o-mini",
-      "pt": "qwen/qwen3.6-35b-a3b",
-      "ko": "qwen/qwen3.6-35b-a3b",
-      "pl": "qwen/qwen3.6-35b-a3b",
-      "fa": "qwen/qwen3.6-35b-a3b",
-      "ms": "qwen/qwen3.6-35b-a3b",
-      "jv": "qwen/qwen3.6-35b-a3b",
-      "it": "qwen/qwen3.6-35b-a3b",
-      "ja": "qwen/qwen3.6-35b-a3b",
-      "sv": "openai/gpt-4o-mini",
-      "sk": "qwen/qwen3.6-35b-a3b",
-      "es": "qwen/qwen3.6-35b-a3b",
-      "ru": "qwen/qwen3.6-35b-a3b",
-      "ro": "qwen/qwen3.6-35b-a3b",
-      "pa": "qwen/qwen3.6-35b-a3b",
-      "te": "qwen/qwen3.6-35b-a3b",
-      "sw": "qwen/qwen3.6-35b-a3b",
-      "vi": "qwen/qwen3.6-35b-a3b",
-      "tr": "qwen/qwen3.6-35b-a3b",
-      "uk": "qwen/qwen3.6-35b-a3b",
-      "th": "qwen/qwen3.6-35b-a3b",
-      "zh-Hans": "google/gemini-2.5-flash-lite",
-      "zh-Hant": "google/gemini-2.5-flash-lite",
-      "pa-PK": "google/gemini-2.5-flash",
-      "hi-Latn": "google/gemini-2.5-flash"
-    },
-    "locations": [
-      {
-        "file": "src/renderer/components/workspace/TranslateRephraseControls.tsx",
-        "line": 57
-      },
-      {
-        "file": "src/renderer/components/workspace/TranslateRephraseControls.tsx",
-        "line": 59
-      },
-      {
-        "file": "src/renderer/components/workspace/TranslateRephraseControls.tsx",
-        "line": 62
-      }
-    ]
-  },
-  "48589c79": {
-    "source": "Translation version",
-    "translated": {
-      "cs": "Verze překladu",
-      "pt-BR": "Versão de tradução",
-      "zh-TW": "翻譯版本",
-      "zh-CN": "翻译版本",
-      "hr": "Verzija prijevoda",
-      "ar": "نسخة الترجمة",
-      "bn": "অনুবাদ সংস্করণ",
-      "ca": "Versió de traducció",
-      "en-US": "Translation version",
-      "fr": "Version de traduction",
-      "de": "Übersetzungsversion",
-      "nl": "Vertaalversie",
-      "hu": "Fordítási verzió",
-      "el": "Έκδοση μετάφρασης",
-      "hi": "अनुवाद संस्करण",
-      "tl": "Bersyon ng pagsasalin",
-      "pt": "Versão de tradução",
-      "ko": "번역 버전",
-      "pl": "Wersja tłumaczenia",
-      "fa": "نسخه ترجمه",
-      "ms": "Versi terjemahan",
-      "jv": "Versi terjemahan",
-      "it": "Versione di traduzione",
-      "ja": "翻訳バージョン",
-      "sv": "Översättningsversion",
-      "sk": "Verzia prekladu",
-      "es": "Versión de traducción",
-      "ru": "Версия перевода",
-      "ro": "Versiune de traducere",
-      "pa": "ਅਨੁਵਾਦ ਸੰਸਕਰਨ",
-      "te": "అనువాద సంస్కరణ",
-      "sw": "Toleo la tafsiri",
-      "vi": "Phiên bản dịch",
-      "tr": "Çeviri sürümü",
-      "uk": "Версія перекладу",
-      "th": "เวอร์ชันการแปล",
-      "zh-Hans": "翻译版本",
-      "zh-Hant": "翻譯版本",
-      "pa-PK": "ترجمہ ورژن",
-      "hi-Latn": "Anuvad version"
-    },
-    "models": {
-      "cs": "qwen/qwen3.6-35b-a3b",
-      "pt-BR": "qwen/qwen3.6-35b-a3b",
-      "zh-TW": "qwen/qwen3.6-35b-a3b",
-      "zh-CN": "qwen/qwen3.6-35b-a3b",
-      "hr": "qwen/qwen3.6-35b-a3b",
-      "ar": "qwen/qwen3.6-35b-a3b",
-      "bn": "qwen/qwen3.6-35b-a3b",
-      "ca": "qwen/qwen3.6-35b-a3b",
-      "en-US": "qwen/qwen3.6-35b-a3b",
-      "fr": "qwen/qwen3.6-35b-a3b",
-      "de": "qwen/qwen3.6-35b-a3b",
-      "nl": "qwen/qwen3.6-35b-a3b",
-      "hu": "qwen/qwen3.6-35b-a3b",
-      "el": "qwen/qwen3.6-35b-a3b",
-      "hi": "qwen/qwen3.6-35b-a3b",
-      "tl": "openai/gpt-4o-mini",
-      "pt": "qwen/qwen3.6-35b-a3b",
-      "ko": "qwen/qwen3.6-35b-a3b",
-      "pl": "qwen/qwen3.6-35b-a3b",
-      "fa": "qwen/qwen3.6-35b-a3b",
-      "ms": "qwen/qwen3.6-35b-a3b",
-      "jv": "qwen/qwen3.6-35b-a3b",
-      "it": "qwen/qwen3.6-35b-a3b",
-      "ja": "qwen/qwen3.6-35b-a3b",
-      "sv": "openai/gpt-4o-mini",
-      "sk": "qwen/qwen3.6-35b-a3b",
-      "es": "qwen/qwen3.6-35b-a3b",
-      "ru": "qwen/qwen3.6-35b-a3b",
-      "ro": "qwen/qwen3.6-35b-a3b",
-      "pa": "qwen/qwen3.6-35b-a3b",
-      "te": "qwen/qwen3.6-35b-a3b",
-      "sw": "qwen/qwen3.6-35b-a3b",
-      "vi": "qwen/qwen3.6-35b-a3b",
-      "tr": "qwen/qwen3.6-35b-a3b",
-      "uk": "qwen/qwen3.6-35b-a3b",
-      "th": "qwen/qwen3.6-35b-a3b",
-      "zh-Hans": "google/gemini-2.5-flash-lite",
-      "zh-Hant": "google/gemini-2.5-flash-lite",
-      "pa-PK": "google/gemini-2.5-flash",
-      "hi-Latn": "google/gemini-2.5-flash"
-    },
-    "locations": [
-      {
-        "file": "src/renderer/components/workspace/TranslateRephraseControls.tsx",
-        "line": 73
       }
     ]
   },
@@ -52981,6 +52880,200 @@
       }
     ]
   },
+  "48589c79": {
+    "source": "Translation version",
+    "translated": {
+      "cs": "Verze překladu",
+      "pt-BR": "Versão de tradução",
+      "zh-TW": "翻譯版本",
+      "zh-CN": "翻译版本",
+      "hr": "Verzija prijevoda",
+      "ar": "نسخة الترجمة",
+      "bn": "অনুবাদ সংস্করণ",
+      "ca": "Versió de traducció",
+      "en-US": "Translation version",
+      "fr": "Version de traduction",
+      "de": "Übersetzungsversion",
+      "nl": "Vertaalversie",
+      "hu": "Fordítási verzió",
+      "el": "Έκδοση μετάφρασης",
+      "hi": "अनुवाद संस्करण",
+      "tl": "Bersyon ng pagsasalin",
+      "pt": "Versão de tradução",
+      "ko": "번역 버전",
+      "pl": "Wersja tłumaczenia",
+      "fa": "نسخه ترجمه",
+      "ms": "Versi terjemahan",
+      "jv": "Versi terjemahan",
+      "it": "Versione di traduzione",
+      "ja": "翻訳バージョン",
+      "sv": "Översättningsversion",
+      "sk": "Verzia prekladu",
+      "es": "Versión de traducción",
+      "ru": "Версия перевода",
+      "ro": "Versiune de traducere",
+      "pa": "ਅਨੁਵਾਦ ਸੰਸਕਰਨ",
+      "te": "అనువాద సంస్కరణ",
+      "sw": "Toleo la tafsiri",
+      "vi": "Phiên bản dịch",
+      "tr": "Çeviri sürümü",
+      "uk": "Версія перекладу",
+      "th": "เวอร์ชันการแปล",
+      "zh-Hans": "翻译版本",
+      "zh-Hant": "翻譯版本",
+      "pa-PK": "ترجمہ ورژن",
+      "hi-Latn": "Anuvad version"
+    },
+    "models": {
+      "cs": "qwen/qwen3.6-35b-a3b",
+      "pt-BR": "qwen/qwen3.6-35b-a3b",
+      "zh-TW": "qwen/qwen3.6-35b-a3b",
+      "zh-CN": "qwen/qwen3.6-35b-a3b",
+      "hr": "qwen/qwen3.6-35b-a3b",
+      "ar": "qwen/qwen3.6-35b-a3b",
+      "bn": "qwen/qwen3.6-35b-a3b",
+      "ca": "qwen/qwen3.6-35b-a3b",
+      "en-US": "qwen/qwen3.6-35b-a3b",
+      "fr": "qwen/qwen3.6-35b-a3b",
+      "de": "qwen/qwen3.6-35b-a3b",
+      "nl": "qwen/qwen3.6-35b-a3b",
+      "hu": "qwen/qwen3.6-35b-a3b",
+      "el": "qwen/qwen3.6-35b-a3b",
+      "hi": "qwen/qwen3.6-35b-a3b",
+      "tl": "openai/gpt-4o-mini",
+      "pt": "qwen/qwen3.6-35b-a3b",
+      "ko": "qwen/qwen3.6-35b-a3b",
+      "pl": "qwen/qwen3.6-35b-a3b",
+      "fa": "qwen/qwen3.6-35b-a3b",
+      "ms": "qwen/qwen3.6-35b-a3b",
+      "jv": "qwen/qwen3.6-35b-a3b",
+      "it": "qwen/qwen3.6-35b-a3b",
+      "ja": "qwen/qwen3.6-35b-a3b",
+      "sv": "openai/gpt-4o-mini",
+      "sk": "qwen/qwen3.6-35b-a3b",
+      "es": "qwen/qwen3.6-35b-a3b",
+      "ru": "qwen/qwen3.6-35b-a3b",
+      "ro": "qwen/qwen3.6-35b-a3b",
+      "pa": "qwen/qwen3.6-35b-a3b",
+      "te": "qwen/qwen3.6-35b-a3b",
+      "sw": "qwen/qwen3.6-35b-a3b",
+      "vi": "qwen/qwen3.6-35b-a3b",
+      "tr": "qwen/qwen3.6-35b-a3b",
+      "uk": "qwen/qwen3.6-35b-a3b",
+      "th": "qwen/qwen3.6-35b-a3b",
+      "zh-Hans": "google/gemini-2.5-flash-lite",
+      "zh-Hant": "google/gemini-2.5-flash-lite",
+      "pa-PK": "google/gemini-2.5-flash",
+      "hi-Latn": "google/gemini-2.5-flash"
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/workspace/TranslateStackPanels.tsx",
+        "line": 210
+      },
+      {
+        "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
+        "line": 158
+      }
+    ]
+  },
+  "4c5614e6": {
+    "source": "Maximum of 5 translation versions reached",
+    "translated": {
+      "bn": "অনুবাদের সর্বোচ্চ ৫টি সংস্করণে পৌঁছেছে",
+      "zh-CN": "翻译版本已达上限（5个）",
+      "hr": "Dosegnut je maksimalan broj od 5 verzija prijevoda",
+      "zh-TW": "已達翻譯版本上限（5 個）",
+      "ar": "تم الوصول إلى الحد الأقصى البالغ 5 نسخ ترجمة",
+      "cs": "Dosažen maximální počet 5 překladových variant",
+      "ca": "S'ha arribat al màxim de 5 versions de traducció",
+      "pt-BR": "Limite de 5 versões de tradução atingido",
+      "fr": "Limite de 5 versions de traduction atteinte",
+      "en-US": "Maximum of 5 translation versions reached",
+      "de": "Maximal 5 Übersetzungsversionen erreicht",
+      "el": "Έχει φτάσει το μέγιστο όριο 5 εκδόσεων μετάφρασης",
+      "hi": "अधिकतम 5 अनुवाद संस्करण प्राप्त हो चुके हैं",
+      "tl": "Naabot na ang maximum na 5 bersyon ng pagsasalin",
+      "nl": "Maximaal 5 vertaalversies bereikt",
+      "hu": "Maximum 5 fordítási verzió érhető el",
+      "it": "Limite massimo di 5 versioni di traduzione raggiunto",
+      "ms": "Had maksimum 5 versi terjemahan dicapai",
+      "ko": "번역 버전 최대 5개에 도달했습니다",
+      "pt": "Limite de 5 Versões de Tradução Atingido",
+      "ja": "翻訳候補は最大5つまでです",
+      "pl": "Osiągnięto limit 5 wersji tłumaczenia",
+      "jv": "Maksimal 5 versi terjemahan wis tercapai",
+      "fa": "حداکثر ۵ نسخه ترجمه مجاز است",
+      "es": "Se ha alcanzado el máximo de 5 versiones de traducción",
+      "ru": "Достигнут лимит в 5 вариантов перевода",
+      "sv": "Maximalt 5 översättningsversioner har nåtts",
+      "te": "గరిష్ఠంగా 5 అనువాద రూపాలు సాధించబడింది",
+      "ro": "S-a atins limita maximă de 5 versiuni de traducere",
+      "sw": "Imefikiwa kiwango cha juu cha toleo 5 la tafsiri",
+      "sk": "Bol dosiahnutý maximálny počet 5 verzií prekladu",
+      "pa": "ਅਨੁਵਾਦ ਰੂਪਾਂ ਦੀ ਅਧਿਕਤਮ ਸੀਮਾ 5 ਪਹੁੰਚ ਗਈ ਹੈ",
+      "th": "ถึงจำนวนคำแปลสูงสุด 5 เวอร์ชันแล้ว",
+      "tr": "5 çeviri versiyonu sınırına ulaşıldı",
+      "vi": "Đã đạt giới hạn tối đa 5 phương án dịch",
+      "uk": "Досягнуто максимальну кількість варіантів перекладу (5)",
+      "zh-Hans": "已达到 5 个翻译版本上限",
+      "zh-Hant": "已達到 5 個翻譯版本的上限",
+      "pa-PK": "ترجمہ دے 5 ورژن دی ودھ توں ودھ حد پوری ہو گئی ہے",
+      "hi-Latn": "Anuvad ke 5 version ki adhiktam seema tak pahunch gaye"
+    },
+    "models": {
+      "bn": "qwen/qwen3.6-35b-a3b",
+      "zh-CN": "qwen/qwen3.6-35b-a3b",
+      "hr": "qwen/qwen3.6-35b-a3b",
+      "zh-TW": "qwen/qwen3.6-35b-a3b",
+      "ar": "qwen/qwen3.6-35b-a3b",
+      "cs": "qwen/qwen3.6-35b-a3b",
+      "ca": "qwen/qwen3.6-35b-a3b",
+      "pt-BR": "qwen/qwen3.6-35b-a3b",
+      "fr": "qwen/qwen3.6-35b-a3b",
+      "en-US": "qwen/qwen3.6-35b-a3b",
+      "de": "qwen/qwen3.6-35b-a3b",
+      "el": "qwen/qwen3.6-35b-a3b",
+      "hi": "qwen/qwen3.6-35b-a3b",
+      "tl": "qwen/qwen3.6-35b-a3b",
+      "nl": "qwen/qwen3.6-35b-a3b",
+      "hu": "qwen/qwen3.6-35b-a3b",
+      "it": "qwen/qwen3.6-35b-a3b",
+      "ms": "qwen/qwen3.6-35b-a3b",
+      "ko": "qwen/qwen3.6-35b-a3b",
+      "pt": "qwen/qwen3.6-35b-a3b",
+      "ja": "qwen/qwen3.6-35b-a3b",
+      "pl": "qwen/qwen3.6-35b-a3b",
+      "jv": "qwen/qwen3.6-35b-a3b",
+      "fa": "qwen/qwen3.6-35b-a3b",
+      "es": "qwen/qwen3.6-35b-a3b",
+      "ru": "qwen/qwen3.6-35b-a3b",
+      "sv": "qwen/qwen3.6-35b-a3b",
+      "te": "qwen/qwen3.6-35b-a3b",
+      "ro": "qwen/qwen3.6-35b-a3b",
+      "sw": "qwen/qwen3.6-35b-a3b",
+      "sk": "qwen/qwen3.6-35b-a3b",
+      "pa": "qwen/qwen3.6-35b-a3b",
+      "th": "qwen/qwen3.6-35b-a3b",
+      "tr": "qwen/qwen3.6-35b-a3b",
+      "vi": "qwen/qwen3.6-35b-a3b",
+      "uk": "qwen/qwen3.6-35b-a3b",
+      "zh-Hans": "google/gemini-2.5-flash-lite",
+      "zh-Hant": "google/gemini-2.5-flash-lite",
+      "pa-PK": "google/gemini-2.5-flash",
+      "hi-Latn": "google/gemini-2.5-flash"
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/workspace/TranslateStackPanels.tsx",
+        "line": 211
+      },
+      {
+        "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
+        "line": 159
+      }
+    ]
+  },
   "5d2e33ff": {
     "source": "Use glossary during translation",
     "translated": {
@@ -53163,7 +53256,7 @@
     "locations": [
       {
         "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
-        "line": 199
+        "line": 202
       }
     ]
   },
@@ -53935,7 +54028,15 @@
       },
       {
         "file": "src/renderer/contexts/AppContext.tsx",
-        "line": 1290
+        "line": 1304
+      },
+      {
+        "file": "src/renderer/contexts/AppContext.tsx",
+        "line": 1440
+      },
+      {
+        "file": "src/renderer/contexts/AppContext.tsx",
+        "line": 1559
       }
     ]
   },
@@ -54121,7 +54222,7 @@
     "locations": [
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 124
+        "line": 143
       }
     ]
   },
@@ -54214,7 +54315,7 @@
     "locations": [
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 186
+        "line": 205
       }
     ]
   },
@@ -54307,23 +54408,23 @@
     "locations": [
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 195
+        "line": 214
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 196
+        "line": 215
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 208
+        "line": 227
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 228
+        "line": 247
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 395
+        "line": 414
       }
     ]
   },
@@ -54416,11 +54517,11 @@
     "locations": [
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 195
+        "line": 214
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 514
+        "line": 543
       }
     ]
   },
@@ -54513,19 +54614,23 @@
     "locations": [
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 201
+        "line": 220
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 341
+        "line": 360
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 520
+        "line": 549
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 658
+        "line": 687
+      },
+      {
+        "file": "src/renderer/hooks/useProcessing.ts",
+        "line": 854
       }
     ]
   },
@@ -54618,19 +54723,23 @@
     "locations": [
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 202
+        "line": 221
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 342
+        "line": 361
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 521
+        "line": 550
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 659
+        "line": 688
+      },
+      {
+        "file": "src/renderer/hooks/useProcessing.ts",
+        "line": 855
       }
     ]
   },
@@ -54723,7 +54832,11 @@
     "locations": [
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 269
+        "line": 288
+      },
+      {
+        "file": "src/renderer/hooks/useProcessing.ts",
+        "line": 615
       }
     ]
   },
@@ -54816,7 +54929,11 @@
     "locations": [
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 331
+        "line": 350
+      },
+      {
+        "file": "src/renderer/hooks/useProcessing.ts",
+        "line": 677
       }
     ]
   },
@@ -54909,23 +55026,23 @@
     "locations": [
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 440
+        "line": 461
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 514
+        "line": 543
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 515
+        "line": 544
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 527
+        "line": 556
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 546
+        "line": 575
       }
     ]
   },
@@ -55018,7 +55135,7 @@
     "locations": [
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 451
+        "line": 474
       }
     ]
   },
@@ -55111,7 +55228,7 @@
     "locations": [
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 507
+        "line": 534
       }
     ]
   },
@@ -55204,7 +55321,7 @@
     "locations": [
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 601
+        "line": 797
       }
     ]
   },
@@ -55297,23 +55414,23 @@
     "locations": [
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 652
+        "line": 848
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 653
+        "line": 849
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 664
+        "line": 860
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 684
+        "line": 880
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 719
+        "line": 915
       },
       {
         "file": "src/renderer/hooks/useTransformPrompts.ts",
@@ -55414,7 +55531,7 @@
     "locations": [
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 652
+        "line": 848
       }
     ]
   },
@@ -55506,8 +55623,8 @@
     },
     "locations": [
       {
-        "file": "src/renderer/hooks/useTranslateWordAlternatives.ts",
-        "line": 176
+        "file": "src/renderer/hooks/useWordAlternatives.ts",
+        "line": 165
       }
     ]
   },

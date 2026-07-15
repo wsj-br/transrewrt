@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.1-blue" alt="Version"></a>
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.0-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
   <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react" alt="React 19">
@@ -62,27 +62,27 @@ Nadat u het hebt geïnstalleerd, raadpleeg de [**Gebruikershandleiding**](USER-G
 
 **Taalkeuze**
 
-![Language selector](../images/screenshots/nl/language-selector.png)
+![Taalkiezer](../images/screenshots/nl/language-selector.png)
 
 **Vertalen**
 
-![Translate](../images/screenshots/nl/translate.png)
+![Vertalen](../images/screenshots/nl/translate.png)
 
 **Transformatie - prompt-editor**
 
-![Transform - prompt editor](../images/screenshots/nl/transform-prompt-edit.png)
+![Transformeren - prompt-editor](../images/screenshots/nl/transform-prompt-edit.png)
 
 **Dashboard**
 
-![Dashboard summary - usage](../images/screenshots/nl/dashboard-summary.png)
+![Dashboard-samenvatting - gebruik](../images/screenshots/nl/dashboard-summary.png)
 
 **Geschiedenis**
 
-![History](../images/screenshots/nl/history.png)
+![Geschiedenis](../images/screenshots/nl/history.png)
 
 **Instellingen - modelkeuze**
 
-![Settings - model selection](../images/screenshots/nl/settings-general.png)
+![Instellingen - modelselectie](../images/screenshots/nl/settings-general.png)
 
 <br/><br/>
 

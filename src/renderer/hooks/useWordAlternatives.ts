@@ -8,9 +8,8 @@ import {
   type SetStateAction,
 } from "react";
 import { useTranslation } from "react-i18next";
-import { MAX_TRANSLATE_VERSIONS } from "../constants/translateVersions";
 import {
-  getTextareaExpandedSelectionAnchor,
+  getTextareaWordAnchor,
   restoreTextareaSelection,
   textareaHasNonEmptySelection,
 } from "../utils/misc/textSelectionUtils";
@@ -23,13 +22,12 @@ import {
 
 type Range = { start: number; end: number };
 
-type TranslateWordAlternativesFn = (
-  fullTranslation: string,
+/**
+ * Callback type supplied by the caller. It receives the selected phrase
+ * and an AbortSignal, and must return an array of alternatives.
+ */
+export type WordAlternativesFetchFn = (
   phrase: string,
-  originalText: string,
-  targetLang: string,
-  model: string,
-  sourceLang: string | null,
   signal: AbortSignal | null,
 ) => Promise<{
   alternatives?: WordAlternativeChoice[];
@@ -42,34 +40,33 @@ type TranslateWordAlternativesFn = (
   duration_ms?: number;
 }>;
 
-export function useTranslateWordAlternatives({
-  translateWordAlternatives,
+/**
+ * Generic hook for managing a word-alternatives popover on any output TextPanel.
+ * It is completely mode-agnostic: the caller supplies `onFetchAlternatives` and
+ * the versions state setters so this hook can serve both Translate and Rewrite.
+ */
+export function useWordAlternatives({
+  onFetchAlternatives,
   outputText,
-  inputTextTranslate,
-  sourceLanguage,
-  targetLanguage,
-  activeModel,
+  outputIsModelResult,
   isProcessing,
-  translateOutputIsModelResult,
-  translateVersions,
-  setTranslateVersions,
-  setSelectedTranslateVersion,
-  setOutputTextTranslate,
+  versions,
+  setVersions,
+  setSelectedVersion,
+  setOutputText,
+  maxVersions,
   applyRunCostFromResult,
   autoCopy,
 }: {
-  translateWordAlternatives: TranslateWordAlternativesFn;
+  onFetchAlternatives: WordAlternativesFetchFn;
   outputText: string;
-  inputTextTranslate: string;
-  sourceLanguage: string;
-  targetLanguage: string;
-  activeModel: string;
+  outputIsModelResult: boolean;
   isProcessing: boolean;
-  translateOutputIsModelResult: boolean;
-  translateVersions: string[];
-  setTranslateVersions: Dispatch<SetStateAction<string[]>>;
-  setSelectedTranslateVersion: Dispatch<SetStateAction<number>>;
-  setOutputTextTranslate: (value: string) => void;
+  versions: string[];
+  setVersions: Dispatch<SetStateAction<string[]>>;
+  setSelectedVersion: Dispatch<SetStateAction<number>>;
+  setOutputText: (value: string) => void;
+  maxVersions: number;
   applyRunCostFromResult: (result: Record<string, unknown>) => void;
   autoCopy: boolean;
 }) {
@@ -146,15 +143,7 @@ export function useTranslateWordAlternatives({
       setError(null);
 
       try {
-        const result = await translateWordAlternatives(
-          outputText,
-          phrase,
-          inputTextTranslate,
-          targetLanguage,
-          activeModel,
-          sourceLanguage === "Detect Language" ? null : sourceLanguage,
-          controller.signal,
-        );
+        const result = await onFetchAlternatives(phrase, controller.signal);
 
         if (controller.signal.aborted) return;
 
@@ -186,24 +175,18 @@ export function useTranslateWordAlternatives({
         setLoading(false);
       }
     },
-    [
-      activeModel,
-      applyRunCostFromResult,
-      dismiss,
-      inputTextTranslate,
-      outputText,
-      sourceLanguage,
-      t,
-      targetLanguage,
-      translateWordAlternatives,
-    ],
+    [applyRunCostFromResult, dismiss, onFetchAlternatives, t],
   );
 
   const openWordAlternativesForTextarea = useCallback(
-    (textarea: HTMLTextAreaElement): boolean => {
-      if (!translateOutputIsModelResult || isProcessing) return false;
+    (
+      textarea: HTMLTextAreaElement,
+      clientX?: number,
+      clientY?: number,
+    ): boolean => {
+      if (!outputIsModelResult || isProcessing) return false;
 
-      const anchor = getTextareaExpandedSelectionAnchor(textarea, outputText);
+      const anchor = getTextareaWordAnchor(textarea, outputText, clientX, clientY);
       if (!anchor) return false;
 
       const range = { start: anchor.start, end: anchor.end };
@@ -216,7 +199,7 @@ export function useTranslateWordAlternatives({
       void fetchAlternatives(anchor.phrase, range);
       return true;
     },
-    [fetchAlternatives, isProcessing, outputText, translateOutputIsModelResult],
+    [fetchAlternatives, isProcessing, outputText, outputIsModelResult],
   );
 
   const tryOpenWordAlternativesFromTextarea = useCallback((): boolean => {
@@ -227,13 +210,20 @@ export function useTranslateWordAlternatives({
 
   const handleOutputContextMenu = useCallback(
     (event: MouseEvent<HTMLTextAreaElement>) => {
-      if (!translateOutputIsModelResult || isProcessing) return;
-      if (event.currentTarget.selectionStart === event.currentTarget.selectionEnd) return;
+      if (!outputIsModelResult || isProcessing) return;
 
-      if (!openWordAlternativesForTextarea(event.currentTarget)) return;
-      event.preventDefault();
+      const opened = openWordAlternativesForTextarea(
+        event.currentTarget,
+        event.clientX,
+        event.clientY,
+      );
+      // Suppress the browser menu when we handled a word, or when the click was on empty space
+      // (no word under the cursor) so the page does not show a confusing default menu.
+      if (opened || event.currentTarget.selectionStart === event.currentTarget.selectionEnd) {
+        event.preventDefault();
+      }
     },
-    [isProcessing, openWordAlternativesForTextarea, translateOutputIsModelResult],
+    [isProcessing, openWordAlternativesForTextarea, outputIsModelResult],
   );
 
   const applyAlternative = useCallback(
@@ -246,18 +236,18 @@ export function useTranslateWordAlternatives({
 
       const newText = applyWordAlternative(outputText, range, choice);
 
-      if (translateVersions.length < MAX_TRANSLATE_VERSIONS) {
-        setTranslateVersions((prev) => {
+      if (versions.length < maxVersions) {
+        setVersions((prev) => {
           const next = [...prev, newText];
-          setSelectedTranslateVersion(next.length);
+          setSelectedVersion(next.length);
           return next;
         });
       } else {
-        setTranslateVersions((prev) => [...prev.slice(0, -1), newText]);
-        setSelectedTranslateVersion(MAX_TRANSLATE_VERSIONS);
+        setVersions((prev) => [...prev.slice(0, -1), newText]);
+        setSelectedVersion(maxVersions);
       }
 
-      setOutputTextTranslate(newText);
+      setOutputText(newText);
       if (autoCopy) {
         void copyTextToClipboard(newText).catch((err) => {
           console.warn("Auto-copy to clipboard failed:", err);
@@ -268,11 +258,12 @@ export function useTranslateWordAlternatives({
     [
       autoCopy,
       dismiss,
+      maxVersions,
       outputText,
-      setOutputTextTranslate,
-      setSelectedTranslateVersion,
-      setTranslateVersions,
-      translateVersions.length,
+      setOutputText,
+      setSelectedVersion,
+      setVersions,
+      versions.length,
     ],
   );
 

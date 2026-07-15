@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.1-blue" alt="Version"></a>
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.0-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
   <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react" alt="React 19">
@@ -62,27 +62,27 @@
 
 **محدد اللغة**
 
-![Language selector](../images/screenshots/ar/language-selector.png)
+![محدد اللغة](../images/screenshots/ar/language-selector.png)
 
 **ترجمة**
 
-![Translate](../images/screenshots/ar/translate.png)
+![ترجمة](../images/screenshots/ar/translate.png)
 
 **تحويل - محرر الأوامر**
 
-![Transform - prompt editor](../images/screenshots/ar/transform-prompt-edit.png)
+![تحويل - محرر المطالبة](../images/screenshots/ar/transform-prompt-edit.png)
 
 **لوحة المعلومات**
 
-![Dashboard summary - usage](../images/screenshots/ar/dashboard-summary.png)
+![ملخص لوحة القيادة - الاستخدام](../images/screenshots/ar/dashboard-summary.png)
 
 **السجل**
 
-![History](../images/screenshots/ar/history.png)
+![السجل](../images/screenshots/ar/history.png)
 
 **الإعدادات - اختيار النموذج**
 
-![Settings - model selection](../images/screenshots/ar/settings-general.png)
+![الإعدادات - اختيار النموذج](../images/screenshots/ar/settings-general.png)
 
 <br/><br/>
 

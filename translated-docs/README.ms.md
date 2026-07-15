@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.1-blue" alt="Version"></a>
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.0-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
   <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react" alt="React 19">
@@ -62,27 +62,27 @@ Selepas dipasang, rujuk [**Panduan Pengguna**](USER-GUIDE.ms.md) untuk peneranga
 
 **Pemilih bahasa**
 
-![Language selector](../images/screenshots/ms/language-selector.png)
+![Pemilih bahasa](../images/screenshots/ms/language-selector.png)
 
 **Terjemah**
 
-![Translate](../images/screenshots/ms/translate.png)
+![Terjemah](../images/screenshots/ms/translate.png)
 
 **Transformasi - editor prompt**
 
-![Transform - prompt editor](../images/screenshots/ms/transform-prompt-edit.png)
+![Transformasi - editor arahan](../images/screenshots/ms/transform-prompt-edit.png)
 
 **Papan Pemuka**
 
-![Dashboard summary - usage](../images/screenshots/ms/dashboard-summary.png)
+![Ringkasan papan pemuka - penggunaan](../images/screenshots/ms/dashboard-summary.png)
 
 **Sejarah**
 
-![History](../images/screenshots/ms/history.png)
+![Sejarah](../images/screenshots/ms/history.png)
 
 **Tetapan - pemilihan model**
 
-![Settings - model selection](../images/screenshots/ms/settings-general.png)
+![Tetapan - pemilihan model](../images/screenshots/ms/settings-general.png)
 
 <br/><br/>
 

@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.1-blue" alt="Version"></a>
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.0-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
   <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react" alt="React 19">
@@ -62,27 +62,27 @@
 
 **انتخابگر زبان**
 
-![Language selector](../images/screenshots/fa/language-selector.png)
+![انتخابگر زبان](../images/screenshots/fa/language-selector.png)
 
 **ترجمه**
 
-![Translate](../images/screenshots/fa/translate.png)
+![ترجمه](../images/screenshots/fa/translate.png)
 
 **تبدیل - ویرایشگر پرسش**
 
-![Transform - prompt editor](../images/screenshots/fa/transform-prompt-edit.png)
+![تبدیل - ویرایشگر پیشنهاد](../images/screenshots/fa/transform-prompt-edit.png)
 
 **داشبورد**
 
-![Dashboard summary - usage](../images/screenshots/fa/dashboard-summary.png)
+![خلاصه داشبورد - استفاده](../images/screenshots/fa/dashboard-summary.png)
 
 **تاریخچه**
 
-![History](../images/screenshots/fa/history.png)
+![سابقه](../images/screenshots/fa/history.png)
 
 **تنظیمات - انتخاب مدل**
 
-![Settings - model selection](../images/screenshots/fa/settings-general.png)
+![تنظیمات - انتخاب مدل](../images/screenshots/fa/settings-general.png)
 
 <br/><br/>
 

@@ -1,4 +1,4 @@
-![Transrewrt banner](../images/transrewrt_banner.png)
+![Banner Transrewrt](../images/transrewrt_banner.png)
 
 <a id="transrewrt-user-guide"></a>
 # Guida utente
@@ -53,22 +53,24 @@ Questa guida spiega come utilizzare l'app una volta installata ed eseguita. Per 
   - [Selezione lingua](#language-selection)
   - [Impostazioni di traduzione utili](#helpful-translation-settings)
   - [Perfezionamento della traduzione](#refining-your-translation)
-  - [Utilizzo del glossario](#using-the-glossary)
+  - [Uso del glossario](#using-the-glossary)
 - [Riscrittura](#rewrite)
-- [Trasformazione](#transform)
-  - [Esecuzione di un prompt esistente](#run-an-existing-prompt)
+  - [Riscrivere il testo](#rewrite-text)
+  - [Perfezionare la riscrittura](#refining-your-rewrite)
+- [Trasforma](#transform)
+  - [Esegui un prompt esistente](#run-an-existing-prompt)
   - [Se non hai ancora prompt](#if-you-have-no-prompts-yet)
-  - [Crea rapidamente un prompt](#create-a-prompt-quickly)
+  - [Crea un prompt rapidamente](#create-a-prompt-quickly)
   - [Modifica un prompt](#edit-a-prompt)
-  - [Testa un prompt prima di utilizzarlo](#test-a-prompt-before-using-it)
+  - [Testa un prompt prima di usarlo](#test-a-prompt-before-using-it)
 - [Dashboard](#dashboard)
   - [Filtra i dati](#filter-the-data)
   - [Schede della dashboard](#dashboard-tabs)
   - [Esporta dati](#export-data)
-  - [Elimina record memorizzati per un modello](#delete-stored-records-for-a-model)
+  - [Elimina i record memorizzati per un modello](#delete-stored-records-for-a-model)
 - [Cronologia](#history)
   - [Filtra la cronologia](#filter-the-history)
-  - [Esporta dati cronologia](#export-history-data)
+  - [Esporta i dati della cronologia](#export-history-data)
 - [Impostazioni](#settings)
   - [Impostazioni generali](#general-settings)
   - [Modelli](#models)
@@ -80,21 +82,21 @@ Questa guida spiega come utilizzare l'app una volta installata ed eseguita. Per 
   - [Configurazione API](#api-config)
   - [Informazioni](#about)
 - [Problemi comuni](#common-issues)
-  - [L'app non traduce, riscrive o trasforma testo](#the-app-will-not-translate-rewrite-or-transform-text)
+  - [L'app non traduce, riscrive o trasforma il testo](#the-app-will-not-translate-rewrite-or-transform-text)
   - [L'elenco dei modelli è vuoto](#the-model-list-is-empty)
   - [Il risultato è troppo lento o troppo costoso](#the-result-is-too-slow-or-too-expensive)
   - [L'interfaccia è nella lingua sbagliata](#the-interface-is-in-the-wrong-language)
   - [Il testo è troppo piccolo o difficile da leggere](#the-text-is-too-small-or-hard-to-read)
-  - [Riepilogo dashboard vuoto](#dashboard-summary-looks-empty)
-  - [Il costo mostra "non disponibile" o sembra errato](#cost-shows-not-available-or-seems-wrong)
+  - [Il riepilogo della dashboard sembra vuoto](#dashboard-summary-looks-empty)
+  - [Il costo mostra "non disponibile" o sembra sbagliato](#cost-shows-not-available-or-seems-wrong)
   - [Il costo totale non corrisponde alla fattura del mio provider](#total-cost-does-not-match-my-provider-bill)
   - [La pagina Cronologia manca dalla barra laterale](#the-history-page-is-missing-from-the-sidebar)
   - [App web: reindirizzato inaspettatamente alla pagina di accesso](#web-app-redirected-to-the-login-page-unexpectedly)
-  - [Amministrazione web: password dimenticata o persa](#web-admin-forgot-or-lost-a-password)
+  - [Amministratore web: password dimenticata o persa](#web-admin-forgot-or-lost-a-password)
   - [La dashboard non mostra dati per altri utenti (web)](#dashboard-shows-no-data-for-other-users-web)
-  - [Ho modificato un prompt e ho perso le modifiche](#i-changed-a-prompt-and-lost-the-edits)
+  - [Ho cambiato un prompt e ho perso le modifiche](#i-changed-a-prompt-and-lost-the-edits)
 - [Suggerimenti rapidi](#quick-tips)
-- [Disclaimer](#disclaimer)
+- [Dichiarazione di non responsabilità](#disclaimer)
 - [Licenza](#license)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -206,7 +208,7 @@ In modalità **Facile**, la barra degli strumenti mostra un selettore di **prese
 
 In modalità **Avanzato**, il selettore di **modello** ti permette di scegliere quale motore AI utilizzare per l'attività corrente.
 
-![Model selector](../images/screenshots/it/preset-selector.png)
+![Selettore modello](../images/screenshots/it/preset-selector.png)
 
 In modalità Avanzato, alcuni modelli gratuiti potrebbero non essere sempre disponibili: potrebbero essere offline o aver raggiunto il limite d'uso. L'app potrebbe rimuovere automaticamente quel modello dalla tua lista. Per controllare quali modelli vengono visualizzati, vai a [**Impostazioni** > **Modelli**](#models). Puoi aprire le impostazioni del modello dall'icona del provider a sinistra del nome del modello nella barra degli strumenti.
 
@@ -214,7 +216,7 @@ In modalità Avanzato, alcuni modelli gratuiti potrebbero non essere sempre disp
 
 L'**icona del globo + codice della lingua** modifica la lingua dell'interfaccia dell'app, come menu e pulsanti. **Non** modifica le lingue di traduzione utilizzate in **Traduci**.
 
-![Interface language selector](../images/screenshots/it/language-selector.png)
+![Selettore lingua interfaccia](../images/screenshots/it/language-selector.png)
 
 <br/>
 
@@ -247,7 +249,7 @@ Puoi inoltre monitorare il costo di ogni operazione (se disponibile) e il costo 
 
 Usa **Traduci** quando desideri convertire un testo da una lingua all'altra.
 
-![Translate workspace](../images/screenshots/it/translate.png)
+![Area di lavoro Traduci](../images/screenshots/it/translate.png)
 
 <br/>
 
@@ -296,9 +298,9 @@ In [**Impostazioni** > **Impostazioni generali**](#general-settings), puoi modif
 
 Dopo una traduzione riuscita, **Aggiungi una riformulazione…** e il menu a discesa delle versioni appaiono nell'intestazione dell'output, accanto al selettore di lingua **A:**. Puoi affinare il risultato lì:
 
-1. **Aggiungi una riformulazione…** — senza testo selezionato nell'output, ottieni un'altra traduzione completa dello stesso input con una formulazione diversa. Il modello riceve ogni versione che hai già, quindi la nuova formulazione può differire da tutte le altre. Puoi memorizzare fino a **cinque** versioni e passare tra di esse nel menu a discesa delle versioni. Con testo selezionato, **Aggiungi una riformulazione…** apre alternative di parole vicino alla selezione (stesso comportamento del clic destro). Senza una selezione, **Aggiungi una riformulazione…** è disabilitato una volta raggiunte cinque versioni; con una selezione, funziona comunque a cinque versioni (solo alternative di parole, aggiornando la versione 5). Mentre una riformulazione completa è in esecuzione, fai clic su **Interrompi Traduzione** per annullare; l'output torna alla versione che era attiva quando è iniziata la riformulazione.
-2. **Alternative di parole** — seleziona una o più parole o una breve frase nell'output (se selezioni solo parte di una parola, l'app espande la selezione a parole complete), quindi fai clic destro o clicca su **Aggiungi una riformulazione…**. Un breve elenco di alternative appare vicino alla selezione; fai clic su una per sostituirla. Ogni opzione può sostituire un intervallo leggermente più ampio della tua selezione (ad esempio una preposizione o un articolo adiacente) in modo che la frase rimanga grammaticale. Se hai meno di cinque versioni, l'output modificato viene salvato come una nuova versione; a cinque versioni, solo **versione 5** viene aggiornata. Fare clic destro senza selezione non fa nulla. Premi **Esc** o fai clic al di fuori dell'elenco per annullare senza modificare l'output.
-3. **Costi** — ogni **Aggiungi una riformulazione…** completo (senza selezione) e ogni richiesta di alternativa di parole utilizza nuovamente il modello e può aumentare il costo di utilizzo (stesso comportamento di una normale esecuzione di traduzione).
+1. **Riformula…** — senza testo selezionato nell'output, ottieni un'altra traduzione completa dello stesso input con una formulazione diversa. Il modello riceve ogni versione che hai già in modo che la nuova formulazione possa differire da tutte. Puoi memorizzare fino a **cinque** versioni e passare da una all'altra nel menu a discesa della versione. Con il testo selezionato, **Riformula…** apre le alternative di parole vicino alla selezione (come il clic destro). Senza una selezione, **Riformula…** è disabilitato una volta raggiunte le cinque versioni; con una selezione, funziona ancora a cinque versioni (solo alternative di parole, aggiornando la versione 5). Mentre è in corso una riformulazione completa, fai clic su **Interrompi traduzione** per annullare; l'output torna alla versione attiva all'inizio della riformulazione.
+2. **Alternative di parole** — seleziona una o più parole o una breve frase nell'output (se selezioni solo una parte di una parola, l'app espande la selezione a parole intere), quindi fai clic destro o fai clic su **Riformula…**. Un breve elenco di alternative appare vicino alla selezione; fai clic su una per sostituirla. Ogni opzione può sostituire un intervallo leggermente più ampio della tua selezione (ad esempio una preposizione o un articolo adiacente) in modo che la frase rimanga grammaticale. Se hai meno di cinque versioni, l'output modificato viene salvato come nuova versione; a cinque versioni, viene aggiornata solo la **versione 5**. Il clic destro senza selezione seleziona la parola sotto il cursore (o non fa nulla se non c'è una parola lì). Premi **Esc** o fai clic all'esterno dell'elenco per annullare senza modificare l'output.
+3. **Costi** — ogni **Riformula…** completa (nessuna selezione) e ogni richiesta di alternativa di parola utilizza nuovamente il modello e può aumentare il costo di utilizzo (come una normale esecuzione di traduzione).
 
 <br/>
 
@@ -326,9 +328,9 @@ Aggiungi, modifica, importa ed esporta termini nella scheda [**Impostazioni** > 
 <a id="rewrite"></a>
 ## Riscrivi
 
-Usa **Riscrivi** quando desideri migliorare l'espressione senza cambiarne il significato principale.
+Usa **Riscrittura** quando vuoi migliorare la formulazione senza cambiare il significato principale. Il testo rimane nella stessa lingua (non viene tradotto).
 
-![Rewrite workspace](../images/screenshots/it/rewrite.png)
+![Area di lavoro Riscrittura](../images/screenshots/it/rewrite.png)
 
 Questa funzione è utile per:
 
@@ -341,9 +343,38 @@ Questa funzione è utile per:
 
 <br/>
 
+<a id="rewrite-text"></a>
+### Riscrivere il testo
+
+1. Apri **Riscrittura**.
+2. Scegli una **Modalità** (ad esempio **Migliora chiarezza** o **Rendi formale**).
+3. Facoltativamente, imposta **Da** sulla lingua del tuo testo (o lascia **Rileva lingua**).
+4. Digita o incolla il testo in **Input**.
+5. Fai clic su **Riscrittura**.
+6. Leggi il risultato in **Output**.
+7. Facoltativamente, perfeziona il risultato con **Riformula…** o alternative di parole — vedi [Perfezionare la riscrittura](#refining-rewrite).
+
+<br/>
+
 > 💡 **CONSIGLIO**<br/>
 > Quando utilizzi la modalità "**Controllo ortografico e grammaticale**", nel pannello di output appare un interruttore **Mostra modifiche** (accanto a **Copia**).
 > Attivalo o disattivalo per mostrare o nascondere le correzioni specifiche applicate al testo.
+
+<br/>
+
+> ℹ️ **NOTA**<br/>
+> La modalità di riscrittura **Versioni alternative** restituisce diverse riformulazioni in una **singola** esecuzione, separate da `----` nell'output. Questo è diverso da **Riformula…**, che costruisce una cronologia delle versioni nel tempo (una nuova variante per clic). Vedi [Perfezionare la riscrittura](#refining-rewrite).
+
+<br/>
+
+<a id="refining-rewrite"></a>
+### Perfezionare la riscrittura
+
+Dopo una riscrittura riuscita, **Riformula…** e il menu a discesa delle versioni appaiono sul lato dell'output dell'area di lavoro (nel layout diviso, nella barra degli strumenti superiore sopra la colonna di output, accanto alle metriche di esecuzione; nel layout impilato, sopra il pannello di output accanto a **Da:**). Puoi perfezionare il risultato lì — la stessa idea di [Perfezionare la traduzione](#refining-translation), ma il testo rimane nella stessa lingua e mantiene la **Modalità** di riscrittura corrente:
+
+1. **Riformula…** — senza testo selezionato nell'output, ottieni un'altra riscrittura completa dello stesso input con una formulazione diversa, applicando comunque la modalità selezionata (ad esempio più chiara, più breve o più formale). Il modello riceve ogni versione che hai già in modo che la nuova formulazione possa differire da tutte. Puoi memorizzare fino a **cinque** versioni e passare da una all'altra nel menu a discesa delle versioni. Con il testo selezionato, **Riformula…** apre le alternative di parole vicino alla selezione (come il clic destro). Senza una selezione, **Riformula…** è disabilitato una volta raggiunte cinque versioni; con una selezione, funziona ancora a cinque versioni (solo alternative di parole, aggiornando la versione 5). Mentre è in corso una riformulazione completa, fai clic su **Interrompi riscrittura** per annullare; l'output torna alla versione attiva all'inizio della riformulazione.
+2. **Alternative parole** — seleziona una o più parole o una breve frase nell'output (se selezioni solo una parte di una parola, l'app espande la selezione a parole intere), quindi fai clic destro o fai clic su **Riformula…**. Un breve elenco di alternative appare vicino alla selezione; fai clic su una per sostituirla. Ogni opzione può sostituire un intervallo leggermente più ampio della tua selezione in modo che la frase rimanga grammaticalmente corretta. Se hai meno di cinque versioni, l'output modificato viene salvato come nuova versione; a cinque versioni, viene aggiornata solo la **versione 5**. Il clic destro senza selezione seleziona la parola sotto il cursore (o non fa nulla se non c'è una parola lì). Premi **Esc** o fai clic all'esterno dell'elenco per annullare senza modificare l'output.
+3. **Costo** — ogni **Riformula…** completa (nessuna selezione) e ogni richiesta di alternativa di parole utilizza nuovamente il modello e può aumentare il costo di utilizzo (come una normale esecuzione di riscrittura).
 
 <br/><br/>
 
@@ -354,7 +385,7 @@ Questa funzione è utile per:
 
 Usa **Trasforma** quando desideri che l'IA segua un insieme personalizzato di istruzioni.
 
-![Transform workspace](../images/screenshots/it/transform.png)
+![Area di lavoro Trasforma](../images/screenshots/it/transform.png)
 
 Questa è l'area più flessibile dell'app. Puoi utilizzarla per attività come:
 
@@ -402,7 +433,7 @@ Il modo più veloce per creare un prompt è:
 5. Lascia che l'app crei una bozza per te.
 6. Rivedi la bozza e fai clic su **Salva**.
 
-![Generate prompt](../images/screenshots/it/transform-generate.png)
+![Genera prompt](../images/screenshots/it/transform-generate.png)
 
 <br/>
 
@@ -411,7 +442,7 @@ Il modo più veloce per creare un prompt è:
 
 Quando crei o modifichi un prompt, l'editor appare a sinistra e un'area di test appare a destra.
 
-![Transform prompt editor](../images/screenshots/it/transform-prompt-edit.png)
+![Editor prompt di trasformazione](../images/screenshots/it/transform-prompt-edit.png)
 
 I campi principali sono:
 
@@ -467,7 +498,7 @@ Quando utilizzi **Genera prompt**, **Migliora prompt** o **Traduci prompt** nell
 
 Utilizza **Dashboard** per vedere quanto stai utilizzando l'app e quanto ti costa (per i modelli a pagamento).
 
-![Dashboard summary](../images/screenshots/it/dashboard-summary.png)
+![Riepilogo Dashboard](../images/screenshots/it/dashboard-summary.png)
 
 <br/>
 
@@ -481,7 +512,7 @@ Utilizza **Dashboard** per vedere quanto stai utilizzando l'app e quanto ti cost
 
 Utilizza i pulsanti di filtro nella parte superiore per modificare l'intervallo temporale.
 
-![Dashboard filters](../images/screenshots/it/dashboard-filter.png)
+![Filtri Dashboard](../images/screenshots/it/dashboard-filter.png)
 
 <br/>
 
@@ -531,7 +562,7 @@ Per eliminare tutti i dati o rimuovere i record in base alla loro età, vai a [*
 
 Fai clic su **Cronologia** per visualizzare la cronologia delle tue azioni all'interno di **Transrewrt**, inclusi l'input e l'output di ogni operazione.
 
-![History page](../images/screenshots/it/history.png)
+![Pagina Cronologia](../images/screenshots/it/history.png)
 
 <br/>
 
@@ -540,7 +571,7 @@ Fai clic su **Cronologia** per visualizzare la cronologia delle tue azioni all'i
 
 **Cronologia** utilizza gli stessi filtri di intervallo temporale della pagina **Dashboard**.
 
-![Dashboard filters](../images/screenshots/it/dashboard-filter.png)
+![Filtri Dashboard](../images/screenshots/it/dashboard-filter.png)
 
 <br/>
 
@@ -641,7 +672,7 @@ I backup creati nella versione web o desktop possono essere ripristinati nell'al
 
 Questa scheda è disponibile solo quando l'**esperienza AI** è impostata su **Avanzato** in [**Impostazioni generali**](#general-settings). Usa **Impostazioni** > **Modelli** per scegliere quali modelli vengono visualizzati nella barra degli strumenti.
 
-![Settings Models tab](../images/screenshots/it/settings-general.png)
+![Scheda Modelli Impostazioni](../images/screenshots/it/settings-general.png)
 
 La pagina contiene due elenchi:
 

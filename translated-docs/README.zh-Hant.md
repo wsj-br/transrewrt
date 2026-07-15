@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.1-blue" alt="Version"></a>
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.0-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
   <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react" alt="React 19">
@@ -61,27 +61,27 @@
 
 **語言選擇器**
 
-![Language selector](../images/screenshots/zh-Hant/language-selector.png)
+![語言選擇器](../images/screenshots/zh-Hant/language-selector.png)
 
 **翻譯**
 
-![Translate](../images/screenshots/zh-Hant/translate.png)
+![翻譯](../images/screenshots/zh-Hant/translate.png)
 
 **轉換 - 提示編輯器**
 
-![Transform - prompt editor](../images/screenshots/zh-Hant/transform-prompt-edit.png)
+![轉換 - 提示編輯器](../images/screenshots/zh-Hant/transform-prompt-edit.png)
 
 **儀表板**
 
-![Dashboard summary - usage](../images/screenshots/zh-Hant/dashboard-summary.png)
+![儀表板摘要 - 使用量](../images/screenshots/zh-Hant/dashboard-summary.png)
 
 **歷史**
 
-![History](../images/screenshots/zh-Hant/history.png)
+![歷史](../images/screenshots/zh-Hant/history.png)
 
 **設定 - 模型選擇**
 
-![Settings - model selection](../images/screenshots/zh-Hant/settings-general.png)
+![設定 - 模型選擇](../images/screenshots/zh-Hant/settings-general.png)
 
 <br/><br/>
 

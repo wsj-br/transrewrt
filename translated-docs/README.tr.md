@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.1-blue" alt="Version"></a>
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.0-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
   <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react" alt="React 19">
@@ -62,27 +62,27 @@ Kurulduktan sonra tüm özelliklerin tam bir kılavuzu için [**Kullanıcı Kıl
 
 **Dil seçici**
 
-![Language selector](../images/screenshots/tr/language-selector.png)
+![Dil seçici](../images/screenshots/tr/language-selector.png)
 
 **Çevir**
 
-![Translate](../images/screenshots/tr/translate.png)
+![Çevir](../images/screenshots/tr/translate.png)
 
 **Dönüştür - istem düzenleyici**
 
-![Transform - prompt editor](../images/screenshots/tr/transform-prompt-edit.png)
+![Dönüştür - istem düzenleyici](../images/screenshots/tr/transform-prompt-edit.png)
 
 **Kontrol Paneli**
 
-![Dashboard summary - usage](../images/screenshots/tr/dashboard-summary.png)
+![Pano özeti - kullanım](../images/screenshots/tr/dashboard-summary.png)
 
 **Geçmiş**
 
-![History](../images/screenshots/tr/history.png)
+![Geçmiş](../images/screenshots/tr/history.png)
 
 **Ayarlar - model seçimi**
 
-![Settings - model selection](../images/screenshots/tr/settings-general.png)
+![Ayarlar - model seçimi](../images/screenshots/tr/settings-general.png)
 
 <br/><br/>
 

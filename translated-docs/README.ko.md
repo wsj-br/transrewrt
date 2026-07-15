@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.1-blue" alt="Version"></a>
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.0-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
   <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react" alt="React 19">
@@ -61,27 +61,27 @@ AI 기반 텍스트 도구: 언어 간 번역, 다양한 스타일로 다시 쓰
 
 **언어 선택기**
 
-![Language selector](../images/screenshots/ko/language-selector.png)
+![언어 선택기](../images/screenshots/ko/language-selector.png)
 
 **번역**
 
-![Translate](../images/screenshots/ko/translate.png)
+![번역](../images/screenshots/ko/translate.png)
 
 **변환 - 프롬프트 편집기**
 
-![Transform - prompt editor](../images/screenshots/ko/transform-prompt-edit.png)
+![변환 - 프롬프트 편집기](../images/screenshots/ko/transform-prompt-edit.png)
 
 **대시보드**
 
-![Dashboard summary - usage](../images/screenshots/ko/dashboard-summary.png)
+![대시보드 요약 - 사용량](../images/screenshots/ko/dashboard-summary.png)
 
 **기록**
 
-![History](../images/screenshots/ko/history.png)
+![기록](../images/screenshots/ko/history.png)
 
 **설정 - 모델 선택**
 
-![Settings - model selection](../images/screenshots/ko/settings-general.png)
+![설정 - 모델 선택](../images/screenshots/ko/settings-general.png)
 
 <br/><br/>
 

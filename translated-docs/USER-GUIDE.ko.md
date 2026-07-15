@@ -1,4 +1,4 @@
-![Transrewrt banner](../images/transrewrt_banner.png)
+![Transrewrt 배너](../images/transrewrt_banner.png)
 
 <a id="transrewrt-user-guide"></a>
 # 사용자 가이드
@@ -54,46 +54,48 @@ Transrewrt는 텍스트 작업을 다음 세 가지 주요 방식으로 지원�
   - [번역 개선](#refining-your-translation)
   - [용어집 사용](#using-the-glossary)
 - [다시 쓰기](#rewrite)
+  - [텍스트 다시 쓰기](#rewrite-text)
+  - [다시 쓰기 개선](#refining-your-rewrite)
 - [변환](#transform)
   - [기존 프롬프트 실행](#run-an-existing-prompt)
   - [아직 프롬프트가 없는 경우](#if-you-have-no-prompts-yet)
-  - [프롬프트 빠르게 만들기](#create-a-prompt-quickly)
+  - [프롬프트 빠르게 생성](#create-a-prompt-quickly)
   - [프롬프트 편집](#edit-a-prompt)
-  - [사용 전 프롬프트 테스트](#test-a-prompt-before-using-it)
+  - [사용하기 전에 프롬프트 테스트](#test-a-prompt-before-using-it)
 - [대시보드](#dashboard)
-  - [데이터 필터링](#filter-the-data)
+  - [데이터 필터](#filter-the-data)
   - [대시보드 탭](#dashboard-tabs)
   - [데이터 내보내기](#export-data)
-  - [모델에 대한 저장된 기록 삭제](#delete-stored-records-for-a-model)
+  - [모델의 저장된 기록 삭제](#delete-stored-records-for-a-model)
 - [기록](#history)
-  - [기록 필터링](#filter-the-history)
+  - [기록 필터](#filter-the-history)
   - [기록 데이터 내보내기](#export-history-data)
 - [설정](#settings)
   - [일반 설정](#general-settings)
   - [모델](#models)
   - [언어](#languages)
   - [비용 추적](#cost-tracking)
-  - [변환 (설정 탭)](#transform-settings-tab)
-  - [용어집 (설정 탭)](#glossary-settings-tab)
+  - [변환(설정 탭)](#transform-settings-tab)
+  - [용어집(설정 탭)](#glossary-settings-tab)
   - [사용자](#users)
   - [API 구성](#api-config)
   - [정보](#about)
 - [일반적인 문제](#common-issues)
-  - [앱에서 텍스트를 번역, 다시 쓰기 또는 변환할 수 없음](#the-app-will-not-translate-rewrite-or-transform-text)
+  - [앱이 텍스트를 번역, 다시 쓰기 또는 변환하지 않음](#the-app-will-not-translate-rewrite-or-transform-text)
   - [모델 목록이 비어 있음](#the-model-list-is-empty)
-  - [결과가 너무 느리거나 너무 비쌈](#the-result-is-too-slow-or-too-expensive)
-  - [인터페이스 언어가 잘못됨](#the-interface-is-in-the-wrong-language)
+  - [결과가 너무 느리거나 비용이 너무 많이 듦](#the-result-is-too-slow-or-too-expensive)
+  - [인터페이스가 잘못된 언어로 표시됨](#the-interface-is-in-the-wrong-language)
   - [텍스트가 너무 작거나 읽기 어려움](#the-text-is-too-small-or-hard-to-read)
-  - [대시보드 요약이 비어 있음](#dashboard-summary-looks-empty)
-  - [비용이 "사용 불가"로 표시되거나 잘못된 것 같음](#cost-shows-not-available-or-seems-wrong)
+  - [대시보드 요약이 비어 있는 것처럼 보임](#dashboard-summary-looks-empty)
+  - [비용이 "사용 불가"로 표시되거나 잘못된 것으로 보임](#cost-shows-not-available-or-seems-wrong)
   - [총 비용이 공급자 청구서와 일치하지 않음](#total-cost-does-not-match-my-provider-bill)
-  - [기록 페이지가 사이드바에 없음](#the-history-page-is-missing-from-the-sidebar)
+  - [사이드바에 기록 페이지가 없음](#the-history-page-is-missing-from-the-sidebar)
   - [웹 앱: 예기치 않게 로그인 페이지로 리디렉션됨](#web-app-redirected-to-the-login-page-unexpectedly)
   - [웹 관리자: 비밀번호를 잊었거나 분실함](#web-admin-forgot-or-lost-a-password)
-  - [대시보드에 다른 사용자의 데이터가 표시되지 않음 (웹)](#dashboard-shows-no-data-for-other-users-web)
-  - [프롬프트를 변경했는데 편집 내용이 사라짐](#i-changed-a-prompt-and-lost-the-edits)
+  - [대시보드에 다른 사용자의 데이터가 표시되지 않음(웹)](#dashboard-shows-no-data-for-other-users-web)
+  - [프롬프트를 변경했지만 편집 내용을 잃어버림](#i-changed-a-prompt-and-lost-the-edits)
 - [빠른 팁](#quick-tips)
-- [고지 사항](#disclaimer)
+- [면책 조항](#disclaimer)
 - [라이선스](#license)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -205,7 +207,7 @@ Transrewrt를 처음 사용하는 경우 다음 순서를 따르세요:
 
 **고급** 모드에서는 **모델 선택기**를 통해 현재 작업에 사용할 AI 엔진을 선택할 수 있습니다.
 
-![Model selector](../images/screenshots/ko/preset-selector.png)
+![모델 선택기](../images/screenshots/ko/preset-selector.png)
 
 고급 모드에서는 일부 무료 모델이 항상 사용 가능한 것은 아닙니다. 오프라인이거나 사용량 한도에 도달할 수 있습니다. 앱이 자동으로 해당 모델을 목록에서 제거할 수 있습니다. 표시되는 모델을 제어하려면 [**설정** > **모델**](#models)으로 이동하세요. 툴바의 모델 이름 왼쪽에 있는 제공업체 아이콘을 클릭하여 모델 설정을 열 수 있습니다.
 
@@ -213,7 +215,7 @@ Transrewrt를 처음 사용하는 경우 다음 순서를 따르세요:
 
 **지구본 아이콘 + 언어 코드**는 메뉴 및 버튼과 같은 앱 인터페이스 언어를 변경합니다. 하지만 **번역**에서 사용하는 번역 언어는 **변경하지 않습니다**.
 
-![Interface language selector](../images/screenshots/ko/language-selector.png)
+![인터페이스 언어 선택기](../images/screenshots/ko/language-selector.png)
 
 <br/>
 
@@ -246,7 +248,7 @@ Transrewrt를 처음 사용하는 경우 다음 순서를 따르세요:
 
 **번역**은 텍스트를 한 언어에서 다른 언어로 변환할 때 사용합니다.
 
-![Translate workspace](../images/screenshots/ko/translate.png)
+![번역 작업 공간](../images/screenshots/ko/translate.png)
 
 <br/>
 
@@ -295,9 +297,9 @@ Transrewrt를 처음 사용하는 경우 다음 순서를 따르세요:
 
 성공적인 번역 후, 출력 헤더에 **Rephrase…** 와 버전 드롭다운이 **To:** 언어 선택기 옆에 나타납니다. 그곳에서 결과를 다듬을 수 있습니다:
 
-1. **Rephrase…** — 출력에서 텍스트가 선택되지 않은 경우, 동일한 입력에 대해 다른 단어로 전체 번역을 다시 얻습니다. 모델은 이미 가지고 있는 모든 버전을 수신하므로 새로운 단어는 그 중 어느 것과도 다를 수 있습니다. 최대 **다섯** 개의 버전을 저장하고 버전 드롭다운에서 전환할 수 있습니다. 텍스트가 선택된 경우, **Rephrase…** 는 선택 근처에 단어 대안을 엽니다 (우클릭과 동일). 선택이 없는 경우, **Rephrase…** 는 다섯 개의 버전에 도달하면 비활성화됩니다; 선택이 있는 경우, 여전히 다섯 개의 버전에서 작동합니다 (단어 대안만, 버전 5 업데이트). 전체 재구성이 실행되는 동안, **Stop Translate**를 클릭하여 취소할 수 있습니다; 출력은 재구성이 시작될 때 활성 상태였던 버전으로 돌아갑니다.
-2. **단어 대안** — 출력에서 하나 이상의 단어 또는 짧은 구문을 선택합니다 (단어의 일부만 선택하면, 앱이 선택을 전체 단어로 확장합니다), 그런 다음 우클릭하거나 **Rephrase…** 를 클릭합니다. 선택 근처에 대안의 짧은 목록이 나타나며, 하나를 클릭하여 교체합니다. 각 옵션은 선택보다 약간 더 넓은 범위를 교체할 수 있습니다 (예: 인접한 전치사나 관사) 그래서 문장이 문법적으로 유지됩니다. 다섯 개의 버전이 없는 경우, 편집된 출력은 새로운 버전으로 저장됩니다; 다섯 개의 버전에서, 오직 **version 5**만 업데이트됩니다. 선택 없이 우클릭하면 아무 것도 하지 않습니다. **Esc**를 누르거나 목록 외부를 클릭하여 출력을 변경하지 않고 취소합니다.
-3. **비용** — 각 전체 **Rephrase…** (선택 없음) 및 각 단어 대안 요청은 모델을 다시 사용하며 사용 비용을 추가할 수 있습니다 (정상 번역 실행과 동일).
+1. **바꿔 쓰기…** — 출력에서 선택한 텍스트가 없으면, 같은 입력에 대해 다른 표현으로 전체 번역을 다시 받습니다. 모델은 이미 가지고 있는 모든 버전을 받으므로 새 표현이 기존 버전들과 모두 달라질 수 있습니다. 최대 **다섯** 개의 버전을 저장할 수 있으며, 버전 드롭다운에서 전환할 수 있습니다. 텍스트를 선택한 상태에서 **바꿔 쓰기…** 를 클릭하면 선택 영역 근처에 단어 대안이 열립니다(오른쪽 클릭과 동일). 선택이 없는 경우, 다섯 개 버전에 도달하면 **바꿔 쓰기…** 가 비활성화됩니다; 선택이 있는 경우, 다섯 개 버전에서도 여전히 작동합니다(단어 대안만, 버전 5 업데이트). 전체 바꿔 쓰기가 실행 중일 때 **번역 중지**를 클릭하여 취소할 수 있습니다; 출력은 바꿔 쓰기가 시작되었을 때 활성화되어 있던 버전으로 돌아갑니다.
+2. **단어 대안** — 출력에서 하나 이상의 단어 또는 짧은 구를 선택합니다(단어의 일부만 선택하면 앱이 선택 영역을 전체 단어로 확장합니다). 그런 다음 오른쪽 클릭하거나 **바꿔 쓰기…** 를 클릭합니다. 선택 영역 근처에 짧은 대안 목록이 나타나며, 하나를 클릭하여 교체합니다. 각 옵션은 문장이 문법적으로 유지되도록 선택 영역보다 약간 더 넓은 범위를 교체할 수 있습니다(예: 인접한 전치사 또는 관사). 버전이 다섯 개 미만인 경우, 편집된 출력은 새 버전으로 저장됩니다; 다섯 개 버전에서는 **버전 5**만 업데이트됩니다. 선택 없이 오른쪽 클릭하면 커서 아래의 단어가 선택됩니다(해당 위치에 단어가 없으면 아무 작업도 수행하지 않음). **Esc**를 누르거나 목록 외부를 클릭하여 출력을 변경하지 않고 취소할 수 있습니다.
+3. **비용** — 전체 **바꿔 쓰기…**(선택 없음)와 각 단어 대안 요청은 모델을 다시 사용하며 사용 비용이 추가될 수 있습니다(일반 번역 실행과 동일).
 
 <br/>
 
@@ -325,9 +327,9 @@ Transrewrt를 처음 사용하는 경우 다음 순서를 따르세요:
 <a id="rewrite"></a>
 ## 다시 작성
 
-주된 의미는 유지한 채 문장의 표현을 개선하고자 할 때 **다시 작성**을(를) 사용하세요.
+주요 의미를 변경하지 않고 표현을 개선하려면 **다시 쓰기**를 사용하십시오. 텍스트는 같은 언어로 유지됩니다(번역되지 않음).
 
-![Rewrite workspace](../images/screenshots/ko/rewrite.png)
+![다시 쓰기 작업 공간](../images/screenshots/ko/rewrite.png)
 
 이 기능은 다음 작업에 유용합니다:
 
@@ -340,9 +342,38 @@ Transrewrt를 처음 사용하는 경우 다음 순서를 따르세요:
 
 <br/>
 
+<a id="rewrite-text"></a>
+### 텍스트 다시 쓰기
+
+1. **다시 쓰기**를 엽니다.
+2. **모드**를 선택합니다 (예: **명확성 개선** 또는 **공식적으로 변경**).
+3. 필요에 따라 **원본**을 텍스트의 언어로 설정합니다 (또는 **언어 감지**로 둡니다).
+4. **입력**에 텍스트를 입력하거나 붙여넣습니다.
+5. **다시 쓰기**를 클릭합니다.
+6. **출력**에서 결과를 읽습니다.
+7. 필요에 따라 **Rephrase…** 또는 단어 대안으로 결과를 다듬습니다 — [다시 쓰기 다듬기](#refining-rewrite)를 참조하세요.
+
+<br/>
+
 > 💡 **TIP**<br/>
 > "**철자 및 문법 검사**" 모드를 사용하면 출력 패널에 **변경 사항 표시** 스위치가 나타납니다 (**복사** 옆).
 > 이 스위치를 켜거나 끄면 텍스트에 적용된 수정 사항을 표시하거나 숨길 수 있습니다.
+
+<br/>
+
+> ℹ️ **참고**<br/>
+> 다시 쓰기 모드 **대체 버전**은 **단일** 실행에서 여러 재구성을 반환하며, 출력에서 `----`로 구분됩니다. 이는 시간이 지남에 따라 버전 기록을 작성하는(클릭당 하나의 새 변형) **Rephrase…** 와 다릅니다. [다시 쓰기 다듬기](#refining-rewrite)를 참조하세요.
+
+<br/>
+
+<a id="refining-rewrite"></a>
+### 다시 쓰기 다듬기
+
+다시 쓰기가 성공하면 **Rephrase…** 및 버전 드롭다운이 작업 영역의 출력 측에 나타납니다(분할 레이아웃에서는 출력 열 위의 상단 도구 모음에서 실행 메트릭 옆에, 누적 레이아웃에서는 **원본:** 옆의 출력 패널 위에). 여기서 결과를 다듬을 수 있습니다 — [번역 다듬기](#refining-translation)와 같은 아이디어이지만 텍스트는 동일한 언어로 유지되고 현재 다시 쓰기 **모드**를 유지합니다:
+
+1. **Rephrase…** — 출력에서 선택한 텍스트가 없는 경우, 선택한 모드(예: 더 명확하게, 더 짧게 또는 더 공식적으로)를 계속 적용하여 동일한 입력에 대해 다른 표현으로 전체 다시 쓰기를 가져옵니다. 모델은 이미 가지고 있는 모든 버전을 수신하므로 새 표현은 모든 버전과 다를 수 있습니다. 최대 **5**개의 버전을 저장하고 버전 드롭다운에서 전환할 수 있습니다. 텍스트를 선택한 상태에서 **Rephrase…** 는 선택 영역 근처에 단어 대안을 엽니다(오른쪽 클릭과 동일). 선택 영역이 없으면 5개 버전에 도달하면 **Rephrase…** 가 비활성화됩니다. 선택 영역이 있으면 5개 버전에서도 계속 작동합니다(단어 대안만, 버전 5 업데이트). 전체 다시 구성이 실행되는 동안 **다시 쓰기 중지**를 클릭하여 취소합니다. 출력은 다시 구성이 시작될 때 활성화되어 있던 버전으로 돌아갑니다.
+2. **단어 대안** — 출력에서 하나 이상의 단어 또는 짧은 구를 선택합니다(단어의 일부만 선택하면 앱이 선택 영역을 전체 단어로 확장함), 그런 다음 오른쪽 클릭하거나 **Rephrase…** 를 클릭합니다. 선택 영역 근처에 짧은 대안 목록이 나타납니다. 하나를 클릭하여 교체합니다. 각 옵션은 문장이 문법적으로 유지되도록 선택한 것보다 약간 더 넓은 범위를 교체할 수 있습니다. 버전이 5개 미만인 경우 편집된 출력은 새 버전으로 저장됩니다. 5개 버전에서는 **버전 5**만 업데이트됩니다. 선택 영역 없이 오른쪽 클릭하면 커서 아래의 단어가 선택됩니다(또는 단어가 없으면 아무 작업도 수행하지 않음). **Esc**를 누르거나 목록 외부를 클릭하여 출력을 변경하지 않고 취소합니다.
+3. **비용** — 각 전체 **Rephrase…**(선택 영역 없음) 및 각 단어 대안 요청은 모델을 다시 사용하며 사용 비용이 추가될 수 있습니다(일반 다시 쓰기 실행과 동일).
 
 <br/><br/>
 
@@ -353,7 +384,7 @@ Transrewrt를 처음 사용하는 경우 다음 순서를 따르세요:
 
 사용자 정의 지시사항을 AI가 따르게 하려면 **변환**을(를) 사용하세요.
 
-![Transform workspace](../images/screenshots/ko/transform.png)
+![변환 작업 영역](../images/screenshots/ko/transform.png)
 
 이 기능은 앱에서 가장 유연한 영역입니다. 다음 작업에 활용할 수 있습니다:
 
@@ -401,7 +432,7 @@ Transrewrt를 처음 사용하는 경우 다음 순서를 따르세요:
 5. 앱이 초안을 작성하도록 합니다.
 6. 초안을 검토한 후 **저장**을(를) 클릭합니다.
 
-![Generate prompt](../images/screenshots/ko/transform-generate.png)
+![프롬프트 생성](../images/screenshots/ko/transform-generate.png)
 
 <br/>
 
@@ -410,7 +441,7 @@ Transrewrt를 처음 사용하는 경우 다음 순서를 따르세요:
 
 프롬프트를 생성하거나 편집할 때 왼쪽에 편집기가 나타나고 오른쪽에 테스트 영역이 나타납니다.
 
-![Transform prompt editor](../images/screenshots/ko/transform-prompt-edit.png)
+![변환 프롬프트 편집기](../images/screenshots/ko/transform-prompt-edit.png)
 
 주요 필드는 다음과 같습니다.
 
@@ -466,7 +497,7 @@ Transrewrt를 처음 사용하는 경우 다음 순서를 따르세요:
 
 **대시보드**를 사용하여 앱 사용량과 비용(유료 모델의 경우)을 확인할 수 있습니다.
 
-![Dashboard summary](../images/screenshots/ko/dashboard-summary.png)
+![대시보드 요약](../images/screenshots/ko/dashboard-summary.png)
 
 <br/>
 
@@ -480,7 +511,7 @@ Transrewrt를 처음 사용하는 경우 다음 순서를 따르세요:
 
 상단의 필터 버튼을 사용하여 기간을 변경할 수 있습니다.
 
-![Dashboard filters](../images/screenshots/ko/dashboard-filter.png)
+![대시보드 필터](../images/screenshots/ko/dashboard-filter.png)
 
 <br/>
 
@@ -530,7 +561,7 @@ Transrewrt를 처음 사용하는 경우 다음 순서를 따르세요:
 
 **기록**을(를) 클릭하여 **Transrewrt** 내에서 수행한 작업의 기록을 확인하세요. 각 작업의 입력과 출력도 함께 확인할 수 있습니다.
 
-![History page](../images/screenshots/ko/history.png)
+![기록 페이지](../images/screenshots/ko/history.png)
 
 <br/>
 
@@ -539,7 +570,7 @@ Transrewrt를 처음 사용하는 경우 다음 순서를 따르세요:
 
 **기록**은 **대시보드** 페이지와 동일한 기간 필터를 사용합니다.
 
-![Dashboard filters](../images/screenshots/ko/dashboard-filter.png)
+![대시보드 필터](../images/screenshots/ko/dashboard-filter.png)
 
 <br/>
 
@@ -640,7 +671,7 @@ Transrewrt를 처음 사용하는 경우 다음 순서를 따르세요:
 
 [**일반 설정**](#general-settings)에서 **AI 기능**이 **고급**으로 설정된 경우에만 이 탭을 사용할 수 있습니다. 툴바에 표시할 모델을 선택하려면 **설정** > **모델**을 사용하세요.
 
-![Settings Models tab](../images/screenshots/ko/settings-general.png)
+![설정 모델 탭](../images/screenshots/ko/settings-general.png)
 
 이 페이지에는 두 개의 목록이 있습니다:
 

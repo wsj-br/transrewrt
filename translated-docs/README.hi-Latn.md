@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.1-blue" alt="Version"></a>
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.0-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
   <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react" alt="React 19">
@@ -62,27 +62,27 @@ Install hone ke baad, sabhi features ke poore walkthrough ke liye [**User Guide*
 
 **Bhasha chunne wala**
 
-![Language selector](../images/screenshots/hi-Latn/language-selector.png)
+![Bhasha chunne wala](../images/screenshots/hi-Latn/language-selector.png)
 
 **Anuvaad karein**
 
-![Translate](../images/screenshots/hi-Latn/translate.png)
+![Anuvaad karein](../images/screenshots/hi-Latn/translate.png)
 
 **Badlen - prompt editor**
 
-![Transform - prompt editor](../images/screenshots/hi-Latn/transform-prompt-edit.png)
+![Badlen - prompt editor](../images/screenshots/hi-Latn/transform-prompt-edit.png)
 
 **Dashboard**
 
-![Dashboard summary - usage](../images/screenshots/hi-Latn/dashboard-summary.png)
+![Dashboard saraansh - upyog](../images/screenshots/hi-Latn/dashboard-summary.png)
 
 **Itihaas**
 
-![History](../images/screenshots/hi-Latn/history.png)
+![Itihaas](../images/screenshots/hi-Latn/history.png)
 
 **Settings - model selection**
 
-![Settings - model selection](../images/screenshots/hi-Latn/settings-general.png)
+![Settings - model chayan](../images/screenshots/hi-Latn/settings-general.png)
 
 <br/><br/>
 

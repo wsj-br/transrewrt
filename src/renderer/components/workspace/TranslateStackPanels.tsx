@@ -14,7 +14,7 @@ import { Button } from "@/components/ui/button";
 import { Zap, Square, ArrowRightLeft, Clipboard, Copy, Trash2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { modelFooterDisplayId } from "../../utils/misc/modelIdUtils";
-import { TranslateRephraseControls } from "./TranslateRephraseControls";
+import { RephraseControls } from "./RephraseControls";
 
 /** Removes key symbols (⇧, ↵) from translated shortcut text and trims. */
 function stripKeySymbols(str: string) {
@@ -197,15 +197,18 @@ export function getTranslateStackPanels({
           iconStrokeWidth={1.6}
           hugSelectWidth
         />
-        <TranslateRephraseControls
+        <RephraseControls
           t={t}
           isProcessing={isProcessing}
-          translateOutputIsModelResult={translateOutputIsModelResult}
-          translateVersions={translateVersions}
-          selectedTranslateVersion={selectedTranslateVersion}
+          outputIsModelResult={translateOutputIsModelResult}
+          versions={translateVersions}
+          selectedVersion={selectedTranslateVersion}
           outputHasSelection={outputHasSelection}
           onRephrase={() => handleRephraseClick?.()}
           onVersionChange={(version) => handleTranslateVersionChange?.(version)}
+          rephraseButtonTestId="translate-rephrase-button"
+          versionSelectAriaLabel={t("Translation version")}
+          maxVersionsTooltip={t("Maximum of 5 translation versions reached")}
         />
         {outputMeta ? (
           <WorkspaceOutputMeta tooltip={outputMetaCostTooltip}>

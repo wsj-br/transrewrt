@@ -1,4 +1,4 @@
-![Transrewrt banner](../images/transrewrt_banner.png)
+![Bàner de Transrewrt](../images/transrewrt_banner.png)
 
 <a id="transrewrt-user-guide"></a>
 # Guia d'usuari
@@ -54,21 +54,23 @@ Aquesta guia explica com utilitzar l'aplicació un cop instal·lada i en execuci
   - [Configuració útil de traducció](#helpful-translation-settings)
   - [Refinament de la vostra traducció](#refining-your-translation)
   - [Ús del glossari](#using-the-glossary)
-- [Reescritura](#rewrite)
+- [Reescriptura](#rewrite)
+  - [Reescriure text](#rewrite-text)
+  - [Refinar la reescriptura](#refining-your-rewrite)
 - [Transformació](#transform)
-  - [Execució d'un indicador existent](#run-an-existing-prompt)
-  - [Si encara no teniu cap indicador](#if-you-have-no-prompts-yet)
-  - [Creació ràpida d'un indicador](#create-a-prompt-quickly)
-  - [Edició d'un indicador](#edit-a-prompt)
-  - [Prova d'un indicador abans d'utilitzar-lo](#test-a-prompt-before-using-it)
+  - [Executar un indicador existent](#run-an-existing-prompt)
+  - [Si encara no teniu indicadors](#if-you-have-no-prompts-yet)
+  - [Crear un indicador ràpidament](#create-a-prompt-quickly)
+  - [Editar un indicador](#edit-a-prompt)
+  - [Provar un indicador abans d'utilitzar-lo](#test-a-prompt-before-using-it)
 - [Tauler de control](#dashboard)
-  - [Filtrat de dades](#filter-the-data)
+  - [Filtrar les dades](#filter-the-data)
   - [Pestanyes del tauler de control](#dashboard-tabs)
-  - [Exportació de dades](#export-data)
-  - [Eliminació de registres emmagatzemats per a un model](#delete-stored-records-for-a-model)
+  - [Exportar dades](#export-data)
+  - [Suprimir registres emmagatzemats per a un model](#delete-stored-records-for-a-model)
 - [Historial](#history)
-  - [Filtrat de l'historial](#filter-the-history)
-  - [Exportació de dades de l'historial](#export-history-data)
+  - [Filtrar l'historial](#filter-the-history)
+  - [Exportar dades de l'historial](#export-history-data)
 - [Configuració](#settings)
   - [Configuració general](#general-settings)
   - [Models](#models)
@@ -85,12 +87,12 @@ Aquesta guia explica com utilitzar l'aplicació un cop instal·lada i en execuci
   - [El resultat és massa lent o massa car](#the-result-is-too-slow-or-too-expensive)
   - [La interfície està en l'idioma incorrecte](#the-interface-is-in-the-wrong-language)
   - [El text és massa petit o difícil de llegir](#the-text-is-too-small-or-hard-to-read)
-  - [Resum del tauler de control buit](#dashboard-summary-looks-empty)
+  - [El resum del tauler de control sembla buit](#dashboard-summary-looks-empty)
   - [El cost mostra "no disponible" o sembla incorrecte](#cost-shows-not-available-or-seems-wrong)
-  - [El cost total no coincideix amb la meva factura del proveïdor](#total-cost-does-not-match-my-provider-bill)
-  - [La pàgina d'Historial falta a la barra lateral](#the-history-page-is-missing-from-the-sidebar)
+  - [El cost total no coincideix amb la factura del meu proveïdor](#total-cost-does-not-match-my-provider-bill)
+  - [La pàgina d'historial falta a la barra lateral](#the-history-page-is-missing-from-the-sidebar)
   - [Aplicació web: redirigit a la pàgina d'inici de sessió inesperadament](#web-app-redirected-to-the-login-page-unexpectedly)
-  - [Administrador web: he oblidat o he perdut la contrasenya](#web-admin-forgot-or-lost-a-password)
+  - [Administrador web: contrasenya oblidada o perduda](#web-admin-forgot-or-lost-a-password)
   - [El tauler de control no mostra dades per a altres usuaris (web)](#dashboard-shows-no-data-for-other-users-web)
   - [He canviat un indicador i he perdut les edicions](#i-changed-a-prompt-and-lost-the-edits)
 - [Consells ràpids](#quick-tips)
@@ -206,7 +208,7 @@ En mode **Fàcil**, la barra d'eines mostra un **selector de predeterminats** am
 
 En mode **Avançat**, el selector de **model** us permet triar quin motor d'IA utilitzar per a la tasca actual.
 
-![Model selector](../images/screenshots/ca/preset-selector.png)
+![Selector de model](../images/screenshots/ca/preset-selector.png)
 
 En mode Avançat, alguns models gratuïts poden no estar sempre disponibles: poden estar desconnectats o haver assolit un límit d'ús. L'aplicació pot eliminar automàticament aquest model de la vostra llista. Per controlar quins models apareixen, aneu a [**Configuració** > **Models**](#models). Podeu obrir la configuració del model des de la icona del proveïdor a l'esquerra del nom del model a la barra d'eines.
 
@@ -214,7 +216,7 @@ En mode Avançat, alguns models gratuïts poden no estar sempre disponibles: pod
 
 La **icona de globus terraqüi + codi d'idioma** canvia l'idioma de la interfície de l'aplicació, com ara menús i botons. **No** canvia els idiomes de traducció utilitzats a **Traduir**.
 
-![Interface language selector](../images/screenshots/ca/language-selector.png)
+![Selector d'idioma de la interfície](../images/screenshots/ca/language-selector.png)
 
 <br/>
 
@@ -247,7 +249,7 @@ També podeu controlar el cost de cada operació (si està disponible) i el cost
 
 Utilitzeu **Traduir** quan vulgueu convertir text d'un idioma a un altre.
 
-![Translate workspace](../images/screenshots/ca/translate.png)
+![Espai de treball de traducció](../images/screenshots/ca/translate.png)
 
 <br/>
 
@@ -296,9 +298,9 @@ A [**Configuració** > **Configuració general**](#general-settings), podeu canv
 
 Després d'una traducció exitosa, **Reformula…** i el menú desplegable de versió apareixen a la capçalera de sortida, al costat del selector de llengua **A:**. Podeu refinar el resultat allí:
 
-1. **Reformula…** — sense text seleccionat a la sortida, obtindreu una altra traducció completa de la mateixa entrada amb una redacció diferent. El model rep cada versió que ja teniu, de manera que la nova redacció pot diferir de totes elles. Podeu emmagatzemar fins a **cinc** versions i canviar entre elles al menú desplegable de versió. Amb text seleccionat, **Reformula…** obre alternatives de paraules a prop de la selecció (igual que fer clic amb el botó dret). Sense una selecció, **Reformula…** es desactiva un cop arribeu a cinc versions; amb una selecció, encara funciona amb cinc versions (alternatives de paraules només, actualitzant la versió 5). Mentre s'està executant una reformulació completa, feu clic a **Atura Traducció** per cancel·lar; la sortida torna a la versió que estava activa quan va començar la reformulació.
-2. **Alternatives de paraules** — seleccioneu una o més paraules o una frase curta a la sortida (si seleccioneu només part d'una paraula, l'aplicació amplia la selecció a paraules completes), després feu clic amb el botó dret o feu clic a **Reformula…**. Apareix una llista curta d'alternatives a prop de la selecció; feu clic a una per substituir-la. Cada opció pot substituir un rang lleugerament més ampli que la vostra selecció (per exemple, una preposició o article adjacent) de manera que la frase es mantingui gramatical. Si teniu menys de cinc versions, la sortida editada es guarda com una nova versió; amb cinc versions, només es actualitza **la versió 5**. Fer clic amb el botó dret sense selecció no fa res. Premeu **Esc** o feu clic fora de la llista per cancel·lar sense canviar la sortida.
-3. **Costos** — cada **Reformula…** completa (sense selecció) i cada sol·licitud d'alternativa de paraules utilitza el model novament i pot afegir-se al cost d'ús (igual que una execució de traducció normal).
+1. **Reformula…** — sense text seleccionat a la sortida, obté una altra traducció completa de la mateixa entrada amb una redacció diferent. El model rep totes les versions que ja teniu perquè la nova redacció pugui diferir de totes elles. Podeu emmagatzemar fins a **cinc** versions i canviar entre elles al desplegable de versions. Amb el text seleccionat, **Reformula…** obre alternatives de paraules a prop de la selecció (igual que el clic dret). Sense una selecció, **Reformula…** es desactiva un cop arribeu a cinc versions; amb una selecció, encara funciona amb cinc versions (només alternatives de paraules, actualitzant la versió 5). Mentre s'està executant una reformulació completa, feu clic a **Atura la traducció** per cancel·lar; la sortida torna a la versió que estava activa quan va començar la reformulació.
+2. **Alternatives de paraules** — seleccioneu una o més paraules o una frase curta a la sortida (si només seleccioneu una part d'una paraula, l'aplicació expandeix la selecció a paraules completes), després feu clic dret o feu clic a **Reformula…**. Apareix una llista curta d'alternatives a prop de la selecció; feu clic a una per substituir-la. Cada opció pot substituir un abast lleugerament més ampli que la vostra selecció (per exemple, una preposició o un article adjacent) perquè la frase es mantingui gramaticalment correcta. Si teniu menys de cinc versions, la sortida editada es desa com una nova versió; amb cinc versions, només s'actualitza la **versió 5**. El clic dret sense selecció selecciona la paraula sota el cursor (o no fa res si no hi ha cap paraula). Premeu **Esc** o feu clic fora de la llista per cancel·lar sense canviar la sortida.
+3. **Costos** — cada **Reformula…** completa (sense selecció) i cada sol·licitud d'alternatives de paraules utilitza el model de nou i pot augmentar el cost d'ús (igual que una execució de traducció normal).
 
 <br/>
 
@@ -326,9 +328,9 @@ Afegiu, editeu, importeu i exporteu termes a la pestanya [**Configuració** > **
 <a id="rewrite"></a>
 ## Reescriure
 
-Utilitzeu **Reescriure** quan vulgueu millorar l'expressió sense canviar el significat principal.
+Utilitzeu **Reescriure** quan vulgueu millorar la redacció sense canviar el significat principal. El text es manté en el mateix idioma (no es tradueix).
 
-![Rewrite workspace](../images/screenshots/ca/rewrite.png)
+![Espai de treball de reescriptura](../images/screenshots/ca/rewrite.png)
 
 Això és útil per:
 
@@ -341,9 +343,38 @@ Això és útil per:
 
 <br/>
 
+<a id="rewrite-text"></a>
+### Reescriure text
+
+1. Obriu **Reescriptura**.
+2. Trieu un **Mode** (per exemple, **Millora la claredat** o **Fes-ho formal**).
+3. Opcionalment, configureu **De** a l'idioma del vostre text (o deixeu **Detecta l'idioma**).
+4. Escriviu o enganxeu el text a **Entrada**.
+5. Feu clic a **Reescriptura**.
+6. Llegiu el resultat a **Sortida**.
+7. Opcionalment, refineu el resultat amb **Reformula...** o alternatives de paraules — vegeu [Refinar la vostra reescriptura](#refining-rewrite).
+
+<br/>
+
 > 💡 **TIP**<br/>
 > Quan utilitzeu el mode "**Comprovar ortografia i gramàtica**", apareix un interruptor **Mostra els canvis** al tauler de sortida (al costat de **Copiar**).
 > Activeu-lo o desactiveu-lo per mostrar o amagar les correccions específiques aplicades al vostre text.
+
+<br/>
+
+> ℹ️ **NOTA**<br/>
+> El mode de reescriptura **Versions alternatives** retorna diverses reformulacions en una **única** execució, separades per `----` a la sortida. Això és diferent de **Reformula...**, que construeix un historial de versions al llarg del temps (una nova variant per clic). Vegeu [Refinar la vostra reescriptura](#refining-rewrite).
+
+<br/>
+
+<a id="refining-rewrite"></a>
+### Refinar la vostra reescriptura
+
+Després d'una reescriptura correcta, **Reformula...** i el desplegable de versions apareixen al costat de la sortida de l'espai de treball (en el disseny dividit, a la barra d'eines superior per sobre de la columna de sortida, al costat de les mètriques d'execució; en el disseny apilat, per sobre del panell de sortida al costat de **De:**). Allà podeu refinar el resultat — la mateixa idea que [Refinar la vostra traducció](#refining-translation), però el text es manté en el mateix idioma i conserva el **Mode** de reescriptura actual:
+
+1. **Reformula...** — sense text seleccionat a la sortida, obteniu una altra reescriptura completa de la mateixa entrada amb una redacció diferent, aplicant encara el mode seleccionat (per exemple, més clar, més curt o més formal). El model rep totes les versions que ja teniu perquè la nova redacció pugui diferir de totes elles. Podeu emmagatzemar fins a **cinc** versions i canviar entre elles al desplegable de versions. Amb el text seleccionat, **Reformula...** obre alternatives de paraules a prop de la selecció (igual que el clic dret). Sense una selecció, **Reformula...** es desactiva un cop arribeu a cinc versions; amb una selecció, encara funciona amb cinc versions (només alternatives de paraules, actualitzant la versió 5). Mentre s'està executant una reformulació completa, feu clic a **Atura reescriptura** per cancel·lar; la sortida torna a la versió que estava activa quan va començar la reformulació.
+2. **Alternatives de paraules** — seleccioneu una o més paraules o una frase curta a la sortida (si seleccioneu només una part d'una paraula, l'aplicació expandeix la selecció a paraules completes), després feu clic dret o feu clic a **Reformula...**. Apareix una llista curta d'alternatives a prop de la selecció; feu clic a una per substituir-la. Cada opció pot substituir un abast lleugerament més ampli que la vostra selecció perquè la frase es mantingui gramatical. Si teniu menys de cinc versions, la sortida editada es desa com a nova versió; amb cinc versions, només s'actualitza la **versió 5**. Feu clic dret sense selecció per seleccionar la paraula sota el cursor (o no fa res si no hi ha cap paraula allà). Premeu **Esc** o feu clic fora de la llista per cancel·lar sense canviar la sortida.
+3. **Costos** — cada **Reformula...** completa (sense selecció) i cada sol·licitud d'alternatives de paraules utilitza el model de nou i pot augmentar el cost d'ús (igual que una execució de reescriptura normal).
 
 <br/><br/>
 
@@ -354,7 +385,7 @@ Això és útil per:
 
 Utilitzeu **Transformar** quan vulgueu que la IA segueixi un conjunt personalitzat d'instruccions.
 
-![Transform workspace](../images/screenshots/ca/transform.png)
+![Espai de treball de transformació](../images/screenshots/ca/transform.png)
 
 Aquesta és l'àrea més flexible de l'aplicació. Podeu utilitzar-la per a tasques com:
 
@@ -402,7 +433,7 @@ La manera més ràpida de crear un indicador és:
 5. Deixa que l'aplicació creï un esborrany per a tu.
 6. Revisa l'esborrany i fes clic a **Desa**.
 
-![Generate prompt](../images/screenshots/ca/transform-generate.png)
+![Generar indicador](../images/screenshots/ca/transform-generate.png)
 
 <br/>
 
@@ -411,7 +442,7 @@ La manera més ràpida de crear un indicador és:
 
 Quan crees o editis un indicador, l'editor apareix a l'esquerra i una àrea de prova apareix a la dreta.
 
-![Transform prompt editor](../images/screenshots/ca/transform-prompt-edit.png)
+![Editor d'indicadors de transformació](../images/screenshots/ca/transform-prompt-edit.png)
 
 Els camps principals són:
 
@@ -467,7 +498,7 @@ Quan utilitzeu **Genera un indicador**, **Millora l'indicador** o **Traduir prom
 
 Utilitzeu el **Tauler** per veure quant esteu utilitzant l'aplicació i quin és el cost (per als models de pagament).
 
-![Dashboard summary](../images/screenshots/ca/dashboard-summary.png)
+![Resum del tauler de control](../images/screenshots/ca/dashboard-summary.png)
 
 <br/>
 
@@ -481,7 +512,7 @@ Utilitzeu el **Tauler** per veure quant esteu utilitzant l'aplicació i quin és
 
 Utilitzeu els botons de filtre de la part superior per canviar l'interval de temps.
 
-![Dashboard filters](../images/screenshots/ca/dashboard-filter.png)
+![Filtres del tauler de control](../images/screenshots/ca/dashboard-filter.png)
 
 <br/>
 
@@ -531,7 +562,7 @@ Per esborrar totes les dades o eliminar registres segons la seva antiguitat, ane
 
 Feu clic a **Historial** per veure l'historial de les vostres accions dins de **Transrewrt**, incloent-hi l'entrada i la sortida de cada operació.
 
-![History page](../images/screenshots/ca/history.png)
+![Pàgina d'historial](../images/screenshots/ca/history.png)
 
 <br/>
 
@@ -540,7 +571,7 @@ Feu clic a **Historial** per veure l'historial de les vostres accions dins de **
 
 **Historial** utilitza els mateixos filtres de rang horari que la pàgina del **Tauler**.
 
-![Dashboard filters](../images/screenshots/ca/dashboard-filter.png)
+![Filtres del tauler de control](../images/screenshots/ca/dashboard-filter.png)
 
 <br/>
 
@@ -641,7 +672,7 @@ Les còpies de seguretat creades tant en la versió web com en la d'escriptori e
 
 Aquesta pestanya només està disponible quan l'**experiència amb IA** està establerta a **Avançat** a [**Configuració general**](#general-settings). Utilitzeu **Configuració** > **Models** per triar quins models apareixen a la barra d'eines.
 
-![Settings Models tab](../images/screenshots/ca/settings-general.png)
+![Pestanya Models de configuració](../images/screenshots/ca/settings-general.png)
 
 La pàgina té dues llistes:
 

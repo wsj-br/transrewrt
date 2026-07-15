@@ -55,45 +55,47 @@ Ipinaliliwanag ng gabay na ito kung paano gamitin ang app kapag naka-install at 
   - [Pagpino ng iyong pagsasalin](#refining-your-translation)
   - [Paggamit ng glossary](#using-the-glossary)
 - [Rewrite](#rewrite)
+  - [Rewrite text](#rewrite-text)
+  - [Pagpino ng iyong rewrite](#refining-your-rewrite)
 - [Transform](#transform)
-  - [Pagpapatakbo ng isang umiiral na prompt](#run-an-existing-prompt)
-  - [Kung wala ka pang mga prompt](#if-you-have-no-prompts-yet)
-  - [Mabilis na paglikha ng prompt](#create-a-prompt-quickly)
-  - [Pag-edit ng prompt](#edit-a-prompt)
-  - [Pagsubok ng prompt bago ito gamitin](#test-a-prompt-before-using-it)
+  - [Magpatakbo ng kasalukuyang prompt](#run-an-existing-prompt)
+  - [Kung wala ka pang prompt](#if-you-have-no-prompts-yet)
+  - [Mabilis na lumikha ng prompt](#create-a-prompt-quickly)
+  - [I-edit ang isang prompt](#edit-a-prompt)
+  - [Subukin ang isang prompt bago ito gamitin](#test-a-prompt-before-using-it)
 - [Dashboard](#dashboard)
-  - [Pag-filter ng data](#filter-the-data)
+  - [I-filter ang data](#filter-the-data)
   - [Mga tab ng Dashboard](#dashboard-tabs)
-  - [Pag-export ng data](#export-data)
-  - [Pag-delete ng mga nakaimbak na tala para sa isang modelo](#delete-stored-records-for-a-model)
+  - [I-export ang data](#export-data)
+  - [I-delete ang mga nakaimbak na record para sa isang modelo](#delete-stored-records-for-a-model)
 - [History](#history)
-  - [Pag-filter ng history](#filter-the-history)
-  - [Pag-export ng data ng history](#export-history-data)
+  - [I-filter ang history](#filter-the-history)
+  - [I-export ang data ng history](#export-history-data)
 - [Mga Setting](#settings)
-  - [Pangkalahatang Mga Setting](#general-settings)
+  - [Pangkalahatang mga setting](#general-settings)
   - [Mga Modelo](#models)
   - [Mga Wika](#languages)
   - [Pagsubaybay ng Gastos](#cost-tracking)
   - [Transform (tab ng mga setting)](#transform-settings-tab)
   - [Glossary (tab ng mga setting)](#glossary-settings-tab)
   - [Mga Gumagamit](#users)
-  - [API config](#api-config)
+  - [API Config](#api-config)
   - [Tungkol sa](#about)
-- [Mga Karaniwang Isyu](#common-issues)
-  - [Hindi maisasalin, maire-rewrite, o matra-transform ng app ang teksto](#the-app-will-not-translate-rewrite-or-transform-text)
+- [Mga karaniwang isyu](#common-issues)
+  - [Hindi isasalin, ire-rewrite, o ita-transform ng app ang text](#the-app-will-not-translate-rewrite-or-transform-text)
   - [Walang laman ang listahan ng modelo](#the-model-list-is-empty)
   - [Masyadong mabagal o masyadong mahal ang resulta](#the-result-is-too-slow-or-too-expensive)
-  - [Mali ang wika ng interface](#the-interface-is-in-the-wrong-language)
-  - [Masyadong maliit o mahirap basahin ang teksto](#the-text-is-too-small-or-hard-to-read)
-  - [Walang laman ang Buod ng Dashboard](#dashboard-summary-looks-empty)
+  - [Nasa maling wika ang interface](#the-interface-is-in-the-wrong-language)
+  - [Masyadong maliit o mahirap basahin ang text](#the-text-is-too-small-or-hard-to-read)
+  - [Mukhang walang laman ang Buod ng Dashboard](#dashboard-summary-looks-empty)
   - [Ang Gastos ay nagpapakita ng "hindi available" o mukhang mali](#cost-shows-not-available-or-seems-wrong)
-  - [Hindi tumutugma ang Kabuuang Gastos sa aking bill ng provider](#total-cost-does-not-match-my-provider-bill)
-  - [Nawawala ang pahina ng History sa sidebar](#the-history-page-is-missing-from-the-sidebar)
-  - [Web app: hindi inaasahang na-redirect sa login page](#web-app-redirected-to-the-login-page-unexpectedly)
+  - [Hindi tumutugma ang Kabuuang Gastos sa bill ng aking provider](#total-cost-does-not-match-my-provider-bill)
+  - [Nawawala ang pahina ng History mula sa sidebar](#the-history-page-is-missing-from-the-sidebar)
+  - [Web app: hindi inaasahang na-redirect sa pahina ng pag-login](#web-app-redirected-to-the-login-page-unexpectedly)
   - [Web admin: nakalimutan o nawala ang password](#web-admin-forgot-or-lost-a-password)
-  - [Walang data na ipinapakita ang Dashboard para sa ibang mga gumagamit (web)](#dashboard-shows-no-data-for-other-users-web)
+  - [Walang data ang ipinapakita ng Dashboard para sa ibang mga user (web)](#dashboard-shows-no-data-for-other-users-web)
   - [Binago ko ang isang prompt at nawala ang mga pag-edit](#i-changed-a-prompt-and-lost-the-edits)
-- [Mga Mabilisang Tip](#quick-tips)
+- [Mabilis na mga tip](#quick-tips)
 - [Disclaimer](#disclaimer)
 - [Lisensya](#license)
 
@@ -206,7 +208,7 @@ Sa **Madali** na mode, ang toolbar ay nagpapakita ng isang **piliin ng preset** 
 
 Sa **Advanced** na mode, pinapayagan ka ng **selector ng modelo** na pumili kung aling AI engine ang gagamitin para sa kasalukuyang gawain.
 
-![Model selector](../images/screenshots/tl/preset-selector.png)
+![Tagapili ng modelo](../images/screenshots/tl/preset-selector.png)
 
 Sa Advanced mode, ang ilang libreng modelo ay maaaring hindi laging magagamit—maaaring offline o umabot na sa limitasyon ng paggamit. Maaaring awtomatikong alisin ng app ang modelo mula sa iyong listahan. Para kontrolin kung aling mga modelo ang lilitaw, pumunta sa [**Mga Setting** > **Mga Modelo**](#models). Maaari mong buksan ang mga setting ng modelo mula sa icon ng provider sa kaliwa ng pangalan ng modelo sa toolbar.
 
@@ -214,7 +216,7 @@ Sa Advanced mode, ang ilang libreng modelo ay maaaring hindi laging magagamit—
 
 Ang **icon + language code** ay nagbabago ng wika ng interface ng app, tulad ng mga menu at mga button. Ito ay **hindi** nagbabago ng mga wika ng pagsasalin na ginagamit sa **Isalin**.
 
-![Interface language selector](../images/screenshots/tl/language-selector.png)
+![Tagapili ng wika ng interface](../images/screenshots/tl/language-selector.png)
 
 <br/>
 
@@ -296,9 +298,9 @@ Sa [**Settings** > **General Settings**](#general-settings), maaari mong baguhin
 
 Pagkatapos ng matagumpay na pagsasalin, ang **Mag-rephrase…** at ang dropdown ng bersyon ay lumalabas sa header ng output, katabi ng **Sa:** na selector ng wika. Maaari mong pinuhin ang resulta doon:
 
-1. **Mag-rephrase…** — kung walang tekstong napili sa output, makakuha ng isa pang buong pagsasalin ng parehong input na may ibang wording. Tinatanggap ng modelo ang bawat bersyon na mayroon ka na kaya ang bagong wording ay maaaring magkaiba sa lahat ng ito. Maaari kang mag-imbak ng hanggang **limang** bersyon at lumipat-lipat sa mga ito sa dropdown ng bersyon. Kapag may napiling teksto, ang **Mag-rephrase…** ay nagbubukas ng mga alternatibong salita malapit sa pagpili (pareho sa pag-right-click). Kung walang pagpili, ang **Mag-rephrase…** ay hindi pinagana kapag umabot ka na sa limang bersyon; kung may pagpili, ito ay gumagana pa rin sa limang bersyon (mga alternatibong salita lamang, ina-update ang bersyon 5). Habang tumatakbo ang isang buong rephrase, i-click ang **Huminto sa Pagsasalin** upang kanselahin; ang output ay babalik sa bersyon na aktibo nang magsimula ang rephrase.
-2. **Mga alternatibong salita** — pumili ng isa o higit pang mga salita o isang maikling parirala sa output (kung pumili ka lamang ng bahagi ng isang salita, ang app ay palawakin ang pagpili sa buong mga salita), pagkatapos ay i-right-click o i-click ang **Mag-rephrase…**. Isang maikling listahan ng mga alternatibo ang lilitaw malapit sa pagpili; i-click ang isa upang palitan ito. Bawat opsyon ay maaaring palitan ang bahagyang mas malawak na saklaw kaysa sa iyong pagpili (halimbawa, isang katabing preposition o artikulo) upang manatiling grammatical ang pangungusap. Kung mayroon kang mas kaunti sa limang bersyon, ang na-edit na output ay nai-save bilang isang bagong bersyon; sa limang bersyon, tanging ang **bersyon 5** ang ina-update. Ang pag-right-click nang walang pagpili ay walang ginagawa. Pindutin ang **Esc** o i-click sa labas ng listahan upang kanselahin nang hindi binabago ang output.
-3. **Gastos** — bawat buong **Mag-rephrase…** (walang pagpili) at bawat kahilingan ng alternatibong salita ay muling gumagamit ng modelo at maaaring magdagdag sa gastos ng paggamit (pareho sa isang normal na takbo ng pagsasalin).
+1. **Rephrase…** — nang walang text na napili sa output, kumuha ng isa pang buong pagsasalin ng parehong input na may ibang pananalita. Natatanggap ng modelo ang bawat bersyon na mayroon ka na upang ang bagong pananalita ay maaaring magkaiba sa lahat ng mga ito. Maaari kang mag-imbak ng hanggang **limang** bersyon at lumipat sa pagitan ng mga ito sa dropdown ng bersyon. Sa napiling text, binubuksan ng **Rephrase…** ang mga alternatibo sa salita malapit sa seleksyon (katulad ng right-click). Kung walang seleksyon, hindi pinagana ang **Rephrase…** kapag naabot mo na ang limang bersyon; sa isang seleksyon, gumagana pa rin ito sa limang bersyon (mga alternatibo sa salita lamang, ina-update ang bersyon 5). Habang tumatakbo ang isang buong rephrase, i-click ang **Huminto sa Pagsasalin** upang kanselahin; bumalik ang output sa bersyon na aktibo nang magsimula ang rephrase.
+2. **Mga alternatibo sa salita** — pumili ng isa o higit pang salita o isang maikling parirala sa output (kung bahagi lamang ng isang salita ang pipiliin mo, pinalalawak ng app ang seleksyon sa buong salita), pagkatapos ay mag-right-click o i-click ang **Rephrase…**. Lumilitaw ang isang maikling listahan ng mga alternatibo malapit sa seleksyon; i-click ang isa upang palitan ito. Maaaring palitan ng bawat opsyon ang bahagyang mas malawak na span kaysa sa iyong seleksyon (halimbawa, isang katabing preposisyon o artikulo) upang manatiling gramatikal ang pangungusap. Kung mayroon kang mas kaunti sa limang bersyon, ang na-edit na output ay nai-save bilang isang bagong bersyon; sa limang bersyon, **bersyon 5** lamang ang ina-update. Ang right-click nang walang seleksyon ay pipili ng salita sa ilalim ng cursor (o walang ginagawa kung walang salita doon). Pindutin ang **Esc** o mag-click sa labas ng listahan upang kanselahin nang hindi binabago ang output.
+3. **Mga Gastos** — bawat buong **Rephrase…** (walang seleksyon) at bawat kahilingan sa alternatibo sa salita ay gumagamit muli ng modelo at maaaring magdagdag sa gastos sa paggamit (katulad ng isang normal na pagpapatakbo ng pagsasalin).
 
 <br/>
 
@@ -326,7 +328,7 @@ Magdaragdag, mag-e-edit, mag-i-import, at mag-e-export ka ng mga termino sa [**M
 <a id="rewrite"></a>
 ## Muling isulat
 
-Gamitin ang **Rewrite** kapag gusto mong mapabuti ang pagkakasulat nang hindi binabago ang pangunahing kahulugan.
+Gamitin ang **Rewrite** kapag gusto mong pagbutihin ang pananalita nang hindi binabago ang pangunahing kahulugan. Ang text ay nananatili sa parehong wika (hindi ito isinasalin).
 
 ![Rewrite workspace](../images/screenshots/tl/rewrite.png)
 
@@ -341,9 +343,38 @@ Makakatulong ito sa:
 
 <br/>
 
+<a id="rewrite-text"></a>
+### Rewrite text
+
+1. Buksan ang **Rewrite**.
+2. Pumili ng **Mode** (halimbawa **Improve Clarity** o **Make Formal**).
+3. Opsyonal na itakda ang **From** sa wika ng iyong text (o iwanan ang **Detect Language**).
+4. Mag-type o mag-paste ng text sa **Input**.
+5. I-click ang **Rewrite**.
+6. Basahin ang resulta sa **Output**.
+7. Opsyonal na pinuhin ang resulta gamit ang **Rephrase…** o mga alternatibo sa salita — tingnan ang [Pagpino ng iyong rewrite](#refining-rewrite).
+
+<br/>
+
 > 💡 **TIP**<br/>
 > Kapag ginamit mo ang mode na "**Check Spelling & Grammar**", lumilitaw ang switch na **Show changes** sa output panel (nakalapit sa **Copy**).
 > I-on o i-off ito upang ipakita o itago ang mga tiyak na pagkakamali na tinamaan sa iyong teksto.
+
+<br/>
+
+> ℹ️ **TANDAAN**<br/>
+> Ang rewrite mode na **Alternative versions** ay nagbabalik ng ilang reformulation sa isang **solong** pagtakbo, na pinaghihiwalay ng `----` sa output. Iba ito sa **Rephrase…**, na bumubuo ng history ng bersyon sa paglipas ng panahon (isang bagong variant bawat pag-click). Tingnan ang [Pagpino ng iyong rewrite](#refining-rewrite).
+
+<br/>
+
+<a id="refining-rewrite"></a>
+### Pagpino ng iyong rewrite
+
+Pagkatapos ng matagumpay na rewrite, lumalabas ang **Rephrase…** at ang dropdown ng bersyon sa output side ng workspace (sa split layout, sa tuktok na toolbar sa itaas ng output column, sa tabi ng run metrics; sa stacked layout, sa itaas ng output panel sa tabi ng **From:**). Maaari mong pinuhin ang resulta doon — parehong ideya sa [Pagpino ng iyong translation](#refining-translation), ngunit ang text ay nananatili sa parehong wika at pinapanatili ang kasalukuyang rewrite **Mode**:
+
+1. **Rephrase…** — nang walang text na napili sa output, kumuha ng isa pang buong rewrite ng parehong input na may ibang pananalita, na inilalapat pa rin ang napiling mode (halimbawa mas malinaw, mas maikli, o mas pormal). Natatanggap ng modelo ang bawat bersyon na mayroon ka na upang ang bagong pananalita ay maaaring magkaiba sa lahat ng mga ito. Maaari kang mag-imbak ng hanggang **limang** bersyon at lumipat sa pagitan ng mga ito sa dropdown ng bersyon. Sa napiling text, binubuksan ng **Rephrase…** ang mga alternatibo sa salita malapit sa selection (katulad ng right-click). Kung walang selection, hindi pinagana ang **Rephrase…** kapag naabot mo na ang limang bersyon; sa isang selection, gumagana pa rin ito sa limang bersyon (mga alternatibo sa salita lamang, ina-update ang bersyon 5). Habang tumatakbo ang isang buong rephrase, i-click ang **Stop Rewrite** upang kanselahin; ang output ay bumalik sa bersyon na aktibo nang magsimula ang rephrase.
+2. **Mga alternatibo sa salita** — pumili ng isa o higit pang salita o isang maikling parirala sa output (kung pipiliin mo lamang ang bahagi ng isang salita, pinalalawak ng app ang selection sa buong salita), pagkatapos ay mag-right-click o i-click ang **Rephrase…**. Lumalabas ang isang maikling listahan ng mga alternatibo malapit sa selection; i-click ang isa upang palitan ito. Maaaring palitan ng bawat opsyon ang bahagyang mas malawak na span kaysa sa iyong selection upang manatiling gramatikal ang pangungusap. Kung mayroon kang mas kaunti sa limang bersyon, ang na-edit na output ay nai-save bilang isang bagong bersyon; sa limang bersyon, **bersyon 5** lamang ang ina-update. Ang right-click nang walang selection ay pipili ng salita sa ilalim ng cursor (o walang ginagawa kung walang salita doon). Pindutin ang **Esc** o i-click sa labas ng listahan upang kanselahin nang hindi binabago ang output.
+3. **Gastos** — ang bawat buong **Rephrase…** (walang selection) at bawat kahilingan ng alternatibo sa salita ay gumagamit muli ng modelo at maaaring magdagdag sa gastos sa paggamit (katulad ng isang normal na rewrite run).
 
 <br/><br/>
 
@@ -402,7 +433,7 @@ Ang pinakamabilis na paraan para gumawa ng prompt ay:
 5. Hayaan ang app na lumikha ng draft para sa iyo.
 6. Suriin ang draft at i-click ang **I-save**.
 
-![Generate prompt](../images/screenshots/tl/transform-generate.png)
+![Bumuo ng prompt](../images/screenshots/tl/transform-generate.png)
 
 <br/>
 
@@ -467,7 +498,7 @@ Kapag gumagamit ka ng **Bumuo ng prompt**, **Pabutihin ang prompt**, o **Isalin 
 
 Gamitin ang **Dashboard** upang makita kung gaano karami ang iyong paggamit sa app at kung magkano ang gastos nito (para sa mga bayad na modelo).
 
-![Dashboard summary](../images/screenshots/tl/dashboard-summary.png)
+![Buod ng Dashboard](../images/screenshots/tl/dashboard-summary.png)
 
 <br/>
 
@@ -481,7 +512,7 @@ Gamitin ang **Dashboard** upang makita kung gaano karami ang iyong paggamit sa a
 
 Gamitin ang mga filter button sa itaas upang baguhin ang saklaw ng oras.
 
-![Dashboard filters](../images/screenshots/tl/dashboard-filter.png)
+![Mga filter ng Dashboard](../images/screenshots/tl/dashboard-filter.png)
 
 <br/>
 
@@ -531,7 +562,7 @@ Para tanggalin ang lahat ng data o alisin ang mga tala batay sa kanilang edad, p
 
 I-click ang **Kasaysayan** para tingnan ang kasaysayan ng iyong mga aksyon sa loob ng **Transrewrt**, kasama ang input at output ng bawat operasyon.
 
-![History page](../images/screenshots/tl/history.png)
+![Pahina ng History](../images/screenshots/tl/history.png)
 
 <br/>
 
@@ -540,7 +571,7 @@ I-click ang **Kasaysayan** para tingnan ang kasaysayan ng iyong mga aksyon sa lo
 
 Ginagamit ng **History** ang parehong mga time-range filter tulad ng **Dashboard** page.
 
-![Dashboard filters](../images/screenshots/tl/dashboard-filter.png)
+![Mga filter ng Dashboard](../images/screenshots/tl/dashboard-filter.png)
 
 <br/>
 
@@ -641,7 +672,7 @@ Ang mga backup na nilikha sa alinman sa web o desktop na bersyon ay maaaring ma-
 
 Ang tab na ito ay magagamit lamang kapag ang **Karanasan sa AI** ay nakatakda sa **Advanced** sa [**Mga Pangkalahatang Setting**](#general-settings). Gamitin ang **Mga Setting** > **Mga Modelo** para pumili kung aling mga modelo ang lilitaw sa toolbar.
 
-![Settings Models tab](../images/screenshots/tl/settings-general.png)
+![Tab ng Mga Modelo ng Mga Setting](../images/screenshots/tl/settings-general.png)
 
 Ang pahina ay may dalawang listahan:
 

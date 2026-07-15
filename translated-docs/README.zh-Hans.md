@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.1-blue" alt="Version"></a>
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.0-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
   <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react" alt="React 19">
@@ -62,27 +62,27 @@ AI 驱动的文本工具：在语言之间进行翻译、以不同风格改写�
 
 **语言选择器**
 
-![Language selector](../images/screenshots/zh-Hans/language-selector.png)
+![语言选择器](../images/screenshots/zh-Hans/language-selector.png)
 
 **翻译**
 
-![Translate](../images/screenshots/zh-Hans/translate.png)
+![翻译](../images/screenshots/zh-Hans/translate.png)
 
 **转换 - 提示编辑器**
 
-![Transform - prompt editor](../images/screenshots/zh-Hans/transform-prompt-edit.png)
+![转换 - 提示编辑器](../images/screenshots/zh-Hans/transform-prompt-edit.png)
 
 **仪表板**
 
-![Dashboard summary - usage](../images/screenshots/zh-Hans/dashboard-summary.png)
+![仪表板摘要 - 用量](../images/screenshots/zh-Hans/dashboard-summary.png)
 
 **历史记录**
 
-![History](../images/screenshots/zh-Hans/history.png)
+![历史记录](../images/screenshots/zh-Hans/history.png)
 
 **设置 - 模型选择**
 
-![Settings - model selection](../images/screenshots/zh-Hans/settings-general.png)
+![设置 - 模型选择](../images/screenshots/zh-Hans/settings-general.png)
 
 <br/><br/>
 

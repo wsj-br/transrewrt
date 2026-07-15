@@ -1,4 +1,4 @@
-![Transrewrt banner](../images/transrewrt_banner.png)
+![Transrewrt szalaghirdetés](../images/transrewrt_banner.png)
 
 <a id="transrewrt-user-guide"></a>
 # Felhasználói útmutató
@@ -54,6 +54,8 @@ Ez az útmutató azt ismerteti, hogyan használható az alkalmazás telepítés 
   - [A fordítás finomítása](#refining-your-translation)
   - [A szószedet használata](#using-the-glossary)
 - [Átírás](#rewrite)
+  - [Szöveg átírása](#rewrite-text)
+  - [Az átírás finomítása](#refining-your-rewrite)
 - [Átalakítás](#transform)
   - [Meglévő kérés futtatása](#run-an-existing-prompt)
   - [Ha még nincsenek kérései](#if-you-have-no-prompts-yet)
@@ -62,7 +64,7 @@ Ez az útmutató azt ismerteti, hogyan használható az alkalmazás telepítés 
   - [Kérés tesztelése használat előtt](#test-a-prompt-before-using-it)
 - [Irányítópult](#dashboard)
   - [Adatok szűrése](#filter-the-data)
-  - [Irányítópult lapjai](#dashboard-tabs)
+  - [Irányítópult lapok](#dashboard-tabs)
   - [Adatok exportálása](#export-data)
   - [Tárolt rekordok törlése egy modellhez](#delete-stored-records-for-a-model)
 - [Előzmények](#history)
@@ -79,21 +81,21 @@ Ez az útmutató azt ismerteti, hogyan használható az alkalmazás telepítés 
   - [API konfiguráció](#api-config)
   - [Névjegy](#about)
 - [Gyakori problémák](#common-issues)
-  - [Az alkalmazás nem fordít, nem ír át és nem alakít át szöveget](#the-app-will-not-translate-rewrite-or-transform-text)
+  - [Az alkalmazás nem fordít, ír át vagy alakít át szöveget](#the-app-will-not-translate-rewrite-or-transform-text)
   - [A modelllista üres](#the-model-list-is-empty)
   - [Az eredmény túl lassú vagy túl drága](#the-result-is-too-slow-or-too-expensive)
-  - [Az interfész rossz nyelven van](#the-interface-is-in-the-wrong-language)
+  - [A felület rossz nyelven van](#the-interface-is-in-the-wrong-language)
   - [A szöveg túl kicsi vagy nehezen olvasható](#the-text-is-too-small-or-hard-to-read)
-  - [Irányítópult összefoglalója üresnek tűnik](#dashboard-summary-looks-empty)
-  - [A költség "nem elérhető" értéket mutat, vagy hibásnak tűnik](#cost-shows-not-available-or-seems-wrong)
+  - [Az irányítópult összefoglalója üresnek tűnik](#dashboard-summary-looks-empty)
+  - [A költség „nem elérhető” vagy hibásnak tűnik](#cost-shows-not-available-or-seems-wrong)
   - [A teljes költség nem egyezik a szolgáltatói számlámmal](#total-cost-does-not-match-my-provider-bill)
-  - [Az Előzmények oldal hiányzik az oldalsávból](#the-history-page-is-missing-from-the-sidebar)
-  - [Webalkalmazás: váratlanul átirányítva a bejelentkezési oldalra](#web-app-redirected-to-the-login-page-unexpectedly)
-  - [Webes rendszergazda: elfelejtett vagy elveszett jelszó](#web-admin-forgot-or-lost-a-password)
-  - [Az irányítópult nem mutat adatokat más felhasználók számára (webes)](#dashboard-shows-no-data-for-other-users-web)
-  - [Módosítottam egy kérést és elvesztek a szerkesztések](#i-changed-a-prompt-and-lost-the-edits)
+  - [Az előzmények oldal hiányzik az oldalsávból](#the-history-page-is-missing-from-the-sidebar)
+  - [Webes alkalmazás: váratlanul átirányított a bejelentkezési oldalra](#web-app-redirected-to-the-login-page-unexpectedly)
+  - [Webes admin: elfelejtett vagy elvesztett jelszó](#web-admin-forgot-or-lost-a-password)
+  - [Az irányítópult nem mutat adatokat más felhasználók számára (web)](#dashboard-shows-no-data-for-other-users-web)
+  - [Megváltoztattam egy kérést és elvesztettem a szerkesztéseket](#i-changed-a-prompt-and-lost-the-edits)
 - [Gyors tippek](#quick-tips)
-- [Felelősségkizárás](#disclaimer)
+- [Jogi nyilatkozat](#disclaimer)
 - [Licenc](#license)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -205,7 +207,7 @@ Az **Egyszerű** módban az eszköztár egy **előbeállítás-kiválasztót** j
 
 **Haladó** módban a **modellkiválasztó** lehetővé teszi, hogy kiválassza, melyik AI-motort használja az aktuális feladathoz.
 
-![Model selector](../images/screenshots/hu/preset-selector.png)
+![Modellválasztó](../images/screenshots/hu/preset-selector.png)
 
 Haladó módban egyes ingyenes modellek nem mindig érhetők el – leállhatnak vagy elérhetik a használati korlátot. Az alkalmazás automatikusan eltávolíthatja a modellt a listáról. A megjelenő modellek szabályozásához látogasson el a [**Beállítások** > **Modellek**](#models) menüpontba. A modellbeállításokat megnyithatja a szolgáltató ikonra kattintva a modell neve mellett az eszköztáron.
 
@@ -213,7 +215,7 @@ Haladó módban egyes ingyenes modellek nem mindig érhetők el – leállhatnak
 
 A **földgömb ikon + nyelvkód** megváltoztatja az alkalmazás felületi nyelvét, például a menükét és gombokét. Ez **nem** változtatja meg a **Fordítás** funkcióban használt fordítási nyelveket.
 
-![Interface language selector](../images/screenshots/hu/language-selector.png)
+![Felület nyelvének választója](../images/screenshots/hu/language-selector.png)
 
 <br/>
 
@@ -246,7 +248,7 @@ A műveletek költségét (ha elérhető) és a teljes költséget is figyelemme
 
 A **Fordítás** funkciót akkor használja, ha szöveget szeretne átalakítani egyik nyelvről a másikra.
 
-![Translate workspace](../images/screenshots/hu/translate.png)
+![Fordítási munkaterület](../images/screenshots/hu/translate.png)
 
 <br/>
 
@@ -295,9 +297,9 @@ A [**Beállítások** > **Általános beállítások**](#general-settings) menü
 
 Sikeres fordítás után a **Hozzáadás…** és a verzió legördülő menü megjelenik a kimeneti fejlécben, a **Cél:** nyelvválasztó mellett. Itt finomíthatja az eredményt:
 
-1. **Hozzáadás…** — ha nincs kiválasztott szöveg a kimenetben, egy újabb teljes fordítást kap ugyanazzal a bemenettel, de más megfogalmazásban. A modell megkapja az összes már meglévő verziót, így az új megfogalmazás eltérhet mindegyiktől. Legfeljebb **öt** verziót tárolhat, és válthat közöttük a verzió legördülő menüben. Kiválasztott szöveg esetén a **Hozzáadás…** szószók alternatíváit nyitja meg a kiválasztás közelében (ugyanaz, mint a jobb gombos kattintás). Kiválasztás nélkül a **Hozzáadás…** letiltásra kerül, amint eléri az öt verziót; kiválasztással azonban továbbra is működik öt verziónál (csak szószók alternatívái, az 5. verzió frissítése). Amíg egy teljes újrafogalmazás fut, kattintson a **Leállítás Fordítás** gombra a megszakításhoz; a kimenet visszatér arra a verzióra, amely aktív volt, amikor az újrafogalmazás elkezdődött.
-2. **Szószók alternatívái** — válasszon ki egy vagy több szót vagy egy rövid kifejezést a kimenetben (ha csak egy szó részét választja ki, az alkalmazás kibővíti a választást teljes szavakra), majd kattintson a jobb gombbal, vagy kattintson a **Hozzáadás…** gombra. Egy rövid alternatív lista jelenik meg a kiválasztás közelében; kattintson egyre a helyettesítéshez. Minden lehetőség egy kicsit szélesebb terjedelmet is helyettesíthet, mint a kiválasztás (például egy szomszédos elöljárószó vagy névelő), így a mondat nyelvtanilag helyes marad. Ha kevesebb mint öt verziója van, a szerkesztett kimenet új verzióként kerül mentésre; öt verziónál csak az **5. verzió** frissül. Jobb gombbal kattintva, ha nincs kiválasztás, semmi sem történik. Nyomja meg az **Esc** billentyűt, vagy kattintson a lista kívül, hogy megszakítsa anélkül, hogy megváltoztatná a kimenetet.
-3. **Költségek** — minden teljes **Hozzáadás…** (kiválasztás nélkül) és minden szószók alternatíva kérés újra használja a modellt, és növelheti a használati költséget (ugyanaz, mint egy normál fordítási futás).
+1. **Átfogalmazás…** — ha nincs szöveg kiválasztva a kimenetben, akkor a modell egy másik teljes fordítást ad ugyanarról a bemenetről, eltérő megfogalmazással. A modell megkapja az összes már meglévő verziót, így az új megfogalmazás mindegyiktől eltérhet. Legfeljebb **öt** verziót tárolhat, és a verzió legördülő menüben válthat közöttük. Ha szöveg van kiválasztva, az **Átfogalmazás…** a kiválasztás közelében megnyitja a szóalternatívákat (ugyanaz, mint a jobb kattintás). Kiválasztás nélkül az **Átfogalmazás…** letiltásra kerül, amint eléri az öt verziót; kiválasztással öt verziónál is működik (csak szóalternatívák, az 5. verzió frissítése). Amíg egy teljes átfogalmazás fut, kattintson a **Fordítás leállítása** gombra a megszakításhoz; a kimenet visszatér arra a verzióra, amely az átfogalmazás megkezdésekor aktív volt.
+2. **Szóalternatívák** — válasszon ki egy vagy több szót vagy egy rövid kifejezést a kimenetben (ha csak egy szó egy részét választja ki, az alkalmazás kiterjeszti a kiválasztást a teljes szavakra), majd kattintson a jobb gombbal vagy az **Átfogalmazás…** gombra. Egy rövid alternatív lista jelenik meg a kiválasztás közelében; kattintson az egyikre a cseréhez. Minden opció kissé szélesebb tartományt cserélhet le, mint a kiválasztás (például egy szomszédos elöljárószót vagy névelőt), így a mondat nyelvtanilag helyes marad. Ha kevesebb mint öt verziója van, a szerkesztett kimenet új verzióként kerül mentésre; öt verziónál csak az **5. verzió** frissül. Jobb kattintás kiválasztás nélkül kiválasztja a kurzor alatti szót (vagy nem csinál semmit, ha nincs ott szó). Nyomja meg az **Esc** billentyűt, vagy kattintson a lista kívülre a megszakításhoz a kimenet megváltoztatása nélkül.
+3. **Költségek** — minden teljes **Átfogalmazás…** (nincs kiválasztás) és minden szóalternatíva kérés újra használja a modellt, és növelheti a használati költséget (ugyanúgy, mint egy normál fordítási futtatás).
 
 <br/>
 
@@ -325,9 +327,9 @@ A kifejezéseket a [**Beállítások** > **Szószedet**](#glossary-settings) lap
 <a id="rewrite"></a>
 ## Átírás
 
-Használja az **Átírás** funkciót, ha a szöveg jelentésének megőrzése mellett javítani szeretne a megfogalmazáson.
+Használja az **Átírás** funkciót, ha a fő jelentés megváltoztatása nélkül szeretné javítani a megfogalmazást. A szöveg ugyanazon a nyelven marad (nem fordítódik le).
 
-![Rewrite workspace](../images/screenshots/hu/rewrite.png)
+![Átírási munkaterület](../images/screenshots/hu/rewrite.png)
 
 Ez akkor hasznos, ha:
 
@@ -340,9 +342,38 @@ Ez akkor hasznos, ha:
 
 <br/>
 
+<a id="rewrite-text"></a>
+### Szöveg átírása
+
+1. Nyissa meg az **Átírás** funkciót.
+2. Válasszon egy **Módot** (például **Érthetőség javítása** vagy **Formális stílus**).
+3. Opcionálisan állítsa be a **Forrás:** nyelvet a szöveg nyelvére (vagy hagyja **Nyelv felismerése** beállításon).
+4. Gépelje be vagy illessze be a szöveget a **Bemenet** mezőbe.
+5. Kattintson az **Átírás** gombra.
+6. Olvassa el az eredményt a **Kimenet** mezőben.
+7. Opcionálisan finomíthatja az eredményt az **Átír…** vagy a szóalternatívák segítségével – lásd [Az átírás finomítása](#refining-rewrite).
+
+<br/>
+
 > 💡 **TIPP**<br/>
 > Ha a "**Helyesírás- és nyelvtanellenőrzés**" módot használja, a kimeneti panelen megjelenik egy **Változások megjelenítése** kapcsoló (a **Másolás** mellett).
 > Kapcsolja be vagy ki, hogy láthatóvá vagy elrejtetté tegye a szövegre alkalmazott konkrét javításokat.
+
+<br/>
+
+> ℹ️ **MEGJEGYZÉS**<br/>
+> Az **Alternatív változatok** átírási mód több átfogalmazást ad vissza **egy** futtatás során, a kimenetben `----` karakterrel elválasztva. Ez eltér az **Átír…** funkciótól, amely idővel verzióelőzményeket épít (kattintásonként egy új változatot). Lásd [Az átírás finomítása](#refining-rewrite).
+
+<br/>
+
+<a id="refining-rewrite"></a>
+### Az átírás finomítása
+
+Sikeres átírás után az **Átír…** és a verzió legördülő menü megjelenik a munkaterület kimeneti oldalán (felosztott elrendezésben a kimeneti oszlop feletti felső eszköztárban, a futtatási metrikák mellett; egymásra helyezett elrendezésben a kimeneti panel felett a **Forrás:** mellett). Itt finomíthatja az eredményt – ugyanaz az elv, mint a [Fordítás finomítása](#refining-translation) esetében, de a szöveg ugyanazon a nyelven marad, és megtartja az aktuális átírási **Módot**:
+
+1. **Átír…** – ha nincs kijelölve szöveg a kimenetben, akkor azonos bemenet újabb teljes átírását kapja, eltérő megfogalmazással, továbbra is alkalmazva a kiválasztott módot (például érthetőbb, rövidebb vagy formálisabb). A modell minden már meglévő verziót megkap, így az új megfogalmazás eltérhet mindegyiktől. Legfeljebb **öt** verziót tárolhat, és válthat közöttük a verzió legördülő menüben. Ha szöveg van kijelölve, az **Átír…** a kijelölés közelében nyitja meg a szóalternatívákat (ugyanaz, mint a jobb kattintás). Kijelölés nélkül az **Átír…** letiltásra kerül, amint eléri az öt verziót; kijelöléssel öt verziónál is működik (csak szóalternatívák, az 5. verzió frissítése). Amíg egy teljes átírás fut, kattintson az **Átírás leállítása** gombra a megszakításhoz; a kimenet visszatér arra a verzióra, amely aktív volt az átírás megkezdésekor.
+2. **Szóalternatívák** – jelöljön ki egy vagy több szót vagy egy rövid kifejezést a kimenetben (ha csak egy szó egy részét jelöli ki, az alkalmazás kiterjeszti a kijelölést a teljes szavakra), majd kattintson jobb gombbal vagy az **Átír…** gombra. Egy rövid alternatívalista jelenik meg a kijelölés közelében; kattintson az egyikre a cseréhez. Minden opció kissé szélesebb szakaszt is helyettesíthet, mint a kijelölés, hogy a mondat nyelvtanilag helyes maradjon. Ha kevesebb mint öt verziója van, a szerkesztett kimenet új verzióként mentésre kerül; öt verziónál csak az **5. verzió** frissül. Jobb kattintás kijelölés nélkül kijelöli a kurzor alatti szót (vagy nem csinál semmit, ha nincs ott szó). Nyomja meg az **Esc** billentyűt, vagy kattintson a lista kívülre a megszakításhoz a kimenet megváltoztatása nélkül.
+3. **Költségek** – minden teljes **Átír…** (nincs kijelölés) és minden szóalternatíva-kérés újra felhasználja a modellt, és növelheti a használati költségeket (ugyanúgy, mint egy normál átírási futtatás).
 
 <br/><br/>
 
@@ -353,7 +384,7 @@ Ez akkor hasznos, ha:
 
 Használja az **Átalakítás** funkciót, ha azt szeretné, hogy a MI egy egyéni utasításkészletet kövessen.
 
-![Transform workspace](../images/screenshots/hu/transform.png)
+![Átalakítási munkaterület](../images/screenshots/hu/transform.png)
 
 Ez az alkalmazás legrugalmazabb része. Ilyen feladatokra használható, mint:
 
@@ -401,7 +432,7 @@ A legrövidebb út egy prompt létrehozásához:
 5. Hagyja, hogy az alkalmazás létrehozzon egy vázlatot.
 6. Ellenőrizze a vázlatot, majd kattintson a **Mentés** gombra.
 
-![Generate prompt](../images/screenshots/hu/transform-generate.png)
+![Prompt generálása](../images/screenshots/hu/transform-generate.png)
 
 <br/>
 
@@ -410,7 +441,7 @@ A legrövidebb út egy prompt létrehozásához:
 
 Amikor létrehoz vagy szerkeszt egy promptot, a szerkesztő a bal oldalon jelenik meg, a jobb oldalon pedig egy teszterület.
 
-![Transform prompt editor](../images/screenshots/hu/transform-prompt-edit.png)
+![Prompt szerkesztő átalakítása](../images/screenshots/hu/transform-prompt-edit.png)
 
 A fő mezők a következők:
 
@@ -466,7 +497,7 @@ Amikor a **Parancs létrehozása**, **Parancs javítása** vagy **Prompt leford�
 
 Az **Irányítópult** használatával nyomon követheti, mennyit használja az alkalmazást, és mennyibe kerül az (fizetős modellek esetén).
 
-![Dashboard summary](../images/screenshots/hu/dashboard-summary.png)
+![Irányítópult összefoglaló](../images/screenshots/hu/dashboard-summary.png)
 
 <br/>
 
@@ -480,7 +511,7 @@ Az **Irányítópult** használatával nyomon követheti, mennyit használja az 
 
 A szűrési gombokkal a tetején módosíthatja az időtartományt.
 
-![Dashboard filters](../images/screenshots/hu/dashboard-filter.png)
+![Irányítópult szűrők](../images/screenshots/hu/dashboard-filter.png)
 
 <br/>
 
@@ -530,7 +561,7 @@ Az összes adat törléséhez vagy a rekordok koruk alapján történő eltávol
 
 Kattintson az **Előzmények** elemre a **Transrewrt** alkalmazáson belüli műveletei előzményeinek megtekintéséhez, beleértve minden művelet bemenetét és kimenetét.
 
-![History page](../images/screenshots/hu/history.png)
+![Előzmények oldal](../images/screenshots/hu/history.png)
 
 <br/>
 
@@ -539,7 +570,7 @@ Kattintson az **Előzmények** elemre a **Transrewrt** alkalmazáson belüli mű
 
 A **Előzmények** ugyanazokat az időtartomány-szűrőket használja, mint az **Irányítópult** oldal.
 
-![Dashboard filters](../images/screenshots/hu/dashboard-filter.png)
+![Irányítópult szűrők](../images/screenshots/hu/dashboard-filter.png)
 
 <br/>
 
@@ -640,7 +671,7 @@ A webes vagy asztali verzióban készült biztonsági mentések visszaállíthat
 
 Ez a fül csak akkor érhető el, ha az **AI-élmény** beállítása **Haladó** az [**Általános beállítások**](#general-settings) menüben. A **Beállítások** > **Modellek** menüpont használatával választhatja ki, mely modellek jelenjenek meg az eszköztáron.
 
-![Settings Models tab](../images/screenshots/hu/settings-general.png)
+![Beállítások Modellek lap](../images/screenshots/hu/settings-general.png)
 
 Az oldal két listát tartalmaz:
 

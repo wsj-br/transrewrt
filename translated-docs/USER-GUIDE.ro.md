@@ -1,4 +1,4 @@
-![Transrewrt banner](../images/transrewrt_banner.png)
+![Banner Transrewrt](../images/transrewrt_banner.png)
 
 <a id="transrewrt-user-guide"></a>
 # Ghid pentru utilizatori
@@ -55,6 +55,8 @@ Acest ghid explică cum să utilizați aplicația după ce aceasta a fost instal
   - [Rafinarea traducerii dvs.](#refining-your-translation)
   - [Utilizarea glosarului](#using-the-glossary)
 - [Reescriere](#rewrite)
+  - [Reescrierea textului](#rewrite-text)
+  - [Rafinarea reescrierii](#refining-your-rewrite)
 - [Transformare](#transform)
   - [Rularea unui prompt existent](#run-an-existing-prompt)
   - [Dacă nu aveți încă prompturi](#if-you-have-no-prompts-yet)
@@ -63,7 +65,7 @@ Acest ghid explică cum să utilizați aplicația după ce aceasta a fost instal
   - [Testarea unui prompt înainte de utilizare](#test-a-prompt-before-using-it)
 - [Tablou de bord](#dashboard)
   - [Filtrarea datelor](#filter-the-data)
-  - [Tab-uri tablou de bord](#dashboard-tabs)
+  - [Filele tabloului de bord](#dashboard-tabs)
   - [Exportarea datelor](#export-data)
   - [Ștergerea înregistrărilor stocate pentru un model](#delete-stored-records-for-a-model)
 - [Istoric](#history)
@@ -74,27 +76,27 @@ Acest ghid explică cum să utilizați aplicația după ce aceasta a fost instal
   - [Modele](#models)
   - [Limbi](#languages)
   - [Urmărirea costurilor](#cost-tracking)
-  - [Transformare (tab setări)](#transform-settings-tab)
-  - [Glosar (tab setări)](#glossary-settings-tab)
+  - [Transformare (fila setări)](#transform-settings-tab)
+  - [Glosar (fila setări)](#glossary-settings-tab)
   - [Utilizatori](#users)
   - [Configurare API](#api-config)
   - [Despre](#about)
 - [Probleme comune](#common-issues)
-  - [Aplicația nu va traduce, rescrie sau transforma textul](#the-app-will-not-translate-rewrite-or-transform-text)
+  - [Aplicația nu traduce, reescrie sau transformă textul](#the-app-will-not-translate-rewrite-or-transform-text)
   - [Lista de modele este goală](#the-model-list-is-empty)
-  - [Rezultatul este prea lent sau prea costisitor](#the-result-is-too-slow-or-too-expensive)
+  - [Rezultatul este prea lent sau prea scump](#the-result-is-too-slow-or-too-expensive)
   - [Interfața este în limba greșită](#the-interface-is-in-the-wrong-language)
   - [Textul este prea mic sau greu de citit](#the-text-is-too-small-or-hard-to-read)
   - [Sumarul tabloului de bord pare gol](#dashboard-summary-looks-empty)
   - [Costul afișează „indisponibil” sau pare incorect](#cost-shows-not-available-or-seems-wrong)
   - [Costul total nu corespunde facturii furnizorului meu](#total-cost-does-not-match-my-provider-bill)
   - [Pagina Istoric lipsește din bara laterală](#the-history-page-is-missing-from-the-sidebar)
-  - [Aplicație web: redirecționat neașteptat la pagina de autentificare](#web-app-redirected-to-the-login-page-unexpectedly)
-  - [Admin web: parolă uitată sau pierdută](#web-admin-forgot-or-lost-a-password)
+  - [Aplicație web: redirecționat neașteptat către pagina de conectare](#web-app-redirected-to-the-login-page-unexpectedly)
+  - [Administrator web: parolă uitată sau pierdută](#web-admin-forgot-or-lost-a-password)
   - [Tabloul de bord nu afișează date pentru alți utilizatori (web)](#dashboard-shows-no-data-for-other-users-web)
-  - [Am modificat un prompt și am pierdut modificările](#i-changed-a-prompt-and-lost-the-edits)
+  - [Am schimbat un prompt și am pierdut modificările](#i-changed-a-prompt-and-lost-the-edits)
 - [Sfaturi rapide](#quick-tips)
-- [Disclaimer](#disclaimer)
+- [Declinarea răspunderii](#disclaimer)
 - [Licență](#license)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -206,7 +208,7 @@ Bara de instrumente se modifică ușor în funcție de locul în care vă aflaț
 
 În modul **Avansat**, **selectorul de model** vă permite să alegeți ce motor AI să utilizați pentru sarcina curentă.
 
-![Model selector](../images/screenshots/ro/preset-selector.png)
+![Selector de model](../images/screenshots/ro/preset-selector.png)
 
 În modul Avansat, unele modele gratuite pot să nu fie întotdeauna disponibile — pot fi offline sau pot atinge un limită de utilizare. Aplicația poate elimina automat acel model din lista dvs. Pentru a controla care modele apar, accesați [**Setări** > **Modele**](#models). Puteți deschide setările modelului din pictograma furnizorului din stânga numelui modelului în bara de instrumente.
 
@@ -214,7 +216,7 @@ Bara de instrumente se modifică ușor în funcție de locul în care vă aflaț
 
 Pictograma cu **glob + codul limbii** schimbă limba interfeței aplicației, cum ar fi meniurile și butoanele. Aceasta **nu** schimbă limbile de traducere utilizate în **Traducere**.
 
-![Interface language selector](../images/screenshots/ro/language-selector.png)
+![Selector limbă interfață](../images/screenshots/ro/language-selector.png)
 
 <br/>
 
@@ -247,7 +249,7 @@ De asemenea, puteți monitoriza costul fiecărei operațiuni (dacă este disponi
 
 Utilizați **Traducere** atunci când doriți să convertiți text dintr-o limbă în alta.
 
-![Translate workspace](../images/screenshots/ro/translate.png)
+![Spațiu de lucru Traducere](../images/screenshots/ro/translate.png)
 
 <br/>
 
@@ -296,9 +298,9 @@ Limbi **preferate** selectate apar în partea de sus a listei. Le puteți seta �
 
 După o traducere reușită, **Reformulare…** și dropdown-ul versiunii apar în antetul ieșirii, lângă selectorul de limbă **Către:**. Poți rafina rezultatul acolo:
 
-1. **Reformulare…** — fără text selectat în ieșire, obții o altă traducere completă a aceleași intrări cu o formulare diferită. Modelul primește fiecare versiune pe care o ai deja, astfel încât noua formulare să poată diferi de toate acestea. Poți stoca până la **cinci** versiuni și să comuți între ele în dropdown-ul versiunii. Cu text selectat, **Reformulare…** deschide alternative de cuvinte aproape de selecție (la fel ca un clic dreapta). Fără o selecție, **Reformulare…** este dezactivat odată ce atingi cinci versiuni; cu o selecție, funcționează în continuare la cinci versiuni (doar alternative de cuvinte, actualizând versiunea 5). În timp ce o reformulare completă este în curs de desfășurare, apasă **Oprește Traducerea** pentru a anula; ieșirea revine la versiunea care era activă când a început reformularea.
-2. **Alternative de cuvinte** — selectează unul sau mai multe cuvinte sau o frază scurtă în ieșire (dacă selectezi doar o parte a unui cuvânt, aplicația extinde selecția la cuvinte complete), apoi fă clic dreapta sau apasă **Reformulare…**. O listă scurtă de alternative apare aproape de selecție; apasă una pentru a o înlocui. Fiecare opțiune poate înlocui un interval ușor mai larg decât selecția ta (de exemplu, o prepoziție sau un articol adiacent) astfel încât propoziția să rămână gramatical corectă. Dacă ai mai puțin de cinci versiuni, ieșirea editată este salvată ca o nouă versiune; la cinci versiuni, doar **versiunea 5** este actualizată. Fă clic dreapta fără selecție nu face nimic. Apasă **Esc** sau fă clic în afara listei pentru a anula fără a schimba ieșirea.
-3. **Costuri** — fiecare **Reformulare…** completă (fără selecție) și fiecare cerere de alternativă de cuvinte folosește din nou modelul și poate adăuga la costul de utilizare (la fel ca o execuție normală de traducere).
+1. **Reformulează…** — fără text selectat în ieșire, obțineți o altă traducere completă a aceleiași intrări cu o formulare diferită. Modelul primește fiecare versiune pe care o aveți deja, astfel încât noua formulare să poată diferi de toate celelalte. Puteți stoca până la **cinci** versiuni și puteți comuta între ele în meniul derulant al versiunilor. Cu text selectat, **Reformulează…** deschide alternative de cuvinte lângă selecție (la fel ca un clic dreapta). Fără o selecție, **Reformulează…** este dezactivat odată ce ați atins cinci versiuni; cu o selecție, funcționează în continuare la cinci versiuni (doar alternative de cuvinte, actualizând versiunea 5). În timp ce o reformulare completă este în curs de desfășurare, faceți clic pe **Oprește traducerea** pentru a anula; ieșirea revine la versiunea care era activă la începutul reformulării.
+2. **Alternative de cuvinte** — selectați unul sau mai multe cuvinte sau o frază scurtă în ieșire (dacă selectați doar o parte dintr-un cuvânt, aplicația extinde selecția la cuvinte complete), apoi faceți clic dreapta sau faceți clic pe **Reformulează…**. O listă scurtă de alternative apare lângă selecție; faceți clic pe una pentru a o înlocui. Fiecare opțiune poate înlocui o porțiune ușor mai largă decât selecția dvs. (de exemplu, o prepoziție sau un articol adiacent), astfel încât propoziția să rămână gramaticală. Dacă aveți mai puțin de cinci versiuni, ieșirea editată este salvată ca o nouă versiune; la cinci versiuni, doar **versiunea 5** este actualizată. Faceți clic dreapta fără selecție pentru a selecta cuvântul de sub cursor (sau nu face nimic dacă nu există niciun cuvânt acolo). Apăsați **Esc** sau faceți clic în afara listei pentru a anula fără a modifica ieșirea.
+3. **Costuri** — fiecare **Reformulează…** complet (fără selecție) și fiecare solicitare de alternativă de cuvinte utilizează din nou modelul și poate contribui la costul de utilizare (la fel ca o rulare normală de traducere).
 
 <br/>
 
@@ -326,9 +328,9 @@ Adăugați, editați, importați și exportați termeni în tab-ul [**Setări** 
 <a id="rewrite"></a>
 ## Rescriere
 
-Utilizați **Rescriere** atunci când doriți să îmbunătățiți formularea fără a schimba sensul principal.
+Utilizați **Reescriere** atunci când doriți să îmbunătățiți formularea fără a schimba sensul principal. Textul rămâne în aceeași limbă (nu este tradus).
 
-![Rewrite workspace](../images/screenshots/ro/rewrite.png)
+![Spațiu de lucru Reescriere](../images/screenshots/ro/rewrite.png)
 
 Aceasta este utilă pentru:
 
@@ -341,9 +343,38 @@ Aceasta este utilă pentru:
 
 <br/>
 
+<a id="rewrite-text"></a>
+### Reescrierea textului
+
+1. Deschideți **Reescriere**.
+2. Alegeți un **Mod** (de exemplu, **Îmbunătățește claritatea** sau **Fă formal**).
+3. Opțional, setați **De la** la limba textului dvs. (sau lăsați **Detectare limbă**).
+4. Tastați sau lipiți text în **Intrare**.
+5. Faceți clic pe **Reescriere**.
+6. Citiți rezultatul în **Ieșire**.
+7. Opțional, rafinați rezultatul cu **Reformulează...** sau alternative de cuvinte — consultați [Rafinarea reescrierii](#refining-rewrite).
+
+<br/>
+
 > 💡 **SFAT**<br/>
 > Când utilizați modul „**Verificare ortografie și gramatică**”, un comutator **Afișează modificările** apare în panoul de ieșire (lângă **Copiere**).
 > Activați-l sau dezactivați-l pentru a afișa sau ascunde corecțiile specifice aplicate textului dvs.
+
+<br/>
+
+> ℹ️ **NOTĂ**<br/>
+> Modul de reescriere **Versiuni alternative** returnează mai multe reformulări într-o **singură** rulare, separate prin `----` în ieșire. Acest lucru este diferit de **Reformulează...**, care construiește un istoric al versiunilor în timp (o nouă variantă per clic). Consultați [Rafinarea reescrierii](#refining-rewrite).
+
+<br/>
+
+<a id="refining-rewrite"></a>
+### Rafinarea reescrierii
+
+După o reescriere reușită, **Reformulează...** și meniul derulant al versiunilor apar în partea de ieșire a spațiului de lucru (în aspectul divizat, în bara de instrumente de sus deasupra coloanei de ieșire, lângă metricile de rulare; în aspectul suprapus, deasupra panoului de ieșire, lângă **De la:**). Puteți rafina rezultatul acolo — aceeași idee ca [Rafinarea traducerii](#refining-translation), dar textul rămâne în aceeași limbă și păstrează **Modul** de reescriere curent:
+
+1. **Reformulează...** — fără text selectat în ieșire, obțineți o altă reescriere completă a aceleiași intrări cu o formulare diferită, aplicând în continuare modul selectat (de exemplu, mai clar, mai scurt sau mai formal). Modelul primește fiecare versiune pe care o aveți deja, astfel încât noua formulare poate diferi de toate. Puteți stoca până la **cinci** versiuni și puteți comuta între ele în meniul derulant al versiunilor. Cu text selectat, **Reformulează...** deschide alternative de cuvinte lângă selecție (la fel ca un clic dreapta). Fără o selecție, **Reformulează...** este dezactivat odată ce ați atins cinci versiuni; cu o selecție, funcționează în continuare la cinci versiuni (doar alternative de cuvinte, actualizând versiunea 5). În timp ce o reformulare completă este în curs de desfășurare, faceți clic pe **Oprește reescrierea** pentru a anula; ieșirea revine la versiunea care era activă când a început reformularea.
+2. **Alternative cuvinte** — selectați unul sau mai multe cuvinte sau o frază scurtă în ieșire (dacă selectați doar o parte dintr-un cuvânt, aplicația extinde selecția la cuvinte complete), apoi faceți clic dreapta sau faceți clic pe **Reformulează...**. O listă scurtă de alternative apare lângă selecție; faceți clic pe una pentru a o înlocui. Fiecare opțiune poate înlocui o porțiune ușor mai largă decât selecția dvs., astfel încât propoziția să rămână gramaticală. Dacă aveți mai puțin de cinci versiuni, ieșirea editată este salvată ca o nouă versiune; la cinci versiuni, doar **versiunea 5** este actualizată. Faceți clic dreapta fără selecție pentru a selecta cuvântul de sub cursor (sau nu face nimic dacă nu există niciun cuvânt acolo). Apăsați **Esc** sau faceți clic în afara listei pentru a anula fără a modifica ieșirea.
+3. **Costuri** — fiecare **Reformulează...** complet (fără selecție) și fiecare solicitare de alternativă de cuvânt utilizează din nou modelul și poate adăuga la costul de utilizare (la fel ca o rulare normală de reescriere).
 
 <br/><br/>
 
@@ -354,7 +385,7 @@ Aceasta este utilă pentru:
 
 Utilizați **Transformare** atunci când doriți ca IA să urmeze un set personalizat de instrucțiuni.
 
-![Transform workspace](../images/screenshots/ro/transform.png)
+![Transformă spațiul de lucru](../images/screenshots/ro/transform.png)
 
 Aceasta este zona cea mai flexibilă a aplicației. O puteți utiliza pentru sarcini precum:
 
@@ -402,7 +433,7 @@ Cea mai rapidă cale pentru a crea un prompt este:
 5. Lăsați aplicația să creeze un draft pentru dvs.
 6. Revizuiți draftul și faceți clic pe **Salvare**.
 
-![Generate prompt](../images/screenshots/ro/transform-generate.png)
+![Generează prompt](../images/screenshots/ro/transform-generate.png)
 
 <br/>
 
@@ -411,7 +442,7 @@ Cea mai rapidă cale pentru a crea un prompt este:
 
 Când creați sau editați un prompt, editorul apare în stânga, iar o zonă de testare apare în dreapta.
 
-![Transform prompt editor](../images/screenshots/ro/transform-prompt-edit.png)
+![Editor de prompt de transformare](../images/screenshots/ro/transform-prompt-edit.png)
 
 Câmpurile principale sunt:
 
@@ -467,7 +498,7 @@ Când utilizați **Generează prompt**, **Îmbunătățește promptul** sau **Tr
 
 Utilizați **Panou de control** pentru a vedea cât de mult utilizați aplicația și cât vă costă aceasta (pentru modelele plătite).
 
-![Dashboard summary](../images/screenshots/ro/dashboard-summary.png)
+![Sumar tablou de bord](../images/screenshots/ro/dashboard-summary.png)
 
 <br/>
 
@@ -481,7 +512,7 @@ Utilizați **Panou de control** pentru a vedea cât de mult utilizați aplicați
 
 Utilizați butoanele de filtrare de sus pentru a schimba intervalul de timp.
 
-![Dashboard filters](../images/screenshots/ro/dashboard-filter.png)
+![Filtre tablou de bord](../images/screenshots/ro/dashboard-filter.png)
 
 <br/>
 
@@ -531,7 +562,7 @@ Pentru a șterge toate datele sau pentru a elimina înregistrările în funcție
 
 Faceți clic pe **Istoric** pentru a vedea istoricul acțiunilor dvs. din **Transrewrt**, inclusiv intrarea și ieșirea fiecărei operațiuni.
 
-![History page](../images/screenshots/ro/history.png)
+![Pagina Istoric](../images/screenshots/ro/history.png)
 
 <br/>
 
@@ -540,7 +571,7 @@ Faceți clic pe **Istoric** pentru a vedea istoricul acțiunilor dvs. din **Tran
 
 **Istoric** utilizează aceleași filtre de interval de timp ca și pagina **Panou de control**.
 
-![Dashboard filters](../images/screenshots/ro/dashboard-filter.png)
+![Filtre tablou de bord](../images/screenshots/ro/dashboard-filter.png)
 
 <br/>
 
@@ -641,7 +672,7 @@ Backup-urile create fie în versiunea web, fie în versiunea desktop pot fi rest
 
 Această filă este disponibilă doar atunci când **Experiența AI** este setată la **Avansat** în [**Setări generale**](#general-settings). Utilizați **Setări** > **Modele** pentru a alege care modele apar în bara de instrumente.
 
-![Settings Models tab](../images/screenshots/ro/settings-general.png)
+![Setări fila Modele](../images/screenshots/ro/settings-general.png)
 
 Pagina are două liste:
 
