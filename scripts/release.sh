@@ -151,5 +151,5 @@ fi
 echo "Release created successfully: ${TAG}"
 
 echo ""
-echo "See the progress at the github repository https://github.com/wsj-br/transrewrt"
+echo "See the progress at the github repository https://github.com/wsj-br/transrewrt/actions"
 echo ""
