@@ -115,6 +115,31 @@ function applyOpenRouterPresetAliases(canonical: string): string {
 }
 
 /**
+ * Strip a redundant leading `models/` segment (e.g. Google OpenAI-compatible catalog ids).
+ * `google/models/gemini-2.5-flash` → `google/gemini-2.5-flash`; `models/gemini-2.5-flash` → `gemini-2.5-flash`.
+ */
+export function stripRedundantModelsPathSegment(modelId: string): string {
+  const s = String(modelId || "").trim();
+  if (!s) return s;
+  const slash = s.indexOf("/");
+  if (slash > 0) {
+    const first = s.slice(0, slash).toLowerCase();
+    if (DIRECT_LLM_ENGINE_PREFIXES.has(first)) {
+      let rest = s.slice(slash + 1);
+      while (rest.toLowerCase().startsWith("models/")) {
+        rest = rest.slice("models/".length);
+      }
+      return rest ? `${s.slice(0, slash + 1)}${rest}` : s.slice(0, slash);
+    }
+  }
+  let inner = s;
+  while (inner.toLowerCase().startsWith("models/")) {
+    inner = inner.slice("models/".length);
+  }
+  return inner;
+}
+
+/**
  * @param modelId - Preset `model_id` or shorthand vendor/model slug
  * @returns Canonical id for LLM streaming (`resolveEngine`)
  */
@@ -126,9 +151,9 @@ export function canonicalModelIdFromPresetModelId(modelId: string): string {
     out = id;
   } else {
     const slash = id.indexOf("/");
-    if (slash <= 0) return applyOpenRouterPresetAliases(id);
+    if (slash <= 0) return applyOpenRouterPresetAliases(stripRedundantModelsPathSegment(id));
     const engine = id.slice(0, slash).toLowerCase();
     out = DIRECT_LLM_ENGINE_PREFIXES.has(engine) ? id : `openrouter/${id}`;
   }
-  return applyOpenRouterPresetAliases(out);
+  return applyOpenRouterPresetAliases(stripRedundantModelsPathSegment(out));
 }

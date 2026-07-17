@@ -13,6 +13,8 @@ Use conventional types (Added, Changed, Fixed, etc.) and short descriptions.
 
 ## [1.6.1] - 2026-07-17
 
+- **Fixed**: `presets-check:install` runtime deps now use the Vercel AI SDK (`ai`, `@ai-sdk/openai-compatible`) instead of the removed `multi-llm-ts`, and bundle `apiErrorMessage.js` with the shared LLM layer.
+- **Fixed**: Strip redundant `models/` from provider model ids (Google OpenAI-compatible catalog returns `models/gemini-…`) so canonical ids stay `google/gemini-…` in catalogs, presets, and chat.
 - **Changed**: Website marketing footer AI-translation note now states translations other than English (UK) are AI-assisted using ai-i18n-tools (linked).
 - **Fixed**: Website marketing open-source CTAs keep equal single-line height across locales (`whitespace-nowrap` + wrap as whole buttons).
 - **Fixed**: Website marketing header nav no longer wraps long locale labels; desktop links show from the `xl` breakpoint with a hamburger below that.

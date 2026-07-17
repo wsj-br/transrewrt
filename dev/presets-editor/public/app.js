@@ -402,22 +402,47 @@
     else delete preset.fallback_ids[engine];
   }
 
+  function stripRedundantModelsPathSegment(modelId) {
+    const s = String(modelId || "").trim();
+    if (!s) return s;
+    const slash = s.indexOf("/");
+    if (slash > 0) {
+      const first = s.slice(0, slash).toLowerCase();
+      if (DIRECT_LLM_ENGINES.has(first)) {
+        let rest = s.slice(slash + 1);
+        while (rest.toLowerCase().startsWith("models/")) {
+          rest = rest.slice("models/".length);
+        }
+        return rest ? s.slice(0, slash + 1) + rest : s.slice(0, slash);
+      }
+    }
+    let inner = s;
+    while (inner.toLowerCase().startsWith("models/")) {
+      inner = inner.slice("models/".length);
+    }
+    return inner;
+  }
+
   function canonicalForEngine(engine, raw) {
     const id = String(raw || "").trim();
     if (!id) return "";
-    if (id.startsWith(engine + "/")) return id;
-    const slash = id.indexOf("/");
-    if (slash > 0) {
-      const first = id.slice(0, slash).toLowerCase();
-      if (DIRECT_LLM_ENGINES.has(first)) return id;
+    let out;
+    if (id.startsWith(engine + "/")) {
+      out = id;
+    } else {
+      const slash = id.indexOf("/");
+      if (slash > 0) {
+        const first = id.slice(0, slash).toLowerCase();
+        if (DIRECT_LLM_ENGINES.has(first)) out = id;
+        else if (engine === "openrouter") out = "openrouter/" + id;
+        else out = engine + "/" + id;
+      } else if (engine === "openrouter") {
+        out = id;
+      } else {
+        out = engine + "/" + id;
+      }
     }
-    if (engine === "openrouter") {
-      if (id.startsWith("openrouter/")) return id;
-      if (slash <= 0) return id;
-      return "openrouter/" + id;
-    }
-    if (slash <= 0) return engine + "/" + id;
-    return engine + "/" + id;
+    return stripRedundantModelsPathSegment(out);
   }
 
   function normalizePresetModelIds(preset) {

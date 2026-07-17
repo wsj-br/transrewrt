@@ -13,6 +13,7 @@ const {
   isOpenRouterKeyAuthFailureMessage,
   normalizeOpenRouterKeyErrorMessage,
 } = require("../apiErrorMessage.js");
+const { stripRedundantModelsPathSegment } = require("../presetModelIdUtils.js");
 
 const OPENROUTER_BASE = "https://openrouter.ai/api/v1";
 
@@ -165,7 +166,7 @@ function resolveEngine(canonicalId, keysMap) {
   const id = String(canonicalId || "").trim();
   if (!id) throw new Error("Model id is required");
   if (id.startsWith("openrouter/")) {
-    const inner = id.slice("openrouter/".length);
+    const inner = stripRedundantModelsPathSegment(id.slice("openrouter/".length));
     if (!inner) throw new Error("Invalid OpenRouter model id");
     return { engine: "openrouter", innerModelId: inner };
   }
@@ -176,7 +177,7 @@ function resolveEngine(canonicalId, keysMap) {
     );
   }
   const engine = id.slice(0, slash);
-  const innerModelId = id.slice(slash + 1);
+  const innerModelId = stripRedundantModelsPathSegment(id.slice(slash + 1));
   if (engine === "custom") {
     if (!innerModelId) throw new Error("Invalid model id");
     return { engine: "custom", innerModelId };
@@ -725,7 +726,8 @@ async function fetchModelsForEngine(engine, keysMap) {
   return rows
     .filter((row) => row && (row.id || row.name))
     .map((row) => {
-      const id = String(row.id || row.name);
+      const rawId = String(row.id || row.name);
+      const id = stripRedundantModelsPathSegment(rawId);
       /** @type {{ id: string, name: string, pricing?: { prompt: number, completion: number } }} */
       const out = { id, name: row.name || id };
       if (engine === "openrouter" && row.pricing != null) {

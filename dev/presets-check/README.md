@@ -42,7 +42,7 @@ This creates:
 ├── config.json     # ntfy.topic, github.useSsh, …
 ├── .env            # secrets (create on server; not installed by default)
 ├── run.sh          # ssh-agent, source .env, run checker
-└── package.json    # runtime deps (multi-llm-ts)
+└── package.json    # runtime deps (ai, @ai-sdk/openai-compatible)
 ```
 
 On the server, create `.env` in the runtime root (export `PRESET_CHECK_NTFY_TOPIC`, `OPENROUTER_API_KEY`, and other provider keys). Set `"useSsh": true` in `config.json` for GitHub over SSH; `run.sh` starts `ssh-agent` and runs `ssh-add` on the deploy key (default `~/.ssh/id-git` — edit `run.sh` if your key path differs).

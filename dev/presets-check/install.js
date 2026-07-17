@@ -27,6 +27,7 @@ const PRESET_CHECK_SCRIPTS = [
 ];
 
 const SHARED_FILES = [
+  "apiErrorMessage.js",
   "presetModelIdUtils.js",
   "presetsCatalog.js",
   "presetsProviderCatalog.js",
@@ -34,6 +35,9 @@ const SHARED_FILES = [
   "llm/index.js",
   "llm/estimateMaxTokens.js",
 ];
+
+/** Runtime deps mirrored from the monorepo (Vercel AI SDK stack). */
+const RUNTIME_DEP_NAMES = ["ai", "@ai-sdk/openai-compatible"];
 
 function parseInstallArgs(argv) {
   const out = { target: null, force: false, help: false };
@@ -75,15 +79,31 @@ function copyDirFiles(srcDir, destDir, files) {
   }
 }
 
+function readMonorepoRuntimeDeps() {
+  const rootPkgPath = path.join(MONOREPO_ROOT, "package.json");
+  const rootPkg = JSON.parse(fs.readFileSync(rootPkgPath, "utf8"));
+  const from = { ...(rootPkg.dependencies || {}), ...(rootPkg.devDependencies || {}) };
+  /** @type {Record<string, string>} */
+  const dependencies = {};
+  for (const name of RUNTIME_DEP_NAMES) {
+    const ver = from[name];
+    if (!ver || typeof ver !== "string") {
+      throw new Error(
+        `Missing dependency "${name}" in monorepo package.json (required for presets-check runtime)`,
+      );
+    }
+    dependencies[name] = ver;
+  }
+  return dependencies;
+}
+
 function writeRuntimePackageJson(targetDir) {
   const pkg = {
     name: "transrewrt-presets-check-runtime",
     private: true,
     type: "commonjs",
     engines: { node: ">=24.0.0" },
-    dependencies: {
-      "multi-llm-ts": "5.1.0-beta4",
-    },
+    dependencies: readMonorepoRuntimeDeps(),
   };
   const pkgPath = path.join(targetDir, "package.json");
   fs.writeFileSync(pkgPath, `${JSON.stringify(pkg, null, 2)}\n`, "utf8");
@@ -181,6 +201,13 @@ function main() {
 
   console.log("[presets-check:install] Writing package.json and installing dependencies…");
   writeRuntimePackageJson(target);
+  // Drop prior install so dep stack changes (e.g. multi-llm-ts → AI SDK) do not leave stale modules.
+  for (const name of ["node_modules", "package-lock.json"]) {
+    const p = path.join(target, name);
+    if (fs.existsSync(p)) {
+      fs.rmSync(p, { recursive: true, force: true });
+    }
+  }
   npmInstall(target);
   if (writeConfig(target)) {
     console.log("[presets-check:install] Created config.json");

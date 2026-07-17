@@ -25,6 +25,8 @@ Transrewrt 1.6.1 focuses on clearer failure handling, a more flexible local LLM 
 
 ## Fixes
 
+- **Google model ids**: Strip redundant `models/` from OpenAI-compatible catalog ids so canonical forms stay `google/gemini-…` (not `google/models/gemini-…`) in catalogs, presets, and chat.
+- **`presets-check:install`**: Runtime deps use the Vercel AI SDK (`ai`, `@ai-sdk/openai-compatible`) instead of removed `multi-llm-ts`, and bundle `apiErrorMessage.js` with the shared LLM layer.
 - **Marketing locale pages on GitHub Pages**: `/{locale}/` pages no longer fall back to English because flat `locales/*.json` bundles are gitignored; SSG builds translations from committed `strings.json`.
 - **Marketing header nav**: Long locale labels no longer wrap; desktop nav links appear from the `xl` breakpoint, with a hamburger below that.
 - **Open-source CTAs**: Equal single-line button height across locales (nowrap + wrap as whole buttons).
