@@ -744,7 +744,7 @@ For more detail (including Node version alignment and Windows-specific issues), 
 
 ## Related documentation
 
-- **[SYSTEM-OVERVIEW.md](SYSTEM-OVERVIEW.md)** — Product and **runtime architecture** (Electron IPC `llm:*` vs web `/api/llm/stream` SSE), **Vercel AI SDK** LLM layer and supported providers, **Easy mode / presets catalog** (sync, `model_ids`, providers), **config/state** (desktop `config.json` + encryption; web global config vs `user_preferences` / `transrewrt.db`), **security** (sanitized IPC, Argon2, cookies), settings UI summary, native modules.
+- **[SYSTEM-OVERVIEW.md](SYSTEM-OVERVIEW.md)** — Product and **runtime architecture** (Electron IPC `llm:*` vs web `/api/llm/stream` SSE), **Vercel AI SDK** LLM layer and supported providers (including **Local LLM** full OpenAI-compatible base URL), **Easy mode / presets catalog** (sync, `model_ids`, providers), **Translate/Rewrite rephrase** (shared controls, version history, word alternatives), **config/state** (desktop `config.json` + encryption; web global config vs `user_preferences` / `transrewrt.db`), **security** (sanitized IPC, Argon2, cookies), settings UI summary, native modules.
 - **[presets-editor/README.md](presets-editor/README.md)** — Development catalog editor (`pnpm run presets-editor`), env vars, mirror paths, AI Suggestion / translate-missing APIs.
 - **[i18n.md](i18n.md)** — UI strings: extract/translate workflow, key-as-default, RTL, native `t(key, vars)` interpolation.
 - **[https://wsj-br.github.io/transrewrt/docs/](https://wsj-br.github.io/transrewrt/docs/)** — End-user docs (install, guides, settings, troubleshooting).

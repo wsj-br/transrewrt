@@ -166,6 +166,7 @@ const {
 const REPO_PRESETS_PATH = path.join(ROOT, "easy-mode-config", "presets.json");
 const UI_LANGUAGES_PATH = path.join(ROOT, "src", "renderer", "locales", "ui-languages.json");
 const CONFIG_DEFAULT_PATH = path.join(ROOT, "src", "config-defaults", "config_default.json");
+const PACKAGE_JSON_PATH = path.join(ROOT, "package.json");
 const DATA_PRESETS_PATH =
   process.env.PRESETS_EDITOR_DATA_PRESETS_PATH || path.join(ROOT, "data", "presets.json");
 
@@ -229,6 +230,13 @@ function readJsonFile(p) {
   }
 }
 
+/** Transrewrt semver from root package.json (major.minor drive presets catalog bumps). */
+function getAppVersion() {
+  const pkg = readJsonFile(PACKAGE_JSON_PATH);
+  const v = pkg && typeof pkg.version === "string" ? pkg.version.trim() : "";
+  return v || "0.0.0";
+}
+
 function getSourceLocale() {
   const cfg = readJsonFile(CONFIG_DEFAULT_PATH);
   const s = cfg && typeof cfg.source_locale === "string" ? cfg.source_locale.trim() : "";
@@ -260,7 +268,7 @@ function savePresetsCatalog(catalog) {
     err.status = 400;
     throw err;
   }
-  validated.version = bumpPatchVersion(validated.version);
+  validated.version = bumpPatchVersion(validated.version, getAppVersion());
   validated.updated_at = new Date().toISOString();
   const serialized = serializePresetsCatalog(validated);
   atomicWriteUtf8(REPO_PRESETS_PATH, serialized);

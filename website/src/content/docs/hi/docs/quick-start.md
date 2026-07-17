@@ -3,7 +3,7 @@ title: त्वरित शुरुआत
 description: >-
   विंडोज या लिनक्स पर ट्रांसरेवर्ट इंस्टॉल करें, या स्व-होस्टेड डॉकर वेब ऐप
   चलाएं।
-translation_last_updated: '2026-07-17T14:58:57.958Z'
+translation_last_updated: '2026-07-17T21:14:45.037Z'
 source_file_mtime: '2026-07-17T14:55:54.211Z'
 source_file_hash: 6eb0ab579b445d9c4d39567ef44ee3333f57285c5c2b8dd072de6355182f849f
 translation_language: hi

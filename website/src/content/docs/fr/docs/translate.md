@@ -3,7 +3,7 @@ title: Traduire du texte
 description: >-
   Convertissez du texte entre les langues, utilisez le glossaire et affinez les
   résultats avec Reformuler.
-translation_last_updated: '2026-07-17T14:58:56.158Z'
+translation_last_updated: '2026-07-17T21:14:43.568Z'
 source_file_mtime: '2026-07-17T11:53:39.333Z'
 source_file_hash: ace9ad02a7dc82bf08090597c56e7cc82324e6250beab93fc2dbeaeed8b91675
 translation_language: fr

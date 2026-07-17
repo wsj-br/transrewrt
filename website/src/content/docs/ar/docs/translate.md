@@ -1,7 +1,7 @@
 ---
 title: ترجمة نص
 description: حوّل النص بين اللغات، واستخدم المسرد، وحسّن النتائج باستخدام إعادة الصياغة.
-translation_last_updated: '2026-07-17T14:58:55.480Z'
+translation_last_updated: '2026-07-17T21:14:44.641Z'
 source_file_mtime: '2026-07-17T11:53:39.333Z'
 source_file_hash: ace9ad02a7dc82bf08090597c56e7cc82324e6250beab93fc2dbeaeed8b91675
 translation_language: ar

@@ -1,7 +1,7 @@
 ---
 title: Časté problémy
 description: Riešenie problémov a rýchle tipy pre Transrewrt.
-translation_last_updated: '2026-07-17T14:59:02.722Z'
+translation_last_updated: '2026-07-17T21:14:48.707Z'
 source_file_mtime: '2026-07-17T14:37:17.841Z'
 source_file_hash: d60d2f0d1e9289639fd72ad478b6756e4638dce77acf7d2d1795a37653a97f17
 translation_language: sk

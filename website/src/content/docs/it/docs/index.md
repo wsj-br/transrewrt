@@ -3,7 +3,7 @@ title: Panoramica
 description: >-
   Cos'è Transrewrt e come trovare documenti di installazione, guide e
   impostazioni.
-translation_last_updated: '2026-07-17T14:58:58.290Z'
+translation_last_updated: '2026-07-17T21:14:46.044Z'
 source_file_mtime: '2026-07-17T14:36:51.471Z'
 source_file_hash: 6dfcf9cb19e3422d75511ecc06eda72e014214c3e34d95f7fec6d8a05c01896f
 translation_language: it

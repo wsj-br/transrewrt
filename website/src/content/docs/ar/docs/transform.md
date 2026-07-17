@@ -3,7 +3,7 @@ title: التحويل باستخدام المطالبات
 description: >-
   تشغيل تعليمات الذكاء الاصطناعي المخصصة — إنشاء مطالبات التحويل وتعديلها
   واختبارها وإدارتها.
-translation_last_updated: '2026-07-17T14:58:55.299Z'
+translation_last_updated: '2026-07-17T21:14:44.584Z'
 source_file_mtime: '2026-07-17T11:53:39.333Z'
 source_file_hash: 07b5d140803063510c7c9fecf67a2f99e3aab3040116733a3126939b0c82e16e
 translation_language: ar

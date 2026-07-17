@@ -3,7 +3,7 @@ title: คีย์ API
 description: >-
   รับคีย์ API ของ OpenRouter ฟรี และเชื่อมต่อผู้ให้บริการ AI อื่นๆ เข้ากับ
   Transrewrt
-translation_last_updated: '2026-07-17T14:59:02.470Z'
+translation_last_updated: '2026-07-17T21:14:49.186Z'
 source_file_mtime: '2026-07-17T14:58:48.569Z'
 source_file_hash: 540c5b2b785355828a421293195b23c2fec98502888d607638fbb33f93970a2a
 translation_language: th

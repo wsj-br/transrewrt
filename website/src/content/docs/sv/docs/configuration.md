@@ -3,7 +3,7 @@ title: Konfiguration
 description: >-
   Platser för konfigurationsfiler, Docker-miljövariabler, sekretessläge och
   webbautentisering.
-translation_last_updated: '2026-07-17T14:59:02.627Z'
+translation_last_updated: '2026-07-17T21:14:49.156Z'
 source_file_mtime: '2026-07-17T14:43:44.727Z'
 source_file_hash: 8c3b2c00eddcee7693d66c5f5955c2d2186e55de630886446764bc6b798f05b5
 translation_language: sv

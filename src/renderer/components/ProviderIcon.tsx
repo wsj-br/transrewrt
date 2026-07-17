@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { HardDrive } from 'lucide-react';
 import iconData from '../assets/icons_with_files.json';
 
 // Normalize string: lowercase, remove all non-alphanumeric
@@ -64,6 +65,12 @@ function getIconUrl(provider) {
   return url;
 }
 
+function isLocalProvider(provider) {
+  const raw = String(provider || "").trim();
+  const engine = raw.includes("/") ? raw.split("/")[0] : raw;
+  return normalize(engine) === "local";
+}
+
 export function preloadProviderIcons() {
   const urls = new Set(Object.values(fileToUrl));
   urls.forEach((url) => {
@@ -73,6 +80,17 @@ export function preloadProviderIcons() {
 }
 
 const ProviderIcon = ({ provider, size = 16 }) => {
+  if (isLocalProvider(provider)) {
+    return (
+      <HardDrive
+        size={size}
+        aria-hidden
+        className="shrink-0 text-muted-foreground"
+        strokeWidth={2}
+      />
+    );
+  }
+
   const src = getIconUrl(provider);
 
   if (src) {

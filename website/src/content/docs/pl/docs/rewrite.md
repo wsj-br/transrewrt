@@ -3,7 +3,7 @@ title: Przeredaguj tekst
 description: >-
   Popraw sformułowania w tym samym języku — klarowność, ton, długość, gramatyka
   i wiele więcej.
-translation_last_updated: '2026-07-17T14:58:59.053Z'
+translation_last_updated: '2026-07-17T21:14:47.346Z'
 source_file_mtime: '2026-07-17T11:53:39.333Z'
 source_file_hash: ca70a1d16518bb9193c83911bfb7be66b19076c48b914b92aba4e9a17f67740f
 translation_language: pl

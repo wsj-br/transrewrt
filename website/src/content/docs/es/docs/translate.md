@@ -3,7 +3,7 @@ title: Traducir texto
 description: >-
   Convierta texto entre idiomas, use el glosario y refine los resultados con
   Rephrase.
-translation_last_updated: '2026-07-17T14:59:03.440Z'
+translation_last_updated: '2026-07-17T21:14:49.816Z'
 source_file_mtime: '2026-07-17T11:53:39.333Z'
 source_file_hash: ace9ad02a7dc82bf08090597c56e7cc82324e6250beab93fc2dbeaeed8b91675
 translation_language: es

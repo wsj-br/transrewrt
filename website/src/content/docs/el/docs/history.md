@@ -3,7 +3,7 @@ title: Περιήγηση στο Ιστορικό
 description: >-
   Ελέγξτε προηγούμενες εκτελέσεις μετάφρασης, επανεγγραφής και μετασχηματισμού
   με πλήρες κείμενο εισόδου και εξόδου.
-translation_last_updated: '2026-07-17T14:58:55.618Z'
+translation_last_updated: '2026-07-17T21:14:41.754Z'
 source_file_mtime: '2026-07-17T11:53:39.333Z'
 source_file_hash: 79c4a60a79491755299b9de8c5e8f0945ccc6d0b32743e1682fede521dade7fa
 translation_language: el

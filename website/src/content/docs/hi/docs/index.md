@@ -1,7 +1,7 @@
 ---
 title: अवलोकन
 description: ट्रांसरीवर्ट क्या है और इंस्टाल, गाइड और सेटिंग्स डॉक्स कैसे खोजें।
-translation_last_updated: '2026-07-17T14:58:57.919Z'
+translation_last_updated: '2026-07-17T21:14:45.012Z'
 source_file_mtime: '2026-07-17T14:36:51.471Z'
 source_file_hash: 6dfcf9cb19e3422d75511ecc06eda72e014214c3e34d95f7fec6d8a05c01896f
 translation_language: hi

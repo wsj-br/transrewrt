@@ -1,7 +1,7 @@
 ---
 title: ภาพรวม
 description: Transrewrt คืออะไร และจะค้นหาเอกสารการติดตั้ง คู่มือ และการตั้งค่าได้อย่างไร
-translation_last_updated: '2026-07-17T14:59:03.633Z'
+translation_last_updated: '2026-07-17T21:14:49.781Z'
 source_file_mtime: '2026-07-17T14:36:51.471Z'
 source_file_hash: 6dfcf9cb19e3422d75511ecc06eda72e014214c3e34d95f7fec6d8a05c01896f
 translation_language: th

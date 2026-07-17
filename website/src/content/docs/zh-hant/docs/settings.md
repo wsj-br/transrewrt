@@ -1,7 +1,7 @@
 ---
 title: 設定
 description: 「一般」、「模型」、「語言」、「詞彙表」、「成本」、「轉換」、「使用者」、「API」與「關於」的簡明參考。
-translation_last_updated: '2026-07-17T14:58:56.910Z'
+translation_last_updated: '2026-07-17T21:14:44.095Z'
 source_file_mtime: '2026-07-17T14:37:21.849Z'
 source_file_hash: 492e5fd37f4a6b282502282d4f2728047a0d09ae8c30334b3c8388a5ce6e9f68
 translation_language: zh-Hant

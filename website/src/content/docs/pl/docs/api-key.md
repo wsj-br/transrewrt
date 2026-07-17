@@ -3,7 +3,7 @@ title: Klucz API
 description: >-
   Uzyskaj darmowy klucz API OpenRouter i połącz innych dostawców AI z
   Transrewrt.
-translation_last_updated: '2026-07-17T14:58:58.452Z'
+translation_last_updated: '2026-07-17T21:14:46.950Z'
 source_file_mtime: '2026-07-17T14:58:48.569Z'
 source_file_hash: 540c5b2b785355828a421293195b23c2fec98502888d607638fbb33f93970a2a
 translation_language: pl

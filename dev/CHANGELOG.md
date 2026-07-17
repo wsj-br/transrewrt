@@ -11,6 +11,13 @@ Use conventional types (Added, Changed, Fixed, etc.) and short descriptions.
 
 ## Unreleased
 
+## [1.6.1] - 2026-07-17
+
+- **Fixed**: ESLint ignores `website/dist/` and applies Node globals to `**/*.mjs` so `pnpm lint` does not fail on Astro/pagefind build output or `scripts/write-third-party-notices.mjs` `console` usage.
+- **Changed**: Presets editor save bumps `presets.json` version using Transrewrt `package.json` major.minor and an incremented catalog patch (e.g. `1.2.50` + app `1.6.1` → `1.6.51`).
+- **Changed**: Translate / rewrite / transform failures open a dismissible alert dialog with user-friendly messages instead of writing `Error: …` into the output panel. Empty model responses and incomplete requests use the same dialog.
+- **Fixed**: Strip leaked prompt wrapper tags (`<translate>`, `<rewrite>`, `<transform>`) from translate / rewrite / transform (and plain-text alternative) outputs before showing them to the user.
+- **Changed**: Local LLM provider icon uses a generic Lucide hard-drive glyph instead of the Ollama favicon.
 - **Fixed**: API settings tip callout uses a Lucide `Lightbulb` icon instead of the 💡 emoji so it renders on Linux Electron builds without a system emoji font.
 - **Changed**: Renamed the Ollama-specific local provider to **Local LLM** (`local` / `local/…`, `local_llm_base_url`, `LOCAL_LLM_URL`, `easy_local_llm_model`); the URL is the full OpenAI-compatible API base (no automatic `/v1` append), and Test/reachability use `GET …/models`.
 - **Changed**: Local LLM base URL defaults/examples use paths such as `http://localhost:11434/v1` so Ollama, LM Studio, llama.cpp, and other API versions work without hardcoding `/v1` in the app.
@@ -18,7 +25,8 @@ Use conventional types (Added, Changed, Fixed, etc.) and short descriptions.
 - **Changed**: Moved the product User Guide into task-first website docs (Get started, Guides, Settings reference, Troubleshooting); deleted root `USER-GUIDE.md` and `translated-docs/USER-GUIDE.*`. Locale Starlight pages and `translated-docs/README.*` still need a follow-up `i18n:translate` / `i18n:translate:docs` pass.
 - **Changed**: Slimmed root `README.md` to a GitHub landing page (pitch, one hero screenshot, short Quick start, docs links); install/API/config detail lives on the docs site.
 - **Changed**: `take-screenshots` drops unused sets `transform-generate`, `dashboard-filter`, `preset-selector`, and `language-selector` (and their PNG trees).
-- **Changed**: Marketing site “Full User Guide” CTAs now point at `/docs/` instead of GitHub `USER-GUIDE.md`.- **Changed**: Website and app UI language pickers list languages alphabetically by English name (source locale first); regenerated `ui-languages.json` manifests from the sorted `targetLocales` config.
+- **Changed**: Marketing site “Full User Guide” CTAs now point at `/docs/` instead of GitHub `USER-GUIDE.md`.
+- **Changed**: Website and app UI language pickers list languages alphabetically by English name (source locale first); regenerated `ui-languages.json` manifests from the sorted `targetLocales` config.
 - **Fixed**: Website Starlight docs translations were written under nested `{locale}/src/content/docs/docs/` so locale URLs fell back to English; relocated to `{locale}/docs/`, set `docsOutput.docsRoot`, and use lowercase Starlight locale keys (`pt-br`, `zh-hans`) so content IDs match.
 - **Changed**: Website marketing LanguagePicker uses a two-column dropdown (same layout as the app header selector) instead of a single-column `<select>`.
 - **Changed**: Website marketing screenshots load from `images/screenshots/<locale>/` (with en-GB fallback); `public/images/screenshots` now symlinks to the repo screenshot tree.

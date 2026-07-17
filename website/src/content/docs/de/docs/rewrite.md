@@ -3,7 +3,7 @@ title: Text umschreiben
 description: >-
   Verbessern Sie die Formulierung in derselben Sprache – Klarheit, Ton, Länge,
   Grammatik und mehr.
-translation_last_updated: '2026-07-17T14:58:54.087Z'
+translation_last_updated: '2026-07-17T21:14:42.977Z'
 source_file_mtime: '2026-07-17T11:53:39.333Z'
 source_file_hash: ca70a1d16518bb9193c83911bfb7be66b19076c48b914b92aba4e9a17f67740f
 translation_language: de

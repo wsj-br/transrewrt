@@ -3,7 +3,7 @@ title: مفتاح API
 description: >-
   احصل على مفتاح API مجاني لـ OpenRouter وقم بتوصيل مزودي الذكاء الاصطناعي
   الآخرين بـ Transrewrt.
-translation_last_updated: '2026-07-17T14:58:53.832Z'
+translation_last_updated: '2026-07-17T21:14:43.880Z'
 source_file_mtime: '2026-07-17T14:58:48.569Z'
 source_file_hash: 540c5b2b785355828a421293195b23c2fec98502888d607638fbb33f93970a2a
 translation_language: ar

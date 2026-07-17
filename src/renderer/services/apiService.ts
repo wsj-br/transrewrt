@@ -2,7 +2,23 @@ import { getBasePath } from "../utils/misc/urlUtils";
 import * as sessionExpiredHandler from "../utils/misc/sessionExpiredHandler";
 import prompts from "../../config-defaults/prompts.json";
 import { streamChoiceToString } from "../../shared/llm/streamDeltaContent.js";
+import { stripPromptWrapperTags } from "../../shared/llm/stripPromptWrapperTags.js";
 import webAPI from "../utils/api/webApiClient";
+
+/** Operation types that return plain text (not JSON) and may echo prompt wrapper tags. */
+const PLAIN_TEXT_LLM_TYPES = new Set([
+  "translate",
+  "rewrite",
+  "transform",
+  "translate_alternative",
+  "rewrite_alternative",
+]);
+
+function cleanPlainTextLlmContent(content: unknown, type: string): string {
+  const text = typeof content === "string" ? content : content == null ? "" : String(content);
+  if (!PLAIN_TEXT_LLM_TYPES.has(type)) return text;
+  return stripPromptWrapperTags(text);
+}
 
 function randomRequestId() {
   return globalThis.crypto?.randomUUID?.() || `req-${Date.now()}-${Math.random().toString(36).slice(2)}`;
@@ -274,24 +290,23 @@ class APIService {
     }
   }
 
+  /**
+   * Short machine-friendly signal for HTTP failures. User-facing copy lives in
+   * `classifyActionError` / the action error alert UI.
+   */
   getErrorMessage(status, defaultMessage) {
-    switch (status) {
-      case 429:
-        return `Rate limit exceeded (429). The API is asking you to slow down.\n\nPossible reasons:\n• Too many requests in a short time\n• Free tier rate limits\n• Concurrent requests\n\nSuggestions:\n• Wait a few seconds before trying again\n• Use a paid API key for higher limits\n• Reduce auto-translate frequency in settings\n• Don't make rapid consecutive requests`;
-      case 401:
-        return `Authentication failed (401). Please check your API key in settings.`;
-      case 402:
-        return `Payment required (402). Your OpenRouter account has insufficient credits or requires payment.`;
-      case 403:
-        return `Forbidden (403). This model may not be available with your current API key or plan.`;
-      case 404:
-        return `Model not found (404). The selected model may no longer be available. Try a different model.`;
-      default:
-        if (status >= 500) {
-          return `Server error (${status}). The API is experiencing issues. Please try again in a moment.`;
-        }
-        return defaultMessage;
+    if (typeof status === "number" && Number.isFinite(status) && status >= 400) {
+      return `HTTP ${status}`;
     }
+    return defaultMessage;
+  }
+
+  /** Soft-fail payload for translate/rewrite/transform callers. */
+  _softErrorResult(error) {
+    return {
+      error: error?.message || String(error),
+      status: error?.status ?? null,
+    };
   }
 
   writeLastApiResult(payload) {
@@ -339,7 +354,7 @@ class APIService {
         })) as { content?: string; usage?: Record<string, unknown> };
         const duration_ms = Date.now() - startTime;
         const result = {
-          content: content || "",
+          content: cleanPlainTextLlmContent(content || "", type),
           usage,
           model,
           cancelled: false,
@@ -413,7 +428,10 @@ class APIService {
           const msg = data.error.message || "Stream error";
           const err = new Error(msg);
           const code = data.error.code ?? data.error.status;
-          if (code === 404 || code === "404" || /404|model not found/i.test(String(msg))) {
+          const numeric = typeof code === "number" ? code : Number(code);
+          if (Number.isFinite(numeric) && numeric >= 400) {
+            Object.assign(err, { status: numeric });
+          } else if (/404|model not found/i.test(String(msg))) {
             Object.assign(err, { status: 404 });
           }
           streamError = err;
@@ -466,7 +484,7 @@ class APIService {
         const id = generationId || rawChunks.find((c) => c?.id)?.id;
         if (!usage && id) usage = await this.getGenerationUsage(id, 5, model);
         const result = {
-          content,
+          content: cleanPlainTextLlmContent(content, type),
           usage,
           model,
           cancelled: true,
@@ -485,7 +503,7 @@ class APIService {
     if (streamError && !content) throw streamError;
     const duration_ms = Date.now() - startTime;
     const result = {
-      content,
+      content: cleanPlainTextLlmContent(content, type),
       usage,
       model,
       cancelled: aborted,
@@ -519,9 +537,7 @@ class APIService {
       );
       if (isUnavailable) throw error;
       console.error("Translation error:", error);
-      return {
-        error: error.message,
-      };
+      return this._softErrorResult(error);
     }
   }
 
@@ -564,9 +580,7 @@ class APIService {
       );
       if (isUnavailable) throw error;
       console.error("Alternative translation error:", error);
-      return {
-        error: error.message,
-      };
+      return this._softErrorResult(error);
     }
   }
 
@@ -624,9 +638,7 @@ class APIService {
       );
       if (isUnavailable) throw error;
       console.error("Word alternatives error:", error);
-      return {
-        error: error.message,
-      };
+      return this._softErrorResult(error);
     }
   }
 
@@ -676,7 +688,7 @@ Respond with ONLY the JSON object. No other text.`;
       );
       if (isUnavailable) throw error;
       console.error("translatePromptFieldsJson error:", error);
-      return { error: error.message };
+      return this._softErrorResult(error);
     }
   }
 
@@ -725,7 +737,7 @@ Respond with ONLY the JSON object. No other text.`;
       );
       if (isUnavailable) throw error;
       console.error("improvePromptConfigJson error:", error);
-      return { error: error.message };
+      return this._softErrorResult(error);
     }
   }
 
@@ -774,7 +786,7 @@ Respond with ONLY the JSON object. No other text.`;
       );
       if (isUnavailable) throw error;
       console.error("generatePromptConfigJson error:", error);
-      return { error: error.message };
+      return this._softErrorResult(error);
     }
   }
 
@@ -809,9 +821,7 @@ Respond with ONLY the JSON object. No other text.`;
       );
       if (isUnavailable) throw error;
       console.error("Rewrite error:", error);
-      return {
-        error: error.message,
-      };
+      return this._softErrorResult(error);
     }
   }
 
@@ -871,7 +881,7 @@ Respond with ONLY the JSON object. No other text.`;
       );
       if (isUnavailable) throw error;
       console.error("Rewrite alternative error:", error);
-      return { error: error.message };
+      return this._softErrorResult(error);
     }
   }
 
@@ -933,7 +943,7 @@ Respond with ONLY the JSON object. No other text.`;
       );
       if (isUnavailable) throw error;
       console.error("Rewrite word alternatives error:", error);
-      return { error: error.message };
+      return this._softErrorResult(error);
     }
   }
 
@@ -971,7 +981,7 @@ Respond with ONLY the JSON object. No other text.`;
       );
       if (isUnavailable) throw error;
       console.error("Transform error:", error);
-      return { error: error.message };
+      return this._softErrorResult(error);
     }
   }
 

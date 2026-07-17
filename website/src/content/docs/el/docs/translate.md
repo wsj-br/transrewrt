@@ -3,7 +3,7 @@ title: Μετάφραση κειμένου
 description: >-
   Μετατρέψτε κείμενο μεταξύ γλωσσών, χρησιμοποιήστε το γλωσσάρι και βελτιώστε τα
   αποτελέσματα με την Αναδιατύπωση.
-translation_last_updated: '2026-07-17T14:58:56.491Z'
+translation_last_updated: '2026-07-17T21:14:42.155Z'
 source_file_mtime: '2026-07-17T11:53:39.333Z'
 source_file_hash: ace9ad02a7dc82bf08090597c56e7cc82324e6250beab93fc2dbeaeed8b91675
 translation_language: el

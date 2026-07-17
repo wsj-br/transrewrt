@@ -3,7 +3,7 @@ title: प्रॉम्प्ट के साथ रूपांतरित 
 description: >-
   कस्टम AI निर्देशों को चलाएँ — ट्रांसफ़ॉर्म प्रॉम्प्ट बनाएँ, संपादित करें,
   परीक्षण करें और प्रबंधित करें।
-translation_last_updated: '2026-07-17T14:58:58.210Z'
+translation_last_updated: '2026-07-17T21:14:45.304Z'
 source_file_mtime: '2026-07-17T11:53:39.333Z'
 source_file_hash: 07b5d140803063510c7c9fecf67a2f99e3aab3040116733a3126939b0c82e16e
 translation_language: hi

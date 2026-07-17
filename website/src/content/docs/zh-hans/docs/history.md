@@ -1,7 +1,7 @@
 ---
 title: 浏览历史
 description: 查看过去的翻译、改写和转换运行记录，包含完整的输入和输出文本。
-translation_last_updated: '2026-07-17T14:58:56.411Z'
+translation_last_updated: '2026-07-17T21:14:43.364Z'
 source_file_mtime: '2026-07-17T11:53:39.333Z'
 source_file_hash: 79c4a60a79491755299b9de8c5e8f0945ccc6d0b32743e1682fede521dade7fa
 translation_language: zh-Hans

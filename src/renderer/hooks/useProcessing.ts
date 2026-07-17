@@ -5,11 +5,22 @@ import {
   resolveRunCostLine,
 } from "../utils/misc/formatUtils";
 import { copyTextToClipboard } from "../utils/misc/clipboardUtils";
-import { formatApiErrorLine } from "../utils/misc/apiErrorDisplay";
+import {
+  buildActionErrorAlert,
+  buildEmptyResultAlert,
+  buildIncompleteRequestAlert,
+  type ActionErrorAction,
+  type EmptyResultKind,
+} from "../utils/misc/apiErrorDisplay";
 import { SOURCE_LOCALE } from "../i18n";
 import { MAX_TRANSLATE_VERSIONS } from "../constants/translateVersions";
 
 const MAX_REWRITE_VERSIONS = MAX_TRANSLATE_VERSIONS;
+
+export type ActionErrorAlert = {
+  title: string;
+  message: string;
+};
 
 /**
  * Centralizes run/timer/cost state and handlers for translate, rewrite, and transform.
@@ -40,6 +51,7 @@ export function useProcessing({
   rewriteMode,
   // Transform
   inputTextTransform,
+  outputTextTransform,
   setOutputTextTransform,
   transformPrompts,
   transformPromptId,
@@ -59,8 +71,32 @@ export function useProcessing({
   const [rewriteVersions, setRewriteVersions] = useState([]);
   const [selectedRewriteVersion, setSelectedRewriteVersion] = useState(1);
   const [rewriteOutputIsModelResult, setRewriteOutputIsModelResult] = useState(false);
+  const [actionError, setActionError] = useState(null);
   const { t, i18n } = useTranslation();
   const locale = i18n.language || SOURCE_LOCALE;
+
+  const clearActionError = useCallback(() => setActionError(null), []);
+
+  const showActionError = useCallback(
+    (action, rawMessage, status = null) => {
+      setActionError(buildActionErrorAlert(action, rawMessage, t, status));
+    },
+    [t],
+  );
+
+  const showEmptyResultError = useCallback(
+    (kind: EmptyResultKind, parentAction: ActionErrorAction = "translate") => {
+      setActionError(buildEmptyResultAlert(kind, t, parentAction));
+    },
+    [t],
+  );
+
+  const showIncompleteRequestError = useCallback(
+    (action: ActionErrorAction) => {
+      setActionError(buildIncompleteRequestAlert(action, t));
+    },
+    [t],
+  );
 
   const isAbortMessage = useCallback((msg) => {
     if (msg == null || typeof msg !== "string") return false;
@@ -135,6 +171,8 @@ export function useProcessing({
       const text = inputTextTranslate;
       if (!text?.trim()) return;
 
+      const previousOutput = outputTextTranslate;
+
       setActiveProcessingMode("translate");
       setIsProcessing(true);
       setTranslateOutputIsModelResult(false);
@@ -201,9 +239,8 @@ export function useProcessing({
           setTranslateOutputIsModelResult(false);
           setTranslateVersions([]);
           setSelectedTranslateVersion(1);
-          setOutputTextTranslate(
-            t("Translation finished but returned no text. Try again or choose another model."),
-          );
+          setOutputTextTranslate(previousOutput || "");
+          showEmptyResultError("translate");
         }
         if (result.cancelled) {
           setTranslateOutputIsModelResult(false);
@@ -214,19 +251,26 @@ export function useProcessing({
               ? `${t("Translation stopped by user.")}\n\n${t("Partial result captured ({{tokens}} tokens, {{cost}})", { tokens: totalTokens, cost: formatPartialRunCostLabel(result, locale, t) })}`
               : t("Translation stopped by user.");
             setOutputTextTranslate(msg);
+          } else if (result.content) {
+            const cleaned = result.content.replace(/^\s*\n+/, "");
+            setTranslateVersions([cleaned]);
+            setSelectedTranslateVersion(1);
+            setTranslateOutputIsModelResult(true);
+            setOutputTextTranslate(cleaned);
+            showIncompleteRequestError("translate");
           } else {
-            setOutputTextTranslate(
-              result.content
-                ? `${t("The request ended before completion.")}\n\n${result.content}`
-                : t("The request ended before completion. Try again."),
-            );
+            setOutputTextTranslate(previousOutput || "");
+            showIncompleteRequestError("translate");
           }
         } else if (result.error) {
           setTranslateOutputIsModelResult(false);
+          setTranslateVersions([]);
+          setSelectedTranslateVersion(1);
           if (isAbortMessage(result.error)) {
             setOutputTextTranslate(t("Translation stopped by user."));
           } else {
-            setOutputTextTranslate(formatApiErrorLine(result.error, t));
+            setOutputTextTranslate(previousOutput || "");
+            showActionError("translate", result.error, result.status);
           }
         }
       } catch (error) {
@@ -239,6 +283,8 @@ export function useProcessing({
         setLastRunCost(0);
         setLastRunModel(null);
         setTranslateOutputIsModelResult(false);
+        setTranslateVersions([]);
+        setSelectedTranslateVersion(1);
         const userAbort =
           cancelledByUserRef.current ||
           error.name === "AbortError" ||
@@ -246,7 +292,8 @@ export function useProcessing({
         if (userAbort) {
           setOutputTextTranslate(t("Translation stopped by user."));
         } else {
-          setOutputTextTranslate(formatApiErrorLine(error.message, t));
+          setOutputTextTranslate(previousOutput || "");
+          showActionError("translate", error.message, error.status);
         }
       } finally {
         abortControllerRef.current = null;
@@ -261,7 +308,11 @@ export function useProcessing({
       t,
       locale,
       isAbortMessage,
+      showActionError,
+    showEmptyResultError,
+    showIncompleteRequestError,
       inputTextTranslate,
+      outputTextTranslate,
       targetLanguage,
       sourceLanguage,
       activeModel,
@@ -346,27 +397,26 @@ export function useProcessing({
           });
         } else if (!result.cancelled && !result.error) {
           setTranslateOutputIsModelResult(true);
-          setOutputTextTranslate(
-            t("Rephrase finished but returned no text. Try again or choose another model."),
-          );
+          setOutputTextTranslate(previousVersionText);
+          showEmptyResultError("rephrase", "translate");
         }
         if (result.cancelled) {
           setTranslateOutputIsModelResult(true);
           if (cancelledByUserRef.current) {
             setOutputTextTranslate(previousVersionText);
+          } else if (result.content) {
+            const cleaned = result.content.replace(/^\s*\n+/, "");
+            setOutputTextTranslate(cleaned);
+            showIncompleteRequestError("translate");
           } else {
-            setOutputTextTranslate(
-              result.content
-                ? `${t("The request ended before completion.")}\n\n${result.content}`
-                : t("The request ended before completion. Try again."),
-            );
+            setOutputTextTranslate(previousVersionText);
+            showIncompleteRequestError("translate");
           }
         } else if (result.error) {
           setTranslateOutputIsModelResult(true);
-          if (isAbortMessage(result.error)) {
-            setOutputTextTranslate(previousVersionText);
-          } else {
-            setOutputTextTranslate(formatApiErrorLine(result.error, t));
+          setOutputTextTranslate(previousVersionText);
+          if (!isAbortMessage(result.error)) {
+            showActionError("translate", result.error, result.status);
           }
         }
       } catch (error) {
@@ -383,10 +433,9 @@ export function useProcessing({
           cancelledByUserRef.current ||
           error.name === "AbortError" ||
           (error.message && isAbortMessage(error.message));
-        if (userAbort) {
-          setOutputTextTranslate(previousVersionText);
-        } else {
-          setOutputTextTranslate(formatApiErrorLine(error.message, t));
+        setOutputTextTranslate(previousVersionText);
+        if (!userAbort) {
+          showActionError("translate", error.message, error.status);
         }
       } finally {
         abortControllerRef.current = null;
@@ -396,6 +445,9 @@ export function useProcessing({
     [
       t,
       isAbortMessage,
+      showActionError,
+    showEmptyResultError,
+    showIncompleteRequestError,
       inputTextTranslate,
       selectedTranslateVersion,
       targetLanguage,
@@ -467,6 +519,8 @@ export function useProcessing({
     abortControllerRef.current = new AbortController();
     setActiveProcessingMode("rewrite");
 
+    const previousOutput = outputTextRewrite;
+
     setIsProcessing(true);
     setRewriteOutputIsModelResult(false);
     setRewriteVersions([]);
@@ -530,9 +584,8 @@ export function useProcessing({
         setRewriteOutputIsModelResult(false);
         setRewriteVersions([]);
         setSelectedRewriteVersion(1);
-        setOutputTextRewrite(
-          t("Rewrite finished but returned no text. Try again or choose another model."),
-        );
+        setOutputTextRewrite(previousOutput || "");
+        showEmptyResultError("rewrite");
       }
       if (result.cancelled) {
         setRewriteOutputIsModelResult(false);
@@ -543,19 +596,26 @@ export function useProcessing({
             ? `${t("Rewrite stopped by user.")}\n\n${t("Partial result captured ({{tokens}} tokens, {{cost}})", { tokens: totalTokens, cost: formatPartialRunCostLabel(result, locale, t) })}`
             : t("Rewrite stopped by user.");
           setOutputTextRewrite(msg);
+        } else if (result.content) {
+          const cleaned = result.content.replace(/^\s*\n+/, "");
+          setRewriteVersions([cleaned]);
+          setSelectedRewriteVersion(1);
+          setRewriteOutputIsModelResult(true);
+          setOutputTextRewrite(cleaned);
+          showIncompleteRequestError("rewrite");
         } else {
-          setOutputTextRewrite(
-            result.content
-              ? `${t("The request ended before completion.")}\n\n${result.content}`
-              : t("The request ended before completion. Try again."),
-          );
+          setOutputTextRewrite(previousOutput || "");
+          showIncompleteRequestError("rewrite");
         }
       } else if (result.error) {
         setRewriteOutputIsModelResult(false);
+        setRewriteVersions([]);
+        setSelectedRewriteVersion(1);
         if (isAbortMessage(result.error)) {
           setOutputTextRewrite(t("Rewrite stopped by user."));
         } else {
-          setOutputTextRewrite(formatApiErrorLine(result.error, t));
+          setOutputTextRewrite(previousOutput || "");
+          showActionError("rewrite", result.error, result.status);
         }
       }
     } catch (error) {
@@ -567,6 +627,8 @@ export function useProcessing({
       setIsProcessing(false);
       setLastRunCost(0);
       setRewriteOutputIsModelResult(false);
+      setRewriteVersions([]);
+      setSelectedRewriteVersion(1);
       const userAbort =
         cancelledByUserRef.current ||
         error.name === "AbortError" ||
@@ -574,7 +636,8 @@ export function useProcessing({
       if (userAbort) {
         setOutputTextRewrite(t("Rewrite stopped by user."));
       } else {
-        setOutputTextRewrite(formatApiErrorLine(error.message, t));
+        setOutputTextRewrite(previousOutput || "");
+        showActionError("rewrite", error.message, error.status);
       }
     } finally {
       abortControllerRef.current = null;
@@ -587,6 +650,7 @@ export function useProcessing({
   }, [
     t,
     inputTextRewrite,
+    outputTextRewrite,
     rewriteMode,
     activeModel,
     sourceLanguage,
@@ -595,6 +659,9 @@ export function useProcessing({
     rewrite,
     locale,
     isAbortMessage,
+    showActionError,
+    showEmptyResultError,
+    showIncompleteRequestError,
     setOutputTextRewrite,
     stopProcessing,
     setCurrentMode,
@@ -673,27 +740,26 @@ export function useProcessing({
           });
         } else if (!result.cancelled && !result.error) {
           setRewriteOutputIsModelResult(true);
-          setOutputTextRewrite(
-            t("Rephrase finished but returned no text. Try again or choose another model."),
-          );
+          setOutputTextRewrite(previousVersionText);
+          showEmptyResultError("rephrase", "rewrite");
         }
         if (result.cancelled) {
           setRewriteOutputIsModelResult(true);
           if (cancelledByUserRef.current) {
             setOutputTextRewrite(previousVersionText);
+          } else if (result.content) {
+            const cleaned = result.content.replace(/^\s*\n+/, "");
+            setOutputTextRewrite(cleaned);
+            showIncompleteRequestError("rewrite");
           } else {
-            setOutputTextRewrite(
-              result.content
-                ? `${t("The request ended before completion.")}\n\n${result.content}`
-                : t("The request ended before completion. Try again."),
-            );
+            setOutputTextRewrite(previousVersionText);
+            showIncompleteRequestError("rewrite");
           }
         } else if (result.error) {
           setRewriteOutputIsModelResult(true);
-          if (isAbortMessage(result.error)) {
-            setOutputTextRewrite(previousVersionText);
-          } else {
-            setOutputTextRewrite(formatApiErrorLine(result.error, t));
+          setOutputTextRewrite(previousVersionText);
+          if (!isAbortMessage(result.error)) {
+            showActionError("rewrite", result.error, result.status);
           }
         }
       } catch (error) {
@@ -710,10 +776,9 @@ export function useProcessing({
           cancelledByUserRef.current ||
           error.name === "AbortError" ||
           (error.message && isAbortMessage(error.message));
-        if (userAbort) {
-          setOutputTextRewrite(previousVersionText);
-        } else {
-          setOutputTextRewrite(formatApiErrorLine(error.message, t));
+        setOutputTextRewrite(previousVersionText);
+        if (!userAbort) {
+          showActionError("rewrite", error.message, error.status);
         }
       } finally {
         abortControllerRef.current = null;
@@ -723,6 +788,9 @@ export function useProcessing({
     [
       t,
       isAbortMessage,
+      showActionError,
+    showEmptyResultError,
+    showIncompleteRequestError,
       inputTextRewrite,
       selectedRewriteVersion,
       rewriteMode,
@@ -792,6 +860,8 @@ export function useProcessing({
         transformFromLang && transformFromLang !== "Detect Language" ? transformFromLang : null;
       const statedFromLang = uiExplicit ?? workspaceFrom;
 
+      const previousOutput = outputTextTransform;
+
       setActiveProcessingMode("transform");
       setIsProcessing(true);
       setOutputTextTransform(t('Transforming...'));
@@ -840,6 +910,9 @@ export function useProcessing({
           if (settings.auto_copy) void copyTextToClipboard(cleaned).catch((err) => {
             console.warn("Auto-copy to clipboard failed:", err);
           });
+        } else if (!result.cancelled && !result.error) {
+          setOutputTextTransform(previousOutput || "");
+          showEmptyResultError("transform");
         }
         if (result.cancelled) {
           if (cancelledByUserRef.current) {
@@ -848,18 +921,20 @@ export function useProcessing({
                 ? `${t("Transform stopped by user.")}\n\n${t("Partial result ({{tokens}} tokens, {{cost}})", { tokens: totalTokens, cost: formatPartialRunCostLabel(result, locale, t) })}`
                 : t("Transform stopped by user."),
             );
+          } else if (result.content) {
+            const cleaned = result.content.replace(/^\s*\n+/, "");
+            setOutputTextTransform(cleaned);
+            showIncompleteRequestError("transform");
           } else {
-            setOutputTextTransform(
-              result.content
-                ? `${t("The request ended before completion.")}\n\n${result.content}`
-                : t("The request ended before completion. Try again."),
-            );
+            setOutputTextTransform(previousOutput || "");
+            showIncompleteRequestError("transform");
           }
         } else if (result.error) {
           if (isAbortMessage(result.error)) {
             setOutputTextTransform(t("Transform stopped by user."));
           } else {
-            setOutputTextTransform(formatApiErrorLine(result.error, t));
+            setOutputTextTransform(previousOutput || "");
+            showActionError("transform", result.error, result.status);
           }
         }
       } catch (err) {
@@ -879,7 +954,8 @@ export function useProcessing({
         if (userAbort) {
           setOutputTextTransform(t("Transform stopped by user."));
         } else {
-          setOutputTextTransform(formatApiErrorLine(err.message, t));
+          setOutputTextTransform(previousOutput || "");
+          showActionError("transform", err.message, err.status);
         }
       } finally {
         abortControllerRef.current = null;
@@ -892,6 +968,7 @@ export function useProcessing({
     },
     [
       inputTextTransform,
+      outputTextTransform,
       transformPrompts,
       transformPromptId,
       transformFromLang,
@@ -902,6 +979,9 @@ export function useProcessing({
       locale,
       t,
       isAbortMessage,
+      showActionError,
+    showEmptyResultError,
+    showIncompleteRequestError,
       setOutputTextTransform,
       setCurrentMode,
       updateSettings,
@@ -988,6 +1068,8 @@ export function useProcessing({
     selectedRewriteVersion,
     setRewriteVersions,
     setSelectedRewriteVersion,
+    actionError,
+    clearActionError,
     stopProcessing,
     handleTranslate,
     handleAlternative,

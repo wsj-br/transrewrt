@@ -1,7 +1,7 @@
 ---
 title: 대시보드 사용
 description: 사용량, 비용 및 호출 로그 검토 — 필터링, 내보내기 및 저장된 레코드 관리.
-translation_last_updated: '2026-07-17T14:59:00.048Z'
+translation_last_updated: '2026-07-17T21:14:46.172Z'
 source_file_mtime: '2026-07-17T11:53:39.333Z'
 source_file_hash: 689c93c2517f806f7976d570b4fc86d30ca048ce906d982429b985ad06dd9250
 translation_language: ko

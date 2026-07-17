@@ -28,8 +28,12 @@ function parseUpdatedAtMs(iso) {
   return Number.isFinite(t) ? t : 0;
 }
 
-/** Increment the last numeric segment (e.g. 1.1.0 → 1.1.1). */
-function bumpPatchVersion(version) {
+/**
+ * Parse a dotted numeric version into non-negative integers (invalid segments → 0).
+ * @param {string|undefined|null} version
+ * @returns {number[]}
+ */
+function parseVersionParts(version) {
   const parts = String(version || "0.0.0")
     .trim()
     .split(".")
@@ -40,8 +44,24 @@ function bumpPatchVersion(version) {
   if (parts.length === 0) parts.push(0, 0, 0);
   else if (parts.length === 1) parts.push(0, 0);
   else if (parts.length === 2) parts.push(0);
+  return parts;
+}
+
+/**
+ * Increment the last numeric segment (e.g. 1.1.0 → 1.1.1).
+ * When `appVersion` is set, keep major.minor from the app and the incremented
+ * patch from the catalog (e.g. catalog 1.2.50 + app 1.6.1 → 1.6.51).
+ * @param {string|undefined|null} version
+ * @param {string|undefined|null} [appVersion]
+ */
+function bumpPatchVersion(version, appVersion) {
+  const parts = parseVersionParts(version);
   parts[parts.length - 1] += 1;
-  return parts.join(".");
+  if (appVersion == null || String(appVersion).trim() === "") {
+    return parts.join(".");
+  }
+  const appParts = parseVersionParts(appVersion);
+  return `${appParts[0]}.${appParts[1]}.${parts[parts.length - 1]}`;
 }
 
 /** Semver-like a.b.c; positive if a > b. */

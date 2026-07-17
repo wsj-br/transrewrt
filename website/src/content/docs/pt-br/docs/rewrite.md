@@ -3,7 +3,7 @@ title: Reescrever texto
 description: >-
   Melhore a redação no mesmo idioma — clareza, tom, extensão, gramática e muito
   mais.
-translation_last_updated: '2026-07-17T14:59:00.021Z'
+translation_last_updated: '2026-07-17T21:14:47.733Z'
 source_file_mtime: '2026-07-17T11:53:39.333Z'
 source_file_hash: ca70a1d16518bb9193c83911bfb7be66b19076c48b914b92aba4e9a17f67740f
 translation_language: pt-BR

@@ -16,7 +16,7 @@ Technical architecture, folder structure, tech stack, and design decisions for t
   - [Shared practices](#shared-practices)
 - [Folder Structure](#folder-structure)
 - [Design Decisions](#design-decisions)
-  - [Translate workspace](#translate-workspace)
+  - [Translate and Rewrite workspaces (rephrase)](#translate-and-rewrite-workspaces-rephrase)
 - [Easy mode and presets catalog](#easy-mode-and-presets-catalog)
   - [AI experience (Easy vs Advanced)](#ai-experience-easy-vs-advanced)
   - [Presets catalog file and sync](#presets-catalog-file-and-sync)
@@ -35,7 +35,7 @@ Technical architecture, folder structure, tech stack, and design decisions for t
 
 ## Product
 
-**Transrewrt** is an AI-powered text tool that provides **translation**, **rewrite** (style transformation), and **transform** (transform prompts) using **multiple LLM backends** (OpenRouter, native vendor APIs, Local LLM, etc.). By default the app uses **Easy** mode: curated **skills** (**Free (OpenRouter)**, **Lite**, **Advanced**, **Technical**) mapped to models per **provider**, without picking raw model IDs. **Advanced** mode exposes the classic per-model toolbar and **Settings → Models** list. When **execution history** is enabled, past runs (input/output text and metadata) are stored in the app database and browsable from the **History** sidebar view. The same codebase runs as:
+**Transrewrt** is an AI-powered text tool that provides **translation**, **rewrite** (style transformation), and **transform** (transform prompts) using **multiple LLM backends** (OpenRouter, native vendor APIs, Local LLM, etc.). By default the app uses **Easy** mode: curated **skills** (**Free (OpenRouter)**, **Standard**, **Advanced**, **Technical**) mapped to models per **provider**, without picking raw model IDs. **Advanced** mode exposes the classic per-model toolbar and **Settings → Models** list. When **execution history** is enabled, past runs (input/output text and metadata) are stored in the app database and browsable from the **History** sidebar view. The same codebase runs as:
 
 - **Desktop**: Electron app (Windows, Linux).
 - **Web**: Self-hosted web app served from a Docker container (or local Express server).
@@ -114,7 +114,9 @@ The Node-side LLM stack uses the **[Vercel AI SDK](https://sdk.vercel.ai/)** (`s
 | **openrouter** | Routed OpenRouter models (`openrouter/<innerId>`); catalog and pricing; OpenRouter-specific headers/routing and generation-id cost when available. |
 | **openai**, **anthropic**, **google**, **deepseek**, **groq**, **mistralai**, **xai**, **cerebras**, **nvidia**, **alibaba**, **apifun** | Direct vendor OpenAI-compatible APIs; model ids look like `openai/gpt-4o`, `google/gemini-2.5-flash`, `nvidia/…`, etc. |
 | **custom** | User-defined OpenAI-compatible base URL (`custom_provider_url` / `CUSTOM_PROVIDER_URL`) plus optional name and API key. |
-| **local** | Local OpenAI-compatible server URL (`local_llm_base_url` / `LOCAL_LLM_URL`); not a secret key. |
+| **local** | **Local LLM** — OpenAI-compatible server (`local` / `local/…` model ids). Config/env: `local_llm_base_url` / `LOCAL_LLM_URL` (not a secret key). Easy-mode selection: `easy_local_llm_model`. |
+
+**Local LLM URL**: The value is the **full** OpenAI-compatible API base (for example `http://localhost:11434/v1` for Ollama, or an LM Studio / llama.cpp base). The app does **not** append `/v1` automatically — include the path your server expects. Default when unset: `http://localhost:11434/v1`. Settings **Test** and catalog reachability use `GET …/models` on that base (not Ollama’s legacy `/api/tags`).
 
 **Model ids** must be **namespaced** (`engine/innerModelId`). Unknown engines are rejected at resolve time. **mergeKeys()** builds the credential map from **saved config plus `process.env`**, with **config winning** over env for the same logical key, so Docker/Electron can override env with UI-saved keys.
 
@@ -164,7 +166,7 @@ All application source lives under `src/`: main (Electron), renderer (React), se
 │   ├── renderer/          # Shared React app
 │   │   ├── components/    # App, PresetSelector, HistoryPage, SettingsPanel, …
 │   │   ├── contexts/      # AppContext (mode, skills, easy provider)
-│   │   ├── hooks/         # useProcessing, useTranslateWordAlternatives, useCostTracking, …
+│   │   ├── hooks/         # useProcessing, useWordAlternatives, useCostTracking, …
 │   │   ├── services/      # apiService (translate / rephrase / word alternatives / rewrite / transform / models)
 │   │   ├── utils/         # configManager, webApiClient, presets/presetsManager, …
 │   │   ├── locales/       # i18n JSON (strings.json, per-locale bundles)
@@ -204,11 +206,13 @@ All application source lives under `src/`: main (Electron), renderer (React), se
 - **Execution history**: Optional `keep_execution_history`. Text in `action_content` linked to `api_calls`. History UI via Electron IPC or `GET /api/calls/history`. **Settings → General** vs cost/history deletion semantics: see [docs Settings](https://wsj-br.github.io/transrewrt/docs/settings/). Optional environment `HISTORY_DISABLED` (`true` / `1`, case-insensitive) on the **Electron main process** or **Node server** forces history off and locks the History settings card; omit unless an administrator requires it.
 - **Easy vs Advanced**: `mode` in config (`"easy"` default from [config_default.json](../src/config-defaults/config_default.json)); legacy installs without `mode` are normalized to `"easy"` on load. Advanced mode uses `available_models` and model-list error handling; Easy mode resolves `model_ids[provider]` from the presets catalog and does not auto-remove models on 404.
 
-### Translate workspace
+### Translate and Rewrite workspaces (rephrase)
 
-- **Version history**: up to **5** output variants (`MAX_TRANSLATE_VERSIONS` in [translateVersions.ts](../src/renderer/constants/translateVersions.ts)); state in [useProcessing.ts](../src/renderer/hooks/useProcessing.ts); **Rephrase…** and version selector in [TranslateRephraseControls.tsx](../src/renderer/components/workspace/TranslateRephraseControls.tsx).
-- **Rephrase**: [translateAlternative](../src/renderer/services/apiService.ts) / [AppContext](../src/renderer/contexts/AppContext.tsx); prompt `translate_alternative` in [prompts.json](../src/config-defaults/prompts.json); history type `translate_alternative`. Appends a new full translation until the version cap; disabled at cap.
-- **Word alternatives**: right-click on selected output text → [translateWordAlternatives](../src/renderer/services/apiService.ts) (prompt `translate_word_alternatives`); [useTranslateWordAlternatives.ts](../src/renderer/hooks/useTranslateWordAlternatives.ts) + [TranslateWordAlternativesPopover.tsx](../src/renderer/components/TranslateWordAlternativesPopover.tsx); selection expansion in [textSelectionUtils.ts](../src/renderer/utils/misc/textSelectionUtils.ts); history type `translate_word_alternatives`. At cap, overwrites version 5 only.
+Translate and Rewrite share the same refinement UI and version-cap behaviour; only prompts and history types differ.
+
+- **Shared UI**: **Rephrase…** and version selector in [RephraseControls.tsx](../src/renderer/components/workspace/RephraseControls.tsx); word-alternative popover in [WordAlternativesPopover.tsx](../src/renderer/components/WordAlternativesPopover.tsx); hook [useWordAlternatives.ts](../src/renderer/hooks/useWordAlternatives.ts); selection expansion in [textSelectionUtils.ts](../src/renderer/utils/misc/textSelectionUtils.ts). Version state lives in [useProcessing.ts](../src/renderer/hooks/useProcessing.ts). Cap: **5** variants (`MAX_TRANSLATE_VERSIONS` in [translateVersions.ts](../src/renderer/constants/translateVersions.ts); rewrite uses the same limit).
+- **Full rephrase**: Appends a new full output until the version cap (disabled at cap). Translate: [translateAlternative](../src/renderer/services/apiService.ts) / prompt `translate_alternative` / history `translate_alternative`. Rewrite: [rewriteAlternative](../src/renderer/services/apiService.ts) / prompt `rewrite_alternative` / history `rewrite_alternative` ([AppContext](../src/renderer/contexts/AppContext.tsx), [prompts.json](../src/config-defaults/prompts.json)).
+- **Word alternatives**: Right-click (or **Rephrase…** with a selection) on output text. With no selection, right-click selects the word under the cursor when there is one. Translate: [translateWordAlternatives](../src/renderer/services/apiService.ts) / prompt `translate_word_alternatives`. Rewrite: [rewriteWordAlternatives](../src/renderer/services/apiService.ts) / prompt `rewrite_word_alternatives`. At cap, applying an alternative overwrites version 5 only.
 
 ---
 
@@ -218,7 +222,7 @@ All application source lives under `src/`: main (Electron), renderer (React), se
 
 | Mode | Config `mode` | Toolbar | Settings |
 |------|---------------|---------|----------|
-| **Easy** (default) | `"easy"` or unset | **Skill** selector (**Free (OpenRouter)**, **Lite**, **Advanced**, **Technical**; provider-dependent) | **General** → **Provider** + presets catalog refresh; **Models** tab hidden |
+| **Easy** (default) | `"easy"` or unset | **Skill** selector (**Free (OpenRouter)**, **Standard**, **Advanced**, **Technical**; provider-dependent) | **General** → **Provider** + presets catalog refresh; **Models** tab hidden |
 | **Advanced** | `"advanced"` | **Model** selector from `available_models` | **Models** tab for selected models list |
 
 Built-in skills in [easy-mode-config/presets.json](../easy-mode-config/presets.json) (as of catalog v1.1.x):
@@ -226,7 +230,7 @@ Built-in skills in [easy-mode-config/presets.json](../easy-mode-config/presets.j
 | Skill id | Display name | Providers |
 |----------|--------------|-----------|
 | `free-router` | Free (OpenRouter) | OpenRouter only |
-| `regular` | Lite | All cloud engines with `model_ids` |
+| `regular` | Standard | All cloud engines with `model_ids` |
 | `advanced` | Advanced | All cloud engines with `model_ids` |
 | `technical` | Technical | All cloud engines with `model_ids` |
 

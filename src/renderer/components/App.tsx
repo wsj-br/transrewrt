@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import Sidebar from "./Sidebar";
 import MainContent from "./MainContent";
 import ConfirmModal from "./ConfirmModal";
+import ErrorAlertModal from "./ErrorAlertModal";
 import LoginPage from "./LoginPage";
 import ChangePasswordModal from "./ChangePasswordModal";
 import ApiKeyModal from "./ApiKeyModal";
@@ -304,6 +305,8 @@ const App = () => {
     handleTranslateVersionChange,
     handleRewriteAlternative,
     handleRewriteVersionChange,
+    actionError,
+    clearActionError,
   } = useProcessing({
     translate,
     translateAlternative,
@@ -325,6 +328,7 @@ const App = () => {
     setOutputTextRewrite,
     rewriteMode,
     inputTextTransform,
+    outputTextTransform,
     setOutputTextTransform,
     transformPrompts,
     transformPromptId,
@@ -816,6 +820,15 @@ const App = () => {
     />
   );
 
+  const actionErrorModal = (
+    <ErrorAlertModal
+      open={actionError != null}
+      title={actionError?.title ?? ""}
+      message={actionError?.message ?? ""}
+      onClose={clearActionError}
+    />
+  );
+
   if (isWeb) {
     const useMargin = settings?.web_margin === true;
     const webOuterClass = useMargin
@@ -910,6 +923,7 @@ const App = () => {
           />
         )}
         {loadSampleConfirmModal}
+        {actionErrorModal}
         <GlossaryAddModal
           open={glossaryModalOpen}
           onClose={() => setGlossaryModalOpen(false)}
@@ -992,6 +1006,7 @@ const App = () => {
         />
       )}
       {loadSampleConfirmModal}
+      {actionErrorModal}
       <GlossaryAddModal
         open={glossaryModalOpen}
         onClose={() => setGlossaryModalOpen(false)}

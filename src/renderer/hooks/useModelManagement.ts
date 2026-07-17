@@ -35,6 +35,7 @@ export function useModelManagement(configManager, setSetting, setError) {
         'Model unavailable (404/400). The model has been removed from your list and "{{freeModelId}}" has been selected.',
         { freeModelId: FREE_MODEL_ID }
       ),
+      status: 404,
     };
   };
 

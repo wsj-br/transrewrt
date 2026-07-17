@@ -3,7 +3,7 @@ title: Огляд
 description: >-
   Що таке Transrewrt та як знайти інсталяцію, посібники та документацію з
   налаштувань.
-translation_last_updated: '2026-07-17T14:59:03.369Z'
+translation_last_updated: '2026-07-17T21:14:50.696Z'
 source_file_mtime: '2026-07-17T14:36:51.471Z'
 source_file_hash: 6dfcf9cb19e3422d75511ecc06eda72e014214c3e34d95f7fec6d8a05c01896f
 translation_language: uk

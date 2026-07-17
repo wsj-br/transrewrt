@@ -3,7 +3,7 @@ title: Transformera med prompter
 description: >-
   Kör anpassade AI-instruktioner – skapa, redigera, testa och hantera
   Transform-prompter.
-translation_last_updated: '2026-07-17T14:59:04.267Z'
+translation_last_updated: '2026-07-17T21:14:49.936Z'
 source_file_mtime: '2026-07-17T11:53:39.333Z'
 source_file_hash: 07b5d140803063510c7c9fecf67a2f99e3aab3040116733a3126939b0c82e16e
 translation_language: sv

@@ -1,7 +1,7 @@
 ---
 title: 텍스트 번역
 description: 언어 간 텍스트를 변환하고, 용어집을 사용하며, 바꾸어 쓰기(Rephrase)로 결과를 다듬습니다.
-translation_last_updated: '2026-07-17T14:59:00.524Z'
+translation_last_updated: '2026-07-17T21:14:46.984Z'
 source_file_mtime: '2026-07-17T11:53:39.333Z'
 source_file_hash: ace9ad02a7dc82bf08090597c56e7cc82324e6250beab93fc2dbeaeed8b91675
 translation_language: ko

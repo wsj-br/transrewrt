@@ -1,7 +1,7 @@
 ---
 title: クイックスタート
 description: Windows または Linux に Transrewrt をインストールするか、セルフホスト型の Docker Web アプリを実行します。
-translation_last_updated: '2026-07-17T14:59:00.674Z'
+translation_last_updated: '2026-07-17T21:14:46.150Z'
 source_file_mtime: '2026-07-17T14:55:54.211Z'
 source_file_hash: 6eb0ab579b445d9c4d39567ef44ee3333f57285c5c2b8dd072de6355182f849f
 translation_language: ja

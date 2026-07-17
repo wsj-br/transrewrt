@@ -3,7 +3,7 @@ title: Dashboard verwenden
 description: >-
   Nutzung, Kosten und Anrufprotokolle überprüfen – gespeicherte Datensätze
   filtern, exportieren und verwalten.
-translation_last_updated: '2026-07-17T14:58:53.750Z'
+translation_last_updated: '2026-07-17T21:14:42.662Z'
 source_file_mtime: '2026-07-17T11:53:39.333Z'
 source_file_hash: 689c93c2517f806f7976d570b4fc86d30ca048ce906d982429b985ad06dd9250
 translation_language: de

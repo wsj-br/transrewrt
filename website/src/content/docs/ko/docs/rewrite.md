@@ -1,7 +1,7 @@
 ---
 title: 텍스트 다시 쓰기
 description: 동일한 언어로 표현 개선 — 명확성, 어조, 길이, 문법 등.
-translation_last_updated: '2026-07-17T14:59:00.318Z'
+translation_last_updated: '2026-07-17T21:14:46.715Z'
 source_file_mtime: '2026-07-17T11:53:39.333Z'
 source_file_hash: ca70a1d16518bb9193c83911bfb7be66b19076c48b914b92aba4e9a17f67740f
 translation_language: ko

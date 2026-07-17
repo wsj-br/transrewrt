@@ -33,6 +33,7 @@ module.exports = tseslint.config(
       "dist/",
       "dist-main/",
       "release/",
+      "website/dist/",
       "**/strings.json",
     ],
   },
@@ -52,6 +53,20 @@ module.exports = tseslint.config(
     settings: { react: { version: "detect" } },
     rules: {
       ...reactRules,
+      "no-unused-vars": [
+        "error",
+        { argsIgnorePattern: "^_" },
+      ],
+    },
+  },
+  {
+    files: ["**/*.mjs"],
+    languageOptions: {
+      ecmaVersion: "latest",
+      sourceType: "module",
+      globals: globals.node,
+    },
+    rules: {
       "no-unused-vars": [
         "error",
         { argsIgnorePattern: "^_" },

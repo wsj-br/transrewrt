@@ -3,7 +3,7 @@ title: Przeglądaj historię
 description: >-
   Przeglądaj przeszłe uruchomienia tłumaczeń, przepisów i transformacji z pełnym
   tekstem wejściowym i wyjściowym.
-translation_last_updated: '2026-07-17T14:58:58.833Z'
+translation_last_updated: '2026-07-17T21:14:47.264Z'
 source_file_mtime: '2026-07-17T11:53:39.333Z'
 source_file_hash: 79c4a60a79491755299b9de8c5e8f0945ccc6d0b32743e1682fede521dade7fa
 translation_language: pl

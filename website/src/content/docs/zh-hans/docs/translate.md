@@ -1,7 +1,7 @@
 ---
 title: 翻译文本
 description: 在不同语言之间转换文本，使用术语表，并通过重述来优化结果。
-translation_last_updated: '2026-07-17T14:58:56.847Z'
+translation_last_updated: '2026-07-17T21:14:43.910Z'
 source_file_mtime: '2026-07-17T11:53:39.333Z'
 source_file_hash: ace9ad02a7dc82bf08090597c56e7cc82324e6250beab93fc2dbeaeed8b91675
 translation_language: zh-Hans

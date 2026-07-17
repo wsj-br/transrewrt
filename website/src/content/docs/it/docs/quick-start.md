@@ -3,7 +3,7 @@ title: Avvio rapido
 description: >-
   Installa Transrewrt su Windows o Linux, oppure esegui l'applicazione web
   Docker self-hosted.
-translation_last_updated: '2026-07-17T14:58:58.322Z'
+translation_last_updated: '2026-07-17T21:14:46.128Z'
 source_file_mtime: '2026-07-17T14:55:54.211Z'
 source_file_hash: 6eb0ab579b445d9c4d39567ef44ee3333f57285c5c2b8dd072de6355182f849f
 translation_language: it

@@ -564,7 +564,7 @@ export const AppProvider = ({ children }) => {
                 "The provider rejected this preset's model (missing, invalid, or not allowed). Try another preset, or switch to Advanced mode to pick a different model.",
               ),
             );
-            return { error: finalErr.message };
+            return { error: finalErr.message, status: finalErr?.status ?? null };
           }
           return await handleUnavailableModel(effectiveModel);
         }
@@ -572,7 +572,7 @@ export const AppProvider = ({ children }) => {
 
       setError("Translation failed");
       console.error(err);
-      return { error: err.message };
+      return { error: err.message, status: err?.status ?? null };
     } finally {
       setLoading(false);
     }
@@ -696,7 +696,7 @@ export const AppProvider = ({ children }) => {
                 "The provider rejected this preset's model (missing, invalid, or not allowed). Try another preset, or switch to Advanced mode to pick a different model.",
               ),
             );
-            return { error: finalErr.message };
+            return { error: finalErr.message, status: finalErr?.status ?? null };
           }
           return await handleUnavailableModel(effectiveModel);
         }
@@ -704,7 +704,7 @@ export const AppProvider = ({ children }) => {
 
       setError("Alternative translation failed");
       console.error(err);
-      return { error: err.message };
+      return { error: err.message, status: err?.status ?? null };
     } finally {
       setLoading(false);
     }
@@ -836,7 +836,7 @@ export const AppProvider = ({ children }) => {
                 "The provider rejected this preset's model (missing, invalid, or not allowed). Try another preset, or switch to Advanced mode to pick a different model.",
               ),
             );
-            return { error: finalErr.message };
+            return { error: finalErr.message, status: finalErr?.status ?? null };
           }
           return await handleUnavailableModel(effectiveModel);
         }
@@ -844,7 +844,7 @@ export const AppProvider = ({ children }) => {
 
       setError("Word alternatives failed");
       console.error(err);
-      return { error: err.message };
+      return { error: err.message, status: err?.status ?? null };
     } finally {
       setLoading(false);
     }
@@ -927,7 +927,7 @@ export const AppProvider = ({ children }) => {
                 "The provider rejected this preset's model (missing, invalid, or not allowed). Try another preset, or switch to Advanced mode to pick a different model.",
               ),
             );
-            return { error: finalErr.message };
+            return { error: finalErr.message, status: finalErr?.status ?? null };
           }
           return await handleUnavailableModel(effectiveModel);
         }
@@ -935,7 +935,7 @@ export const AppProvider = ({ children }) => {
 
       setError("Translation failed");
       console.error(finalErr);
-      return { error: finalErr.message };
+      return { error: finalErr.message, status: finalErr?.status ?? null };
     } finally {
       setLoading(false);
     }
@@ -995,13 +995,13 @@ export const AppProvider = ({ children }) => {
               "The provider rejected this preset's model (missing, invalid, or not allowed). Try another preset, or switch to Advanced mode to pick a different model.",
             ),
           );
-          return { error: err.message };
+          return { error: err.message, status: err?.status ?? null };
         }
         return await handleUnavailableModel(effectiveModel);
       }
       setError("Improve prompt config failed");
       console.error(err);
-      return { error: err.message };
+      return { error: err.message, status: err?.status ?? null };
     } finally {
       setLoading(false);
     }
@@ -1061,13 +1061,13 @@ export const AppProvider = ({ children }) => {
               "The provider rejected this preset's model (missing, invalid, or not allowed). Try another preset, or switch to Advanced mode to pick a different model.",
             ),
           );
-          return { error: err.message };
+          return { error: err.message, status: err?.status ?? null };
         }
         return await handleUnavailableModel(effectiveModel);
       }
       setError("Generate prompt config failed");
       console.error(err);
-      return { error: err.message };
+      return { error: err.message, status: err?.status ?? null };
     } finally {
       setLoading(false);
     }
@@ -1173,14 +1173,14 @@ export const AppProvider = ({ children }) => {
                 "The provider rejected this preset's model (missing, invalid, or not allowed). Try another preset, or switch to Advanced mode to pick a different model.",
               ),
             );
-            return { error: finalErr.message };
+            return { error: finalErr.message, status: finalErr?.status ?? null };
           }
           return await handleUnavailableModel(effectiveModel);
         }
       }
       setError("Rewrite failed");
       console.error(err);
-      return { error: finalErr.message };
+      return { error: finalErr.message, status: finalErr?.status ?? null };
     } finally {
       setLoading(false);
     }
@@ -1305,14 +1305,14 @@ export const AppProvider = ({ children }) => {
                 "The provider rejected this preset's model (missing, invalid, or not allowed). Try another preset, or switch to Advanced mode to pick a different model.",
               ),
             );
-            return { error: finalErr.message };
+            return { error: finalErr.message, status: finalErr?.status ?? null };
           }
           return await handleUnavailableModel(effectiveModel);
         }
       }
       setError("Rewrite alternative failed");
       console.error(err);
-      return { error: finalErr.message };
+      return { error: finalErr.message, status: finalErr?.status ?? null };
     } finally {
       setLoading(false);
     }
@@ -1441,14 +1441,14 @@ export const AppProvider = ({ children }) => {
                 "The provider rejected this preset's model (missing, invalid, or not allowed). Try another preset, or switch to Advanced mode to pick a different model.",
               ),
             );
-            return { error: finalErr.message };
+            return { error: finalErr.message, status: finalErr?.status ?? null };
           }
           return await handleUnavailableModel(effectiveModel);
         }
       }
       setError("Rewrite word alternatives failed");
       console.error(err);
-      return { error: err.message };
+      return { error: err.message, status: err?.status ?? null };
     } finally {
       setLoading(false);
     }
@@ -1560,14 +1560,14 @@ export const AppProvider = ({ children }) => {
                 "The provider rejected this preset's model (missing, invalid, or not allowed). Try another preset, or switch to Advanced mode to pick a different model.",
               ),
             );
-            return { error: finalErr.message };
+            return { error: finalErr.message, status: finalErr?.status ?? null };
           }
           return await handleUnavailableModel(effectiveModel);
         }
       }
       setError("Transform failed");
       console.error(err);
-      return { error: (err && err.message) || "Transform failed" };
+      return { error: (err && err.message) || "Transform failed", status: err?.status ?? null };
     } finally {
       setLoading(false);
     }

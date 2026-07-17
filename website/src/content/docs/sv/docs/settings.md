@@ -3,7 +3,7 @@ title: Inställningar
 description: >-
   Kompakt referens för Allmänt, Modeller, Språk, Ordlista, Kostnad,
   Transformera, Användare, API och Om.
-translation_last_updated: '2026-07-17T14:59:04.025Z'
+translation_last_updated: '2026-07-17T21:14:49.878Z'
 source_file_mtime: '2026-07-17T14:37:21.849Z'
 source_file_hash: 492e5fd37f4a6b282502282d4f2728047a0d09ae8c30334b3c8388a5ce6e9f68
 translation_language: sv

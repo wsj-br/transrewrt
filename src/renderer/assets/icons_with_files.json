@@ -381,7 +381,7 @@
     "provider_id": "local",
     "name": "Local LLM",
     "url": "",
-    "iconFile": "ollama.ico"
+    "iconFile": ""
   },
   {
     "provider_id": "openai",

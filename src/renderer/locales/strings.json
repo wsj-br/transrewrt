@@ -1863,7 +1863,7 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 527
+        "line": 531
       }
     ]
   },
@@ -1956,15 +1956,15 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 534
+        "line": 538
       },
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 588
+        "line": 592
       },
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 594
+        "line": 598
       },
       {
         "file": "src/renderer/components/DashboardTabAllCalls.tsx",
@@ -2081,7 +2081,7 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 542
+        "line": 546
       },
       {
         "file": "src/renderer/components/DashboardTabByModel.tsx",
@@ -2190,11 +2190,11 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 546
+        "line": 550
       },
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 594
+        "line": 598
       },
       {
         "file": "src/renderer/utils/misc/formatUtils.ts",
@@ -2291,7 +2291,7 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 554
+        "line": 558
       },
       {
         "file": "src/renderer/components/DashboardTabAllCalls.tsx",
@@ -2396,7 +2396,7 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 596
+        "line": 600
       },
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
@@ -2497,7 +2497,7 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 787
+        "line": 791
       },
       {
         "file": "src/renderer/components/DashboardTabAllCalls.tsx",
@@ -2650,7 +2650,7 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 807
+        "line": 811
       },
       {
         "file": "src/renderer/components/SettingsTransformPromptsTab.tsx",
@@ -2755,7 +2755,7 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 808
+        "line": 812
       },
       {
         "file": "src/renderer/components/SettingsTransformPromptsTab.tsx",
@@ -2852,7 +2852,7 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 809
+        "line": 813
       },
       {
         "file": "src/renderer/components/SettingsTransformPromptsTab.tsx",
@@ -2949,7 +2949,7 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 811
+        "line": 815
       },
       {
         "file": "src/renderer/components/SelectFromPresetsModal.tsx",
@@ -3050,15 +3050,15 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 812
+        "line": 816
       },
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 906
+        "line": 919
       },
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 989
+        "line": 1003
       },
       {
         "file": "src/renderer/components/ChangePasswordModal.tsx",
@@ -3215,11 +3215,11 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 903
+        "line": 916
       },
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 986
+        "line": 1000
       },
       {
         "file": "src/renderer/components/SettingsTransformPromptsTab.tsx",
@@ -3316,11 +3316,11 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 904
+        "line": 917
       },
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 987
+        "line": 1001
       }
     ]
   },
@@ -3413,11 +3413,11 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 904
+        "line": 917
       },
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 987
+        "line": 1001
       }
     ]
   },
@@ -3510,11 +3510,11 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 905
+        "line": 918
       },
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 988
+        "line": 1002
       },
       {
         "file": "src/renderer/components/DashboardPage.tsx",
@@ -11590,6 +11590,111 @@
       }
     ]
   },
+  "d3d2e617": {
+    "source": "Close",
+    "translated": {
+      "pt-BR": "Fechar",
+      "ca": "Tancar",
+      "ar": "إغلاق",
+      "bn": "বন্ধ করুন",
+      "zh-TW": "關閉",
+      "zh-CN": "关闭",
+      "hr": "Zatvori",
+      "cs": "Zavřít",
+      "en-US": "Close",
+      "fr": "Fermer",
+      "tl": "Isara",
+      "nl": "Sluiten",
+      "de": "Schließen",
+      "hu": "Bezárás",
+      "hi": "बंद करें",
+      "el": "Κλείσιμο",
+      "ms": "Tutup",
+      "ko": "닫기",
+      "ja": "閉じる",
+      "it": "Chiudi",
+      "pt": "Fechar",
+      "pl": "Zamknij",
+      "pa": "ਬੰਦ ਕਰੋ",
+      "fa": "بستن",
+      "es": "Cerrar",
+      "ru": "Закрыть",
+      "ro": "Închide",
+      "sk": "Zavrieť",
+      "sv": "Stäng",
+      "th": "ปิด",
+      "sw": "Funga",
+      "te": "మూసివేయి",
+      "vi": "Đóng",
+      "tr": "Kapat",
+      "uk": "Закрити",
+      "jv": "Tutup",
+      "zh-Hans": "关闭",
+      "zh-Hant": "關閉",
+      "pa-PK": "بند کرو",
+      "hi-Latn": "Band karen"
+    },
+    "models": {
+      "pt-BR": "anthropic/claude-3-haiku",
+      "ca": "anthropic/claude-3-haiku",
+      "ar": "anthropic/claude-3-haiku",
+      "bn": "anthropic/claude-3-haiku",
+      "zh-TW": "anthropic/claude-3-haiku",
+      "zh-CN": "anthropic/claude-3-haiku",
+      "hr": "anthropic/claude-3-haiku",
+      "cs": "anthropic/claude-3-haiku",
+      "en-US": "anthropic/claude-3-haiku",
+      "fr": "anthropic/claude-3-haiku",
+      "tl": "anthropic/claude-3-haiku",
+      "nl": "anthropic/claude-3-haiku",
+      "de": "anthropic/claude-3-haiku",
+      "hu": "openai/gpt-4o-mini",
+      "hi": "anthropic/claude-3-haiku",
+      "el": "anthropic/claude-3-haiku",
+      "ms": "anthropic/claude-3-haiku",
+      "ko": "anthropic/claude-3-haiku",
+      "ja": "anthropic/claude-3-haiku",
+      "it": "anthropic/claude-3-haiku",
+      "pt": "anthropic/claude-3-haiku",
+      "pl": "anthropic/claude-3-haiku",
+      "pa": "anthropic/claude-3-haiku",
+      "fa": "anthropic/claude-3-haiku",
+      "es": "anthropic/claude-3-haiku",
+      "ru": "anthropic/claude-3-haiku",
+      "ro": "anthropic/claude-3-haiku",
+      "sk": "anthropic/claude-3-haiku",
+      "sv": "anthropic/claude-3-haiku",
+      "th": "anthropic/claude-3-haiku",
+      "sw": "anthropic/claude-3-haiku",
+      "te": "anthropic/claude-3-haiku",
+      "vi": "anthropic/claude-3-haiku",
+      "tr": "anthropic/claude-3-haiku",
+      "uk": "anthropic/claude-3-haiku",
+      "jv": "anthropic/claude-3-haiku",
+      "zh-Hans": "google/gemini-2.5-flash-lite",
+      "zh-Hant": "google/gemini-2.5-flash-lite",
+      "pa-PK": "google/gemini-2.5-flash",
+      "hi-Latn": "google/gemini-2.5-flash"
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/ErrorAlertModal.tsx",
+        "line": 46
+      },
+      {
+        "file": "src/renderer/components/GlossaryAddModal.tsx",
+        "line": 145
+      },
+      {
+        "file": "src/renderer/components/SelectFromPresetsModal.tsx",
+        "line": 239
+      },
+      {
+        "file": "src/renderer/components/ThirdPartyNoticesModal.tsx",
+        "line": 152
+      }
+    ]
+  },
   "d44fb71c": {
     "source": "All fields are required.",
     "translated": {
@@ -12763,107 +12868,6 @@
       {
         "file": "src/renderer/components/GlossaryAddModal.tsx",
         "line": 141
-      }
-    ]
-  },
-  "d3d2e617": {
-    "source": "Close",
-    "translated": {
-      "pt-BR": "Fechar",
-      "ca": "Tancar",
-      "ar": "إغلاق",
-      "bn": "বন্ধ করুন",
-      "zh-TW": "關閉",
-      "zh-CN": "关闭",
-      "hr": "Zatvori",
-      "cs": "Zavřít",
-      "en-US": "Close",
-      "fr": "Fermer",
-      "tl": "Isara",
-      "nl": "Sluiten",
-      "de": "Schließen",
-      "hu": "Bezárás",
-      "hi": "बंद करें",
-      "el": "Κλείσιμο",
-      "ms": "Tutup",
-      "ko": "닫기",
-      "ja": "閉じる",
-      "it": "Chiudi",
-      "pt": "Fechar",
-      "pl": "Zamknij",
-      "pa": "ਬੰਦ ਕਰੋ",
-      "fa": "بستن",
-      "es": "Cerrar",
-      "ru": "Закрыть",
-      "ro": "Închide",
-      "sk": "Zavrieť",
-      "sv": "Stäng",
-      "th": "ปิด",
-      "sw": "Funga",
-      "te": "మూసివేయి",
-      "vi": "Đóng",
-      "tr": "Kapat",
-      "uk": "Закрити",
-      "jv": "Tutup",
-      "zh-Hans": "关闭",
-      "zh-Hant": "關閉",
-      "pa-PK": "بند کرو",
-      "hi-Latn": "Band karen"
-    },
-    "models": {
-      "pt-BR": "anthropic/claude-3-haiku",
-      "ca": "anthropic/claude-3-haiku",
-      "ar": "anthropic/claude-3-haiku",
-      "bn": "anthropic/claude-3-haiku",
-      "zh-TW": "anthropic/claude-3-haiku",
-      "zh-CN": "anthropic/claude-3-haiku",
-      "hr": "anthropic/claude-3-haiku",
-      "cs": "anthropic/claude-3-haiku",
-      "en-US": "anthropic/claude-3-haiku",
-      "fr": "anthropic/claude-3-haiku",
-      "tl": "anthropic/claude-3-haiku",
-      "nl": "anthropic/claude-3-haiku",
-      "de": "anthropic/claude-3-haiku",
-      "hu": "openai/gpt-4o-mini",
-      "hi": "anthropic/claude-3-haiku",
-      "el": "anthropic/claude-3-haiku",
-      "ms": "anthropic/claude-3-haiku",
-      "ko": "anthropic/claude-3-haiku",
-      "ja": "anthropic/claude-3-haiku",
-      "it": "anthropic/claude-3-haiku",
-      "pt": "anthropic/claude-3-haiku",
-      "pl": "anthropic/claude-3-haiku",
-      "pa": "anthropic/claude-3-haiku",
-      "fa": "anthropic/claude-3-haiku",
-      "es": "anthropic/claude-3-haiku",
-      "ru": "anthropic/claude-3-haiku",
-      "ro": "anthropic/claude-3-haiku",
-      "sk": "anthropic/claude-3-haiku",
-      "sv": "anthropic/claude-3-haiku",
-      "th": "anthropic/claude-3-haiku",
-      "sw": "anthropic/claude-3-haiku",
-      "te": "anthropic/claude-3-haiku",
-      "vi": "anthropic/claude-3-haiku",
-      "tr": "anthropic/claude-3-haiku",
-      "uk": "anthropic/claude-3-haiku",
-      "jv": "anthropic/claude-3-haiku",
-      "zh-Hans": "google/gemini-2.5-flash-lite",
-      "zh-Hant": "google/gemini-2.5-flash-lite",
-      "pa-PK": "google/gemini-2.5-flash",
-      "hi-Latn": "google/gemini-2.5-flash"
-    },
-    "locations": [
-      {
-        "file": "src/renderer/components/GlossaryAddModal.tsx",
-        "line": 145
-      },
-      {
-        "file": "src/renderer/components/SelectFromPresetsModal.tsx",
-        "line": 239
-      },
-      {
-        "file": "src/renderer/components/ThirdPartyNoticesModal.tsx",
-        "line": 152
       }
     ]
   },
@@ -46504,6 +46508,14 @@
       {
         "file": "src/renderer/components/TransformPromptEditor.tsx",
         "line": 225
+      },
+      {
+        "file": "src/renderer/utils/misc/apiErrorDisplay.ts",
+        "line": 212
+      },
+      {
+        "file": "src/renderer/utils/misc/apiErrorDisplay.ts",
+        "line": 261
       }
     ]
   },
@@ -53925,100 +53937,7 @@
     "locations": [
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 143
-      }
-    ]
-  },
-  "6a25d014": {
-    "source": "Translation finished but returned no text. Try again or choose another model.",
-    "translated": {
-      "ar": "انتهت الترجمة لكنها لم تُرجع أي نص. أعد المحاولة أو اختر نموذجًا آخر.",
-      "pt-BR": "Tradução concluída, mas não retornou texto. Tente novamente ou escolha outro modelo.",
-      "ca": "S'ha completat la traducció, però no s'ha obtingut cap text. Torna-ho a provar o selecciona un altre model.",
-      "bn": "অনুবাদ সম্পন্ন হয়েছে কিন্তু কোনো টেক্সট পাওয়া যায়নি। আবার চেষ্টা করুন অথবা অন্য মডেল নির্বাচন করুন।",
-      "zh-TW": "翻譯已完成，但未傳回任何文字。請重試或選擇其他模型。",
-      "zh-CN": "翻译完成，但未返回文本。请重试或选择其他模型。",
-      "cs": "Překlad dokončen, ale nebyl vrácen žádný text. Zkuste znovu nebo vyberte jiný model.",
-      "hr": "Prijevod je završen, ali nije vraćen tekst. Pokušajte ponovno ili odaberite drugi model.",
-      "en-US": "Translation finished but returned no text. Try again or choose another model.",
-      "fr": "La traduction est terminée mais n'a généré aucun texte. Réessayez ou choisissez un autre modèle.",
-      "nl": "Vertaling voltooid, maar leverde geen tekst op. Probeer het opnieuw of kies een ander model.",
-      "tl": "Natapos na ang pagsasalin ngunit walang naibalik na teksto. Subukan muli o pumili ng ibang modelo.",
-      "de": "Übersetzung abgeschlossen, lieferte jedoch keinen Text. Versuchen Sie es erneut oder wählen Sie ein anderes Modell.",
-      "hi": "अनुवाद समाप्त हो गया, लेकिन कोई पाठ नहीं मिला। पुनः प्रयास करें या कोई अन्य मॉडल चुनें।",
-      "hu": "A fordítás kész, de nem adott vissza szöveget. Próbálja újra, vagy válasszon másik modellt.",
-      "el": "Η μετάφραση ολοκληρώθηκε, αλλά δεν επιστράφηκε κείμενο. Δοκιμάστε ξανά ή επιλέξτε διαφορετικό μοντέλο.",
-      "ja": "翻訳は完了しましたが、結果が返されませんでした。再試行するか、別のモデルを選択してください。",
-      "ko": "번역 완료되었으나 내용이 없습니다. 다시 시도하거나 다른 모델을 선택하세요.",
-      "it": "Traduzione completata ma non ha restituito testo. Riprova o scegli un altro modello.",
-      "ms": "Terjemahan selesai tetapi tiada teks yang dikembalikan. Cuba lagi atau pilih model lain.",
-      "pt": "A tradução foi concluída, mas não retornou texto. Tente novamente ou escolha outro modelo.",
-      "fa": "ترجمه انجام شد اما متنی بازگردانده نشد. دوباره تلاش کنید یا مدل دیگری را انتخاب کنید.",
-      "jv": "Terjemahan wis rampung nanging ora ngasilake teks. Coba maneh utawa pilih model liyane.",
-      "pl": "Tłumaczenie zakończone, ale nie zwrócono tekstu. Spróbuj ponownie lub wybierz inny model.",
-      "sk": "Preklad dokončený, ale nebol vrátený žiadny text. Skúste to znova alebo vyberte iný model.",
-      "ru": "Перевод завершён, но текст не получен. Повторите попытку или выберите другую модель.",
-      "ro": "Traducerea s-a finalizat, dar nu a returnat text. Încercați din nou sau alegeți un alt model.",
-      "pa": "ਅਨੁਵਾਦ ਪੂਰਾ ਹੋ ਗਿਆ ਹੈ ਪਰ ਕੋਈ ਟੈਕਸਟ ਨਹੀਂ ਮਿਲਿਆ। ਮੁੜ ਕੋਸ਼ਿਸ਼ ਕਰੋ ਜਾਂ ਕੋਈ ਹੋਰ ਮਾਡਲ ਚੁਣੋ।",
-      "sv": "Översättningen är klar men returnerade ingen text. Försök igen eller välj en annan modell.",
-      "es": "La traducción ha finalizado, pero no se ha generado texto. Inténtalo de nuevo o selecciona otro modelo.",
-      "sw": "Tafsiri imekamilika lakini haikutoa maandishi. Jaribu tena au chagua mfano mwingine.",
-      "te": "అనువాదం పూర్తయింది కానీ పాఠ్యం రాలేదు. మళ్లీ ప్రయత్నించండి లేదా మరొక మోడల్‌ను ఎంచుకోండి.",
-      "vi": "Hoàn tất bản dịch nhưng không trả về nội dung nào. Thử lại hoặc chọn mô hình khác.",
-      "th": "การแปลเสร็จสิ้นแต่ไม่พบข้อความ ลองอีกครั้งหรือเลือกโมเดลอื่น",
-      "tr": "Çeviri tamamlandı ancak metin oluşturulamadı. Tekrar deneyin veya başka bir model seçin.",
-      "uk": "Переклад завершено, але результат порожній. Повторіть спробу або виберіть іншу модель.",
-      "zh-Hans": "翻译完成但未返回任何文本。请重试或选择其他模型。",
-      "zh-Hant": "翻譯完成但未傳回任何文字。請再試一次或選擇其他模型。",
-      "pa-PK": "ترجمہ مکمل ہو گیا اے پر کوئی متن واپس نہیں آیا۔ دوبارہ کوشش کرو یا کوئی ہور ماڈل چُنو۔",
-      "hi-Latn": "Anuvaad poora ho gaya lekin koi text wapas nahi mila. Phir se koshish karein ya koi anya model chunein."
-    },
-    "models": {
-      "ar": "qwen/qwen3.6-35b-a3b",
-      "pt-BR": "qwen/qwen3.6-35b-a3b",
-      "ca": "qwen/qwen3.6-35b-a3b",
-      "bn": "qwen/qwen3.6-35b-a3b",
-      "zh-TW": "qwen/qwen3.6-35b-a3b",
-      "zh-CN": "qwen/qwen3.6-35b-a3b",
-      "cs": "qwen/qwen3.6-35b-a3b",
-      "hr": "qwen/qwen3.6-35b-a3b",
-      "en-US": "qwen/qwen3.6-35b-a3b",
-      "fr": "qwen/qwen3.6-35b-a3b",
-      "nl": "qwen/qwen3.6-35b-a3b",
-      "tl": "qwen/qwen3.6-35b-a3b",
-      "de": "qwen/qwen3.6-35b-a3b",
-      "hi": "qwen/qwen3.6-35b-a3b",
-      "hu": "qwen/qwen3.6-35b-a3b",
-      "el": "qwen/qwen3.6-35b-a3b",
-      "ja": "qwen/qwen3.6-35b-a3b",
-      "ko": "qwen/qwen3.6-35b-a3b",
-      "it": "qwen/qwen3.6-35b-a3b",
-      "ms": "qwen/qwen3.6-35b-a3b",
-      "pt": "qwen/qwen3.6-35b-a3b",
-      "fa": "qwen/qwen3.6-35b-a3b",
-      "jv": "qwen/qwen3.6-35b-a3b",
-      "pl": "qwen/qwen3.6-35b-a3b",
-      "sk": "qwen/qwen3.6-35b-a3b",
-      "ru": "qwen/qwen3.6-35b-a3b",
-      "ro": "qwen/qwen3.6-35b-a3b",
-      "pa": "qwen/qwen3.6-35b-a3b",
-      "sv": "qwen/qwen3.6-35b-a3b",
-      "es": "qwen/qwen3.6-35b-a3b",
-      "sw": "qwen/qwen3.6-35b-a3b",
-      "te": "qwen/qwen3.6-35b-a3b",
-      "vi": "qwen/qwen3.6-35b-a3b",
-      "th": "qwen/qwen3.6-35b-a3b",
-      "tr": "qwen/qwen3.6-35b-a3b",
-      "uk": "qwen/qwen3.6-35b-a3b",
-      "zh-Hans": "google/gemini-2.5-flash-lite",
-      "zh-Hant": "google/gemini-2.5-flash-lite",
-      "pa-PK": "google/gemini-2.5-flash",
-      "hi-Latn": "google/gemini-2.5-flash"
-    },
-    "locations": [
-      {
-        "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 205
+        "line": 181
       }
     ]
   },
@@ -54111,23 +54030,23 @@
     "locations": [
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 214
+        "line": 251
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 215
+        "line": 252
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 227
+        "line": 270
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 247
+        "line": 293
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 414
+        "line": 466
       }
     ]
   },
@@ -54220,229 +54139,11 @@
     "locations": [
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 214
+        "line": 251
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 543
-      }
-    ]
-  },
-  "e5df0162": {
-    "source": "The request ended before completion.",
-    "translated": {
-      "pt-BR": "A solicitação terminou antes da conclusão.",
-      "ca": "La sol·licitud es va interrompre abans de completar-se.",
-      "ar": "انتهت الطلب قبل الاكتمال.",
-      "bn": "অনুরোধটি সম্পূর্ণ হওয়ার আগেই শেষ হয়ে গেছে।",
-      "zh-TW": "請求在完成前結束。",
-      "zh-CN": "请求在完成前结束。",
-      "cs": "Požadavek byl ukončen před dokončením.",
-      "hr": "Zahtjev je završio prije dovršetka.",
-      "en-US": "The request ended before completion.",
-      "fr": "La demande s'est terminée avant la fin.",
-      "tl": "Natapos ang kahilingan bago matapos.",
-      "nl": "Het verzoek is voltooid voordat het klaar was.",
-      "hu": "A kérés a befejezés előtt véget ért.",
-      "de": "Die Anfrage wurde vor Abschluss beendet.",
-      "hi": "अनुरोध पूरा होने से पहले समाप्त हो गया।",
-      "el": "Το αίτημα ολοκληρώθηκε πριν από την ολοκλήρωση.",
-      "ms": "Permintaan berakhir sebelum selesai.",
-      "ja": "リクエストが完了する前に終了しました。",
-      "ko": "요청이 완료되기 전에 종료되었습니다.",
-      "it": "La richiesta è terminata prima del completamento.",
-      "pt": "A solicitação terminou antes da conclusão.",
-      "pl": "Żądanie zakończyło się przed ukończeniem.",
-      "fa": "درخواست قبل از اتمام پایان یافت.",
-      "pa": "ਬੇਨਤੀ ਪੂਰੀ ਹੋਣ ਤੋਂ ਪਹਿਲਾਂ ਖਤਮ ਹੋ ਗਈ।",
-      "es": "La solicitud finalizó antes de completarse.",
-      "ru": "Запрос завершился до окончания.",
-      "ro": "Cererea s-a încheiat înainte de finalizare.",
-      "sk": "Požiadavka sa skončila pred dokončením.",
-      "sv": "Begäran avslutades innan den var klar.",
-      "sw": "Ombi liliisha kabla ya kukamilika.",
-      "th": "คำขอสิ้นสุดก่อนเสร็จสมบูรณ์",
-      "te": "అభ్యర్థన పూర్తి కాకుండానే ముగిసింది.",
-      "vi": "Yêu cầu kết thúc trước khi hoàn thành.",
-      "tr": "İstek tamamlanmadan sonlandı.",
-      "uk": "Запит завершився до завершення.",
-      "jv": "Panjalukan rampung sadurunge rampung.",
-      "zh-Hans": "请求未完成。",
-      "zh-Hant": "要求未完成。",
-      "pa-PK": "درخواست مکمل ہون توں پہلاں ختم ہو گئی۔",
-      "hi-Latn": "Anurodh poora hone se pehle samapt ho gaya."
-    },
-    "models": {
-      "pt-BR": "anthropic/claude-3-haiku",
-      "ca": "anthropic/claude-3-haiku",
-      "ar": "anthropic/claude-3-haiku",
-      "bn": "anthropic/claude-3-haiku",
-      "zh-TW": "anthropic/claude-3-haiku",
-      "zh-CN": "anthropic/claude-3-haiku",
-      "cs": "anthropic/claude-3-haiku",
-      "hr": "anthropic/claude-3-haiku",
-      "en-US": "anthropic/claude-3-haiku",
-      "fr": "anthropic/claude-3-haiku",
-      "tl": "anthropic/claude-3-haiku",
-      "nl": "anthropic/claude-3-haiku",
-      "hu": "anthropic/claude-3-haiku",
-      "de": "anthropic/claude-3-haiku",
-      "hi": "anthropic/claude-3-haiku",
-      "el": "anthropic/claude-3-haiku",
-      "ms": "anthropic/claude-3-haiku",
-      "ja": "anthropic/claude-3-haiku",
-      "ko": "anthropic/claude-3-haiku",
-      "it": "anthropic/claude-3-haiku",
-      "pt": "anthropic/claude-3-haiku",
-      "pl": "anthropic/claude-3-haiku",
-      "fa": "anthropic/claude-3-haiku",
-      "pa": "anthropic/claude-3-haiku",
-      "es": "anthropic/claude-3-haiku",
-      "ru": "anthropic/claude-3-haiku",
-      "ro": "anthropic/claude-3-haiku",
-      "sk": "anthropic/claude-3-haiku",
-      "sv": "anthropic/claude-3-haiku",
-      "sw": "anthropic/claude-3-haiku",
-      "th": "anthropic/claude-3-haiku",
-      "te": "anthropic/claude-3-haiku",
-      "vi": "anthropic/claude-3-haiku",
-      "tr": "anthropic/claude-3-haiku",
-      "uk": "anthropic/claude-3-haiku",
-      "jv": "anthropic/claude-3-haiku",
-      "zh-Hans": "google/gemini-2.5-flash-lite",
-      "zh-Hant": "google/gemini-2.5-flash-lite",
-      "pa-PK": "google/gemini-2.5-flash",
-      "hi-Latn": "google/gemini-2.5-flash"
-    },
-    "locations": [
-      {
-        "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 220
-      },
-      {
-        "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 360
-      },
-      {
-        "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 549
-      },
-      {
-        "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 687
-      },
-      {
-        "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 854
-      }
-    ]
-  },
-  "bf5bdd63": {
-    "source": "The request ended before completion. Try again.",
-    "translated": {
-      "pt-BR": "A solicitação terminou antes da conclusão. Tente novamente.",
-      "ca": "La sol·licitud es va interrompre abans de completar-se. Torneu-ho a provar.",
-      "ar": "انتهت الطلب قبل الاكتمال. حاول مرة أخرى.",
-      "bn": "অনুরোধটি সম্পূর্ণ হওয়ার আগেই শেষ হয়ে গেছে। আবার চেষ্টা করুন।",
-      "zh-TW": "請求在完成前結束。請再試一次。",
-      "zh-CN": "请求在完成前结束。请重试。",
-      "cs": "Požadavek byl ukončen před dokončením. Zkuste to znovu.",
-      "hr": "Zahtjev je završio prije dovršetka. Pokušajte ponovno.",
-      "en-US": "The request ended before completion. Try again.",
-      "fr": "La demande s'est terminée avant la fin. Réessayez.",
-      "tl": "Natapos ang kahilingan bago matapos. Subukang muli.",
-      "nl": "Het verzoek is voltooid voordat het klaar was. Probeer het opnieuw.",
-      "hu": "A kérés a befejezés előtt véget ért. Próbálja újra.",
-      "de": "Die Anfrage wurde vor Abschluss beendet. Bitte versuchen Sie es erneut.",
-      "hi": "अनुरोध पूरा होने से पहले समाप्त हो गया। पुन: प्रयास करें।",
-      "el": "Το αίτημα ολοκληρώθηκε πριν από την ολοκλήρωση. Προσπαθήστε ξανά.",
-      "ms": "Permintaan berakhir sebelum selesai. Cuba lagi.",
-      "ja": "リクエストが完了する前に終了しました。もう一度お試しください。",
-      "ko": "요청이 완료되기 전에 종료되었습니다. 다시 시도해 주세요.",
-      "it": "La richiesta è terminata prima del completamento. Riprova.",
-      "pt": "A solicitação terminou antes da conclusão. Tente novamente.",
-      "pl": "Żądanie zakończyło się przed ukończeniem. Spróbuj ponownie.",
-      "fa": "درخواست قبل از اتمام پایان یافت. دوباره امتحان کنید.",
-      "pa": "ਬੇਨਤੀ ਪੂਰੀ ਹੋਣ ਤੋਂ ਪਹਿਲਾਂ ਖਤਮ ਹੋ ਗਈ। ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।",
-      "es": "La solicitud finalizó antes de completarse. Inténtalo de nuevo.",
-      "ru": "Запрос завершился до окончания. Попробуйте еще раз.",
-      "ro": "Cererea s-a încheiat înainte de finalizare. Încercați din nou.",
-      "sk": "Požiadavka sa skončila pred dokončením. Skúste to znova.",
-      "sv": "Begäran avslutades innan den var klar. Försök igen.",
-      "sw": "Ombi liliisha kabla ya kukamilika. Jaribu tena.",
-      "th": "คำขอสิ้นสุดก่อนเสร็จสมบูรณ์ ลองอีกครั้ง",
-      "te": "అభ్యర్థన పూర్తి కాకుండానే ముగిసింది. మళ్లీ ప్రయత్నించండి.",
-      "vi": "Yêu cầu kết thúc trước khi hoàn thành. Vui lòng thử lại.",
-      "tr": "İstek tamamlanmadan sonlandı. Tekrar deneyin.",
-      "uk": "Запит завершився до завершення. Спробуйте ще раз.",
-      "jv": "Panjalukan rampung sadurunge rampung. Coba manèh.",
-      "zh-Hans": "请求未完成。请重试。",
-      "zh-Hant": "要求未完成。請再試一次。",
-      "pa-PK": "درخواست مکمل ہون توں پہلاں ختم ہو گئی۔ دوبارہ کوشش کرو۔",
-      "hi-Latn": "Anurodh poora hone se pehle samapt ho gaya. Phir se koshish karein."
-    },
-    "models": {
-      "pt-BR": "anthropic/claude-3-haiku",
-      "ca": "anthropic/claude-3-haiku",
-      "ar": "anthropic/claude-3-haiku",
-      "bn": "anthropic/claude-3-haiku",
-      "zh-TW": "anthropic/claude-3-haiku",
-      "zh-CN": "anthropic/claude-3-haiku",
-      "cs": "anthropic/claude-3-haiku",
-      "hr": "anthropic/claude-3-haiku",
-      "en-US": "anthropic/claude-3-haiku",
-      "fr": "anthropic/claude-3-haiku",
-      "tl": "anthropic/claude-3-haiku",
-      "nl": "anthropic/claude-3-haiku",
-      "hu": "anthropic/claude-3-haiku",
-      "de": "anthropic/claude-3-haiku",
-      "hi": "anthropic/claude-3-haiku",
-      "el": "anthropic/claude-3-haiku",
-      "ms": "anthropic/claude-3-haiku",
-      "ja": "anthropic/claude-3-haiku",
-      "ko": "anthropic/claude-3-haiku",
-      "it": "anthropic/claude-3-haiku",
-      "pt": "anthropic/claude-3-haiku",
-      "pl": "anthropic/claude-3-haiku",
-      "fa": "anthropic/claude-3-haiku",
-      "pa": "anthropic/claude-3-haiku",
-      "es": "anthropic/claude-3-haiku",
-      "ru": "anthropic/claude-3-haiku",
-      "ro": "anthropic/claude-3-haiku",
-      "sk": "anthropic/claude-3-haiku",
-      "sv": "anthropic/claude-3-haiku",
-      "sw": "anthropic/claude-3-haiku",
-      "th": "anthropic/claude-3-haiku",
-      "te": "anthropic/claude-3-haiku",
-      "vi": "anthropic/claude-3-haiku",
-      "tr": "anthropic/claude-3-haiku",
-      "uk": "anthropic/claude-3-haiku",
-      "jv": "anthropic/claude-3-haiku",
-      "zh-Hans": "google/gemini-2.5-flash-lite",
-      "zh-Hant": "google/gemini-2.5-flash-lite",
-      "pa-PK": "google/gemini-2.5-flash",
-      "hi-Latn": "google/gemini-2.5-flash"
-    },
-    "locations": [
-      {
-        "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 221
-      },
-      {
-        "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 361
-      },
-      {
-        "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 550
-      },
-      {
-        "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 688
-      },
-      {
-        "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 855
+        "line": 596
       }
     ]
   },
@@ -54535,108 +54236,11 @@
     "locations": [
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 288
+        "line": 339
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 615
-      }
-    ]
-  },
-  "e5a23e5d": {
-    "source": "Rephrase finished but returned no text. Try again or choose another model.",
-    "translated": {
-      "cs": "Přeformulování bylo dokončeno, ale nevrátilo žádný text. Zkuste to znovu nebo vyberte jiný model.",
-      "pt-BR": "A reescrita foi concluída, mas não retornou texto. Tente novamente ou escolha outro modelo.",
-      "zh-TW": "改寫完成但未返回任何文字。請重試或選擇其他模型。",
-      "zh-CN": "改写完成但未返回文本。请重试或选择其他模型。",
-      "hr": "Preformuliranje je završeno, ali nije vraćen tekst. Pokušajte ponovno ili odaberite drugi model.",
-      "ar": "انتهت إعادة الصياغة لكنها لم تُرجِ أي نص. حاول مرة أخرى أو اختر نموذجًا آخر.",
-      "bn": "পুনরায় লেখা সম্পন্ন হয়েছে কিন্তু কোনো টেক্সট ফেরত আসেনি। আবার চেষ্টা করুন অথবা অন্য মডেল নির্বাচন করুন।",
-      "ca": "La reformulació ha finalitzat però no s'ha retornat cap text. Torneu-ho a provar o trieu un altre model.",
-      "en-US": "Rephrase finished but returned no text. Try again or choose another model.",
-      "fr": "Reformulation terminée, mais aucun texte n'a été généré. Réessayez ou choisissez un autre modèle.",
-      "de": "Umformulierung abgeschlossen, es wurde jedoch kein Text zurückgegeben. Versuchen Sie es erneut oder wählen Sie ein anderes Modell.",
-      "nl": "Herschrijven voltooid, maar er is geen tekst teruggekomen. Probeer het opnieuw of kies een ander model.",
-      "hu": "Az átfogalmazás befejeződött, de nem adott vissza szöveget. Próbálja meg újra, vagy válasszon másik modellt.",
-      "el": "Η επαναδιατύπωση ολοκληρώθηκε αλλά δεν παρήχθη κείμενο. Δοκιμάστε ξανά ή επιλέξτε άλλο μοντέλο.",
-      "hi": "पुनर्लेखन समाप्त हो गया है, लेकिन कोई पाठ नहीं मिला। कृपया पुनः प्रयास करें या कोई अन्य मॉडल चुनें।",
-      "tl": "Natapos ang pag-rephrase ngunit walang ibinalik na teksto. Subukan muli o pumili ng ibang modelo.",
-      "pt": "A reformulação terminou, mas não retornou texto. Tente novamente ou escolha outro modelo.",
-      "ko": "다시 작성이 완료되었지만 결과가 없습니다. 다시 시도하거나 다른 모델을 선택하세요.",
-      "pl": "Przeformułowanie zakończone, ale nie zwrócono tekstu. Spróbuj ponownie lub wybierz inny model.",
-      "fa": "بازنویسی انجام شد اما متنی بازگردانده نشد. مجدداً تلاش کنید یا مدل دیگری انتخاب کنید.",
-      "ms": "Ungkapan semula selesai tetapi tidak mengembalikan sebarang teks. Cuba lagi atau pilih model lain.",
-      "jv": "Ganti tembung wis rampung nanging ora ngasilake teks. Coba maneh utawa pilih model liyane.",
-      "it": "Riformulazione completata ma non ha restituito testo. Riprova o scegli un altro modello.",
-      "ja": "書き換えは完了しましたが、テキストが返されませんでした。再試行するか、別のモデルを選択してください。",
-      "sv": "Omformuleringen avslutades men returnerade ingen text. Försök igen eller välj en annan modell.",
-      "sk": "Preformulovanie dokončené, ale nevrátilo žiadny text. Skúste to znova alebo vyberte iný model.",
-      "es": "La reescritura ha finalizado pero no se ha devuelto ningún texto. Inténtelo de nuevo o elija otro modelo.",
-      "ru": "Перефразирование завершено, но текст не получен. Повторите попытку или выберите другую модель.",
-      "ro": "Reformularea s-a finalizat, dar nu a returnat text. Încercați din nou sau alegeți un alt model.",
-      "pa": "ਮੁੜ ਲਿਖਣ ਦੀ ਪ੍ਰਕਿਰਿਆ ਪੂਰੀ ਹੋ ਗਈ ਹੈ ਪਰ ਕੋਈ ਪਾਠ ਨਹੀਂ ਮਿਲਿਆ। ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ ਜਾਂ ਕੋਈ ਹੋਰ ਮਾਡਲ ਚੁਣੋ।",
-      "te": "పునర్వచనం పూర్తయింది కానీ పాఠ్యం రాలేదు. మళ్లీ ప్రయత్నించండి లేదా మరొక మోడల్ ఎంచుకోండి.",
-      "sw": "Uandishi upya umekamilika lakini haukutoa maandishi. Jaribu tena au chagua mfano mwingine.",
-      "vi": "Hoàn tất viết lại nhưng không trả về văn bản. Hãy thử lại hoặc chọn mô hình khác.",
-      "tr": "Yeniden ifade işlemi tamamlandı ancak metin döndürülmadı. Tekrar deneyin veya başka bir model seçin.",
-      "uk": "Перефразування завершено, але текст не повернуто. Повторіть спробу або виберіть іншу модель.",
-      "th": "การเรียบเรียงใหม่เสร็จสิ้นแต่ไม่พบข้อความ ลองอีกครั้งหรือเลือกโมเดลอื่น",
-      "zh-Hans": "改写完成但未返回任何文本。请重试或选择其他模型。",
-      "zh-Hant": "改寫完成但未傳回任何文字。請再試一次或選擇其他模型。",
-      "pa-PK": "دوبارہ لکھنا مکمل ہو گیا اے پر کوئی متن واپس نہیں آیا۔ دوبارہ کوشش کرو یا کوئی ہور ماڈل چُنو۔",
-      "hi-Latn": "Phir se likhna poora ho gaya lekin koi text wapas nahi mila. Phir se koshish karein ya koi anya model chunein."
-    },
-    "models": {
-      "cs": "qwen/qwen3.6-35b-a3b",
-      "pt-BR": "qwen/qwen3.6-35b-a3b",
-      "zh-TW": "qwen/qwen3.6-35b-a3b",
-      "zh-CN": "qwen/qwen3.6-35b-a3b",
-      "hr": "qwen/qwen3.6-35b-a3b",
-      "ar": "qwen/qwen3.6-35b-a3b",
-      "bn": "qwen/qwen3.6-35b-a3b",
-      "ca": "qwen/qwen3.6-35b-a3b",
-      "en-US": "qwen/qwen3.6-35b-a3b",
-      "fr": "qwen/qwen3.6-35b-a3b",
-      "de": "qwen/qwen3.6-35b-a3b",
-      "nl": "qwen/qwen3.6-35b-a3b",
-      "hu": "qwen/qwen3.6-35b-a3b",
-      "el": "qwen/qwen3.6-35b-a3b",
-      "hi": "qwen/qwen3.6-35b-a3b",
-      "tl": "openai/gpt-4o-mini",
-      "pt": "qwen/qwen3.6-35b-a3b",
-      "ko": "qwen/qwen3.6-35b-a3b",
-      "pl": "qwen/qwen3.6-35b-a3b",
-      "fa": "qwen/qwen3.6-35b-a3b",
-      "ms": "qwen/qwen3.6-35b-a3b",
-      "jv": "qwen/qwen3.6-35b-a3b",
-      "it": "qwen/qwen3.6-35b-a3b",
-      "ja": "qwen/qwen3.6-35b-a3b",
-      "sv": "openai/gpt-4o-mini",
-      "sk": "qwen/qwen3.6-35b-a3b",
-      "es": "qwen/qwen3.6-35b-a3b",
-      "ru": "qwen/qwen3.6-35b-a3b",
-      "ro": "qwen/qwen3.6-35b-a3b",
-      "pa": "qwen/qwen3.6-35b-a3b",
-      "te": "qwen/qwen3.6-35b-a3b",
-      "sw": "qwen/qwen3.6-35b-a3b",
-      "vi": "qwen/qwen3.6-35b-a3b",
-      "tr": "qwen/qwen3.6-35b-a3b",
-      "uk": "qwen/qwen3.6-35b-a3b",
-      "th": "qwen/qwen3.6-35b-a3b",
-      "zh-Hans": "google/gemini-2.5-flash-lite",
-      "zh-Hant": "google/gemini-2.5-flash-lite",
-      "pa-PK": "google/gemini-2.5-flash",
-      "hi-Latn": "google/gemini-2.5-flash"
-    },
-    "locations": [
-      {
-        "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 350
-      },
-      {
-        "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 677
+        "line": 682
       }
     ]
   },
@@ -54729,23 +54333,23 @@
     "locations": [
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 461
+        "line": 513
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 543
+        "line": 596
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 544
+        "line": 597
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 556
+        "line": 615
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 575
+        "line": 637
       }
     ]
   },
@@ -54838,100 +54442,7 @@
     "locations": [
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 474
-      }
-    ]
-  },
-  "30461c2b": {
-    "source": "Rewrite finished but returned no text. Try again or choose another model.",
-    "translated": {
-      "ar": "انتهت إعادة الصياغة لكنها لم تُرجع أي نص. أعد المحاولة أو اختر نموذجًا آخر.",
-      "pt-BR": "Reescrita concluída, mas não retornou texto. Tente novamente ou escolha outro modelo.",
-      "ca": "S'ha completat la reescriptura, però no s'ha obtingut cap text. Torna-ho a provar o selecciona un altre model.",
-      "bn": "পুনর্লিখন সম্পন্ন হয়েছে কিন্তু কোনো টেক্সট পাওয়া যায়নি। আবার চেষ্টা করুন অথবা অন্য মডেল নির্বাচন করুন।",
-      "zh-TW": "重寫已完成，但未傳回任何文字。請重試或選擇其他模型。",
-      "zh-CN": "重写完成，但未返回文本。请重试或选择其他模型。",
-      "cs": "Přepsání dokončeno, ale nebyl vrácen žádný text. Zkuste znovu nebo vyberte jiný model.",
-      "hr": "Prepis je završen, ali nije vraćen tekst. Pokušajte ponovno ili odaberite drugi model.",
-      "en-US": "Rewrite finished but returned no text. Try again or choose another model.",
-      "fr": "La réécriture est terminée mais n'a généré aucun texte. Réessayez ou choisissez un autre modèle.",
-      "nl": "Herschrijven voltooid, maar leverde geen tekst op. Probeer het opnieuw of kies een ander model.",
-      "tl": "Natapos na ang pagsusulat muli ngunit walang naibalik na teksto. Subukan muli o pumili ng ibang modelo.",
-      "de": "Neuschreibung abgeschlossen, lieferte jedoch keinen Text. Versuchen Sie es erneut oder wählen Sie ein anderes Modell.",
-      "hi": "पुनर्लेखन समाप्त हो गया, लेकिन कोई पाठ नहीं मिला। पुनः प्रयास करें या कोई अन्य मॉडल चुनें।",
-      "hu": "Az átfogalmazás kész, de nem adott vissza szöveget. Próbálja újra, vagy válasszon másik modellt.",
-      "el": "Η αναδιατύπωση ολοκληρώθηκε, αλλά δεν επιστράφηκε κείμενο. Δοκιμάστε ξανά ή επιλέξτε διαφορετικό μοντέλο.",
-      "ja": "書き換えは完了しましたが、結果が返されませんでした。再試行するか、別のモデルを選択してください。",
-      "ko": "다시 작성 완료되었으나 내용이 없습니다. 다시 시도하거나 다른 모델을 선택하세요.",
-      "it": "Riscrittura completata ma non ha restituito testo. Riprova o scegli un altro modello.",
-      "ms": "Tulis semula selesai tetapi tiada teks yang dikembalikan. Cuba lagi atau pilih model lain.",
-      "pt": "A reescrita foi concluída, mas não retornou texto. Tente novamente ou escolha outro modelo.",
-      "fa": "بازنویسی انجام شد اما متنی بازگردانده نشد. دوباره تلاش کنید یا مدل دیگری را انتخاب کنید.",
-      "jv": "Tulis ulang wis rampung nanging ora ngasilake teks. Coba maneh utawa pilih model liyane.",
-      "pl": "Przepisanie zakończone, ale nie zwrócono tekstu. Spróbuj ponownie lub wybierz inny model.",
-      "sk": "Prepis dokončený, ale nebol vrátený žiadny text. Skúste to znova alebo vyberte iný model.",
-      "ru": "Переписывание завершено, но текст не получен. Повторите попытку или выберите другую модель.",
-      "ro": "Rescrierea s-a finalizat, dar nu a returnat text. Încercați din nou sau alegeți un alt model.",
-      "pa": "ਦੁਬਾਰਾ ਲਿਖਣਾ ਪੂਰਾ ਹੋ ਗਿਆ ਹੈ ਪਰ ਕੋਈ ਟੈਕਸਟ ਨਹੀਂ ਮਿਲਿਆ। ਮੁੜ ਕੋਸ਼ਿਸ਼ ਕਰੋ ਜਾਂ ਕੋਈ ਹੋਰ ਮਾਡਲ ਚੁਣੋ।",
-      "sv": "Omskrivningen är klar men returnerade ingen text. Försök igen eller välj en annan modell.",
-      "es": "La reescritura ha finalizado, pero no se ha generado texto. Inténtalo de nuevo o selecciona otro modelo.",
-      "sw": "Uandishi upya umekamilika lakini haikutoa maandishi. Jaribu tena au chagua mfano mwingine.",
-      "te": "పునర్లెఖనం పూర్తయింది కానీ పాఠ్యం రాలేదు. మళ్లీ ప్రయత్నించండి లేదా మరొక మోడల్‌ను ఎంచుకోండి.",
-      "vi": "Hoàn tất viết lại nhưng không trả về nội dung nào. Thử lại hoặc chọn mô hình khác.",
-      "th": "การเขียนใหม่เสร็จสิ้นแต่ไม่พบข้อความ ลองอีกครั้งหรือเลือกโมเดลอื่น",
-      "tr": "Yeniden yazma tamamlandı ancak metin oluşturulamadı. Tekrar deneyin veya başka bir model seçin.",
-      "uk": "Переписування завершено, але результат порожній. Повторіть спробу або виберіть іншу модель.",
-      "zh-Hans": "重写完成但未返回任何文本。请重试或选择其他模型。",
-      "zh-Hant": "改寫完成但未傳回任何文字。請再試一次或選擇其他模型。",
-      "pa-PK": "دوبارہ لکھنا مکمل ہو گیا اے پر کوئی متن واپس نہیں آیا۔ دوبارہ کوشش کرو یا کوئی ہور ماڈل چُنو۔",
-      "hi-Latn": "Phir se likhna poora ho gaya lekin koi text wapas nahi mila. Phir se koshish karein ya koi anya model chunein."
-    },
-    "models": {
-      "ar": "qwen/qwen3.6-35b-a3b",
-      "pt-BR": "qwen/qwen3.6-35b-a3b",
-      "ca": "qwen/qwen3.6-35b-a3b",
-      "bn": "qwen/qwen3.6-35b-a3b",
-      "zh-TW": "qwen/qwen3.6-35b-a3b",
-      "zh-CN": "qwen/qwen3.6-35b-a3b",
-      "cs": "qwen/qwen3.6-35b-a3b",
-      "hr": "qwen/qwen3.6-35b-a3b",
-      "en-US": "qwen/qwen3.6-35b-a3b",
-      "fr": "qwen/qwen3.6-35b-a3b",
-      "nl": "qwen/qwen3.6-35b-a3b",
-      "tl": "qwen/qwen3.6-35b-a3b",
-      "de": "qwen/qwen3.6-35b-a3b",
-      "hi": "qwen/qwen3.6-35b-a3b",
-      "hu": "qwen/qwen3.6-35b-a3b",
-      "el": "qwen/qwen3.6-35b-a3b",
-      "ja": "qwen/qwen3.6-35b-a3b",
-      "ko": "qwen/qwen3.6-35b-a3b",
-      "it": "qwen/qwen3.6-35b-a3b",
-      "ms": "qwen/qwen3.6-35b-a3b",
-      "pt": "qwen/qwen3.6-35b-a3b",
-      "fa": "qwen/qwen3.6-35b-a3b",
-      "jv": "qwen/qwen3.6-35b-a3b",
-      "pl": "qwen/qwen3.6-35b-a3b",
-      "sk": "qwen/qwen3.6-35b-a3b",
-      "ru": "qwen/qwen3.6-35b-a3b",
-      "ro": "qwen/qwen3.6-35b-a3b",
-      "pa": "qwen/qwen3.6-35b-a3b",
-      "sv": "qwen/qwen3.6-35b-a3b",
-      "es": "qwen/qwen3.6-35b-a3b",
-      "sw": "qwen/qwen3.6-35b-a3b",
-      "te": "qwen/qwen3.6-35b-a3b",
-      "vi": "qwen/qwen3.6-35b-a3b",
-      "th": "qwen/qwen3.6-35b-a3b",
-      "tr": "qwen/qwen3.6-35b-a3b",
-      "uk": "qwen/qwen3.6-35b-a3b",
-      "zh-Hans": "google/gemini-2.5-flash-lite",
-      "zh-Hant": "google/gemini-2.5-flash-lite",
-      "pa-PK": "google/gemini-2.5-flash",
-      "hi-Latn": "google/gemini-2.5-flash"
-    },
-    "locations": [
-      {
-        "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 534
+        "line": 528
       }
     ]
   },
@@ -55024,7 +54535,7 @@
     "locations": [
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 797
+        "line": 867
       }
     ]
   },
@@ -55117,23 +54628,23 @@
     "locations": [
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 848
+        "line": 921
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 849
+        "line": 922
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 860
+        "line": 934
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 880
+        "line": 955
       },
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 915
+        "line": 995
       },
       {
         "file": "src/renderer/hooks/useTransformPrompts.ts",
@@ -55234,7 +54745,7 @@
     "locations": [
       {
         "file": "src/renderer/hooks/useProcessing.ts",
-        "line": 848
+        "line": 921
       }
     ]
   },
@@ -55331,6 +54842,1221 @@
       }
     ]
   },
+  "903233fa": {
+    "source": "No API key or endpoint is configured for this provider. Open Settings and add your API key or local server URL.",
+    "translated": {
+      "zh-Hant": "尚未為此供應商設定 API 金鑰或端點。請開啟「設定」並新增您的 API 金鑰或本機伺服器 URL。",
+      "fr": "Aucune clé API ou point de terminaison n'est configuré pour ce fournisseur. Ouvrez les paramètres et ajoutez votre clé API ou l'URL du serveur local.",
+      "zh-Hans": "未为此提供商配置 API 密钥或端点。请打开设置并添加您的 API 密钥或本地服务器 URL。",
+      "de": "Für diesen Anbieter ist kein API-Schlüssel oder Endpunkt konfiguriert. Öffne die Einstellungen und füge deinen API-Schlüssel oder die lokale Server-URL hinzu.",
+      "ar": "لم يتم تكوين مفتاح API أو نقطة نهاية لهذا المزوّد. افتح الإعدادات وأضف مفتاح API أو رابط الخادم المحلي.",
+      "nl": "Er is geen API-sleutel of eindpunt geconfigureerd voor deze provider. Open Instellingen en voeg je API-sleutel of lokale server-URL toe.",
+      "cs": "Pro tohoto poskytovatele není nastaven žádný API klíč ani koncový bod. Otevřete Nastavení a přidejte svůj API klíč nebo adresu URL místního serveru.",
+      "el": "Δεν έχει διαμορφωθεί κλειδί API ή τελικό σημείο για αυτόν τον πάροχο. Ανοίξτε τις Ρυθμίσεις και προσθέστε το κλειδί API σας ή τη διεύθυνση URL του τοπικού διακομιστή.",
+      "ko": "이 제공자에 대해 API 키 또는 엔드포인트가 구성되지 않았습니다. 설정을 열어 API 키 또는 로컬 서버 URL을 추가하세요.",
+      "pt-BR": "Nenhuma chave de API ou endpoint configurado para este provedor. Abra as Configurações e adicione sua chave de API ou a URL do servidor local.",
+      "it": "Nessuna chiave API o endpoint configurato per questo provider. Apri Impostazioni e aggiungi la tua chiave API o l'URL del server locale.",
+      "ja": "このプロバイダーにはAPIキーまたはエンドポイントが設定されていません。設定を開き、APIキーまたはローカルサーバーのURLを追加してください。",
+      "pl": "Nie skonfigurowano klucza API ani punktu końcowego dla tego dostawcy. Otwórz Ustawienia i dodaj klucz API lub adres URL lokalnego serwera.",
+      "hi": "इस प्रदाता के लिए कोई API कुंजी या एंडपॉइंट कॉन्फ़िगर नहीं है। सेटिंग खोलें और अपनी API कुंजी या स्थानीय सर्वर URL जोड़ें।",
+      "hu": "Ehhez a szolgáltatóhoz nincs beállítva API-kulcs vagy végpont. Nyisd meg a Beállításokat, és add meg az API-kulcsot vagy a helyi kiszolgáló URL-jét.",
+      "fa": "کلید API یا آدرس سرویس‌دهنده‌ای برای این ارائه‌دهنده تنظیم نشده است. تنظیمات را باز کنید و کلید API یا آدرس سرور محلی خود را وارد کنید.",
+      "es": "No hay ninguna clave de API ni punto de conexión configurados para este proveedor. Abre Ajustes y añade tu clave de API o la URL del servidor local.",
+      "sv": "Ingen API-nyckel eller slutpunkt har angetts för den här leverantören. Öppna Inställningar och lägg till din API-nyckel eller lokala serveradress.",
+      "tr": "Bu sağlayıcı için API anahtarı veya uç nokta yapılandırılmamış. Ayarlar'ı açın ve API anahtarınızı veya yerel sunucu URL'nizi ekleyin.",
+      "ro": "Nu este configurată nicio cheie API sau adresă pentru acest furnizor. Deschideți Setări și adăugați cheia API sau URL-ul serverului local.",
+      "ru": "Не задан ключ API или конечная точка для этого провайдера. Откройте настройки и укажите ключ API или URL локального сервера.",
+      "uk": "Для цього постачальника не налаштовано ключ API або кінцеву точку. Відкрийте «Налаштування» та додайте ключ API або URL локального сервера.",
+      "sk": "Pre tohto poskytovateľa nie je nastavený API kľúč ani koncový bod. Otvorte Nastavenia a pridajte svoj API kľúč alebo adresu URL lokálneho servera.",
+      "th": "ไม่ได้ตั้งค่าคีย์ API หรือปลายทางสำหรับผู้ให้บริการนี้ โปรดเปิดการตั้งค่าแล้วเพิ่มคีย์ API หรือ URL เซิร์ฟเวอร์ในเครื่องของคุณ",
+      "vi": "Chưa cấu hình khóa API hoặc điểm cuối cho nhà cung cấp này. Mở Cài đặt và thêm khóa API hoặc URL máy chủ cục bộ của bạn."
+    },
+    "models": {
+      "zh-Hant": "z-ai/glm-5.2",
+      "fr": "~anthropic/claude-sonnet-latest",
+      "zh-Hans": "z-ai/glm-5.2",
+      "de": "~anthropic/claude-sonnet-latest",
+      "ar": "~anthropic/claude-sonnet-latest",
+      "nl": "~anthropic/claude-sonnet-latest",
+      "cs": "~anthropic/claude-sonnet-latest",
+      "el": "~anthropic/claude-sonnet-latest",
+      "ko": "z-ai/glm-5.2",
+      "pt-BR": "~anthropic/claude-sonnet-latest",
+      "it": "~anthropic/claude-sonnet-latest",
+      "ja": "z-ai/glm-5.2",
+      "pl": "~anthropic/claude-sonnet-latest",
+      "hi": "~anthropic/claude-sonnet-latest",
+      "hu": "~anthropic/claude-sonnet-latest",
+      "fa": "~anthropic/claude-sonnet-latest",
+      "es": "~anthropic/claude-sonnet-latest",
+      "sv": "~anthropic/claude-sonnet-latest",
+      "tr": "~anthropic/claude-sonnet-latest",
+      "ro": "~anthropic/claude-sonnet-latest",
+      "ru": "~anthropic/claude-sonnet-latest",
+      "uk": "~anthropic/claude-sonnet-latest",
+      "sk": "~anthropic/claude-sonnet-latest",
+      "th": "~anthropic/claude-sonnet-latest",
+      "vi": "~anthropic/claude-sonnet-latest"
+    },
+    "locations": [
+      {
+        "file": "src/renderer/utils/misc/apiErrorDisplay.ts",
+        "line": 164
+      }
+    ]
+  },
+  "85e333c6": {
+    "source": "Authentication failed. Check your API key in Settings and try again.",
+    "translated": {
+      "zh-Hant": "驗證失敗。請在「設定」中檢查您的 API 金鑰並再試一次。",
+      "fr": "Échec de l'authentification. Vérifiez votre clé API dans les paramètres et réessayez.",
+      "zh-Hans": "身份验证失败。请在设置中检查您的 API 密钥并重试。",
+      "de": "Authentifizierung fehlgeschlagen. Überprüfe deinen API-Schlüssel in den Einstellungen und versuche es erneut.",
+      "ar": "فشلت المصادقة. تحقق من مفتاح API في الإعدادات وحاول مرة أخرى.",
+      "nl": "Authenticatie mislukt. Controleer je API-sleutel in Instellingen en probeer het opnieuw.",
+      "cs": "Ověření se nezdařilo. Zkontrolujte svůj API klíč v Nastavení a zkuste to znovu.",
+      "el": "Η ταυτοποίηση απέτυχε. Ελέγξτε το κλειδί API σας στις Ρυθμίσεις και δοκιμάστε ξανά.",
+      "ko": "인증에 실패했습니다. 설정에서 API 키를 확인하고 다시 시도하세요.",
+      "pt-BR": "Falha na autenticação. Verifique sua chave de API nas Configurações e tente novamente.",
+      "it": "Autenticazione non riuscita. Controlla la tua chiave API in Impostazioni e riprova.",
+      "ja": "認証に失敗しました。設定でAPIキーを確認して、もう一度お試しください。",
+      "pl": "Uwierzytelnianie nie powiodło się. Sprawdź klucz API w Ustawieniach i spróbuj ponownie.",
+      "hi": "प्रमाणीकरण विफल रहा। सेटिंग में अपनी API कुंजी जाँचें और फिर से प्रयास करें।",
+      "hu": "Sikertelen hitelesítés. Ellenőrizd az API-kulcsot a Beállításokban, majd próbáld újra.",
+      "fa": "احراز هویت ناموفق بود. کلید API خود را در تنظیمات بررسی کنید و دوباره تلاش کنید.",
+      "es": "Error de autenticación. Comprueba tu clave de API en Ajustes e inténtalo de nuevo.",
+      "sv": "Autentiseringen misslyckades. Kontrollera din API-nyckel i Inställningar och försök igen.",
+      "tr": "Kimlik doğrulama başarısız oldu. Ayarlar'daki API anahtarınızı kontrol edip tekrar deneyin.",
+      "ro": "Autentificare eșuată. Verificați cheia API din Setări și încercați din nou.",
+      "ru": "Ошибка аутентификации. Проверьте ключ API в настройках и попробуйте снова.",
+      "uk": "Помилка автентифікації. Перевірте ключ API в налаштуваннях і спробуйте ще раз.",
+      "sk": "Overenie zlyhalo. Skontrolujte svoj API kľúč v Nastaveniach a skúste to znova.",
+      "th": "การยืนยันตัวตนล้มเหลว โปรดตรวจสอบคีย์ API ของคุณในการตั้งค่าแล้วลองอีกครั้ง",
+      "vi": "Xác thực thất bại. Kiểm tra khóa API của bạn trong Cài đặt và thử lại."
+    },
+    "models": {
+      "zh-Hant": "z-ai/glm-5.2",
+      "fr": "~anthropic/claude-sonnet-latest",
+      "zh-Hans": "z-ai/glm-5.2",
+      "de": "~anthropic/claude-sonnet-latest",
+      "ar": "~anthropic/claude-sonnet-latest",
+      "nl": "~anthropic/claude-sonnet-latest",
+      "cs": "~anthropic/claude-sonnet-latest",
+      "el": "~anthropic/claude-sonnet-latest",
+      "ko": "z-ai/glm-5.2",
+      "pt-BR": "~anthropic/claude-sonnet-latest",
+      "it": "~anthropic/claude-sonnet-latest",
+      "ja": "z-ai/glm-5.2",
+      "pl": "~anthropic/claude-sonnet-latest",
+      "hi": "~anthropic/claude-sonnet-latest",
+      "hu": "~anthropic/claude-sonnet-latest",
+      "fa": "~anthropic/claude-sonnet-latest",
+      "es": "~anthropic/claude-sonnet-latest",
+      "sv": "~anthropic/claude-sonnet-latest",
+      "tr": "~anthropic/claude-sonnet-latest",
+      "ro": "~anthropic/claude-sonnet-latest",
+      "ru": "~anthropic/claude-sonnet-latest",
+      "uk": "~anthropic/claude-sonnet-latest",
+      "sk": "~anthropic/claude-sonnet-latest",
+      "th": "~anthropic/claude-sonnet-latest",
+      "vi": "~anthropic/claude-sonnet-latest"
+    },
+    "locations": [
+      {
+        "file": "src/renderer/utils/misc/apiErrorDisplay.ts",
+        "line": 168
+      }
+    ]
+  },
+  "8f09cbfa": {
+    "source": "Rate limit exceeded. The provider is asking you to slow down.\n\nWait a few seconds and try again. A paid API key usually has higher limits.",
+    "translated": {
+      "zh-Hant": "已超過速率限制。供應商要求您放慢速度。\n\n請稍候幾秒再試一次。付費 API 金鑰通常有較高的限制。",
+      "fr": "Limite de débit dépassée. Le fournisseur vous demande de ralentir.\n\nAttendez quelques secondes et réessayez. Une clé API payante offre généralement des limites plus élevées.",
+      "zh-Hans": "超出速率限制。提供商要求您降低请求频率。\n\n请等待几秒钟后重试。付费 API 密钥通常具有更高的限制。",
+      "de": "Rate-Limit überschritten. Der Anbieter bittet dich, langsamer zu machen.\n\nWarte ein paar Sekunden und versuche es erneut. Ein kostenpflichtiger API-Schlüssel hat meist höhere Limits.",
+      "ar": "تم تجاوز حد الطلبات. يطلب منك المزوّد الإبطاء.\n\nانتظر بضع ثوانٍ وحاول مرة أخرى. عادةً ما يوفر مفتاح API المدفوع حدودًا أعلى.",
+      "nl": "Snelheidslimiet overschreden. De provider vraagt je om te vertragen.\n\nWacht een paar seconden en probeer het opnieuw. Een betaalde API-sleutel heeft meestal hogere limieten.",
+      "cs": "Překročen limit požadavků. Poskytovatel vás žádá, abyste zpomalili.\n\nPočkejte pár sekund a zkuste to znovu. Placený API klíč obvykle má vyšší limity.",
+      "el": "Υπέρβαση ορίου αιτημάτων. Ο πάροχος σάς ζητά να μειώσετε τον ρυθμό αιτημάτων.\n\nΠεριμένετε λίγα δευτερόλεπτα και δοκιμάστε ξανά. Ένα επί πληρωμή κλειδί API συνήθως έχει υψηλότερα όρια.",
+      "ko": "요청 한도를 초과했습니다. 제공자가 요청 속도를 낮춰달라고 요청하고 있습니다.\n\n몇 초 후에 다시 시도하세요. 유료 API 키는 일반적으로 더 높은 한도를 제공합니다.",
+      "pt-BR": "Limite de requisições excedido. O provedor está pedindo para você reduzir a frequência.\n\nAguarde alguns segundos e tente novamente. Uma chave de API paga geralmente tem limites mais altos.",
+      "it": "Limite di richieste superato. Il provider chiede di rallentare.\n\nAttendi qualche secondo e riprova. Una chiave API a pagamento in genere ha limiti più alti.",
+      "ja": "レート制限を超過しました。プロバイダーはリクエストを減らすよう求めています。\n\n数秒待ってからもう一度お試しください。有料のAPIキーを使用すると、通常は制限が緩和されます。",
+      "pl": "Przekroczono limit żądań. Dostawca prosi o zwolnienie tempa.\n\nOdczekaj kilka sekund i spróbuj ponownie. Płatny klucz API zwykle ma wyższe limity.",
+      "hi": "दर सीमा पार हो गई। प्रदाता आपसे धीमा करने के लिए कह रहा है।\n\nकुछ सेकंड रुकें और फिर से प्रयास करें। भुगतान वाली API कुंजी में आमतौर पर सीमाएँ अधिक होती हैं।",
+      "hu": "Túllépted a kérési korlátot. A szolgáltató lassításra kér.\n\nVárj néhány másodpercet, majd próbáld újra. A fizetős API-kulcsokhoz általában magasabb korlátok tartoznak.",
+      "fa": "محدودیت نرخ درخواست بیش از حد شد. ارائه‌دهنده از شما می‌خواهد سرعت را کاهش دهید.\n\nچند ثانیه صبر کنید و دوباره تلاش کنید. کلید API پولی معمولاً محدودیت بالاتری دارد.",
+      "es": "Límite de solicitudes superado. El proveedor te pide que reduzcas la frecuencia.\n\nEspera unos segundos e inténtalo de nuevo. Una clave de API de pago suele tener límites más altos.",
+      "sv": "Hastighetsgränsen har överskridits. Leverantören ber dig att sakta ner.\n\nVänta några sekunder och försök igen. En betald API-nyckel har oftast högre gränser.",
+      "tr": "İstek sınırı aşıldı. Sağlayıcı hızınızı düşürmenizi istiyor.\n\nBirkaç saniye bekleyip tekrar deneyin. Ücretli bir API anahtarının genellikle daha yüksek limitleri vardır.",
+      "ro": "Limita de solicitări a fost depășită. Furnizorul vă cere să încetiniți.\n\nAșteptați câteva secunde și încercați din nou. O cheie API plătită are de obicei limite mai mari.",
+      "ru": "Превышен лимit запросов. Провайдер просит снизить частоту обращений.\n\nПодождите несколько секунд и попробуйте снова. Платный ключ API обычно имеет более высокие лимиты.",
+      "uk": "Перевищено ліміт запитів. Постачальник просить знизити частоту звернень.\n\nЗачекайте кілька секунд і спробуйте ще раз. Платний ключ API зазвичай має вищі ліміти.",
+      "sk": "Prekročený limit požiadaviek. Poskytovateľ vás žiada, aby ste spomalili.\n\nPočkajte niekoľko sekúnd a skúste to znova. Platený API kľúč zvyčajne má vyššie limity.",
+      "th": "เกินขีดจำกัดการใช้งาน ผู้ให้บริการขอให้คุณลดความถี่ในการเรียกใช้งาน\n\nโปรดรอสักครู่แล้วลองอีกครั้ง คีย์ API แบบชำระเงินมักมีขีดจำกัดที่สูงกว่า",
+      "vi": "Đã vượt quá giới hạn tốc độ. Nhà cung cấp yêu cầu bạn giảm tốc độ gửi.\n\nChờ vài giây rồi thử lại. Khóa API trả phí thường có giới hạn cao hơn."
+    },
+    "models": {
+      "zh-Hant": "z-ai/glm-5.2",
+      "fr": "~anthropic/claude-sonnet-latest",
+      "zh-Hans": "z-ai/glm-5.2",
+      "de": "~anthropic/claude-sonnet-latest",
+      "ar": "~anthropic/claude-sonnet-latest",
+      "nl": "~anthropic/claude-sonnet-latest",
+      "cs": "~anthropic/claude-sonnet-latest",
+      "el": "~anthropic/claude-sonnet-latest",
+      "ko": "z-ai/glm-5.2",
+      "pt-BR": "~anthropic/claude-sonnet-latest",
+      "it": "~anthropic/claude-sonnet-latest",
+      "ja": "z-ai/glm-5.2",
+      "pl": "~anthropic/claude-sonnet-latest",
+      "hi": "~anthropic/claude-sonnet-latest",
+      "hu": "~anthropic/claude-sonnet-latest",
+      "fa": "~anthropic/claude-sonnet-latest",
+      "es": "~anthropic/claude-sonnet-latest",
+      "sv": "~anthropic/claude-sonnet-latest",
+      "tr": "~anthropic/claude-sonnet-latest",
+      "ro": "~anthropic/claude-sonnet-latest",
+      "ru": "~anthropic/claude-sonnet-latest",
+      "uk": "~anthropic/claude-sonnet-latest",
+      "sk": "~anthropic/claude-sonnet-latest",
+      "th": "~anthropic/claude-sonnet-latest",
+      "vi": "~anthropic/claude-sonnet-latest"
+    },
+    "locations": [
+      {
+        "file": "src/renderer/utils/misc/apiErrorDisplay.ts",
+        "line": 170
+      }
+    ]
+  },
+  "ff9e1ea6": {
+    "source": "Insufficient credits or payment required. Check your provider account balance and try again.",
+    "translated": {
+      "zh-Hant": "餘額不足或需要付款。請檢查您的供應商帳戶餘額並再試一次。",
+      "fr": "Crédits insuffisants ou paiement requis. Vérifiez le solde de votre compte auprès du fournisseur et réessayez.",
+      "zh-Hans": "余额不足或需要付款。请检查您的提供商账户余额并重试。",
+      "de": "Unzureichendes Guthaben oder Zahlung erforderlich. Überprüfe dein Anbieterkonto und versuche es erneut.",
+      "ar": "الرصيد غير كافٍ أو الدفع مطلوب. تحقق من رصيد حسابك لدى المزوّد وحاول مرة أخرى.",
+      "nl": "Onvoldoende tegoed of betaling vereist. Controleer je providersaldo en probeer het opnieuw.",
+      "cs": "Nedostatek kreditu nebo je vyžadována platba. Zkontrolujte zůstatek účtu u poskytovatele a zkuste to znovu.",
+      "el": "Ανεπαρκής πίστωση ή απαιτείται πληρωμή. Ελέγξτε το υπόλοιπο του λογαριασμού σας στον πάροχο και δοκιμάστε ξανά.",
+      "ko": "크레딧이 부족하거나 결제가 필요합니다. 제공자 계정 잔액을 확인하고 다시 시도하세요.",
+      "pt-BR": "Créditos insuficientes ou pagamento necessário. Verifique o saldo da sua conta no provedor e tente novamente.",
+      "it": "Credito insufficiente o pagamento richiesto. Controlla il saldo del tuo account provider e riprova.",
+      "ja": "クレジットが不足しているか、支払いが必要です。プロバイダーのアカウント残高を確認して、もう一度お試しください。",
+      "pl": "Niewystarczające środki lub wymagana płatność. Sprawdź saldo konta u dostawcy i spróbuj ponownie.",
+      "hi": "क्रेडिट अपर्याप्त हैं या भुगतान आवश्यक है। अपने प्रदाता खाते का शेष जाँचें और फिर से प्रयास करें।",
+      "hu": "Nincs elég egyenleg, vagy fizetés szükséges. Ellenőrizd a szolgáltatói fiókod egyenlegét, majd próbáld újra.",
+      "fa": "اعتبار ناکافی است یا پرداخت لازم است. موجودی حساب ارائه‌دهنده خود را بررسی کنید و دوباره تلاش کنید.",
+      "es": "Créditos insuficientes o se requiere pago. Comprueba el saldo de tu cuenta del proveedor e inténtalo de nuevo.",
+      "sv": "Otillräckligt saldo eller betalning krävs. Kontrollera ditt kontosaldo hos leverantören och försök igen.",
+      "tr": "Yetersiz bakiye veya ödeme gerekiyor. Sağlayıcı hesap bakiyenizi kontrol edip tekrar deneyin.",
+      "ro": "Credit insuficient sau este necesară plata. Verificați soldul contului la furnizor și încercați din nou.",
+      "ru": "Недостаточно средств или требуется оплата. Проверьте баланс аккаунта у провайдера и попробуйте снова.",
+      "uk": "Недостатньо коштів або потрібна оплата. Перевірте баланс облікового запису постачальника і спробуйте ще раз.",
+      "sk": "Nedostatočný kredit alebo je potrebná platba. Skontrolujte zostatok na účte u poskytovateľa a skúste to znova.",
+      "th": "เครดิตไม่เพียงพอหรือต้องชำระเงิน โปรดตรวจสอบยอดคงเหลือในบัญชีผู้ให้บริการของคุณแล้วลองอีกครั้ง",
+      "vi": "Không đủ tín dụng hoặc cần thanh toán. Kiểm tra số dư tài khoản nhà cung cấp của bạn rồi thử lại."
+    },
+    "models": {
+      "zh-Hant": "z-ai/glm-5.2",
+      "fr": "~anthropic/claude-sonnet-latest",
+      "zh-Hans": "z-ai/glm-5.2",
+      "de": "~anthropic/claude-sonnet-latest",
+      "ar": "~anthropic/claude-sonnet-latest",
+      "nl": "~anthropic/claude-sonnet-latest",
+      "cs": "~anthropic/claude-sonnet-latest",
+      "el": "~anthropic/claude-sonnet-latest",
+      "ko": "z-ai/glm-5.2",
+      "pt-BR": "~anthropic/claude-sonnet-latest",
+      "it": "~anthropic/claude-sonnet-latest",
+      "ja": "z-ai/glm-5.2",
+      "pl": "~anthropic/claude-sonnet-latest",
+      "hi": "~anthropic/claude-sonnet-latest",
+      "hu": "~anthropic/claude-sonnet-latest",
+      "fa": "~anthropic/claude-sonnet-latest",
+      "es": "~anthropic/claude-sonnet-latest",
+      "sv": "~anthropic/claude-sonnet-latest",
+      "tr": "~anthropic/claude-sonnet-latest",
+      "ro": "~anthropic/claude-sonnet-latest",
+      "ru": "~anthropic/claude-sonnet-latest",
+      "uk": "~anthropic/claude-sonnet-latest",
+      "sk": "~anthropic/claude-sonnet-latest",
+      "th": "~anthropic/claude-sonnet-latest",
+      "vi": "~anthropic/claude-sonnet-latest"
+    },
+    "locations": [
+      {
+        "file": "src/renderer/utils/misc/apiErrorDisplay.ts",
+        "line": 174
+      }
+    ]
+  },
+  "2e5874a4": {
+    "source": "This model is not available with your current API key or plan. Try a different model.",
+    "translated": {
+      "zh-Hant": "目前的 API 金鑰或方案無法使用此模型。請嘗試其他模型。",
+      "fr": "Ce modèle n'est pas disponible avec votre clé API ou votre offre actuelle. Essayez un autre modèle.",
+      "zh-Hans": "当前的 API 密钥或套餐不支持此模型。请尝试其他模型。",
+      "de": "Dieses Modell ist mit deinem aktuellen API-Schlüssel oder Tarif nicht verfügbar. Versuche ein anderes Modell.",
+      "ar": "هذا النموذج غير متاح مع مفتاح API أو الخطة الحالية. جرّب نموذجًا آخر.",
+      "nl": "Dit model is niet beschikbaar met je huidige API-sleutel of abonnement. Probeer een ander model.",
+      "cs": "Tento model není dostupný s vaším aktuálním API klíčem nebo tarifem. Zkuste jiný model.",
+      "el": "Αυτό το μοντέλο δεν είναι διαθέσιμο με το τρέχον κλειδί API ή πλάνο σας. Δοκιμάστε ένα διαφορετικό μοντέλο.",
+      "ko": "현재 API 키 또는 플랜에서는 이 모델을 사용할 수 없습니다. 다른 모델을 시도해 보세요.",
+      "pt-BR": "Este modelo não está disponível com sua chave de API ou plano atual. Tente um modelo diferente.",
+      "it": "Questo modello non è disponibile con la tua chiave API o il tuo piano attuale. Prova un modello diverso.",
+      "ja": "現在のAPIキーまたはプランでは、このモデルは利用できません。別のモデルをお試しください。",
+      "pl": "Ten model jest niedostępny dla Twojego obecnego klucza API lub planu. Wybierz inny model.",
+      "hi": "यह मॉडल आपकी वर्तमान API कुंजी या प्लान के साथ उपलब्ध नहीं है। कोई दूसरा मॉडल आज़माएँ।",
+      "hu": "Ez a modell nem érhető el a jelenlegi API-kulcsoddal vagy előfizetéseddel. Próbálj ki egy másik modellt.",
+      "fa": "این مدل با کلید API یا طرح فعلی شما در دسترس نیست. مدل دیگری را امتحان کنید.",
+      "es": "Este modelo no está disponible con tu clave de API o plan actual. Prueba con otro modelo.",
+      "sv": "Den här modellen är inte tillgänglig med din nuvarande API-nyckel eller plan. Prova en annan modell.",
+      "tr": "Bu model, mevcut API anahtarınız veya planınızla kullanılamıyor. Farklı bir model deneyin.",
+      "ro": "Acest model nu este disponibil cu cheia API sau planul dvs. curent. Încercați un alt model.",
+      "ru": "Эта модель недоступна с текущим ключом API или тарифом. Попробуйте другую модель.",
+      "uk": "Ця модель недоступна для вашого поточного ключа API або тарифного плану. Спробуйте іншу модель.",
+      "sk": "Tento model nie je dostupný s vaším aktuálnym API kľúčom alebo plánom. Skúste iný model.",
+      "th": "โมเดลนี้ไม่พร้อมใช้งานกับคีย์ API หรือแพ็กเกจปัจจุบันของคุณ โปรดลองใช้โมเดลอื่น",
+      "vi": "Mô hình này không khả dụng với khóa API hoặc gói hiện tại của bạn. Hãy thử một mô hình khác."
+    },
+    "models": {
+      "zh-Hant": "z-ai/glm-5.2",
+      "fr": "~anthropic/claude-sonnet-latest",
+      "zh-Hans": "z-ai/glm-5.2",
+      "de": "~anthropic/claude-sonnet-latest",
+      "ar": "~anthropic/claude-sonnet-latest",
+      "nl": "~anthropic/claude-sonnet-latest",
+      "cs": "~anthropic/claude-sonnet-latest",
+      "el": "~anthropic/claude-sonnet-latest",
+      "ko": "z-ai/glm-5.2",
+      "pt-BR": "~anthropic/claude-sonnet-latest",
+      "it": "~anthropic/claude-sonnet-latest",
+      "ja": "z-ai/glm-5.2",
+      "pl": "~anthropic/claude-sonnet-latest",
+      "hi": "~anthropic/claude-sonnet-latest",
+      "hu": "~anthropic/claude-sonnet-latest",
+      "fa": "~anthropic/claude-sonnet-latest",
+      "es": "~anthropic/claude-sonnet-latest",
+      "sv": "~anthropic/claude-sonnet-latest",
+      "tr": "~anthropic/claude-sonnet-latest",
+      "ro": "~anthropic/claude-sonnet-latest",
+      "ru": "~anthropic/claude-sonnet-latest",
+      "uk": "~anthropic/claude-sonnet-latest",
+      "sk": "~anthropic/claude-sonnet-latest",
+      "th": "~anthropic/claude-sonnet-latest",
+      "vi": "~anthropic/claude-sonnet-latest"
+    },
+    "locations": [
+      {
+        "file": "src/renderer/utils/misc/apiErrorDisplay.ts",
+        "line": 178
+      }
+    ]
+  },
+  "faea1c74": {
+    "source": "The selected model is unavailable. Choose a different model and try again.",
+    "translated": {
+      "zh-Hant": "所選的模型無法使用。請選擇其他模型並再試一次。",
+      "fr": "Le modèle sélectionné n'est pas disponible. Choisissez un autre modèle et réessayez.",
+      "zh-Hans": "所选模型不可用。请选择其他模型并重试。",
+      "de": "Das ausgewählte Modell ist nicht verfügbar. Wähle ein anderes Modell und versuche es erneut.",
+      "ar": "النموذج المحدد غير متاح. اختر نموذجًا آخر وحاول مرة أخرى.",
+      "nl": "Het geselecteerde model is niet beschikbaar. Kies een ander model en probeer het opnieuw.",
+      "cs": "Vybraný model není dostupný. Vyberte jiný model a zkuste to znovu.",
+      "el": "Το επιλεγμένο μοντέλο δεν είναι διαθέσιμο. Επιλέξτε διαφορετικό μοντέλο και δοκιμάστε ξανά.",
+      "ko": "선택한 모델을 사용할 수 없습니다. 다른 모델을 선택하고 다시 시도하세요.",
+      "pt-BR": "O modelo selecionado não está disponível. Escolha outro modelo e tente novamente.",
+      "it": "Il modello selezionato non è disponibile. Scegli un modello diverso e riprova.",
+      "ja": "選択したモデルは利用できません。別のモデルを選択して、もう一度お試しください。",
+      "pl": "Wybrany model jest niedostępny. Wybierz inny model i spróbuj ponownie.",
+      "hi": "चयनित मॉडल उपलब्ध नहीं है। कोई दूसरा मॉडल चुनें और फिर से प्रयास करें।",
+      "hu": "A kiválasztott modell nem érhető el. Válassz másik modellt, majd próbáld újra.",
+      "fa": "مدل انتخاب‌شده در دسترس نیست. مدل دیگری را انتخاب کنید و دوباره تلاش کنید.",
+      "es": "El modelo seleccionado no está disponible. Elige otro modelo e inténtalo de nuevo.",
+      "sv": "Den valda modellen är inte tillgänglig. Välj en annan modell och försök igen.",
+      "tr": "Seçili model kullanılamıyor. Farklı bir model seçip tekrar deneyin.",
+      "ro": "Modelul selectat nu este disponibil. Alegeți un alt model și încercați din nou.",
+      "ru": "Выбранная модель недоступна. Выберите другую модель и попробуйте снова.",
+      "uk": "Вибрана модель недоступна. Оберіть іншу модель і спробуйте ще раз.",
+      "sk": "Vybraný model nie je dostupný. Vyberte iný model a skúste to znova.",
+      "th": "โมเดลที่เลือกไม่พร้อมใช้งาน โปรดเลือกโมเดลอื่นแล้วลองอีกครั้ง",
+      "vi": "Mô hình đã chọn không khả dụng. Chọn mô hình khác rồi thử lại."
+    },
+    "models": {
+      "zh-Hant": "z-ai/glm-5.2",
+      "fr": "~anthropic/claude-sonnet-latest",
+      "zh-Hans": "z-ai/glm-5.2",
+      "de": "~anthropic/claude-sonnet-latest",
+      "ar": "~anthropic/claude-sonnet-latest",
+      "nl": "~anthropic/claude-sonnet-latest",
+      "cs": "~anthropic/claude-sonnet-latest",
+      "el": "~anthropic/claude-sonnet-latest",
+      "ko": "z-ai/glm-5.2",
+      "pt-BR": "~anthropic/claude-sonnet-latest",
+      "it": "~anthropic/claude-sonnet-latest",
+      "ja": "z-ai/glm-5.2",
+      "pl": "~anthropic/claude-sonnet-latest",
+      "hi": "~anthropic/claude-sonnet-latest",
+      "hu": "~anthropic/claude-sonnet-latest",
+      "fa": "~anthropic/claude-sonnet-latest",
+      "es": "~anthropic/claude-sonnet-latest",
+      "sv": "~anthropic/claude-sonnet-latest",
+      "tr": "~anthropic/claude-sonnet-latest",
+      "ro": "~anthropic/claude-sonnet-latest",
+      "ru": "~anthropic/claude-sonnet-latest",
+      "uk": "~anthropic/claude-sonnet-latest",
+      "sk": "~anthropic/claude-sonnet-latest",
+      "th": "~anthropic/claude-sonnet-latest",
+      "vi": "~anthropic/claude-sonnet-latest"
+    },
+    "locations": [
+      {
+        "file": "src/renderer/utils/misc/apiErrorDisplay.ts",
+        "line": 182
+      }
+    ]
+  },
+  "5070f518": {
+    "source": "The request timed out. Check your connection and try again.",
+    "translated": {
+      "zh-Hant": "請求逾時。請檢查您的連線並再試一次。",
+      "fr": "La requête a expiré. Vérifiez votre connexion et réessayez.",
+      "zh-Hans": "请求超时。请检查您的连接并重试。",
+      "de": "Zeitüberschreitung bei der Anfrage. Überprüfe deine Verbindung und versuche es erneut.",
+      "ar": "انتهت مهلة الطلب. تحقق من اتصالك وحاول مرة أخرى.",
+      "nl": "De aanvraag is verlopen. Controleer je verbinding en probeer het opnieuw.",
+      "cs": "Vypršel časový limit požadavku. Zkontrolujte připojení a zkuste to znovu.",
+      "el": "Το αίτημα έληξε λόγω χρονικού ορίου. Ελέγξτε τη σύνδεσή σας και δοκιμάστε ξανά.",
+      "ko": "요청 시간이 초과되었습니다. 연결을 확인하고 다시 시도하세요.",
+      "pt-BR": "A solicitação expirou. Verifique sua conexão e tente novamente.",
+      "it": "Richiesta scaduta. Controlla la tua connessione e riprova.",
+      "ja": "リクエストがタイムアウトしました。接続を確認して、もう一度お試しください。",
+      "pl": "Upłynął limit czasu żądania. Sprawdź połączenie i spróbuj ponownie.",
+      "hi": "अनुरोध का समय समाप्त हो गया। अपना कनेक्शन जाँचें और फिर से प्रयास करें।",
+      "hu": "Időtúllépés történt a kérés során. Ellenőrizd a kapcsolatot, majd próbáld újra.",
+      "fa": "زمان درخواست به پایان رسید. اتصال خود را بررسی کنید و دوباره تلاش کنید.",
+      "es": "Se agotó el tiempo de espera de la solicitud. Comprueba tu conexión e inténtalo de nuevo.",
+      "sv": "Begäran gjorde timeout. Kontrollera din anslutning och försök igen.",
+      "tr": "İstek zaman aşımına uğradı. Bağlantınızı kontrol edip tekrar deneyin.",
+      "ro": "Solicitarea a expirat. Verificați conexiunea și încercați din nou.",
+      "ru": "Время ожидания запроса истекло. Проверьте подключение и попробуйте снова.",
+      "uk": "Час очікування запиту минув. Перевірте з'єднання і спробуйте ще раз.",
+      "sk": "Vypršal časový limit požiadavky. Skontrolujte pripojenie a skúste to znova.",
+      "th": "คำขอหมดเวลา โปรดตรวจสอบการเชื่อมต่อของคุณแล้วลองอีกครั้ง",
+      "vi": "Yêu cầu đã hết thời gian chờ. Kiểm tra kết nối của bạn rồi thử lại."
+    },
+    "models": {
+      "zh-Hant": "z-ai/glm-5.2",
+      "fr": "~anthropic/claude-sonnet-latest",
+      "zh-Hans": "z-ai/glm-5.2",
+      "de": "~anthropic/claude-sonnet-latest",
+      "ar": "~anthropic/claude-sonnet-latest",
+      "nl": "~anthropic/claude-sonnet-latest",
+      "cs": "~anthropic/claude-sonnet-latest",
+      "el": "~anthropic/claude-sonnet-latest",
+      "ko": "z-ai/glm-5.2",
+      "pt-BR": "~anthropic/claude-sonnet-latest",
+      "it": "~anthropic/claude-sonnet-latest",
+      "ja": "z-ai/glm-5.2",
+      "pl": "~anthropic/claude-sonnet-latest",
+      "hi": "~anthropic/claude-sonnet-latest",
+      "hu": "~anthropic/claude-sonnet-latest",
+      "fa": "~anthropic/claude-sonnet-latest",
+      "es": "~anthropic/claude-sonnet-latest",
+      "sv": "~anthropic/claude-sonnet-latest",
+      "tr": "~anthropic/claude-sonnet-latest",
+      "ro": "~anthropic/claude-sonnet-latest",
+      "ru": "~anthropic/claude-sonnet-latest",
+      "uk": "~anthropic/claude-sonnet-latest",
+      "sk": "~anthropic/claude-sonnet-latest",
+      "th": "~anthropic/claude-sonnet-latest",
+      "vi": "~anthropic/claude-sonnet-latest"
+    },
+    "locations": [
+      {
+        "file": "src/renderer/utils/misc/apiErrorDisplay.ts",
+        "line": 184
+      }
+    ]
+  },
+  "03b67060": {
+    "source": "Could not reach the provider. Check your internet connection, or that your local LLM server is running and the URL in Settings is correct.",
+    "translated": {
+      "zh-Hant": "無法連接至供應商。請檢查您的網際網路連線，或確認您的本機 LLM 伺服器正在執行且「設定」中的 URL 正確。",
+      "fr": "Impossible de joindre le fournisseur. Vérifiez votre connexion internet, ou que votre serveur LLM local est bien lancé et que l'URL dans les paramètres est correcte.",
+      "zh-Hans": "无法连接到提供商。请检查您的互联网连接，或确保本地 LLM 服务器正在运行且设置中的 URL 正确。",
+      "de": "Der Anbieter konnte nicht erreicht werden. Überprüfe deine Internetverbindung oder ob dein lokaler LLM-Server läuft und die URL in den Einstellungen korrekt ist.",
+      "ar": "تعذر الوصول إلى المزوّد. تحقق من اتصالك بالإنترنت، أو من أن خادم LLM المحلي يعمل وأن الرابط في الإعدادات صحيح.",
+      "nl": "Kan de provider niet bereiken. Controleer je internetverbinding, of dat je lokale LLM-server actief is en de URL in Instellingen correct is.",
+      "cs": "Nepodařilo se spojit s poskytovatelem. Zkontrolujte internetové připojení, nebo že váš místní LLM server běží a adresa URL v Nastavení je správná.",
+      "el": "Δεν ήταν δυνατή η επικοινωνία με τον πάροχο. Ελέγξτε τη σύνδεσή σας στο διαδίκτυο ή ότι ο τοπικός διακομιστής LLM εκτελείται και ότι η διεύθυνση URL στις Ρυθμίσεις είναι σωστή.",
+      "ko": "제공자에 연결할 수 없습니다. 인터넷 연결을 확인하거나, 로컬 LLM 서버가 실행 중이고 설정의 URL이 올바른지 확인하세요.",
+      "pt-BR": "Não foi possível conectar ao provedor. Verifique sua conexão com a internet, ou se o servidor local de LLM está em execução e a URL nas Configurações está correta.",
+      "it": "Impossibile contattare il provider. Controlla la tua connessione Internet o che il tuo server LLM locale sia attivo e che l'URL in Impostazioni sia corretto.",
+      "ja": "プロバイダーに接続できませんでした。インターネット接続を確認するか、ローカルLLMサーバーが実行中で、設定のURLが正しいことを確認してください。",
+      "pl": "Nie można połączyć się z dostawcą. Sprawdź połączenie internetowe lub upewnij się, że lokalny serwer LLM działa, a adres URL w Ustawieniach jest poprawny.",
+      "hi": "प्रदाता तक नहीं पहुँचा जा सका। अपना इंटरनेट कनेक्शन जाँचें, या देखें कि आपका स्थानीय LLM सर्वर चल रहा है और सेटिंग में URL सही है।",
+      "hu": "Nem sikerült elérni a szolgáltatót. Ellenőrizd az internetkapcsolatot, vagy hogy fut-e a helyi LLM-kiszolgáló, és hogy helyes-e a Beállításokban megadott URL.",
+      "fa": "اتصال به ارائه‌دهنده برقرار نشد. اتصال اینترنت خود را بررسی کنید یا مطمئن شوید سرور LLM محلی شما در حال اجراست و آدرس آن در تنظیمات درست است.",
+      "es": "No se pudo conectar con el proveedor. Comprueba tu conexión a internet, o que tu servidor LLM local esté en ejecución y que la URL en Ajustes sea correcta.",
+      "sv": "Kunde inte nå leverantören. Kontrollera din internetanslutning, eller att din lokala LLM-server körs och att adressen i Inställningar är korrekt.",
+      "tr": "Sağlayıcıya ulaşılamadı. İnternet bağlantınızı veya yerel LLM sunucunuzun çalıştığını ve Ayarlar'daki URL'nin doğru olduğunu kontrol edin.",
+      "ro": "Nu s-a putut contacta furnizorul. Verificați conexiunea la internet sau că serverul dvs. local LLM rulează și că URL-ul din Setări este corect.",
+      "ru": "Не удалось подключиться к провайдеру. Проверьте интернет-соединение или убедитесь, что локальный сервер LLM запущен, а URL в настройках указан верно.",
+      "uk": "Не вдалося з'єднатися з постачальником. Перевірте інтернет-з'єднання або переконайтеся, що ваш локальний сервер LLM запущено, а URL у налаштуваннях указано правильно.",
+      "sk": "Nepodarilo sa spojiť s poskytovateľom. Skontrolujte internetové pripojenie alebo to, či beží váš lokálny LLM server a či je adresa URL v Nastaveniach správna.",
+      "th": "ไม่สามารถเชื่อมต่อกับผู้ให้บริการได้ โปรดตรวจสอบการเชื่อมต่ออินเทอร์เน็ตของคุณ หรือตรวจสอบว่าเซิร์ฟเวอร์ LLM ในเครื่องกำลังทำงานอยู่และ URL ในการตั้งค่าถูกต้อง",
+      "vi": "Không thể kết nối đến nhà cung cấp. Kiểm tra kết nối internet của bạn, hoặc kiểm tra xem máy chủ LLM cục bộ có đang chạy và URL trong Cài đặt có chính xác không."
+    },
+    "models": {
+      "zh-Hant": "z-ai/glm-5.2",
+      "fr": "~anthropic/claude-sonnet-latest",
+      "zh-Hans": "z-ai/glm-5.2",
+      "de": "~anthropic/claude-sonnet-latest",
+      "ar": "~anthropic/claude-sonnet-latest",
+      "nl": "~anthropic/claude-sonnet-latest",
+      "cs": "~anthropic/claude-sonnet-latest",
+      "el": "~anthropic/claude-sonnet-latest",
+      "ko": "z-ai/glm-5.2",
+      "pt-BR": "~anthropic/claude-sonnet-latest",
+      "it": "~anthropic/claude-sonnet-latest",
+      "ja": "z-ai/glm-5.2",
+      "pl": "~anthropic/claude-sonnet-latest",
+      "hi": "~anthropic/claude-sonnet-latest",
+      "hu": "~anthropic/claude-sonnet-latest",
+      "fa": "~anthropic/claude-sonnet-latest",
+      "es": "~anthropic/claude-sonnet-latest",
+      "sv": "~anthropic/claude-sonnet-latest",
+      "tr": "~anthropic/claude-sonnet-latest",
+      "ro": "~anthropic/claude-sonnet-latest",
+      "ru": "~anthropic/claude-sonnet-latest",
+      "uk": "~anthropic/claude-sonnet-latest",
+      "sk": "~anthropic/claude-sonnet-latest",
+      "th": "~anthropic/claude-sonnet-latest",
+      "vi": "~anthropic/claude-sonnet-latest"
+    },
+    "locations": [
+      {
+        "file": "src/renderer/utils/misc/apiErrorDisplay.ts",
+        "line": 186
+      }
+    ]
+  },
+  "f0a0dab9": {
+    "source": "The provider is temporarily unavailable. Please try again in a moment.",
+    "translated": {
+      "zh-Hant": "供應商暫時無法使用。請稍後再試一次。",
+      "fr": "Le fournisseur est temporairement indisponible. Veuillez réessayer dans un instant.",
+      "zh-Hans": "提供商暂时不可用。请稍后重试。",
+      "de": "Der Anbieter ist vorübergehend nicht verfügbar. Bitte versuche es in Kürze erneut.",
+      "ar": "المزوّد غير متاح مؤقتًا. يُرجى المحاولة مرة أخرى بعد قليل.",
+      "nl": "De provider is tijdelijk niet beschikbaar. Probeer het straks opnieuw.",
+      "cs": "Poskytovatel je dočasně nedostupný. Zkuste to prosím za chvíli znovu.",
+      "el": "Ο πάροχος είναι προσωρινά μη διαθέσιμος. Δοκιμάστε ξανά σε λίγο.",
+      "ko": "제공자를 일시적으로 사용할 수 없습니다. 잠시 후 다시 시도하세요.",
+      "pt-BR": "O provedor está temporariamente indisponível. Tente novamente em instantes.",
+      "it": "Il provider non è temporaneamente disponibile. Riprova tra un momento.",
+      "ja": "プロバイダーは一時的に利用できません。しばらくしてからもう一度お試しください。",
+      "pl": "Dostawca jest chwilowo niedostępny. Spróbuj ponownie za chwilę.",
+      "hi": "प्रदाता अस्थायी रूप से अनुपलब्ध है। कृपया थोड़ी देर में फिर से प्रयास करें।",
+      "hu": "A szolgáltató átmenetileg nem érhető el. Kérjük, próbáld újra egy kis idő múlva.",
+      "fa": "ارائه‌دهنده موقتاً در دسترس نیست. لطفاً کمی بعد دوباره تلاش کنید.",
+      "es": "El proveedor no está disponible temporalmente. Inténtalo de nuevo en unos instantes.",
+      "sv": "Leverantören är tillfälligt otillgänglig. Försök igen om en stund.",
+      "tr": "Sağlayıcı geçici olarak kullanılamıyor. Lütfen bir süre sonra tekrar deneyin.",
+      "ro": "Furnizorul este temporar indisponibil. Încercați din nou peste puțin timp.",
+      "ru": "Провайдер временно недоступен. Повторите попытку через некоторое время.",
+      "uk": "Постачальник тимчасово недоступний. Спробуйте ще раз за мить.",
+      "sk": "Poskytovateľ je dočasne nedostupný. Skúste to prosím o chvíľu znova.",
+      "th": "ผู้ให้บริการไม่พร้อมใช้งานชั่วคราว โปรดลองอีกครั้งในอีกสักครู่",
+      "vi": "Nhà cung cấp tạm thời không khả dụng. Vui lòng thử lại sau ít phút."
+    },
+    "models": {
+      "zh-Hant": "z-ai/glm-5.2",
+      "fr": "~anthropic/claude-sonnet-latest",
+      "zh-Hans": "z-ai/glm-5.2",
+      "de": "~anthropic/claude-sonnet-latest",
+      "ar": "~anthropic/claude-sonnet-latest",
+      "nl": "~anthropic/claude-sonnet-latest",
+      "cs": "~anthropic/claude-sonnet-latest",
+      "el": "~anthropic/claude-sonnet-latest",
+      "ko": "z-ai/glm-5.2",
+      "pt-BR": "~anthropic/claude-sonnet-latest",
+      "it": "~anthropic/claude-sonnet-latest",
+      "ja": "z-ai/glm-5.2",
+      "pl": "~anthropic/claude-sonnet-latest",
+      "hi": "~anthropic/claude-sonnet-latest",
+      "hu": "~anthropic/claude-sonnet-latest",
+      "fa": "~anthropic/claude-sonnet-latest",
+      "es": "~anthropic/claude-sonnet-latest",
+      "sv": "~anthropic/claude-sonnet-latest",
+      "tr": "~anthropic/claude-sonnet-latest",
+      "ro": "~anthropic/claude-sonnet-latest",
+      "ru": "~anthropic/claude-sonnet-latest",
+      "uk": "~anthropic/claude-sonnet-latest",
+      "sk": "~anthropic/claude-sonnet-latest",
+      "th": "~anthropic/claude-sonnet-latest",
+      "vi": "~anthropic/claude-sonnet-latest"
+    },
+    "locations": [
+      {
+        "file": "src/renderer/utils/misc/apiErrorDisplay.ts",
+        "line": 190
+      }
+    ]
+  },
+  "e9f36d65": {
+    "source": "Something went wrong. Please try again.",
+    "translated": {
+      "zh-Hant": "發生錯誤。請再試一次。",
+      "fr": "Une erreur s'est produite. Veuillez réessayer.",
+      "zh-Hans": "发生错误。请重试。",
+      "de": "Etwas ist schiefgelaufen. Bitte versuche es erneut.",
+      "ar": "حدث خطأ ما. يُرجى المحاولة مرة أخرى.",
+      "nl": "Er is iets misgegaan. Probeer het opnieuw.",
+      "cs": "Něco se pokazilo. Zkuste to prosím znovu.",
+      "el": "Κάτι πήγε στραβά. Δοκιμάστε ξανά.",
+      "ko": "문제가 발생했습니다. 다시 시도하세요.",
+      "pt-BR": "Ocorreu um erro. Tente novamente.",
+      "it": "Qualcosa è andato storto. Riprova.",
+      "ja": "エラーが発生しました。もう一度お試しください。",
+      "pl": "Coś poszło nie tak. Spróbuj ponownie.",
+      "hi": "कुछ गड़बड़ हो गई। कृपया फिर से प्रयास करें।",
+      "hu": "Hiba történt. Kérjük, próbáld újra.",
+      "fa": "مشکلی پیش آمد. لطفاً دوباره تلاش کنید.",
+      "es": "Se produjo un error. Inténtalo de nuevo.",
+      "sv": "Något gick fel. Försök igen.",
+      "tr": "Bir şeyler ters gitti. Lütfen tekrar deneyin.",
+      "ro": "A apărut o eroare. Încercați din nou.",
+      "ru": "Что-то пошло не так. Попробуйте снова.",
+      "uk": "Щось пішло не так. Спробуйте ще раз.",
+      "sk": "Niečo sa pokazilo. Skúste to prosím znova.",
+      "th": "เกิดข้อผิดพลาดบางอย่าง โปรดลองอีกครั้ง",
+      "vi": "Đã xảy ra lỗi. Vui lòng thử lại."
+    },
+    "models": {
+      "zh-Hant": "z-ai/glm-5.2",
+      "fr": "~anthropic/claude-sonnet-latest",
+      "zh-Hans": "z-ai/glm-5.2",
+      "de": "~anthropic/claude-sonnet-latest",
+      "ar": "~anthropic/claude-sonnet-latest",
+      "nl": "~anthropic/claude-sonnet-latest",
+      "cs": "~anthropic/claude-sonnet-latest",
+      "el": "~anthropic/claude-sonnet-latest",
+      "ko": "z-ai/glm-5.2",
+      "pt-BR": "~anthropic/claude-sonnet-latest",
+      "it": "~anthropic/claude-sonnet-latest",
+      "ja": "z-ai/glm-5.2",
+      "pl": "~anthropic/claude-sonnet-latest",
+      "hi": "~anthropic/claude-sonnet-latest",
+      "hu": "~anthropic/claude-sonnet-latest",
+      "fa": "~anthropic/claude-sonnet-latest",
+      "es": "~anthropic/claude-sonnet-latest",
+      "sv": "~anthropic/claude-sonnet-latest",
+      "tr": "~anthropic/claude-sonnet-latest",
+      "ro": "~anthropic/claude-sonnet-latest",
+      "ru": "~anthropic/claude-sonnet-latest",
+      "uk": "~anthropic/claude-sonnet-latest",
+      "sk": "~anthropic/claude-sonnet-latest",
+      "th": "~anthropic/claude-sonnet-latest",
+      "vi": "~anthropic/claude-sonnet-latest"
+    },
+    "locations": [
+      {
+        "file": "src/renderer/utils/misc/apiErrorDisplay.ts",
+        "line": 193
+      },
+      {
+        "file": "src/renderer/utils/misc/apiErrorDisplay.ts",
+        "line": 197
+      },
+      {
+        "file": "src/renderer/utils/misc/apiErrorDisplay.ts",
+        "line": 220
+      },
+      {
+        "file": "src/renderer/utils/misc/apiErrorDisplay.ts",
+        "line": 284
+      },
+      {
+        "file": "src/renderer/utils/misc/apiErrorDisplay.ts",
+        "line": 285
+      }
+    ]
+  },
+  "4c81a372": {
+    "source": "Rewrite failed",
+    "translated": {
+      "zh-Hant": "重寫失敗",
+      "fr": "Échec de la réécriture",
+      "zh-Hans": "重写失败",
+      "de": "Umschreiben fehlgeschlagen",
+      "ar": "فشلت إعادة الصياغة",
+      "nl": "Herschrijven mislukt",
+      "cs": "Přepsání se nezdařilo",
+      "el": "Η αναδιατύπωση απέτυχε",
+      "ko": "다시 쓰기 실패",
+      "pt-BR": "Falha ao reescrever",
+      "it": "Riscrittura non riuscita",
+      "ja": "リライトに失敗しました",
+      "pl": "Nie udało się przepisać tekstu",
+      "hi": "फिर से लिखना विफल रहा",
+      "hu": "Az átírás sikertelen",
+      "fa": "بازنویسی ناموفق بود",
+      "es": "Error al reescribir",
+      "sv": "Omskrivningen misslyckades",
+      "tr": "Yeniden yazma başarısız oldu",
+      "ro": "Rescrierea a eșuat",
+      "ru": "Не удалось переписать",
+      "uk": "Не вдалося переписати",
+      "sk": "Prepísanie zlyhalo",
+      "th": "เขียนใหม่ล้มเหลว",
+      "vi": "Viết lại thất bại"
+    },
+    "models": {
+      "zh-Hant": "z-ai/glm-5.2",
+      "fr": "~anthropic/claude-sonnet-latest",
+      "zh-Hans": "z-ai/glm-5.2",
+      "de": "~anthropic/claude-sonnet-latest",
+      "ar": "~anthropic/claude-sonnet-latest",
+      "nl": "~anthropic/claude-sonnet-latest",
+      "cs": "~anthropic/claude-sonnet-latest",
+      "el": "~anthropic/claude-sonnet-latest",
+      "ko": "z-ai/glm-5.2",
+      "pt-BR": "~anthropic/claude-sonnet-latest",
+      "it": "~anthropic/claude-sonnet-latest",
+      "ja": "z-ai/glm-5.2",
+      "pl": "~anthropic/claude-sonnet-latest",
+      "hi": "~anthropic/claude-sonnet-latest",
+      "hu": "~anthropic/claude-sonnet-latest",
+      "fa": "~anthropic/claude-sonnet-latest",
+      "es": "~anthropic/claude-sonnet-latest",
+      "sv": "~anthropic/claude-sonnet-latest",
+      "tr": "~anthropic/claude-sonnet-latest",
+      "ro": "~anthropic/claude-sonnet-latest",
+      "ru": "~anthropic/claude-sonnet-latest",
+      "uk": "~anthropic/claude-sonnet-latest",
+      "sk": "~anthropic/claude-sonnet-latest",
+      "th": "~anthropic/claude-sonnet-latest",
+      "vi": "~anthropic/claude-sonnet-latest"
+    },
+    "locations": [
+      {
+        "file": "src/renderer/utils/misc/apiErrorDisplay.ts",
+        "line": 214
+      },
+      {
+        "file": "src/renderer/utils/misc/apiErrorDisplay.ts",
+        "line": 268
+      }
+    ]
+  },
+  "c24bc651": {
+    "source": "Transform failed",
+    "translated": {
+      "zh-Hant": "轉換失敗",
+      "fr": "Échec de la transformation",
+      "zh-Hans": "转换失败",
+      "de": "Umwandlung fehlgeschlagen",
+      "ar": "فشل التحويل",
+      "nl": "Transformatie mislukt",
+      "cs": "Transformace se nezdařila",
+      "el": "Ο μετασχηματισμός απέτυχε",
+      "ko": "변환 실패",
+      "pt-BR": "Falha ao transformar",
+      "it": "Trasformazione non riuscita",
+      "ja": "変換に失敗しました",
+      "pl": "Nie udało się przekształcić",
+      "hi": "बदलाव विफल रहा",
+      "hu": "Az átalakítás sikertelen",
+      "fa": "تبدیل ناموفق بود",
+      "es": "Error al transformar",
+      "sv": "Omvandlingen misslyckades",
+      "tr": "Dönüştürme başarısız oldu",
+      "ro": "Transformarea a eșuat",
+      "ru": "Не удалось преобразовать",
+      "uk": "Не вдалося перетворити",
+      "sk": "Transformácia zlyhala",
+      "th": "แปลงข้อมูลล้มเหลว",
+      "vi": "Chuyển đổi thất bại"
+    },
+    "models": {
+      "zh-Hant": "z-ai/glm-5.2",
+      "fr": "~anthropic/claude-sonnet-latest",
+      "zh-Hans": "z-ai/glm-5.2",
+      "de": "~anthropic/claude-sonnet-latest",
+      "ar": "~anthropic/claude-sonnet-latest",
+      "nl": "~anthropic/claude-sonnet-latest",
+      "cs": "~anthropic/claude-sonnet-latest",
+      "el": "~anthropic/claude-sonnet-latest",
+      "ko": "z-ai/glm-5.2",
+      "pt-BR": "~anthropic/claude-sonnet-latest",
+      "it": "~anthropic/claude-sonnet-latest",
+      "ja": "z-ai/glm-5.2",
+      "pl": "~anthropic/claude-sonnet-latest",
+      "hi": "~anthropic/claude-sonnet-latest",
+      "hu": "~anthropic/claude-sonnet-latest",
+      "fa": "~anthropic/claude-sonnet-latest",
+      "es": "~anthropic/claude-sonnet-latest",
+      "sv": "~anthropic/claude-sonnet-latest",
+      "tr": "~anthropic/claude-sonnet-latest",
+      "ro": "~anthropic/claude-sonnet-latest",
+      "ru": "~anthropic/claude-sonnet-latest",
+      "uk": "~anthropic/claude-sonnet-latest",
+      "sk": "~anthropic/claude-sonnet-latest",
+      "th": "~anthropic/claude-sonnet-latest",
+      "vi": "~anthropic/claude-sonnet-latest"
+    },
+    "locations": [
+      {
+        "file": "src/renderer/utils/misc/apiErrorDisplay.ts",
+        "line": 216
+      },
+      {
+        "file": "src/renderer/utils/misc/apiErrorDisplay.ts",
+        "line": 275
+      }
+    ]
+  },
+  "e5a23e5d": {
+    "source": "Rephrase finished but returned no text. Try again or choose another model.",
+    "translated": {
+      "cs": "Přeformulování bylo dokončeno, ale nevrátilo žádný text. Zkuste to znovu nebo vyberte jiný model.",
+      "pt-BR": "A reescrita foi concluída, mas não retornou texto. Tente novamente ou escolha outro modelo.",
+      "zh-TW": "改寫完成但未返回任何文字。請重試或選擇其他模型。",
+      "zh-CN": "改写完成但未返回文本。请重试或选择其他模型。",
+      "hr": "Preformuliranje je završeno, ali nije vraćen tekst. Pokušajte ponovno ili odaberite drugi model.",
+      "ar": "انتهت إعادة الصياغة لكنها لم تُرجِ أي نص. حاول مرة أخرى أو اختر نموذجًا آخر.",
+      "bn": "পুনরায় লেখা সম্পন্ন হয়েছে কিন্তু কোনো টেক্সট ফেরত আসেনি। আবার চেষ্টা করুন অথবা অন্য মডেল নির্বাচন করুন।",
+      "ca": "La reformulació ha finalitzat però no s'ha retornat cap text. Torneu-ho a provar o trieu un altre model.",
+      "en-US": "Rephrase finished but returned no text. Try again or choose another model.",
+      "fr": "Reformulation terminée, mais aucun texte n'a été généré. Réessayez ou choisissez un autre modèle.",
+      "de": "Umformulierung abgeschlossen, es wurde jedoch kein Text zurückgegeben. Versuchen Sie es erneut oder wählen Sie ein anderes Modell.",
+      "nl": "Herschrijven voltooid, maar er is geen tekst teruggekomen. Probeer het opnieuw of kies een ander model.",
+      "hu": "Az átfogalmazás befejeződött, de nem adott vissza szöveget. Próbálja meg újra, vagy válasszon másik modellt.",
+      "el": "Η επαναδιατύπωση ολοκληρώθηκε αλλά δεν παρήχθη κείμενο. Δοκιμάστε ξανά ή επιλέξτε άλλο μοντέλο.",
+      "hi": "पुनर्लेखन समाप्त हो गया है, लेकिन कोई पाठ नहीं मिला। कृपया पुनः प्रयास करें या कोई अन्य मॉडल चुनें।",
+      "tl": "Natapos ang pag-rephrase ngunit walang ibinalik na teksto. Subukan muli o pumili ng ibang modelo.",
+      "pt": "A reformulação terminou, mas não retornou texto. Tente novamente ou escolha outro modelo.",
+      "ko": "다시 작성이 완료되었지만 결과가 없습니다. 다시 시도하거나 다른 모델을 선택하세요.",
+      "pl": "Przeformułowanie zakończone, ale nie zwrócono tekstu. Spróbuj ponownie lub wybierz inny model.",
+      "fa": "بازنویسی انجام شد اما متنی بازگردانده نشد. مجدداً تلاش کنید یا مدل دیگری انتخاب کنید.",
+      "ms": "Ungkapan semula selesai tetapi tidak mengembalikan sebarang teks. Cuba lagi atau pilih model lain.",
+      "jv": "Ganti tembung wis rampung nanging ora ngasilake teks. Coba maneh utawa pilih model liyane.",
+      "it": "Riformulazione completata ma non ha restituito testo. Riprova o scegli un altro modello.",
+      "ja": "書き換えは完了しましたが、テキストが返されませんでした。再試行するか、別のモデルを選択してください。",
+      "sv": "Omformuleringen avslutades men returnerade ingen text. Försök igen eller välj en annan modell.",
+      "sk": "Preformulovanie dokončené, ale nevrátilo žiadny text. Skúste to znova alebo vyberte iný model.",
+      "es": "La reescritura ha finalizado pero no se ha devuelto ningún texto. Inténtelo de nuevo o elija otro modelo.",
+      "ru": "Перефразирование завершено, но текст не получен. Повторите попытку или выберите другую модель.",
+      "ro": "Reformularea s-a finalizat, dar nu a returnat text. Încercați din nou sau alegeți un alt model.",
+      "pa": "ਮੁੜ ਲਿਖਣ ਦੀ ਪ੍ਰਕਿਰਿਆ ਪੂਰੀ ਹੋ ਗਈ ਹੈ ਪਰ ਕੋਈ ਪਾਠ ਨਹੀਂ ਮਿਲਿਆ। ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ ਜਾਂ ਕੋਈ ਹੋਰ ਮਾਡਲ ਚੁਣੋ।",
+      "te": "పునర్వచనం పూర్తయింది కానీ పాఠ్యం రాలేదు. మళ్లీ ప్రయత్నించండి లేదా మరొక మోడల్ ఎంచుకోండి.",
+      "sw": "Uandishi upya umekamilika lakini haukutoa maandishi. Jaribu tena au chagua mfano mwingine.",
+      "vi": "Hoàn tất viết lại nhưng không trả về văn bản. Hãy thử lại hoặc chọn mô hình khác.",
+      "tr": "Yeniden ifade işlemi tamamlandı ancak metin döndürülmadı. Tekrar deneyin veya başka bir model seçin.",
+      "uk": "Перефразування завершено, але текст не повернуто. Повторіть спробу або виберіть іншу модель.",
+      "th": "การเรียบเรียงใหม่เสร็จสิ้นแต่ไม่พบข้อความ ลองอีกครั้งหรือเลือกโมเดลอื่น",
+      "zh-Hans": "改写完成但未返回任何文本。请重试或选择其他模型。",
+      "zh-Hant": "改寫完成但未傳回任何文字。請再試一次或選擇其他模型。",
+      "pa-PK": "دوبارہ لکھنا مکمل ہو گیا اے پر کوئی متن واپس نہیں آیا۔ دوبارہ کوشش کرو یا کوئی ہور ماڈل چُنو۔",
+      "hi-Latn": "Phir se likhna poora ho gaya lekin koi text wapas nahi mila. Phir se koshish karein ya koi anya model chunein."
+    },
+    "models": {
+      "cs": "qwen/qwen3.6-35b-a3b",
+      "pt-BR": "qwen/qwen3.6-35b-a3b",
+      "zh-TW": "qwen/qwen3.6-35b-a3b",
+      "zh-CN": "qwen/qwen3.6-35b-a3b",
+      "hr": "qwen/qwen3.6-35b-a3b",
+      "ar": "qwen/qwen3.6-35b-a3b",
+      "bn": "qwen/qwen3.6-35b-a3b",
+      "ca": "qwen/qwen3.6-35b-a3b",
+      "en-US": "qwen/qwen3.6-35b-a3b",
+      "fr": "qwen/qwen3.6-35b-a3b",
+      "de": "qwen/qwen3.6-35b-a3b",
+      "nl": "qwen/qwen3.6-35b-a3b",
+      "hu": "qwen/qwen3.6-35b-a3b",
+      "el": "qwen/qwen3.6-35b-a3b",
+      "hi": "qwen/qwen3.6-35b-a3b",
+      "tl": "openai/gpt-4o-mini",
+      "pt": "qwen/qwen3.6-35b-a3b",
+      "ko": "qwen/qwen3.6-35b-a3b",
+      "pl": "qwen/qwen3.6-35b-a3b",
+      "fa": "qwen/qwen3.6-35b-a3b",
+      "ms": "qwen/qwen3.6-35b-a3b",
+      "jv": "qwen/qwen3.6-35b-a3b",
+      "it": "qwen/qwen3.6-35b-a3b",
+      "ja": "qwen/qwen3.6-35b-a3b",
+      "sv": "openai/gpt-4o-mini",
+      "sk": "qwen/qwen3.6-35b-a3b",
+      "es": "qwen/qwen3.6-35b-a3b",
+      "ru": "qwen/qwen3.6-35b-a3b",
+      "ro": "qwen/qwen3.6-35b-a3b",
+      "pa": "qwen/qwen3.6-35b-a3b",
+      "te": "qwen/qwen3.6-35b-a3b",
+      "sw": "qwen/qwen3.6-35b-a3b",
+      "vi": "qwen/qwen3.6-35b-a3b",
+      "tr": "qwen/qwen3.6-35b-a3b",
+      "uk": "qwen/qwen3.6-35b-a3b",
+      "th": "qwen/qwen3.6-35b-a3b",
+      "zh-Hans": "google/gemini-2.5-flash-lite",
+      "zh-Hant": "google/gemini-2.5-flash-lite",
+      "pa-PK": "google/gemini-2.5-flash",
+      "hi-Latn": "google/gemini-2.5-flash"
+    },
+    "locations": [
+      {
+        "file": "src/renderer/utils/misc/apiErrorDisplay.ts",
+        "line": 253
+      }
+    ]
+  },
+  "6a25d014": {
+    "source": "Translation finished but returned no text. Try again or choose another model.",
+    "translated": {
+      "ar": "انتهت الترجمة لكنها لم تُرجع أي نص. أعد المحاولة أو اختر نموذجًا آخر.",
+      "pt-BR": "Tradução concluída, mas não retornou texto. Tente novamente ou escolha outro modelo.",
+      "ca": "S'ha completat la traducció, però no s'ha obtingut cap text. Torna-ho a provar o selecciona un altre model.",
+      "bn": "অনুবাদ সম্পন্ন হয়েছে কিন্তু কোনো টেক্সট পাওয়া যায়নি। আবার চেষ্টা করুন অথবা অন্য মডেল নির্বাচন করুন।",
+      "zh-TW": "翻譯已完成，但未傳回任何文字。請重試或選擇其他模型。",
+      "zh-CN": "翻译完成，但未返回文本。请重试或选择其他模型。",
+      "cs": "Překlad dokončen, ale nebyl vrácen žádný text. Zkuste znovu nebo vyberte jiný model.",
+      "hr": "Prijevod je završen, ali nije vraćen tekst. Pokušajte ponovno ili odaberite drugi model.",
+      "en-US": "Translation finished but returned no text. Try again or choose another model.",
+      "fr": "La traduction est terminée mais n'a généré aucun texte. Réessayez ou choisissez un autre modèle.",
+      "nl": "Vertaling voltooid, maar leverde geen tekst op. Probeer het opnieuw of kies een ander model.",
+      "tl": "Natapos na ang pagsasalin ngunit walang naibalik na teksto. Subukan muli o pumili ng ibang modelo.",
+      "de": "Übersetzung abgeschlossen, lieferte jedoch keinen Text. Versuchen Sie es erneut oder wählen Sie ein anderes Modell.",
+      "hi": "अनुवाद समाप्त हो गया, लेकिन कोई पाठ नहीं मिला। पुनः प्रयास करें या कोई अन्य मॉडल चुनें।",
+      "hu": "A fordítás kész, de nem adott vissza szöveget. Próbálja újra, vagy válasszon másik modellt.",
+      "el": "Η μετάφραση ολοκληρώθηκε, αλλά δεν επιστράφηκε κείμενο. Δοκιμάστε ξανά ή επιλέξτε διαφορετικό μοντέλο.",
+      "ja": "翻訳は完了しましたが、結果が返されませんでした。再試行するか、別のモデルを選択してください。",
+      "ko": "번역 완료되었으나 내용이 없습니다. 다시 시도하거나 다른 모델을 선택하세요.",
+      "it": "Traduzione completata ma non ha restituito testo. Riprova o scegli un altro modello.",
+      "ms": "Terjemahan selesai tetapi tiada teks yang dikembalikan. Cuba lagi atau pilih model lain.",
+      "pt": "A tradução foi concluída, mas não retornou texto. Tente novamente ou escolha outro modelo.",
+      "fa": "ترجمه انجام شد اما متنی بازگردانده نشد. دوباره تلاش کنید یا مدل دیگری را انتخاب کنید.",
+      "jv": "Terjemahan wis rampung nanging ora ngasilake teks. Coba maneh utawa pilih model liyane.",
+      "pl": "Tłumaczenie zakończone, ale nie zwrócono tekstu. Spróbuj ponownie lub wybierz inny model.",
+      "sk": "Preklad dokončený, ale nebol vrátený žiadny text. Skúste to znova alebo vyberte iný model.",
+      "ru": "Перевод завершён, но текст не получен. Повторите попытку или выберите другую модель.",
+      "ro": "Traducerea s-a finalizat, dar nu a returnat text. Încercați din nou sau alegeți un alt model.",
+      "pa": "ਅਨੁਵਾਦ ਪੂਰਾ ਹੋ ਗਿਆ ਹੈ ਪਰ ਕੋਈ ਟੈਕਸਟ ਨਹੀਂ ਮਿਲਿਆ। ਮੁੜ ਕੋਸ਼ਿਸ਼ ਕਰੋ ਜਾਂ ਕੋਈ ਹੋਰ ਮਾਡਲ ਚੁਣੋ।",
+      "sv": "Översättningen är klar men returnerade ingen text. Försök igen eller välj en annan modell.",
+      "es": "La traducción ha finalizado, pero no se ha generado texto. Inténtalo de nuevo o selecciona otro modelo.",
+      "sw": "Tafsiri imekamilika lakini haikutoa maandishi. Jaribu tena au chagua mfano mwingine.",
+      "te": "అనువాదం పూర్తయింది కానీ పాఠ్యం రాలేదు. మళ్లీ ప్రయత్నించండి లేదా మరొక మోడల్‌ను ఎంచుకోండి.",
+      "vi": "Hoàn tất bản dịch nhưng không trả về nội dung nào. Thử lại hoặc chọn mô hình khác.",
+      "th": "การแปลเสร็จสิ้นแต่ไม่พบข้อความ ลองอีกครั้งหรือเลือกโมเดลอื่น",
+      "tr": "Çeviri tamamlandı ancak metin oluşturulamadı. Tekrar deneyin veya başka bir model seçin.",
+      "uk": "Переклад завершено, але результат порожній. Повторіть спробу або виберіть іншу модель.",
+      "zh-Hans": "翻译完成但未返回任何文本。请重试或选择其他模型。",
+      "zh-Hant": "翻譯完成但未傳回任何文字。請再試一次或選擇其他模型。",
+      "pa-PK": "ترجمہ مکمل ہو گیا اے پر کوئی متن واپس نہیں آیا۔ دوبارہ کوشش کرو یا کوئی ہور ماڈل چُنو۔",
+      "hi-Latn": "Anuvaad poora ho gaya lekin koi text wapas nahi mila. Phir se koshish karein ya koi anya model chunein."
+    },
+    "models": {
+      "ar": "qwen/qwen3.6-35b-a3b",
+      "pt-BR": "qwen/qwen3.6-35b-a3b",
+      "ca": "qwen/qwen3.6-35b-a3b",
+      "bn": "qwen/qwen3.6-35b-a3b",
+      "zh-TW": "qwen/qwen3.6-35b-a3b",
+      "zh-CN": "qwen/qwen3.6-35b-a3b",
+      "cs": "qwen/qwen3.6-35b-a3b",
+      "hr": "qwen/qwen3.6-35b-a3b",
+      "en-US": "qwen/qwen3.6-35b-a3b",
+      "fr": "qwen/qwen3.6-35b-a3b",
+      "nl": "qwen/qwen3.6-35b-a3b",
+      "tl": "qwen/qwen3.6-35b-a3b",
+      "de": "qwen/qwen3.6-35b-a3b",
+      "hi": "qwen/qwen3.6-35b-a3b",
+      "hu": "qwen/qwen3.6-35b-a3b",
+      "el": "qwen/qwen3.6-35b-a3b",
+      "ja": "qwen/qwen3.6-35b-a3b",
+      "ko": "qwen/qwen3.6-35b-a3b",
+      "it": "qwen/qwen3.6-35b-a3b",
+      "ms": "qwen/qwen3.6-35b-a3b",
+      "pt": "qwen/qwen3.6-35b-a3b",
+      "fa": "qwen/qwen3.6-35b-a3b",
+      "jv": "qwen/qwen3.6-35b-a3b",
+      "pl": "qwen/qwen3.6-35b-a3b",
+      "sk": "qwen/qwen3.6-35b-a3b",
+      "ru": "qwen/qwen3.6-35b-a3b",
+      "ro": "qwen/qwen3.6-35b-a3b",
+      "pa": "qwen/qwen3.6-35b-a3b",
+      "sv": "qwen/qwen3.6-35b-a3b",
+      "es": "qwen/qwen3.6-35b-a3b",
+      "sw": "qwen/qwen3.6-35b-a3b",
+      "te": "qwen/qwen3.6-35b-a3b",
+      "vi": "qwen/qwen3.6-35b-a3b",
+      "th": "qwen/qwen3.6-35b-a3b",
+      "tr": "qwen/qwen3.6-35b-a3b",
+      "uk": "qwen/qwen3.6-35b-a3b",
+      "zh-Hans": "google/gemini-2.5-flash-lite",
+      "zh-Hant": "google/gemini-2.5-flash-lite",
+      "pa-PK": "google/gemini-2.5-flash",
+      "hi-Latn": "google/gemini-2.5-flash"
+    },
+    "locations": [
+      {
+        "file": "src/renderer/utils/misc/apiErrorDisplay.ts",
+        "line": 262
+      }
+    ]
+  },
+  "30461c2b": {
+    "source": "Rewrite finished but returned no text. Try again or choose another model.",
+    "translated": {
+      "ar": "انتهت إعادة الصياغة لكنها لم تُرجع أي نص. أعد المحاولة أو اختر نموذجًا آخر.",
+      "pt-BR": "Reescrita concluída, mas não retornou texto. Tente novamente ou escolha outro modelo.",
+      "ca": "S'ha completat la reescriptura, però no s'ha obtingut cap text. Torna-ho a provar o selecciona un altre model.",
+      "bn": "পুনর্লিখন সম্পন্ন হয়েছে কিন্তু কোনো টেক্সট পাওয়া যায়নি। আবার চেষ্টা করুন অথবা অন্য মডেল নির্বাচন করুন।",
+      "zh-TW": "重寫已完成，但未傳回任何文字。請重試或選擇其他模型。",
+      "zh-CN": "重写完成，但未返回文本。请重试或选择其他模型。",
+      "cs": "Přepsání dokončeno, ale nebyl vrácen žádný text. Zkuste znovu nebo vyberte jiný model.",
+      "hr": "Prepis je završen, ali nije vraćen tekst. Pokušajte ponovno ili odaberite drugi model.",
+      "en-US": "Rewrite finished but returned no text. Try again or choose another model.",
+      "fr": "La réécriture est terminée mais n'a généré aucun texte. Réessayez ou choisissez un autre modèle.",
+      "nl": "Herschrijven voltooid, maar leverde geen tekst op. Probeer het opnieuw of kies een ander model.",
+      "tl": "Natapos na ang pagsusulat muli ngunit walang naibalik na teksto. Subukan muli o pumili ng ibang modelo.",
+      "de": "Neuschreibung abgeschlossen, lieferte jedoch keinen Text. Versuchen Sie es erneut oder wählen Sie ein anderes Modell.",
+      "hi": "पुनर्लेखन समाप्त हो गया, लेकिन कोई पाठ नहीं मिला। पुनः प्रयास करें या कोई अन्य मॉडल चुनें।",
+      "hu": "Az átfogalmazás kész, de nem adott vissza szöveget. Próbálja újra, vagy válasszon másik modellt.",
+      "el": "Η αναδιατύπωση ολοκληρώθηκε, αλλά δεν επιστράφηκε κείμενο. Δοκιμάστε ξανά ή επιλέξτε διαφορετικό μοντέλο.",
+      "ja": "書き換えは完了しましたが、結果が返されませんでした。再試行するか、別のモデルを選択してください。",
+      "ko": "다시 작성 완료되었으나 내용이 없습니다. 다시 시도하거나 다른 모델을 선택하세요.",
+      "it": "Riscrittura completata ma non ha restituito testo. Riprova o scegli un altro modello.",
+      "ms": "Tulis semula selesai tetapi tiada teks yang dikembalikan. Cuba lagi atau pilih model lain.",
+      "pt": "A reescrita foi concluída, mas não retornou texto. Tente novamente ou escolha outro modelo.",
+      "fa": "بازنویسی انجام شد اما متنی بازگردانده نشد. دوباره تلاش کنید یا مدل دیگری را انتخاب کنید.",
+      "jv": "Tulis ulang wis rampung nanging ora ngasilake teks. Coba maneh utawa pilih model liyane.",
+      "pl": "Przepisanie zakończone, ale nie zwrócono tekstu. Spróbuj ponownie lub wybierz inny model.",
+      "sk": "Prepis dokončený, ale nebol vrátený žiadny text. Skúste to znova alebo vyberte iný model.",
+      "ru": "Переписывание завершено, но текст не получен. Повторите попытку или выберите другую модель.",
+      "ro": "Rescrierea s-a finalizat, dar nu a returnat text. Încercați din nou sau alegeți un alt model.",
+      "pa": "ਦੁਬਾਰਾ ਲਿਖਣਾ ਪੂਰਾ ਹੋ ਗਿਆ ਹੈ ਪਰ ਕੋਈ ਟੈਕਸਟ ਨਹੀਂ ਮਿਲਿਆ। ਮੁੜ ਕੋਸ਼ਿਸ਼ ਕਰੋ ਜਾਂ ਕੋਈ ਹੋਰ ਮਾਡਲ ਚੁਣੋ।",
+      "sv": "Omskrivningen är klar men returnerade ingen text. Försök igen eller välj en annan modell.",
+      "es": "La reescritura ha finalizado, pero no se ha generado texto. Inténtalo de nuevo o selecciona otro modelo.",
+      "sw": "Uandishi upya umekamilika lakini haikutoa maandishi. Jaribu tena au chagua mfano mwingine.",
+      "te": "పునర్లెఖనం పూర్తయింది కానీ పాఠ్యం రాలేదు. మళ్లీ ప్రయత్నించండి లేదా మరొక మోడల్‌ను ఎంచుకోండి.",
+      "vi": "Hoàn tất viết lại nhưng không trả về nội dung nào. Thử lại hoặc chọn mô hình khác.",
+      "th": "การเขียนใหม่เสร็จสิ้นแต่ไม่พบข้อความ ลองอีกครั้งหรือเลือกโมเดลอื่น",
+      "tr": "Yeniden yazma tamamlandı ancak metin oluşturulamadı. Tekrar deneyin veya başka bir model seçin.",
+      "uk": "Переписування завершено, але результат порожній. Повторіть спробу або виберіть іншу модель.",
+      "zh-Hans": "重写完成但未返回任何文本。请重试或选择其他模型。",
+      "zh-Hant": "改寫完成但未傳回任何文字。請再試一次或選擇其他模型。",
+      "pa-PK": "دوبارہ لکھنا مکمل ہو گیا اے پر کوئی متن واپس نہیں آیا۔ دوبارہ کوشش کرو یا کوئی ہور ماڈل چُنو۔",
+      "hi-Latn": "Phir se likhna poora ho gaya lekin koi text wapas nahi mila. Phir se koshish karein ya koi anya model chunein."
+    },
+    "models": {
+      "ar": "qwen/qwen3.6-35b-a3b",
+      "pt-BR": "qwen/qwen3.6-35b-a3b",
+      "ca": "qwen/qwen3.6-35b-a3b",
+      "bn": "qwen/qwen3.6-35b-a3b",
+      "zh-TW": "qwen/qwen3.6-35b-a3b",
+      "zh-CN": "qwen/qwen3.6-35b-a3b",
+      "cs": "qwen/qwen3.6-35b-a3b",
+      "hr": "qwen/qwen3.6-35b-a3b",
+      "en-US": "qwen/qwen3.6-35b-a3b",
+      "fr": "qwen/qwen3.6-35b-a3b",
+      "nl": "qwen/qwen3.6-35b-a3b",
+      "tl": "qwen/qwen3.6-35b-a3b",
+      "de": "qwen/qwen3.6-35b-a3b",
+      "hi": "qwen/qwen3.6-35b-a3b",
+      "hu": "qwen/qwen3.6-35b-a3b",
+      "el": "qwen/qwen3.6-35b-a3b",
+      "ja": "qwen/qwen3.6-35b-a3b",
+      "ko": "qwen/qwen3.6-35b-a3b",
+      "it": "qwen/qwen3.6-35b-a3b",
+      "ms": "qwen/qwen3.6-35b-a3b",
+      "pt": "qwen/qwen3.6-35b-a3b",
+      "fa": "qwen/qwen3.6-35b-a3b",
+      "jv": "qwen/qwen3.6-35b-a3b",
+      "pl": "qwen/qwen3.6-35b-a3b",
+      "sk": "qwen/qwen3.6-35b-a3b",
+      "ru": "qwen/qwen3.6-35b-a3b",
+      "ro": "qwen/qwen3.6-35b-a3b",
+      "pa": "qwen/qwen3.6-35b-a3b",
+      "sv": "qwen/qwen3.6-35b-a3b",
+      "es": "qwen/qwen3.6-35b-a3b",
+      "sw": "qwen/qwen3.6-35b-a3b",
+      "te": "qwen/qwen3.6-35b-a3b",
+      "vi": "qwen/qwen3.6-35b-a3b",
+      "th": "qwen/qwen3.6-35b-a3b",
+      "tr": "qwen/qwen3.6-35b-a3b",
+      "uk": "qwen/qwen3.6-35b-a3b",
+      "zh-Hans": "google/gemini-2.5-flash-lite",
+      "zh-Hant": "google/gemini-2.5-flash-lite",
+      "pa-PK": "google/gemini-2.5-flash",
+      "hi-Latn": "google/gemini-2.5-flash"
+    },
+    "locations": [
+      {
+        "file": "src/renderer/utils/misc/apiErrorDisplay.ts",
+        "line": 269
+      }
+    ]
+  },
+  "ddc21755": {
+    "source": "Transform finished but returned no text. Try again or choose another model.",
+    "translated": {
+      "de": "Transformation abgeschlossen, aber es wurde kein Text zurückgegeben. Erneut versuchen oder ein anderes Modell wählen.",
+      "zh-Hans": "转换已完成，但未返回任何文本。请重试或选择其他模型。",
+      "nl": "Omzetting voltooid, maar er is geen tekst geretourneerd. Probeer het opnieuw of kies een ander model.",
+      "zh-Hant": "轉換完成但未傳回任何文字。請重試或選擇其他模型。",
+      "cs": "Transformace dokončena, ale nebyl vrácen žádný text. Zkuste to znovu nebo zvolte jiný model.",
+      "fr": "Transformation terminée, mais aucun texte n'a été renvoyé. Réessayez ou choisissez un autre modèle.",
+      "ar": "اكتملت عملية التحويل لكن لم يتم إرجاع أي نص. حاول مرة أخرى أو اختر نموذجًا آخر.",
+      "el": "Η μετατροπή ολοκληρώθηκε αλλά δεν επιστράφηκε κείμενο. Δοκιμάστε ξανά ή επιλέξτε άλλο μοντέλο.",
+      "ko": "변환이 완료되었지만 텍스트가 반환되지 않았습니다. 다시 시도하거나 다른 모델을 선택하세요.",
+      "pt-BR": "Transformação concluída, mas nenhum texto foi retornado. Tente novamente ou escolha outro modelo.",
+      "ja": "変換は完了しましたが、テキストが返されませんでした。再試行するか、別のモデルを選択してください。",
+      "pl": "Transformacja zakończona, ale nie zwróciła tekstu. Spróbuj ponownie lub wybierz inny model.",
+      "hi": "ट्रांसफ़ॉर्म पूरा हुआ लेकिन कोई टेक्स्ट नहीं मिला। फिर से कोशिश करें या कोई अन्य मॉडल चुनें।",
+      "hu": "Az átalakítás befejeződött, de nem érkezett szöveg. Próbálja újra, vagy válasszon másik modellt.",
+      "it": "Trasformazione completata ma non è stato restituito alcun testo. Riprova o scegli un altro modello.",
+      "fa": "تبدیل به پایان رسید اما متنی برنگرداند. دوباره امتحان کنید یا مدل دیگری را انتخاب کنید.",
+      "uk": "Перетворення завершено, але текст не отримано. Спробуйте ще раз або виберіть іншу модель.",
+      "tr": "Dönüştürme tamamlandı ancak metin döndürülmedi. Tekrar deneyin veya başka bir model seçin.",
+      "es": "Se completó la transformación pero no se devolvió ningún texto. Inténtalo de nuevo o elige otro modelo.",
+      "ru": "Преобразование завершено, но текст не получен. Попробуйте ещё раз или выберите другую модель.",
+      "ro": "Transformarea s-a încheiat, dar nu a returnat niciun text. Încercați din nou sau alegeți alt model.",
+      "sv": "Omvandlingen slutfördes men returnerade ingen text. Försök igen eller välj en annan modell.",
+      "sk": "Transformácia sa dokončila, ale nevrátila žiadny text. Skúste to znova alebo vyberte iný model.",
+      "th": "การแปลงเสร็จสิ้นแล้วแต่ไม่มีข้อความส่งกลับมา ลองใหม่อีกครั้งหรือเลือกโมเดลอื่น",
+      "vi": "Chuyển đổi hoàn tất nhưng không trả về văn bản. Hãy thử lại hoặc chọn mô hình khác."
+    },
+    "models": {
+      "de": "~anthropic/claude-sonnet-latest",
+      "zh-Hans": "z-ai/glm-5.2",
+      "nl": "~anthropic/claude-sonnet-latest",
+      "zh-Hant": "z-ai/glm-5.2",
+      "cs": "~anthropic/claude-sonnet-latest",
+      "fr": "~anthropic/claude-sonnet-latest",
+      "ar": "~anthropic/claude-sonnet-latest",
+      "el": "~anthropic/claude-sonnet-latest",
+      "ko": "z-ai/glm-5.2",
+      "pt-BR": "~anthropic/claude-sonnet-latest",
+      "ja": "z-ai/glm-5.2",
+      "pl": "~anthropic/claude-sonnet-latest",
+      "hi": "~anthropic/claude-sonnet-latest",
+      "hu": "~anthropic/claude-sonnet-latest",
+      "it": "~anthropic/claude-sonnet-latest",
+      "fa": "~anthropic/claude-sonnet-latest",
+      "uk": "~anthropic/claude-sonnet-latest",
+      "tr": "~anthropic/claude-sonnet-latest",
+      "es": "~anthropic/claude-sonnet-latest",
+      "ru": "~anthropic/claude-sonnet-latest",
+      "ro": "~anthropic/claude-sonnet-latest",
+      "sv": "~anthropic/claude-sonnet-latest",
+      "sk": "~anthropic/claude-sonnet-latest",
+      "th": "~anthropic/claude-sonnet-latest",
+      "vi": "~anthropic/claude-sonnet-latest"
+    },
+    "locations": [
+      {
+        "file": "src/renderer/utils/misc/apiErrorDisplay.ts",
+        "line": 276
+      }
+    ]
+  },
+  "bf5bdd63": {
+    "source": "The request ended before completion. Try again.",
+    "translated": {
+      "pt-BR": "A solicitação terminou antes da conclusão. Tente novamente.",
+      "ca": "La sol·licitud es va interrompre abans de completar-se. Torneu-ho a provar.",
+      "ar": "انتهت الطلب قبل الاكتمال. حاول مرة أخرى.",
+      "bn": "অনুরোধটি সম্পূর্ণ হওয়ার আগেই শেষ হয়ে গেছে। আবার চেষ্টা করুন।",
+      "zh-TW": "請求在完成前結束。請再試一次。",
+      "zh-CN": "请求在完成前结束。请重试。",
+      "cs": "Požadavek byl ukončen před dokončením. Zkuste to znovu.",
+      "hr": "Zahtjev je završio prije dovršetka. Pokušajte ponovno.",
+      "en-US": "The request ended before completion. Try again.",
+      "fr": "La demande s'est terminée avant la fin. Réessayez.",
+      "tl": "Natapos ang kahilingan bago matapos. Subukang muli.",
+      "nl": "Het verzoek is voltooid voordat het klaar was. Probeer het opnieuw.",
+      "hu": "A kérés a befejezés előtt véget ért. Próbálja újra.",
+      "de": "Die Anfrage wurde vor Abschluss beendet. Bitte versuchen Sie es erneut.",
+      "hi": "अनुरोध पूरा होने से पहले समाप्त हो गया। पुन: प्रयास करें।",
+      "el": "Το αίτημα ολοκληρώθηκε πριν από την ολοκλήρωση. Προσπαθήστε ξανά.",
+      "ms": "Permintaan berakhir sebelum selesai. Cuba lagi.",
+      "ja": "リクエストが完了する前に終了しました。もう一度お試しください。",
+      "ko": "요청이 완료되기 전에 종료되었습니다. 다시 시도해 주세요.",
+      "it": "La richiesta è terminata prima del completamento. Riprova.",
+      "pt": "A solicitação terminou antes da conclusão. Tente novamente.",
+      "pl": "Żądanie zakończyło się przed ukończeniem. Spróbuj ponownie.",
+      "fa": "درخواست قبل از اتمام پایان یافت. دوباره امتحان کنید.",
+      "pa": "ਬੇਨਤੀ ਪੂਰੀ ਹੋਣ ਤੋਂ ਪਹਿਲਾਂ ਖਤਮ ਹੋ ਗਈ। ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।",
+      "es": "La solicitud finalizó antes de completarse. Inténtalo de nuevo.",
+      "ru": "Запрос завершился до окончания. Попробуйте еще раз.",
+      "ro": "Cererea s-a încheiat înainte de finalizare. Încercați din nou.",
+      "sk": "Požiadavka sa skončila pred dokončením. Skúste to znova.",
+      "sv": "Begäran avslutades innan den var klar. Försök igen.",
+      "sw": "Ombi liliisha kabla ya kukamilika. Jaribu tena.",
+      "th": "คำขอสิ้นสุดก่อนเสร็จสมบูรณ์ ลองอีกครั้ง",
+      "te": "అభ్యర్థన పూర్తి కాకుండానే ముగిసింది. మళ్లీ ప్రయత్నించండి.",
+      "vi": "Yêu cầu kết thúc trước khi hoàn thành. Vui lòng thử lại.",
+      "tr": "İstek tamamlanmadan sonlandı. Tekrar deneyin.",
+      "uk": "Запит завершився до завершення. Спробуйте ще раз.",
+      "jv": "Panjalukan rampung sadurunge rampung. Coba manèh.",
+      "zh-Hans": "请求未完成。请重试。",
+      "zh-Hant": "要求未完成。請再試一次。",
+      "pa-PK": "درخواست مکمل ہون توں پہلاں ختم ہو گئی۔ دوبارہ کوشش کرو۔",
+      "hi-Latn": "Anurodh poora hone se pehle samapt ho gaya. Phir se koshish karein."
+    },
+    "models": {
+      "pt-BR": "anthropic/claude-3-haiku",
+      "ca": "anthropic/claude-3-haiku",
+      "ar": "anthropic/claude-3-haiku",
+      "bn": "anthropic/claude-3-haiku",
+      "zh-TW": "anthropic/claude-3-haiku",
+      "zh-CN": "anthropic/claude-3-haiku",
+      "cs": "anthropic/claude-3-haiku",
+      "hr": "anthropic/claude-3-haiku",
+      "en-US": "anthropic/claude-3-haiku",
+      "fr": "anthropic/claude-3-haiku",
+      "tl": "anthropic/claude-3-haiku",
+      "nl": "anthropic/claude-3-haiku",
+      "hu": "anthropic/claude-3-haiku",
+      "de": "anthropic/claude-3-haiku",
+      "hi": "anthropic/claude-3-haiku",
+      "el": "anthropic/claude-3-haiku",
+      "ms": "anthropic/claude-3-haiku",
+      "ja": "anthropic/claude-3-haiku",
+      "ko": "anthropic/claude-3-haiku",
+      "it": "anthropic/claude-3-haiku",
+      "pt": "anthropic/claude-3-haiku",
+      "pl": "anthropic/claude-3-haiku",
+      "fa": "anthropic/claude-3-haiku",
+      "pa": "anthropic/claude-3-haiku",
+      "es": "anthropic/claude-3-haiku",
+      "ru": "anthropic/claude-3-haiku",
+      "ro": "anthropic/claude-3-haiku",
+      "sk": "anthropic/claude-3-haiku",
+      "sv": "anthropic/claude-3-haiku",
+      "sw": "anthropic/claude-3-haiku",
+      "th": "anthropic/claude-3-haiku",
+      "te": "anthropic/claude-3-haiku",
+      "vi": "anthropic/claude-3-haiku",
+      "tr": "anthropic/claude-3-haiku",
+      "uk": "anthropic/claude-3-haiku",
+      "jv": "anthropic/claude-3-haiku",
+      "zh-Hans": "google/gemini-2.5-flash-lite",
+      "zh-Hant": "google/gemini-2.5-flash-lite",
+      "pa-PK": "google/gemini-2.5-flash",
+      "hi-Latn": "google/gemini-2.5-flash"
+    },
+    "locations": [
+      {
+        "file": "src/renderer/utils/misc/apiErrorDisplay.ts",
+        "line": 300
+      }
+    ]
+  },
   "5de8f1d4": {
     "source": "Error: {{message}}",
     "translated": {
@@ -55420,7 +56146,7 @@
     "locations": [
       {
         "file": "src/renderer/utils/misc/apiErrorDisplay.ts",
-        "line": 16
+        "line": 316
       }
     ]
   },

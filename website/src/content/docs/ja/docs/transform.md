@@ -1,7 +1,7 @@
 ---
 title: プロンプトで変換
 description: カスタムAI命令を実行 — Transformプロンプトの作成、編集、テスト、管理を行います。
-translation_last_updated: '2026-07-17T14:59:00.804Z'
+translation_last_updated: '2026-07-17T21:14:46.579Z'
 source_file_mtime: '2026-07-17T11:53:39.333Z'
 source_file_hash: 07b5d140803063510c7c9fecf67a2f99e3aab3040116733a3126939b0c82e16e
 translation_language: ja

@@ -37,6 +37,7 @@ On startup the server opens the editor URL in your default browser (same idea as
 
 - **Environment**: LLM keys come only from `process.env` (export before launch, e.g. `set -a && source .env && set +a && pnpm run presets-editor`); this server does not read `.env` files.
 - **Canonical file**: `easy-mode-config/presets.json` — always loaded and saved here first.
+- **Version on save**: Each save bumps the catalog `version` patch and aligns major.minor with the Transrewrt version in root `package.json` (e.g. catalog `1.2.50` + app `1.6.1` → `1.6.51`).
 - **Mirror**: After each successful save, the same JSON is written to `data/presets.json` (parent directory created if needed). If the mirror fails, the API returns an error even though the repo file was updated; fix permissions or path and save again.
 - **Source locale**: Read from `src/config-defaults/config_default.json` (`source_locale`, default `en-GB`) for translation targets and the translations table.
 - **Test model**: Per-provider **Test** on each preset row sends one tiny completion (small token cost when a key is set). Does not write files.
