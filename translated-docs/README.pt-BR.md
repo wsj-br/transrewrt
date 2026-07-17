@@ -23,13 +23,6 @@ Ferramenta de texto com IA: **traduzir**, **reescrever** e **transformar** com p
 <small>**Leia em outros idiomas:** </small>
 <small id="lang-list">[English (UK)](../README.md) · [العربية](./README.ar.md) · [简体中文](./README.zh-Hans.md) · [繁體中文](./README.zh-Hant.md) · [Čeština](./README.cs.md) · [Nederlands](./README.nl.md) · [Français](./README.fr.md) · [Deutsch](./README.de.md) · [Ελληνικά](./README.el.md) · [हिन्दी](./README.hi.md) · [Magyar](./README.hu.md) · [Italiano](./README.it.md) · [日本語](./README.ja.md) · [한국어](./README.ko.md) · [فارسی](./README.fa.md) · [Polski](./README.pl.md) · [Português (Brasil)](./README.pt-BR.md) · [Română](./README.ro.md) · [Русский](./README.ru.md) · [Slovenčina](./README.sk.md) · [Español](./README.es.md) · [Svenska](./README.sv.md) · [ไทย](./README.th.md) · [Türkçe](./README.tr.md) · [Українська](./README.uk.md) · [Tiếng Việt](./README.vi.md)</small>
 
-<small>
-
-> **Observação sobre traduções da interface e documentação:** Todos os idiomas da interface, exceto o inglês (UK) original, 
-> foram traduzidos usando modelos de IA; a redação pode ser imprecisa ou conter erros.
-
-</small>
-
 ## Início rápido
 
 **Docker**
@@ -84,3 +77,9 @@ Direitos autorais © 2026 Waldemar Scudeller Jr.
 [Apache License 2.0](../LICENSE)
 
 Nomes e ícones de produtos pertencem aos seus respectivos proprietários e são usados apenas para identificação. Este software não é afiliado nem endossado por essas marcas.
+
+<small>
+
+> **Observação sobre traduções de UI e documentação:** Todos os idiomas da interface e da documentação, exceto o inglês original, foram traduzidos usando modelos de IA com [ai-i18n-tools](https://wsj-br.github.io/ai-i18n-tools/); a redação pode ser imprecisa ou conter erros.
+
+</small>

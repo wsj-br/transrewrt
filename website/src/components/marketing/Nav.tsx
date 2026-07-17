@@ -36,8 +36,9 @@ export default function Nav() {
           : 'border-b border-transparent bg-transparent'
       }`}
     >
-      <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-        <a href="#top" className="flex items-center gap-2.5">
+      {/* Wider than page max-w-7xl so long locale labels can stay on one line */}
+      <nav className="mx-auto flex h-16 max-w-[90rem] items-center justify-between gap-3 px-4 sm:px-6 lg:px-8">
+        <a href="#top" className="flex shrink-0 items-center gap-2.5">
           <img src={LOGO_SVG} alt={t('Transrewrt logo')} className="h-8 w-8" />
           <span className="text-lg font-bold tracking-tight">
             <span className="text-brand-green-400">Trans</span>
@@ -45,51 +46,54 @@ export default function Nav() {
           </span>
         </a>
 
-        <div className="hidden items-center gap-1 lg:flex">
+        {/* xl: longer locales need more width than lg before labels stay on one line */}
+        <div className="hidden min-w-0 flex-1 items-center justify-center gap-0.5 xl:flex">
           {nav.map((n) => (
             <a
               key={n.href}
               href={n.href}
-              className="rounded-lg px-3 py-2 text-sm font-medium text-neutral-300 transition-colors hover:bg-white/5 hover:text-white"
+              className="shrink-0 whitespace-nowrap rounded-lg px-2.5 py-2 text-sm font-medium text-neutral-300 transition-colors hover:bg-white/5 hover:text-white"
             >
               {n.label}
             </a>
           ))}
         </div>
 
-        <div className="hidden items-center gap-2 md:flex">
-          <LanguagePicker />
-          <a
-            href={links.repo}
-            target="_blank"
-            rel="noreferrer"
-            className="inline-flex items-center gap-2 rounded-lg border border-white/10 px-3 py-2 text-sm font-medium text-neutral-200 transition-colors hover:border-white/20 hover:bg-white/5"
-          >
-            <GitHubIcon className="h-4 w-4" />
-            <span>{t('Star')}</span>
-          </a>
-          <a
-            href={links.releases}
-            target="_blank"
-            rel="noreferrer"
-            className="inline-flex items-center gap-2 rounded-lg bg-brand-green-500 px-3.5 py-2 text-sm font-semibold text-brand-ink-900 shadow-lg shadow-brand-green-500/20 transition-all hover:bg-brand-green-400 hover:shadow-brand-green-500/40"
-          >
-            {t('Download')}
-          </a>
-        </div>
+        <div className="flex shrink-0 items-center gap-2">
+          <div className="hidden items-center gap-2 md:flex">
+            <LanguagePicker />
+            <a
+              href={links.repo}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-2 rounded-lg border border-white/10 px-3 py-2 text-sm font-medium whitespace-nowrap text-neutral-200 transition-colors hover:border-white/20 hover:bg-white/5"
+            >
+              <GitHubIcon className="h-4 w-4" />
+              <span>{t('Star')}</span>
+            </a>
+            <a
+              href={links.releases}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-2 rounded-lg bg-brand-green-500 px-3.5 py-2 text-sm font-semibold whitespace-nowrap text-brand-ink-900 shadow-lg shadow-brand-green-500/20 transition-all hover:bg-brand-green-400 hover:shadow-brand-green-500/40"
+            >
+              {t('Download')}
+            </a>
+          </div>
 
-        <button
-          type="button"
-          onClick={() => setOpen((v) => !v)}
-          className="inline-flex items-center justify-center rounded-lg p-2 text-neutral-200 md:hidden"
-          aria-label={t('Toggle menu')}
-        >
-          {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-        </button>
+          <button
+            type="button"
+            onClick={() => setOpen((v) => !v)}
+            className="inline-flex items-center justify-center rounded-lg p-2 text-neutral-200 xl:hidden"
+            aria-label={t('Toggle menu')}
+          >
+            {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </button>
+        </div>
       </nav>
 
       {open && (
-        <div className="border-t border-white/10 bg-brand-ink-900/95 backdrop-blur-xl md:hidden">
+        <div className="border-t border-white/10 bg-brand-ink-900/95 backdrop-blur-xl xl:hidden">
           <div className="space-y-1 px-4 py-4">
             {nav.map((n) => (
               <a
@@ -101,10 +105,10 @@ export default function Nav() {
                 {n.label}
               </a>
             ))}
-            <div className="px-3 py-2">
+            <div className="px-3 py-2 md:hidden">
               <LanguagePicker />
             </div>
-            <div className="flex gap-2 pt-2">
+            <div className="flex gap-2 pt-2 md:hidden">
               <a
                 href={links.docs}
                 className="inline-flex flex-1 items-center justify-center gap-2 rounded-lg border border-white/10 px-3 py-2.5 text-sm font-medium"

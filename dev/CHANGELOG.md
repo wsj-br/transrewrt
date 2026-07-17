@@ -11,10 +11,12 @@ Use conventional types (Added, Changed, Fixed, etc.) and short descriptions.
 
 ## Unreleased
 
-- **Fixed**: Website marketing locale pages (`/{locale}/`) render English on GitHub Pages because flat `src/i18n/locales/*.json` bundles are gitignored; SSG now builds translations from committed `strings.json`.
-
 ## [1.6.1] - 2026-07-17
 
+- **Changed**: Website marketing footer AI-translation note now states translations other than English (UK) are AI-assisted using ai-i18n-tools (linked).
+- **Fixed**: Website marketing open-source CTAs keep equal single-line height across locales (`whitespace-nowrap` + wrap as whole buttons).
+- **Fixed**: Website marketing header nav no longer wraps long locale labels; desktop links show from the `xl` breakpoint with a hamburger below that.
+- **Fixed**: Website marketing locale pages (`/{locale}/`) render English on GitHub Pages because flat `src/i18n/locales/*.json` bundles are gitignored; SSG now builds translations from committed `strings.json`.
 - **Changed**: Stop tracking TypeScript incremental cache files; ignore `*.tsbuildinfo` in `.gitignore`.
 - **Added**: GitHub Pages deploy for `website/` — reusable workflow `.github/workflows/website-pages.yml`, called from the Release workflow on publish; ad-hoc via `pnpm website:publish` / `website/scripts/publish-pages.sh` (`workflow_dispatch`). Astro `base` set to `/transrewrt` for project Pages URLs. Publish script refuses uncommitted `website/` changes (and unpushed branch commits) unless `--allow-dirty`.
 - **Changed**: `pnpm update-version` also syncs `website/package.json` and the marketing `VERSION` constant in `website/src/components/marketing/data.ts`.

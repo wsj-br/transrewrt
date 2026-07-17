@@ -129,7 +129,7 @@
       },
       {
         "file": "src/components/marketing/Nav.tsx",
-        "line": 41
+        "line": 42
       },
       {
         "file": "src/components/marketing/OpenSource.tsx",
@@ -736,15 +736,15 @@
       },
       {
         "file": "src/components/marketing/Nav.tsx",
-        "line": 112
+        "line": 116
       },
       {
         "file": "src/components/marketing/OpenSource.tsx",
-        "line": 47
+        "line": 48
       },
       {
         "file": "src/components/marketing/OpenSource.tsx",
-        "line": 65
+        "line": 66
       }
     ]
   },
@@ -811,7 +811,7 @@
       },
       {
         "file": "src/components/marketing/OpenSource.tsx",
-        "line": 73
+        "line": 74
       }
     ]
   },
@@ -1004,66 +1004,129 @@
       }
     ]
   },
-  "ea7d99e4": {
-    "source": "UI and documentation translations beyond English (UK) may be AI-assisted.",
+  "44b4deff": {
+    "source": "UI and documentation translations other than English are AI-assisted using",
     "translated": {
-      "zh-Hans": "英语（英国）以外的 UI 和文档翻译可能是 AI 辅助完成的。",
-      "pt-BR": "As traduções da interface e da documentação além do inglês (Reino Unido) podem ter sido feitas com auxílio de IA.",
-      "zh-Hant": "英國英語以外的 UI 和文件翻譯可能由 AI 輔助完成。",
-      "fr": "Les traductions de l'interface et de la documentation autres que l'anglais (Royaume-Uni) peuvent être assistées par IA.",
-      "nl": "Vertalingen van de UI en documentatie anders dan Engels (VK) kunnen AI-ondersteund zijn.",
-      "cs": "Překlady uživatelského rozhraní a dokumentace do jiných jazyků než angličtiny (UK) mohou být vytvořeny s pomocí AI.",
-      "ar": "قد تكون ترجمات الواجهة والمستندات إلى لغات أخرى غير الإنجليزية (المملكة المتحدة) بمساعدة الذكاء الاصطناعي.",
-      "hi": "अंग्रेज़ी (यूके) के अलावा UI और दस्तावेज़ीकरण के अनुवाद AI-सहायता प्राप्त हो सकते हैं।",
-      "it": "Le traduzioni dell'interfaccia e della documentazione diverse dall'inglese (Regno Unito) possono essere assistite dall'IA.",
-      "de": "Übersetzungen der Benutzeroberfläche und Dokumentation außer Englisch (UK) können KI-unterstützt sein.",
-      "pl": "Tłumaczenia interfejsu i dokumentacji na języki inne niż angielski (Wielka Brytania) mogą być wspomagane przez AI.",
-      "ko": "영어(영국) 외의 UI 및 문서 번역은 AI 지원을 받았을 수 있습니다.",
-      "ja": "英語（英国）以外のUIおよびドキュメントの翻訳はAI支援による場合があります。",
-      "fa": "ترجمه‌های رابط کاربری و مستندات به زبان‌هایی غیر از انگلیسی (بریتانیا) ممکن است با کمک هوش مصنوعی انجام شده باشند.",
-      "hu": "A felhasználói felület és a dokumentáció angol (brit) nyelven kívüli fordításai AI-segítséggel készülhettek.",
-      "el": "Οι μεταφράσεις του περιβάλλοντος χρήστη και της τεκμηρίωσης πέραν των Αγγλικών (Η.Β.) ενδέχεται να έχουν γίνει με τη βοήθεια τεχνητής νοημοσύνης.",
-      "es": "Las traducciones de la interfaz y la documentación distintas del inglés (Reino Unido) pueden estar asistidas por IA.",
-      "ru": "Переводы интерфейса и документации, кроме английского (Великобритания), могут быть выполнены с помощью ИИ.",
-      "sv": "Översättningar av gränssnitt och dokumentation utöver engelska (Storbritannien) kan vara AI-assisterade.",
-      "ro": "Traducerile interfeței și documentației în alte limbi decât engleza (Regatul Unit) pot fi asistate de AI.",
-      "tr": "İngilizce (Birleşik Krallık) dışındaki arayüz ve belge çevirileri yapay zeka desteğiyle hazırlanmış olabilir.",
-      "uk": "Переклади інтерфейсу та документації, крім англійської (Велика Британія), можуть бути виконані за допомогою ШІ.",
-      "sk": "Preklady rozhrania a dokumentácie do iných jazykov ako angličtina (UK) môžu byť vytvorené s pomocou AI.",
-      "th": "การแปล UI และเอกสารนอกเหนือจากภาษาอังกฤษ (สหราชอาณาจักร) อาจใช้ AI ช่วยแปล",
-      "vi": "Bản dịch giao diện và tài liệu ngoài tiếng Anh (Anh) có thể được hỗ trợ bởi AI."
+      "nl": "UI- en documentatievertalingen anders dan Engels worden AI-ondersteund gemaakt met",
+      "zh-Hans": "除英语外的界面和文档翻译均由 AI 辅助，使用",
+      "de": "UI- und Dokumentationsübersetzungen außer Englisch werden KI-unterstützt erstellt mit",
+      "zh-Hant": "英文以外的 UI 與說明文件翻譯為 AI 輔助，使用",
+      "fr": "Les traductions de l'interface et de la documentation autres que l'anglais sont assistées par IA à l'aide de",
+      "el": "Οι μεταφράσεις του περιβάλλοντος χρήστη και της τεκμηρίωσης σε γλώσσες εκτός των Αγγλικών γίνονται με τη βοήθεια AI χρησιμοποιώντας",
+      "cs": "Překlady uživatelského rozhraní a dokumentace do jiných jazyků než angličtiny jsou vytvářeny s pomocí AI pomocí",
+      "ar": "ترجمات الواجهة والوثائق إلى لغات أخرى غير الإنجليزية تتم بمساعدة الذكاء الاصطناعي باستخدام",
+      "it": "Le traduzioni dell'interfaccia e della documentazione diverse dall'inglese sono assistite dall'IA tramite",
+      "ko": "영어 외 UI 및 문서 번역은 AI 지원을 통해 이루어지며 사용 도구:",
+      "hi": "अंग्रेज़ी के अलावा अन्य भाषाओं में UI और दस्तावेज़ीकरण अनुवाद इसकी मदद से AI-सहायता प्राप्त हैं",
+      "pl": "Tłumaczenia interfejsu i dokumentacji na języki inne niż angielski są wspomagane przez sztuczną inteligencję z wykorzystaniem",
+      "pt-BR": "Traduções de UI e documentação para idiomas diferentes do inglês são assistidas por IA usando",
+      "fa": "ترجمه‌های رابط کاربری و مستندات به زبان‌هایی غیر از انگلیسی با کمک هوش مصنوعی و با استفاده از",
+      "hu": "A felhasználói felület és a dokumentáció angol nyelvtől eltérő fordításai AI-asszisztált módon készültek a következő eszközzel:",
+      "ja": "英語以外のUIおよびドキュメントの翻訳は、AIを使用して支援されています",
+      "es": "Las traducciones de la interfaz y la documentación distintas del inglés están asistidas por IA mediante",
+      "sv": "UI- och dokumentationsöversättningar utöver engelska är AI-assisterade med hjälp av",
+      "uk": "Переклади інтерфейсу та документації, окрім англійської, виконуються за допомогою ШІ з використанням",
+      "ro": "Traducerile interfeței și ale documentației, altele decât cea în limba engleză, sunt asistate de AI folosind",
+      "th": "การแปล UI และเอกสารประกอบเป็นภาษาอื่นนอกจากภาษาอังกฤษได้รับความช่วยเหลือจาก AI โดยใช้",
+      "ru": "Переводы интерфейса и документации на языки, отличные от английского, выполняются с помощью ИИ с использованием",
+      "tr": "İngilizce dışındaki arayüz ve belge çevirileri, yapay zeka desteğiyle şunlar kullanılarak hazırlanmıştır:",
+      "sk": "Preklady používateľského rozhrania a dokumentácie do iných jazykov ako angličtina sú vytvorené pomocou AI s využitím",
+      "vi": "Bản dịch giao diện và tài liệu sang các ngôn ngữ khác ngoài tiếng Anh được hỗ trợ bởi AI, sử dụng"
     },
     "models": {
+      "nl": "~anthropic/claude-sonnet-latest",
       "zh-Hans": "z-ai/glm-5.2",
-      "pt-BR": "~anthropic/claude-sonnet-latest",
+      "de": "~anthropic/claude-sonnet-latest",
       "zh-Hant": "z-ai/glm-5.2",
       "fr": "~anthropic/claude-sonnet-latest",
-      "nl": "~anthropic/claude-sonnet-latest",
+      "el": "~anthropic/claude-sonnet-latest",
       "cs": "~anthropic/claude-sonnet-latest",
       "ar": "~anthropic/claude-sonnet-latest",
-      "hi": "~anthropic/claude-sonnet-latest",
       "it": "~anthropic/claude-sonnet-latest",
-      "de": "~anthropic/claude-sonnet-latest",
-      "pl": "~anthropic/claude-sonnet-latest",
       "ko": "z-ai/glm-5.2",
-      "ja": "z-ai/glm-5.2",
+      "hi": "~anthropic/claude-sonnet-latest",
+      "pl": "~anthropic/claude-sonnet-latest",
+      "pt-BR": "~anthropic/claude-sonnet-latest",
       "fa": "~anthropic/claude-sonnet-latest",
       "hu": "~anthropic/claude-sonnet-latest",
-      "el": "~anthropic/claude-sonnet-latest",
+      "ja": "z-ai/glm-5.2",
       "es": "~anthropic/claude-sonnet-latest",
-      "ru": "~anthropic/claude-sonnet-latest",
       "sv": "~anthropic/claude-sonnet-latest",
-      "ro": "~anthropic/claude-sonnet-latest",
-      "tr": "~anthropic/claude-sonnet-latest",
       "uk": "~anthropic/claude-sonnet-latest",
-      "sk": "~anthropic/claude-sonnet-latest",
+      "ro": "~anthropic/claude-sonnet-latest",
       "th": "~anthropic/claude-sonnet-latest",
+      "ru": "~anthropic/claude-sonnet-latest",
+      "tr": "~anthropic/claude-sonnet-latest",
+      "sk": "~anthropic/claude-sonnet-latest",
       "vi": "~anthropic/claude-sonnet-latest"
     },
     "locations": [
       {
         "file": "src/components/marketing/Footer.tsx",
         "line": 113
+      }
+    ]
+  },
+  "493b1d71": {
+    "source": "The wording may be imprecise or contain errors.",
+    "translated": {
+      "zh-Hans": "措辞可能不够准确或包含错误。",
+      "cs": "Formulace může být nepřesná nebo obsahovat chyby.",
+      "fr": "Le texte peut être imprécis ou contenir des erreurs.",
+      "ar": "قد تكون الصياغة غير دقيقة أو تحتوي على أخطاء.",
+      "zh-Hant": "措辭可能不夠精確或包含錯誤。",
+      "nl": "De formulering kan onnauwkeurig zijn of fouten bevatten.",
+      "el": "Η διατύπωση μπορεί να είναι ανακριβής ή να περιέχει σφάλματα.",
+      "de": "Der Wortlaut ist möglicherweise ungenau oder enthält Fehler.",
+      "ko": "문구가 부정확하거나 오류가 포함되어 있을 수 있습니다.",
+      "pt-BR": "A redação pode ser imprecisa ou conter erros.",
+      "pl": "Sformułowania mogą być nieprecyzyjne lub zawierać błędy.",
+      "it": "Il testo potrebbe essere impreciso o contenere errori.",
+      "hu": "Előfordulhat, hogy a megfogalmazás pontatlan, vagy hibákat tartalmaz.",
+      "hi": "शब्दावली अस्पष्ट हो सकती है या इसमें त्रुटियाँ हो सकती हैं।",
+      "fa": "ممکن است عبارت‌بندی نادقیق باشد یا شامل خطا باشد.",
+      "ja": "表現が不正確であったり、誤りが含まれている場合があります。",
+      "es": "El texto puede ser impreciso o contener errores.",
+      "ro": "Formularea poate fi imprecisă sau poate conține erori.",
+      "sk": "Formulácia môže byť nepresná alebo môže obsahovať chyby.",
+      "tr": "İfade tarzı belirsiz olabilir veya hatalar içerebilir.",
+      "sv": "Ordalydelsen kan vara oprecis eller innehålla fel.",
+      "th": "ข้อความอาจไม่ถูกต้องหรือมีข้อผิดพลาด",
+      "ru": "Формулировка может быть неточной или содержать ошибки.",
+      "uk": "Формулювання може бути неточним або містити помилки.",
+      "vi": "Cách diễn đạt có thể chưa chính xác hoặc chứa lỗi."
+    },
+    "models": {
+      "zh-Hans": "z-ai/glm-5.2",
+      "cs": "~anthropic/claude-sonnet-latest",
+      "fr": "~anthropic/claude-sonnet-latest",
+      "ar": "~anthropic/claude-sonnet-latest",
+      "zh-Hant": "z-ai/glm-5.2",
+      "nl": "~anthropic/claude-sonnet-latest",
+      "el": "~anthropic/claude-sonnet-latest",
+      "de": "~anthropic/claude-sonnet-latest",
+      "ko": "z-ai/glm-5.2",
+      "pt-BR": "~anthropic/claude-sonnet-latest",
+      "pl": "~anthropic/claude-sonnet-latest",
+      "it": "~anthropic/claude-sonnet-latest",
+      "hu": "~anthropic/claude-sonnet-latest",
+      "hi": "~anthropic/claude-sonnet-latest",
+      "fa": "~anthropic/claude-sonnet-latest",
+      "ja": "z-ai/glm-5.2",
+      "es": "~anthropic/claude-sonnet-latest",
+      "ro": "~anthropic/claude-sonnet-latest",
+      "sk": "~anthropic/claude-sonnet-latest",
+      "tr": "~anthropic/claude-sonnet-latest",
+      "sv": "~anthropic/claude-sonnet-latest",
+      "th": "~anthropic/claude-sonnet-latest",
+      "ru": "~anthropic/claude-sonnet-latest",
+      "uk": "~anthropic/claude-sonnet-latest",
+      "vi": "~anthropic/claude-sonnet-latest"
+    },
+    "locations": [
+      {
+        "file": "src/components/marketing/Footer.tsx",
+        "line": 124
       }
     ]
   },
@@ -2516,11 +2579,11 @@
       },
       {
         "file": "src/components/marketing/Nav.tsx",
-        "line": 77
+        "line": 80
       },
       {
         "file": "src/components/marketing/Nav.tsx",
-        "line": 120
+        "line": 124
       }
     ]
   },
@@ -3099,7 +3162,7 @@
     "locations": [
       {
         "file": "src/components/marketing/Nav.tsx",
-        "line": 69
+        "line": 72
       }
     ]
   },
@@ -3162,7 +3225,7 @@
     "locations": [
       {
         "file": "src/components/marketing/Nav.tsx",
-        "line": 85
+        "line": 88
       }
     ]
   },
@@ -3477,7 +3540,7 @@
     "locations": [
       {
         "file": "src/components/marketing/OpenSource.tsx",
-        "line": 40
+        "line": 41
       }
     ]
   },
@@ -3540,7 +3603,7 @@
     "locations": [
       {
         "file": "src/components/marketing/OpenSource.tsx",
-        "line": 56
+        "line": 57
       }
     ]
   },
@@ -3603,7 +3666,7 @@
     "locations": [
       {
         "file": "src/components/marketing/OpenSource.tsx",
-        "line": 81
+        "line": 82
       }
     ]
   },

@@ -23,13 +23,6 @@ Nástroj pro zpracování textu s umělou inteligencí: **přeložit**, **přeps
 <small>**Přečtěte si v jiných jazycích:** </small>
 <small id="lang-list">[English (UK)](../README.md) · [العربية](./README.ar.md) · [简体中文](./README.zh-Hans.md) · [繁體中文](./README.zh-Hant.md) · [Čeština](./README.cs.md) · [Nederlands](./README.nl.md) · [Français](./README.fr.md) · [Deutsch](./README.de.md) · [Ελληνικά](./README.el.md) · [हिन्दी](./README.hi.md) · [Magyar](./README.hu.md) · [Italiano](./README.it.md) · [日本語](./README.ja.md) · [한국어](./README.ko.md) · [فارسی](./README.fa.md) · [Polski](./README.pl.md) · [Português (Brasil)](./README.pt-BR.md) · [Română](./README.ro.md) · [Русский](./README.ru.md) · [Slovenčina](./README.sk.md) · [Español](./README.es.md) · [Svenska](./README.sv.md) · [ไทย](./README.th.md) · [Türkçe](./README.tr.md) · [Українська](./README.uk.md) · [Tiếng Việt](./README.vi.md)</small>
 
-<small>
-
-> **Poznámka k překladům uživatelského rozhraní a dokumentace:** Všechny jazyky rozhraní kromě původního angličtiny (UK)
-> byly přeloženy pomocí modelů umělé inteligence; vyjádření může být nepřesné nebo obsahovat chyby.
-
-</small>
-
 ## Rychlý start
 
 **Docker**
@@ -84,3 +77,11 @@ Copyright © 2026 Waldemar Scudeller Jr.
 [Apache License 2.0](../LICENSE)
 
 Názvy produktů a ikony patří jejich příslušným vlastníkům a slouží pouze k identifikaci. Tento software není přidružen k těmto značkám ani jimi není schválen.
+
+<small>
+
+> **Poznámka k překladům uživatelského rozhraní a dokumentace:** Všechny jazyky rozhraní a dokumentace kromě 
+> původní angličtiny byly přeloženy pomocí modelů umělé inteligence s využitím [ai-i18n-tools](https://wsj-br.github.io/ai-i18n-tools/); 
+> formulace může být nepřesná nebo obsahovat chyby.
+
+</small>

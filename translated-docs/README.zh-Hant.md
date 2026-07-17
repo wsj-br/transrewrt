@@ -23,12 +23,6 @@ AI 驅動的文字工具：**翻譯**、**重寫**與**轉換**，並使用自�
 <small>**以其他語言閱讀：** </small>
 <small id="lang-list">[English (UK)](../README.md) · [العربية](./README.ar.md) · [简体中文](./README.zh-Hans.md) · [繁體中文](./README.zh-Hant.md) · [Čeština](./README.cs.md) · [Nederlands](./README.nl.md) · [Français](./README.fr.md) · [Deutsch](./README.de.md) · [Ελληνικά](./README.el.md) · [हिन्दी](./README.hi.md) · [Magyar](./README.hu.md) · [Italiano](./README.it.md) · [日本語](./README.ja.md) · [한국어](./README.ko.md) · [فارسی](./README.fa.md) · [Polski](./README.pl.md) · [Português (Brasil)](./README.pt-BR.md) · [Română](./README.ro.md) · [Русский](./README.ru.md) · [Slovenčina](./README.sk.md) · [Español](./README.es.md) · [Svenska](./README.sv.md) · [ไทย](./README.th.md) · [Türkçe](./README.tr.md) · [Українська](./README.uk.md) · [Tiếng Việt](./README.vi.md)</small>
 
-<small>
-
-> **關於 UI 和文件翻譯的注意事項：** 除了原始英文 (UK) 之外的所有介面語言\n> 均使用 AI 模型進行翻譯；措辭可能不精確或包含錯誤。
-
-</small>
-
 ## 快速開始
 
 **Docker**
@@ -83,3 +77,11 @@ Copyright © 2026 Waldemar Scudeller Jr.
 [Apache License 2.0](../LICENSE)
 
 產品名稱與圖示分屬其各自擁有者所有，僅供識別之用。本軟體不隸屬於這些品牌，亦未獲其背書。
+
+<small>
+
+> **關於介面與文件翻譯的注意事項：** 除了
+> 原始英文外，全部介面與文件語言皆使用 AI 模型透過 [ai-i18n-tools](https://wsj-br.github.io/ai-i18n-tools/) 進行翻譯；
+> 措辭可能不夠精確或包含錯誤。
+
+</small>

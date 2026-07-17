@@ -23,13 +23,6 @@
 <small>**Читати іншими мовами:** </small>
 <small id="lang-list">[English (UK)](../README.md) · [العربية](./README.ar.md) · [简体中文](./README.zh-Hans.md) · [繁體中文](./README.zh-Hant.md) · [Čeština](./README.cs.md) · [Nederlands](./README.nl.md) · [Français](./README.fr.md) · [Deutsch](./README.de.md) · [Ελληνικά](./README.el.md) · [हिन्दी](./README.hi.md) · [Magyar](./README.hu.md) · [Italiano](./README.it.md) · [日本語](./README.ja.md) · [한국어](./README.ko.md) · [فارسی](./README.fa.md) · [Polski](./README.pl.md) · [Português (Brasil)](./README.pt-BR.md) · [Română](./README.ro.md) · [Русский](./README.ru.md) · [Slovenčina](./README.sk.md) · [Español](./README.es.md) · [Svenska](./README.sv.md) · [ไทย](./README.th.md) · [Türkçe](./README.tr.md) · [Українська](./README.uk.md) · [Tiếng Việt](./README.vi.md)</small>
 
-<small>
-
-> **Примітка щодо перекладів інтерфейсу та документації:** Усі мови інтерфейсу, крім оригінальної англійської (Великобританія), 
-> були перекладені за допомогою моделей ШІ; формулювання можуть бути неточними або містити помилки.
-
-</small>
-
 ## Швидкий старт
 
 **Docker**
@@ -84,3 +77,11 @@ chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage
 [Apache License 2.0](../LICENSE)
 
 Назви продуктів та іконки належать їхнім відповідним власникам і використовуються лише для ідентифікації. Це програмне забезпечення не пов’язане з цими брендами та не підтримується ними.
+
+<small>
+
+> **Примітка щодо перекладів інтерфейсу користувача та документації:** Усі мови інтерфейсу та документації, окрім 
+> оригінальної англійської, були перекладені за допомогою моделей ШІ з використанням [ai-i18n-tools](https://wsj-br.github.io/ai-i18n-tools/); 
+> формулювання може бути неточним або містити помилки.
+
+</small>

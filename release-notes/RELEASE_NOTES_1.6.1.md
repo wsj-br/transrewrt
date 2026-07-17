@@ -20,10 +20,14 @@ Transrewrt 1.6.1 focuses on clearer failure handling, a more flexible local LLM 
 - **Website locales**: Marketing frontpage is locale-aware (`/{locale}/`); language pickers list languages alphabetically; LanguagePicker uses a two-column dropdown; screenshots load from `images/screenshots/<locale>/`.
 - **Version sync**: `pnpm update-version` also updates `website/package.json` and the marketing `VERSION` constant.
 - **Website publish guard**: `website:publish` refuses uncommitted `website/` changes and unpushed branch commits unless `--allow-dirty`.
+- **Footer translation note**: Clarifies that translations other than English (UK) are AI-assisted using [ai-i18n-tools](https://github.com/wsj-br/ai-i18n-tools).
 - **Third-party notices**: `pnpm 3p-notices` / `notices:write` rewritten around `pnpm licenses list` and `scripts/write-third-party-notices.mjs` (removed `license-checker-rseidelsohn`).
 
 ## Fixes
 
+- **Marketing locale pages on GitHub Pages**: `/{locale}/` pages no longer fall back to English because flat `locales/*.json` bundles are gitignored; SSG builds translations from committed `strings.json`.
+- **Marketing header nav**: Long locale labels no longer wrap; desktop nav links appear from the `xl` breakpoint, with a hamburger below that.
+- **Open-source CTAs**: Equal single-line button height across locales (nowrap + wrap as whole buttons).
 - **Starlight locale docs**: Translated docs lived under nested `{locale}/src/content/docs/docs/` and fell back to English; relocated to `{locale}/docs/` with matching lowercase Starlight locale keys (`pt-br`, `zh-hans`).
 - **Website TypeScript**: Dropped deprecated `baseUrl`; explicit `@/*` → `./src/*` path mapping for TypeScript 6+/7.
 - **Lint**: ESLint ignores `website/dist/` and applies Node globals to `**/*.mjs` so `pnpm lint` stays green after website builds and the notices script.

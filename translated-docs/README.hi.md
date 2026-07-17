@@ -23,13 +23,6 @@ AI-संचालित टेक्स्ट टूल: अपने स्व
 <small>**अन्य भाषाओं में पढ़ें:** </small>
 <small id="lang-list">[English (UK)](../README.md) · [العربية](./README.ar.md) · [简体中文](./README.zh-Hans.md) · [繁體中文](./README.zh-Hant.md) · [Čeština](./README.cs.md) · [Nederlands](./README.nl.md) · [Français](./README.fr.md) · [Deutsch](./README.de.md) · [Ελληνικά](./README.el.md) · [हिन्दी](./README.hi.md) · [Magyar](./README.hu.md) · [Italiano](./README.it.md) · [日本語](./README.ja.md) · [한국어](./README.ko.md) · [فارسی](./README.fa.md) · [Polski](./README.pl.md) · [Português (Brasil)](./README.pt-BR.md) · [Română](./README.ro.md) · [Русский](./README.ru.md) · [Slovenčina](./README.sk.md) · [Español](./README.es.md) · [Svenska](./README.sv.md) · [ไทย](./README.th.md) · [Türkçe](./README.tr.md) · [Українська](./README.uk.md) · [Tiếng Việt](./README.vi.md)</small>
 
-<small>
-
-> **UI और दस्तावेज़ अनुवादों पर ध्यान दें:** मूल अंग्रेजी (यूके) को छोड़कर सभी इंटरफ़ेस भाषाएँ
-> AI मॉडल का उपयोग करके अनुवादित की गई थीं; शब्दांकन गलत या त्रुटियों वाला हो सकता है।
-
-</small>
-
 ## त्वरित शुरुआत
 
 **डॉकर**
@@ -84,3 +77,9 @@ chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage
 [Apache License 2.0](../LICENSE)
 
 उत्पाद के नाम और आइकन उनके संबंधित स्वामियों के हैं और उनका उपयोग केवल पहचान के लिए किया जाता है। यह सॉफ़्टवेयर उन ब्रांडों से संबद्ध या उनके द्वारा समर्थित नहीं है।
+
+<small>
+
+> **यूआई और दस्तावेज़ अनुवाद पर ध्यान दें:** मूल अंग्रेज़ी को छोड़कर सभी इंटरफ़ेस और दस्तावेज़ भाषाओं का अनुवाद [ai-i18n-tools](https://wsj-br.github.io/ai-i18n-tools/) का उपयोग करके एआई मॉडल द्वारा किया गया था; शब्दांकन गलत या त्रुटियों वाला हो सकता है।
+
+</small>

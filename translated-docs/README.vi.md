@@ -23,13 +23,6 @@ Công cụ văn bản được hỗ trợ bởi AI: **dịch**, **chỉnh sửa 
 <small>**Đọc bằng các ngôn ngữ khác:** </small>
 <small id="lang-list">[English (UK)](../README.md) · [العربية](./README.ar.md) · [简体中文](./README.zh-Hans.md) · [繁體中文](./README.zh-Hant.md) · [Čeština](./README.cs.md) · [Nederlands](./README.nl.md) · [Français](./README.fr.md) · [Deutsch](./README.de.md) · [Ελληνικά](./README.el.md) · [हिन्दी](./README.hi.md) · [Magyar](./README.hu.md) · [Italiano](./README.it.md) · [日本語](./README.ja.md) · [한국어](./README.ko.md) · [فارسی](./README.fa.md) · [Polski](./README.pl.md) · [Português (Brasil)](./README.pt-BR.md) · [Română](./README.ro.md) · [Русский](./README.ru.md) · [Slovenčina](./README.sk.md) · [Español](./README.es.md) · [Svenska](./README.sv.md) · [ไทย](./README.th.md) · [Türkçe](./README.tr.md) · [Українська](./README.uk.md) · [Tiếng Việt](./README.vi.md)</small>
 
-<small>
-
-> **Lưu ý về bản dịch giao diện người dùng và tài liệu:** Tất cả các ngôn ngữ giao diện ngoại trừ tiếng Anh (UK) gốc 
-> đều được dịch bằng các mô hình AI; cách diễn đạt có thể không chính xác hoặc chứa lỗi.
-
-</small>
-
 ## Bắt đầu nhanh
 
 **Docker**
@@ -84,3 +77,10 @@ Bản quyền © 2026 Waldemar Scudeller Jr.
 [Apache License 2.0](../LICENSE)
 
 Tên sản phẩm và biểu tượng thuộc về chủ sở hữu tương ứng và chỉ được sử dụng để nhận dạng. Phần mềm này không liên kết hoặc được xác nhận bởi các thương hiệu đó.
+
+<small>
+
+> **Lưu ý về bản dịch giao diện người dùng và tài liệu:** Tất cả các ngôn ngữ giao diện và tài liệu, ngoại trừ tiếng Anh gốc, đều được dịch bằng các mô hình AI sử dụng [ai-i18n-tools](https://wsj-br.github.io/ai-i18n-tools/); 
+> cách diễn đạt có thể không chính xác hoặc chứa lỗi.
+
+</small>

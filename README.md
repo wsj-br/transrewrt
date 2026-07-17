@@ -23,13 +23,6 @@ AI-powered text tool: **translate**, **rewrite**, and **transform** with custom 
 <small>**Read in other languages:** </small>
 <small id="lang-list">[English (UK)](./README.md) · [العربية](./translated-docs/README.ar.md) · [简体中文](./translated-docs/README.zh-Hans.md) · [繁體中文](./translated-docs/README.zh-Hant.md) · [Čeština](./translated-docs/README.cs.md) · [Nederlands](./translated-docs/README.nl.md) · [Français](./translated-docs/README.fr.md) · [Deutsch](./translated-docs/README.de.md) · [Ελληνικά](./translated-docs/README.el.md) · [हिन्दी](./translated-docs/README.hi.md) · [Magyar](./translated-docs/README.hu.md) · [Italiano](./translated-docs/README.it.md) · [日本語](./translated-docs/README.ja.md) · [한국어](./translated-docs/README.ko.md) · [فارسی](./translated-docs/README.fa.md) · [Polski](./translated-docs/README.pl.md) · [Português (Brasil)](./translated-docs/README.pt-BR.md) · [Română](./translated-docs/README.ro.md) · [Русский](./translated-docs/README.ru.md) · [Slovenčina](./translated-docs/README.sk.md) · [Español](./translated-docs/README.es.md) · [Svenska](./translated-docs/README.sv.md) · [ไทย](./translated-docs/README.th.md) · [Türkçe](./translated-docs/README.tr.md) · [Українська](./translated-docs/README.uk.md) · [Tiếng Việt](./translated-docs/README.vi.md)</small>
 
-<small>
-
-> **Note on UI and documentation translations:** All interface languages except the original English (UK)
-> were translated using AI models; the wording may be imprecise or contain errors.
-
-</small>
-
 ## Quick start
 
 **Docker**
@@ -84,3 +77,11 @@ Copyright © 2026 Waldemar Scudeller Jr.
 [Apache License 2.0](LICENSE)
 
 Product names and icons belong to their respective owners and are used for identification only. This software is not affiliated with or endorsed by those brands.
+
+<small>
+
+> **Note on UI and documentation translations:** All interface and documentation languages except the 
+> original English were translated using AI models using [ai-i18n-tools](https://wsj-br.github.io/ai-i18n-tools/);
+> the wording may be imprecise or contain errors.
+
+</small>

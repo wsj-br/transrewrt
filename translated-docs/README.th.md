@@ -23,13 +23,6 @@
 <small>**อ่านเป็นภาษาอื่น:** </small>
 <small id="lang-list">[English (UK)](../README.md) · [العربية](./README.ar.md) · [简体中文](./README.zh-Hans.md) · [繁體中文](./README.zh-Hant.md) · [Čeština](./README.cs.md) · [Nederlands](./README.nl.md) · [Français](./README.fr.md) · [Deutsch](./README.de.md) · [Ελληνικά](./README.el.md) · [हिन्दी](./README.hi.md) · [Magyar](./README.hu.md) · [Italiano](./README.it.md) · [日本語](./README.ja.md) · [한국어](./README.ko.md) · [فارسی](./README.fa.md) · [Polski](./README.pl.md) · [Português (Brasil)](./README.pt-BR.md) · [Română](./README.ro.md) · [Русский](./README.ru.md) · [Slovenčina](./README.sk.md) · [Español](./README.es.md) · [Svenska](./README.sv.md) · [ไทย](./README.th.md) · [Türkçe](./README.tr.md) · [Українська](./README.uk.md) · [Tiếng Việt](./README.vi.md)</small>
 
-<small>
-
-> **หมายเหตุเกี่ยวกับการแปลอินเตอร์เฟซและเอกสาร:** ภาษาอินเตอร์เฟซทั้งหมดยกเว้นภาษาอังกฤษ (สหราชอาณาจักร) ต้นฉบับ 
-> ได้รับการแปลโดยใช้โมเดลปัญญาประดิษฐ์; คำแปลอาจไม่แม่นยำหรือมีข้อผิดพลาด
-
-</small>
-
 ## เริ่มต้นอย่างรวดเร็ว
 
 **Docker**
@@ -84,3 +77,10 @@ chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage
 [Apache License 2.0](../LICENSE)
 
 ชื่อผลิตภัณฑ์และไอคอนเป็นของเจ้าของที่เกี่ยวข้อง และใช้เพื่อการระบุตัวตนเท่านั้น ซอฟต์แวร์นี้ไม่มีส่วนเกี่ยวข้องหรือรับรองโดยแบรนด์เหล่านั้น
+
+<small>
+
+> **หมายเหตุเกี่ยวกับการแปล UI และเอกสาร:** ภาษาของอินเทอร์เฟซและเอกสารทั้งหมด ยกเว้นภาษาอังกฤษต้นฉบับ ได้รับการแปลโดยใช้โมเดล AI โดยใช้ [ai-i18n-tools](https://wsj-br.github.io/ai-i18n-tools/); 
+> การใช้ถ้อยคำอาจไม่แม่นยำหรือมีข้อผิดพลาด
+
+</small>

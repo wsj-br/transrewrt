@@ -23,12 +23,6 @@ AI搭載のテキストツール：カスタムプロンプトを使用して**�
 <small>**他の言語で読む：** </small>
 <small id="lang-list">[English (UK)](../README.md) · [العربية](./README.ar.md) · [简体中文](./README.zh-Hans.md) · [繁體中文](./README.zh-Hant.md) · [Čeština](./README.cs.md) · [Nederlands](./README.nl.md) · [Français](./README.fr.md) · [Deutsch](./README.de.md) · [Ελληνικά](./README.el.md) · [हिन्दी](./README.hi.md) · [Magyar](./README.hu.md) · [Italiano](./README.it.md) · [日本語](./README.ja.md) · [한국어](./README.ko.md) · [فارسی](./README.fa.md) · [Polski](./README.pl.md) · [Português (Brasil)](./README.pt-BR.md) · [Română](./README.ro.md) · [Русский](./README.ru.md) · [Slovenčina](./README.sk.md) · [Español](./README.es.md) · [Svenska](./README.sv.md) · [ไทย](./README.th.md) · [Türkçe](./README.tr.md) · [Українська](./README.uk.md) · [Tiếng Việt](./README.vi.md)</small>
 
-<small>
-
-> **UIおよびドキュメント翻訳に関する注意：** 英語（UK）以外のすべてのインターフェース言語はAIモデルで翻訳されています。表現が不正確または誤りを含む可能性があります。
-
-</small>
-
 ## クイックスタート
 
 **Docker**
@@ -83,3 +77,11 @@ Copyright © 2026 Waldemar Scudeller Jr.
 [Apache License 2.0](../LICENSE)
 
 製品名およびアイコンはそれぞれの所有者に帰属し、識別目的のみに使用されます。本ソフトウェアはこれらのブランドと提携しているわけではなく、また推奨されているわけでもありません。
+
+<small>
+
+> **UIおよびドキュメント翻訳に関する注意:** 原語である英語を除く 
+> すべてのインターフェイスおよびドキュメント言語は、[ai-i18n-tools](https://wsj-br.github.io/ai-i18n-tools/)を用いたAIモデルを使用して翻訳されており、
+> 表現が不正確であったり、エラーが含まれている場合があります。
+
+</small>

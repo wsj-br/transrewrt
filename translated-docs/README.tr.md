@@ -23,13 +23,6 @@ Yapay zeka destekli metin aracı: Kendi yapay zeka sağlayıcılarınızı (Open
 <small>**Diğer dillerde oku:** </small>
 <small id="lang-list">[English (UK)](../README.md) · [العربية](./README.ar.md) · [简体中文](./README.zh-Hans.md) · [繁體中文](./README.zh-Hant.md) · [Čeština](./README.cs.md) · [Nederlands](./README.nl.md) · [Français](./README.fr.md) · [Deutsch](./README.de.md) · [Ελληνικά](./README.el.md) · [हिन्दी](./README.hi.md) · [Magyar](./README.hu.md) · [Italiano](./README.it.md) · [日本語](./README.ja.md) · [한국어](./README.ko.md) · [فارسی](./README.fa.md) · [Polski](./README.pl.md) · [Português (Brasil)](./README.pt-BR.md) · [Română](./README.ro.md) · [Русский](./README.ru.md) · [Slovenčina](./README.sk.md) · [Español](./README.es.md) · [Svenska](./README.sv.md) · [ไทย](./README.th.md) · [Türkçe](./README.tr.md) · [Українська](./README.uk.md) · [Tiếng Việt](./README.vi.md)</small>
 
-<small>
-
-> **Kullanıcı arayüzü ve belgelerin çevirileri hakkında not:** İngilizce (UK) orijinali hariç tüm arayüz dilleri 
-> yapay zekâ modelleri kullanılarak çevrildi; ifade tarzı eksik olabilir veya hatalar içerebilir.
-
-</small>
-
 ## Hızlı başlangıç
 
 **Docker**
@@ -84,3 +77,10 @@ Telif Hakkı © 2026 Waldemar Scudeller Jr.
 [Apache License 2.0](../LICENSE)
 
 Ürün adları ve simgeleri ilgili sahiplerine aittir ve yalnızca tanımlama amacıyla kullanılır. Bu yazılım, bu markalarla bağlantılı değildir veya bu markalar tarafından desteklenmemektedir.
+
+<small>
+
+> **Kullanıcı arayüzü ve dokümantasyon çevirileri hakkında not:** Orijinal İngilizce dışındaki tüm arayüz ve dokümantasyon dilleri, [ai-i18n-tools](https://wsj-br.github.io/ai-i18n-tools/) kullanılarak yapay zeka modelleriyle çevrilmiştir;
+> bu nedenle ifadeler hatalı veya eksik olabilir.
+
+</small>

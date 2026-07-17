@@ -23,13 +23,6 @@ AI-drivet textverktyg: **översätt**, **skriv om** och **transformera** med anp
 <small>**Läs på andra språk:** </small>
 <small id="lang-list">[English (UK)](../README.md) · [العربية](./README.ar.md) · [简体中文](./README.zh-Hans.md) · [繁體中文](./README.zh-Hant.md) · [Čeština](./README.cs.md) · [Nederlands](./README.nl.md) · [Français](./README.fr.md) · [Deutsch](./README.de.md) · [Ελληνικά](./README.el.md) · [हिन्दी](./README.hi.md) · [Magyar](./README.hu.md) · [Italiano](./README.it.md) · [日本語](./README.ja.md) · [한국어](./README.ko.md) · [فارسی](./README.fa.md) · [Polski](./README.pl.md) · [Português (Brasil)](./README.pt-BR.md) · [Română](./README.ro.md) · [Русский](./README.ru.md) · [Slovenčina](./README.sk.md) · [Español](./README.es.md) · [Svenska](./README.sv.md) · [ไทย](./README.th.md) · [Türkçe](./README.tr.md) · [Українська](./README.uk.md) · [Tiếng Việt](./README.vi.md)</small>
 
-<small>
-
-> **Obs om översättningar av gränssnitt och dokumentation:** Alla gränssnittsspråk utom det ursprungliga engelska (UK) 
-> har översatts med AI-modeller; formuleringarna kan vara otydliga eller innehålla fel.
-
-</small>
-
 ## Snabbstart
 
 **Docker**
@@ -84,3 +77,11 @@ Copyright © 2026 Waldemar Scudeller Jr.
 [Apache License 2.0](../LICENSE)
 
 Produktnamn och ikoner tillhör respektive ägare och används endast för identifiering. Denna programvara är inte ansluten till eller godkänd av dessa varumärken.
+
+<small>
+
+> **Obs! Översättningar av användargränssnitt och dokumentation:** Alla gränssnitt och dokumentationsspråk utom det 
+> ursprungliga engelska översattes med AI-modeller med hjälp av [ai-i18n-tools](https://wsj-br.github.io/ai-i18n-tools/); 
+> formuleringen kan vara oprecis eller innehålla fel.
+
+</small>

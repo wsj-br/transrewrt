@@ -28,60 +28,60 @@ export default function OpenSource() {
                 'is the current release. Star the repo, file issues, or read the docs — contributions are welcome.',
               )}
             </p>
+          </div>
 
-            <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
-              <a
-                href={links.repo}
-                target="_blank"
-                rel="noreferrer"
-                className="group inline-flex w-full items-center justify-center gap-2 rounded-xl bg-brand-green-500 px-6 py-3.5 text-base font-semibold text-brand-ink-900 shadow-lg shadow-brand-green-500/25 transition-all hover:bg-brand-green-400 sm:w-auto"
-              >
-                <Star className="h-5 w-5" />
-                {t('Star on GitHub')}
-              </a>
-              <a
-                href={links.docs}
-                className="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-white/15 bg-white/5 px-6 py-3.5 text-base font-semibold text-white backdrop-blur transition-all hover:border-white/25 hover:bg-white/10 sm:w-auto"
-              >
-                <BookOpen className="h-5 w-5" />
-                {t('Docs')}
-              </a>
-              <a
-                href={links.issues}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-white/10 px-6 py-3.5 text-base font-medium text-neutral-300 transition-all hover:border-white/20 hover:text-white sm:w-auto"
-              >
-                <GitHubIcon className="h-5 w-5" />
-                {t('File an issue')}
-              </a>
-            </div>
+          <div className="relative mt-10 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:flex-wrap sm:justify-center">
+            <a
+              href={links.repo}
+              target="_blank"
+              rel="noreferrer"
+              className="group inline-flex w-full items-center justify-center gap-2 whitespace-nowrap rounded-xl bg-brand-green-500 px-6 py-3.5 text-base font-semibold text-brand-ink-900 shadow-lg shadow-brand-green-500/25 transition-all hover:bg-brand-green-400 sm:w-auto"
+            >
+              <Star className="h-5 w-5 shrink-0" />
+              {t('Star on GitHub')}
+            </a>
+            <a
+              href={links.docs}
+              className="inline-flex w-full items-center justify-center gap-2 whitespace-nowrap rounded-xl border border-white/15 bg-white/5 px-6 py-3.5 text-base font-semibold text-white backdrop-blur transition-all hover:border-white/25 hover:bg-white/10 sm:w-auto"
+            >
+              <BookOpen className="h-5 w-5 shrink-0" />
+              {t('Docs')}
+            </a>
+            <a
+              href={links.issues}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex w-full items-center justify-center gap-2 whitespace-nowrap rounded-xl border border-white/10 px-6 py-3.5 text-base font-medium text-neutral-300 transition-all hover:border-white/20 hover:text-white sm:w-auto"
+            >
+              <GitHubIcon className="h-5 w-5 shrink-0" />
+              {t('File an issue')}
+            </a>
+          </div>
 
-            <div className="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-neutral-500">
-              <a
-                href={links.docs}
-                className="inline-flex items-center gap-1.5 hover:text-neutral-300"
-              >
-                <FileText className="h-4 w-4" /> {t('Docs')}
-              </a>
-              <a
-                href={links.readme}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center gap-1.5 hover:text-neutral-300"
-              >
-                <FileText className="h-4 w-4" /> {t('README')}
-              </a>
-              <a
-                href={links.releases}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center gap-1.5 hover:text-neutral-300"
-              >
-                <ExternalLink className="h-4 w-4" /> {t('Releases')}
-              </a>
-              <span>{LICENSE}</span>
-            </div>
+          <div className="relative mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-neutral-500">
+            <a
+              href={links.docs}
+              className="inline-flex items-center gap-1.5 hover:text-neutral-300"
+            >
+              <FileText className="h-4 w-4" /> {t('Docs')}
+            </a>
+            <a
+              href={links.readme}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-1.5 hover:text-neutral-300"
+            >
+              <FileText className="h-4 w-4" /> {t('README')}
+            </a>
+            <a
+              href={links.releases}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-1.5 hover:text-neutral-300"
+            >
+              <ExternalLink className="h-4 w-4" /> {t('Releases')}
+            </a>
+            <span>{LICENSE}</span>
           </div>
         </div>
       </div>

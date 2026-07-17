@@ -23,13 +23,6 @@
 <small>**Διαβάστε σε άλλες γλώσσες:** </small>
 <small id="lang-list">[English (UK)](../README.md) · [العربية](./README.ar.md) · [简体中文](./README.zh-Hans.md) · [繁體中文](./README.zh-Hant.md) · [Čeština](./README.cs.md) · [Nederlands](./README.nl.md) · [Français](./README.fr.md) · [Deutsch](./README.de.md) · [Ελληνικά](./README.el.md) · [हिन्दी](./README.hi.md) · [Magyar](./README.hu.md) · [Italiano](./README.it.md) · [日本語](./README.ja.md) · [한국어](./README.ko.md) · [فارسی](./README.fa.md) · [Polski](./README.pl.md) · [Português (Brasil)](./README.pt-BR.md) · [Română](./README.ro.md) · [Русский](./README.ru.md) · [Slovenčina](./README.sk.md) · [Español](./README.es.md) · [Svenska](./README.sv.md) · [ไทย](./README.th.md) · [Türkçe](./README.tr.md) · [Українська](./README.uk.md) · [Tiếng Việt](./README.vi.md)</small>
 
-<small>
-
-> **Σημείωση σχετικά με τις μεταφράσεις της διεπαφής χρήστη και της τεκμηρίωσης:** Όλες οι γλώσσες διεπαφής εκτός από τα αρχικά αγγλικά (ΗΒ)
-> μεταφράστηκαν χρησιμοποιώντας μοντέλα ΤΝ· η διατύπωση μπορεί να είναι ακριβής ή να περιέχει λάθη.
-
-</small>
-
 ## Γρήγορη εκκίνηση
 
 **Docker**
@@ -84,3 +77,11 @@ chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage
 [Apache License 2.0](../LICENSE)
 
 Τα ονόματα και τα εικονίδια των προϊόντων ανήκουν στους αντίστοιχους κατόχους τους και χρησιμοποιούνται μόνο για αναγνώριση. Αυτό το λογισμικό δεν είναι συνδεδεμένο ούτε υποστηρίζεται από αυτές τις επωνυμίες.
+
+<small>
+
+> **Σημείωση για τις μεταφράσεις UI και τεκμηρίωσης:** Όλες οι διεπαφές και γλώσσες τεκμηρίωσης εκτός από τα 
+> αρχικά αγγλικά μεταφράστηκαν χρησιμοποιώντας μοντέλα AI με [ai-i18n-tools](https://wsj-br.github.io/ai-i18n-tools/);
+> η λέξη μπορεί να είναι ακατάλληλη ή να περιέχει λάθη.
+
+</small>

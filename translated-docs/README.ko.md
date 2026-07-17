@@ -23,12 +23,6 @@ AI 기반 텍스트 도구: 사용자 정의 프롬프트로 **번역**, **다�
 <small>**다른 언어로 읽기:** </small>
 <small id="lang-list">[English (UK)](../README.md) · [العربية](./README.ar.md) · [简体中文](./README.zh-Hans.md) · [繁體中文](./README.zh-Hant.md) · [Čeština](./README.cs.md) · [Nederlands](./README.nl.md) · [Français](./README.fr.md) · [Deutsch](./README.de.md) · [Ελληνικά](./README.el.md) · [हिन्दी](./README.hi.md) · [Magyar](./README.hu.md) · [Italiano](./README.it.md) · [日本語](./README.ja.md) · [한국어](./README.ko.md) · [فارسی](./README.fa.md) · [Polski](./README.pl.md) · [Português (Brasil)](./README.pt-BR.md) · [Română](./README.ro.md) · [Русский](./README.ru.md) · [Slovenčina](./README.sk.md) · [Español](./README.es.md) · [Svenska](./README.sv.md) · [ไทย](./README.th.md) · [Türkçe](./README.tr.md) · [Українська](./README.uk.md) · [Tiếng Việt](./README.vi.md)</small>
 
-<small>
-
-> **UI 및 문서 번역에 대한 참고:** 영어(영국) 원문을 제외한 모든 인터페이스 언어는 AI 모델을 사용해 번역되었으며, 표현이 부정확하거나 오류가 포함될 수 있습니다.
-
-</small>
-
 ## 빠른 시작
 
 **Docker**
@@ -83,3 +77,11 @@ chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage
 [Apache License 2.0](../LICENSE)
 
 제품 이름과 아이콘은 각 소유자의 자산이며 식별 목적으로만 사용됩니다. 이 소프트웨어는 해당 브랜드와 제휴 관계가 없으며 인증받지 않았습니다.
+
+<small>
+
+> **UI 및 문서 번역에 대한 참고:** 원본 영어를 제외한 모든 인터페이스 및 문서 
+> 언어는 [ai-i18n-tools](https://wsj-br.github.io/ai-i18n-tools/)를 사용하는 AI 모델을 통해 번역되었습니다.
+> 표현이 부정확하거나 오류가 포함되어 있을 수 있습니다.
+
+</small>

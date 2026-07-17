@@ -23,12 +23,6 @@ AI-alapú szöveges eszköz: **fordítás**, **átírás** és **átalakítás**
 <small>**Olvassa más nyelveken:** </small>
 <small id="lang-list">[English (UK)](../README.md) · [العربية](./README.ar.md) · [简体中文](./README.zh-Hans.md) · [繁體中文](./README.zh-Hant.md) · [Čeština](./README.cs.md) · [Nederlands](./README.nl.md) · [Français](./README.fr.md) · [Deutsch](./README.de.md) · [Ελληνικά](./README.el.md) · [हिन्दी](./README.hi.md) · [Magyar](./README.hu.md) · [Italiano](./README.it.md) · [日本語](./README.ja.md) · [한국어](./README.ko.md) · [فارسی](./README.fa.md) · [Polski](./README.pl.md) · [Português (Brasil)](./README.pt-BR.md) · [Română](./README.ro.md) · [Русский](./README.ru.md) · [Slovenčina](./README.sk.md) · [Español](./README.es.md) · [Svenska](./README.sv.md) · [ไทย](./README.th.md) · [Türkçe](./README.tr.md) · [Українська](./README.uk.md) · [Tiếng Việt](./README.vi.md)</small>
 
-<small>
-
-> **Megjegyzés a felhasználói felület és a dokumentáció fordításához:** Az angol (UK) eredeti nyelvén kívül minden felületi nyelvet MI-modellekkel fordítottunk; a megfogalmazás pontatlan lehet vagy tartalmazhat hibákat.
-
-</small>
-
 ## Gyorsindítás
 
 **Docker**
@@ -83,3 +77,10 @@ Szerzői jog © 2026 Waldemar Scudeller Jr.
 [Apache License 2.0](../LICENSE)
 
 A terméknevek és ikonok a megfelelő tulajdonosokhoz tartoznak, és kizárólag azonosításra szolgálnak. Ez a szoftver nem áll kapcsolatban ezekkel a márkákkal, és nem is támogatja azokat.
+
+<small>
+
+> **Megjegyzés a felhasználói felület és a dokumentáció fordításairól:** Az eredeti angol kivételével az összes felület- és dokumentációs nyelvet AI-modellekkel fordították le az [ai-i18n-tools](https://wsj-br.github.io/ai-i18n-tools/) segítségével;
+> a megfogalmazás pontatlan vagy hibákat tartalmazhat.
+
+</small>

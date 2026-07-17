@@ -110,7 +110,18 @@ export default function Footer() {
             )}
           </p>
           <p className="mt-3 text-xs text-neutral-600">
-            {t('UI and documentation translations beyond English (UK) may be AI-assisted.')}
+            {t(
+              'UI and documentation translations other than English are AI-assisted using',
+            )}{' '}
+            <a
+              href="https://wsj-br.github.io/ai-i18n-tools/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline decoration-neutral-600 underline-offset-2 hover:text-neutral-400 hover:decoration-neutral-400"
+            >
+             ai-i18n-tools
+            </a>
+            . {t('The wording may be imprecise or contain errors.')}
           </p>
         </div>
       </div>
