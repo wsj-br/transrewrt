@@ -284,13 +284,24 @@ jobs:
             release-assets/**/*.AppImage
 
   # Marketing site + docs → https://wsj-br.github.io/transrewrt/
-  # (also runnable ad-hoc via workflow_dispatch on website-pages.yml / pnpm website:publish)
+  # Dispatch website-pages on main (not workflow_call): release runs are tied to the
+  # tag ref, and the github-pages environment only allows deployments from main.
+  # Ad-hoc: workflow_dispatch on website-pages.yml / pnpm website:publish
   deploy-website:
     name: Deploy website (GitHub Pages)
     needs: prepare
     if: github.event_name == 'release'
+    runs-on: ubuntu-latest
     permissions:
+      actions: write
       contents: read
-      pages: write
-      id-token: write
-    uses: ./.github/workflows/website-pages.yml
+    steps:
+      - name: Dispatch Pages deploy on main
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh workflow run website-pages.yml \
+            --repo "${{ github.repository }}" \
+            --ref main
+          echo "Dispatched website-pages.yml on main."
+          echo "Track: https://github.com/${{ github.repository }}/actions/workflows/website-pages.yml"

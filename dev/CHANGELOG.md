@@ -11,6 +11,8 @@ Use conventional types (Added, Changed, Fixed, etc.) and short descriptions.
 
 ## Unreleased
 
+- **Fixed**: Release workflow deploys the website by dispatching `website-pages.yml` on `main` instead of `workflow_call` on the release tag — the `github-pages` environment only allows deployments from `main`, so tag runs failed with “Tag vX.Y.Z is not allowed to deploy”.
+
 ## [1.6.1] - 2026-07-17
 
 - **Fixed**: `presets-check:install` runtime deps now use the Vercel AI SDK (`ai`, `@ai-sdk/openai-compatible`) instead of the removed `multi-llm-ts`, and bundle `apiErrorMessage.js` with the shared LLM layer.

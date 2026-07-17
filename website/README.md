@@ -24,7 +24,7 @@ pnpm website:publish -- --ref main --watch
 pnpm website:publish:dry
 ```
 
-App releases also deploy this site (Release workflow calls `website-pages.yml`). Repo **Settings → Pages → Source** must be **GitHub Actions**.
+App releases dispatch this site’s workflow on `main` (the `github-pages` environment only allows that branch). Repo **Settings → Pages → Source** must be **GitHub Actions**.
 
 ## Structure
 

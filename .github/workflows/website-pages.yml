@@ -1,5 +1,6 @@
 # Build and deploy the Astro marketing site + docs (`website/`) to GitHub Pages.
-# Triggers: manual workflow_dispatch, or workflow_call from the Release workflow.
+# Triggers: manual workflow_dispatch, or dispatched from the Release workflow on main
+# (release tag runs cannot deploy to the github-pages environment — only main is allowed).
 #
 # Repo Settings → Pages → Source must be "GitHub Actions".
 # Live URL: https://wsj-br.github.io/transrewrt/
@@ -8,7 +9,6 @@ name: Deploy website (GitHub Pages)
 
 on:
   workflow_dispatch:
-  workflow_call:
 
 permissions:
   contents: read
