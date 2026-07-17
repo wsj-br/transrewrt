@@ -11,6 +11,8 @@ Use conventional types (Added, Changed, Fixed, etc.) and short descriptions.
 
 ## Unreleased
 
+- **Changed**: Stop tracking TypeScript incremental cache files; ignore `*.tsbuildinfo` in `.gitignore`.
+
 ## [1.6.1] - 2026-07-17
 
 - **Fixed**: ESLint ignores `website/dist/` and applies Node globals to `**/*.mjs` so `pnpm lint` does not fail on Astro/pagefind build output or `scripts/write-third-party-notices.mjs` `console` usage.
