@@ -3,31 +3,25 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.0-blue" alt="Version"></a>
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.1-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
-  <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react" alt="React 19">
-  <img src="https://img.shields.io/badge/Electron-41-47848F?logo=electron" alt="Electron 41">
 </p>
 
-Yapay zeka destekli metin aracı: diller arasında çeviri yapın, farklı tarzlarda yeniden yazın ve özel komutlarla dönüştürün - birden fazla yapay zeka sağlayıcısı (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, herhangi bir OpenAI uyumlu sağlayıcı ve yerel Ollama) kullanarak. Masaüstü uygulaması (Electron) veya kendi kendine barındırılan web uygulaması (Docker) olarak çalışır.
+Yapay zeka destekli metin aracı: Kendi yapay zeka sağlayıcılarınızı (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, OpenAI uyumlu uç noktalar ve Ollama, LM Studio veya llama.cpp gibi yerel OpenAI uyumlu sunucular) kullanarak özel istemlerle **çevirin**, **yeniden yazın** ve **dönüştürün**. Masaüstü uygulaması (Windows / Linux) veya kendi kendine barındırılan web uygulaması (Docker). Transrewrt bulut hesabı yok.
 
-- **Çevir** - düzinelerce dil arasında, otomatik kaynak algılama ile
-- **Yeniden yazma** - dilbilgisini düzelt, netliği geliştir, resmi/gayriresmi, kısalt, genişlet, teknik
-- **Dönüştür** - özel yapay zeka istekleri; istekler oluştur ve yönet, istek başına isteğe bağlı hedef dil
-- **Sözlük** - dil çifti başına kaynak/hedef terim çiftlerini depola ve çeviri sırasında uygula, böylece seçilen terimler tutarlı kalır; Ayarlar'da terimleri yönet (ekle/düzenle/sil, CSV/XLSX içe aktarma ve şablon dışa aktarma)
-- **Geçmiş** - giriş/çıkış metni, filtreleme ve dışa aktarma ile tam yürütme geçmişi
-- **Kolay ve Gelişmiş** - Kolay mod (varsayılan): sağlayıcı başına küratörlü ön ayarlar (**Ücretsiz (OpenRouter)**, **Standart**, **Gelişmiş**, **Teknik**; yalnızca seçilen sağlayıcı için eşlemesi olan ön ayarlar görünür) model kimliklerini seçmeden; Gelişmiş mod: yapılandırılmış sağlayıcılarınızdan tam model listesi
-- **Modeller ve maliyet** - maliyet ve kullanım panoları (Özet, Modele Göre, Tüm Aramalar) dışa aktarma ile; OpenRouter gerçek harcamayı gösterir, diğer sağlayıcılar tahminleri kullanır
-- **Arayüz** - çok dilli arayüz (30'dan fazla dil, RTL desteği), yazı tipleri, ...
-- **Web modu** - yönetici rolleriyle çok kullanıcılı destek
-- **Masaüstü** - Windows ve Linux için Electron uygulaması
-- **Self-hosted** - amd64 ve arm64 (Raspberry Pi uyumlu) için Docker görüntüsü
+| | |
+| --- | --- |
+| **Çevir** | Düzinelerce dil, otomatik algılama, sözlükler, Yeniden İfade Et ile iyileştirme |
+| **Yeniden yazma** | Netlik, ton, uzunluk, yazım ve dilbilgisi — aynı dil |
+| **Dönüştür** | Oluşturduğunuz, düzenlediğiniz ve yeniden kullandığınız özel yapay zeka istemleri |
+| **Dağıt** | Electron masaüstü veya Docker web (amd64 & arm64) |
+| **Anahtarlar** | Sağlayıcılarınız, ana bilgisayarınız — Kolay ön ayarlar veya Gelişmiş model listesi |
 
-Kurulduktan sonra tüm özelliklerin tam bir kılavuzu için [**Kullanıcı Kılavuzu**](USER-GUIDE.tr.md) bölümüne bakın.
+![Çevir](../images/screenshots/tr/translate.png)
 
 <small>**Diğer dillerde oku:** </small>
-<small id="lang-list">[English (UK)](../README.md) · [Português (Brasil)](./README.pt-BR.md) · [العربية](./README.ar.md) · [বাংলা](./README.bn.md) · [Català](./README.ca.md) · [简体中文](./README.zh-Hans.md) · [繁體中文](./README.zh-Hant.md) · [Hrvatski](./README.hr.md) · [Čeština](./README.cs.md) · [Nederlands](./README.nl.md) · [English (US)](./README.en-US.md) · [Tagalog](./README.tl.md) · [Français](./README.fr.md) · [Deutsch](./README.de.md) · [Ελληνικά](./README.el.md) · [Hindi (Roman)](./README.hi-Latn.md) · [Magyar](./README.hu.md) · [Italiano](./README.it.md) · [日本語](./README.ja.md) · [한국어](./README.ko.md) · [Bahasa Melayu](./README.ms.md) · [فارسی](./README.fa.md) · [Polski](./README.pl.md) · [Basa Jawa](./README.jv.md) · [Português](./README.pt.md) · [پنجابی](./README.pa-PK.md) · [Română](./README.ro.md) · [Русский](./README.ru.md) · [Slovenčina](./README.sk.md) · [Español](./README.es.md) · [Kiswahili](./README.sw.md) · [Svenska](./README.sv.md) · [తెలుగు](./README.te.md) · [ไทย](./README.th.md) · [Türkçe](./README.tr.md) · [Українська](./README.uk.md) · [Tiếng Việt](./README.vi.md)</small>
+<small id="lang-list">[English (UK)](../README.md) · [العربية](./README.ar.md) · [简体中文](./README.zh-Hans.md) · [繁體中文](./README.zh-Hant.md) · [Čeština](./README.cs.md) · [Nederlands](./README.nl.md) · [Français](./README.fr.md) · [Deutsch](./README.de.md) · [Ελληνικά](./README.el.md) · [हिन्दी](./README.hi.md) · [Magyar](./README.hu.md) · [Italiano](./README.it.md) · [日本語](./README.ja.md) · [한국어](./README.ko.md) · [فارسی](./README.fa.md) · [Polski](./README.pl.md) · [Português (Brasil)](./README.pt-BR.md) · [Română](./README.ro.md) · [Русский](./README.ru.md) · [Slovenčina](./README.sk.md) · [Español](./README.es.md) · [Svenska](./README.sv.md) · [ไทย](./README.th.md) · [Türkçe](./README.tr.md) · [Українська](./README.uk.md) · [Tiếng Việt](./README.vi.md)</small>
 
 <small>
 
@@ -36,65 +30,9 @@ Kurulduktan sonra tüm özelliklerin tam bir kılavuzu için [**Kullanıcı Kıl
 
 </small>
 
-<br/>
-
-<a id="table-of-contents"></a>
-## İçindekiler
-
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-
-- [Ekran görüntüleri](#screenshots)
-- [Hızlı başlangıç](#quick-start)
-- [OpenRouter API anahtarı alma](#getting-an-openrouter-api-key)
-- [Yapılandırma ve ortam](#configuration-and-environment)
-- [Geliştirme ve mimari](#development-and-architecture)
-- [Sorun bildirme](#reporting-issues)
-- [Sorumluluk reddi](#disclaimer)
-- [Lisans](#license)
-
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
-
-<br/><br/>
-
-<a id="screenshots"></a>
-## Ekran görüntüleri
-
-**Dil seçici**
-
-![Dil seçici](../images/screenshots/tr/language-selector.png)
-
-**Çevir**
-
-![Çevir](../images/screenshots/tr/translate.png)
-
-**Dönüştür - istem düzenleyici**
-
-![Dönüştür - istem düzenleyici](../images/screenshots/tr/transform-prompt-edit.png)
-
-**Kontrol Paneli**
-
-![Pano özeti - kullanım](../images/screenshots/tr/dashboard-summary.png)
-
-**Geçmiş**
-
-![Geçmiş](../images/screenshots/tr/history.png)
-
-**Ayarlar - model seçimi**
-
-![Ayarlar - model seçimi](../images/screenshots/tr/settings-general.png)
-
-<br/><br/>
-
-<a id="quick-start"></a>
 ## Hızlı başlangıç
 
-<details>
-<summary><b>Docker (kendiniz barındırmak için önerilir)</b></summary>
-
-<a id="docker"></a>
-
-<br/>
+**Docker**
 
 ```bash
 docker pull ghcr.io/wsj-br/transrewrt:latest
@@ -107,259 +45,42 @@ OPENROUTER_API_KEY=sk-or-your-key docker run -d \
   ghcr.io/wsj-br/transrewrt:latest
 ```
 
-`sk-or-your-key` ifadesini [OpenRouter API anahtarınızla](https://openrouter.ai/keys) değiştirin (veya diğer sağlayıcı anahtarlarını ayarlayın; [Yapılandırma](#configuration-and-environment) bölümüne bakın). [http://localhost:5000](http://localhost:5000) adresini açın ve hizmeti dışa açmadan önce varsayılan yönetici şifresini değiştirin.
+[http://localhost:5000](http://localhost:5000) adresini açın ve varsayılan yönetici parolasını değiştirin. Sağlayıcı anahtarları ortam değişkenleri aracılığıyla ayarlanır (web kullanıcı arayüzü aracılığıyla değil).
 
-En az bir sağlayıcı anahtarı ortam üzerinden ayarlayın (örneğin OpenRouter için `OPENROUTER_API_KEY`). Gizli bilgilerin görüntüye gömülmemesi için değişkenleri `-e` veya `docker compose` / `.env` ile iletin. Sağlayıcı anahtarları web arayüzüne **girilmez**; sunucu bunları ortamdan okur.
+**Windows** — [Sürümler](https://github.com/wsj-br/transrewrt/releases) sayfasından `Transrewrt Setup x.y.z.exe` dosyasını indirin, kurun, ardından **Ayarlar → API** bölümünden anahtarları ekleyin.
 
-<br/>
-
-> ℹ️ **NOT**<br/>
-> Docker içinde, LLM kimlik bilgileri `OPENROUTER_API_KEY`, `OPENAI_API_KEY`, `CEREBRAS_API_KEY`, … gibi ortam değişkenleriyle ayarlanır (web arayüzünde değil). Masaüstü (Electron) üzerinde anahtarları **Ayarlar → API** kısmında yapılandırırsınız.
-
-<br/>
-
-Veya Docker Compose kullanın:
-
-```bash
-# download the compose file
-wget https://github.com/wsj-br/transrewrt/raw/refs/heads/master/production.yml -O transrewrt.yml
-# Edit the file to add your API keys (API_KEYs), or uncomment and adjust the `.env` file. Set the timezone (TZ) if necessary.
-vi transrewrt.yml
-# start the container
-docker compose -f transrewrt.yml up -d
-```
-
-Tüm ortam değişkenleri için [Yapılandırma](#configuration-and-environment) bölümüne bakın, örneğin `PORT`, `CONFIG_PATH`, `TZ` ve LLM anahtarları (`OPENROUTER_API_KEY`, `OPENAI_API_KEY`, …).
-
-</details>
-
-<br/>
-
-<details>
-<summary><b>Sunucu saat dilimi (Docker)</b></summary>
-
-<a id="configuring-the-timezone"></a>
-
-<br/>
-
-Uygulama kullanıcı arayüzündeki tarih ve saat, **tarayıcınızın** yerel ayarlarına ve saat dilimine uyar. **Sunucu tarafında** davranışlar (günlükleme ve benzeri) için, konteyner `TZ` ortam değişkenini kullanır. Varsayılan değer `TZ=Europe/London` şeklindedir.
-
-Başka bir saat dilimi kullanmak için, Compose dosyanızda `TZ` değerini şu şekilde ayarlayın:
-
-```yaml
-environment:
-  - TZ=America/Sao_Paulo
-```
-
-Veya konteyner çalıştırılırken (Docker) iletebilirsiniz:
-
-```bash
---env TZ=America/Sao_Paulo
-```
-
-Birçok Linux ana makinesinde sistem saat dilimi adını şu komutla kopyalayabilirsiniz:
-
-```bash
-echo TZ=\"$(</etc/timezone)\"
-```
-
-Geçerli saat dilimi adlarının listesi [tz veritabanında](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) (Wikipedia) tutulur.
-
-</details>
-
-<br/>
-
-<details>
-<summary><b>Windows</b></summary>
-
-<a id="windows-electron"></a>
-
-<br/>
-
-- [Yayınlar](https://github.com/wsj-br/transrewrt/releases) sayfasından en son `Transrewrt Setup x.y.z.exe` sürümünü indirin.
-- `.exe` dosyasını çalıştırın ve yükleyiciyi takip edin.
-- İlk çalıştırma: Uygulamayı Başlat menüsünden veya masaüstü kısayolundan başlatın.
-- API anahtarlarınızı **Ayarlar → API** kısmına girin. En az bir sağlayıcıyı yapılandırmanız gerekir; ücretsiz modeller için OpenRouter yaygın bir tercihtir.
-
-<br/>
-
-> ℹ️ **NOT**<br/>
-> Windows, bu güvenlik uyarılarından birini gösterebilir (imzalanmamış/bağımsız uygulamalar için normaldir):
->   - **Kullanıcı Hesabı Denetimi (UAC)**: "Bilinmeyen bir yayıncıdan gelen bu uygulamanın cihazınıza değişiklik yapmasına izin vermek istiyor musunuz?" → **Evet** seçeneğine tıklayın.
->   - **Microsoft Defender SmartScreen**: "Windows PC'nizi korudu" → **Daha fazla bilgi** → **Yine de çalıştır** seçeneğine tıklayın.
->
-> Bunun nedeni uygulamanın Microsoft veya büyük bir yayıncı tarafından imzalanmamış olmasıdır - resmi GitHub yayınlarımızdan indirildiyse güvenlidir (her varlığın yanında yer alan [Yayınlar](https://github.com/wsj-br/transrewrt/releases) sayfasında sağlama toplamlarını doğrulayın).
-
-<br/>
-
-</details>
-
-<br/>
-
-<details>
-<summary><b>Linux</b></summary>
-
-<a id="linux-electron"></a>
-
-<br/>
-
-[Sürümler](https://github.com/wsj-br/transrewrt/releases) sayfasından CPU'nuz için uygun olan `.AppImage` dosyasını indirin (tipik masaüstü bilgisayarlar için `x64`, Raspberry Pi 4+ dahil birçok ARM cihaz için `arm64`), ardından:
+**Linux** — [Sürümler](https://github.com/wsj-br/transrewrt/releases) sayfasından `.AppImage` dosyasını indirin, ardından:
 
 ```bash
 chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage
 ```
 
-x86_64/amd64 üzerinde `x64` dosya adını kullanın; ARM64 üzerinde `...-arm64.AppImage` adını kullanın.
+Platform ayrıntıları (Compose, SmartScreen, apt kitaplıkları, GPU bayrakları, saat dilimi): [Hızlı başlangıç belgeleri](https://wsj-br.github.io/transrewrt/docs/quick-start/).
 
-API anahtarlarınızı **Ayarlar → API** kısmına girin. En az bir sağlayıcıyı yapılandırmanız gerekir; ücretsiz modeller için OpenRouter yaygın bir tercihtir.
+## Belgeler
 
-**Konsol mesajları:** Paketlenmiş Linux sürümleri (`x64` ve `arm64` AppImages), terminalde Node deprecation uyarılarını bastırır (örneğin yerleşik `punycode` modülü). Chromium 'GLES3 desteklenmiyor' gibi GPU / EGL hataları yazdırıyorsa ancak uygulama çalışıyor durumdaysa, donanım hızlandırmayı devre dışı bırakarak bu hataları susturabilirsiniz:
+Tüm ürün belgeleri (kurulum, API anahtarları, kılavuzlar, ayarlar, sorun giderme):
 
-```bash
-TRANSREWRT_DISABLE_GPU=1 ./Transrewrt-x.y.z-arm64.AppImage
-```
+**[https://wsj-br.github.io/transrewrt/docs/](https://wsj-br.github.io/transrewrt/docs/)**
 
-Bu durum amd64 mimarisi için de geçerlidir; indirdiğiniz dosyaya göre dosya adını değiştirin.
+- [API anahtarı](https://wsj-br.github.io/transrewrt/docs/api-key/)
+- [Yapılandırma](https://wsj-br.github.io/transrewrt/docs/configuration/)
+- [Çevir](https://wsj-br.github.io/transrewrt/docs/translate/) · [Yeniden yazma](https://wsj-br.github.io/transrewrt/docs/rewrite/) · [Dönüştür](https://wsj-br.github.io/transrewrt/docs/transform/)
+- [Sık karşılaşılan sorunlar](https://wsj-br.github.io/transrewrt/docs/common-issues/)
 
-Debian/Ubuntu üzerinde, Chromium tarafından gerekli olan ek **çalışma zamanı** kütüphanelerine ihtiyacınız olabilir (bu kütüphaneler genellikle tam masaüstü kurulumlarında zaten mevcuttur). Gerekirse aşağıdaki komutları çalıştırın:
+## Geliştirme
 
-```bash
-sudo apt update
-sudo apt install -y libfuse2 libgtk-3-0 libnotify4 libnss3 libnspr4 libxss1 libxtst6 xdg-utils \
-     xauth libatspi2.0-0 libdrm2 libgbm1 libxcb-dri3-0 libcups2 libasound2t64
-```
+- Kurulum, derleme, test, dağıtım: [dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md)
+- Mimariye genel bakış: [dev/SYSTEM-OVERVIEW.md](../dev/SYSTEM-OVERVIEW.md)
 
-`libasound2t64` yerine `libasound2` kullanın, `arm64` için. Minimal veya özel kurulumlar hâlâ eksik `.so` dosyası nedeniyle başarısız olabilir. Hata mesajında belirtilen paketi yükleyin (sık kullanılan ekstra paketler: `libatk1.0-0`, `libatk-bridge2.0-0`, `libgbm1`, `libdrm2`). Bazı ortamlarda uygulamayı `APPIMAGE_EXTRACT_AND_RUN=1 ./Transrewrt-….AppImage` kullanarak çalıştırmak zorunda kalabilirsiniz.
+## Destek
 
-<br/>
+[GitHub](https://github.com/wsj-br/transrewrt/issues) üzerinde bir sorun açın. Platformunuzu (Windows / Linux / Docker) ve uygulama sürümünüzü (Hakkında iletişim kutusu veya Sürümler sayfası) ekleyin.
 
-> ℹ️ **NOT**<br/>
-> Şu anda macOS desteklenmiyor. Transrewrt, Windows, Linux ve Docker için mevcuttur.
-
-</details>
-
-<br/>
-
-Uygulama çalıştırıldıktan sonra metinleri nasıl çevireceğinizi, yeniden yazacağınızı ve dönüştüreceğinizi, istemleri nasıl yöneteceğinizi ve modelleri nasıl yapılandıracağınızı öğrenmek için [**Kullanıcı Kılavuzu**](USER-GUIDE.tr.md) bölümüne bakın.
-
-<br/><br/>
-
-<a id="getting-an-openrouter-api-key"></a>
-## OpenRouter API anahtarı alma
-
-Transrewrt, birden fazla yapay zeka sağlayıcısını destekler. [OpenRouter](https://openrouter.ai), birçok modeli tek bir anahtar altında toplaması ve ücretsiz modeller sunması nedeniyle popüler bir seçenektir.
-
-1. [openrouter.ai](https://openrouter.ai) adresinde kaydolun veya giriş yapın.
-2. [Keys](https://openrouter.ai/keys) sayfasını açın ve yeni bir anahtar oluşturun (isim verin ve isteğe bağlı olarak kredi limiti ayarlayın). Kredi eklemadan ücretsiz modelleri kullanabilirsiniz.
-3. **Masaüstü (Electron):** anahtarları **Ayarlar → API** kısmına yapıştırın. **Docker:** `OPENROUTER_API_KEY` gibi ortam değişkenlerini ayarlayın (bkz. [Hızlı başlangıç](#quick-start)).
-
-Çeviri, yeniden yazma veya dönüştürme işlemleri için OpenRouter'ın **Body Builder** modelini ([`openrouter/bodybuilder`](https://openrouter.ai/openrouter/bodybuilder)) kullanmayın: bu model tamamlanmış metin yerine JSON istek yükleri döndürür. Kullanıcı Kılavuzu'ndaki [Ayarlar → Modeller](USER-GUIDE.tr.md#models) bölümüne bakın.
-
-Diğer sağlayıcıları (OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, herhangi bir OpenAI uyumlu sağlayıcı) da kullanabilir veya modelleri yerel olarak [Ollama](https://ollama.com) ile çalıştırabilirsiniz. Desteklenen sağlayıcıların ve ortam değişkenlerinin tam listesi için [Yapılandırma](#configuration-and-environment) bölümüne bakın.
-
-</br>
-
-> ⚠️ **UYARI**<br/>
-> Başka bir cihazdan, konteynerden veya servisten Ollama kullanıyorsanız, Ollama'nın dış bağlantıları kabul edecek şekilde yapılandırıldığından emin olun (sadece localhost değil).
-
-<br/><br/>
-
-<a id="configuration-and-environment"></a>
-## Yapılandırma ve ortam
-
-</br>
-
-**Yapılandırma dosyası konumları**
-
-| Dağıtım         | Yapılandırma konumu                                   |
-| ------------------ | ------------------------------------------------- |
-| Electron (Windows) | `%APPDATA%\transrewrt\`                           |
-| Electron (Linux)   | `~/.config/transrewrt/`                           |
-| Web / Docker       | `/app/data/config.json` (kalıcı hale getirmek için bir volume kullanın) |
-
-<br/>
-
-**Ortam değişkenleri** (sadece web/Docker; Electron yerel yapılandırma dosyasını kullanır)
-
-| Değişken                  | Açıklama                                                                             |
-|---------------------------|-----------------------------------------------------------------------------------------|
-| `PORT`                    | Sunucu dinleme portu (varsayılan `5000`'dir)                                             |
-| `CONFIG_PATH`        | Yapılandırma dosyasının yolu (varsayılan: `/app/data/config.json`)                |
-| `TZ`                 | Sunucu tarafı saat dilimi (günlük kaydı vb.) (varsayılan: `Europe/London`) |
-| `HISTORY_DISABLED`   | Geçmiş izlemeyi devre dışı bırakır (isteğe bağlı, varsayılan olarak `false`)                  |
-| `OPENROUTER_API_KEY` | OpenRouter API anahtarı                                                           |
-| `OPENAI_API_KEY`     | OpenAI API anahtarı                                                               |
-| `CEREBRAS_API_KEY`   | Cerebras API anahtarı                                                             |
-| `ANTHROPIC_API_KEY`  | Anthropic API anahtarı                                                            |
-| `GOOGLE_API_KEY`     | Google Gemini API anahtarı                                                        |
-| `DEEPSEEK_API_KEY`   | DeepSeek API anahtarı                                                             |
-| `GROQ_API_KEY`       | Groq API anahtarı                                                                 |
-| `MISTRAL_API_KEY`    | Mistral API anahtarı                                                              |
-| `OLLAMA_URL`         | Ollama temel URL'si (örneğin `http://host.docker.internal:11434`)                   |
-| `XAI_API_KEY`        | xAI API anahtarı                                                                  |
-| `NVIDIA_API_KEY`          | NVIDIA API anahtarı                                                                         |
-| `ALIBABA_API_KEY`         | Alibaba Cloud (DashScope) API anahtarı                                                       |
-| `APIFUN_API_KEY`          | apikey.fun API anahtarı                                                                      |
-| `CUSTOM_PROVIDER_NAME` | Özel bir OpenAI uyumlu sağlayıcı için görünen ad (her üç özel değişken de gereklidir) |
-| `CUSTOM_PROVIDER_URL`     | Özel bir OpenAI uyumlu sağlayıcı için temel URL (örneğin `https://my-llm.example.com/v1`) |
-| `CUSTOM_PROVIDER_API_KEY` | Özel bir OpenAI uyumlu sağlayıcı için API anahtarı                         |
-
-**Özel OpenAI uyumlu sağlayıcı (web/Docker):** yerleşik listede olmayan herhangi bir OpenAI uyumlu uç nokta için (örneğin kendi kendine barındırılan bir sunucu veya ağ geçidi), üç `CUSTOM_PROVIDER_*` değişkenini de ayarlayın — örneğin `CUSTOM_PROVIDER_NAME=MyProvider`, `CUSTOM_PROVIDER_URL=https://my-llm.example.com/v1` ve eşleşen API anahtarı. Modeller, Ayarlar → Modeller altında **Gelişmiş** modda `MyProvider/…` gibi kimliklerle görünür (sağlayıcı adı önek olarak).
-
-**Gizlilik modu:** `config.json` veya kullanıcı tercihlerinden bağımsız olarak geçmiş izlemeyi devre dışı bırakmak için **web/Docker sunucu süreci** ve/veya **Electron masaüstü ana süreci** için `HISTORY_DISABLED` değerini `true` veya `1` olarak ayarlayın (büyük/küçük harf duyarsız) (örneğin sistem veya başlatıcı ortamı — yalnızca renderer değil). Bu, girdi/çıktı geçmişinin kaydedilmesini devre dışı bırakır, **Ayarlar → Genel Ayarlar → Geçmiş** bölümünü kilitler ve Geçmiş ile ilgili API'leri engeller.
-
-Yalnızca kullandığınız sağlayıcıları yapılandırın. Model kimlikleri ad alanlıdır (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, özel uç noktalar için `{providerName}/…` vb.).
-
-**Maliyet gösterimi:** OpenRouter, geçerli olduğunda tam faturalandırılan maliyeti döndürür. Diğer sağlayıcılar, OpenRouter anahtarı mevcutsa OpenRouter'ın kamuya açık model fiyatlandırmasından **tahmini** maliyeti kullanır; anahtar yoksa, OpenRouter olmayan maliyet `0` olarak görünebilir. Tahminler fatura değildir.
-
-<br/>
-
-**Veri ve kalıcılık:** Docker için, `/app/data` konumuna bir birim bağlayın, böylece `config.json` ve SQLite veritabanı konteyner yeniden başlatmalarında korunur. Bir birim olmadan, konteyner durduğunda tüm veriler kaybolur.
-
-<br/>
-
-**Web kimlik doğrulaması:**
-
-- Varsayılan yönetici: `admin` / `transrewrt26`.
-- Kullanıcıları **Ayarlar → Kullanıcılar** bölümünde yönetin.
-- Şifreyi sıfırlama: `docker exec <container> reset-web-password '<username>' '<new-password>'`
-
-<br/>
-
-> ⚠️ **UYARI**<br/>
-> Herhangi bir ağ erişilebilir makinede varsayılan yönetici şifresini hemen değiştirin.
-
-<br/>
-
-Anahtar ayarlar (yazı tipi, modeller, diller, vb.) uygulama Ayarları'nda mevcuttur.
-
-<br/><br/>
-
-<a id="development-and-architecture"></a>
-## Geliştirme ve mimari
-
-- **Geliştirme:** Kurulum, yapı, test ve dağıtımı (Electron, Web, Docker) - [dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md) bölümüne bakın.
-- **Mimari ve sistem genel bakış:** Klasör yapısı, teknoloji yığını, tasarım kararları - [dev/SYSTEM-OVERVIEW.md](../dev/SYSTEM-OVERVIEW.md) bölümüne bakın.
-
-<br/><br/>
-
-<a id="reporting-issues"></a>
-## Sorun bildirme
-
-[GitHub](https://github.com/wsj-br/transrewrt/issues)'da bir sorun açın. Platformunuzu (Windows / Linux / Docker) ve uygulama sürümünü (Hakkında penceresinde veya Sürümler sayfasında gösterilir) ekleyin.
-
-<br/><br/>
-
-<a id="disclaimer"></a>
-## Sorumluluk reddi
-
-Ürün adları ve simgeleri ilgili sahiplerine aittir ve sadece tanımlama amacıyla kullanılır. Bu yazılım, bahsedilen markalarla bağlantılı değildir veya onların desteğiyle değildir.
-
-<br/><br/>
-
-<a id="license"></a>
 ## Lisans
 
 Telif Hakkı © 2026 Waldemar Scudeller Jr.
 
 [Apache License 2.0](../LICENSE)
+
+Ürün adları ve simgeleri ilgili sahiplerine aittir ve yalnızca tanımlama amacıyla kullanılır. Bu yazılım, bu markalarla bağlantılı değildir veya bu markalar tarafından desteklenmemektedir.

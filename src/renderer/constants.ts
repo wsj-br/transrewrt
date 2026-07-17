@@ -23,7 +23,11 @@ export type UiLanguageEntry = {
   isSourceLocale?: boolean;
 };
 
-export const UI_LANGUAGES = uiLanguages as UiLanguageEntry[];
+export const UI_LANGUAGES = [...(uiLanguages as UiLanguageEntry[])].sort((a, b) => {
+  if (a.isSourceLocale && !b.isSourceLocale) return -1;
+  if (!a.isSourceLocale && b.isSourceLocale) return 1;
+  return a.englishName.localeCompare(b.englishName, "en", { sensitivity: "base" });
+});
 
 /** Value keys for rewrite modes (used for persistence/API). */
 export const REWRITE_MODE_KEYS = [

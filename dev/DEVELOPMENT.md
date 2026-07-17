@@ -55,7 +55,7 @@ Setup, build, test, and deploy instructions for the Transrewrt application (Elec
 - **pnpm** (package manager). Install globally: `npm install -g pnpm`.
 - **Git**.
 - **direnv** (recommended): Loads environment variables when you enter the project directory. The repo’s [.envrc](../.envrc) sources `.env` and `.env.local` if present (copy [.env.example](../.env.example) to `.env` and adjust). **Install:** macOS `brew install direnv`; Debian/Ubuntu `sudo apt install direnv`; other systems see [direnv installation](https://direnv.net/docs/installation.html). **Use:** Add a shell hook - Bash: `eval "$(direnv hook bash)"` in `~/.bashrc`; Zsh: `eval "$(direnv hook zsh)"` in `~/.zshrc`; Fish: `direnv hook fish | source` in `~/.config/fish/config.fish`. Open a new shell (or `source` the file), `cd` into the repo, then run `direnv allow` once to approve `.envrc`. On Windows, use WSL or Git Bash with the same hook pattern, or use the PowerShell helpers in [scripts/Load-DotEnv.ps1](../scripts/Load-DotEnv.ps1) instead.
-- **Chromium** (for `pnpm take-screenshots`). The screenshot script uses Puppeteer; on Linux (e.g. Raspberry Pi) the bundled Puppeteer binary may be x64, so install Chromium and set `PUPPETEER_EXECUTABLE_PATH` if needed. On Debian-based systems, install **Noto fonts** so the language-selector screenshot renders Korean/Telugu/Thai correctly: `fonts-noto-cjk`, `fonts-noto-core` (see [Linux](#linux-debian-based-ubuntu-debian-zorin-mint) below).
+- **Chromium** (for `pnpm take-screenshots`). The screenshot script uses Puppeteer; on Linux (e.g. Raspberry Pi) the bundled Puppeteer binary may be x64, so install Chromium and set `PUPPETEER_EXECUTABLE_PATH` if needed. On Debian-based systems, install **Noto fonts** so localized UI screenshots render Korean/Telugu/Thai correctly: `fonts-noto-cjk`, `fonts-noto-core` (see [Linux](#linux-debian-based-ubuntu-debian-zorin-mint) below).
 - **Security:** Run `pnpm audit` periodically. The project uses pnpm `overrides` in [pnpm-workspace.yaml](../pnpm-workspace.yaml) for patched transitive dependencies; keep them updated.
 
 ### Windows 11
@@ -184,7 +184,7 @@ Setup, build, test, and deploy instructions for the Transrewrt application (Elec
 
    (or `/usr/bin/chromium-browser`) when running `pnpm take-screenshots`.
 
-5. **Noto fonts** (for language-selector screenshot):
+5. **Noto fonts** (for localized UI screenshots):
 
    ```bash
    sudo apt install fonts-noto-cjk fonts-noto-core
@@ -400,7 +400,7 @@ The UI uses **react-i18next** with a key-as-default pattern (English in source i
 
 **Add a new UI language:** (1) Add the locale to `targetLocales` in `ai-i18n-tools.config.json`, (2) run `pnpm run i18n:locales` (or `pnpm exec ai-i18n-tools generate-ui-languages`) and review `ui-languages.json`, (3) run `pnpm run i18n:extract` then `pnpm run i18n:translate:ui` (or `i18n:sync`). Document and layout direction use `direction` in `ui-languages.json` via `applyDirection` in [`src/renderer/i18n.ts`](../src/renderer/i18n.ts) — see [i18n.md](i18n.md).
 
-**Documentation translation:** The `documentations` array in `ai-i18n-tools.config.json` lists content paths (e.g. `README.md`, `USER-GUIDE.md`), `outputDir` (e.g. `translated-docs/`), and post-processing (screenshot paths, language-list block). Outputs are typically `basename.<locale>.md`. Caching uses `cacheDir` (default `.translation-cache`); it is **not** compatible with a legacy custom cache under `translated-docs/.cache` — archive or remove old caches when migrating.
+**Documentation translation:** The `docs` array in `ai-i18n-tools.config.json` lists content paths (e.g. `README.md`), `outputDir` (e.g. `translated-docs/`), and post-processing (screenshot paths, language-list block). Outputs are typically `basename.<locale>.md`. Caching uses `cacheDir` (default `.translation-cache`); it is **not** compatible with a legacy custom cache under `translated-docs/.cache` — archive or remove old caches when migrating.
 
 Screenshots follow Pattern B (per-locale folder): `images/screenshots/<locale>/<name>.png`. The `take-screenshots.js` script writes PNG files for all locales; `translate-docs` rewrites the locale segment via `postProcessing.regexAdjustments`. See the [ai-i18n-tools locale assets guide](https://github.com/wsj-br/ai-i18n-tools/blob/main/docs/locale-assets.md) for full documentation of this pattern.
 
@@ -416,14 +416,15 @@ Regenerate the **production** dependency license bundle for releases and complia
 | Command               | Purpose                                        |
 |-----------------------|------------------------------------------------|
 | `pnpm run 3p-notices` | Writes [NOTICES](../NOTICES) at the repo root. |
+| `pnpm notices:write`  | Alias for `3p-notices`.                        |
 
 
 
-Implementation: [scripts/write-third-party-notices.js](../scripts/write-third-party-notices.js) runs `license-checker-rseidelsohn` (devDependency) with `--production`, `--json`, [3p-lic-clarifications.json](../3p-lic-clarifications.json), and [scripts/license-checker-custom-format.json](../scripts/license-checker-custom-format.json). The custom-format file is required so clarifications can supply `licenseText` (upstream only merges that field when a custom format includes `licenseText`). The script then emits the same vertical layout as the stock `--plainVertical` output but **prefers `licenseText` from clarifications** when present, so packages that ship **no `LICENSE` file** (and would otherwise use `README.md` as the license source) can show real license text instead of the readme.
+Implementation: [scripts/write-third-party-notices.mjs](../scripts/write-third-party-notices.mjs) resolves the production dependency tree via `pnpm licenses list --prod --json`, then selects each license body in order: a [scripts/write-third-party-notices.json](../scripts/write-third-party-notices.json) `packageOverrides` entry (matched by name + semver range), else a real license file (`LICENSE` / `LICENCE` / `COPYING` / `UNLICENSE`, including suffixed variants), never `README.md`, else the standard text for the package's SPDX id from `spdxLicenseTexts` (copyright line filled from the package `author` when present).
 
-**When to run:** After adding, removing, or bumping **production** dependencies, or when you edit `3p-lic-clarifications.json`. Commit the updated `NOTICES` with the dependency change when appropriate.
+**When to run:** After adding, removing, or bumping **production** dependencies, or when you edit `scripts/write-third-party-notices.json`. Commit the updated `NOTICES` with the dependency change when appropriate.
 
-**Overrides:** Edit [3p-lic-clarifications.json](../3p-lic-clarifications.json). Keys are `packageName@versionOrRange`: the part after the **last** `@` is matched with `semver.satisfies` (or exact equality), so you can use **ranges** such as `embla-carousel@^8.0.0` or `ai@^7.0.0` and avoid editing the file on every patch bump. Use a new major-specific range (or an extra entry) when a major upgrade might change license text. See the [license-checker-rseidelsohn](https://www.npmjs.com/package/license-checker-rseidelsohn) readme (*Clarifications*). Scoped packages: `@scope/name@^1.2.3`. Typical fields: `licenseText` (full text), optionally `licenses`, `licenseFile`, `checksum`, `licenseStart` / `licenseEnd`.
+**Overrides:** Edit [scripts/write-third-party-notices.json](../scripts/write-third-party-notices.json). Prefer adding an `spdxLicenseTexts` entry for a new SPDX id. Use `packageOverrides` keys of the form `packageName@versionOrRange` (the part after the **last** `@` is matched with `semver.satisfies`) only when a package needs custom text that the SPDX templates cannot cover — e.g. `esrecurse@^4.3.0` or scoped `@scope/name@^1.2.3`.
 
 ---
 
@@ -658,7 +659,7 @@ See also [UI translations and documentation (ai-i18n-tools)](#ui-translations-an
 | `pnpm run i18n:extract`        | Scan renderer → `src/renderer/locales/strings.json`                                                    |
 | `pnpm run i18n:translate:ui`   | Fill missing UI locales via OpenRouter (`OPENROUTER_API_KEY`); see `ai-i18n-tools translate-ui --help` |
 | `pnpm run i18n:translate:svg`  | Not currently configured — prints informational message (SVG translation requires `features.translateSVG` + `svg` block in config) |
-| `pnpm run i18n:translate:docs` | Translate README / USER-GUIDE per `documentations` in config                                           |
+| `pnpm run i18n:translate:docs` | Translate README per `docs` in config                                                                   |
 | `pnpm run i18n:translate`      | `translate-ui`, then `translate-docs`                                                                |
 | `pnpm run i18n:sync`           | Full pipeline: extract + translate UI (+ SVG/docs per config); see `ai-i18n-tools sync --help`         |
 | `pnpm run i18n:status`         | Coverage report                                                                                        |
@@ -746,7 +747,7 @@ For more detail (including Node version alignment and Windows-specific issues), 
 - **[SYSTEM-OVERVIEW.md](SYSTEM-OVERVIEW.md)** — Product and **runtime architecture** (Electron IPC `llm:*` vs web `/api/llm/stream` SSE), **Vercel AI SDK** LLM layer and supported providers, **Easy mode / presets catalog** (sync, `model_ids`, providers), **config/state** (desktop `config.json` + encryption; web global config vs `user_preferences` / `transrewrt.db`), **security** (sanitized IPC, Argon2, cookies), settings UI summary, native modules.
 - **[presets-editor/README.md](presets-editor/README.md)** — Development catalog editor (`pnpm run presets-editor`), env vars, mirror paths, AI Suggestion / translate-missing APIs.
 - **[i18n.md](i18n.md)** — UI strings: extract/translate workflow, key-as-default, RTL, native `t(key, vars)` interpolation.
-- **[USER-GUIDE.md](../USER-GUIDE.md)** — End-user Easy vs Advanced, skills, provider, and settings (not maintainer tooling).
+- **[https://wsj-br.github.io/transrewrt/docs/](https://wsj-br.github.io/transrewrt/docs/)** — End-user docs (install, guides, settings, troubleshooting).
 - **[release-new-version-prompt.md](release-new-version-prompt.md)** — Cursor prompt to draft `release-notes/RELEASE_NOTES_<version>.md` and update the changelog before a release.
 
 ---
@@ -785,10 +786,9 @@ For more detail (including Node version alignment and Windows-specific issues), 
 | [src/renderer/i18n.ts](../src/renderer/i18n.ts)                                             | i18n init, RTL handling, dynamic locale loaders                                                               |
 | [src/renderer/locales/strings.json](../src/renderer/locales/strings.json)                   | Extracted UI strings and translation state (from i18n:extract)                                                |
 | [ai-i18n-tools.config.json](../ai-i18n-tools.config.json)                                   | **ai-i18n-tools**: locales, OpenRouter models, UI extract paths, glossaries, doc `documentations`, `cacheDir` |
-| [3p-lic-clarifications.json](../3p-lic-clarifications.json)                                 | Per-package license overrides for `pnpm run 3p-notices` (`licenseText`, etc.)                                 |
 | [NOTICES](../NOTICES)                                                                       | Generated production third-party notices (do not hand-edit; run `pnpm run 3p-notices`)                        |
-| [scripts/write-third-party-notices.js](../scripts/write-third-party-notices.js)             | Invokes license checker + writes `NOTICES`                                                                    |
-| [scripts/license-checker-custom-format.json](../scripts/license-checker-custom-format.json) | Minimal custom format so clarifications’ `licenseText` is applied                                             |
+| [scripts/write-third-party-notices.mjs](../scripts/write-third-party-notices.mjs)           | Resolves prod deps via `pnpm licenses list` and writes `NOTICES`                                              |
+| [scripts/write-third-party-notices.json](../scripts/write-third-party-notices.json)         | SPDX license templates + optional per-package overrides for `3p-notices`                                      |
 | [scripts/release.sh](../scripts/release.sh)                                                 | Local GitHub release (Bash): tag `v<version>`, push, `gh release create` using `release-notes/RELEASE_NOTES_<version>.md` |
 | [scripts/release.ps1](../scripts/release.ps1)                                               | Same as `release.sh` for Windows (PowerShell); `pnpm run release:github:win` / `release:github:dry:win` |
 

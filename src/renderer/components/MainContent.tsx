@@ -123,9 +123,9 @@ const MainContent = ({
   presets = [],
   selectedPresetId,
   onPresetChange,
-  ollamaModels = [],
-  easyOllamaModel,
-  onEasyOllamaModelChange,
+  localLlmModels = [],
+  easyLocalLlmModel,
+  onEasyLocalLlmModelChange,
   onOpenSettingsGeneral,
   presetUiLocale,
   presetSourceLocale = "en-GB",
@@ -150,9 +150,9 @@ const MainContent = ({
   presets?: Preset[];
   selectedPresetId?: string | null;
   onPresetChange?: (presetId: string) => void;
-  ollamaModels?: string[];
-  easyOllamaModel?: string | null;
-  onEasyOllamaModelChange?: (modelId: string) => void;
+  localLlmModels?: string[];
+  easyLocalLlmModel?: string | null;
+  onEasyLocalLlmModelChange?: (modelId: string) => void;
   onOpenSettingsGeneral?: () => void;
   /** UI locale for presets catalog labels (falls back to i18n.language in PresetSelector). */
   presetUiLocale?: string;
@@ -252,9 +252,9 @@ const MainContent = ({
               presets={presets}
               selectedPresetId={selectedPresetId}
               onPresetChange={onPresetChange}
-              ollamaModels={ollamaModels}
-              easyOllamaModel={easyOllamaModel}
-              onEasyOllamaModelChange={onEasyOllamaModelChange}
+              localLlmModels={localLlmModels}
+              easyLocalLlmModel={easyLocalLlmModel}
+              onEasyLocalLlmModelChange={onEasyLocalLlmModelChange}
               onOpenSettingsGeneral={onOpenSettingsGeneral}
               presetUiLocale={presetUiLocale}
               presetSourceLocale={presetSourceLocale}

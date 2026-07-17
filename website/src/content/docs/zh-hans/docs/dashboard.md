@@ -1,0 +1,53 @@
+---
+title: 使用仪表板
+description: 查看使用情况、成本和调用日志——筛选、导出并管理存储的记录。
+translation_last_updated: '2026-07-17T14:58:56.285Z'
+source_file_mtime: '2026-07-17T11:53:39.333Z'
+source_file_hash: 689c93c2517f806f7976d570b4fc86d30ca048ce906d982429b985ad06dd9250
+translation_language: zh-Hans
+source_file_path: src/content/docs/docs/dashboard.md
+translation_models:
+  - z-ai/glm-5.2
+---
+
+
+
+使用 **仪表板** 查看您的应用使用量以及产生的费用（针对付费模型）。
+
+![仪表板摘要](/images/screenshots/zh-Hans/dashboard-summary.png)
+
+:::note
+如果您只使用 **免费** 模型，成本金额可能为零。**摘要** 上的调用次数 KPI 仍需要所选时间段内有活动记录。
+:::
+
+## 筛选数据
+
+使用顶部的筛选按钮更改时间范围。
+
+:::note
+**用户** 筛选器仅在网页版中对管理员可见。桌面版不提供此功能。
+:::
+
+## 标签页
+
+- **摘要** — KPI：总成本、已用模型、各模式调用次数与成本、平均每次调用成本、平均 TPS、按调用次数排名的常用模型
+- **按模型** — 各模型的调用次数、成本和 TPS；展开某一行可查看模式细分
+- **所有调用** — 完整的调用日志（分页或卡片形式），支持导出
+
+## 导出数据
+
+将表格导出为 **JSON**、**CSV** 或 **XLSX**。
+
+## 删除模型的存储记录
+
+在 **按模型** 或 **所有调用** 中，使用垃圾桶图标移除某个模型的记录。
+
+:::caution
+删除操作无法撤销。要按时间删除或清除所有成本数据，请使用[设置 → 成本跟踪](/docs/settings/#cost-tracking)。
+:::
+
+## 后续步骤
+
+- [浏览历史](/docs/history/)
+- [设置](/docs/settings/)
+- [常见问题](/docs/common-issues/)

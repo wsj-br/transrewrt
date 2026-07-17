@@ -11,6 +11,19 @@ Use conventional types (Added, Changed, Fixed, etc.) and short descriptions.
 
 ## Unreleased
 
+- **Changed**: Renamed the Ollama-specific local provider to **Local LLM** (`local` / `local/…`, `local_llm_base_url`, `LOCAL_LLM_URL`, `easy_local_llm_model`); the URL is the full OpenAI-compatible API base (no automatic `/v1` append), and Test/reachability use `GET …/models`.
+- **Changed**: Local LLM base URL defaults/examples use paths such as `http://localhost:11434/v1` so Ollama, LM Studio, llama.cpp, and other API versions work without hardcoding `/v1` in the app.
+- **Fixed**: Website `tsconfig.json` drops deprecated `baseUrl` and uses an explicit `@/*` → `./src/*` path mapping for TypeScript 6+/7.
+- **Changed**: Moved the product User Guide into task-first website docs (Get started, Guides, Settings reference, Troubleshooting); deleted root `USER-GUIDE.md` and `translated-docs/USER-GUIDE.*`. Locale Starlight pages and `translated-docs/README.*` still need a follow-up `i18n:translate` / `i18n:translate:docs` pass.
+- **Changed**: Slimmed root `README.md` to a GitHub landing page (pitch, one hero screenshot, short Quick start, docs links); install/API/config detail lives on the docs site.
+- **Changed**: `take-screenshots` drops unused sets `transform-generate`, `dashboard-filter`, `preset-selector`, and `language-selector` (and their PNG trees).
+- **Changed**: Marketing site “Full User Guide” CTAs now point at `/docs/` instead of GitHub `USER-GUIDE.md`.- **Changed**: Website and app UI language pickers list languages alphabetically by English name (source locale first); regenerated `ui-languages.json` manifests from the sorted `targetLocales` config.
+- **Fixed**: Website Starlight docs translations were written under nested `{locale}/src/content/docs/docs/` so locale URLs fell back to English; relocated to `{locale}/docs/`, set `docsOutput.docsRoot`, and use lowercase Starlight locale keys (`pt-br`, `zh-hans`) so content IDs match.
+- **Changed**: Website marketing LanguagePicker uses a two-column dropdown (same layout as the app header selector) instead of a single-column `<select>`.
+- **Changed**: Website marketing screenshots load from `images/screenshots/<locale>/` (with en-GB fallback); `public/images/screenshots` now symlinks to the repo screenshot tree.
+- **Added**: Website marketing frontpage is locale-aware — `/{locale}/` routes, `t()`-wired React copy, LanguagePicker navigates to the localized homepage (not docs), and flat UI bundles for all website target locales.
+- **Changed**: tooling — replaced `license-checker-rseidelsohn`-based `pnpm 3p-notices` with the ai-i18n-tools approach: `scripts/write-third-party-notices.mjs` resolves production deps via `pnpm licenses list --prod --json` and selects license bodies (package override → real LICENSE file → SPDX template). Config lives in `scripts/write-third-party-notices.json` (`spdxLicenseTexts` + `packageOverrides`). Removed `license-checker-rseidelsohn`, `scripts/license-checker-custom-format.json`, and `patches/license-checker-rseidelsohn@4.4.2.patch`; added `semver` and `pnpm notices:write` as an alias for `3p-notices`. Falls back to `require.resolve` / top-level `node_modules/<name>` when pnpm reports a missing virtual-store path.
+
 ## [1.6.0] - 2026-07-15
 
 - **Fixed**: `pnpm run presets-check` no longer hardcodes `--local --dry-run`, so documented flags (`--local`, `--dry-run`, etc.) work as intended.

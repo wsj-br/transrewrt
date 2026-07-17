@@ -1,9 +1,8 @@
 {
   "sourceLocale": "en-GB",
   "targetLocales": [
-    "pt-BR" , "ar" , "bn" , "ca" , "zh-Hans" , "zh-Hant" , "hr" , "cs" , "nl" , "en-US" , "tl" , 
-    "fr" , "de" , "el" , "hi-Latn" , "hu" , "it" , "ja" , "ko" , "ms" , "fa" , "pl" , "jv" , "pt" , 
-    "pa-PK" , "ro" , "ru" , "sk" , "es" , "sw" , "sv" , "te" , "th" , "tr" , "uk" , "vi"
+    "ar", "zh-Hans", "zh-Hant", "cs", "nl", "fr", "de", "el", "hi", "hu", "it", "ja",
+     "ko", "fa", "pl", "pt-BR", "ro", "ru", "sk", "es", "sv", "th", "tr", "uk", "vi"
   ],
   "concurrency": 8,
   "batchSize": 20,
@@ -28,10 +27,9 @@
   },
   "docs": [
     {
-      "description": "README and User Guide",
+      "description": "README",
       "contentPaths": [
-        "README.md",
-        "USER-GUIDE.md"
+        "README.md"
       ],
       "outputDir": "translated-docs/",
       "addFrontmatter": false,

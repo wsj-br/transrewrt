@@ -3,31 +3,25 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.0-blue" alt="Version"></a>
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.1-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
-  <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react" alt="React 19">
-  <img src="https://img.shields.io/badge/Electron-41-47848F?logo=electron" alt="Electron 41">
 </p>
 
-Instrument de text bazat pe AI: traduceți între limbi, rescrieți în stiluri diferite și transformați cu prompturi personalizate - folosind mai mulți furnizori AI (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, orice furnizor compatibil cu OpenAI și Ollama local). Rulează ca aplicație desktop (Electron) sau aplicație web auto-găzduită (Docker).
+Instrument de text bazat pe inteligența artificială: **traduceți**, **rescrieți** și **transformați** cu prompturi personalizate — utilizând proprii furnizori de inteligență artificială (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, puncte finale compatibile cu OpenAI și servere locale compatibile cu OpenAI, cum ar fi Ollama, LM Studio sau llama.cpp). Aplicație desktop (Windows / Linux) sau aplicație web auto-găzduită (Docker). Fără cont Transrewrt în cloud.
 
-- **Traducere** - între zeci de limbi, cu detectare automată a sursei
-- **Reescriere** - corectare gramaticală, îmbunătățire claritate, formal/informal, scurtare, extindere, tehnic
-- **Transformare** - prompturi AI personalizate; creați și gestionați prompturi, limbă țintă opțională per prompt
-- **Glosar** - stocați perechi termen sursă/țintă per pereche de limbi și aplicați-le în timpul traducerii, astfel încât termenii aleși să rămână constanți; gestionați termenii în Setări (adăugare/editare/ștergere, import CSV/XLSX și export șablon)
-- **Istoric** - istoric complet de execuție cu text de intrare/ieșire, filtrare și export
-- **Ușor și Avansat** - Mod Ușor (implicit): presetări curate per furnizor (**Gratuit (OpenRouter)**, **Standard**, **Avansat**, **Tehnic**; apar doar presetările cu o mapare pentru furnizorul selectat) fără a alege ID-uri de model; Mod Avansat: listă completă de modele de la furnizorii dvs. configurați
-- **Modele și cost** - tablouri de bord pentru costuri și utilizare (Sumar, După model, Toate apelurile) cu export; OpenRouter afișează cheltuielile reale, alți furnizori folosesc estimări
-- **Interfață** - interfață multilingvă (peste 30 de limbi, suport RTL), fonturi, ...
-- **Mod Web** - suport multi-utilizator cu roluri de administrator
-- **Desktop** - aplicație Electron pentru Windows și Linux
-- **Auto-găzduit** - imagine Docker pentru amd64 și arm64 (pregătit pentru Raspberry Pi)
+| | |
+| --- | --- |
+| **Traducere** | Zeci de limbi, detectare automată, glosare, rafinare cu Parafrazare |
+| **Reescriere** | Claritate, ton, lungime, ortografie și gramatică — aceeași limbă |
+| **Transformare** | Prompturi AI personalizate pe care le creați, editați și reutilizați |
+| **Implementare** | Desktop Electron sau web Docker (amd64 & arm64) |
+| **Chei** | Furnizorii dvs., gazda dvs. — Presetări ușoare sau listă de modele avansate |
 
-Odată instalat, consultați [**Ghidul utilizatorului**](USER-GUIDE.ro.md) pentru o prezentare completă a tuturor funcțiilor.
+![Traducere](../images/screenshots/ro/translate.png)
 
 <small>**Citește în alte limbi:** </small>
-<small id="lang-list">[English (UK)](../README.md) · [Português (Brasil)](./README.pt-BR.md) · [العربية](./README.ar.md) · [বাংলা](./README.bn.md) · [Català](./README.ca.md) · [简体中文](./README.zh-Hans.md) · [繁體中文](./README.zh-Hant.md) · [Hrvatski](./README.hr.md) · [Čeština](./README.cs.md) · [Nederlands](./README.nl.md) · [English (US)](./README.en-US.md) · [Tagalog](./README.tl.md) · [Français](./README.fr.md) · [Deutsch](./README.de.md) · [Ελληνικά](./README.el.md) · [Hindi (Roman)](./README.hi-Latn.md) · [Magyar](./README.hu.md) · [Italiano](./README.it.md) · [日本語](./README.ja.md) · [한국어](./README.ko.md) · [Bahasa Melayu](./README.ms.md) · [فارسی](./README.fa.md) · [Polski](./README.pl.md) · [Basa Jawa](./README.jv.md) · [Português](./README.pt.md) · [پنجابی](./README.pa-PK.md) · [Română](./README.ro.md) · [Русский](./README.ru.md) · [Slovenčina](./README.sk.md) · [Español](./README.es.md) · [Kiswahili](./README.sw.md) · [Svenska](./README.sv.md) · [తెలుగు](./README.te.md) · [ไทย](./README.th.md) · [Türkçe](./README.tr.md) · [Українська](./README.uk.md) · [Tiếng Việt](./README.vi.md)</small>
+<small id="lang-list">[English (UK)](../README.md) · [العربية](./README.ar.md) · [简体中文](./README.zh-Hans.md) · [繁體中文](./README.zh-Hant.md) · [Čeština](./README.cs.md) · [Nederlands](./README.nl.md) · [Français](./README.fr.md) · [Deutsch](./README.de.md) · [Ελληνικά](./README.el.md) · [हिन्दी](./README.hi.md) · [Magyar](./README.hu.md) · [Italiano](./README.it.md) · [日本語](./README.ja.md) · [한국어](./README.ko.md) · [فارسی](./README.fa.md) · [Polski](./README.pl.md) · [Português (Brasil)](./README.pt-BR.md) · [Română](./README.ro.md) · [Русский](./README.ru.md) · [Slovenčina](./README.sk.md) · [Español](./README.es.md) · [Svenska](./README.sv.md) · [ไทย](./README.th.md) · [Türkçe](./README.tr.md) · [Українська](./README.uk.md) · [Tiếng Việt](./README.vi.md)</small>
 
 <small>
 
@@ -36,65 +30,9 @@ Odată instalat, consultați [**Ghidul utilizatorului**](USER-GUIDE.ro.md) pentr
 
 </small>
 
-<br/>
-
-<a id="table-of-contents"></a>
-## Cuprins
-
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-
-- [Capturi de ecran](#screenshots)
-- [Pornire rapidă](#quick-start)
-- [Obținerea unei chei API OpenRouter](#getting-an-openrouter-api-key)
-- [Configurare și mediu](#configuration-and-environment)
-- [Dezvoltare și arhitectură](#development-and-architecture)
-- [Raportarea problemelor](#reporting-issues)
-- [Declin de răspundere](#disclaimer)
-- [Licență](#license)
-
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
-
-<br/><br/>
-
-<a id="screenshots"></a>
-## Capturi de ecran
-
-**Selector de limbă**
-
-![Selector de limbă](../images/screenshots/ro/language-selector.png)
-
-**Traduce**
-
-![Traducere](../images/screenshots/ro/translate.png)
-
-**Transformare - editor de prompturi**
-
-![Transformare - editor de prompt](../images/screenshots/ro/transform-prompt-edit.png)
-
-**Panou de control**
-
-![Sumar tablou de bord - utilizare](../images/screenshots/ro/dashboard-summary.png)
-
-**Istoric**
-
-![Istoric](../images/screenshots/ro/history.png)
-
-**Setări - selecție model**
-
-![Setări - selecție model](../images/screenshots/ro/settings-general.png)
-
-<br/><br/>
-
-<a id="quick-start"></a>
 ## Pornire rapidă
 
-<details>
-<summary><b>Docker (recomandat pentru auto-găzduire)</b></summary>
-
-<a id="docker"></a>
-
-<br/>
+**Docker**
 
 ```bash
 docker pull ghcr.io/wsj-br/transrewrt:latest
@@ -107,259 +45,42 @@ OPENROUTER_API_KEY=sk-or-your-key docker run -d \
   ghcr.io/wsj-br/transrewrt:latest
 ```
 
-Înlocuiți `sk-or-your-key` cu [cheia dvs. API OpenRouter](https://openrouter.ai/keys) (sau setați chei pentru alți furnizori; consultați [Configurare](#configuration-and-environment)). Deschideți [http://localhost:5000](http://localhost:5000) și schimbați parola implicită de administrator înainte de a expune serviciul.
+Deschideți [http://localhost:5000](http://localhost:5000) și schimbați parola de administrator implicită. Cheile furnizorului sunt setate prin variabile de mediu (nu prin interfața web).
 
-Setați cel puțin o cheie de furnizor prin variabile de mediu (de exemplu `OPENROUTER_API_KEY` pentru OpenRouter). Transmiteți variabilele cu `-e` sau `docker compose` / `.env` astfel încât secretele să nu fie încorporate în imagine. Cheile furnizorului **nu sunt** introduse în interfața web; serverul le citește din mediul de execuție.
+**Windows** — Descărcați `Transrewrt Setup x.y.z.exe` de la [Lansări](https://github.com/wsj-br/transrewrt/releases), instalați, apoi adăugați cheile în **Setări → API**.
 
-<br/>
-
-> ℹ️ **NOTĂ**<br/>
-> În Docker, acreditările LLM sunt setate cu variabile de mediu precum `OPENROUTER_API_KEY`, `OPENAI_API_KEY`, `CEREBRAS_API_KEY`, … (nu în interfața web). Pe desktop (Electron), configurați cheile în **Setări → API**.
-
-<br/>
-
-Sau utilizați Docker Compose:
-
-```bash
-# download the compose file
-wget https://github.com/wsj-br/transrewrt/raw/refs/heads/master/production.yml -O transrewrt.yml
-# Edit the file to add your API keys (API_KEYs), or uncomment and adjust the `.env` file. Set the timezone (TZ) if necessary.
-vi transrewrt.yml
-# start the container
-docker compose -f transrewrt.yml up -d
-```
-
-Consultați [Configurare](#configuration-and-environment) pentru toate variabilele de mediu, cum ar fi `PORT`, `CONFIG_PATH`, `TZ`, și cheile LLM (`OPENROUTER_API_KEY`, `OPENAI_API_KEY`, …).
-
-</details>
-
-<br/>
-
-<details>
-<summary><b>Fusul orar al serverului (Docker)</b></summary>
-
-<a id="configuring-the-timezone"></a>
-
-<br/>
-
-Data și ora din interfața aplicației urmează **setările regionale și fusul orar ale browserului**. Pentru comportamentul **la nivel de server** (jurnalizare și similar), containerul utilizează variabila de mediu `TZ`. Valoarea implicită este `TZ=Europe/London`.
-
-Pentru a utiliza un alt fus orar, setați `TZ` în fișierul dvs. Compose, de exemplu:
-
-```yaml
-environment:
-  - TZ=America/Sao_Paulo
-```
-
-Sau transmiteți-o la rularea containerului (Docker):
-
-```bash
---env TZ=America/Sao_Paulo
-```
-
-Pe multe sisteme Linux puteți copia numele fusului orar al sistemului cu:
-
-```bash
-echo TZ=\"$(</etc/timezone)\"
-```
-
-O listă cu numele valide ale fusurilor orare este menținută în [baza de date tz](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) (Wikipedia).
-
-</details>
-
-<br/>
-
-<details>
-<summary><b>Windows</b></summary>
-
-<a id="windows-electron"></a>
-
-<br/>
-
-- Descărcați ultima versiune `Transrewrt Setup x.y.z.exe` de la [Releases](https://github.com/wsj-br/transrewrt/releases).
-- Rulați fișierul `.exe` și urmați instrucțiunile instalatorului.
-- La prima rulare: porniți aplicația din meniul Start sau din scurtătura de pe desktop.
-- Introduceți cheile API în **Setări → API**. Trebuie să configurați cel puțin un furnizor; OpenRouter este frecvent utilizat pentru modele gratuite.
-
-<br/>
-
-> ℹ️ **NOTĂ**<br/>
-> Windows poate afișa una dintre aceste avertizări de securitate (normal pentru aplicații nesemnate/independente):
->   - **Controlul contului de utilizator (UAC)**: „Doriți să permiteți acestui aplicații de la un editor necunoscut să facă modificări pe dispozitivul dvs.?" → Faceți clic pe **Da**.
->   - **Microsoft Defender SmartScreen**: „Windows v-a protejat PC-ul" → Faceți clic pe **Mai multe informații** → **Execută oricum**.
->
-> Acest lucru se întâmplă deoarece aplicația nu este semnată de Microsoft sau de un editor major — este sigură dacă a fost descărcată din lansările noastre oficiale de pe GitHub (verificați sumele de control pe pagina [Releases](https://github.com/wsj-br/transrewrt/releases) alături de fiecare fișier).
-
-<br/>
-
-</details>
-
-<br/>
-
-<details>
-<summary><b>Linux</b></summary>
-
-<a id="linux-electron"></a>
-
-<br/>
-
-Descărcați `.AppImage` pentru procesorul dumneavoastră de la [Releases](https://github.com/wsj-br/transrewrt/releases) (`x64` pentru PC-uri obișnuite, `arm64` pentru multe dispozitive ARM, inclusiv Raspberry Pi 4+), apoi:
+**Linux** — Descărcați `.AppImage` de la [Lansări](https://github.com/wsj-br/transrewrt/releases), apoi:
 
 ```bash
 chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage
 ```
 
-Pe x86_64/amd64 folosiți numele fișierului `x64`; pe ARM64 folosiți numele `...-arm64.AppImage`.
+Detalii platformă (Compose, SmartScreen, biblioteci apt, flag-uri GPU, fus orar): [Documentație de pornire rapidă](https://wsj-br.github.io/transrewrt/docs/quick-start/).
 
-Introduceți cheile API în **Setări → API**. Trebuie să configurați cel puțin un furnizor; OpenRouter este frecvent utilizat pentru modele gratuite.
+## Documentație
 
-**Mesaje în consolă:** Versiunile empaachetate pentru Linux (`x64` și `arm64` AppImages) suprimă avertismentele de deprecieri Node în terminal (de exemplu, modulul încorporat `punycode`). Dacă Chromium afișează erori GPU / EGL precum „GLES3 este nesuportat”, dar aplicația funcționează, le puteți dezactiva prin oprirea accelerării hardware:
+Documentație completă a produsului (instalare, chei API, ghiduri, setări, depanare):
 
-```bash
-TRANSREWRT_DISABLE_GPU=1 ./Transrewrt-x.y.z-arm64.AppImage
-```
+**[https://wsj-br.github.io/transrewrt/docs/](https://wsj-br.github.io/transrewrt/docs/)**
 
-Aceasta se aplică și pe amd64; modificați numele fișierului să corespundă descărcării dumneavoastră.
+- [Cheie API](https://wsj-br.github.io/transrewrt/docs/api-key/)
+- [Configurare](https://wsj-br.github.io/transrewrt/docs/configuration/)
+- [Traducere](https://wsj-br.github.io/transrewrt/docs/translate/) · [Reescriere](https://wsj-br.github.io/transrewrt/docs/rewrite/) · [Transformare](https://wsj-br.github.io/transrewrt/docs/transform/)
+- [Probleme comune](https://wsj-br.github.io/transrewrt/docs/common-issues/)
 
-Pe Debian/Ubuntu, s-ar putea să aveți nevoie de biblioteci suplimentare de **rulare** necesare de Chromium (acestea sunt adesea deja prezente în instalațiile complete de desktop). Rulați comenzile de mai jos dacă este necesar:
+## Dezvoltare
 
-```bash
-sudo apt update
-sudo apt install -y libfuse2 libgtk-3-0 libnotify4 libnss3 libnspr4 libxss1 libxtst6 xdg-utils \
-     xauth libatspi2.0-0 libdrm2 libgbm1 libxcb-dri3-0 libcups2 libasound2t64
-```
+- Configurare, compilare, testare, implementare: [dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md)
+- Prezentare generală a arhitecturii: [dev/SYSTEM-OVERVIEW.md](../dev/SYSTEM-OVERVIEW.md)
 
-înlocuiți `libasound2t64` cu `libasound2` pentru `arm64`. Instalările minime sau personalizate ar putea totuși eșua cu un fișier `.so` lipsă. Instalați pachetul indicat în mesajul de eroare (elemente suplimentare comune: `libatk1.0-0`, `libatk-bridge2.0-0`, `libgbm1`, `libdrm2`). În unele medii, s-ar putea să trebuiască să rulați aplicația folosind `APPIMAGE_EXTRACT_AND_RUN=1 ./Transrewrt-….AppImage`.
+## Suport
 
-<br/>
+Deschideți o problemă pe [GitHub](https://github.com/wsj-br/transrewrt/issues). Includeți platforma dvs. (Windows / Linux / Docker) și versiunea aplicației (dialogul Despre sau pagina Lansări).
 
-> ℹ️ **NOTĂ**<br/>
-> macOS nu este în prezent suportat. Transrewrt este disponibil pentru Windows, Linux și Docker.
-
-</details>
-
-<br/>
-
-Odată ce aplicația rulează, consultați [**Ghidul utilizatorului**](USER-GUIDE.ro.md) pentru a învăța cum să traduceți, rescrieți și transformați textul, să gestionați prompturile și să configurați modelele.
-
-<br/><br/>
-
-<a id="getting-an-openrouter-api-key"></a>
-## Obținerea unei chei API OpenRouter
-
-Transrewrt susține mai mulți furnizori de IA. [OpenRouter](https://openrouter.ai) este o alegere populară deoarece agregă multe modele sub o singură cheie și oferă modele gratuite.
-
-1. Înregistrați-vă sau autentificați-vă la [openrouter.ai](https://openrouter.ai).
-2. Accesați pagina [Keys](https://openrouter.ai/keys) și creați o cheie nouă (dați-i un nume și, opțional, setați un limită de credit). Puteți utiliza modele gratuite fără a adăuga credit.
-3. **Desktop (Electron):** lipiți cheile în **Setări → API**. **Docker:** setați variabilele de mediu precum `OPENROUTER_API_KEY` (consultați [Pornire rapidă](#quick-start)).
-
-Nu folosiți modelul **Body Builder** al OpenRouter ([`openrouter/bodybuilder`](https://openrouter.ai/openrouter/bodybuilder)) pentru traducere, rescriere sau transformare: acesta returnează sarcini JSON, nu textul finalizat pentru aceste sarcini. Consultați [Setări → Modele](USER-GUIDE.ro.md#models) din Ghidul utilizatorului.
-
-Puteți utiliza, de asemenea, alți furnizori (OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, orice furnizor compatibil cu OpenAI) sau puteți rula modele local cu [Ollama](https://ollama.com). Consultați [Configurare](#configuration-and-environment) pentru lista completă a furnizorilor suportați și a variabilelor de mediu.
-
-</br>
-
-> ⚠️ **ATENȚIE**<br/>
-> Dacă utilizați Ollama de la un alt dispozitiv, container sau serviciu, rețineți să configurați Ollama să permită conexiuni externe (nu doar localhost).
-
-<br/><br/>
-
-<a id="configuration-and-environment"></a>
-## Configurare și mediu
-
-</br>
-
-**Locații fișiere de configurare**
-
-| Deploare         | Locație configurație                                   |
-| ------------------ | ------------------------------------------------- |
-| Electron (Windows) | `%APPDATA%\transrewrt\`                           |
-| Electron (Linux)   | `~/.config/transrewrt/`                           |
-| Web / Docker       | `/app/data/config.json` (folosiți un volum pentru persistență) |
-
-<br/>
-
-**Variabile de mediu** (doar web/Docker; Electron folosește fișierul de configurare local)
-
-| Variabilă                  | Descriere                                                                             |
-|---------------------------|-----------------------------------------------------------------------------------------|
-| `PORT`                    | Portul pe care ascultă serverul (implicit este `5000`)                                             |
-| `CONFIG_PATH`        | Calea către fișierul de configurare (implicit `/app/data/config.json`)                |
-| `TZ`                 | fus orar pentru timpul de pe server (jurnalizare etc.) (implicit `Europe/London`) |
-| `HISTORY_DISABLED`   | Activează dezactivarea istoricului execuției (opțional, implicit `false`)                  |
-| `OPENROUTER_API_KEY` | Cheie API OpenRouter                                                           |
-| `OPENAI_API_KEY`     | Cheie API OpenAI                                                               |
-| `CEREBRAS_API_KEY`   | Cheie API Cerebras                                                             |
-| `ANTHROPIC_API_KEY`  | Cheie API Anthropic                                                            |
-| `GOOGLE_API_KEY`     | Cheie API Google Gemini                                                        |
-| `DEEPSEEK_API_KEY`   | Cheie API DeepSeek                                                             |
-| `GROQ_API_KEY`       | Cheie API Groq                                                                 |
-| `MISTRAL_API_KEY`    | Cheie API Mistral                                                              |
-| `OLLAMA_URL`         | URL de bază Ollama (ex: `http://host.docker.internal:11434`)                   |
-| `XAI_API_KEY`        | Cheie API xAI                                                                  |
-| `NVIDIA_API_KEY`          | Cheie API NVIDIA                                                                          |
-| `ALIBABA_API_KEY`         | Cheie API Alibaba Cloud (DashScope)                                                       |
-| `APIFUN_API_KEY`          | Cheie API apikey.fun                                                                      |
-| `CUSTOM_PROVIDER_NAME` | Nume afișat pentru un furnizor personalizat compatibil cu OpenAI (toate cele trei variabile personalizate sunt necesare) |
-| `CUSTOM_PROVIDER_URL`     | URL de bază pentru un furnizor personalizat compatibil cu OpenAI (de ex. `https://my-llm.example.com/v1`) |
-| `CUSTOM_PROVIDER_API_KEY` | Cheie API pentru un furnizor personalizat compatibil cu OpenAI                         |
-
-**Furnizor personalizat compatibil cu OpenAI (web/Docker):** pentru orice punct final compatibil cu OpenAI care nu se află în lista încorporată de mai sus (de ex. un server auto-găzduit sau un gateway), setați toate cele trei variabile `CUSTOM_PROVIDER_*` — de exemplu `CUSTOM_PROVIDER_NAME=MyProvider`, `CUSTOM_PROVIDER_URL=https://my-llm.example.com/v1` și cheia API corespunzătoare. Modelele apar în modul **Avansat** sub Setări → Modele cu ID-uri precum `MyProvider/…` (numele furnizorului ca prefix).
-
-**Modul de confidențialitate:** Pentru a forța dezactivarea urmăririi istoricului indiferent de `config.json` sau de preferințele pe utilizator, setați `HISTORY_DISABLED` la `true` sau `1` (fără distincție între majuscule și minuscule) pentru **procesul server web/Docker** și/sau **procesul principal desktop Electron** (de exemplu, mediul sistemului sau al lansatorului — nu doar renderer-ul). Aceasta dezactivează stocarea istoricului intrare/ieșire, blochează **Setări → Setări generale → Istoric** și blochează API-urile legate de Istoric.
-
-Configurați numai furnizorii pe care îi utilizați. ID-urile modelelor sunt organizate pe spații de nume (`openrouter/…`, `openai/…`, `cerebras/…`, `ollama/…`, `{providerName}/…` pentru puncte finale personalizate etc.).
-
-**Afișare cost:** OpenRouter returnează costul exact facturat atunci când este aplicabil. Alți furnizori folosesc costul **estimat** din prețurile publice ale modelelor OpenRouter atunci când este disponibilă o cheie OpenRouter; fără aceasta, costul non-OpenRouter poate apărea ca `0`. Estimările nu sunt facturi.
-
-<br/>
-
-**Date și persistență:** Pentru Docker, montați un volum la `/app/data` astfel încât `config.json` și baza de date SQLite să persiste la repornirile containerului. Fără un volum, toate datele se pierd când containerul se oprește.
-
-<br/>
-
-**Autentificare web:**
-
-- Administrator implicit: `admin` / `transrewrt26`.
-- Gestionarea utilizatorilor în **Setări → Utilizatori**.
-- Resetare parolă: `docker exec <container> reset-web-password '<username>' '<new-password>'`
-
-<br/>
-
-> ⚠️ **ATENȚIE**<br/>
-> Schimbați imediat parola implicită a administratorului pe orice host accesibil din rețea.
-
-<br/>
-
-Setările principale (font, modele, limbi etc.) sunt disponibile în Setări aplicației.
-
-<br/><br/>
-
-<a id="development-and-architecture"></a>
-## Dezvoltare și arhitectură
-
-- **Dezvoltare:** Configurare, build, testare și deploy (Electron, Web, Docker) - consultați [dev/DEVELOPMENT.md](../dev/DEVELOPMENT.md).
-- **Arhitectură și prezentare generală a sistemului:** Structura directoarelor, tehnologiile utilizate, decizii de proiectare - consultați [dev/SYSTEM-OVERVIEW.md](../dev/SYSTEM-OVERVIEW.md).
-
-<br/><br/>
-
-<a id="reporting-issues"></a>
-## Raportarea problemelor
-
-Deschideți o problemă pe [GitHub](https://github.com/wsj-br/transrewrt/issues). Includeți platforma (Windows / Linux / Docker) și versiunea aplicației (afișată în dialogul Despre sau pe pagina Releases).
-
-<br/><br/>
-
-<a id="disclaimer"></a>
-## Declinare de răspundere
-
-Numele produselor și pictogramele aparțin proprietarilor respectivi și sunt utilizate doar în scopuri de identificare. Acest software nu este afiliat cu și nu este susținut de niciunul dintre brandurile menționate.
-
-<br/><br/>
-
-<a id="license"></a>
 ## Licență
 
 Drepturi de autor © 2026 Waldemar Scudeller Jr.
 
 [Apache License 2.0](../LICENSE)
+
+Numele și pictogramele produselor aparțin proprietarilor respectivi și sunt utilizate doar pentru identificare. Acest software nu este afiliat sau aprobat de aceste mărci.

@@ -5,7 +5,7 @@
 import type { Preset } from "./presetsTypes";
 import { canonicalModelIdFromPresetModelId } from "../misc/modelIdUtils";
 import type { EasyCloudEngineId, EasyEngineId } from "./easyProviderConstants";
-import { EASY_OLLAMA_DEFAULT_PROMPT_HINT } from "./easyProviderConstants";
+import { EASY_LOCAL_LLM_DEFAULT_PROMPT_HINT } from "./easyProviderConstants";
 
 export function getPresetModelIds(preset: Preset): Record<string, string> {
   if (!preset.model_ids || typeof preset.model_ids !== "object") return {};
@@ -26,7 +26,7 @@ export function presetHasModelForProvider(preset: Preset, provider: EasyCloudEng
 }
 
 export function filterPresetsForEasyProvider(presets: Preset[], provider: EasyEngineId): Preset[] {
-  if (provider === "ollama") return [];
+  if (provider === "local") return [];
   return presets.filter((s) => presetHasModelForProvider(s, provider));
 }
 
@@ -100,7 +100,7 @@ export type EasyRuntimeResolution = {
 export function resolveEasyRuntime(params: {
   mode: string | undefined;
   easyProvider: string | undefined;
-  easyOllamaModel: string | undefined;
+  easyLocalLlmModel: string | undefined;
   selectedPresetId: string | null | undefined;
   presets: Preset[];
 }): EasyRuntimeResolution {
@@ -111,20 +111,20 @@ export function resolveEasyRuntime(params: {
 
   const provider = (params.easyProvider || "openrouter").trim() as EasyEngineId;
 
-  if (provider === "ollama") {
-    const model = (params.easyOllamaModel || "").trim();
+  if (provider === "local") {
+    const model = (params.easyLocalLlmModel || "").trim();
     if (!model) {
       return {
         effectiveModel: null,
         fallbackModel: null,
-        promptHint: EASY_OLLAMA_DEFAULT_PROMPT_HINT,
+        promptHint: EASY_LOCAL_LLM_DEFAULT_PROMPT_HINT,
         fromPresetCatalog: false,
       };
     }
     return {
       effectiveModel: canonicalModelIdFromPresetModelId(model),
       fallbackModel: null,
-      promptHint: EASY_OLLAMA_DEFAULT_PROMPT_HINT,
+      promptHint: EASY_LOCAL_LLM_DEFAULT_PROMPT_HINT,
       fromPresetCatalog: false,
     };
   }

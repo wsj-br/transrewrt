@@ -73,7 +73,7 @@ function registerConfigIpc(ipcMain, ctx) {
       ENCRYPTED_CONFIG_KEYS.some(
         (f) => cache[f] && String(cache[f]).trim(),
       ) ||
-      !!(cache.ollama_base_url && String(cache.ollama_base_url).trim()) ||
+      !!(cache.local_llm_base_url && String(cache.local_llm_base_url).trim()) ||
       engineConfigured("custom", mergeKeys(cache));
     return Promise.resolve(
       applyHistoryEnvToClientConfig({ ...sanitized, ...state }),

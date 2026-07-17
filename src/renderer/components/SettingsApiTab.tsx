@@ -11,7 +11,6 @@ import { cn } from "@/lib/utils";
 import { settingsSection, settingsTabContent } from "./settings/settingsLayoutClasses";
 
 const isWeb = typeof window !== "undefined" && !window.electronAPI?.getConfig;
-const OLLAMA_URL = "https://ollama.com/";
 
 const normalizeProviderKey = (value) =>
   String(value || "")
@@ -45,8 +44,8 @@ function testStatusClass(status) {
 function formatProviderTestSuccessMessage(successI18n, t) {
   if (!successI18n || typeof successI18n.key !== "string") return null;
   const { key, params } = successI18n;
-  if (key === "Ollama configuration is working.") {
-    return t("Ollama configuration is working.");
+  if (key === "Local LLM configuration is working.") {
+    return t("Local LLM configuration is working.");
   }
   if (key === "{{provider}} credentials are valid.") {
     return t("{{provider}} credentials are valid.", params || {});
@@ -225,8 +224,8 @@ const SettingsApiTab = ({
   const [draftValues, setDraftValues] = useState({});
   const [webProviderStatus, setWebProviderStatus] = useState([]);
   const [testResults, setTestResults] = useState({});
-  const savedOllamaBaseUrl = localSettings.ollama_base_url ?? "http://localhost:11434";
-  const [ollamaDraft, setOllamaDraft] = useState(savedOllamaBaseUrl);
+  const savedLocalLlmBaseUrl = localSettings.local_llm_base_url ?? "http://localhost:11434/v1";
+  const [localLlmDraft, setLocalLlmDraft] = useState(savedLocalLlmBaseUrl);
 
   const providerByKey = useMemo(() => {
     const map = {};
@@ -258,13 +257,13 @@ const SettingsApiTab = ({
     if (!isWeb || currentUserRole !== "admin") return;
     webAPI
       .getProviderKeysStatus()
-      .then((rows) => setWebProviderStatus(rows.filter((r) => r.provider !== "ollama")))
+      .then((rows) => setWebProviderStatus(rows.filter((r) => r.provider !== "local")))
       .catch(() => setWebProviderStatus([]));
   }, [currentUserRole]);
 
   useEffect(() => {
-    setOllamaDraft(savedOllamaBaseUrl);
-  }, [savedOllamaBaseUrl]);
+    setLocalLlmDraft(savedLocalLlmBaseUrl);
+  }, [savedLocalLlmBaseUrl]);
 
   useEffect(() => {
     setCustomNameDraft(savedCustomName);
@@ -492,56 +491,49 @@ const SettingsApiTab = ({
     </div>
   );
 
-  const renderOllamaSection = () => (
+  const renderLocalLlmSection = () => (
     <div className="mb-4">
       <div className="flex items-center gap-1.5 mb-1.5">
-        <Label htmlFor="ollama-base-url" className="mb-0">{t("Ollama base URL")}</Label>
-        <button
-          type="button"
-          onClick={() => openExternalUrl(OLLAMA_URL)}
-          aria-label={t("Open Ollama website")}
-          title={t("Open Ollama website")}
-          className="inline-flex items-center text-muted-foreground hover:text-foreground p-0"
-        >
-          <ExternalLink size={13} />
-        </button>
+        <Label htmlFor="local-llm-base-url" className="mb-0">{t("Local LLM base URL")}</Label>
       </div>
       <div className="flex items-start gap-2 flex-wrap">
         <div className="flex flex-col">
           <Input
-            id="ollama-base-url"
+            id="local-llm-base-url"
             type="text"
-            value={ollamaDraft}
-            onChange={(e) => setOllamaDraft(e.target.value)}
+            value={localLlmDraft}
+            onChange={(e) => setLocalLlmDraft(e.target.value)}
             onBlur={() => {
-              const next = (ollamaDraft ?? "").trim();
-              if (next !== savedOllamaBaseUrl) {
-                onSettingChange("ollama_base_url", next);
+              const next = (localLlmDraft ?? "").trim();
+              if (next !== savedLocalLlmBaseUrl) {
+                onSettingChange("local_llm_base_url", next);
               }
             }}
             onKeyDown={(e) => {
               if (e.key !== "Enter") return;
               e.currentTarget.blur();
             }}
-            placeholder="http://localhost:11434"
+            placeholder="http://localhost:11434/v1"
             className="w-full max-w-[400px] min-w-0"
           />
           <p className="mt-1.5 mb-0 text-xs text-muted-foreground">
-            {t("Use http://localhost:11434 if you are running Ollama on this machine.")}
+            {t(
+              "Enter the full OpenAI-compatible API base URL (include the path, e.g. Ollama http://localhost:11434/v1, LM Studio http://localhost:1234/v1, llama.cpp http://localhost:8080/v1).",
+            )}
           </p>
         </div>
         <Button
           variant="outline"
           size="sm"
-          onClick={() => runProviderTest("ollama", (ollamaDraft ?? "").trim())}
-          disabled={testResults.ollama?.status === "testing"}
+          onClick={() => runProviderTest("local", (localLlmDraft ?? "").trim())}
+          disabled={testResults.local?.status === "testing"}
         >
-          {testResults.ollama?.status === "testing" ? t("Testing...") : t("Test")}
+          {testResults.local?.status === "testing" ? t("Testing...") : t("Test")}
         </Button>
       </div>
-      {testResults.ollama?.message ? (
-        <p className={cn("mt-1.5 text-sm", testStatusClass(testResults.ollama?.status))}>
-          {testResults.ollama.message}
+      {testResults.local?.message ? (
+        <p className={cn("mt-1.5 text-sm", testStatusClass(testResults.local?.status))}>
+          {testResults.local.message}
         </p>
       ) : null}
     </div>
@@ -569,12 +561,15 @@ const SettingsApiTab = ({
               style={{ gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 460px), 1fr))" }}
             >
               {renderCustomProviderSection()}
-              {renderOllamaSection()}
+              {renderLocalLlmSection()}
             </div>
 
             <div className="mt-6 p-3 bg-muted rounded-md max-w-[800px]">
               <p className="m-0 text-sm">
-                💡 <strong>{t("Don't want to pay?")}</strong> {t("Generate a free API key with Openrouter, Cerebras, Google, Groq, Mistral AI, NVIDIA, or install Ollama to run models locally without any API key.")}
+                💡 <strong>{t("Don't want to pay?")}</strong>{" "}
+                {t(
+                  "Generate a free API key with Openrouter, Cerebras, Google, Groq, Mistral AI, NVIDIA, or run models locally with Ollama, LM Studio, llama.cpp, or another OpenAI-compatible server — no API key required.",
+                )}
               </p>
             </div>
           </div>

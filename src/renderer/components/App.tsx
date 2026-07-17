@@ -59,7 +59,7 @@ LoadingLogoSvg.propTypes = { className: PropTypes.string };
 const App = () => {
   const { t, i18n } = useTranslation();
   const locale = i18n.language || SOURCE_LOCALE;
-  const { settings, translate, translateAlternative, translateWordAlternatives, translatePromptFields, improvePromptConfig, generatePromptConfig, rewrite, rewriteAlternative, rewriteWordAlternatives, transform, models, presets, easyProvider, ollamaEasyModels, updateSettings, setSetting, setSelectedPresetId, setEasyOllamaModel, removeModelFromList, needsLogin, sessionExpired, currentUser, handleWebLogin, handleWebLogout, apiKeyStatus, configLoading, setError } =
+  const { settings, translate, translateAlternative, translateWordAlternatives, translatePromptFields, improvePromptConfig, generatePromptConfig, rewrite, rewriteAlternative, rewriteWordAlternatives, transform, models, presets, easyProvider, localLlmEasyModels, updateSettings, setSetting, setSelectedPresetId, setEasyLocalLlmModel, removeModelFromList, needsLogin, sessionExpired, currentUser, handleWebLogin, handleWebLogout, apiKeyStatus, configLoading, setError } =
     useAppContext();
   const presetUiLocale = settings?.ui_locale || locale;
   const presetSourceLocale = settings?.source_locale || "en-GB";
@@ -747,9 +747,9 @@ const App = () => {
                 presets,
                 selectedPresetId: settings.selected_preset_id,
                 onPresetChange: (id) => setSelectedPresetId(id),
-                ollamaModels: ollamaEasyModels,
-                easyOllamaModel: settings.easy_ollama_model,
-                onEasyOllamaModelChange: (id) => setEasyOllamaModel(id),
+                localLlmModels: localLlmEasyModels,
+                easyLocalLlmModel: settings.easy_local_llm_model,
+                onEasyLocalLlmModelChange: (id) => setEasyLocalLlmModel(id),
                 onOpenSettingsGeneral: () => {
                   updateSettings({ settings_active_tab: "general" });
                   setCurrentView("settings");
@@ -875,9 +875,9 @@ const App = () => {
                   presets={presets}
                   selectedPresetId={settings.selected_preset_id}
                   onPresetChange={(id) => setSelectedPresetId(id)}
-                  ollamaModels={ollamaEasyModels}
-                  easyOllamaModel={settings.easy_ollama_model}
-                  onEasyOllamaModelChange={(id) => setEasyOllamaModel(id)}
+                  localLlmModels={localLlmEasyModels}
+                  easyLocalLlmModel={settings.easy_local_llm_model}
+                  onEasyLocalLlmModelChange={(id) => setEasyLocalLlmModel(id)}
                   onOpenSettingsGeneral={() => {
                     updateSettings({ settings_active_tab: "general" });
                     setCurrentView("settings");
@@ -964,9 +964,9 @@ const App = () => {
           presets={presets}
           selectedPresetId={settings.selected_preset_id}
           onPresetChange={(id) => setSelectedPresetId(id)}
-          ollamaModels={ollamaEasyModels}
-          easyOllamaModel={settings.easy_ollama_model}
-          onEasyOllamaModelChange={(id) => setEasyOllamaModel(id)}
+          localLlmModels={localLlmEasyModels}
+          easyLocalLlmModel={settings.easy_local_llm_model}
+          onEasyLocalLlmModelChange={(id) => setEasyLocalLlmModel(id)}
           onOpenSettingsGeneral={() => {
             updateSettings({ settings_active_tab: "general" });
             setCurrentView("settings");

@@ -35,7 +35,7 @@ Technical architecture, folder structure, tech stack, and design decisions for t
 
 ## Product
 
-**Transrewrt** is an AI-powered text tool that provides **translation**, **rewrite** (style transformation), and **transform** (transform prompts) using **multiple LLM backends** (OpenRouter, native vendor APIs, Ollama, etc.). By default the app uses **Easy** mode: curated **skills** (**Free (OpenRouter)**, **Lite**, **Advanced**, **Technical**) mapped to models per **provider**, without picking raw model IDs. **Advanced** mode exposes the classic per-model toolbar and **Settings → Models** list. When **execution history** is enabled, past runs (input/output text and metadata) are stored in the app database and browsable from the **History** sidebar view. The same codebase runs as:
+**Transrewrt** is an AI-powered text tool that provides **translation**, **rewrite** (style transformation), and **transform** (transform prompts) using **multiple LLM backends** (OpenRouter, native vendor APIs, Local LLM, etc.). By default the app uses **Easy** mode: curated **skills** (**Free (OpenRouter)**, **Lite**, **Advanced**, **Technical**) mapped to models per **provider**, without picking raw model IDs. **Advanced** mode exposes the classic per-model toolbar and **Settings → Models** list. When **execution history** is enabled, past runs (input/output text and metadata) are stored in the app database and browsable from the **History** sidebar view. The same codebase runs as:
 
 - **Desktop**: Electron app (Windows, Linux).
 - **Web**: Self-hosted web app served from a Docker container (or local Express server).
@@ -114,7 +114,7 @@ The Node-side LLM stack uses the **[Vercel AI SDK](https://sdk.vercel.ai/)** (`s
 | **openrouter** | Routed OpenRouter models (`openrouter/<innerId>`); catalog and pricing; OpenRouter-specific headers/routing and generation-id cost when available. |
 | **openai**, **anthropic**, **google**, **deepseek**, **groq**, **mistralai**, **xai**, **cerebras**, **nvidia**, **alibaba**, **apifun** | Direct vendor OpenAI-compatible APIs; model ids look like `openai/gpt-4o`, `google/gemini-2.5-flash`, `nvidia/…`, etc. |
 | **custom** | User-defined OpenAI-compatible base URL (`custom_provider_url` / `CUSTOM_PROVIDER_URL`) plus optional name and API key. |
-| **ollama** | Local server URL (`ollama_base_url` / `OLLAMA_URL`); not a secret key. |
+| **local** | Local OpenAI-compatible server URL (`local_llm_base_url` / `LOCAL_LLM_URL`); not a secret key. |
 
 **Model ids** must be **namespaced** (`engine/innerModelId`). Unknown engines are rejected at resolve time. **mergeKeys()** builds the credential map from **saved config plus `process.env`**, with **config winning** over env for the same logical key, so Docker/Electron can override env with UI-saved keys.
 
@@ -126,7 +126,7 @@ The Node-side LLM stack uses the **[Vercel AI SDK](https://sdk.vercel.ai/)** (`s
 
 ### Electron (desktop)
 
-- **At-rest API keys**: Provider secret fields listed in `ENCRYPTED_CONFIG_KEYS` ([shared/llm/index.js](../src/shared/llm/index.js) - all engine API keys including `custom_provider_api_key`; **Ollama** URL and custom provider URL/name are not encrypted) are stored in `config.json` as **AES-256-CBC** ciphertext with a random **IV** per value, prefixed with `enc:`. Implementation: [src/main/encryption.js](../src/main/encryption.js) (`encryptApiKey` / `decryptApiKey`). A **32-byte** encryption key is stored in `transrewrt.key` (hex) beside `config.json` ([getKeyFilePath](../src/main/configPath.js)).
+- **At-rest API keys**: Provider secret fields listed in `ENCRYPTED_CONFIG_KEYS` ([shared/llm/index.js](../src/shared/llm/index.js) - all engine API keys including `custom_provider_api_key`; **Local LLM** URL and custom provider URL/name are not encrypted) are stored in `config.json` as **AES-256-CBC** ciphertext with a random **IV** per value, prefixed with `enc:`. Implementation: [src/main/encryption.js](../src/main/encryption.js) (`encryptApiKey` / `decryptApiKey`). A **32-byte** encryption key is stored in `transrewrt.key` (hex) beside `config.json` ([getKeyFilePath](../src/main/configPath.js)).
 - **Renderer never sees raw secrets**: `config:get` ([configIpc.js](../src/main/ipc/configIpc.js)) **strips** those fields and exposes only `*_configured` flags plus `llm_configured`. The renderer must not receive secrets via `config:setAll` either - encrypted keys are **ignored** in the payload (`ENCRYPTED_CONFIG_KEYS` are skipped when merging).
 - **Building LLM requests**: Main exposes `config:getSecretsForRequest`, which returns `mergeKeys(cache)` (plain secrets for the main process only) so streaming and tests run in **main**, not in the renderer.
 - **Legacy helpers** in `encryption.js` for `key_seed` remain for decrypting old values if present; the **Transrewrt proxy** feature that used them has been **removed** from the product.
@@ -201,7 +201,7 @@ All application source lives under `src/`: main (Electron), renderer (React), se
 - **Electron security**: Sanitized `config:get`, `config:setAll` does not merge secrets from the renderer, `getSecretsForRequest` only for main-side LLM; see [Security and encryption](#security-and-encryption).
 - **Web multi-user**: After migration, **workspace settings** (models, languages, `total_cost`, transform prompts linkage, session fields like `last_used_model`) live in `user_preferences` per `user_id`. **Global** `config.json` keeps **server-global** keys only (`webConfigKeys.js`). **Custom prompts** are scoped with `user_id` where applicable.
 - **Authorization**: **Settings → Cost tracking** and **provider keys** in `/api/config` are **admin-only** on web. `GET /api/calls/*` applies **username** filters for non-admins server-side.
-- **Execution history**: Optional `keep_execution_history`. Text in `action_content` linked to `api_calls`. History UI via Electron IPC or `GET /api/calls/history`. **Settings → General** vs cost/history deletion semantics: see USER-GUIDE. Optional environment `HISTORY_DISABLED` (`true` / `1`, case-insensitive) on the **Electron main process** or **Node server** forces history off and locks the History settings card; omit unless an administrator requires it.
+- **Execution history**: Optional `keep_execution_history`. Text in `action_content` linked to `api_calls`. History UI via Electron IPC or `GET /api/calls/history`. **Settings → General** vs cost/history deletion semantics: see [docs Settings](https://wsj-br.github.io/transrewrt/docs/settings/). Optional environment `HISTORY_DISABLED` (`true` / `1`, case-insensitive) on the **Electron main process** or **Node server** forces history off and locks the History settings card; omit unless an administrator requires it.
 - **Easy vs Advanced**: `mode` in config (`"easy"` default from [config_default.json](../src/config-defaults/config_default.json)); legacy installs without `mode` are normalized to `"easy"` on load. Advanced mode uses `available_models` and model-list error handling; Easy mode resolves `model_ids[provider]` from the presets catalog and does not auto-remove models on 404.
 
 ### Translate workspace
@@ -230,7 +230,7 @@ Built-in skills in [easy-mode-config/presets.json](../easy-mode-config/presets.j
 | `advanced` | Advanced | All cloud engines with `model_ids` |
 | `technical` | Technical | All cloud engines with `model_ids` |
 
-In **Easy** mode, each skill row in `presets.json` can define `model_ids` for cloud providers (OpenRouter, OpenAI, Anthropic, Google, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba, apikey.fun, and custom when keyed). The app **omits** skills that have no non-empty `model_ids` entry for the current provider (so **Free (OpenRouter)** appears only when **Provider** is OpenRouter). **Ollama** does not use skills: the toolbar lists installed local models (`easy_ollama_model` in user config). Optional per-skill `prompt_hint` is appended to translate/rewrite/transform system prompts. Display names use `translated_name` / `translated_description` for `ui_locale`, then `source_locale`, then `name` / `description`.
+In **Easy** mode, each skill row in `presets.json` can define `model_ids` for cloud providers (OpenRouter, OpenAI, Anthropic, Google, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba, apikey.fun, and custom when keyed). The app **omits** skills that have no non-empty `model_ids` entry for the current provider (so **Free (OpenRouter)** appears only when **Provider** is OpenRouter). **Local LLM** does not use skills: the toolbar lists installed local models (`easy_local_llm_model` in user config). Optional per-skill `prompt_hint` is appended to translate/rewrite/transform system prompts. Display names use `translated_name` / `translated_description` for `ui_locale`, then `source_locale`, then `name` / `description`.
 
 Transform prompt editor actions (translate / improve / generate fields) use the same preset selector in Easy mode and the model list in Advanced mode.
 
@@ -267,12 +267,12 @@ Not shipped in production builds. Maintainers edit the canonical catalog with **
 
 - **Storage**: One merged `config.json`; provider secrets are **encrypted at rest** when written ([encryption.js](../src/main/encryption.js)). Defaults from [config_default.json](../src/config-defaults/config_default.json) (`mode: "easy"`, `source_locale`, …).
 - **Skills**: `presets.json` in the config directory ([getPresetsFilePath](../src/main/configPath.js)); first launch copies or downloads catalog; remote updates when in Easy mode (see [Easy mode and presets catalog](#easy-mode-and-presets-catalog)).
-- **State keys** (e.g. `last_used_model`, `easy_provider`, `easy_ollama_model`, `source_language`) live in the same file as other settings from the app’s perspective; the main process may split persistence as implemented in IPC.
+- **State keys** (e.g. `last_used_model`, `easy_provider`, `easy_local_llm_model`, `source_language`) live in the same file as other settings from the app’s perspective; the main process may split persistence as implemented in IPC.
 
 ### Web / Docker
 
 - **Global file** (`data/config.json`, e.g. `/app/data/config.json` in Docker): **Server-only** keys - provider secret fields (see [webConfigKeys.js](../src/server/utils/webConfigKeys.js)), `web_session_timeout`, etc. **Not** used for per-user workspace after migration.
-- **Shared skills file** (`data/presets.json`): Easy-mode catalog for all web users; server sync from GitHub (see [Presets catalog file and sync](#presets-catalog-file-and-sync)). Per-user `mode`, `easy_provider`, and `easy_ollama_model` live in `user_preferences`.
+- **Shared skills file** (`data/presets.json`): Easy-mode catalog for all web users; server sync from GitHub (see [Presets catalog file and sync](#presets-catalog-file-and-sync)). Per-user `mode`, `easy_provider`, and `easy_local_llm_model` live in `user_preferences`.
 - **SQLite** (`transrewrt.db` next to the config file): `user_preferences` JSON per user (merged into `GET /api/config` and updated via `POST /api/config` for non-global keys), `users`, `sessions`, `api_calls`, `action_content`, `custom_prompts`, glossary terms, etc.
 - **Legacy `state.json`**: Still managed by [configFile.js](../src/server/utils/configFile.js) for load/save helpers; after the **user_prefs_migrated_from_global** migration it is reset toward defaults while live prefs are in `user_preferences`.
 - **UI language**: `ui_locale` is part of merged settings; [i18n.ts](../src/renderer/i18n.ts) and `locales/`. Login may use `localStorage` for locale before session exists.
@@ -281,7 +281,7 @@ Not shipped in production builds. Maintainers edit the canonical catalog with **
 
 ## Settings UI
 
-Implemented in [SettingsPanel.tsx](../src/renderer/components/SettingsPanel.tsx) as horizontal tabs: **General** (behaviour, appearance, **AI experience** Easy/Advanced, **Provider** and presets catalog refresh in Easy mode, execution history), **Models** (only when `mode` is **Advanced**), **Languages**, **Glossary**, **Cost tracking** (web: **admin-only**), **Transform prompts**, **Users** (web: admin), **API** (provider keys / tests; **admin-only** on web, per-provider layout on Electron), **About**. Tab visibility uses `canAccessApiTab`, `canAccessCostTab`, `canAccessUsersTab`, and experience mode (Models hidden in Easy). The **header** language selector ([HeaderLanguageSelector](../src/renderer/components/HeaderLanguageSelector.tsx)) is outside the panel but persists `ui_locale`. End-user behaviour is described in [USER-GUIDE.md](../USER-GUIDE.md).
+Implemented in [SettingsPanel.tsx](../src/renderer/components/SettingsPanel.tsx) as horizontal tabs: **General** (behaviour, appearance, **AI experience** Easy/Advanced, **Provider** and presets catalog refresh in Easy mode, execution history), **Models** (only when `mode` is **Advanced**), **Languages**, **Glossary**, **Cost tracking** (web: **admin-only**), **Transform prompts**, **Users** (web: admin), **API** (provider keys / tests; **admin-only** on web, per-provider layout on Electron), **About**. Tab visibility uses `canAccessApiTab`, `canAccessCostTab`, `canAccessUsersTab`, and experience mode (Models hidden in Easy). The **header** language selector ([HeaderLanguageSelector](../src/renderer/components/HeaderLanguageSelector.tsx)) is outside the panel but persists `ui_locale`. End-user behaviour is described in the [website Settings docs](https://wsj-br.github.io/transrewrt/docs/settings/).
 
 ---
 

@@ -95,7 +95,7 @@ const DIRECT_LLM_ENGINE_PREFIXES = new Set([
   "deepseek",
   "groq",
   "mistralai",
-  "ollama",
+  "local",
   "xai",
   "cerebras",
   "nvidia",

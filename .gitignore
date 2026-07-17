@@ -49,3 +49,9 @@ dev/presets-check/provider-catalogs-cache.json
 
 
 
+
+# Marketing/docs site (independent package)
+website/node_modules/
+website/dist/
+website/.astro/
+website/.translation-cache/

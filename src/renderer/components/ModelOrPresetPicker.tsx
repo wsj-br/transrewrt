@@ -10,20 +10,20 @@ export function hasModelOrPresetSelection({
   model,
   models = [],
   presets = [],
-  ollamaModels = [],
-  easyOllamaModel,
+  localLlmModels = [],
+  easyLocalLlmModel,
 }: {
   experienceMode?: "easy" | "advanced";
   easyProvider?: string;
   model?: string | null;
   models?: string[];
   presets?: Preset[];
-  ollamaModels?: string[];
-  easyOllamaModel?: string | null;
+  localLlmModels?: string[];
+  easyLocalLlmModel?: string | null;
 }): boolean {
   if (experienceMode === "easy") {
-    if (easyProvider === "ollama") {
-      return ollamaModels.length > 0 && !!(easyOllamaModel?.trim() || ollamaModels[0]);
+    if (easyProvider === "local") {
+      return localLlmModels.length > 0 && !!(easyLocalLlmModel?.trim() || localLlmModels[0]);
     }
     return presets.length > 0;
   }
@@ -31,7 +31,7 @@ export function hasModelOrPresetSelection({
 }
 
 /**
- * Easy mode: preset (or Ollama model) picker. Advanced mode: model list.
+ * Easy mode: preset (or Local LLM model) picker. Advanced mode: model list.
  * Shared by workspace header and transform prompt modals.
  */
 function ModelOrPresetPicker({
@@ -45,22 +45,22 @@ function ModelOrPresetPicker({
   presets = [],
   selectedPresetId,
   onPresetChange,
-  ollamaModels = [],
-  easyOllamaModel,
-  onEasyOllamaModelChange,
+  localLlmModels = [],
+  easyLocalLlmModel,
+  onEasyLocalLlmModelChange,
   onOpenSettingsGeneral,
   presetUiLocale,
   presetSourceLocale = "en-GB",
 }) {
   const { t } = useTranslation();
 
-  if (experienceMode === "easy" && easyProvider === "ollama") {
-    if (ollamaModels.length > 0 && onEasyOllamaModelChange) {
+  if (experienceMode === "easy" && easyProvider === "local") {
+    if (localLlmModels.length > 0 && onEasyLocalLlmModelChange) {
       return (
         <ModelSelector
-          models={ollamaModels}
-          currentModel={easyOllamaModel || ollamaModels[0]}
-          onModelChange={onEasyOllamaModelChange}
+          models={localLlmModels}
+          currentModel={easyLocalLlmModel || localLlmModels[0]}
+          onModelChange={onEasyLocalLlmModelChange}
           onIconClick={onOpenSettingsGeneral}
         />
       );
@@ -72,7 +72,7 @@ function ModelOrPresetPicker({
           className="text-sm text-muted-foreground underline-offset-2 hover:underline"
           onClick={onOpenSettingsGeneral}
         >
-          {t("Configure Ollama or choose another provider in Settings.")}
+          {t("Configure Local LLM or choose another provider in Settings.")}
         </button>
       );
     }
@@ -129,9 +129,9 @@ ModelOrPresetPicker.propTypes = {
   presets: PropTypes.array,
   selectedPresetId: PropTypes.string,
   onPresetChange: PropTypes.func,
-  ollamaModels: PropTypes.arrayOf(PropTypes.string),
-  easyOllamaModel: PropTypes.string,
-  onEasyOllamaModelChange: PropTypes.func,
+  localLlmModels: PropTypes.arrayOf(PropTypes.string),
+  easyLocalLlmModel: PropTypes.string,
+  onEasyLocalLlmModelChange: PropTypes.func,
   onOpenSettingsGeneral: PropTypes.func,
   presetUiLocale: PropTypes.string,
   presetSourceLocale: PropTypes.string,

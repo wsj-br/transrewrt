@@ -8,7 +8,7 @@ export interface Preset {
   id: string;
   name: string;
   description: string;
-  /** Cloud provider engine id → canonical model id (no `ollama`). */
+  /** Cloud provider engine id → canonical model id (no `local`). */
   model_ids?: Record<string, string>;
   /**
    * Cloud provider engine id → canonical fallback model id.

@@ -331,7 +331,7 @@ const SettingsGeneralTab = ({
                       <p className="m-0 text-sm text-muted-foreground">
                         {isWeb
                           ? t("No provider configured on the server. Ask an administrator to set API keys in the environment.")
-                          : t("No provider configured. Open API Config to add a key or Ollama URL.")}
+                          : t("No provider configured. Open API Config to add a key or Local LLM URL.")}
                       </p>
                     );
                   }

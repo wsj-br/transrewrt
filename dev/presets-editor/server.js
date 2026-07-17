@@ -607,7 +607,7 @@ function ensureEditorPresetsPrepared() {
 
 const TRANSREWRT_SUGGEST_CONTEXT = `Context:
 - Transrewrt is an AI-powered text processing app available as a desktop (Windows/Linux) and self-hosted web app. It has three core modes: Translate (between languages, with auto-detect), Rewrite (restyle or improve text using presets like clarity, formal/informal, shorten/expand), and Transform (apply custom AI prompts for tasks like summarising, formatting, or extracting key points).
-- It connects to AI providers (OpenRouter, OpenAI, Anthropic, Gemini, Ollama, and others) via API keys, with the active model selected per session. The Dashboard tracks usage and estimated cost, and History stores the full input/output of past operations.
+- It connects to AI providers (OpenRouter, OpenAI, Anthropic, Gemini, Local LLM, and others) via API keys, with the active model selected per session. The Dashboard tracks usage and estimated cost, and History stores the full input/output of past operations.
 - The primary user is a regular user for translations, reviews and transformations, and uses the app as part of broader text-processing workflows.
 - Every Easy-mode preset runs through Transrewrt's chat-completions pipeline (system + user messages, streamed text output). Models must support that chat API on the provider — not legacy v1/completions-only endpoints, embeddings, speech, image generation, or rerankers.`;
 

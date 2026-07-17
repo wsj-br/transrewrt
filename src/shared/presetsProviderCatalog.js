@@ -12,7 +12,7 @@ const { canonicalForEngine } = require("./presetModelIdUtils.js");
 const CATALOG_DISK_TTL_MS = 2 * 60 * 60 * 1000;
 const FREE_MODEL_ID = "openrouter/openrouter/free";
 
-/** Cloud engines for Easy-mode model_ids (no Ollama). */
+/** Cloud engines for Easy-mode model_ids (no Local LLM). */
 const EASY_CLOUD_ENGINES = [
   { id: "openrouter", label: "OpenRouter" },
   { id: "openai", label: "OpenAI" },

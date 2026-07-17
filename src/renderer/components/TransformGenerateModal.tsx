@@ -12,9 +12,9 @@ const transformModalPickerPropTypes = {
   presets: PropTypes.array,
   selectedPresetId: PropTypes.string,
   onPresetChange: PropTypes.func,
-  ollamaModels: PropTypes.arrayOf(PropTypes.string),
-  easyOllamaModel: PropTypes.string,
-  onEasyOllamaModelChange: PropTypes.func,
+  localLlmModels: PropTypes.arrayOf(PropTypes.string),
+  easyLocalLlmModel: PropTypes.string,
+  onEasyLocalLlmModelChange: PropTypes.func,
   onOpenSettingsGeneral: PropTypes.func,
   presetUiLocale: PropTypes.string,
   presetSourceLocale: PropTypes.string,
@@ -33,9 +33,9 @@ const TransformGenerateModal = ({
   presets = [],
   selectedPresetId,
   onPresetChange,
-  ollamaModels = [],
-  easyOllamaModel,
-  onEasyOllamaModelChange,
+  localLlmModels = [],
+  easyLocalLlmModel,
+  onEasyLocalLlmModelChange,
   onOpenSettingsGeneral,
   presetUiLocale,
   presetSourceLocale = "en-GB",
@@ -61,12 +61,12 @@ const TransformGenerateModal = ({
     model: selectedModel,
     models,
     presets,
-    ollamaModels,
-    easyOllamaModel,
+    localLlmModels,
+    easyLocalLlmModel,
   });
 
   const pickerLabel =
-    experienceMode === "easy" && easyProvider !== "ollama"
+    experienceMode === "easy" && easyProvider !== "local"
       ? t("Preset")
       : t("Model to generate prompt");
 
@@ -104,9 +104,9 @@ const TransformGenerateModal = ({
                 presets={presets}
                 selectedPresetId={selectedPresetId}
                 onPresetChange={onPresetChange}
-                ollamaModels={ollamaModels}
-                easyOllamaModel={easyOllamaModel}
-                onEasyOllamaModelChange={onEasyOllamaModelChange}
+                localLlmModels={localLlmModels}
+                easyLocalLlmModel={easyLocalLlmModel}
+                onEasyLocalLlmModelChange={onEasyLocalLlmModelChange}
                 onOpenSettingsGeneral={onOpenSettingsGeneral}
                 presetUiLocale={presetUiLocale}
                 presetSourceLocale={presetSourceLocale}

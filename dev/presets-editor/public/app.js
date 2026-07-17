@@ -292,7 +292,7 @@
     "deepseek",
     "groq",
     "mistralai",
-    "ollama",
+    "local",
     "xai",
     "cerebras",
   ]);

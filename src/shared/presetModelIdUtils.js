@@ -10,7 +10,7 @@ const DIRECT_LLM_ENGINES = new Set([
   "deepseek",
   "groq",
   "mistralai",
-  "ollama",
+  "local",
   "xai",
   "cerebras",
   "nvidia",

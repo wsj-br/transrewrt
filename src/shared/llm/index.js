@@ -35,7 +35,7 @@ const ENGINE_IDS = [
   "deepseek",
   "groq",
   "mistralai",
-  "ollama",
+  "local",
   "xai",
   "custom",
   "cerebras",
@@ -45,8 +45,8 @@ const ENGINE_IDS = [
 ];
 
 /**
- * Built-in OpenAI-compatible base URLs per engine. `ollama` and `custom` are resolved at runtime
- * from config (`ollama_base_url` / `custom_provider_url`), so they are not listed here.
+ * Built-in OpenAI-compatible base URLs per engine. `local` and `custom` are resolved at runtime
+ * from config (`local_llm_base_url` / `custom_provider_url`), so they are not listed here.
  */
 const PROVIDER_PRESETS = {
   openrouter: { baseUrl: "https://openrouter.ai/api/v1" },
@@ -71,7 +71,7 @@ const CONFIG_KEY_BY_ENGINE = {
   deepseek: "deepseek_api_key",
   groq: "groq_api_key",
   mistralai: "mistralai_api_key",
-  ollama: "ollama_base_url",
+  local: "local_llm_base_url",
   xai: "xai_api_key",
   custom: "custom_provider_api_key",
   cerebras: "cerebras_api_key",
@@ -95,7 +95,7 @@ const CUSTOM_ENV_KEYS = {
 
 /** Config keys stored encrypted on disk (Electron). */
 const ENCRYPTED_CONFIG_KEYS = ENGINE_IDS.filter(
-  (e) => e !== "ollama" && e !== "custom",
+  (e) => e !== "local" && e !== "custom",
 )
   .map((e) => CONFIG_KEY_BY_ENGINE[e])
   .concat([CUSTOM_CONFIG_KEYS.apiKey]);
@@ -108,7 +108,7 @@ const ENV_KEY_BY_ENGINE = {
   deepseek: "DEEPSEEK_API_KEY",
   groq: "GROQ_API_KEY",
   mistralai: "MISTRAL_API_KEY",
-  ollama: "OLLAMA_URL",
+  local: "LOCAL_LLM_URL",
   xai: "XAI_API_KEY",
   custom: "CUSTOM_PROVIDER_API_KEY",
   cerebras: "CEREBRAS_API_KEY",
@@ -242,7 +242,7 @@ const PROVIDER_LABELS = {
   deepseek: "DeepSeek",
   groq: "Groq",
   mistralai: "Mistral",
-  ollama: "Ollama",
+  local: "Local LLM",
   xai: "xAI",
   custom: "Custom provider",
   cerebras: "Cerebras",
@@ -267,7 +267,7 @@ function providerDisplayName(provider, keysMap) {
  * English strings used as i18n keys for {@link testProviderAuth} success (renderer calls `t(key)`).
  */
 const PROVIDER_TEST_SUCCESS_I18N = {
-  ollamaOk: "Ollama configuration is working.",
+  localOk: "Local LLM configuration is working.",
   credentialsOk: "{{provider}} credentials are valid.",
 };
 
@@ -278,11 +278,11 @@ const PROVIDER_TEST_SUCCESS_I18N = {
  */
 function buildProviderTestRequest(provider, value, extras = {}) {
   const normalized = String(value || "").trim();
-  if (provider === "ollama") {
-    const baseURL = normalized || "http://localhost:11434";
+  if (provider === "local") {
+    const baseURL = normalized || "http://localhost:11434/v1";
     const sanitizedBase = baseURL.replace(/\/+$/, "");
     return {
-      url: `${sanitizedBase}/api/tags`,
+      url: `${sanitizedBase}/models`,
       options: { method: "GET" },
     };
   }
@@ -388,15 +388,15 @@ async function testProviderAuth(provider, value, extras = {}) {
     const response = await fetch(req.url, req.options);
     if (response.ok) {
       const successI18n =
-        normalizedProvider === "ollama"
-          ? { key: PROVIDER_TEST_SUCCESS_I18N.ollamaOk }
+        normalizedProvider === "local"
+          ? { key: PROVIDER_TEST_SUCCESS_I18N.localOk }
           : {
               key: PROVIDER_TEST_SUCCESS_I18N.credentialsOk,
               params: { provider: displayName },
             };
       const successMessage =
-        normalizedProvider === "ollama"
-          ? PROVIDER_TEST_SUCCESS_I18N.ollamaOk
+        normalizedProvider === "local"
+          ? PROVIDER_TEST_SUCCESS_I18N.localOk
           : `${displayName} credentials are valid.`;
       return {
         provider: normalizedProvider,
@@ -460,15 +460,15 @@ function listLlmEnvVarsPresent(env = process.env) {
 }
 
 /**
- * Resolve the OpenAI-compatible base URL for an engine (preset, or runtime config for ollama/custom).
+ * Resolve the OpenAI-compatible base URL for an engine (preset, or runtime config for local/custom).
  * @param {string} engine
  * @param {Record<string, string>} keysMap
  * @returns {string}
  */
 function providerBaseUrl(engine, keysMap) {
-  if (engine === "ollama") {
-    const url = (keysMap.ollama_base_url || "").trim() || "http://localhost:11434";
-    return `${url.replace(/\/+$/, "")}/v1`;
+  if (engine === "local") {
+    const url = (keysMap.local_llm_base_url || "").trim() || "http://localhost:11434/v1";
+    return url.replace(/\/+$/, "");
   }
   if (engine === "custom") {
     return (keysMap[CUSTOM_CONFIG_KEYS.url] || "").trim().replace(/\/+$/, "");
@@ -478,13 +478,13 @@ function providerBaseUrl(engine, keysMap) {
 }
 
 /**
- * Resolve the API key for an engine ("" for keyless Ollama).
+ * Resolve the API key for an engine ("" for keyless local LLM).
  * @param {string} engine
  * @param {Record<string, string>} keysMap
  * @returns {string}
  */
 function providerApiKey(engine, keysMap) {
-  if (engine === "ollama") return "";
+  if (engine === "local") return "";
   if (engine === "custom") return (keysMap[CUSTOM_CONFIG_KEYS.apiKey] || "").trim();
   const ck = CONFIG_KEY_BY_ENGINE[engine];
   return (keysMap[ck] || "").trim();
@@ -503,8 +503,8 @@ function buildConfig(engine, keysMap) {
 }
 
 function engineConfigured(engine, keysMap) {
-  if (engine === "ollama") {
-    return !!(keysMap.ollama_base_url || "").trim();
+  if (engine === "local") {
+    return !!(keysMap.local_llm_base_url || "").trim();
   }
   if (engine === "custom") {
     return (
@@ -517,18 +517,18 @@ function engineConfigured(engine, keysMap) {
   return !!(keysMap[ck] || "").trim();
 }
 
-const OLLAMA_PROBE_MS = 4000;
+const LOCAL_LLM_PROBE_MS = 4000;
 
 /**
- * Cheap GET /api/tags so we skip model listing when Ollama is down (avoids noisy errors).
- * @param {string} baseURL - e.g. http://localhost:11434 (root, not the /v1 path)
+ * Cheap GET /models on the OpenAI-compatible base URL so we skip listing when the server is down.
+ * @param {string} baseURL - e.g. http://localhost:11434/v1 (full API base, no trailing slash)
  */
-async function isOllamaReachable(baseURL) {
+async function isLocalLlmReachable(baseURL) {
   const base = String(baseURL || "").replace(/\/+$/, "");
   if (!base) return false;
-  const url = `${base}/api/tags`;
+  const url = `${base}/models`;
   const ac = new AbortController();
-  const t = setTimeout(() => ac.abort(), OLLAMA_PROBE_MS);
+  const t = setTimeout(() => ac.abort(), LOCAL_LLM_PROBE_MS);
   try {
     const res = await fetch(url, { signal: ac.signal });
     return res.ok;
@@ -755,9 +755,9 @@ async function getAllModels(keysMap) {
       catalogByEngine[engine] = [];
       continue;
     }
-    if (engine === "ollama") {
-      const root = (keysMap.ollama_base_url || "").trim() || "http://localhost:11434";
-      if (!(await isOllamaReachable(root))) {
+    if (engine === "local") {
+      const base = providerBaseUrl(engine, keysMap);
+      if (!(await isLocalLlmReachable(base))) {
         catalogByEngine[engine] = [];
         continue;
       }
@@ -840,9 +840,9 @@ async function ensureCatalogForEngine(engine, keysMap) {
   const existing = catalogByEngine[engine];
   if (existing && existing.length > 0) return;
   if (!engineConfigured(engine, keysMap)) return;
-  if (engine === "ollama") {
-    const root = (keysMap.ollama_base_url || "").trim() || "http://localhost:11434";
-    if (!(await isOllamaReachable(root))) {
+  if (engine === "local") {
+    const base = providerBaseUrl(engine, keysMap);
+    if (!(await isLocalLlmReachable(base))) {
       catalogByEngine[engine] = [];
       return;
     }

@@ -1,0 +1,18 @@
+---
+import MarketingLayout from '../../layouts/MarketingLayout.astro';
+import uiLanguages from '../../i18n/ui-languages.json';
+import { toRouteLocale } from '../../i18n/locale';
+
+export function getStaticPaths() {
+  return uiLanguages
+    .filter((row) => !row.isSourceLocale)
+    .map((row) => ({ params: { locale: toRouteLocale(row.code) } }));
+}
+
+const { locale } = Astro.params;
+if (!locale) {
+  return Astro.redirect('/');
+}
+---
+
+<MarketingLayout localeCode={locale} />

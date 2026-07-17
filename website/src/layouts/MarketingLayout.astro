@@ -1,0 +1,51 @@
+---
+import MarketingApp from '../components/marketing/MarketingApp';
+import { marketingPageMeta } from '../components/marketing/pageMeta';
+import { loadFlatBundle, makeT } from '../i18n/t';
+import { resolvePageLocale } from '../i18n/utils';
+import { resolveUiLanguage } from '../i18n/locale';
+import '../styles/global.css';
+
+interface Props {
+  /** BCP-47 code or Astro locale; defaults to source locale. */
+  localeCode?: string;
+}
+
+const localeCode = Astro.props.localeCode ?? 'en-GB';
+const locale = resolvePageLocale(localeCode);
+const lang = resolveUiLanguage(localeCode);
+const flat = await loadFlatBundle(localeCode);
+const t = makeT(flat);
+const meta = marketingPageMeta(t);
+---
+
+<!doctype html>
+<html lang={locale} dir={lang.direction}>
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/logos/transrewrt_logo.svg" />
+    <link rel="icon" type="image/png" href="/logos/transrewrt_logo_512x512.png" />
+    <link rel="apple-touch-icon" href="/logos/transrewrt_logo_512x512.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0a0a0b" />
+    <title>{meta.title}</title>
+    <meta name="description" content={meta.description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={meta.title} />
+    <meta property="og:description" content={meta.ogDescription} />
+    <meta property="og:image" content="/logos/transrewrt_banner.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={meta.title} />
+    <meta name="twitter:description" content={meta.ogDescription} />
+    <meta name="twitter:image" content="/logos/transrewrt_banner.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <MarketingApp client:load locale={locale} messages={flat} />
+  </body>
+</html>

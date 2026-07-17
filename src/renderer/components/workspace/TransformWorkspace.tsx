@@ -56,9 +56,9 @@ export function getTransformPanels({ common, input, output, options }) {
     presets,
     selectedPresetId,
     onPresetChange,
-    ollamaModels,
-    easyOllamaModel,
-    onEasyOllamaModelChange,
+    localLlmModels,
+    easyLocalLlmModel,
+    onEasyLocalLlmModelChange,
     onOpenSettingsGeneral,
     presetUiLocale,
     presetSourceLocale,
@@ -100,9 +100,9 @@ export function getTransformPanels({ common, input, output, options }) {
           presets={presets}
           selectedPresetId={selectedPresetId}
           onPresetChange={onPresetChange}
-          ollamaModels={ollamaModels}
-          easyOllamaModel={easyOllamaModel}
-          onEasyOllamaModelChange={onEasyOllamaModelChange}
+          localLlmModels={localLlmModels}
+          easyLocalLlmModel={easyLocalLlmModel}
+          onEasyLocalLlmModelChange={onEasyLocalLlmModelChange}
           onOpenSettingsGeneral={onOpenSettingsGeneral}
           presetUiLocale={presetUiLocale}
           presetSourceLocale={presetSourceLocale}

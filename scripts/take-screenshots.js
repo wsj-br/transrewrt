@@ -193,9 +193,9 @@ const SCREENSHOT_HISTORY_MODEL_ID = "openrouter/qwen/qwen3-235b-a22b";
 const TRANSLATE_SCREENSHOT_SAMPLE_INPUT = "this is a test";
 /** Canonical translate sample for History screenshots (list is ordered by timestamp DESC). */
 const HISTORY_SAMPLE_INPUT =
-  "AI-powered text tool: translate between languages, rewrite in different styles, and transform with custom prompts - using multiple AI providers (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, and local Ollama). Runs as a desktop app (Electron) or a self-hosted web app (Docker).";
+  "AI-powered text tool: translate between languages, rewrite in different styles, and transform with custom prompts - using multiple AI providers (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, and local OpenAI-compatible servers). Runs as a desktop app (Electron) or a self-hosted web app (Docker).";
 const HISTORY_SAMPLE_OUTPUT =
-  "Ferramenta de texto com IA: traduza entre idiomas, reescreva em diferentes estilos e transforme com prompts personalizados - usando múltiplos provedores de IA (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI e Ollama local). Funciona como um aplicativo desktop (Electron) ou como um aplicativo web autohospedado (Docker).";
+  "Ferramenta de texto com IA: traduza entre idiomas, reescreva em diferentes estilos e transforme com prompts personalizados - usando múltiplos provedores de IA (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI e servidores locais compatíveis com OpenAI). Funciona como um aplicativo desktop (Electron) ou como um aplicativo web autohospedado (Docker).";
 
 function screenshotPresetOptionSelector(presetId) {
   const slug = String(presetId).replace(/\//g, "-");
@@ -525,12 +525,8 @@ const SCREENSHOTS = [
   { name: "rewrite", prepare: prepareRewrite, capture: captureRewrite },
   { name: "transform", prepare: prepareTransform, capture: captureTransform },
   { name: "transform-prompt-edit", prepare: prepareTransformNewPrompt, capture: captureTransformNewPrompt, finalTeardown: finalTeardownTransformPromptEdit },
-  { name: "transform-generate", initialPrepare: initialPrepareTransformGenerate, prepare: prepareTransformGenerate, capture: captureTransformGenerate, teardown: teardownTransformGenerate, finalTeardown: finalTeardownTransformGenerate, prepareTeardownPerLocale: true },
   { name: "dashboard-summary", prepare: prepareDashboardSummary, capture: captureDashboardSummary },
-  { name: "dashboard-filter", prepare: prepareDashboardFilter, capture: captureDashboardFilter },
   { name: "settings-general", prepare: prepareSettingsGeneral, capture: captureSettingsGeneral },
-  { name: "language-selector", prepare: prepareLanguageSelector, capture: captureLanguageSelector },
-  { name: "preset-selector", prepare: preparePresetSelector, capture: capturePresetSelector },
   { name: "sidebar", prepare: prepareSidebar, capture: captureSidebar },
   { name: "history", prepare: prepareHistory, capture: captureHistory },
 ];
@@ -1004,74 +1000,6 @@ async function finalTeardownTransformPromptEdit(page) {
   }
 }
 
-/** Runs once before the locale loop: Transform → select prompt → Edit prompt (opens editor). */
-async function initialPrepareTransformGenerate(page) {
-  await clickByTestId(page, "nav-transform");
-  await wait(500);
-  // If we're still in the transform editor (e.g. from transform-prompt-edit), go back to run view so prompt-selector is visible
-  const backToRun = await page.$("[data-testid=\"transform-editor-back-to-run\"]");
-  if (backToRun) {
-    await backToRun.click();
-    await wait(600);
-  }
-  // Open prompt dropdown and select Dictionary Entry so "Edit prompt" is visible
-  const selectorTrigger = await page.$("[data-testid=\"prompt-selector\"] [role=\"combobox\"]");
-  if (selectorTrigger) {
-    await selectorTrigger.click();
-    await wait(400);
-  } else {
-    await page.click("[data-testid=\"prompt-selector\"]");
-    await wait(400);
-  }
-  await clickByTestId(page, `prompt-option-${DICTIONARY_ENTRY_PROMPT_SLUG}`);
-  await wait(400);
-  await clickByTestId(page, "edit-prompt-button");
-  await wait(600);
-}
-
-/** Per-locale: open the Generate prompt modal (we are already in the editor). */
-async function prepareTransformGenerate(page) {
-  await clickByTestId(page, "generate-prompt-button");
-  await wait(600);
-}
-
-async function captureTransformGenerate(page, filePath) {
-  const clip = await page.evaluate(() => {
-    const modal = document.querySelector("[data-testid=\"generate-prompt-modal\"]");
-    if (!modal) return null;
-    const r = modal.getBoundingClientRect();
-    const padding = 4;
-    return {
-      x: Math.max(0, Math.round(r.left - padding)),
-      y: Math.max(0, Math.round(r.top - padding)),
-      width: Math.round(r.width + padding * 2),
-      height: Math.round(r.height + padding * 2),
-    };
-  });
-  if (clip) {
-    await page.screenshot({ path: filePath, clip });
-  } else {
-    await page.screenshot({ path: filePath });
-  }
-}
-
-async function teardownTransformGenerate(page) {
-  // Use data-testid so closing works regardless of translated "Cancel" label
-  const cancel = await page.$("[data-testid=\"generate-prompt-cancel\"]");
-  if (cancel) await cancel.click();
-  else await page.keyboard.press("Escape");
-  await wait(200);
-  // Stay in editor; next locale will set language and open modal again
-}
-
-/** After all transform-generate captures, return to Transform run view. */
-async function finalTeardownTransformGenerate(page) {
-  const backToRun = await page.$("[data-testid=\"transform-editor-back-to-run\"]");
-  if (backToRun) {
-    await backToRun.click();
-    await wait(400);
-  }
-}
 
 async function prepareDashboardSummary(page) {
   await clickByTestId(page, "nav-dashboard");
@@ -1097,7 +1025,7 @@ async function captureSettingsGeneral(page, filePath) {
 let screenshotWebFontsLoaded = false;
 
 /**
- * Loads Noto web fonts and applies a global font stack so bn/hi/ko/pa/te/th (and the language menu)
+ * Loads Noto web fonts and applies a global font stack so bn/hi/ko/pa/te/th
  * render correctly in headless Chromium when system fonts are missing.
  */
 async function ensureScreenshotWebFonts(page) {
@@ -1135,101 +1063,6 @@ async function ensureScreenshotWebFonts(page) {
   }
 }
 
-async function prepareLanguageSelector(page) {
-  await ensureScreenshotWebFonts(page);
-}
-
-async function captureLanguageSelector(page, filePath) {
-  const triggerSel = "[data-testid=\"language-selector-trigger\"]";
-  await waitForSelector(page, triggerSel);
-  await page.click(triggerSel);
-  await waitForSelector(page, "[role=\"menu\"]", { visible: true });
-  await wait(400);
-  const clip = await page.evaluate(() => {
-    const btn = document.querySelector("[data-testid=\"language-selector-trigger\"]");
-    if (!btn) return null;
-    const padding = 12;
-    let x1 = Infinity, y1 = Infinity, x2 = -Infinity, y2 = -Infinity;
-    const addRect = (r) => {
-      x1 = Math.min(x1, r.left);
-      y1 = Math.min(y1, r.top);
-      x2 = Math.max(x2, r.right);
-      y2 = Math.max(y2, r.bottom);
-    };
-    addRect(btn.getBoundingClientRect());
-    const menu = document.querySelector("[role=\"menu\"]");
-    if (menu) addRect(menu.getBoundingClientRect());
-    document.querySelectorAll("[role=\"menuitem\"]").forEach((el) => addRect(el.getBoundingClientRect()));
-    if (x1 === Infinity) return null;
-    return {
-      x: Math.max(0, Math.round(x1 - padding)),
-      y: Math.max(0, Math.round(y1 - padding)),
-      width: Math.round(x2 - x1 + padding * 2),
-      height: Math.round(y2 - y1 + padding * 2),
-    };
-  });
-  if (clip) {
-    const buffer = await page.screenshot({ clip, encoding: "binary" });
-    const halfW = Math.round(clip.width / 2);
-    const halfH = Math.round(clip.height / 2);
-    await sharp(buffer).resize(halfW, halfH).toFile(filePath);
-  } else {
-    await page.screenshot({ path: filePath });
-  }
-  await page.keyboard.press("Escape");
-  await wait(200);
-}
-
-async function preparePresetSelector(page) {
-  await clickByTestId(page, "nav-translate");
-  await wait(600);
-}
-
-async function capturePresetSelector(page, filePath) {
-  const triggerSel = "[data-testid=\"preset-selector\"]";
-  const combobox = await page.$(`${triggerSel} [role="combobox"], ${triggerSel} button`);
-  if (combobox) await combobox.click();
-  else await page.click(triggerSel);
-  await wait(500);
-  const clip = await page.evaluate(() => {
-    const trigger = document.querySelector("[data-testid=\"preset-selector\"]");
-    if (!trigger) return null;
-    const listbox =
-      document.querySelector("[data-testid=\"preset-selector-menu\"]") ||
-      document.querySelector("[role=\"listbox\"]");
-    const padding = 8;
-    let x1 = Infinity, y1 = Infinity, x2 = -Infinity, y2 = -Infinity;
-    const addRect = (el) => {
-      if (!el) return;
-      const r = el.getBoundingClientRect();
-      if (r.width > 0 && r.height > 0) {
-        x1 = Math.min(x1, r.left);
-        y1 = Math.min(y1, r.top);
-        x2 = Math.max(x2, r.right);
-        y2 = Math.max(y2, r.bottom);
-      }
-    };
-    let el = trigger;
-    while (el && !el.previousElementSibling) el = el.parentElement;
-    if (el && el.previousElementSibling) addRect(el.previousElementSibling);
-    addRect(trigger);
-    addRect(listbox);
-    if (x1 === Infinity) return null;
-    return {
-      x: Math.max(0, Math.round(x1 - padding)),
-      y: Math.max(0, Math.round(y1 - padding)),
-      width: Math.round(x2 - x1 + padding * 2),
-      height: Math.round(y2 - y1 + padding * 2),
-    };
-  });
-  if (clip) {
-    await page.screenshot({ path: filePath, clip });
-  } else {
-    await page.screenshot({ path: filePath });
-  }
-  await page.keyboard.press("Escape");
-  await wait(200);
-}
 
 async function prepareSidebar(page) {
   await clickByTestId(page, "nav-translate");
@@ -1329,38 +1162,6 @@ async function captureSidebar(page, filePath) {
       if (nav && styles.navFlex != null) nav.style.flex = styles.navFlex;
     }, originalStyles);
   }
-}
-
-async function prepareDashboardFilter(page) {
-  await clickByTestId(page, "nav-dashboard");
-  await wait(600);
-}
-
-async function captureDashboardFilter(page, filePath) {
-  const clip = await page.evaluate(() => {
-    const row = document.querySelector("[data-testid=\"dashboard-filter-row\"]");
-    if (!row) return null;
-    let x1 = Infinity, y1 = Infinity, x2 = -Infinity, y2 = -Infinity;
-    for (const child of row.children) {
-      const r = child.getBoundingClientRect();
-      if (r.width > 0 && r.height > 0) {
-        x1 = Math.min(x1, r.left);
-        y1 = Math.min(y1, r.top);
-        x2 = Math.max(x2, r.right);
-        y2 = Math.max(y2, r.bottom);
-      }
-    }
-    if (x1 === Infinity) return null;
-    const padding = 4;
-    return {
-      x: Math.max(0, Math.round(x1 - padding)),
-      y: Math.max(0, Math.round(y1 - padding)),
-      width: Math.round(x2 - x1 + padding * 2),
-      height: Math.round(y2 - y1 + padding * 2),
-    };
-  });
-  if (clip) await page.screenshot({ path: filePath, clip });
-  else await page.screenshot({ path: filePath });
 }
 
 function printSummaryTable(uiLanguages, screenshotSets, captureResults) {

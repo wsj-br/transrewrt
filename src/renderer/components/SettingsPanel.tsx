@@ -341,7 +341,7 @@ const SettingsPanel = ({ openToTab, onOpenToTabConsumed }) => {
       { value: "cerebras", label: t("Cerebras") },
       { value: "groq", label: t("Groq") },
       { value: "mistralai", label: t("Mistral") },
-      { value: "ollama", label: t("Ollama") },
+      { value: "local", label: t("Local LLM") },
       { value: "xai", label: t("xAI") },
       { value: "nvidia", label: t("NVIDIA") },
       { value: "alibaba", label: t("Alibaba Cloud") },
@@ -385,7 +385,7 @@ const SettingsPanel = ({ openToTab, onOpenToTabConsumed }) => {
   const configuredCloudEngines = useMemo(
     () =>
       listConfiguredEasyEngines(settings, apiKeyStatus?.configuredEngines).filter(
-        (e) => e !== "ollama",
+        (e) => e !== "local",
       ),
     [settings, apiKeyStatus],
   );

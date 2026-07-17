@@ -1,0 +1,39 @@
+{
+  "name": "transrewrt-website",
+  "private": true,
+  "version": "1.6.0",
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "i18n:extract": "ai-i18n-tools extract",
+    "i18n:status": "ai-i18n-tools status",
+    "i18n:translate": "ai-i18n-tools translate-ui && ai-i18n-tools translate-docs",
+    "i18n:translate:ui": "ai-i18n-tools translate-ui",
+    "i18n:translate:docs": "ai-i18n-tools translate-docs",
+    "i18n:locales": "ai-i18n-tools generate-ui-languages"
+  },
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "packageManager": "pnpm@10.12.4",
+  "dependencies": {
+    "@astrojs/react": "^6.0.1",
+    "@astrojs/starlight": "^0.41.3",
+    "@astrojs/starlight-tailwind": "^5.0.0",
+    "@tailwindcss/vite": "^4.3.3",
+    "astro": "^7.1.0",
+    "lucide-react": "^1.24.0",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7",
+    "tailwindcss": "^4.3.3"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.17",
+    "@types/react-dom": "^19.2.3",
+    "ai-i18n-tools": "^1.8.1",
+    "typescript": "^7.0.2"
+  }
+}

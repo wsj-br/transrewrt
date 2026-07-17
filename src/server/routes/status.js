@@ -45,7 +45,7 @@ module.exports = function createStatusRouter(
         return res.json({
           apiKeySet: false,
           apiKeyValid: false,
-          message: "No LLM provider keys or Ollama URL are configured.",
+          message: "No LLM provider keys or Local LLM URL are configured.",
           configuredEngines: [],
           serverTimeZone: readServerTimeZoneFromEnv(),
         });
@@ -185,7 +185,7 @@ module.exports = function createStatusRouter(
             : "Review your Docker environment configuration for this API key.",
           source: envConfigured ? "environment" : "none",
         };
-      }).filter((row) => row.envConfigured && row.provider !== "ollama");
+      }).filter((row) => row.envConfigured && row.provider !== "local");
       res.json({
         providers,
       });

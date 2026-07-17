@@ -50,10 +50,10 @@ const RESET = "\x1b[0m";
 
 /** Same body text for every generated action (linked in action_content). */
 const SAMPLE_INPUT_TEXT =
-  "AI-powered text tool: translate between languages, rewrite in different styles, and transform with custom prompts - using multiple AI providers (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, and local Ollama). Runs as a desktop app (Electron) or a self-hosted web app (Docker).";
+  "AI-powered text tool: translate between languages, rewrite in different styles, and transform with custom prompts - using multiple AI providers (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, and local OpenAI-compatible servers). Runs as a desktop app (Electron) or a self-hosted web app (Docker).";
 
 const SAMPLE_OUTPUT_TEXT =
-  "Ferramenta de texto com IA: traduza entre idiomas, reescreva em diferentes estilos e transforme com prompts personalizados - usando múltiplos provedores de IA (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI e Ollama local). Funciona como um aplicativo desktop (Electron) ou como um aplicativo web autohospedado (Docker).";
+  "Ferramenta de texto com IA: traduza entre idiomas, reescreva em diferentes estilos e transforme com prompts personalizados - usando múltiplos provedores de IA (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI e servidores locais compatíveis com OpenAI). Funciona como um aplicativo desktop (Electron) ou como um aplicativo web autohospedado (Docker).";
 
 /** Same rules as src/renderer/utils/misc/formatUtils.js getTextStats. */
 function getTextStats(text) {

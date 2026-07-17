@@ -325,7 +325,7 @@ export const AppProvider = ({ children }) => {
       options.optimistic === true &&
       (key === "last_used_model" ||
         key === "selected_preset_id" ||
-        key === "easy_ollama_model");
+        key === "easy_local_llm_model");
 
     if (optimistic) {
       const previousSettings = configManager.getAll();
@@ -383,14 +383,14 @@ export const AppProvider = ({ children }) => {
   const easyProvider = (settings.easy_provider as EasyEngineId | undefined) || null;
 
   const easyPresets = useMemo(() => {
-    if (experienceMode !== "easy" || !easyProvider || easyProvider === "ollama") {
+    if (experienceMode !== "easy" || !easyProvider || easyProvider === "local") {
       return [];
     }
     return filterPresetsForEasyProvider(presetsCatalog, easyProvider);
   }, [experienceMode, easyProvider, presetsCatalog]);
 
-  const ollamaEasyModels = useMemo(
-    () => allModels.filter((m) => String(m.id || "").startsWith("ollama/")).map((m) => m.id),
+  const localLlmEasyModels = useMemo(
+    () => allModels.filter((m) => String(m.id || "").startsWith("local/")).map((m) => m.id),
     [allModels],
   );
 
@@ -398,14 +398,14 @@ export const AppProvider = ({ children }) => {
     return resolveEasyRuntime({
       mode: settings.mode,
       easyProvider: settings.easy_provider as string | undefined,
-      easyOllamaModel: settings.easy_ollama_model as string | undefined,
+      easyLocalLlmModel: settings.easy_local_llm_model as string | undefined,
       selectedPresetId: settings.selected_preset_id,
       presets: presetsCatalog,
     });
   }, [
     settings.mode,
     settings.easy_provider,
-    settings.easy_ollama_model,
+    settings.easy_local_llm_model,
     settings.selected_preset_id,
     presetsCatalog,
   ]);
@@ -429,22 +429,22 @@ export const AppProvider = ({ children }) => {
 
   useEffect(() => {
     if (experienceMode === "advanced") return;
-    if (easyProvider !== "ollama") return;
-    if (ollamaEasyModels.length === 0) return;
-    const current = (settings.easy_ollama_model || "").trim();
-    if (current && ollamaEasyModels.includes(current)) return;
-    setSetting("easy_ollama_model", ollamaEasyModels[0]);
+    if (easyProvider !== "local") return;
+    if (localLlmEasyModels.length === 0) return;
+    const current = (settings.easy_local_llm_model || "").trim();
+    if (current && localLlmEasyModels.includes(current)) return;
+    setSetting("easy_local_llm_model", localLlmEasyModels[0]);
   }, [
     experienceMode,
     easyProvider,
-    ollamaEasyModels,
-    settings.easy_ollama_model,
+    localLlmEasyModels,
+    settings.easy_local_llm_model,
     setSetting,
   ]);
 
   useEffect(() => {
     if (experienceMode === "advanced") return;
-    if (easyProvider === "ollama") return;
+    if (easyProvider === "local") return;
     if (!easyPresets.length) return;
     const id = settings.selected_preset_id;
     const valid = id && easyPresets.some((s) => s.id === id);
@@ -1672,7 +1672,7 @@ export const AppProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    if (experienceMode !== "easy" || easyProvider !== "ollama") return;
+    if (experienceMode !== "easy" || easyProvider !== "local") return;
     if (allModels.length > 0) return;
     fetchModels().catch(() => {});
   // fetchModels is recreated each render; deps are the conditions that should trigger a fetch.
@@ -1719,10 +1719,10 @@ export const AppProvider = ({ children }) => {
     presetsRefreshBusy,
     refreshPresetsCatalog,
     easyProvider,
-    ollamaEasyModels,
+    localLlmEasyModels,
     setExperienceMode: (value) => setSetting("mode", value),
     setEasyProvider: (value) => setSetting("easy_provider", value),
-    setEasyOllamaModel: (id) => setSetting("easy_ollama_model", id, { optimistic: true }),
+    setEasyLocalLlmModel: (id) => setSetting("easy_local_llm_model", id, { optimistic: true }),
     setSelectedPresetId: (id) => setSetting("selected_preset_id", id, { optimistic: true }),
     translate,
     translateAlternative,

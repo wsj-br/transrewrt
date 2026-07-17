@@ -1,4 +1,4 @@
-/** Engine ids aligned with `src/shared/llm` ENGINE_IDS (excluding ollama for cloud preset maps). */
+/** Engine ids aligned with `src/shared/llm` ENGINE_IDS (excluding local for cloud preset maps). */
 
 export const EASY_CLOUD_ENGINE_IDS = [
   "openrouter",
@@ -14,7 +14,7 @@ export const EASY_CLOUD_ENGINE_IDS = [
 
 export type EasyCloudEngineId = (typeof EASY_CLOUD_ENGINE_IDS)[number];
 
-export const EASY_ENGINE_IDS = [...EASY_CLOUD_ENGINE_IDS, "ollama"] as const;
+export const EASY_ENGINE_IDS = [...EASY_CLOUD_ENGINE_IDS, "local"] as const;
 
 export type EasyEngineId = (typeof EASY_ENGINE_IDS)[number];
 
@@ -29,7 +29,7 @@ export const CONFIG_KEY_TO_EASY_ENGINE: Record<string, EasyEngineId> = {
   mistralai_api_key: "mistralai",
   xai_api_key: "xai",
   cerebras_api_key: "cerebras",
-  ollama_base_url: "ollama",
+  local_llm_base_url: "local",
 };
 
 export const EASY_PROVIDER_LABEL_KEYS: Record<EasyEngineId, string> = {
@@ -42,11 +42,11 @@ export const EASY_PROVIDER_LABEL_KEYS: Record<EasyEngineId, string> = {
   mistralai: "Mistral",
   xai: "xAI",
   cerebras: "Cerebras",
-  ollama: "Ollama",
+  local: "Local LLM",
 };
 
-/** Default prompt when Easy mode uses Ollama (no per-preset tier). */
-export const EASY_OLLAMA_DEFAULT_PROMPT_HINT =
+/** Default prompt when Easy mode uses Local LLM (no per-preset tier). */
+export const EASY_LOCAL_LLM_DEFAULT_PROMPT_HINT =
   "Be concise and direct. Follow the user's instructions faithfully. Do not add explanations, commentary, or alternatives unless explicitly requested.";
 
 export type ExperienceMode = "easy" | "advanced";

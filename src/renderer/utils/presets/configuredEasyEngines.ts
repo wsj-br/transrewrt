@@ -39,12 +39,12 @@ export function listConfiguredEasyEngines(
   for (const engine of EASY_ENGINE_IDS) {
     const key = Object.entries(CONFIG_KEY_TO_EASY_ENGINE).find(([, e]) => e === engine)?.[0];
     if (!key) continue;
-    if (engine === "ollama") {
-      const url = settings.ollama_base_url;
+    if (engine === "local") {
+      const url = settings.local_llm_base_url;
       const configured =
-        settings.ollama_base_url_configured === true ||
+        settings.local_llm_base_url_configured === true ||
         (typeof url === "string" && url.trim().length > 0);
-      if (configured) out.push("ollama");
+      if (configured) out.push("local");
       continue;
     }
     if (settings[`${key}_configured`] === true) {

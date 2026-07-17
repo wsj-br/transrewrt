@@ -1,7 +1,7 @@
 {
     "mode": "easy",
     "easy_provider": null,
-    "easy_ollama_model": null,
+    "easy_local_llm_model": null,
     "selected_preset_id": null,
     "available_models": [
         "openrouter/openrouter/free"

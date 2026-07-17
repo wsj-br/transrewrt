@@ -23,9 +23,9 @@ There is no automated unit/integration test script in `package.json` (`pnpm test
    - `## Highlights`— Most important user-visible changes (features, fixes, polish); not every changelog bullet verbatim.
    - When it helps readability, add `## Improvements`** and/or **`## Fixes`with grouped bullets (see prior release notes); smaller releases may fold these into Highlights only.
    - `## Getting This Release`— Point to GitHub Releases; list typical artifacts: Windows installer (x64), Linux AppImage (x64 and arm64), Docker image `ghcr.io/wsj-br/transrewrt:<version>` (and `latest` when applicable). Mention that exact filenames/checksums are on the release page.
-   - `## Documentation`— Link to the main docs using full GitHub URLs (`https://github.com/wsj-br/transrewrt/blob/main/…`) so links work on the GitHub release page (relative paths break there), for example:
-     - [README](https://github.com/wsj-br/transrewrt/blob/main/README.md) — overview, installation, quick start  
-     - [USER-GUIDE](https://github.com/wsj-br/transrewrt/blob/main/USER-GUIDE.md) — full feature walkthrough  
+   - `## Documentation`— Link to docs using URLs that work on the GitHub release page, for example:
+     - [README](https://github.com/wsj-br/transrewrt/blob/main/README.md) — overview and quick start  
+     - [Product docs](https://wsj-br.github.io/transrewrt/docs/) — install, guides, settings, troubleshooting  
      - Optional: [dev/SYSTEM-OVERVIEW.md](https://github.com/wsj-br/transrewrt/blob/main/dev/SYSTEM-OVERVIEW.md), [dev/DEVELOPMENT.md](https://github.com/wsj-br/transrewrt/blob/main/dev/DEVELOPMENT.md), [dev/i18n.md](https://github.com/wsj-br/transrewrt/blob/main/dev/i18n.md) when this release materially touches architecture, dev setup, or translations  
    - `## Disclaimer`— Same product-names disclaimer as in [`release-notes/RELEASE-NOTES-v1.1.1.md`](https://github.com/wsj-br/transrewrt/blob/main/release-notes/RELEASE-NOTES-v1.1.1.md).
    - `## License`— Transrewrt is under **Apache License 2.0**; copyright line and link to [`LICENSE`](https://github.com/wsj-br/transrewrt/blob/main/LICENSE) as in prior release notes.
@@ -56,7 +56,7 @@ Published builds are on the GitHub **Releases** page for this tag (Windows insta
 ## Documentation
 
 - **[README](https://github.com/wsj-br/transrewrt/blob/main/README.md)** — …
-- **[USER-GUIDE](https://github.com/wsj-br/transrewrt/blob/main/USER-GUIDE.md)** — …
+- **[Product docs](https://wsj-br.github.io/transrewrt/docs/)** — …
 
 ## Disclaimer
 

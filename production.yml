@@ -24,7 +24,7 @@ services:
       - GROQ_API_KEY
       - MISTRAL_API_KEY
       - XAI_API_KEY
-      - OLLAMA_URL
+      - LOCAL_LLM_URL
       - CUSTOM_PROVIDER_NAME
       - CUSTOM_PROVIDER_URL
       - CUSTOM_PROVIDER_API_KEY

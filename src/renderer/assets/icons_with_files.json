@@ -378,9 +378,9 @@
     "iconFile": "nvidia.ico"
   },
   {
-    "provider_id": "ollama",
-    "name": "Ollama",
-    "url": "https://ollama.com",
+    "provider_id": "local",
+    "name": "Local LLM",
+    "url": "",
     "iconFile": "ollama.ico"
   },
   {

@@ -1,0 +1,71 @@
+{
+  "sourceLocale": "en-GB",
+  "targetLocales": [
+    "ar", "zh-Hans", "zh-Hant", "cs", "nl", "fr", "de", "el", "hi", "hu", "it", "ja",
+     "ko", "fa", "pl", "pt-BR", "ro", "ru", "sk", "es", "sv", "th", "tr", "uk", "vi"
+  ],
+  "concurrency": 8,
+  "batchSize": 20,
+  "maxBatchChars": 4096,
+  "languagesManifestPath": "src/i18n/ui-languages.json",
+  "features": {
+    "translateUIStrings": true,
+    "translateDocs": true
+  },
+  "ui": {
+    "sourceRoots": [
+      "src/components/marketing/"
+    ],
+    "stringsJson": "src/i18n/strings.json",
+    "flatOutputDir": "src/i18n/locales/"
+  },
+  "docs": [
+    {
+      "description": "Website Starlight onboarding",
+      "contentPaths": [
+        "src/content/docs/docs/*.md"
+      ],
+      "outputDir": "src/content/docs/",
+      "addFrontmatter": true,
+      "docsOutput": {
+        "style": "astro-starlight",
+        "docsRoot": "src/content/docs",
+        "localePathLowercase": true,
+        "postProcessing": {
+          "regexAdjustments": [
+            {
+              "description": "Per-locale screenshot folders under public/",
+              "search": "images/screenshots/[^/]+/",
+              "replace": "images/screenshots/${translatedLocale}/"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "providers": {
+    "openrouter": {
+      "translationModels": [
+        "google/gemini-2.5-flash",
+        "meta-llama/llama-3.3-70b-instruct",
+        "openai/gpt-4o-mini",
+        "google/gemma-4-26b-a4b-it",
+        "~anthropic/claude-haiku-latest",
+        "z-ai/glm-5.2",
+        "google/gemini-3.5-flash",
+        "~anthropic/claude-sonnet-latest"
+      ],
+      "uiModels": [
+        "~anthropic/claude-sonnet-latest",
+        "z-ai/glm-5.2"
+      ],
+      "localeModels": [
+        { "locale": "ja", "models": ["z-ai/glm-5.2", "minimax/minimax-m2.7"] },
+        { "locale": "ko", "models": ["z-ai/glm-5.2", "minimax/minimax-m2.7"] },
+        { "locale": "zh-Hans", "models": ["z-ai/glm-5.2", "minimax/minimax-m2.7"] },
+        { "locale": "zh-Hant", "models": ["z-ai/glm-5.2", "minimax/minimax-m2.7"] }
+      ]
+    }
+  },
+  "provider": "openrouter"
+}

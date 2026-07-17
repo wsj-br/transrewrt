@@ -1,0 +1,9 @@
+# Independent workspace root for the marketing/docs site.
+# Decoupled from the parent Electron/webpack toolchain — never use `pnpm -w` from here.
+allowBuilds:
+  esbuild: true
+  sharp: true
+
+onlyBuiltDependencies:
+  - esbuild
+  - sharp
