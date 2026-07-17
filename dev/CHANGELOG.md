@@ -11,6 +11,7 @@ Use conventional types (Added, Changed, Fixed, etc.) and short descriptions.
 
 ## Unreleased
 
+- **Fixed**: API settings tip callout uses a Lucide `Lightbulb` icon instead of the 💡 emoji so it renders on Linux Electron builds without a system emoji font.
 - **Changed**: Renamed the Ollama-specific local provider to **Local LLM** (`local` / `local/…`, `local_llm_base_url`, `LOCAL_LLM_URL`, `easy_local_llm_model`); the URL is the full OpenAI-compatible API base (no automatic `/v1` append), and Test/reachability use `GET …/models`.
 - **Changed**: Local LLM base URL defaults/examples use paths such as `http://localhost:11434/v1` so Ollama, LM Studio, llama.cpp, and other API versions work without hardcoding `/v1` in the app.
 - **Fixed**: Website `tsconfig.json` drops deprecated `baseUrl` and uses an explicit `@/*` → `./src/*` path mapping for TypeScript 6+/7.

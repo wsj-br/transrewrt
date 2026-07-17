@@ -1,6 +1,6 @@
 import { Fragment, useMemo, useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import { Key, Eye, EyeOff, ExternalLink } from "lucide-react";
+import { Key, Eye, EyeOff, ExternalLink, Lightbulb } from "lucide-react";
 import PropTypes from "prop-types";
 import webAPI from "../utils/api/webApiClient";
 import iconsWithFiles from "../assets/icons_with_files.json";
@@ -565,11 +565,14 @@ const SettingsApiTab = ({
             </div>
 
             <div className="mt-6 p-3 bg-muted rounded-md max-w-[800px]">
-              <p className="m-0 text-sm">
-                💡 <strong>{t("Don't want to pay?")}</strong>{" "}
-                {t(
-                  "Generate a free API key with Openrouter, Cerebras, Google, Groq, Mistral AI, NVIDIA, or run models locally with Ollama, LM Studio, llama.cpp, or another OpenAI-compatible server — no API key required.",
-                )}
+              <p className="m-0 flex gap-2 text-sm">
+                <Lightbulb size={16} className="mt-0.5 shrink-0" aria-hidden />
+                <span>
+                  <strong>{t("Don't want to pay?")}</strong>{" "}
+                  {t(
+                    "Generate a free API key with Openrouter, Cerebras, Google, Groq, Mistral AI, NVIDIA, or run models locally with Ollama, LM Studio, llama.cpp, or another OpenAI-compatible server — no API key required.",
+                  )}
+                </span>
               </p>
             </div>
           </div>
