@@ -11,6 +11,8 @@ Use conventional types (Added, Changed, Fixed, etc.) and short descriptions.
 
 ## Unreleased
 
+- **Fixed**: Website marketing locale pages (`/{locale}/`) render English on GitHub Pages because flat `src/i18n/locales/*.json` bundles are gitignored; SSG now builds translations from committed `strings.json`.
+
 ## [1.6.1] - 2026-07-17
 
 - **Changed**: Stop tracking TypeScript incremental cache files; ignore `*.tsbuildinfo` in `.gitignore`.

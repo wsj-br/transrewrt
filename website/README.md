@@ -36,3 +36,5 @@ Published at `https://wsj-br.github.io/transrewrt` (`astro.config.mjs` sets `bas
 ## i18n
 
 Config: [`ai-i18n-tools.config.json`](./ai-i18n-tools.config.json) (separate from the app root config). Keep `targetLocales` in sync with `../ai-i18n-tools.config.json` when the app locale list changes.
+
+Marketing copy is resolved at build time from committed [`src/i18n/strings.json`](./src/i18n/strings.json) (not from gitignored `src/i18n/locales/*.json`). Docs live under `src/content/docs/{locale}/` and are committed after `i18n:translate:docs`.
