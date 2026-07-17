@@ -3,13 +3,6 @@ title: Hızlı başlangıç
 description: >-
   Transrewrt'i Windows veya Linux'a yükleyin ya da kendi kendine barındırılan
   Docker web uygulamasını çalıştırın.
-translation_last_updated: '2026-07-17T21:14:50.344Z'
-source_file_mtime: '2026-07-17T14:55:54.211Z'
-source_file_hash: 6eb0ab579b445d9c4d39567ef44ee3333f57285c5c2b8dd072de6355182f849f
-translation_language: tr
-source_file_path: src/content/docs/docs/quick-start.md
-translation_models:
-  - google/gemini-2.5-flash
 ---
 
 

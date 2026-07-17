@@ -1,13 +1,6 @@
 ---
 title: 設定
 description: 一般、モデル、言語、用語集、コスト、変換、ユーザー、API、バージョン情報の簡易リファレンス。
-translation_last_updated: '2026-07-17T21:14:46.449Z'
-source_file_mtime: '2026-07-17T14:37:21.849Z'
-source_file_hash: 492e5fd37f4a6b282502282d4f2728047a0d09ae8c30334b3c8388a5ce6e9f68
-translation_language: ja
-source_file_path: src/content/docs/docs/settings.md
-translation_models:
-  - z-ai/glm-5.2
 ---
 
 

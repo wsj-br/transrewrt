@@ -16,14 +16,22 @@ pnpm --dir website build
 pnpm --dir website i18n:status
 pnpm --dir website i18n:locales
 pnpm --dir website i18n:translate   # costs API usage across targetLocales
+
+# Deploy to GitHub Pages (triggers Actions; no app release required).
+# Aborts if website/ has uncommitted changes or unpushed commits (override: --allow-dirty).
+pnpm website:publish                # or: pnpm --dir website publish:pages
+pnpm website:publish -- --ref main --watch
+pnpm website:publish:dry
 ```
+
+App releases also deploy this site (Release workflow calls `website-pages.yml`). Repo **Settings → Pages → Source** must be **GitHub Actions**.
 
 ## Structure
 
 - `/` — marketing (React islands, Tailwind v4)
 - `/docs/` — Starlight docs (Get started, Guides, Settings reference, Troubleshooting)
 
-Published at `https://wsj-br.github.io/transrewrt`.
+Published at `https://wsj-br.github.io/transrewrt` (`astro.config.mjs` sets `base: '/transrewrt'`).
 
 ## i18n
 

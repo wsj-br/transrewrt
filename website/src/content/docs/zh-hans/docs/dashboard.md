@@ -1,13 +1,6 @@
 ---
 title: 使用仪表板
 description: 查看使用情况、成本和调用日志——筛选、导出并管理存储的记录。
-translation_last_updated: '2026-07-17T21:14:43.239Z'
-source_file_mtime: '2026-07-17T11:53:39.333Z'
-source_file_hash: 689c93c2517f806f7976d570b4fc86d30ca048ce906d982429b985ad06dd9250
-translation_language: zh-Hans
-source_file_path: src/content/docs/docs/dashboard.md
-translation_models:
-  - z-ai/glm-5.2
 ---
 
 

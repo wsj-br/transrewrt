@@ -1,13 +1,6 @@
 ---
 title: 使用提示词转换
 description: 运行自定义 AI 指令——创建、编辑、测试和管理转换提示词。
-translation_last_updated: '2026-07-17T21:14:43.822Z'
-source_file_mtime: '2026-07-17T11:53:39.333Z'
-source_file_hash: 07b5d140803063510c7c9fecf67a2f99e3aab3040116733a3126939b0c82e16e
-translation_language: zh-Hans
-source_file_path: src/content/docs/docs/transform.md
-translation_models:
-  - z-ai/glm-5.2
 ---
 
 

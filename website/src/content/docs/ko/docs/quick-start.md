@@ -1,13 +1,6 @@
 ---
 title: 빠른 시작
 description: Windows 또는 Linux에 Transrewrt를 설치하거나, 자체 호스팅 Docker 웹 앱을 실행하세요.
-translation_last_updated: '2026-07-17T21:14:46.606Z'
-source_file_mtime: '2026-07-17T14:55:54.211Z'
-source_file_hash: 6eb0ab579b445d9c4d39567ef44ee3333f57285c5c2b8dd072de6355182f849f
-translation_language: ko
-source_file_path: src/content/docs/docs/quick-start.md
-translation_models:
-  - z-ai/glm-5.2
 ---
 
 

@@ -6,7 +6,9 @@ import { starlightLocales } from './src/i18n/locales.mjs';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://wsj-br.github.io/transrewrt',
+  site: 'https://wsj-br.github.io',
+  // Project Pages URL is https://wsj-br.github.io/transrewrt/ — base must match the repo name.
+  base: '/transrewrt',
   integrations: [
     starlight({
       title: 'Transrewrt Docs',

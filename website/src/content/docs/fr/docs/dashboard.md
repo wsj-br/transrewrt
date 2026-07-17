@@ -3,13 +3,6 @@ title: Utiliser le tableau de bord
 description: >-
   Consultez l’utilisation, les coûts et les journaux d’appels — filtrez,
   exportez et gérez les enregistrements stockés.
-translation_last_updated: '2026-07-17T21:14:42.776Z'
-source_file_mtime: '2026-07-17T11:53:39.333Z'
-source_file_hash: 689c93c2517f806f7976d570b4fc86d30ca048ce906d982429b985ad06dd9250
-translation_language: fr
-source_file_path: src/content/docs/docs/dashboard.md
-translation_models:
-  - google/gemini-2.5-flash
 ---
 
 

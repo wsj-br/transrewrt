@@ -3,13 +3,6 @@ title: एपीआई कुंजी
 description: >-
   एक निःशुल्क ओपनराउटर एपीआई कुंजी प्राप्त करें और अन्य एआई प्रदाताओं को
   ट्रांसरेवर्ट से कनेक्ट करें।
-translation_last_updated: '2026-07-17T21:14:44.849Z'
-source_file_mtime: '2026-07-17T14:58:48.569Z'
-source_file_hash: 540c5b2b785355828a421293195b23c2fec98502888d607638fbb33f93970a2a
-translation_language: hi
-source_file_path: src/content/docs/docs/api-key.md
-translation_models:
-  - google/gemini-2.5-flash
 ---
 
 

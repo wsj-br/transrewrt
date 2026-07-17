@@ -1,13 +1,6 @@
 ---
 title: مرور تاریخچه
 description: اجراهای گذشته ترجمه، بازنویسی و تبدیل را با متن کامل ورودی و خروجی مرور کنید.
-translation_last_updated: '2026-07-17T21:14:46.730Z'
-source_file_mtime: '2026-07-17T11:53:39.333Z'
-source_file_hash: 79c4a60a79491755299b9de8c5e8f0945ccc6d0b32743e1682fede521dade7fa
-translation_language: fa
-source_file_path: src/content/docs/docs/history.md
-translation_models:
-  - google/gemini-2.5-flash
 ---
 
 

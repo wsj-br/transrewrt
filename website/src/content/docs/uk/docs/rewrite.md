@@ -3,13 +3,6 @@ title: Переписати текст
 description: >-
   Покращуйте формулювання в межах тієї ж мови — чіткість, тон, довжину,
   граматику тощо.
-translation_last_updated: '2026-07-17T21:14:50.745Z'
-source_file_mtime: '2026-07-17T11:53:39.333Z'
-source_file_hash: ca70a1d16518bb9193c83911bfb7be66b19076c48b914b92aba4e9a17f67740f
-translation_language: uk
-source_file_path: src/content/docs/docs/rewrite.md
-translation_models:
-  - google/gemini-2.5-flash
 ---
 
 

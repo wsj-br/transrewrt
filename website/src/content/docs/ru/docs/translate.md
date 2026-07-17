@@ -3,13 +3,6 @@ title: Перевести текст
 description: >-
   Переводите текст между языками, используйте глоссарий и уточняйте результаты с
   помощью функции «Перефразировать».
-translation_last_updated: '2026-07-17T21:14:48.660Z'
-source_file_mtime: '2026-07-17T11:53:39.333Z'
-source_file_hash: ace9ad02a7dc82bf08090597c56e7cc82324e6250beab93fc2dbeaeed8b91675
-translation_language: ru
-source_file_path: src/content/docs/docs/translate.md
-translation_models:
-  - google/gemini-2.5-flash
 ---
 
 

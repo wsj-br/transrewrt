@@ -1,13 +1,6 @@
 ---
 title: 概述
 description: Transrewrt 是什么，以及如何查找安装、指南和设置文档。
-translation_last_updated: '2026-07-17T21:14:43.491Z'
-source_file_mtime: '2026-07-17T14:36:51.471Z'
-source_file_hash: 6dfcf9cb19e3422d75511ecc06eda72e014214c3e34d95f7fec6d8a05c01896f
-translation_language: zh-Hans
-source_file_path: src/content/docs/docs/index.md
-translation_models:
-  - z-ai/glm-5.2
 ---
 
 

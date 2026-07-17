@@ -3,13 +3,6 @@ title: Configuration
 description: >-
   Emplacements des fichiers de configuration, variables d'environnement Docker,
   mode de confidentialité et authentification web.
-translation_last_updated: '2026-07-17T21:14:42.734Z'
-source_file_mtime: '2026-07-17T14:43:44.727Z'
-source_file_hash: 8c3b2c00eddcee7693d66c5f5955c2d2186e55de630886446764bc6b798f05b5
-translation_language: fr
-source_file_path: src/content/docs/docs/configuration.md
-translation_models:
-  - google/gemini-2.5-flash
 ---
 
 

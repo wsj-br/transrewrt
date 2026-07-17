@@ -3,13 +3,6 @@ title: Bắt đầu nhanh
 description: >-
   Cài đặt Transrewrt trên Windows hoặc Linux, hoặc chạy ứng dụng web Docker tự
   lưu trữ.
-translation_last_updated: '2026-07-17T21:14:51.082Z'
-source_file_mtime: '2026-07-17T14:55:54.211Z'
-source_file_hash: 6eb0ab579b445d9c4d39567ef44ee3333f57285c5c2b8dd072de6355182f849f
-translation_language: vi
-source_file_path: src/content/docs/docs/quick-start.md
-translation_models:
-  - google/gemini-2.5-flash
 ---
 
 

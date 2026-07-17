@@ -62,6 +62,8 @@
     "website:dev": "pnpm --dir website dev",
     "website:build": "pnpm --dir website build",
     "website:preview": "pnpm --dir website preview",
+    "website:publish": "bash website/scripts/publish-pages.sh",
+    "website:publish:dry": "bash website/scripts/publish-pages.sh --dry-run",
     "website:i18n:extract": "pnpm --dir website i18n:extract",
     "website:i18n:status": "pnpm --dir website i18n:status",
     "website:i18n:translate": "pnpm --dir website i18n:translate",

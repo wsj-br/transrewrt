@@ -3,14 +3,6 @@ title: Metni yeniden yaz
 description: >-
   Aynı dildeki ifadeyi iyileştirin: netlik, ton, uzunluk, dil bilgisi ve daha
   fazlası.
-translation_last_updated: '2026-07-17T21:14:50.371Z'
-source_file_mtime: '2026-07-17T11:53:39.333Z'
-source_file_hash: ca70a1d16518bb9193c83911bfb7be66b19076c48b914b92aba4e9a17f67740f
-translation_language: tr
-source_file_path: src/content/docs/docs/rewrite.md
-translation_models:
-  - google/gemini-2.5-flash
-  - meta-llama/llama-3.3-70b-instruct
 ---
 
 

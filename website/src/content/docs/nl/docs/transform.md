@@ -3,13 +3,6 @@ title: Transformeren met prompts
 description: >-
   Voer aangepaste AI-instructies uit — maak, bewerk, test en beheer
   Transform-prompts.
-translation_last_updated: '2026-07-17T21:14:44.772Z'
-source_file_mtime: '2026-07-17T11:53:39.333Z'
-source_file_hash: 07b5d140803063510c7c9fecf67a2f99e3aab3040116733a3126939b0c82e16e
-translation_language: nl
-source_file_path: src/content/docs/docs/transform.md
-translation_models:
-  - google/gemini-2.5-flash
 ---
 
 

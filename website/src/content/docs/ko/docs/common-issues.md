@@ -1,13 +1,6 @@
 ---
 title: 일반적인 문제
 description: Transrewrt 문제 해결 및 빠른 팁.
-translation_last_updated: '2026-07-17T21:14:46.019Z'
-source_file_mtime: '2026-07-17T14:37:17.841Z'
-source_file_hash: d60d2f0d1e9289639fd72ad478b6756e4638dce77acf7d2d1795a37653a97f17
-translation_language: ko
-source_file_path: src/content/docs/docs/common-issues.md
-translation_models:
-  - z-ai/glm-5.2
 ---
 
 

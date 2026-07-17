@@ -1,14 +1,6 @@
 ---
 title: Genel Bakış
 description: Transrewrt nedir ve nasıl kurulum, rehber ve ayar belgelerini bulabilirsiniz.
-translation_last_updated: '2026-07-17T21:14:50.320Z'
-source_file_mtime: '2026-07-17T14:36:51.471Z'
-source_file_hash: 6dfcf9cb19e3422d75511ecc06eda72e014214c3e34d95f7fec6d8a05c01896f
-translation_language: tr
-source_file_path: src/content/docs/docs/index.md
-translation_models:
-  - google/gemini-2.5-flash
-  - meta-llama/llama-3.3-70b-instruct
 ---
 
 

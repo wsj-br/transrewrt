@@ -1,13 +1,6 @@
 ---
 title: 프롬프트로 변환
 description: 사용자 지정 AI 명령 실행 — Transform 프롬프트 생성, 편집, 테스트 및 관리.
-translation_last_updated: '2026-07-17T21:14:46.878Z'
-source_file_mtime: '2026-07-17T11:53:39.333Z'
-source_file_hash: 07b5d140803063510c7c9fecf67a2f99e3aab3040116733a3126939b0c82e16e
-translation_language: ko
-source_file_path: src/content/docs/docs/transform.md
-translation_models:
-  - z-ai/glm-5.2
 ---
 
 

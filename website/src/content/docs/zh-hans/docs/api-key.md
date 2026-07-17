@@ -1,13 +1,6 @@
 ---
 title: API 密钥
 description: 获取免费的 OpenRouter API 密钥，并将其他 AI 提供商连接到 Transrewrt。
-translation_last_updated: '2026-07-17T21:14:42.849Z'
-source_file_mtime: '2026-07-17T14:58:48.569Z'
-source_file_hash: 540c5b2b785355828a421293195b23c2fec98502888d607638fbb33f93970a2a
-translation_language: zh-Hans
-source_file_path: src/content/docs/docs/api-key.md
-translation_models:
-  - z-ai/glm-5.2
 ---
 
 

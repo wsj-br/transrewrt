@@ -3,13 +3,6 @@ title: Prehliadanie histórie
 description: >-
   Prezrite si minulé spustenia prekladu, prepisu a transformácie s úplným
   vstupným a výstupným textom.
-translation_last_updated: '2026-07-17T21:14:48.835Z'
-source_file_mtime: '2026-07-17T11:53:39.333Z'
-source_file_hash: 79c4a60a79491755299b9de8c5e8f0945ccc6d0b32743e1682fede521dade7fa
-translation_language: sk
-source_file_path: src/content/docs/docs/history.md
-translation_models:
-  - google/gemini-2.5-flash
 ---
 
 

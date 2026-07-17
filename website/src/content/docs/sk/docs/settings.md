@@ -3,13 +3,6 @@ title: Nastavenia
 description: >-
   Stručný prehľad pre Všeobecné, Modely, Jazyky, Glosár, Náklady, Transformácia,
   Používatelia, API a O aplikácii.
-translation_last_updated: '2026-07-17T21:14:49.250Z'
-source_file_mtime: '2026-07-17T14:37:21.849Z'
-source_file_hash: 492e5fd37f4a6b282502282d4f2728047a0d09ae8c30334b3c8388a5ce6e9f68
-translation_language: sk
-source_file_path: src/content/docs/docs/settings.md
-translation_models:
-  - google/gemini-2.5-flash
 ---
 
 

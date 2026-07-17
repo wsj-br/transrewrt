@@ -1,13 +1,6 @@
 ---
 title: API 키
 description: 무료 OpenRouter API 키를 받아 다른 AI 제공자를 Transrewrt에 연결하세요.
-translation_last_updated: '2026-07-17T21:14:45.942Z'
-source_file_mtime: '2026-07-17T14:58:48.569Z'
-source_file_hash: 540c5b2b785355828a421293195b23c2fec98502888d607638fbb33f93970a2a
-translation_language: ko
-source_file_path: src/content/docs/docs/api-key.md
-translation_models:
-  - z-ai/glm-5.2
 ---
 
 

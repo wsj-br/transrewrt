@@ -3,13 +3,6 @@ title: Usar o Painel
 description: >-
   Revise o uso, custo e logs de chamadas — filtre, exporte e gerencie registros
   armazenados.
-translation_last_updated: '2026-07-17T21:14:47.640Z'
-source_file_mtime: '2026-07-17T11:53:39.333Z'
-source_file_hash: 689c93c2517f806f7976d570b4fc86d30ca048ce906d982429b985ad06dd9250
-translation_language: pt-BR
-source_file_path: src/content/docs/docs/dashboard.md
-translation_models:
-  - google/gemini-2.5-flash
 ---
 
 

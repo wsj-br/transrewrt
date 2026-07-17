@@ -481,7 +481,7 @@ Copy **[release-new-version-prompt.md](release-new-version-prompt.md)** into a C
 2. **Changelog**: In [CHANGELOG.md](CHANGELOG.md), move the bullet points from under `## Unreleased` into a new section titled `## [X.Y.Z] - YYYY-MM-DD`, following the Keep a Changelog format. Leave a blank `## Unreleased` heading for the next release cycle.
 3. **Version**: Update the `"version": "X.Y.Z"` field in [package.json](../package.json) (use proper Semantic Versioning).
 4. **Security audit**: Run `pnpm audit` to ensure no known vulnerabilities exist. If vulnerabilities are found, add overrides to `pnpm.overrides` in [pnpm-workspace.yaml](../pnpm-workspace.yaml) (pnpm 11) and run `pnpm install` until clean.
-5. **Sync references**: Run `pnpm run update-version` to sync the README badge and any other files updated by [scripts/update-version.js](../scripts/update-version.js) so they match the new `package.json` version.
+5. **Sync references**: Run `pnpm run update-version` to sync the README badge, `website/package.json`, the marketing `VERSION` constant, and any other files updated by [scripts/update-version.js](../scripts/update-version.js) so they match the new `package.json` version.
 6. **Update i18n UI string translations**: Run `pnpm run i18n:sync` to ensure that all strings in the UI are translated.
 7. **Update documentation table of contents**: Run `doctoc *.md dev/*.md` to update all tables of contents.
 8. **Update document translations**: Run `pnpm run i18n:translate:docs` to ensure the latest documentation changes are translated.
@@ -562,7 +562,7 @@ After `main` contains the release commit(s), check out `main` locally at the com
 
 The script creates an annotated tag **`v<version>`** at **HEAD**, pushes it to **`origin`**, and runs `gh release create` with title **`v<version>`** and body from **`release-notes/RELEASE_NOTES_<version>.md`**. If that tag or a GitHub release for it already exists, the script deletes them and recreates the tag at the current **HEAD** so you can fix a mistaken tag or add follow-up commits before releasing again.
 
-That GitHub release triggers [`.github/workflows/release.yml`](../.github/workflows/release.yml), which builds Windows and Linux installers and pushes the Docker image to GHCR. Check the **Actions** tab on https://github.com/wsj-br/transrewrt for progress.
+That GitHub release triggers [`.github/workflows/release.yml`](../.github/workflows/release.yml), which builds Windows and Linux installers, pushes the Docker image to GHCR, and deploys `website/` to GitHub Pages (`https://wsj-br.github.io/transrewrt/`). Check the **Actions** tab on https://github.com/wsj-br/transrewrt for progress. To redeploy the site without an app release, run `pnpm website:publish` (see [website/README.md](../website/README.md)).
 
 **Manual alternative:** you can still create a release from the GitHub **Releases** UI (**Draft a new release** → tag `vX.Y.Z` targeting `main` → paste notes → **Publish release**). Prefer the script so the tag, title, and notes stay aligned with `package.json` and `release-notes/RELEASE_NOTES_<version>.md`.
 
@@ -680,7 +680,8 @@ Models and fallbacks: `openrouter.translationModels` in [`ai-i18n-tools.config.j
 | `pnpm reset-web-password`      | In web multi-user mode, set a password in SQLite (`[username] <password>`; default is `admin`; uses `CONFIG_PATH` or `data/config.json`) |
 | `pnpm check-api-key`           | Show the masked OpenRouter key and limit info (`OPENROUTER_API_KEY` or `node scripts/check-api-key.js --key …`)                          |
 | `pnpm check-custom-provider`   | Probe a custom OpenAI-compatible provider URL/key (see `scripts/check-custom-provider.js`)                                               |
-| `pnpm update-version`          | Propagate the `package.json` version into the README badge and other references (run after manually bumping the version)                 |
+| `pnpm update-version`          | Propagate the root `package.json` version into the README badge, `website/package.json`, and marketing `VERSION` (run after manually bumping the version) |
+| `pnpm website:publish`         | Dispatch GitHub Actions to build/deploy `website/` to GitHub Pages (no app release; see [website/README.md](../website/README.md)) |
 | `pnpm run 3p-notices`          | Regenerate [NOTICES](../NOTICES) from production dependencies (see [Third-party notices](#third-party-notices-3p-notices))               |
 
 ### Docker and deploy

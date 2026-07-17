@@ -3,13 +3,6 @@ title: Cài đặt
 description: >-
   Tài liệu tham khảo ngắn gọn về Chung, Mô hình, Ngôn ngữ, Thuật ngữ, Chi phí,
   Chuyển đổi, Người dùng, API và Giới thiệu.
-translation_last_updated: '2026-07-17T21:14:51.174Z'
-source_file_mtime: '2026-07-17T14:37:21.849Z'
-source_file_hash: 492e5fd37f4a6b282502282d4f2728047a0d09ae8c30334b3c8388a5ce6e9f68
-translation_language: vi
-source_file_path: src/content/docs/docs/settings.md
-translation_models:
-  - google/gemini-2.5-flash
 ---
 
 

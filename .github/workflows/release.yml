@@ -1,4 +1,5 @@
-# Build and publish all deliverables: Windows NSIS, Linux AppImage (x64 + arm64), multi-arch Docker (GHCR).
+# Build and publish all deliverables: Windows NSIS, Linux AppImage (x64 + arm64),
+# multi-arch Docker (GHCR), and the marketing/docs site to GitHub Pages.
 # Trigger: GitHub Release published or manual workflow_dispatch (with optional 'tag_as_latest').
 # Uses native runners (no QEMU): amd64 on ubuntu-latest, arm64 on ubuntu-24.04-arm.
 
@@ -281,3 +282,15 @@ jobs:
           files: |
             release-assets/**/*.exe
             release-assets/**/*.AppImage
+
+  # Marketing site + docs → https://wsj-br.github.io/transrewrt/
+  # (also runnable ad-hoc via workflow_dispatch on website-pages.yml / pnpm website:publish)
+  deploy-website:
+    name: Deploy website (GitHub Pages)
+    needs: prepare
+    if: github.event_name == 'release'
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    uses: ./.github/workflows/website-pages.yml

@@ -1,13 +1,6 @@
 ---
 title: 설정
 description: 일반, 모델, 언어, 용어집, 비용, 변환, 사용자, API, 정보에 대한 간결한 참조입니다.
-translation_last_updated: '2026-07-17T21:14:46.790Z'
-source_file_mtime: '2026-07-17T14:37:21.849Z'
-source_file_hash: 492e5fd37f4a6b282502282d4f2728047a0d09ae8c30334b3c8388a5ce6e9f68
-translation_language: ko
-source_file_path: src/content/docs/docs/settings.md
-translation_models:
-  - z-ai/glm-5.2
 ---
 
 

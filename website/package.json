@@ -1,7 +1,7 @@
 {
   "name": "transrewrt-website",
   "private": true,
-  "version": "1.6.0",
+  "version": "1.6.1",
   "type": "module",
   "scripts": {
     "dev": "astro dev",
@@ -13,7 +13,9 @@
     "i18n:translate": "ai-i18n-tools translate-ui && ai-i18n-tools translate-docs",
     "i18n:translate:ui": "ai-i18n-tools translate-ui",
     "i18n:translate:docs": "ai-i18n-tools translate-docs",
-    "i18n:locales": "ai-i18n-tools generate-ui-languages"
+    "i18n:locales": "ai-i18n-tools generate-ui-languages",
+    "publish:pages": "bash scripts/publish-pages.sh",
+    "publish:pages:dry": "bash scripts/publish-pages.sh --dry-run"
   },
   "engines": {
     "node": ">=22.0.0"

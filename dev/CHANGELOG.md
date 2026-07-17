@@ -11,10 +11,11 @@ Use conventional types (Added, Changed, Fixed, etc.) and short descriptions.
 
 ## Unreleased
 
-- **Changed**: Stop tracking TypeScript incremental cache files; ignore `*.tsbuildinfo` in `.gitignore`.
-
 ## [1.6.1] - 2026-07-17
 
+- **Changed**: Stop tracking TypeScript incremental cache files; ignore `*.tsbuildinfo` in `.gitignore`.
+- **Added**: GitHub Pages deploy for `website/` — reusable workflow `.github/workflows/website-pages.yml`, called from the Release workflow on publish; ad-hoc via `pnpm website:publish` / `website/scripts/publish-pages.sh` (`workflow_dispatch`). Astro `base` set to `/transrewrt` for project Pages URLs. Publish script refuses uncommitted `website/` changes (and unpushed branch commits) unless `--allow-dirty`.
+- **Changed**: `pnpm update-version` also syncs `website/package.json` and the marketing `VERSION` constant in `website/src/components/marketing/data.ts`.
 - **Fixed**: ESLint ignores `website/dist/` and applies Node globals to `**/*.mjs` so `pnpm lint` does not fail on Astro/pagefind build output or `scripts/write-third-party-notices.mjs` `console` usage.
 - **Changed**: Presets editor save bumps `presets.json` version using Transrewrt `package.json` major.minor and an incremented catalog patch (e.g. `1.2.50` + app `1.6.1` → `1.6.51`).
 - **Changed**: Translate / rewrite / transform failures open a dismissible alert dialog with user-friendly messages instead of writing `Error: …` into the output panel. Empty model responses and incomplete requests use the same dialog.

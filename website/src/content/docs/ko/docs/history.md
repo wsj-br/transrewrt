@@ -1,13 +1,6 @@
 ---
 title: 기록 탐색
 description: 과거 번역, 재작성 및 변환 실행의 전체 입력 및 출력 텍스트를 검토합니다.
-translation_last_updated: '2026-07-17T21:14:46.285Z'
-source_file_mtime: '2026-07-17T11:53:39.333Z'
-source_file_hash: 79c4a60a79491755299b9de8c5e8f0945ccc6d0b32743e1682fede521dade7fa
-translation_language: ko
-source_file_path: src/content/docs/docs/history.md
-translation_models:
-  - z-ai/glm-5.2
 ---
 
 

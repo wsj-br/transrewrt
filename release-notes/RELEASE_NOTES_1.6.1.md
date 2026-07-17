@@ -2,7 +2,7 @@
 
 **Release date:** 2026-07-17
 
-Transrewrt 1.6.1 focuses on clearer failure handling, a more flexible local LLM setup, and a task-first documentation site. Translate / rewrite / transform errors open a dismissible alert instead of dumping `Error: …` into the output panel; leaked prompt wrapper tags are stripped from results; and the former Ollama-only local provider is generalized to **Local LLM** with a full OpenAI-compatible API base URL. The marketing site and product docs are reorganized around Get started, Guides, Settings, and Troubleshooting.
+Transrewrt 1.6.1 focuses on clearer failure handling, a more flexible local LLM setup, and a task-first documentation site with automated GitHub Pages deploys. Translate / rewrite / transform errors open a dismissible alert instead of dumping `Error: …` into the output panel; leaked prompt wrapper tags are stripped from results; and the former Ollama-only local provider is generalized to **Local LLM** with a full OpenAI-compatible API base URL. The marketing site and product docs are reorganized around Get started, Guides, Settings, and Troubleshooting — and publishing a release (or running `pnpm website:publish`) updates https://wsj-br.github.io/transrewrt/.
 
 ## Highlights
 
@@ -10,6 +10,7 @@ Transrewrt 1.6.1 focuses on clearer failure handling, a more flexible local LLM 
 - **Cleaner model output**: Strip leaked prompt wrapper tags (`<translate>`, `<rewrite>`, `<transform>`) from outputs (and plain-text alternatives) before showing them.
 - **Local LLM**: Renamed the Ollama-specific local provider to **Local LLM** (`local` / `local/…`, `local_llm_base_url`, `LOCAL_LLM_URL`, `easy_local_llm_model`). The URL is the full OpenAI-compatible API base (no automatic `/v1` append); Test/reachability use `GET …/models`. Defaults/examples use paths such as `http://localhost:11434/v1` so Ollama, LM Studio, llama.cpp, and similar stacks work without hardcoding `/v1` in the app.
 - **Product docs**: Moved the User Guide into task-first website docs (Get started, Guides, Settings reference, Troubleshooting); root `README.md` is a slim GitHub landing page with docs links. Marketing “Full User Guide” CTAs point at `/docs/`.
+- **GitHub Pages**: The marketing site and docs deploy automatically on app release, or ad-hoc with `pnpm website:publish` (no installer release required). Astro `base` is `/transrewrt` for project Pages URLs.
 
 ## Improvements
 
@@ -17,6 +18,8 @@ Transrewrt 1.6.1 focuses on clearer failure handling, a more flexible local LLM 
 - **API settings tip**: Lucide `Lightbulb` icon instead of the 💡 emoji (reliable on Linux Electron without a system emoji font).
 - **Presets catalog versioning**: Presets editor save bumps `presets.json` version using Transrewrt `package.json` major.minor and an incremented catalog patch.
 - **Website locales**: Marketing frontpage is locale-aware (`/{locale}/`); language pickers list languages alphabetically; LanguagePicker uses a two-column dropdown; screenshots load from `images/screenshots/<locale>/`.
+- **Version sync**: `pnpm update-version` also updates `website/package.json` and the marketing `VERSION` constant.
+- **Website publish guard**: `website:publish` refuses uncommitted `website/` changes and unpushed branch commits unless `--allow-dirty`.
 - **Third-party notices**: `pnpm 3p-notices` / `notices:write` rewritten around `pnpm licenses list` and `scripts/write-third-party-notices.mjs` (removed `license-checker-rseidelsohn`).
 
 ## Fixes
@@ -24,6 +27,7 @@ Transrewrt 1.6.1 focuses on clearer failure handling, a more flexible local LLM 
 - **Starlight locale docs**: Translated docs lived under nested `{locale}/src/content/docs/docs/` and fell back to English; relocated to `{locale}/docs/` with matching lowercase Starlight locale keys (`pt-br`, `zh-hans`).
 - **Website TypeScript**: Dropped deprecated `baseUrl`; explicit `@/*` → `./src/*` path mapping for TypeScript 6+/7.
 - **Lint**: ESLint ignores `website/dist/` and applies Node globals to `**/*.mjs` so `pnpm lint` stays green after website builds and the notices script.
+- **TypeScript cache**: Stop tracking `*.tsbuildinfo` incremental cache files (ignored in `.gitignore`).
 
 ## Detailed changelog
 
@@ -36,6 +40,7 @@ Published builds for this release are attached to the GitHub **Releases** page f
 - **Windows**: Installer (x64)
 - **Linux**: AppImage (x64 and arm64)
 - **Docker**: `ghcr.io/wsj-br/transrewrt:1.6.1` (and `latest` when tagged accordingly); multi-arch images as published on GHCR.
+- **Website / docs**: `https://wsj-br.github.io/transrewrt/` (also redeployable with `pnpm website:publish`)
 
 Exact filenames and checksums appear on the release page.
 
@@ -43,7 +48,7 @@ Exact filenames and checksums appear on the release page.
 
 - **[README](https://github.com/wsj-br/transrewrt/blob/main/README.md)** — Overview and quick start  
 - **[Product docs](https://wsj-br.github.io/transrewrt/docs/)** — Install, guides, settings, and troubleshooting  
-- **[DEVELOPMENT.md](https://github.com/wsj-br/transrewrt/blob/main/dev/DEVELOPMENT.md)** — Local setup, `release:github`, and pre-release checks  
+- **[DEVELOPMENT.md](https://github.com/wsj-br/transrewrt/blob/main/dev/DEVELOPMENT.md)** — Local setup, `release:github`, `website:publish`, and pre-release checks  
 - **[SYSTEM-OVERVIEW.md](https://github.com/wsj-br/transrewrt/blob/main/dev/SYSTEM-OVERVIEW.md)** — Architecture (LLM wrapper and providers)  
 - **[i18n.md](https://github.com/wsj-br/transrewrt/blob/main/dev/i18n.md)** — UI and docs translation workflow
 

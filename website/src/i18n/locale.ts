@@ -1,3 +1,4 @@
+import { withBase } from './base';
 import uiLanguages from './ui-languages.json';
 
 export type UiLanguageRow = (typeof uiLanguages)[number];
@@ -23,9 +24,9 @@ export function toRouteLocale(code: string): string {
 export function homePathForLocale(code: string): string {
   const row = resolveUiLanguage(code);
   if (row.isSourceLocale) {
-    return '/';
+    return withBase('/');
   }
-  return `/${toRouteLocale(row.code)}/`;
+  return withBase(`/${toRouteLocale(row.code)}/`);
 }
 
 /** Row from `ui-languages.json` for the active locale (falls back to source). */

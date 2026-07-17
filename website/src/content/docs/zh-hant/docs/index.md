@@ -1,13 +1,6 @@
 ---
 title: 概覽
 description: Transrewrt 是什麼，以及如何尋找安裝、指南和設定文件。
-translation_last_updated: '2026-07-17T21:14:43.850Z'
-source_file_mtime: '2026-07-17T14:36:51.471Z'
-source_file_hash: 6dfcf9cb19e3422d75511ecc06eda72e014214c3e34d95f7fec6d8a05c01896f
-translation_language: zh-Hant
-source_file_path: src/content/docs/docs/index.md
-translation_models:
-  - z-ai/glm-5.2
 ---
 
 

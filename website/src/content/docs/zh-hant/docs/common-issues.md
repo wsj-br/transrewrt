@@ -1,14 +1,6 @@
 ---
 title: 常見問題
 description: Transrewrt 的疑難排解與快速提示。
-translation_last_updated: '2026-07-17T21:14:43.532Z'
-source_file_mtime: '2026-07-17T14:37:17.841Z'
-source_file_hash: d60d2f0d1e9289639fd72ad478b6756e4638dce77acf7d2d1795a37653a97f17
-translation_language: zh-Hant
-source_file_path: src/content/docs/docs/common-issues.md
-translation_models:
-  - minimax/minimax-m2.7
-  - z-ai/glm-5.2
 ---
 
 

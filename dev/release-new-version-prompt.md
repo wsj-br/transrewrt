@@ -1,4 +1,4 @@
-Create a new release notes file `release-notes/RELEASE_NOTES_<x.y.z>.md` for **Transrewrt** using the instructions below. This file is used by [`scripts/release.sh`](https://github.com/wsj-br/transrewrt/blob/main/scripts/release.sh) (`pnpm run release:github`) and supports the [GitHub release](https://github.com/wsj-br/transrewrt/releases) process (publish triggers [.github/workflows/release.yml](https://github.com/wsj-br/transrewrt/blob/main/.github/workflows/release.yml): Windows installer, Linux AppImages, Docker on GHCR).
+Create a new release notes file `release-notes/RELEASE_NOTES_<x.y.z>.md` for **Transrewrt** using the instructions below. This file is used by [`scripts/release.sh`](https://github.com/wsj-br/transrewrt/blob/main/scripts/release.sh) (`pnpm run release:github`) and supports the [GitHub release](https://github.com/wsj-br/transrewrt/releases) process (publish triggers [.github/workflows/release.yml](https://github.com/wsj-br/transrewrt/blob/main/.github/workflows/release.yml): Windows installer, Linux AppImages, Docker on GHCR, and GitHub Pages for `website/`).
 
 **Before you start:** run checks that mirror what CI runs before packaging:
 
@@ -13,7 +13,7 @@ There is no automated unit/integration test script in `package.json` (`pnpm test
 **Instructions:**
 
 1. **Read** `package.json` for the target version (`x.y.z`). If you are cutting the release, the version should already be bumped on your branch.
-2. After bumping `version` in `package.json`, run `pnpm update-version`so the README version badge and other synced references stay aligned ([`scripts/update-version.js`](https://github.com/wsj-br/transrewrt/blob/main/scripts/update-version.js)).
+2. After bumping `version` in `package.json`, run `pnpm update-version` so the README version badge, `website/package.json`, marketing `VERSION`, and other synced references stay aligned ([`scripts/update-version.js`](https://github.com/wsj-br/transrewrt/blob/main/scripts/update-version.js)).
 3. **Open `dev/CHANGELOG.md`.**
 4. **Copy all entries under** `## Unreleased` up to (but not including) the next `## [` heading (the previous shipped version).
 5. **Format the new file** to match the newest existing notes under [`release-notes/`](https://github.com/wsj-br/transrewrt/tree/main/release-notes/), e.g. [`release-notes/RELEASE-NOTES-v1.1.1.md`](https://github.com/wsj-br/transrewrt/blob/main/release-notes/RELEASE-NOTES-v1.1.1.md) (legacy naming) or prior `RELEASE_NOTES_*.md` files:
