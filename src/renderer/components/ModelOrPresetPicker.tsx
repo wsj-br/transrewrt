@@ -105,7 +105,20 @@ function ModelOrPresetPicker({
     );
   }
 
-  if (!models.length || !onModelChange) return null;
+  if (!onModelChange) return null;
+
+  if (!models.length) {
+    if (!onOpenSettingsModels) return null;
+    return (
+      <button
+        type="button"
+        className="text-sm text-muted-foreground underline-offset-2 hover:underline"
+        onClick={onOpenSettingsModels}
+      >
+        {t("Open Settings → Models")}
+      </button>
+    );
+  }
 
   return (
     <ModelSelector

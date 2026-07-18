@@ -2,7 +2,7 @@
 export const DEFAULT_ADMIN_USERNAME = "admin";
 export const DEFAULT_ADMIN_PASSWORD = "transrewrt26";
 
-/** Model ID for the free tier model; always included in the list and cannot be removed. */
+/** Model ID for the free tier model; kept in the catalog when OpenRouter is available, but optional in the selected list. */
 export const FREE_MODEL_ID = "openrouter/openrouter/free";
 
 /** Remote Easy-mode presets catalog (this repo). Used by Electron IPC and web server auto-update. */

@@ -35,7 +35,6 @@ import SettingsUsersTab from "./SettingsUsersTab";
 import SettingsGlossaryTab from "./SettingsGlossaryTab";
 import HeaderLanguageSelector from "./HeaderLanguageSelector";
 import ConfirmModal from "./ConfirmModal";
-import { FREE_MODEL_ID } from "../constants";
 import configManager from "../utils/config/configManager";
 import webAPI from "../utils/api/webApiClient";
 import {
@@ -204,11 +203,7 @@ const SettingsPanel = ({ openToTab, onOpenToTabConsumed }) => {
   useEffect(() => {
     queueMicrotask(() => {
       setLocalSettings({ ...settings });
-      const modelsWithFree = new Set([
-        FREE_MODEL_ID,
-        ...(settings.available_models || []),
-      ]);
-      setSelectedModelIds(modelsWithFree);
+      setSelectedModelIds(new Set(settings.available_models || []));
       setSelectedLanguages(new Set(settings.top_languages || []));
       const normalizeTab = (tab) => {
         const exp = settings.mode === "advanced" ? "advanced" : "easy";
@@ -373,13 +368,16 @@ const SettingsPanel = ({ openToTab, onOpenToTabConsumed }) => {
       : "";
 
   const toggleModelSelection = (modelId) => {
-    if (modelId === FREE_MODEL_ID && selectedModelIds.has(FREE_MODEL_ID))
-      return;
     const newSet = new Set(selectedModelIds);
     if (newSet.has(modelId)) newSet.delete(modelId);
     else newSet.add(modelId);
     setSelectedModelIds(newSet);
-    setSetting("available_models", Array.from(newSet));
+    const nextList = Array.from(newSet);
+    setSetting("available_models", nextList);
+    const lastUsed = settings.last_used_model;
+    if (lastUsed && !newSet.has(lastUsed)) {
+      setSetting("last_used_model", nextList[0] || "");
+    }
   };
 
   const configuredCloudEngines = useMemo(
@@ -393,7 +391,6 @@ const SettingsPanel = ({ openToTab, onOpenToTabConsumed }) => {
   const loadPresetModels = useCallback(
     (modelIds) => {
       const newSet = new Set(selectedModelIds);
-      newSet.add(FREE_MODEL_ID);
       for (const raw of modelIds) {
         const id = canonicalModelIdFromPresetModelId(String(raw).trim());
         if (id) newSet.add(id);
@@ -493,9 +490,9 @@ const SettingsPanel = ({ openToTab, onOpenToTabConsumed }) => {
   };
 
   const confirmDeselectAllModels = () => {
-    const newSet = new Set([FREE_MODEL_ID]);
-    setSelectedModelIds(newSet);
-    setSetting("available_models", [FREE_MODEL_ID]);
+    setSelectedModelIds(new Set());
+    setSetting("available_models", []);
+    setSetting("last_used_model", "");
     setShowDeselectAllConfirm(false);
   };
 
@@ -708,7 +705,7 @@ const SettingsPanel = ({ openToTab, onOpenToTabConsumed }) => {
         <ConfirmModal
           title={t("Deselect all models?")}
           message={t(
-            "Are you sure you want to deselect all models? This will remove all selected models from the list (except the required free model).",
+            "Are you sure you want to deselect all models? This will remove all selected models from the list.",
           )}
           confirmLabel={t("Deselect All")}
           cancelLabel={t("Cancel")}

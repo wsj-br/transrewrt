@@ -87,6 +87,20 @@ const App = () => {
   };
 
   const [openSettingsToTab, setOpenSettingsToTab] = useState(null);
+
+  const openSettingsModels = useCallback(() => {
+    updateSettings({ settings_active_tab: "models" });
+    setCurrentView("settings");
+    if (isWeb) setSetting("web_view", "settings");
+  }, [updateSettings, setSetting]);
+
+  const handleRemoveModel = useCallback(
+    async (modelId: string) => {
+      const result = await removeModelFromList(modelId);
+      if (result?.emptied) openSettingsModels();
+    },
+    [removeModelFromList, openSettingsModels],
+  );
   const [glossaryModalOpen, setGlossaryModalOpen] = useState(false);
   const [glossaryPrefillSrcText, setGlossaryPrefillSrcText] = useState("");
   const [glossaryPrefillTgtText, setGlossaryPrefillTgtText] = useState("");
@@ -877,12 +891,8 @@ const App = () => {
                   models={models}
                   activeModel={activeModel}
                   onModelChange={(model) => setSetting("last_used_model", model, { optimistic: true })}
-                  onOpenSettingsModels={() => {
-                    updateSettings({ settings_active_tab: "models" });
-                    setCurrentView("settings");
-                    if (isWeb) setSetting("web_view", "settings");
-                  }}
-                  onRemoveModel={removeModelFromList}
+                  onOpenSettingsModels={openSettingsModels}
+                  onRemoveModel={handleRemoveModel}
                   experienceMode={experienceMode}
                   easyProvider={easyProvider || settings.easy_provider || "openrouter"}
                   presets={presets}
@@ -968,11 +978,8 @@ const App = () => {
           models={models}
           activeModel={activeModel}
           onModelChange={(model) => setSetting("last_used_model", model, { optimistic: true })}
-          onOpenSettingsModels={() => {
-            updateSettings({ settings_active_tab: "models" });
-            setCurrentView("settings");
-          }}
-          onRemoveModel={removeModelFromList}
+          onOpenSettingsModels={openSettingsModels}
+          onRemoveModel={handleRemoveModel}
           experienceMode={experienceMode}
           easyProvider={easyProvider || settings.easy_provider || "openrouter"}
           presets={presets}

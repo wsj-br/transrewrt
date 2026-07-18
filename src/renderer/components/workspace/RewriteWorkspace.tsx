@@ -14,12 +14,10 @@ import { WorkspaceBehaviourSwitch } from "./WorkspaceBehaviourSwitch";
 import { RephraseControls } from "./RephraseControls";
 import { Button } from "@/components/ui/button";
 import { Zap, Square, Trash2, Clipboard, Copy } from "lucide-react";
-import { getRewriteModeOptions, REWRITE_MODE_KEYS } from "../../constants";
+import { getRewriteModeOptions } from "../../constants";
 import { modelFooterDisplayId } from "../../utils/misc/modelIdUtils";
 import { Switch, switchAccentClassName } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
-
-const REWRITE_MODE_GRAMMAR = REWRITE_MODE_KEYS[0]; // "Check Spelling & Grammar"
 
 function stripKeySymbols(str) {
   return String(str).replace(/[⇧↵]/g, "").trim();
@@ -59,7 +57,6 @@ export function getRewritePanels({ common, input, output, options }) {
     setShowOutputDiff,
     outputIsModelResult = false,
   } = options;
-  const isGrammarMode = rewriteMode === REWRITE_MODE_GRAMMAR;
 
   const rephraseControls = (
     <RephraseControls
@@ -198,11 +195,11 @@ export function getRewritePanels({ common, input, output, options }) {
           fontFamily={settings?.font_family}
           fontSize={settings?.font_size}
           outputTint={true}
-          showDiff={isGrammarMode ? showOutputDiff : false}
-          inputTextForDiff={isGrammarMode ? input.text : undefined}
-          outputIsModelResult={isGrammarMode ? outputIsModelResult : false}
+          showDiff={showOutputDiff}
+          inputTextForDiff={input.text}
+          outputIsModelResult={outputIsModelResult}
           onShowDiffChange={
-            isGrammarMode && setShowOutputDiff ? (checked) => setShowOutputDiff(checked) : undefined
+            setShowOutputDiff ? (checked) => setShowOutputDiff(checked) : undefined
           }
           hideFooter
         />
@@ -228,7 +225,7 @@ export function getRewritePanels({ common, input, output, options }) {
             onCheckedChange={onAutoCopyChange}
             title={t("Auto-copy result to clipboard")}
           />
-          {isGrammarMode && setShowOutputDiff ? (
+          {setShowOutputDiff ? (
             <div className="flex shrink-0 items-center gap-1.5">
               <Switch
                 id="show-diff-rewrite"

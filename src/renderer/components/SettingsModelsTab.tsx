@@ -5,7 +5,6 @@ import { flipUiArrowsForRtl, getTextDirection } from "ai-i18n-tools/runtime";
 import { SOURCE_LOCALE } from '../i18n';
 import { providerSortKeyFromModelId } from '../utils/misc/modelIdUtils';
 import PropTypes from 'prop-types';
-import { FREE_MODEL_ID } from "../constants";
 import {
   Cpu,
   WandSparkles,
@@ -537,7 +536,6 @@ const SettingsModelsTab = ({
                 const provider = providerSortKeyFromModelId(modelId);
                 const showFreeBadge = isConfirmedFreeModel(model);
                 const routeBadge = modelRouteBadgeProps(modelId, t);
-                const isRequiredFree = modelId === FREE_MODEL_ID;
                 return (
                   <div key={String(modelId)} className={selectedModelCard}>
                     <div className={selectedModelContent}>
@@ -563,16 +561,14 @@ const SettingsModelsTab = ({
                           {renderModelPricingLine(model)}
                         </span>
                       </div>
-                      {!isRequiredFree && (
-                        <button
-                          type="button"
-                          className="p-1 text-muted-foreground hover:text-foreground rounded"
-                          onClick={() => onToggleModelSelection(modelId)}
-                          aria-label={t('Remove model')}
-                        >
-                          <X size={14} />
-                        </button>
-                      )}
+                      <button
+                        type="button"
+                        className="p-1 text-muted-foreground hover:text-foreground rounded"
+                        onClick={() => onToggleModelSelection(modelId)}
+                        aria-label={t('Remove model')}
+                      >
+                        <X size={14} />
+                      </button>
                     </div>
                   </div>
                 );

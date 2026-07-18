@@ -460,7 +460,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 335
+        "line": 334
       }
     ]
   },
@@ -1863,7 +1863,7 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 531
+        "line": 545
       }
     ]
   },
@@ -1956,15 +1956,15 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 538
+        "line": 552
       },
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 592
+        "line": 606
       },
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 598
+        "line": 612
       },
       {
         "file": "src/renderer/components/DashboardTabAllCalls.tsx",
@@ -2081,7 +2081,7 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 546
+        "line": 560
       },
       {
         "file": "src/renderer/components/DashboardTabByModel.tsx",
@@ -2190,11 +2190,11 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 550
+        "line": 564
       },
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 598
+        "line": 612
       },
       {
         "file": "src/renderer/utils/misc/formatUtils.ts",
@@ -2291,7 +2291,7 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 558
+        "line": 572
       },
       {
         "file": "src/renderer/components/DashboardTabAllCalls.tsx",
@@ -2396,11 +2396,11 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 600
+        "line": 614
       },
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 197
+        "line": 196
       },
       {
         "file": "src/renderer/utils/misc/formatUtils.ts",
@@ -2497,7 +2497,7 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 791
+        "line": 805
       },
       {
         "file": "src/renderer/components/DashboardTabAllCalls.tsx",
@@ -2650,7 +2650,7 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 811
+        "line": 825
       },
       {
         "file": "src/renderer/components/SettingsTransformPromptsTab.tsx",
@@ -2755,7 +2755,7 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 812
+        "line": 826
       },
       {
         "file": "src/renderer/components/SettingsTransformPromptsTab.tsx",
@@ -2852,7 +2852,7 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 813
+        "line": 827
       },
       {
         "file": "src/renderer/components/SettingsTransformPromptsTab.tsx",
@@ -2949,7 +2949,7 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 815
+        "line": 829
       },
       {
         "file": "src/renderer/components/SelectFromPresetsModal.tsx",
@@ -3050,15 +3050,15 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 816
+        "line": 830
       },
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 919
+        "line": 929
       },
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 1003
+        "line": 1010
       },
       {
         "file": "src/renderer/components/ChangePasswordModal.tsx",
@@ -3070,7 +3070,7 @@
       },
       {
         "file": "src/renderer/components/ModelSelector.tsx",
-        "line": 176
+        "line": 182
       },
       {
         "file": "src/renderer/components/SettingsApiTab.tsx",
@@ -3098,7 +3098,7 @@
       },
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 714
+        "line": 711
       },
       {
         "file": "src/renderer/components/SettingsTransformPromptsTab.tsx",
@@ -3215,11 +3215,11 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 916
+        "line": 926
       },
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 1000
+        "line": 1007
       },
       {
         "file": "src/renderer/components/SettingsTransformPromptsTab.tsx",
@@ -3316,11 +3316,11 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 917
+        "line": 927
       },
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 1001
+        "line": 1008
       }
     ]
   },
@@ -3413,11 +3413,11 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 917
+        "line": 927
       },
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 1001
+        "line": 1008
       }
     ]
   },
@@ -3510,11 +3510,11 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 918
+        "line": 928
       },
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 1002
+        "line": 1009
       },
       {
         "file": "src/renderer/components/DashboardPage.tsx",
@@ -10184,15 +10184,15 @@
       },
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 402
+        "line": 401
       },
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 457
+        "line": 456
       },
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 558
+        "line": 556
       }
     ]
   },
@@ -11578,7 +11578,7 @@
       },
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 151
+        "line": 150
       },
       {
         "file": "src/renderer/components/Sidebar.tsx",
@@ -13267,7 +13267,7 @@
       },
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 204
+        "line": 203
       },
       {
         "file": "src/renderer/components/workspace/RewriteWorkspace.tsx",
@@ -13380,7 +13380,7 @@
       },
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 204
+        "line": 203
       },
       {
         "file": "src/renderer/components/TransformTestPanel.tsx",
@@ -15624,8 +15624,12 @@
     },
     "locations": [
       {
+        "file": "src/renderer/components/ModelOrPresetPicker.tsx",
+        "line": 118
+      },
+      {
         "file": "src/renderer/components/ModelSelector.tsx",
-        "line": 89
+        "line": 90
       }
     ]
   },
@@ -15718,7 +15722,7 @@
     "locations": [
       {
         "file": "src/renderer/components/ModelSelector.tsx",
-        "line": 100
+        "line": 101
       }
     ]
   },
@@ -15811,100 +15815,7 @@
     "locations": [
       {
         "file": "src/renderer/components/ModelSelector.tsx",
-        "line": 165
-      }
-    ]
-  },
-  "61600db9": {
-    "source": "At least one model must remain",
-    "translated": {
-      "pt-BR": "Deve permanecer pelo menos um modelo",
-      "ca": "Ha de quedar almenys un model",
-      "ar": "يجب أن يبقى نموذج واحد على الأقل",
-      "bn": "কমপক্ষে একটি মডেল থাকতে হবে",
-      "zh-CN": "必须至少保留一个模型",
-      "zh-TW": "必須至少保留一個模型",
-      "hr": "Mora ostati barem jedan model",
-      "cs": "Musí zůstat alespoň jeden model",
-      "en-US": "At least one model must remain",
-      "fr": "Au moins un modèle doit rester",
-      "nl": "Er moet ten minste één model overblijven",
-      "tl": "Dapat may natitirang hindi bababa sa isang model",
-      "de": "Es muss mindestens ein Modell verbleiben",
-      "hu": "Legalább egy modellnek meg kell maradnia",
-      "hi": "कम से कम एक मॉडल बना रहना चाहिए",
-      "el": "Πρέπει να παραμείνει τουλάχιστον ένα μοντέλο",
-      "ms": "Sekurang-kurangnya satu model mesti kekal",
-      "ko": "최소 하나의 모델은 남아 있어야 합니다",
-      "ja": "少なくとも1つのモデルは残す必要があります",
-      "it": "Deve rimanere almeno un modello",
-      "pt": "Deve permanecer pelo menos um modelo",
-      "pl": "Musi pozostać co najmniej jeden model",
-      "fa": "حداقل یک مدل باید باقی بماند",
-      "pa": "ਘੱਟੋ-ਘੱਟ ਇੱਕ ਮਾਡਲ ਬਣਿਆ ਰਹਿਣਾ ਚਾਹੀਦਾ ਹੈ",
-      "es": "Debe permanecer al menos un modelo",
-      "ro": "Trebuie să rămână cel puțin un model",
-      "ru": "Должна остаться хотя бы одна модель",
-      "sk": "Musí zostať aspoň jeden model",
-      "sv": "Minst en modell måste finnas kvar",
-      "th": "ต้องมีโมเดลอย่างน้อยหนึ่งโมเดล",
-      "sw": "Lazima modeli moja iwe iliyobaki",
-      "te": "కనీసం ఒక మోడల్ ఉండాలి",
-      "vi": "Phải giữ lại ít nhất một mô hình",
-      "tr": "En az bir model kalmalı",
-      "uk": "Має залишитися принаймні одна модель",
-      "jv": "Kudu ana siji model paling ora",
-      "zh-Hans": "至少要保留一个模型",
-      "zh-Hant": "至少必須保留一個模型",
-      "pa-PK": "کم از کم ایک ماڈل باقی رہنا چاہیے",
-      "hi-Latn": "Kam se kam ek model rehna chahiye"
-    },
-    "models": {
-      "pt-BR": "anthropic/claude-3-haiku",
-      "ca": "anthropic/claude-3-haiku",
-      "ar": "anthropic/claude-3-haiku",
-      "bn": "anthropic/claude-3-haiku",
-      "zh-CN": "anthropic/claude-3-haiku",
-      "zh-TW": "anthropic/claude-3-haiku",
-      "hr": "anthropic/claude-3-haiku",
-      "cs": "anthropic/claude-3-haiku",
-      "en-US": "anthropic/claude-3-haiku",
-      "fr": "anthropic/claude-3-haiku",
-      "nl": "anthropic/claude-3-haiku",
-      "tl": "anthropic/claude-3-haiku",
-      "de": "anthropic/claude-3-haiku",
-      "hu": "anthropic/claude-3-haiku",
-      "hi": "anthropic/claude-3-haiku",
-      "el": "anthropic/claude-3-haiku",
-      "ms": "anthropic/claude-3-haiku",
-      "ko": "anthropic/claude-3-haiku",
-      "ja": "anthropic/claude-3-haiku",
-      "it": "anthropic/claude-3-haiku",
-      "pt": "anthropic/claude-3-haiku",
-      "pl": "anthropic/claude-3-haiku",
-      "fa": "anthropic/claude-3-haiku",
-      "pa": "anthropic/claude-3-haiku",
-      "es": "anthropic/claude-3-haiku",
-      "ro": "anthropic/claude-3-haiku",
-      "ru": "anthropic/claude-3-haiku",
-      "sk": "anthropic/claude-3-haiku",
-      "sv": "anthropic/claude-3-haiku",
-      "th": "anthropic/claude-3-haiku",
-      "sw": "anthropic/claude-3-haiku",
-      "te": "anthropic/claude-3-haiku",
-      "vi": "anthropic/claude-3-haiku",
-      "tr": "anthropic/claude-3-haiku",
-      "uk": "anthropic/claude-3-haiku",
-      "jv": "anthropic/claude-3-haiku",
-      "zh-Hans": "google/gemini-2.5-flash-lite",
-      "zh-Hant": "google/gemini-2.5-flash-lite",
-      "pa-PK": "google/gemini-2.5-flash",
-      "hi-Latn": "google/gemini-2.5-flash"
-    },
-    "locations": [
-      {
-        "file": "src/renderer/components/ModelSelector.tsx",
-        "line": 165
+        "line": 163
       }
     ]
   },
@@ -15997,7 +15908,7 @@
     "locations": [
       {
         "file": "src/renderer/components/ModelSelector.tsx",
-        "line": 166
+        "line": 164
       }
     ]
   },
@@ -16090,11 +16001,74 @@
     "locations": [
       {
         "file": "src/renderer/components/ModelSelector.tsx",
-        "line": 173
+        "line": 171
       },
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 571
+        "line": 568
+      }
+    ]
+  },
+  "1d47185b": {
+    "source": "Remove this model from your list?\n\nYou will be taken to Settings → Models to select models.",
+    "translated": {
+      "nl": "Dit model uit je lijst verwijderen?\n\nJe wordt naar Instellingen → Modellen gebracht om modellen te selecteren.",
+      "zh-Hans": "从列表中移除此模型？\n\n你将转到“设置 → 模型”以选择模型。",
+      "fr": "Supprimer ce modèle de votre liste ?\n\nVous serez redirigé vers Paramètres → Modèles pour en sélectionner un.",
+      "ar": "هل تريد إزالة هذا النموذج من قائمتك؟\n\nستنتقل إلى الإعدادات ← النماذج لتحديد النماذج.",
+      "de": "Dieses Modell aus Ihrer Liste entfernen?\n\nSie werden zu Einstellungen → Modelle weitergeleitet, um Modelle auszuwählen.",
+      "cs": "Odstranit tento model ze seznamu?\n\nBudete přesměrováni do sekce Nastavení → Modely, kde můžete vybrat modely.",
+      "el": "Κατάργηση αυτού του μοντέλου από τη λίστα σας;\n\nΘα μεταφερθείτε στις Ρυθμίσεις → Μοντέλα για να επιλέξετε μοντέλα.",
+      "zh-Hant": "要從您的清單中移除此模型嗎？\n\n您將被引導至「設定 → 模型」以選取模型。",
+      "pt-BR": "Remover este modelo da sua lista?\n\nVocê será levado para Configurações → Modelos para selecionar modelos.",
+      "it": "Rimuovere questo modello dall'elenco?\n\nVerrai reindirizzato a Impostazioni → Modelli per selezionare i modelli.",
+      "ko": "이 모델을 목록에서 제거하시겠습니까?\n\n설정 → 모델로 이동하여 모델을 선택할 수 있습니다.",
+      "hi": "इस मॉडल को अपनी सूची से हटाएं?\n\nमॉडल चुनने के लिए आपको सेटिंग्स → मॉडल में ले जाया जाएगा।",
+      "fa": "این مدل از فهرست شما حذف شود؟\n\nبه تنظیمات ← مدل‌ها منتقل می‌شوید تا مدل‌ها را انتخاب کنید.",
+      "hu": "Eltávolítja ezt a modellt a listájából?\n\nA Beállítások → Modellek oldalra kerül a modellek kiválasztásához.",
+      "ja": "このモデルをリストから削除しますか？\n\nモデルを選択するため、設定 → モデルに移動します。",
+      "pl": "Usunąć ten model z listy?\n\nZostaniesz przeniesiony do Ustawienia → Modele, aby wybrać modele.",
+      "es": "¿Eliminar este modelo de tu lista?\n\nSe te llevará a Configuración → Modelos para seleccionar modelos.",
+      "ru": "Удалить эту модель из списка?\n\nВы перейдёте в раздел Настройки → Модели для выбора моделей.",
+      "sv": "Ta bort denna modell från din lista?\n\nDu skickas till Inställningar → Modeller för att välja modeller.",
+      "uk": "Видалити цю модель зі списку?\n\nВи перейдете до Налаштування → Моделі для вибору моделей.",
+      "tr": "Bu model listenizden kaldırılsın mı?\n\nModel seçmek için Ayarlar → Modeller'e yönlendirileceksiniz.",
+      "ro": "Elimini acest model din listă?\n\nVei fi redirecționat către Setări → Modele pentru a selecta modele.",
+      "sk": "Odstrániť tento model zo zoznamu?\n\nBudete presmerovaní do Nastavenia → Modely, kde môžete vybrať modely.",
+      "th": "ต้องการนำโมเดลนี้ออกจากรายการของคุณหรือไม่?\n\nคุณจะถูกนำไปยัง การตั้งค่า → โมเดล เพื่อเลือกโมเดล",
+      "vi": "Xóa mô hình này khỏi danh sách của bạn?\n\nBạn sẽ được chuyển đến Cài đặt → Mô hình để chọn mô hình."
+    },
+    "models": {
+      "nl": "~anthropic/claude-sonnet-latest",
+      "zh-Hans": "z-ai/glm-5.2",
+      "fr": "~anthropic/claude-sonnet-latest",
+      "ar": "~anthropic/claude-sonnet-latest",
+      "de": "~anthropic/claude-sonnet-latest",
+      "cs": "~anthropic/claude-sonnet-latest",
+      "el": "~anthropic/claude-sonnet-latest",
+      "zh-Hant": "z-ai/glm-5.2",
+      "pt-BR": "~anthropic/claude-sonnet-latest",
+      "it": "~anthropic/claude-sonnet-latest",
+      "ko": "z-ai/glm-5.2",
+      "hi": "~anthropic/claude-sonnet-latest",
+      "fa": "~anthropic/claude-sonnet-latest",
+      "hu": "~anthropic/claude-sonnet-latest",
+      "ja": "z-ai/glm-5.2",
+      "pl": "~anthropic/claude-sonnet-latest",
+      "es": "~anthropic/claude-sonnet-latest",
+      "ru": "~anthropic/claude-sonnet-latest",
+      "sv": "~anthropic/claude-sonnet-latest",
+      "uk": "~anthropic/claude-sonnet-latest",
+      "tr": "~anthropic/claude-sonnet-latest",
+      "ro": "~anthropic/claude-sonnet-latest",
+      "sk": "~anthropic/claude-sonnet-latest",
+      "th": "~anthropic/claude-sonnet-latest",
+      "vi": "~anthropic/claude-sonnet-latest"
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/ModelSelector.tsx",
+        "line": 174
       }
     ]
   },
@@ -16187,7 +16161,7 @@
     "locations": [
       {
         "file": "src/renderer/components/ModelSelector.tsx",
-        "line": 174
+        "line": 177
       }
     ]
   },
@@ -16280,7 +16254,7 @@
     "locations": [
       {
         "file": "src/renderer/components/ModelSelector.tsx",
-        "line": 175
+        "line": 181
       }
     ]
   },
@@ -16563,7 +16537,7 @@
       },
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 513
+        "line": 512
       }
     ]
   },
@@ -17529,7 +17503,7 @@
       },
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 159
+        "line": 158
       }
     ]
   },
@@ -22345,7 +22319,7 @@
       },
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 149
+        "line": 148
       }
     ]
   },
@@ -25555,7 +25529,7 @@
       },
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 263
+        "line": 262
       }
     ]
   },
@@ -32426,7 +32400,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 180
+        "line": 179
       }
     ]
   },
@@ -32519,7 +32493,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 181
+        "line": 180
       }
     ]
   },
@@ -32612,7 +32586,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 182
+        "line": 181
       }
     ]
   },
@@ -32705,7 +32679,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 183
+        "line": 182
       }
     ]
   },
@@ -32798,7 +32772,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 184
+        "line": 183
       }
     ]
   },
@@ -32891,7 +32865,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 185
+        "line": 184
       }
     ]
   },
@@ -32984,7 +32958,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 201
+        "line": 200
       }
     ]
   },
@@ -33077,7 +33051,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 204
+        "line": 203
       }
     ]
   },
@@ -33170,7 +33144,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 225
+        "line": 224
       }
     ]
   },
@@ -33263,7 +33237,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 237
+        "line": 236
       }
     ]
   },
@@ -33356,7 +33330,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 286
+        "line": 285
       }
     ]
   },
@@ -33449,7 +33423,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 292
+        "line": 291
       }
     ]
   },
@@ -33542,7 +33516,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 295
+        "line": 294
       }
     ]
   },
@@ -33635,7 +33609,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 319
+        "line": 318
       }
     ]
   },
@@ -33728,7 +33702,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 336
+        "line": 335
       }
     ]
   },
@@ -33821,7 +33795,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 341
+        "line": 340
       }
     ]
   },
@@ -33914,7 +33888,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 344
+        "line": 343
       }
     ]
   },
@@ -34007,7 +33981,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 366
+        "line": 365
       }
     ]
   },
@@ -34100,7 +34074,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 366
+        "line": 365
       }
     ]
   },
@@ -34193,7 +34167,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 370
+        "line": 369
       }
     ]
   },
@@ -34286,15 +34260,15 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 412
+        "line": 411
       },
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 467
+        "line": 466
       },
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 637
+        "line": 633
       }
     ]
   },
@@ -34387,11 +34361,11 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 414
+        "line": 413
       },
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 469
+        "line": 468
       }
     ]
   },
@@ -34484,7 +34458,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 499
+        "line": 498
       }
     ]
   },
@@ -34577,11 +34551,11 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 516
+        "line": 515
       },
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 713
+        "line": 710
       }
     ]
   },
@@ -34674,7 +34648,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 601
+        "line": 597
       }
     ]
   },
@@ -34767,7 +34741,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 618
+        "line": 614
       }
     ]
   },
@@ -34860,7 +34834,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 134
+        "line": 133
       }
     ]
   },
@@ -34953,7 +34927,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 142
+        "line": 141
       }
     ]
   },
@@ -35046,7 +35020,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 147
+        "line": 146
       }
     ]
   },
@@ -35139,7 +35113,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 152
+        "line": 151
       },
       {
         "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
@@ -35240,7 +35214,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 154
+        "line": 153
       }
     ]
   },
@@ -35333,7 +35307,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 157
+        "line": 156
       }
     ]
   },
@@ -35426,7 +35400,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 336
+        "line": 331
       }
     ]
   },
@@ -35519,7 +35493,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 337
+        "line": 332
       }
     ]
   },
@@ -35612,7 +35586,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 338
+        "line": 333
       }
     ]
   },
@@ -35705,7 +35679,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 339
+        "line": 334
       }
     ]
   },
@@ -35798,7 +35772,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 340
+        "line": 335
       }
     ]
   },
@@ -35891,7 +35865,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 341
+        "line": 336
       }
     ]
   },
@@ -35984,7 +35958,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 342
+        "line": 337
       }
     ]
   },
@@ -36077,7 +36051,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 343
+        "line": 338
       }
     ]
   },
@@ -36140,7 +36114,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 344
+        "line": 339
       }
     ]
   },
@@ -36233,7 +36207,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 345
+        "line": 340
       }
     ]
   },
@@ -36320,7 +36294,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 346
+        "line": 341
       }
     ]
   },
@@ -36407,7 +36381,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 347
+        "line": 342
       }
     ]
   },
@@ -36494,7 +36468,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 348
+        "line": 343
       }
     ]
   },
@@ -36587,7 +36561,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 351
+        "line": 346
       }
     ]
   },
@@ -36680,7 +36654,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 515
+        "line": 512
       },
       {
         "file": "src/renderer/components/Sidebar.tsx",
@@ -36777,11 +36751,11 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 536
+        "line": 533
       },
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 538
+        "line": 535
       }
     ]
   },
@@ -36874,7 +36848,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 573
+        "line": 570
       }
     ]
   },
@@ -36967,7 +36941,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 613
+        "line": 610
       }
     ]
   },
@@ -37060,100 +37034,70 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 709
+        "line": 706
       }
     ]
   },
-  "9e81ecb4": {
-    "source": "Are you sure you want to deselect all models? This will remove all selected models from the list (except the required free model).",
+  "7ac25340": {
+    "source": "Are you sure you want to deselect all models? This will remove all selected models from the list.",
     "translated": {
-      "pt-BR": "Tem certeza de que deseja desmarcar todos os modelos? Isso removerá todos os modelos selecionados da lista (exceto o modelo gratuito obrigatório).",
-      "ar": "هل أنت متأكد أنك تريد إلغاء تحديد جميع النماذج؟ سيؤدي هذا إلى إزالة جميع النماذج المحددة من القائمة (باستثناء النموذج المجاني المطلوب).",
-      "ca": "Estàs segur que vols desseleccionar tots els models? Això eliminarà tots els models seleccionats de la llista (excepte el model gratuït obligatori).",
-      "bn": "আপনি কি নিশ্চিত যে আপনি সমস্ত মডেল অনির্বাচিত করতে চান? এতে তালিকা থেকে সমস্ত নির্বাচিত মডেল (বিনামূল্যের প্রয়োজনীয় মডেল ছাড়া) সরিয়ে দেওয়া হবে।",
-      "zh-TW": "您確定要取消選擇所有模型嗎？這將從清單中移除所有已選擇的模型（除了必要的免費模型）。",
-      "hr": "Jeste li sigurni da želite poništiti odabir svih modela? Time ćete ukloniti sve odabrane modele s popisa (osim obaveznog besplatnog modela).",
-      "cs": "Opravdu chcete odznačit všechny modely? Tím odstraníte všechny vybrané modely ze seznamu (kromě požadovaného bezplatného modelu).",
-      "zh-CN": "您确定要取消选择所有模型吗？这将从列表中删除所有选定的模型(除了必需的免费模型)。",
-      "en-US": "Are you sure you want to deselect all models? This will remove all selected models from the list (except the required free model)",
-      "nl": "Weet u zeker dat u alle modellen wilt deselecteren? Hierdoor worden alle geselecteerde modellen uit de lijst verwijderd (behalve het vereiste gratis model).",
-      "fr": "Voulez-vous vraiment désélectionner tous les modèles ? Cela supprimera tous les modèles sélectionnés de la liste (sauf le modèle gratuit obligatoire).",
-      "tl": "Sigurado ka bang gusto mong bawiin ang lahat ng mga modelo? Ito ay aalisin ang lahat ng mga napiling modelo mula sa listahan (maliban sa kinakailangang libreng modelo).",
-      "hu": "Biztosan törölni szeretné minden modell kiválasztását? Ez eltávolítja a listáról az összes kiválasztott modellt (kivéve a kötelező ingyenes modellt).",
-      "de": "Möchten Sie wirklich alle Modelle abwählen? Dadurch werden alle ausgewählten Modelle aus der Liste entfernt (außer dem erforderlichen Kostenlos-Modell).",
-      "hi": "क्या आप वाकई सभी मॉडल को अचयनित करना चाहते हैं? इससे सूची से सभी चयनित मॉडल हटा दिए जाएंगे (मुफ्त मॉडल को छोड़कर)।",
-      "el": "Είστε βέβαιοι ότι θέλετε να αποεπιλέξετε όλα τα μοντέλα; Αυτό θα καταργήσει όλα τα επιλεγμένα μοντέλα από τη λίστα (εκτός από το απαιτούμενο δωρεάν μοντέλο).",
-      "it": "Sei sicuro di voler deselezionare tutti i modelli? Questo rimuoverà tutti i modelli selezionati dall'elenco (tranne il modello gratuito obbligatorio).",
-      "ja": "すべてのモデルの選択を解除しますか? (必須の無料モデルを除いて)選択されたすべてのモデルが削除されます。",
-      "ko": "모든 모델의 선택을 해제하시겠습니까? 이렇게 하면 필수 무료 모델을 제외한 모든 선택된 모델이 목록에서 제거됩니다.",
-      "ms": "Anda pasti mahu nyahpilih semua model? Ini akan membuang semua model yang dipilih daripada senarai (kecuali model percuma yang diperlukan).",
-      "pt": "Tem certeza de que deseja desmarcar todos os modelos? Isso removerá todos os modelos selecionados da lista (exceto o modelo gratuito obrigatório).",
-      "pl": "Czy na pewno chcesz odznaczyć wszystkie modele? Spowoduje to usunięcie wszystkich wybranych modeli z listy (z wyjątkiem wymaganego darmowego modelu).",
-      "jv": "Apa sampeyan yakin arep batal pilih kabeh model? Iki bakal ngilangi kabeh model sing dipilih saka daftar (kajaba model gratis sing dibutuhake).",
-      "fa": "آیا مطمئن هستید که می‌خواهید همه مدل‌ها را لغو کنید؟ این کار همه مدل‌های انتخاب شده را از لیست حذف می‌کند (به جز مدل رایگان مورد نیاز).",
-      "ro": "Sunteți sigur că doriți să deselectați toate modelele? Acest lucru va elimina toate modelele selectate din listă (cu excepția modelului gratuit necesar).",
-      "ru": "Вы уверены, что хотите отменить выбор всех моделей? Это удалит все выбранные модели из списка (кроме обязательной бесплатной модели).",
-      "sk": "Naozaj chcete odznačiť všetky modely? Tým odstránite všetky vybrané modely zo zoznamu (okrem požadovaného bezplatného modelu).",
-      "pa": "ਕੀ ਤੁਸੀਂ ਯਕੀਨੀ ਹੋ ਕਿ ਤੁਸੀਂ ਸਾਰੇ ਮਾਡਲ ਅਣ-ਚੁਣੇ ਕਰਨਾ ਚਾਹੁੰਦੇ ਹੋ? ਇਸ ਨਾਲ ਸੂਚੀ ਵਿੱਚੋਂ ਸਾਰੇ ਚੁਣੇ ਗਏ ਮਾਡਲ ਹਟਾ ਦਿੱਤੇ ਜਾਣਗੇ (ਮੁਫ਼ਤ ਮਾਡਲ ਨੂੰ ਛੱਡ ਕੇ)।",
-      "sv": "Är du säker på att du vill avmarkera alla modeller? Detta kommer att ta bort alla valda modeller från listan (förutom den obligatoriska gratismodellen).",
-      "es": "¿Está seguro de que desea deseleccionar todos los modelos? Esto eliminará todos los modelos seleccionados de la lista (excepto el modelo gratuito requerido).",
-      "sw": "Je, una uhakika unataka kuondoa uteuzi wa modeli zote? Hii itaondoa modeli zote zilizochaguliwa kutoka kwenye orodha (isipokuwa modeli bure inayohitajika).",
-      "te": "మీరు నిజంగా అన్ని మోడళ్ళను డీసెలెక్ట్ చేయాలనుకుంటున్నారా? ఇది జాబితా నుండి ఎంచుకున్న అన్ని మోడళ్ళను తీసివేస్తుంది (ఉచిత మోడల్ తప్ప).",
-      "vi": "Bạn có chắc muốn bỏ chọn tất cả mô hình? Điều này sẽ xóa tất cả các mô hình đã chọn khỏi danh sách (trừ mô hình miễn phí bắt buộc).",
-      "tr": "Tüm modellerin seçimini kaldırmak istediğinizden emin misiniz? Bu, gerekli ücretsiz model dışındaki tüm seçili modelleri listeden kaldıracaktır.",
-      "th": "คุณแน่ใจหรือไม่ที่จะยกเลิกการเลือกโมเดลทั้งหมด? การดำเนินการนี้จะลบโมเดลที่เลือกทั้งหมดออกจากรายการ (ยกเว้นโมเดลฟรีที่จำเป็น)",
-      "uk": "Ви впевнені, що хочете скасувати вибір усіх моделей? Це видалить усі вибрані моделі зі списку (крім обов'язкової безкоштовної моделі).",
-      "zh-Hans": "您确定要取消选择所有模型吗？这将从列表中移除所有已选模型（必需的免费模型除外）。",
-      "zh-Hant": "您確定要取消選取所有模型嗎？這將會從清單中移除所有已選取的模型（除了必要的免費模型）。",
-      "pa-PK": "کی تُسی واقعی سارے ماڈل ہٹانا چاہندے او؟ ایہ چُنے گئے سارے ماڈل فہرست وِچوں ہٹا دَوے گا (مطلوبہ مفت ماڈل توں علاوہ)۔",
-      "hi-Latn": "Kya aap sabhi models ko deselect karna chahte hain? Isse soochi se sabhi chune hue models (avashyak free model ko chhodkar) hat jayenge."
+      "nl": "Weet je zeker dat je alle modellen wilt deselecteren? Hiermee worden alle geselecteerde modellen uit de lijst verwijderd.",
+      "zh-Hans": "确定要取消选择所有模型吗？这会从列表中移除所有已选模型。",
+      "fr": "Voulez-vous vraiment désélectionner tous les modèles ? Cela supprimera tous les modèles sélectionnés de la liste.",
+      "ar": "هل أنت متأكد أنك تريد إلغاء تحديد كل النماذج؟ سيؤدي ذلك إلى إزالة جميع النماذج المحددة من القائمة.",
+      "de": "Möchten Sie wirklich die Auswahl aller Modelle aufheben? Dadurch werden alle ausgewählten Modelle aus der Liste entfernt.",
+      "cs": "Opravdu chcete zrušit výběr všech modelů? Tím se všechny vybrané modely odstraní ze seznamu.",
+      "el": "Είστε σίγουροι ότι θέλετε να καταργήσετε την επιλογή όλων των μοντέλων; Αυτό θα αφαιρέσει όλα τα επιλεγμένα μοντέλα από τη λίστα.",
+      "zh-Hant": "確定要取消選取所有模型嗎？這將會從清單中移除所有已選取的模型。",
+      "pt-BR": "Tem certeza de que deseja desmarcar todos os modelos? Isso removerá todos os modelos selecionados da lista.",
+      "it": "Deselezionare tutti i modelli? Questa azione rimuoverà dall'elenco tutti i modelli selezionati.",
+      "ko": "모든 모델의 선택을 취소하시겠습니까? 선택한 모든 모델이 목록에서 제거됩니다.",
+      "hi": "क्या आप वाकई सभी मॉडलों का चयन रद्द करना चाहते हैं? इससे सभी चुने हुए मॉडल सूची से हटा दिए जाएंगे।",
+      "fa": "آیا از لغو انتخاب همه مدل‌ها مطمئن هستید؟ با این کار همه مدل‌های انتخاب‌شده از فهرست حذف می‌شوند.",
+      "hu": "Biztosan törli az összes modell kijelölését? Ez eltávolítja az összes kijelölt modellt a listából.",
+      "ja": "すべてのモデルの選択を解除してもよろしいですか？リストから選択したすべてのモデルが削除されます。",
+      "pl": "Czy na pewno chcesz odznaczyć wszystkie modele? Spowoduje to usunięcie wszystkich wybranych modeli z listy.",
+      "es": "¿Seguro que quieres deseleccionar todos los modelos? Esto eliminará todos los modelos seleccionados de la lista.",
+      "ru": "Вы уверены, что хотите отменить выбор всех моделей? Это удалит все выбранные модели из списка.",
+      "sv": "Är du säker på att du vill avmarkera alla modeller? Detta tar bort alla valda modeller från listan.",
+      "uk": "Ви впевнені, що хочете скасувати вибір усіх моделей? Це видалить усі вибрані моделі зі списку.",
+      "tr": "Tüm modellerin seçimini kaldırmak istediğinizden emin misiniz? Bu işlem seçili tüm modelleri listeden kaldırır.",
+      "ro": "Ești sigur că vrei să anulezi selecția tuturor modelelor? Aceasta va elimina toate modelele selectate din listă.",
+      "sk": "Naozaj chcete zrušiť výber všetkých modelov? Týmto sa odstránia všetky vybrané modely zo zoznamu.",
+      "th": "คุณต้องการยกเลิกการเลือกโมเดลทั้งหมดใช่หรือไม่? การดำเนินการนี้จะนำโมเดลที่เลือกทั้งหมดออกจากรายการ",
+      "vi": "Bạn có chắc chắn muốn bỏ chọn tất cả mô hình không? Điều này sẽ xóa tất cả mô hình đã chọn khỏi danh sách."
     },
     "models": {
-      "pt-BR": "anthropic/claude-3-haiku",
-      "ar": "anthropic/claude-3-haiku",
-      "ca": "anthropic/claude-3-haiku",
-      "bn": "anthropic/claude-3-haiku",
-      "zh-TW": "anthropic/claude-3-haiku",
-      "hr": "anthropic/claude-3-haiku",
-      "cs": "anthropic/claude-3-haiku",
-      "zh-CN": "anthropic/claude-3-haiku",
-      "en-US": "anthropic/claude-3-haiku",
-      "nl": "anthropic/claude-3-haiku",
-      "fr": "anthropic/claude-3-haiku",
-      "tl": "anthropic/claude-3-haiku",
-      "hu": "anthropic/claude-3-haiku",
-      "de": "anthropic/claude-3-haiku",
-      "hi": "anthropic/claude-3-haiku",
-      "el": "anthropic/claude-3-haiku",
-      "it": "anthropic/claude-3-haiku",
-      "ja": "anthropic/claude-3-haiku",
-      "ko": "anthropic/claude-3-haiku",
-      "ms": "anthropic/claude-3-haiku",
-      "pt": "anthropic/claude-3-haiku",
-      "pl": "anthropic/claude-3-haiku",
-      "jv": "anthropic/claude-3-haiku",
-      "fa": "anthropic/claude-3-haiku",
-      "ro": "anthropic/claude-3-haiku",
-      "ru": "anthropic/claude-3-haiku",
-      "sk": "anthropic/claude-3-haiku",
-      "pa": "anthropic/claude-3-haiku",
-      "sv": "anthropic/claude-3-haiku",
-      "es": "anthropic/claude-3-haiku",
-      "sw": "anthropic/claude-3-haiku",
-      "te": "anthropic/claude-3-haiku",
-      "vi": "anthropic/claude-3-haiku",
-      "tr": "anthropic/claude-3-haiku",
-      "th": "anthropic/claude-3-haiku",
-      "uk": "anthropic/claude-3-haiku",
-      "zh-Hans": "google/gemini-2.5-flash-lite",
-      "zh-Hant": "google/gemini-2.5-flash-lite",
-      "pa-PK": "google/gemini-2.5-flash",
-      "hi-Latn": "google/gemini-2.5-flash"
+      "nl": "~anthropic/claude-sonnet-latest",
+      "zh-Hans": "z-ai/glm-5.2",
+      "fr": "~anthropic/claude-sonnet-latest",
+      "ar": "~anthropic/claude-sonnet-latest",
+      "de": "~anthropic/claude-sonnet-latest",
+      "cs": "~anthropic/claude-sonnet-latest",
+      "el": "~anthropic/claude-sonnet-latest",
+      "zh-Hant": "z-ai/glm-5.2",
+      "pt-BR": "~anthropic/claude-sonnet-latest",
+      "it": "~anthropic/claude-sonnet-latest",
+      "ko": "z-ai/glm-5.2",
+      "hi": "~anthropic/claude-sonnet-latest",
+      "fa": "~anthropic/claude-sonnet-latest",
+      "hu": "~anthropic/claude-sonnet-latest",
+      "ja": "z-ai/glm-5.2",
+      "pl": "~anthropic/claude-sonnet-latest",
+      "es": "~anthropic/claude-sonnet-latest",
+      "ru": "~anthropic/claude-sonnet-latest",
+      "sv": "~anthropic/claude-sonnet-latest",
+      "uk": "~anthropic/claude-sonnet-latest",
+      "tr": "~anthropic/claude-sonnet-latest",
+      "ro": "~anthropic/claude-sonnet-latest",
+      "sk": "~anthropic/claude-sonnet-latest",
+      "th": "~anthropic/claude-sonnet-latest",
+      "vi": "~anthropic/claude-sonnet-latest"
     },
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 710
+        "line": 707
       }
     ]
   },
@@ -53755,96 +53699,129 @@
       }
     ]
   },
-  "d6774a08": {
-    "source": "Model unavailable (404/400). The model has been removed from your list and \"{{freeModelId}}\" has been selected.",
+  "9d2a563e": {
+    "source": "Model unavailable (404/400). The model has been removed from your list and \"{{nextModelId}}\" has been selected.",
     "translated": {
-      "pt-BR": "Modelo indisponível (404/400). O modelo foi removido da sua lista e \"{{freeModelId}}\" foi selecionado.",
-      "ca": "Model no disponible (404/400). S'ha eliminat el model de la teva llista i s'ha seleccionat \"{{freeModelId}}\".",
-      "ar": "النموذج غير متوفر (404/400). تم إزالة النموذج من قائمتك وتم تحديد \"{{freeModelId}}\".",
-      "bn": "মডেল অনুপলব্ধ (404/400)। মডেলটি আপনার তালিকা থেকে সরিয়ে দেওয়া হয়েছে এবং \"{{freeModelId}}\" নির্বাচিত হয়েছে।",
-      "zh-TW": "模型不可用(404/400)。該模型已從您的清單中移除,並已選擇「{{freeModelId}}」。",
-      "zh-CN": "模型不可用 (404/400)。该模型已从您的列表中移除，并已选择“{{freeModelId}}”。",
-      "cs": "Model není k dispozici (404/400). Model byl odebrán ze seznamu a byl vybrán \"{{freeModelId}}\".",
-      "hr": "Model nije dostupan (404/400). Model je uklonjen s vašeg popisa i odabran je \"{{freeModelId}}\".",
-      "en-US": "Model unavailable (404/400). The model has been removed from your list and \"{{freeModelId}}\" has been selected.",
-      "fr": "Modèle indisponible (404/400). Le modèle a été supprimé de votre liste et \"{{freeModelId}}\" a été sélectionné.",
-      "tl": "Hindi available ang model (404/400). Tinanggal ang model mula sa iyong listahan at napili ang \"{{freeModelId}}\".",
-      "nl": "Model niet beschikbaar (404/400). Het model is uit je lijst verwijderd en \"{{freeModelId}}\" is geselecteerd.",
-      "hu": "Modell nem elérhető (404/400). A modell el lett távolítva a listáról, és a \"{{freeModelId}}\" lett kiválasztva.",
-      "de": "Modell nicht verfügbar (404/400). Das Modell wurde von Ihrer Liste entfernt und \"{{freeModelId}}\" wurde ausgewählt.",
-      "hi": "मॉडल अनुपलब्ध (404/400)। मॉडल को आपकी सूची से हटा दिया गया है और \"{{freeModelId}}\" का चयन किया गया है।",
-      "el": "Μη διαθέσιμο μοντέλο (404/400). Το μοντέλο έχει αφαιρεθεί από τη λίστα σας και έχει επιλεγεί το \"{{freeModelId}}\".",
-      "ms": "Model tidak tersedia (404/400). Model telah dialih keluar dari senarai anda dan \"{{freeModelId}}\" telah dipilih.",
-      "ja": "モデルが利用できません (404/400)。このモデルはリストから削除され、「{{freeModelId}}」が選択されました。",
-      "ko": "모델을 사용할 수 없습니다(404/400). 모델이 목록에서 제거되었으며 \"{{freeModelId}}\"가 선택되었습니다.",
-      "it": "Modello non disponibile (404/400). Il modello è stato rimosso dall'elenco e \"{{freeModelId}}\" è stato selezionato.",
-      "pt": "Modelo indisponível (404/400). O modelo foi removido da sua lista e \"{{freeModelId}}\" foi selecionado.",
-      "pl": "Model niedostępny (404/400). Model został usunięty z Twojej listy i wybrano \"{{freeModelId}}\".",
-      "fa": "مدل در دسترس نیست (404/400). مدل از لیست شما حذف شده و \"{{freeModelId}}\" انتخاب شده است.",
-      "pa": "ਮਾਡਲ ਅਣਉਪਲਬਧ ਹੈ (404/400)। ਮਾਡਲ ਨੂੰ ਤੁਹਾਡੀ ਸੂਚੀ ਤੋਂ ਹਟਾ ਦਿੱਤਾ ਗਿਆ ਹੈ ਅਤੇ \"{{freeModelId}}\" ਨੂੰ ਚੁਣਿਆ ਗਿਆ ਹੈ।",
-      "es": "Modelo no disponible (404/400). El modelo se ha eliminado de tu lista y se ha seleccionado \"{{freeModelId}}\".",
-      "ru": "Модель недоступна (404/400). Модель была удалена из вашего списка, и была выбрана модель \"{{freeModelId}}\".",
-      "ro": "Model indisponibil (404/400). Modelul a fost eliminat din lista ta și a fost selectat \"{{freeModelId}}\".",
-      "sk": "Model nie je k dispozícii (404/400). Model bol odstránený zo zoznamu a bol vybraný \"{{freeModelId}}\".",
-      "sv": "Modell ej tillgänglig (404/400). Modellen har tagits bort från din lista och \"{{freeModelId}}\" har valts.",
-      "sw": "Modeli haipatikani (404/400). Modeli imetolewa kwenye orodha yako na \"{{freeModelId}}\" imechaguliwa.",
-      "th": "โมเดลไม่พร้อมใช้งาน (404/400) โมเดลถูกลบออกจากรายการของคุณ และ \"{{freeModelId}}\" ถูกเลือก",
-      "te": "మోడల్ అందుబాటులో లేదు (404/400). ఈ మోడల్ మీ జాబితా నుండి తీసివేయబడింది మరియు \"{{freeModelId}}\" ఎంచుకోబడింది.",
-      "vi": "Mô hình không khả dụng (404/400). Mô hình đã bị loại khỏi danh sách của bạn và \"{{freeModelId}}\" đã được chọn.",
-      "tr": "Model kullanılamıyor (404/400). Model listenizden kaldırıldı ve \"{{freeModelId}}\" seçildi.",
-      "uk": "Модель недоступна (404/400). Модель була видалена зі списку, і вибрано \"{{freeModelId}}\".",
-      "jv": "Model ora kasedyakake (404/400). Model iki wis dibusak saka daftar lan \"{{freeModelId}}\" wis dipilih.",
-      "zh-Hans": "模型不可用 (404/400)。模型已从您的列表中移除，并已选择“{{freeModelId}}”。",
-      "zh-Hant": "模型無法使用 (404/400)。模型已從您的清單中移除，並已選取「{{freeModelId}}」。",
-      "pa-PK": "ماڈل دستیاب نہیں (404/400)۔ ماڈل نوں تہاڈی لسٹ وِچوں ہٹا دِتا گیا اے تے \"{{freeModelId}}\" نوں چُنیا گیا اے۔",
-      "hi-Latn": "Model anupalabdh (404/400). Model ko aapki soochi se hata diya gaya hai aur \"{{freeModelId}}\" chuna gaya hai."
+      "nl": "Model niet beschikbaar (404/400). Het model is uit je lijst verwijderd en \"{{nextModelId}}\" is geselecteerd.",
+      "zh-Hans": "模型不可用 (404/400)。该模型已从列表中移除，并已选择“{{nextModelId}}”。",
+      "fr": "Modèle indisponible (404/400). Le modèle a été supprimé de votre liste et « {{nextModelId}} » a été sélectionné.",
+      "ar": "النموذج غير متاح (404/400). تمت إزالة النموذج من قائمتك وتم تحديد \"{{nextModelId}}\".",
+      "de": "Modell nicht verfügbar (404/400). Das Modell wurde aus Ihrer Liste entfernt und \"{{nextModelId}}\" wurde ausgewählt.",
+      "cs": "Model není dostupný (404/400). Model byl odstraněn ze seznamu a byl vybrán model „{{nextModelId}}“.",
+      "el": "Το μοντέλο δεν είναι διαθέσιμο (404/400). Το μοντέλο καταργήθηκε από τη λίστα σας και επιλέχθηκε το \"{{nextModelId}}\".",
+      "zh-Hant": "模型不可用 (404/400)。此模型已從您的清單中移除，並已選取「{{nextModelId}}」。",
+      "pt-BR": "Modelo indisponível (404/400). O modelo foi removido da sua lista e \"{{nextModelId}}\" foi selecionado.",
+      "it": "Modello non disponibile (404/400). Il modello è stato rimosso dall'elenco e \"{{nextModelId}}\" è stato selezionato.",
+      "ko": "모델을 사용할 수 없습니다(404/400). 이 모델이 목록에서 제거되었으며 \"{{nextModelId}}\"가 선택되었습니다.",
+      "hi": "मॉडल उपलब्ध नहीं है (404/400)। मॉडल को आपकी सूची से हटा दिया गया है और \"{{nextModelId}}\" को चुन लिया गया है।",
+      "fa": "مدل در دسترس نیست (404/400). مدل از فهرست شما حذف شد و \"{{nextModelId}}\" انتخاب شد.",
+      "hu": "A modell nem érhető el (404/400). A modell eltávolítva a listájából, és a „{{nextModelId}}” lett kiválasztva.",
+      "ja": "モデルは利用できません (404/400)。このモデルはリストから削除され、「{{nextModelId}}」が選択されました。",
+      "pl": "Model niedostępny (404/400). Model został usunięty z listy, a \"{{nextModelId}}\" został wybrany.",
+      "es": "Modelo no disponible (404/400). El modelo se ha eliminado de tu lista y se ha seleccionado \"{{nextModelId}}\".",
+      "ru": "Модель недоступна (404/400). Модель удалена из списка, выбрана модель «{{nextModelId}}».",
+      "sv": "Modellen är inte tillgänglig (404/400). Modellen har tagits bort från din lista och \"{{nextModelId}}\" har valts.",
+      "uk": "Модель недоступна (404/400). Модель видалено зі списку, вибрано \"{{nextModelId}}\".",
+      "tr": "Model kullanılamıyor (404/400). Model listenizden kaldırıldı ve \"{{nextModelId}}\" seçildi.",
+      "ro": "Model indisponibil (404/400). Modelul a fost eliminat din listă și \"{{nextModelId}}\" a fost selectat.",
+      "sk": "Model je nedostupný (404/400). Model bol odstránený zo zoznamu a bol vybraný model „{{nextModelId}}“.",
+      "th": "ไม่สามารถใช้งานโมเดลนี้ได้ (404/400) โมเดลนี้ถูกนำออกจากรายการของคุณแล้ว และเลือก \"{{nextModelId}}\" ให้โดยอัตโนมัติ",
+      "vi": "Mô hình không khả dụng (404/400). Mô hình đã bị xóa khỏi danh sách của bạn và \"{{nextModelId}}\" đã được chọn."
     },
     "models": {
-      "pt-BR": "anthropic/claude-3-haiku",
-      "ca": "anthropic/claude-3-haiku",
-      "ar": "anthropic/claude-3-haiku",
-      "bn": "anthropic/claude-3-haiku",
-      "zh-TW": "anthropic/claude-3-haiku",
-      "zh-CN": "qwen/qwen3-235b-a22b-2507",
-      "cs": "anthropic/claude-3-haiku",
-      "hr": "anthropic/claude-3-haiku",
-      "en-US": "anthropic/claude-3-haiku",
-      "fr": "anthropic/claude-3-haiku",
-      "tl": "anthropic/claude-3-haiku",
-      "nl": "anthropic/claude-3-haiku",
-      "hu": "anthropic/claude-3-haiku",
-      "de": "anthropic/claude-3-haiku",
-      "hi": "anthropic/claude-3-haiku",
-      "el": "anthropic/claude-3-haiku",
-      "ms": "anthropic/claude-3-haiku",
-      "ja": "anthropic/claude-3-haiku",
-      "ko": "anthropic/claude-3-haiku",
-      "it": "anthropic/claude-3-haiku",
-      "pt": "anthropic/claude-3-haiku",
-      "pl": "anthropic/claude-3-haiku",
-      "fa": "anthropic/claude-3-haiku",
-      "pa": "anthropic/claude-3-haiku",
-      "es": "anthropic/claude-3-haiku",
-      "ru": "anthropic/claude-3-haiku",
-      "ro": "anthropic/claude-3-haiku",
-      "sk": "anthropic/claude-3-haiku",
-      "sv": "anthropic/claude-3-haiku",
-      "sw": "anthropic/claude-3-haiku",
-      "th": "anthropic/claude-3-haiku",
-      "te": "anthropic/claude-3-haiku",
-      "vi": "anthropic/claude-3-haiku",
-      "tr": "anthropic/claude-3-haiku",
-      "uk": "anthropic/claude-3-haiku",
-      "jv": "anthropic/claude-3-haiku",
-      "zh-Hans": "google/gemini-2.5-flash-lite",
-      "zh-Hant": "google/gemini-2.5-flash-lite",
-      "pa-PK": "google/gemini-2.5-flash",
-      "hi-Latn": "google/gemini-2.5-flash"
+      "nl": "~anthropic/claude-sonnet-latest",
+      "zh-Hans": "z-ai/glm-5.2",
+      "fr": "~anthropic/claude-sonnet-latest",
+      "ar": "~anthropic/claude-sonnet-latest",
+      "de": "~anthropic/claude-sonnet-latest",
+      "cs": "~anthropic/claude-sonnet-latest",
+      "el": "~anthropic/claude-sonnet-latest",
+      "zh-Hant": "z-ai/glm-5.2",
+      "pt-BR": "~anthropic/claude-sonnet-latest",
+      "it": "~anthropic/claude-sonnet-latest",
+      "ko": "z-ai/glm-5.2",
+      "hi": "~anthropic/claude-sonnet-latest",
+      "fa": "~anthropic/claude-sonnet-latest",
+      "hu": "~anthropic/claude-sonnet-latest",
+      "ja": "z-ai/glm-5.2",
+      "pl": "~anthropic/claude-sonnet-latest",
+      "es": "~anthropic/claude-sonnet-latest",
+      "ru": "~anthropic/claude-sonnet-latest",
+      "sv": "~anthropic/claude-sonnet-latest",
+      "uk": "~anthropic/claude-sonnet-latest",
+      "tr": "~anthropic/claude-sonnet-latest",
+      "ro": "~anthropic/claude-sonnet-latest",
+      "sk": "~anthropic/claude-sonnet-latest",
+      "th": "~anthropic/claude-sonnet-latest",
+      "vi": "~anthropic/claude-sonnet-latest"
     },
     "locations": [
       {
         "file": "src/renderer/hooks/useModelManagement.ts",
-        "line": 34
+        "line": 36
+      }
+    ]
+  },
+  "28f4185c": {
+    "source": "Model unavailable (404/400). The model has been removed from your list. Select another model in Settings → Models.",
+    "translated": {
+      "nl": "Model niet beschikbaar (404/400). Het model is uit je lijst verwijderd. Selecteer een ander model bij Instellingen → Modellen.",
+      "zh-Hans": "模型不可用 (404/400)。该模型已从列表中移除。请在“设置 → 模型”中选择其他模型。",
+      "fr": "Modèle indisponible (404/400). Le modèle a été supprimé de votre liste. Sélectionnez un autre modèle dans Paramètres → Modèles.",
+      "ar": "النموذج غير متاح (404/400). تمت إزالة النموذج من قائمتك. حدد نموذجًا آخر من الإعدادات ← النماذج.",
+      "de": "Modell nicht verfügbar (404/400). Das Modell wurde aus Ihrer Liste entfernt. Wählen Sie ein anderes Modell unter Einstellungen → Modelle.",
+      "cs": "Model není dostupný (404/400). Model byl odstraněn ze seznamu. Vyberte jiný model v sekci Nastavení → Modely.",
+      "el": "Το μοντέλο δεν είναι διαθέσιμο (404/400). Το μοντέλο καταργήθηκε από τη λίστα σας. Επιλέξτε άλλο μοντέλο από τις Ρυθμίσεις → Μοντέλα.",
+      "zh-Hant": "模型不可用 (404/400)。此模型已從您的清單中移除。請在「設定 → 模型」中選取其他模型。",
+      "pt-BR": "Modelo indisponível (404/400). O modelo foi removido da sua lista. Selecione outro modelo em Configurações → Modelos.",
+      "it": "Modello non disponibile (404/400). Il modello è stato rimosso dall'elenco. Seleziona un altro modello in Impostazioni → Modelli.",
+      "ko": "모델을 사용할 수 없습니다(404/400). 이 모델이 목록에서 제거되었습니다. 설정 → 모델에서 다른 모델을 선택하세요.",
+      "hi": "मॉडल उपलब्ध नहीं है (404/400)। मॉडल को आपकी सूची से हटा दिया गया है। सेटिंग्स → मॉडल में जाकर दूसरा मॉडल चुनें।",
+      "fa": "مدل در دسترس نیست (404/400). مدل از فهرست شما حذف شد. مدل دیگری را در تنظیمات ← مدل‌ها انتخاب کنید.",
+      "hu": "A modell nem érhető el (404/400). A modell eltávolítva a listájából. Válasszon másik modellt a Beállítások → Modellek oldalon.",
+      "ja": "モデルは利用できません (404/400)。このモデルはリストから削除されました。設定 → モデルで別のモデルを選択してください。",
+      "pl": "Model niedostępny (404/400). Model został usunięty z listy. Wybierz inny model w Ustawienia → Modele.",
+      "es": "Modelo no disponible (404/400). El modelo se ha eliminado de tu lista. Selecciona otro modelo en Configuración → Modelos.",
+      "ru": "Модель недоступна (404/400). Модель удалена из списка. Выберите другую модель в разделе Настройки → Модели.",
+      "sv": "Modellen är inte tillgänglig (404/400). Modellen har tagits bort från din lista. Välj en annan modell i Inställningar → Modeller.",
+      "uk": "Модель недоступна (404/400). Модель видалено зі списку. Виберіть іншу модель у Налаштування → Моделі.",
+      "tr": "Model kullanılamıyor (404/400). Model listenizden kaldırıldı. Ayarlar → Modeller'den başka bir model seçin.",
+      "ro": "Model indisponibil (404/400). Modelul a fost eliminat din listă. Selectează alt model în Setări → Modele.",
+      "sk": "Model je nedostupný (404/400). Model bol odstránený zo zoznamu. Vyberte iný model v Nastavenia → Modely.",
+      "th": "ไม่สามารถใช้งานโมเดลนี้ได้ (404/400) โมเดลนี้ถูกนำออกจากรายการของคุณแล้ว กรุณาเลือกโมเดลอื่นที่ การตั้งค่า → โมเดล",
+      "vi": "Mô hình không khả dụng (404/400). Mô hình đã bị xóa khỏi danh sách của bạn. Hãy chọn mô hình khác trong Cài đặt → Mô hình."
+    },
+    "models": {
+      "nl": "~anthropic/claude-sonnet-latest",
+      "zh-Hans": "z-ai/glm-5.2",
+      "fr": "~anthropic/claude-sonnet-latest",
+      "ar": "~anthropic/claude-sonnet-latest",
+      "de": "~anthropic/claude-sonnet-latest",
+      "cs": "~anthropic/claude-sonnet-latest",
+      "el": "~anthropic/claude-sonnet-latest",
+      "zh-Hant": "z-ai/glm-5.2",
+      "pt-BR": "~anthropic/claude-sonnet-latest",
+      "it": "~anthropic/claude-sonnet-latest",
+      "ko": "z-ai/glm-5.2",
+      "hi": "~anthropic/claude-sonnet-latest",
+      "fa": "~anthropic/claude-sonnet-latest",
+      "hu": "~anthropic/claude-sonnet-latest",
+      "ja": "z-ai/glm-5.2",
+      "pl": "~anthropic/claude-sonnet-latest",
+      "es": "~anthropic/claude-sonnet-latest",
+      "ru": "~anthropic/claude-sonnet-latest",
+      "sv": "~anthropic/claude-sonnet-latest",
+      "uk": "~anthropic/claude-sonnet-latest",
+      "tr": "~anthropic/claude-sonnet-latest",
+      "ro": "~anthropic/claude-sonnet-latest",
+      "sk": "~anthropic/claude-sonnet-latest",
+      "th": "~anthropic/claude-sonnet-latest",
+      "vi": "~anthropic/claude-sonnet-latest"
+    },
+    "locations": [
+      {
+        "file": "src/renderer/hooks/useModelManagement.ts",
+        "line": 44
       }
     ]
   },

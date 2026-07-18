@@ -11,6 +11,10 @@ Use conventional types (Added, Changed, Fixed, etc.) and short descriptions.
 
 ## Unreleased
 
+- **Fixed**: Website docs markdown links and images honour Astro `base` (`/transrewrt`) via a Sätteri hast plugin (Astro 7); `/docs/…` links also keep the current Starlight locale.
+- **Changed**: Rewrite tab "Changes" (diff) control is available for every rewrite mode, not only Check Spelling & Grammar.
+- **Fixed**: OpenRouter free model is optional in the selected models list — header removal stays in sync with Settings → Models, and the free model is no longer re-forced as selected.
+- **Changed**: Selected models may be empty; removing the last header model opens Settings → Models. Unavailable-model fallback selects the next model in the list instead of forcing free.
 - **Fixed**: Release workflow deploys the website by dispatching `website-pages.yml` on `main` instead of `workflow_call` on the release tag — the `github-pages` environment only allows deployments from `main`, so tag runs failed with “Tag vX.Y.Z is not allowed to deploy”.
 
 ## [1.6.1] - 2026-07-17

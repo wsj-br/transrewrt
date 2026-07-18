@@ -3,12 +3,15 @@ import starlight from '@astrojs/starlight';
 import react from '@astrojs/react';
 import tailwindcss from '@tailwindcss/vite';
 import { starlightLocales } from './src/i18n/locales.mjs';
+import { starlightBaseUrlsIntegration } from './src/integrations/starlight-base-urls.mjs';
+
+const siteBase = '/transrewrt';
 
 // https://astro.build/config
 export default defineConfig({
   site: 'https://wsj-br.github.io',
   // Project Pages URL is https://wsj-br.github.io/transrewrt/ — base must match the repo name.
-  base: '/transrewrt',
+  base: siteBase,
   integrations: [
     starlight({
       title: 'Transrewrt Docs',
@@ -56,6 +59,8 @@ export default defineConfig({
       ],
       customCss: ['./src/styles/starlight.css'],
     }),
+    // After Starlight: inject Sätteri hast plugin for absolute /docs and /images URLs.
+    starlightBaseUrlsIntegration(siteBase),
     react(),
   ],
   vite: {

@@ -71,7 +71,8 @@ const ModelSelector = ({
   const { t, i18n } = useTranslation();
   const isRtl = getTextDirection(i18n.language) === "rtl";
   const [showRemoveConfirm, setShowRemoveConfirm] = useState(false);
-  const canRemove = models.length > 1 && onRemoveModel && currentModel;
+  const canRemove = Boolean(models.length > 0 && onRemoveModel && currentModel);
+  const isRemovingLast = models.length === 1;
 
   const handleConfirmRemove = () => {
     setShowRemoveConfirm(false);
@@ -156,13 +157,10 @@ const ModelSelector = ({
       {onRemoveModel && (
         <button
           type="button"
-          className={cn(
-            "flex shrink-0 items-center p-1 rounded text-muted-foreground hover:text-foreground hover:bg-accent transition-colors",
-            !canRemove && "opacity-40 cursor-not-allowed pointer-events-none"
-          )}
+          className="flex shrink-0 items-center p-1 rounded text-muted-foreground hover:text-foreground hover:bg-accent transition-colors"
           onClick={() => canRemove && setShowRemoveConfirm(true)}
           disabled={!canRemove}
-          title={canRemove ? t("Remove this model from your list") : t("At least one model must remain")}
+          title={t("Remove this model from your list")}
           aria-label={t("Remove current model from list")}
         >
           <Trash2 size={12} />
@@ -171,7 +169,15 @@ const ModelSelector = ({
       {showRemoveConfirm && (
         <ConfirmModal
           title={t("Remove model")}
-          message={t("Remove this model from your list?\n\nThe next model in the list will be selected.")}
+          message={
+            isRemovingLast
+              ? t(
+                  "Remove this model from your list?\n\nYou will be taken to Settings → Models to select models.",
+                )
+              : t(
+                  "Remove this model from your list?\n\nThe next model in the list will be selected.",
+                )
+          }
           confirmLabel={t("Remove")}
           cancelLabel={t("Cancel")}
           onConfirm={handleConfirmRemove}

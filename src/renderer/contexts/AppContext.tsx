@@ -1608,6 +1608,18 @@ export const AppProvider = ({ children }) => {
       if (loadedModels && loadedModels.length > 0) {
         const loadedModelIds = new Set(loadedModels.map(m => m.id));
 
+        // Keep free route model in the catalog (not necessarily selected)
+        if (!loadedModelIds.has(FREE_MODEL_ID)) {
+          console.log(`[fetchModels] Adding special model "${FREE_MODEL_ID}" to the model list`);
+          loadedModels.push({
+            id: FREE_MODEL_ID,
+            name: "OpenRouter Free",
+            top_provider: "openrouter",
+            pricing: { prompt: 0, completion: 0 },
+          });
+          loadedModelIds.add(FREE_MODEL_ID);
+        }
+
         // Get current selections
         const currentSelected = (configManager.get("available_models") || []) as string[];
         const selectedSet = new Set(currentSelected);
@@ -1623,27 +1635,11 @@ export const AppProvider = ({ children }) => {
               selectedSet.add(id);
             }
           });
-          // Save the updated selection
-          configManager.set("available_models", Array.from(selectedSet));
         }
-
-        // Always ensure free route model is available
-        if (!loadedModelIds.has(FREE_MODEL_ID)) {
-          console.log(`[fetchModels] Adding special model "${FREE_MODEL_ID}" to the model list`);
-          loadedModels.push({
-            id: FREE_MODEL_ID,
-            name: "OpenRouter Free",
-            top_provider: "openrouter",
-            pricing: { prompt: 0, completion: 0 },
-          });
-        }
-
-        // Ensure the free model id is always selected
-        selectedSet.add(FREE_MODEL_ID);
 
         setAllModels(loadedModels);
 
-        // Update available models with the synchronized selection (always includes free model)
+        // Update available models with the synchronized selection
         const validAvailableModels = Array.from(selectedSet);
         setAvailableModels(validAvailableModels);
         configManager.set("available_models", validAvailableModels);
@@ -1651,14 +1647,14 @@ export const AppProvider = ({ children }) => {
         // Update settings state to reflect the change
         setSettings(configManager.getAll());
 
-        // Also validate the last_used_model
+        // Also validate the last_used_model against the selected list
         const lastUsed = settings.last_used_model;
-        if (lastUsed && !loadedModelIds.has(lastUsed) && lastUsed !== FREE_MODEL_ID) {
-          console.warn(`[fetchModels] Last used model "${lastUsed}" is no longer available. Resetting to free model.`);
-          setSetting("last_used_model", FREE_MODEL_ID);
-        } else if (!lastUsed) {
-          // If no last_used_model set, default to free model
-          setSetting("last_used_model", FREE_MODEL_ID);
+        const selectedArr = validAvailableModels;
+        if (lastUsed && !selectedSet.has(lastUsed)) {
+          console.warn(`[fetchModels] Last used model "${lastUsed}" is no longer selected. Switching to next available.`);
+          setSetting("last_used_model", selectedArr[0] || "");
+        } else if (!lastUsed && selectedArr.length > 0) {
+          setSetting("last_used_model", selectedArr[0]);
         }
       }
 
