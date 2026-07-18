@@ -11465,11 +11465,11 @@
       },
       {
         "file": "src/renderer/components/workspace/RewriteWorkspace.tsx",
-        "line": 290
+        "line": 287
       },
       {
         "file": "src/renderer/components/workspace/RewriteWorkspace.tsx",
-        "line": 291
+        "line": 288
       },
       {
         "file": "src/renderer/components/workspace/TranslateStackPanels.tsx",
@@ -13271,7 +13271,7 @@
       },
       {
         "file": "src/renderer/components/workspace/RewriteWorkspace.tsx",
-        "line": 139
+        "line": 136
       },
       {
         "file": "src/renderer/components/workspace/TransformWorkspace.tsx",
@@ -13388,7 +13388,7 @@
       },
       {
         "file": "src/renderer/components/workspace/RewriteWorkspace.tsx",
-        "line": 191
+        "line": 188
       },
       {
         "file": "src/renderer/components/workspace/TransformWorkspace.tsx",
@@ -15360,7 +15360,7 @@
       },
       {
         "file": "src/renderer/components/workspace/RewriteWorkspace.tsx",
-        "line": 290
+        "line": 287
       },
       {
         "file": "src/renderer/components/workspace/TranslateStackPanels.tsx",
@@ -17313,7 +17313,7 @@
       },
       {
         "file": "src/renderer/components/workspace/RewriteWorkspace.tsx",
-        "line": 75
+        "line": 72
       }
     ]
   },
@@ -27472,11 +27472,11 @@
       },
       {
         "file": "src/renderer/components/workspace/RewriteWorkspace.tsx",
-        "line": 82
+        "line": 79
       },
       {
         "file": "src/renderer/components/workspace/RewriteWorkspace.tsx",
-        "line": 83
+        "line": 80
       },
       {
         "file": "src/renderer/components/workspace/TransformWorkspace.tsx",
@@ -27694,7 +27694,7 @@
       },
       {
         "file": "src/renderer/components/workspace/RewriteWorkspace.tsx",
-        "line": 82
+        "line": 79
       },
       {
         "file": "src/renderer/components/workspace/TransformWorkspace.tsx",
@@ -27803,7 +27803,7 @@
       },
       {
         "file": "src/renderer/components/workspace/RewriteWorkspace.tsx",
-        "line": 159
+        "line": 156
       },
       {
         "file": "src/renderer/components/workspace/TransformWorkspace.tsx",
@@ -27912,7 +27912,7 @@
       },
       {
         "file": "src/renderer/components/workspace/RewriteWorkspace.tsx",
-        "line": 229
+        "line": 226
       },
       {
         "file": "src/renderer/components/workspace/TransformWorkspace.tsx",
@@ -44802,11 +44802,11 @@
       },
       {
         "file": "src/renderer/components/workspace/RewriteWorkspace.tsx",
-        "line": 261
+        "line": 258
       },
       {
         "file": "src/renderer/components/workspace/RewriteWorkspace.tsx",
-        "line": 262
+        "line": 259
       },
       {
         "file": "src/renderer/components/workspace/TransformWorkspace.tsx",
@@ -45299,11 +45299,11 @@
       },
       {
         "file": "src/renderer/components/workspace/RewriteWorkspace.tsx",
-        "line": 166
+        "line": 163
       },
       {
         "file": "src/renderer/components/workspace/RewriteWorkspace.tsx",
-        "line": 167
+        "line": 164
       },
       {
         "file": "src/renderer/components/workspace/TransformWorkspace.tsx",
@@ -51141,7 +51141,7 @@
       },
       {
         "file": "src/renderer/components/workspace/RewriteWorkspace.tsx",
-        "line": 76
+        "line": 73
       }
     ]
   },
@@ -51335,7 +51335,7 @@
     "locations": [
       {
         "file": "src/renderer/components/workspace/RewriteWorkspace.tsx",
-        "line": 89
+        "line": 86
       }
     ]
   },
@@ -51428,7 +51428,7 @@
     "locations": [
       {
         "file": "src/renderer/components/workspace/RewriteWorkspace.tsx",
-        "line": 100
+        "line": 97
       },
       {
         "file": "src/renderer/components/workspace/TransformWorkspace.tsx",
@@ -51533,7 +51533,7 @@
     "locations": [
       {
         "file": "src/renderer/components/workspace/RewriteWorkspace.tsx",
-        "line": 142
+        "line": 139
       },
       {
         "file": "src/renderer/components/workspace/TranslateStackPanels.tsx",
@@ -51634,7 +51634,7 @@
     "locations": [
       {
         "file": "src/renderer/components/workspace/RewriteWorkspace.tsx",
-        "line": 156
+        "line": 153
       },
       {
         "file": "src/renderer/components/workspace/TransformWorkspace.tsx",
@@ -51739,7 +51739,7 @@
     "locations": [
       {
         "file": "src/renderer/components/workspace/RewriteWorkspace.tsx",
-        "line": 194
+        "line": 191
       },
       {
         "file": "src/renderer/components/workspace/TransformWorkspace.tsx",
@@ -51844,7 +51844,7 @@
     "locations": [
       {
         "file": "src/renderer/components/workspace/RewriteWorkspace.tsx",
-        "line": 226
+        "line": 223
       },
       {
         "file": "src/renderer/components/workspace/TransformWorkspace.tsx",
@@ -51949,7 +51949,7 @@
     "locations": [
       {
         "file": "src/renderer/components/workspace/RewriteWorkspace.tsx",
-        "line": 248
+        "line": 245
       }
     ]
   },
@@ -52042,7 +52042,7 @@
     "locations": [
       {
         "file": "src/renderer/components/workspace/RewriteWorkspace.tsx",
-        "line": 281
+        "line": 278
       },
       {
         "file": "src/renderer/components/workspace/TransformWorkspace.tsx",
@@ -52147,7 +52147,7 @@
     "locations": [
       {
         "file": "src/renderer/components/workspace/RewriteWorkspace.tsx",
-        "line": 290
+        "line": 287
       },
       {
         "file": "src/renderer/components/workspace/TranslateStackPanels.tsx",
