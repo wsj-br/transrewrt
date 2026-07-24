@@ -20,8 +20,10 @@ minimumReleaseAgeExclude:
   - ai-i18n-tools@1.6.1 || 1.7.1 || 1.8.2
   - "@ai-sdk/openai-compatible@3.0.10"
   - "@ai-sdk/provider-utils@5.0.10"
-  - "@ai-sdk/gateway@4.0.20"
-  - ai@7.0.28
+  - "@ai-sdk/gateway@4.0.20 || 4.0.28"
+  - ai@7.0.28 || 7.0.37
+  - webpack@5.109.0
+  - shell-quote@1.8.5
 
 # GHSA-64mm-vxmg-q3vj (http-proxy-middleware router host+path bypass) is fixed
 # upstream in 2.0.10, 3.0.6 and 4.1.0. webpack-dev-server@5 calls the v2
@@ -49,6 +51,7 @@ overrides:
   postcss: '>=8.5.10'
   js-yaml: ^4.2.0
   http-proxy-middleware@>=0.16.0 <2.0.10: ^2.0.10
+  shell-quote@<=1.8.4: ^1.8.5
 
 peerDependencyRules:
   allowedVersions:

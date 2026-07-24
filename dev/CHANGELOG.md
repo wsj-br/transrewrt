@@ -11,6 +11,7 @@ Use conventional types (Added, Changed, Fixed, etc.) and short descriptions.
 
 ## Unreleased
 
+- **Changed**: PowerShell upgrade/clean scripts aligned with Bash — restored `upgrade-dependencies.ps1` (doctor-based flow), added `upgrade-common.ps1`, updated `upgrade-tools.ps1` / `clean-workspace.ps1`; `release.ps1` post-release link matches `release.sh` (`…/actions`).
 - **Added**: Workspace header has a Help (?) control (rightmost, separated from layout toggle) linking to the docs.
 - **Added**: Workspace action bar shows a small app version link (bottom-right) to the GitHub Pages site.
 - **Added**: Model/preset picker menu can switch Easy ↔ Advanced mode (item above Open Settings).

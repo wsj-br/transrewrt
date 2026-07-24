@@ -15409,16 +15409,6 @@
       "th": "ช่วยเหลือ",
       "vi": "Trợ giúp"
     },
-    "locations": [
-      {
-        "file": "src/renderer/components/MainContent.tsx",
-        "line": 283
-      },
-      {
-        "file": "src/renderer/components/MainContent.tsx",
-        "line": 284
-      }
-    ],
     "models": {
       "ar": "~anthropic/claude-sonnet-latest",
       "nl": "~anthropic/claude-sonnet-latest",
@@ -15445,7 +15435,17 @@
       "sk": "~anthropic/claude-sonnet-latest",
       "th": "~anthropic/claude-sonnet-latest",
       "vi": "~anthropic/claude-sonnet-latest"
-    }
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/MainContent.tsx",
+        "line": 283
+      },
+      {
+        "file": "src/renderer/components/MainContent.tsx",
+        "line": 284
+      }
+    ]
   },
   "3bfd85ce": {
     "source": "Switch to Advanced mode",
@@ -15476,24 +15476,6 @@
       "th": "สลับไปที่โหมดขั้นสูง",
       "vi": "Chuyển sang chế độ Nâng cao"
     },
-    "locations": [
-      {
-        "file": "src/renderer/components/ModelOrPresetPicker.tsx",
-        "line": 79
-      },
-      {
-        "file": "src/renderer/components/ModelOrPresetPicker.tsx",
-        "line": 121
-      },
-      {
-        "file": "src/renderer/components/ModelSelector.tsx",
-        "line": 160
-      },
-      {
-        "file": "src/renderer/components/PresetSelector.tsx",
-        "line": 111
-      }
-    ],
     "models": {
       "ar": "~anthropic/claude-sonnet-latest",
       "nl": "~anthropic/claude-sonnet-latest",
@@ -15520,7 +15502,25 @@
       "sk": "~anthropic/claude-sonnet-latest",
       "th": "~anthropic/claude-sonnet-latest",
       "vi": "~anthropic/claude-sonnet-latest"
-    }
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/ModelOrPresetPicker.tsx",
+        "line": 79
+      },
+      {
+        "file": "src/renderer/components/ModelOrPresetPicker.tsx",
+        "line": 121
+      },
+      {
+        "file": "src/renderer/components/ModelSelector.tsx",
+        "line": 160
+      },
+      {
+        "file": "src/renderer/components/PresetSelector.tsx",
+        "line": 111
+      }
+    ]
   },
   "3bcf04db": {
     "source": "Configure Local LLM or choose another provider in Settings.",
@@ -15707,20 +15707,6 @@
       "th": "สลับไปที่โหมดง่าย",
       "vi": "Chuyển sang chế độ Đơn giản"
     },
-    "locations": [
-      {
-        "file": "src/renderer/components/ModelOrPresetPicker.tsx",
-        "line": 149
-      },
-      {
-        "file": "src/renderer/components/ModelSelector.tsx",
-        "line": 161
-      },
-      {
-        "file": "src/renderer/components/PresetSelector.tsx",
-        "line": 112
-      }
-    ],
     "models": {
       "ar": "~anthropic/claude-sonnet-latest",
       "nl": "~anthropic/claude-sonnet-latest",
@@ -15747,7 +15733,21 @@
       "sk": "~anthropic/claude-sonnet-latest",
       "th": "~anthropic/claude-sonnet-latest",
       "vi": "~anthropic/claude-sonnet-latest"
-    }
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/ModelOrPresetPicker.tsx",
+        "line": 149
+      },
+      {
+        "file": "src/renderer/components/ModelSelector.tsx",
+        "line": 161
+      },
+      {
+        "file": "src/renderer/components/PresetSelector.tsx",
+        "line": 112
+      }
+    ]
   },
   "01d51f5f": {
     "source": "Open Settings → Models",

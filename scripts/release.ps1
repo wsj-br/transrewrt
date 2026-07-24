@@ -233,5 +233,5 @@ Invoke-Gh @('release', 'create', $tag, '--title', $tag, '--notes-file', $notesFi
 Write-Host "Release created successfully: $tag"
 
 Write-Host ""
-Write-Host "See the progress at the github repository https://github.com/wsj-br/transrewrt"
+Write-Host "See the progress at the github repository https://github.com/wsj-br/transrewrt/actions"
 Write-Host ""

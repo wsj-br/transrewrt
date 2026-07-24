@@ -20,6 +20,7 @@ Setup, build, test, and deploy instructions for the Transrewrt application (Elec
 - [Build](#build)
   - [UI translations and documentation (ai-i18n-tools)](#ui-translations-and-documentation-ai-i18n-tools)
   - [Third-party notices (`3p-notices`)](#third-party-notices-3p-notices)
+  - [Provider icons (`trim-ico-sizes`)](#provider-icons-trim-ico-sizes)
 - [Test](#test)
   - [Dev mode (recommended for day-to-day testing)](#dev-mode-recommended-for-day-to-day-testing)
   - [Production-style (smoke test)](#production-style-smoke-test)
@@ -192,7 +193,15 @@ Setup, build, test, and deploy instructions for the Transrewrt application (Elec
 
    Ensures Korean, Telugu, Thai and other scripts render correctly in the screenshot when Google Fonts are unavailable.
 
-6. **direnv**:
+6. **ImageMagick** (optional; for `./scripts/trim-ico-sizes.sh` when adding provider icons):
+
+   ```bash
+   sudo apt install imagemagick
+   ```
+
+   See [Provider icons (`trim-ico-sizes`)](#provider-icons-trim-ico-sizes).
+
+7. **direnv**:
 
    ```bash
    sudo apt install direnv
@@ -200,7 +209,7 @@ Setup, build, test, and deploy instructions for the Transrewrt application (Elec
 
    Shell hook and `direnv allow` are described under [Prerequisites](#prerequisites).
 
-7. **Docker**:
+8. **Docker**:
 
    ```bash
    sudo apt install docker.io docker-compose
@@ -328,22 +337,22 @@ Use these scripts for a full local reset: dev logs and caches first, then build 
 
 **Logs and dev caches (both scripts):**
 
-- All `*.log` files anywhere in the repository, except under `node_modules`, `.git`, `dist`, `release`, and `documentation/node_modules` (PowerShell also skips top-level `cache/`). Examples: `presets-editor.log`, `presets-editor-*.log`, `data/server.log`, `dev/presets-check/presets-check.log`, screenshot logs under `dev/`.
+- All `*.log` files anywhere in the repository, except under `node_modules`, `.git`, `dist`, `release`, and `documentation/node_modules`. Examples: `presets-editor.log`, `presets-editor-*.log`, `data/server.log`, `dev/presets-check/presets-check.log`, screenshot logs under `dev/`.
 - `presets-editor-provider-catalogs.json` (repo root)
 - `dev/presets-check/provider-catalogs-cache.json`
 - `dev/presets-check/presets-check.log` (also matched by the `*.log` sweep)
 
-**Windows only:** optional `-RemoveLockfile` (drop `pnpm-lock.yaml` for a full dependency resolve) and `-RemovePrerequisites` (global `pnpm`/Node via nvm, plus winget uninstall hints). If present, [scripts/clean-translation-logs.js](../scripts/clean-translation-logs.js) runs first (translation session logs; same intent as a dedicated `clean-logs` step when that script exists).
+Both scripts also remove build artifacts (including `pnpm-lock.yaml`), prune the pnpm store, and run Docker `builder` / `system` prune — use only when you intend to clear those globally.
 
-The Bash script also prunes the pnpm store and Docker build cache; use only when you intend to clear those globally.
+**Windows only:** optional `-RemovePrerequisites` (global `pnpm`/Node via nvm, plus winget uninstall hints). `-RemoveLockfile` is accepted for compatibility; the lockfile is always removed (same as Bash).
 
 ### Upgrading Node and dependencies (nvm)
 
-These scripts install or switch to the **latest Node LTS** via nvm, then install/update global CLI tools (`pnpm`, `npm-check-updates`, `doctoc`). [upgrade-dependencies.sh](../scripts/upgrade-dependencies.sh) / [upgrade-dependencies.ps1](../scripts/upgrade-dependencies.ps1) also runs `ncu`, `pnpm install`, and `pnpm audit` / `pnpm audit fix`.
+These scripts install or switch to the **latest Node LTS** via nvm, then install/update global CLI tools (`pnpm`, `npm-check-updates`, `doctoc`). [upgrade-dependencies.sh](../scripts/upgrade-dependencies.sh) / [upgrade-dependencies.ps1](../scripts/upgrade-dependencies.ps1) also run build-safe `ncu --doctor` per workspace package, reconcile the lockfile, update browserslist, then `audit` / `audit fix` (with optional force-upgrade of vulnerable direct deps that doctor had to revert).
 
 | Environment              | Command                                                                                                                                                                                                                                         |
 |--------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Windows (PowerShell)** | **Tools only:** `. .\scripts\upgrade-tools.ps1` (dot-source so `nvm use` applies to this session). **Full dependency upgrade:** `. .\scripts\upgrade-dependencies.ps1` (must be dot-sourced unless `CI=1` / `TRANSREWRT_UPGRADE_ALLOW_EXEC=1`). |
+| **Windows (PowerShell)** | **Tools only:** `. .\scripts\upgrade-tools.ps1` (dot-source so `nvm use` applies to this session). **Full dependency upgrade:** `. .\scripts\upgrade-dependencies.ps1` (must be dot-sourced unless `CI=1` / `UPGRADE_ALLOW_EXEC=1`). |
 | **Linux / macOS (bash)** | **Use `source`** so `nvm use` runs in your **current** shell. Otherwise the script runs in a subprocess and your terminal keeps the old Node after the script exits.                                                                            |
 
 **Unix/bash (recommended):**
@@ -352,15 +361,15 @@ These scripts install or switch to the **latest Node LTS** via nvm, then install
 # Tools only: refresh nvm (if ~/.nvm is a git clone), install LTS Node, upgrade pnpm / ncu / doctoc
 source ./scripts/upgrade-tools.sh
 
-# Full dependency upgrade: same as above, then ncu on package.json, pnpm install, audits
+# Full dependency upgrade: tools + ncu --doctor per workspace package, install, audits
 source ./scripts/upgrade-dependencies.sh
 ```
 
-Before `ncu`, that script runs [scripts/eslint-react-peers-allow-eslint10.js](../scripts/eslint-react-peers-allow-eslint10.js): it reads the **latest** `peerDependencies.eslint` from the registry for `eslint-plugin-react` and `eslint-plugin-react-hooks` and only skips pinning `eslint` / `@eslint/js` / those plugins when both ranges allow ESLint 10. You can run the same check alone: `node scripts/eslint-react-peers-allow-eslint10.js` (exit 0 = allow ESLint 10 upgrade, 1 = still pinned, 2 = error).
+Before doctor upgrades, the dependency script checks whether the latest React ESLint plugins' `peerDependencies.eslint` ranges allow the **latest ESLint major**; if not, it excludes `eslint` / `@eslint/js` / those plugins from the bump. The same logic is embedded in both the Bash and PowerShell scripts (the standalone [eslint-react-peers-allow-eslint10.js](../scripts/eslint-react-peers-allow-eslint10.js) helper remains available for ad-hoc checks against ESLint 10 specifically).
 
 **Why `source`:** A normal `./script.sh` starts a **child process**. Environment changes (including nvm’s `PATH`) cannot propagate back to the parent shell ([nvm-sh#2124](https://github.com/nvm-sh/nvm/issues/2124)). Sourcing runs the script in your interactive shell, so the LTS Node you selected stays active when the script finishes.
 
-**Executing with `./`:** The scripts **exit with an error** if you run `./scripts/upgrade-tools.sh` or `./scripts/upgrade-dependencies.sh` directly, and print a reminder to use `source`. For **CI** or other automation, set `CI=1` (common on GitHub Actions and similar) or `TRANSREWRT_UPGRADE_ALLOW_EXEC=1` to allow execution without `source`.
+**Executing with `./`:** The scripts **exit with an error** if you run `./scripts/upgrade-tools.sh` or `./scripts/upgrade-dependencies.sh` directly, and print a reminder to use `source`. For **CI** or other automation, set `CI=1` (common on GitHub Actions and similar) or `UPGRADE_ALLOW_EXEC=1` to allow execution without `source` (PowerShell also accepts the legacy `TRANSREWRT_UPGRADE_ALLOW_EXEC=1` alias).
 
 **Shell note:** The `.sh` scripts target **bash**. On zsh/fish, run them under bash, e.g. `bash -c 'source ./scripts/upgrade-dependencies.sh'`, or open a bash session for the upgrade.
 
@@ -425,6 +434,20 @@ Implementation: [scripts/write-third-party-notices.mjs](../scripts/write-third-p
 **When to run:** After adding, removing, or bumping **production** dependencies, or when you edit `scripts/write-third-party-notices.json`. Commit the updated `NOTICES` with the dependency change when appropriate.
 
 **Overrides:** Edit [scripts/write-third-party-notices.json](../scripts/write-third-party-notices.json). Prefer adding an `spdxLicenseTexts` entry for a new SPDX id. Use `packageOverrides` keys of the form `packageName@versionOrRange` (the part after the **last** `@` is matched with `semver.satisfies`) only when a package needs custom text that the SPDX templates cannot cover — e.g. `esrecurse@^4.3.0` or scoped `@scope/name@^1.2.3`. Use `additionalNotices` (`name`, `licenses`, `licenseText`) for non-npm attributions.
+
+### Provider icons (`trim-ico-sizes`)
+
+Provider logos live as `.ico` files under [src/renderer/assets/](../src/renderer/assets/) and are mapped in [src/renderer/assets/icons_with_files.json](../src/renderer/assets/icons_with_files.json) (`provider_id` → `iconFile`). The UI loads them via `ProviderIcon`.
+
+When adding a **new** provider icon (or replacing an existing one), drop the `.ico` into `src/renderer/assets/`, register it in `icons_with_files.json`, then normalize sizes from the repo root:
+
+```bash
+./scripts/trim-ico-sizes.sh
+```
+
+Requires [ImageMagick](https://imagemagick.org/) (`identify` and `convert`; on Debian/Ubuntu: `sudo apt install imagemagick`). The script walks `src/renderer/assets/*.ico` and rewrites each file that is not already **only** `16x16` and `32x32`: it picks the largest frame in the ICO, resizes to those two sizes, and writes the trimmed ICO back. A one-time backup `${name}.ico.old` is created beside the original if that backup does not already exist. Icons that already contain exactly those two sizes are skipped.
+
+Commit the updated `.ico` files (and remove any accidental `*.ico.old` backups before committing unless you intentionally keep them locally).
 
 ---
 
@@ -677,6 +700,7 @@ Models and fallbacks: `openrouter.translationModels` in [`ai-i18n-tools.config.j
 | `pnpm generate-test-data`      | Seed SQLite with sample API/history rows (for cost dashboard/dev purposes)                                                               |
 | `pnpm take-screenshots`        | Use Puppeteer to capture UI screenshots (app must be reachable; see script/env vars)                                                     |
 | `pnpm generate-banner`         | Write `images/transrewrt_banner.svg` and `.png`                                                                                          |
+| `./scripts/trim-ico-sizes.sh`  | Normalize provider `.ico` files under `src/renderer/assets/` to 16×16 + 32×32 only (ImageMagick; see [Provider icons](#provider-icons-trim-ico-sizes)) |
 | `pnpm reset-web-password`      | In web multi-user mode, set a password in SQLite (`[username] <password>`; default is `admin`; uses `CONFIG_PATH` or `data/config.json`) |
 | `pnpm check-api-key`           | Show the masked OpenRouter key and limit info (`OPENROUTER_API_KEY` or `node scripts/check-api-key.js --key …`)                          |
 | `pnpm check-custom-provider`   | Probe a custom OpenAI-compatible provider URL/key (see `scripts/check-custom-provider.js`)                                               |
@@ -713,12 +737,12 @@ See [Upgrading Node and dependencies (nvm)](#upgrading-node-and-dependencies-nvm
 
 | Command / script                           | Purpose                                                                                                                                                                                                                                                                                  |
 |--------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `./scripts/clean-workspace.sh`             | Remove repo `*.log` files, presets-editor/presets-check dev caches, then build artifacts; Bash also prunes pnpm store and Docker caches ([Cleaning the workspace](#cleaning-the-workspace))                                                                                                 |
-| `.\scripts\clean-workspace.ps1`          | Same log/cache/artifact cleanup on Windows; optional `-RemoveLockfile`, `-RemovePrerequisites` ([Cleaning the workspace](#cleaning-the-workspace))                                                                                                                                       |
-| `source ./scripts/upgrade-tools.sh`        | **Bash.** Refresh nvm (git checkout latest tag if `~/.nvm` is a clone), `nvm install --lts` / `nvm use`, then global `pnpm`, `npm-check-updates`, `doctoc`. Must be **sourced** (not `./…`; or `CI=1` / `TRANSREWRT_UPGRADE_ALLOW_EXEC=1`).                                              |
-| `. .\scripts\upgrade-tools.ps1`            | **PowerShell.** nvm-windows `nvm install lts` / `nvm use`, then the same global packages. **Dot-source** (`. …`) so `nvm use` applies to this session (script may remind you if run as `.\…`).                                                                                           |
-| `source ./scripts/upgrade-dependencies.sh` | **Bash.** Sources [upgrade-tools.sh](../scripts/upgrade-tools.sh), then [eslint-react-peers-allow-eslint10.js](../scripts/eslint-react-peers-allow-eslint10.js), conditional `ncu --upgrade` (may pin ESLint stack), `pnpm install`, `pnpm audit`, `pnpm audit fix`, `pnpm audit` again. |
-| `. .\scripts\upgrade-dependencies.ps1`     | **PowerShell.** Dot-sources [upgrade-tools.ps1](../scripts/upgrade-tools.ps1), then the same ESLint peer check, `ncu`, `pnpm install`, and audit steps. **Must** be dot-sourced (not `.\…`, unless `CI=1` / `TRANSREWRT_UPGRADE_ALLOW_EXEC=1`).                                          |
+| `./scripts/clean-workspace.sh`             | Remove repo `*.log` files, presets-editor/presets-check dev caches, build artifacts (incl. lockfile), then prune pnpm store and Docker caches ([Cleaning the workspace](#cleaning-the-workspace))                                                                                         |
+| `.\scripts\clean-workspace.ps1`          | Same as Bash on Windows; optional `-RemovePrerequisites` ([Cleaning the workspace](#cleaning-the-workspace))                                                                                                                                                                              |
+| `source ./scripts/upgrade-tools.sh`        | **Bash.** Refresh nvm (git checkout latest tag if `~/.nvm` is a clone), `nvm install --lts` / `nvm use`, then global package manager / `npm-check-updates` / `doctoc`. Must be **sourced** (not `./…`; or `CI=1` / `UPGRADE_ALLOW_EXEC=1`).                                              |
+| `. .\scripts\upgrade-tools.ps1`            | **PowerShell.** Same flow via nvm-windows (`nvm install lts` / `nvm use`) and [upgrade-common.ps1](../scripts/upgrade-common.ps1). **Dot-source** (`. …`) so `nvm use` applies to this session.                                                                                           |
+| `source ./scripts/upgrade-dependencies.sh` | **Bash.** Sources [upgrade-tools.sh](../scripts/upgrade-tools.sh), ESLint peer gate, `ncu --doctor` per workspace package, lockfile reconcile, browserslist update, audit / audit fix, peer check, summary.                                                                              |
+| `. .\scripts\upgrade-dependencies.ps1`     | **PowerShell.** Same as Bash via [upgrade-tools.ps1](../scripts/upgrade-tools.ps1) / [upgrade-common.ps1](../scripts/upgrade-common.ps1). **Must** be dot-sourced (not `.\…`, unless `CI=1` / `UPGRADE_ALLOW_EXEC=1`).                                                                   |
 
 
 ---
@@ -790,6 +814,8 @@ For more detail (including Node version alignment and Windows-specific issues), 
 | [NOTICES](../NOTICES)                                                                       | Generated production third-party notices (do not hand-edit; run `pnpm run 3p-notices`)                        |
 | [scripts/write-third-party-notices.mjs](../scripts/write-third-party-notices.mjs)           | Resolves prod deps via `pnpm licenses list` and writes `NOTICES`                                              |
 | [scripts/write-third-party-notices.json](../scripts/write-third-party-notices.json)         | SPDX license templates + optional per-package overrides for `3p-notices`                                      |
+| [src/renderer/assets/icons_with_files.json](../src/renderer/assets/icons_with_files.json) | Provider id → `.ico` filename (+ optional URL) for `ProviderIcon`                                             |
+| [scripts/trim-ico-sizes.sh](../scripts/trim-ico-sizes.sh)                                   | Trim provider `.ico` assets to 16×16 + 32×32 (see [Provider icons](#provider-icons-trim-ico-sizes))          |
 | [scripts/release.sh](../scripts/release.sh)                                                 | Local GitHub release (Bash): tag `v<version>`, push, `gh release create` using `release-notes/RELEASE_NOTES_<version>.md` |
 | [scripts/release.ps1](../scripts/release.ps1)                                               | Same as `release.sh` for Windows (PowerShell); `pnpm run release:github:win` / `release:github:dry:win` |
 

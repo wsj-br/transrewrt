@@ -3,13 +3,15 @@
   Removes build artifacts and optionally development prerequisites for a full clean slate.
 
 .DESCRIPTION
-  Phase 1 (default): Deletes project build artifacts (node_modules, dist, release, etc.).
-  Phase 2 (optional): Also removes pnpm-lock.yaml for a fresh dependency resolution.
-  Phase 3 (optional): Uninstalls global dev tools (pnpm, Node via nvm) and prints
-  instructions to remove Python, Visual Studio Build Tools, and Docker.
+  Mirrors scripts/clean-workspace.sh: removes repository .log files, presets
+  editor/check caches, build artifacts (including pnpm-lock.yaml), documentation
+  caches, *.tsbuildinfo, then prunes the pnpm store and Docker caches.
+
+  Windows extras:
+  -RemovePrerequisites uninstalls global pnpm/Node via nvm and prints winget hints.
 
 .PARAMETER RemoveLockfile
-  If set, also removes pnpm-lock.yaml so the next pnpm install does a full resolution.
+  Accepted for compatibility; the lockfile is always removed (same as the Bash script).
 
 .PARAMETER RemovePrerequisites
   If set, uninstalls pnpm and Node (via nvm), and prints steps to remove Python,
@@ -18,15 +20,9 @@
 
 .EXAMPLE
   .\scripts\clean-workspace.ps1
-  # Removes only workspace build artifacts.
-
-.EXAMPLE
-  .\scripts\clean-workspace.ps1 -RemoveLockfile
-  # Removes artifacts and pnpm-lock.yaml.
 
 .EXAMPLE
   .\scripts\clean-workspace.ps1 -RemovePrerequisites
-  # Removes artifacts and dev tools (pnpm, Node); prints manual steps for the rest.
 #>
 
 [CmdletBinding()]
@@ -35,139 +31,207 @@ param(
     [switch] $RemovePrerequisites
 )
 
-$ErrorActionPreference = "Stop"
-# Script lives in <project>/scripts/, so project root is parent of script directory
+$ErrorActionPreference = 'Continue'
 $ProjectRoot = Split-Path -Parent $PSScriptRoot
 
-# ---------- Phase 0: Translation session logs (same as pnpm clean-logs) ----------
-$cleanLogsScript = Join-Path $ProjectRoot "scripts/clean-translation-logs.js"
-if (Test-Path $cleanLogsScript) {
-    Write-Host "Cleaning translation session logs..." -ForegroundColor Cyan
-    Push-Location $ProjectRoot
-    try {
-        node $cleanLogsScript
-        Write-Host "  Translation session logs cleaned." -ForegroundColor Green
-    } catch {
-        Write-Host "  Could not run clean-translation-logs.js: $_" -ForegroundColor DarkYellow
-    } finally {
-        Pop-Location
+function Remove-PathSafe {
+    param(
+        [Parameter(Mandatory = $true)][string] $Path,
+        [string] $Label = $Path
+    )
+    if (Test-Path -LiteralPath $Path) {
+        try {
+            Remove-Item -LiteralPath $Path -Recurse -Force -ErrorAction Stop
+            Write-Host "✅ Removed $Label"
+            return $true
+        }
+        catch {
+            Write-Host "❌ Error removing $Label"
+            return $false
+        }
     }
+    return $false
 }
 
-# ---------- Phase 0b: Repository .log files and dev preset caches ----------
-Write-Host "Cleaning .log files and dev caches..." -ForegroundColor Cyan
+Write-Host '🧹 Cleaning .log files and dev caches...'
 
-$logExcludePattern = '\\(node_modules|\.git|dist|release|cache|documentation\\node_modules)\\'
-$logFiles = Get-ChildItem -Path $ProjectRoot -Filter "*.log" -Recurse -File -ErrorAction SilentlyContinue |
-    Where-Object { $_.FullName -notmatch $logExcludePattern }
+$logExcludeDirs = @(
+    (Join-Path $ProjectRoot 'node_modules'),
+    (Join-Path $ProjectRoot '.git'),
+    (Join-Path $ProjectRoot 'dist'),
+    (Join-Path $ProjectRoot 'release'),
+    (Join-Path $ProjectRoot 'documentation\node_modules')
+)
+$logFiles = Get-ChildItem -Path $ProjectRoot -Filter '*.log' -Recurse -File -ErrorAction SilentlyContinue |
+    Where-Object {
+        $full = $_.FullName
+        -not ($logExcludeDirs | Where-Object { $full.StartsWith($_, [StringComparison]::OrdinalIgnoreCase) })
+    }
 foreach ($logFile in $logFiles) {
-    Write-Host "  Removing: $($logFile.FullName)"
-    Remove-Item -Path $logFile.FullName -Force
-}
-if (-not $logFiles) {
-    Write-Host "  (no .log files found)" -ForegroundColor DarkGray
+    $rel = $logFile.FullName.Substring($ProjectRoot.Length).TrimStart('\', '/')
+    if (Remove-PathSafe -Path $logFile.FullName -Label $rel) { }
 }
 
 $devCaches = @(
-    (Join-Path $ProjectRoot "dev\presets-check\provider-catalogs-cache.json"),
-    (Join-Path $ProjectRoot "dev\presets-check\presets-check.log"),
-    (Join-Path $ProjectRoot "presets-editor-provider-catalogs.json")
+    'dev/presets-check/provider-catalogs-cache.json',
+    'dev/presets-check/presets-check.log',
+    'presets-editor-provider-catalogs.json'
 )
-foreach ($path in $devCaches) {
-    if (Test-Path $path) {
-        Write-Host "  Removing: $path"
-        Remove-Item -Path $path -Force
-    } else {
-        Write-Host "  (skip, not present): $path" -ForegroundColor DarkGray
+foreach ($cache in $devCaches) {
+    $full = Join-Path $ProjectRoot ($cache -replace '/', [IO.Path]::DirectorySeparatorChar)
+    if (Test-Path -LiteralPath $full) {
+        Remove-PathSafe -Path $full -Label $cache | Out-Null
     }
 }
 
-# ---------- Phase 1: Workspace build artifacts ----------
-$artifacts = @(
-    (Join-Path $ProjectRoot "node_modules"),
-    (Join-Path $ProjectRoot "dist"),
-    (Join-Path $ProjectRoot "cache"),
-    (Join-Path $ProjectRoot "release"),
-    (Join-Path $ProjectRoot "build_timestamp"),
-    (Join-Path $ProjectRoot "pnpm-lock.yaml")
+Write-Host '🧹 Cleaning build artifacts and dependencies...'
+
+$itemsToRemove = @(
+    '.next',
+    'node_modules',
+    'dist',
+    'out',
+    '.turbo',
+    'pnpm-lock.yaml',
+    'release',
+    'build_timestamp',
+    'public/documentation',
+    'documentation/.docusaurus',
+    'documentation/.cache-loader',
+    'documentation/.cache',
+    'documentation/build',
+    'documentation/node_modules',
+    'documentation/pnpm-lock.yaml',
+    '.genkit'
 )
 
-Write-Host "Removing build artifacts..." -ForegroundColor Cyan
-foreach ($path in $artifacts) {
-    if (Test-Path $path) {
-        Write-Host "  Removing: $path"
-        Remove-Item -Path $path -Recurse -Force
-    } else {
-        Write-Host "  (skip, not present): $path" -ForegroundColor DarkGray
+foreach ($item in $itemsToRemove) {
+    $full = Join-Path $ProjectRoot ($item -replace '/', [IO.Path]::DirectorySeparatorChar)
+    Remove-PathSafe -Path $full -Label $item | Out-Null
+}
+
+# data/*.json (same as Bash glob)
+$dataDir = Join-Path $ProjectRoot 'data'
+if (Test-Path -LiteralPath $dataDir) {
+    Get-ChildItem -Path $dataDir -Filter '*.json' -File -ErrorAction SilentlyContinue | ForEach-Object {
+        $rel = 'data/' + $_.Name
+        Remove-PathSafe -Path $_.FullName -Label $rel | Out-Null
     }
 }
 
-# Optional: lockfile for full dependency refresh
 if ($RemoveLockfile) {
-    $lockfile = Join-Path $ProjectRoot "pnpm-lock.yaml"
-    if (Test-Path $lockfile) {
-        Write-Host "Removing lockfile: $lockfile" -ForegroundColor Cyan
-        Remove-Item -Path $lockfile -Force
-    }
+    # Already removed above; keep the switch for documented Windows usage.
 }
 
-# ---------- Phase 2: Optional removal of dev tools ----------
+Write-Host '🧹 Cleaning glob patterns...'
+
+$docDir = Join-Path $ProjectRoot 'documentation'
+if (Test-Path -LiteralPath $docDir) {
+    Get-ChildItem -Path $docDir -Directory -ErrorAction SilentlyContinue |
+        Where-Object { $_.Name -like '.cache-*' } |
+        ForEach-Object {
+            Remove-PathSafe -Path $_.FullName -Label ("documentation/" + $_.Name) | Out-Null
+        }
+    Write-Host '✅ Removed documentation/.cache-* directories'
+}
+
+Get-ChildItem -Path $ProjectRoot -Filter '*.tsbuildinfo' -Recurse -File -Depth 3 -ErrorAction SilentlyContinue |
+    ForEach-Object {
+        Remove-PathSafe -Path $_.FullName -Label $_.Name | Out-Null
+    }
+Write-Host '✅ Removed *.tsbuildinfo files'
+
+Write-Host '🧹 Clearing pnpm store cache...'
+pnpm store prune
+if ($LASTEXITCODE -eq 0) {
+    Write-Host '✅ pnpm store cache cleared'
+}
+else {
+    Write-Host '❌ Error clearing pnpm store cache'
+}
+
+Write-Host '🧹 Clearing docker compose cache...'
+docker builder prune --all --force
+if ($LASTEXITCODE -eq 0) {
+    Write-Host '✅ Docker compose cache cleared'
+}
+else {
+    Write-Host '❌ Error clearing docker compose cache'
+}
+
+Write-Host '🧹 Clearing docker system images/networks/volumes not used...'
+docker system prune --all --force
+if ($LASTEXITCODE -eq 0) {
+    Write-Host '✅ Docker system images/networks/volumes not used cleared'
+}
+else {
+    Write-Host '❌ Error clearing docker system images/networks/volumes'
+}
+
+Write-Host '✨ Clean completed!'
+Write-Host ''
+Write-Host ''
+Write-Host '💡'
+Write-Host "     remember to run 'pnpm install' to update the dependencies before building the application"
+Write-Host "     or before running 'pnpm docker:up'"
+Write-Host ''
+
 if (-not $RemovePrerequisites) {
-    Write-Host "`nDone. Workspace is clean." -ForegroundColor Green
-    Write-Host "To also remove dev tools (Node, pnpm, etc.), run: .\scripts\clean-workspace.ps1 -RemovePrerequisites" -ForegroundColor DarkGray
+    Write-Host 'To also remove Windows dev tools (Node, pnpm, etc.), run: .\scripts\clean-workspace.ps1 -RemovePrerequisites' -ForegroundColor DarkGray
     exit 0
 }
 
-Write-Host "`n--- Removing development prerequisites ---" -ForegroundColor Yellow
+Write-Host ''
+Write-Host '--- Removing development prerequisites ---' -ForegroundColor Yellow
 
-# Uninstall pnpm globally (requires npm)
 try {
     $pnpm = Get-Command pnpm -ErrorAction SilentlyContinue
     if ($pnpm) {
-        Write-Host "Uninstalling pnpm globally..." -ForegroundColor Cyan
+        Write-Host 'Uninstalling pnpm globally...' -ForegroundColor Cyan
         npm uninstall -g pnpm 2>&1 | Out-Null
-        Write-Host "  pnpm uninstalled." -ForegroundColor Green
+        Write-Host '  pnpm uninstalled.' -ForegroundColor Green
     }
-} catch {
+}
+catch {
     Write-Host "  Could not uninstall pnpm (npm may be missing or pnpm in use): $_" -ForegroundColor DarkYellow
 }
 
-# Uninstall Node version(s) via nvm-windows if present
 $nvmCmd = Get-Command nvm -ErrorAction SilentlyContinue
 if ($nvmCmd) {
-    Write-Host "Uninstalling Node version(s) via nvm..." -ForegroundColor Cyan
+    Write-Host 'Uninstalling Node version(s) via nvm...' -ForegroundColor Cyan
     $nvmList = nvm list 2>&1 | Out-String
-    # Match full versions like 24.11.0 or 20.18.0 (nvm list format)
-    $versionMatches = [regex]::Matches($nvmList, "\s*(\d+\.\d+\.\d+)\s+")
+    $versionMatches = [regex]::Matches($nvmList, '\s*(\d+\.\d+\.\d+)\s+')
     $versions = $versionMatches | ForEach-Object { $_.Groups[1].Value } | Sort-Object -Unique
     foreach ($v in $versions) {
         try {
             & nvm uninstall $v 2>&1 | Out-Null
             Write-Host "  Node $v uninstalled." -ForegroundColor Green
-        } catch {
+        }
+        catch {
             Write-Host "  nvm uninstall $v failed: $_" -ForegroundColor DarkYellow
         }
     }
-    Write-Host "  To remove nvm itself: run the nvm-windows uninstaller from Add/Remove Programs." -ForegroundColor DarkGray
-} else {
-    Write-Host "  nvm not found; skipping Node removal. If Node was installed without nvm, uninstall via Settings or nodejs.org." -ForegroundColor DarkGray
+    Write-Host '  To remove nvm itself: run the nvm-windows uninstaller from Add/Remove Programs.' -ForegroundColor DarkGray
+}
+else {
+    Write-Host '  nvm not found; skipping Node removal. If Node was installed without nvm, uninstall via Settings or nodejs.org.' -ForegroundColor DarkGray
 }
 
-# Detect which prerequisite packages are installed via winget; show only those.
 $prereqPackages = @(
-    @{ Id = "OpenJS.NodeJS";              Name = "Node.js (standalone)" },
-    @{ Id = "CoreyButler.NVMforWindows"; Name = "NVM for Windows" },
-    @{ Id = "Python.Python.3.13";        Name = "Python 3.13" },
-    @{ Id = "Python.Python.3.12";        Name = "Python 3.12" },
-    @{ Id = "Python.Launcher";           Name = "Python Launcher" },
-    @{ Id = "Microsoft.VisualStudio.2022.BuildTools"; Name = "Visual Studio Build Tools 2022" },
-    @{ Id = "Git.Git";                   Name = "Git" },
-    @{ Id = "Docker.DockerDesktop";      Name = "Docker Desktop" }
+    @{ Id = 'OpenJS.NodeJS'; Name = 'Node.js (standalone)' },
+    @{ Id = 'CoreyButler.NVMforWindows'; Name = 'NVM for Windows' },
+    @{ Id = 'Python.Python.3.13'; Name = 'Python 3.13' },
+    @{ Id = 'Python.Python.3.12'; Name = 'Python 3.12' },
+    @{ Id = 'Python.Launcher'; Name = 'Python Launcher' },
+    @{ Id = 'Microsoft.VisualStudio.2022.BuildTools'; Name = 'Visual Studio Build Tools 2022' },
+    @{ Id = 'Git.Git'; Name = 'Git' },
+    @{ Id = 'Docker.DockerDesktop'; Name = 'Docker Desktop' }
 )
-$wingetList = ""
+$wingetList = ''
 try {
     $wingetList = winget list 2>$null | Out-String
-} catch {
+}
+catch {
     # winget not available
 }
 $installed = @()
@@ -179,14 +243,20 @@ foreach ($pkg in $prereqPackages) {
 }
 
 if ($installed.Count -gt 0) {
-    Write-Host "`nThe following dev prerequisites are installed. To remove them, run:" -ForegroundColor Yellow
+    Write-Host ''
+    Write-Host 'The following dev prerequisites are installed. To remove them, run:' -ForegroundColor Yellow
     foreach ($pkg in $installed) {
-        Write-Host "`n  • $($pkg.Name)" -ForegroundColor Cyan
+        Write-Host ''
+        Write-Host "  • $($pkg.Name)" -ForegroundColor Cyan
         Write-Host "    winget uninstall --id $($pkg.Id)" -ForegroundColor White
     }
-    Write-Host "`n  Or: Settings → Apps → search for the app → Uninstall." -ForegroundColor DarkGray
-} else {
-    Write-Host "`nNo project-related prerequisites were detected in winget list." -ForegroundColor DarkGray
+    Write-Host ''
+    Write-Host '  Or: Settings → Apps → search for the app → Uninstall.' -ForegroundColor DarkGray
+}
+else {
+    Write-Host ''
+    Write-Host 'No project-related prerequisites were detected in winget list.' -ForegroundColor DarkGray
 }
 
-Write-Host "`nWorkspace and selected prerequisites are cleaned. Restart the terminal (or PC) if you uninstall VS Build Tools." -ForegroundColor Green
+Write-Host ''
+Write-Host 'Workspace and selected prerequisites are cleaned. Restart the terminal (or PC) if you uninstall VS Build Tools.' -ForegroundColor Green
