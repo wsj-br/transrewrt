@@ -8,6 +8,7 @@ import { Label } from "@/components/ui/label";
 
 const transformModalPickerPropTypes = {
   experienceMode: PropTypes.oneOf(["easy", "advanced"]),
+  onExperienceModeChange: PropTypes.func,
   easyProvider: PropTypes.string,
   presets: PropTypes.array,
   selectedPresetId: PropTypes.string,
@@ -29,6 +30,7 @@ const TransformImproveModal = ({
   loading = false,
   error = null,
   experienceMode = "advanced" as "easy" | "advanced",
+  onExperienceModeChange,
   easyProvider = "openrouter",
   presets = [],
   selectedPresetId,
@@ -79,6 +81,7 @@ const TransformImproveModal = ({
               <Label>{pickerLabel}</Label>
               <ModelOrPresetPicker
                 experienceMode={experienceMode}
+                onExperienceModeChange={onExperienceModeChange}
                 easyProvider={easyProvider}
                 models={models}
                 currentModel={selectedModel}

@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.1-blue" alt="Version"></a>
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.2-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
 </p>
@@ -69,6 +69,15 @@ chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage
 ## الدعم
 
 افتح مشكلة على [GitHub](https://github.com/wsj-br/transrewrt/issues). قم بتضمين نظامك الأساسي (Windows / Linux / Docker) وإصدار التطبيق (مربع حوار حول أو صفحة الإصدارات).
+
+## شكر وتقدير
+
+تستخدم اقتراحات الإعدادات المسبقة للوضع السهل في محرر الإعدادات المسبقة بيانات التقييم العامة من:
+
+- [languagebench](https://huggingface.co/spaces/fair-forward/languagebench) (CC BY-SA 4.0)
+- [Artificial Analysis](https://artificialanalysis.ai/) (يتطلب الإسناد لبيانات API)
+
+تراخيص التبعيات الخارجية وإشعارات مصدر البيانات هذه مدرجة في [NOTICES](../NOTICES).
 
 ## الترخيص
 

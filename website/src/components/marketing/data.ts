@@ -62,7 +62,7 @@ export function getLinks(locale = 'en-GB'): SiteLinks {
 
 export const DOCKER_IMAGE = 'ghcr.io/wsj-br/transrewrt:latest';
 /** Synced from root package.json by `pnpm update-version`. */
-export const VERSION = '1.6.1';
+export const VERSION = '1.6.2';
 export const LICENSE = 'Apache License 2.0';
 export const COPYRIGHT = '© 2026 Waldemar Scudeller Jr.';
 

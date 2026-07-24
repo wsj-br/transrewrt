@@ -613,5 +613,17 @@
       "SOFTWARE."
     ]
   },
-  "packageOverrides": {}
+  "packageOverrides": {},
+  "additionalNotices": [
+    {
+      "name": "languagebench (fair-forward/languagebench)",
+      "licenses": "CC-BY-SA-4.0",
+      "licenseText": "languagebench evaluation results are used by the Transrewrt presets editor\nfor AI Suggestion model shortlisting (translation quality / ChrF).\n\nSource: https://huggingface.co/spaces/fair-forward/languagebench\nLicense: https://creativecommons.org/licenses/by-sa/4.0/legalcode\nPaper: https://arxiv.org/abs/2507.08538\n\nThis work is licensed under the Creative Commons Attribution-ShareAlike 4.0\nInternational License. To view a copy of this license, visit\nhttps://creativecommons.org/licenses/by-sa/4.0/ or send a letter to Creative\nCommons, PO Box 1866, Mountain View, CA 94042, USA."
+    },
+    {
+      "name": "Artificial Analysis Data API",
+      "licenses": "Proprietary (attribution required)",
+      "licenseText": "Model intelligence, performance, and pricing data from the Artificial Analysis\nData API may be used by the Transrewrt presets editor for AI Suggestion model\nshortlisting.\n\nAttribution (required for all API tiers): https://artificialanalysis.ai/\nAPI reference: https://artificialanalysis.ai/api-reference\nData API docs: https://artificialanalysis.ai/data-api/docs\n\nUse of the API is subject to Artificial Analysis terms. Free-tier data is for\ninternal use with attribution; redistribution rights require a commercial license."
+    }
+  ]
 }

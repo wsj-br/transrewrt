@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.1-blue" alt="Version"></a>
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.2-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
 </p>
@@ -69,6 +69,15 @@ chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage
 ## समर्थन
 
 [GitHub](https://github.com/wsj-br/transrewrt/issues) पर एक समस्या खोलें। अपना प्लेटफ़ॉर्म (Windows / Linux / Docker) और ऐप संस्करण (के बारे में संवाद या रिलीज़ पृष्ठ) शामिल करें।
+
+## अभिस्वीकृतियाँ
+
+प्रीसेट एडिटर में आसान-मोड पूर्व-सेट सुझाव सार्वजनिक मूल्यांकन डेटा का उपयोग करते हैं:
+
+- [languagebench](https://huggingface.co/spaces/fair-forward/languagebench) (CC BY-SA 4.0)
+- [आर्टिफिशियल एनालिसिस](https://artificialanalysis.ai/) (API डेटा के लिए एट्रिब्यूशन आवश्यक है)
+
+तृतीय-पक्ष निर्भरता लाइसेंस और ये डेटा-स्रोत नोटिस [NOTICES](../NOTICES) में सूचीबद्ध हैं।
 
 ## लाइसेंस
 

@@ -20,6 +20,9 @@
  *
  * Add an `spdxLicenseTexts` entry for a new SPDX id, or a `packageOverrides` entry,
  * when a package ships no usable license file.
+ *
+ * Non-npm data sources (benchmarks, APIs) go in `additionalNotices`: each entry is
+ * `{ name, licenses, licenseText }` and is written before the dependency blocks.
  */
 
 import { execFileSync } from "node:child_process";
@@ -215,11 +218,30 @@ function asPlainVertical(sorted) {
     .join("\n\n");
 }
 
+/** Renders non-npm notices from `additionalNotices` in the same `---` block format. */
+function asAdditionalVertical(notices) {
+  if (!Array.isArray(notices) || notices.length === 0) return "";
+  return notices
+    .map((entry) => {
+      const name = typeof entry?.name === "string" ? entry.name.trim() : "";
+      const licenses = typeof entry?.licenses === "string" ? entry.licenses.trim() : "";
+      const licenseText = typeof entry?.licenseText === "string" ? entry.licenseText.trimEnd() : "";
+      if (!name || !licenses) {
+        throw new Error(
+          "Each additionalNotices entry needs string `name` and `licenses` (optional `licenseText`)."
+        );
+      }
+      return `---\n\n${name}\n${licenses}\n${licenseText}`;
+    })
+    .join("\n\n");
+}
+
 const outFile = path.join(root, "NOTICES");
 const clarificationsFile = path.join(__dirname, "write-third-party-notices.json");
 const clarifications = JSON.parse(fs.readFileSync(clarificationsFile, "utf8"));
 clarifications.spdxLicenseTexts ??= {};
 clarifications.packageOverrides ??= {};
+clarifications.additionalNotices ??= [];
 
 /** Map of `name@version` -> { licenses, licenseText }. */
 const modules = {};
@@ -250,6 +272,13 @@ for (const key of sortedKeys) sorted[key] = modules[key];
 
 const preamble = ["Third-party notices for Transrewrt.", ""].join("\n");
 
+const additional = asAdditionalVertical(clarifications.additionalNotices);
 const body = asPlainVertical(sorted);
-fs.writeFileSync(outFile, `${preamble}\n${body}`, "utf8");
-console.log(`Wrote ${path.relative(root, outFile)} (${sortedKeys.length} packages)`);
+const sections = [additional, body].filter((part) => part.length > 0);
+fs.writeFileSync(outFile, `${preamble}\n${sections.join("\n\n")}`, "utf8");
+const extraCount = clarifications.additionalNotices.length;
+console.log(
+  `Wrote ${path.relative(root, outFile)} (${sortedKeys.length} packages` +
+    (extraCount > 0 ? `, ${extraCount} additional notices` : "") +
+    `)`
+);

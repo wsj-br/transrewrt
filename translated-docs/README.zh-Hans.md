@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.1-blue" alt="Version"></a>
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.2-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
 </p>
@@ -69,6 +69,15 @@ chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage
 ## 支持
 
 在 [GitHub](https://github.com/wsj-br/transrewrt/issues) 上提交 issue。请附上你的平台（Windows / Linux / Docker）和应用版本（关于对话框或 Releases 页面）。
+
+## 致谢
+
+预设编辑器中的简易模式预设建议使用了来自以下来源的公开评估数据：
+
+- [languagebench](https://huggingface.co/spaces/fair-forward/languagebench) (CC BY-SA 4.0)
+- [Artificial Analysis](https://artificialanalysis.ai/) (API 数据需要注明出处)
+
+第三方依赖许可证及这些数据来源声明列于 [NOTICES](../NOTICES) 中。
 
 ## 许可证
 

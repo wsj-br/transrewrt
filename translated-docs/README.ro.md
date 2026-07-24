@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.1-blue" alt="Version"></a>
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.2-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
 </p>
@@ -69,6 +69,15 @@ Documentație completă a produsului (instalare, chei API, ghiduri, setări, dep
 ## Suport
 
 Deschideți o problemă pe [GitHub](https://github.com/wsj-br/transrewrt/issues). Includeți platforma dvs. (Windows / Linux / Docker) și versiunea aplicației (dialogul Despre sau pagina Lansări).
+
+## Mulțumiri
+
+Sugestiile de presetări în modul Ușor din editorul de presetări utilizează date de evaluare publice de la:
+
+- [languagebench](https://huggingface.co/spaces/fair-forward/languagebench) (CC BY-SA 4.0)
+- [Artificial Analysis](https://artificialanalysis.ai/) (atribuire necesară pentru datele API)
+
+Licențele dependențelor terțe și aceste notificări privind sursa de date sunt enumerate în [NOTICES](../NOTICES).
 
 ## Licență
 

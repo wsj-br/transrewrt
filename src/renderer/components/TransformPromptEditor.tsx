@@ -53,6 +53,7 @@ const TransformPromptEditor = ({
   model,
   models = [],
   experienceMode = "advanced" as "easy" | "advanced",
+  onExperienceModeChange,
   easyProvider = "openrouter",
   presets = [],
   selectedPresetId,
@@ -154,6 +155,7 @@ const TransformPromptEditor = ({
 
   const transformModalPickerProps = {
     experienceMode,
+    onExperienceModeChange,
     easyProvider,
     presets,
     selectedPresetId,
@@ -534,6 +536,7 @@ TransformPromptEditor.propTypes = {
   model: PropTypes.string,
   models: PropTypes.arrayOf(PropTypes.string),
   experienceMode: PropTypes.oneOf(["easy", "advanced"]),
+  onExperienceModeChange: PropTypes.func,
   easyProvider: PropTypes.string,
   presets: PropTypes.array,
   selectedPresetId: PropTypes.string,

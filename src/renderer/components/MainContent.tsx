@@ -1,11 +1,14 @@
 import { lazy, Suspense, type ReactNode } from "react";
 import { useTranslation } from "react-i18next";
 import { cn } from "@/lib/utils";
-import { Languages, PenTool, WandSparkles, Activity, History, Loader2 } from "lucide-react";
+import { Languages, PenTool, WandSparkles, Activity, History, Loader2, CircleQuestionMark } from "lucide-react";
 import ModelOrPresetPicker from "./ModelOrPresetPicker";
 import HeaderLanguageSelector from "./HeaderLanguageSelector";
 import LayoutToggle, { type LayoutMode } from "./workspace/LayoutToggle";
+import { openExternalUrl } from "../utils/misc/urlUtils";
 import type { Preset } from "@/utils/presets/presetsTypes";
+
+const DOCS_URL = "https://wsj-br.github.io/transrewrt/docs/";
 
 const SettingsPanel = lazy(() => import("./SettingsPanel"));
 const DashboardPage = lazy(() => import("./DashboardPage"));
@@ -119,6 +122,7 @@ const MainContent = ({
   onOpenSettingsModels,
   onRemoveModel,
   experienceMode = "easy",
+  onExperienceModeChange,
   easyProvider = "openrouter",
   presets = [],
   selectedPresetId,
@@ -146,6 +150,7 @@ const MainContent = ({
   onOpenSettingsModels?: () => void;
   onRemoveModel?: (model: string) => void;
   experienceMode?: "easy" | "advanced";
+  onExperienceModeChange?: (mode: "easy" | "advanced") => void;
   easyProvider?: string;
   presets?: Preset[];
   selectedPresetId?: string | null;
@@ -243,6 +248,7 @@ const MainContent = ({
           <>
             <ModelOrPresetPicker
               experienceMode={experienceMode}
+              onExperienceModeChange={onExperienceModeChange}
               easyProvider={easyProvider}
               models={models}
               currentModel={activeModel}
@@ -262,11 +268,29 @@ const MainContent = ({
             <div className="hidden md:block">
               <HeaderLanguageSelector compact />
             </div>
-            <LayoutToggle
-              layoutMode={layoutMode}
-              onLayoutChange={onLayoutChange}
-              currentMode={currentMode}
-            />
+            <div className="flex shrink-0 items-center">
+              <LayoutToggle
+                layoutMode={layoutMode}
+                onLayoutChange={onLayoutChange}
+                currentMode={currentMode}
+              />
+              {/* Equal space from toggle edge → divider → icon glyph (not the hit-box). */}
+              <div className="ms-3.5 me-1.5 h-5 w-px shrink-0 bg-border/70" aria-hidden />
+              <a
+                href={DOCS_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={t("Help")}
+                title={t("Help")}
+                className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md text-sky-400/80 outline-none transition-colors hover:bg-sky-500/10 hover:text-sky-300 focus-visible:ring-2 focus-visible:ring-ring"
+                onClick={(e) => {
+                  e.preventDefault();
+                  openExternalUrl(DOCS_URL);
+                }}
+              >
+                <CircleQuestionMark className="h-4 w-4" strokeWidth={1.6} aria-hidden />
+              </a>
+            </div>
           </>
         }
       />

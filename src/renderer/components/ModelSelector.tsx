@@ -61,12 +61,16 @@ const ModelSelector = ({
   onModelChange,
   onIconClick,
   onRemoveModel = undefined,
+  experienceMode = "advanced" as "easy" | "advanced",
+  onExperienceModeChange = undefined,
 }: {
   models?: string[];
   currentModel?: string;
   onModelChange: (model: string) => void;
   onIconClick?: () => void;
   onRemoveModel?: (model: string) => void;
+  experienceMode?: "easy" | "advanced";
+  onExperienceModeChange?: (mode: "easy" | "advanced") => void;
 }) => {
   const { t, i18n } = useTranslation();
   const isRtl = getTextDirection(i18n.language) === "rtl";
@@ -88,6 +92,8 @@ const ModelSelector = ({
   const displayModel = currentModel || models[0] || "";
 
   const modelsSettingsLabel = flipUiArrowsForRtl(t("Open Settings → Models"), isRtl);
+  const showModelsSettings = experienceMode === "advanced" && Boolean(onIconClick);
+  const showMenuFooter = Boolean(onExperienceModeChange || showModelsSettings);
 
   return (
     <div className="flex min-w-0 max-w-full flex-wrap items-center justify-end gap-x-2 gap-y-1">
@@ -140,16 +146,30 @@ const ModelSelector = ({
               </DropdownMenuItem>
             );
           })}
-          {onIconClick ? (
+          {showMenuFooter ? (
             <>
               <DropdownMenuSeparator />
-              <DropdownMenuItem
-                onClick={() => {
-                  onIconClick();
-                }}
-              >
-                {modelsSettingsLabel}
-              </DropdownMenuItem>
+              {onExperienceModeChange ? (
+                <DropdownMenuItem
+                  data-testid="experience-mode-toggle"
+                  onClick={() => {
+                    onExperienceModeChange(experienceMode === "easy" ? "advanced" : "easy");
+                  }}
+                >
+                  {experienceMode === "easy"
+                    ? t("Switch to Advanced mode")
+                    : t("Switch to Easy mode")}
+                </DropdownMenuItem>
+              ) : null}
+              {showModelsSettings ? (
+                <DropdownMenuItem
+                  onClick={() => {
+                    onIconClick?.();
+                  }}
+                >
+                  {modelsSettingsLabel}
+                </DropdownMenuItem>
+              ) : null}
             </>
           ) : null}
         </DropdownMenuContent>
@@ -195,6 +215,8 @@ ModelSelector.propTypes = {
   onModelChange: PropTypes.func.isRequired,
   onIconClick: PropTypes.func,
   onRemoveModel: PropTypes.func,
+  experienceMode: PropTypes.oneOf(["easy", "advanced"]),
+  onExperienceModeChange: PropTypes.func,
 };
 
 export default ModelSelector;

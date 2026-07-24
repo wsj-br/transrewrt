@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.1-blue" alt="Version"></a>
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.2-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
 </p>
@@ -69,6 +69,15 @@ Teljes termékdokumentáció (telepítés, API kulcsok, útmutatók, beállítá
 ## Támogatás
 
 Nyisson egy hibajegyet a [GitHub](https://github.com/wsj-br/transrewrt/issues) oldalon. Adja meg platformját (Windows / Linux / Docker) és az alkalmazás verzióját (Névjegy párbeszédpanel vagy Kiadások oldal).
+
+## Köszönetnyilvánítás
+
+Az előbeállítások szerkesztőjében található Egyszerű-mód előbeállítási javaslatok nyilvános értékelési adatokat használnak a következő forrásokból:
+
+- [languagebench](https://huggingface.co/spaces/fair-forward/languagebench) (CC BY-SA 4.0)
+- [Artificial Analysis](https://artificialanalysis.ai/) (az API adatokhoz attribúció szükséges)
+
+A harmadik féltől származó függőségek licencei és ezek az adatforrás-értesítések a [NOTICES](../NOTICES) fájlban találhatók.
 
 ## Licenc
 

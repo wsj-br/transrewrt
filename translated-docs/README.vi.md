@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.1-blue" alt="Version"></a>
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.2-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
 </p>
@@ -69,6 +69,15 @@ Tài liệu sản phẩm đầy đủ (cài đặt, khóa API, hướng dẫn, c
 ## Hỗ trợ
 
 Mở một vấn đề trên [GitHub](https://github.com/wsj-br/transrewrt/issues). Bao gồm nền tảng của bạn (Windows / Linux / Docker) và phiên bản ứng dụng (hộp thoại Giới thiệu hoặc trang Bản phát hành).
+
+## Lời cảm ơn
+
+Các đề xuất cài đặt trước ở chế độ Dễ dàng trong trình chỉnh sửa cài đặt trước sử dụng dữ liệu đánh giá công khai từ:
+
+- [languagebench](https://huggingface.co/spaces/fair-forward/languagebench) (CC BY-SA 4.0)
+- [Artificial Analysis](https://artificialanalysis.ai/) (yêu cầu ghi công đối với dữ liệu API)
+
+Giấy phép phụ thuộc của bên thứ ba và các thông báo nguồn dữ liệu này được liệt kê trong [THÔNG BÁO](../NOTICES).
 
 ## Giấy phép
 

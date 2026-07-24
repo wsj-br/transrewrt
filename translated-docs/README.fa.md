@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.1-blue" alt="Version"></a>
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.2-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
 </p>
@@ -69,6 +69,15 @@ chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage
 ## پشتیبانی
 
 یک مشکل را در [GitHub](https://github.com/wsj-br/transrewrt/issues) باز کنید. پلتفرم خود (ویندوز / لینوکس / Docker) و نسخه برنامه (گفتگوی درباره یا صفحه انتشارات) را ذکر کنید.
+
+## تقدیر و تشکر
+
+پیشنهادات پیش‌تنظیم حالت آسان در ویرایشگر پیش‌تنظیم از داده‌های ارزیابی عمومی زیر استفاده می‌کنند:
+
+- [languagebench](https://huggingface.co/spaces/fair-forward/languagebench) (CC BY-SA 4.0)
+- [Artificial Analysis](https://artificialanalysis.ai/) (برای داده‌های API نیاز به انتساب است)
+
+مجوزهای وابستگی شخص ثالث و این اطلاعیه‌های منبع داده در [NOTICES](../NOTICES) فهرست شده‌اند.
 
 ## مجوز
 

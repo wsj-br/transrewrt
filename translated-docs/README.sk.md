@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.1-blue" alt="Version"></a>
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.2-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
 </p>
@@ -69,6 +69,15 @@ Kompletná dokumentácia produktu (inštalácia, kľúče API, príručky, nasta
 ## Podpora
 
 Otvorte problém na [GitHub](https://github.com/wsj-br/transrewrt/issues). Uveďte svoju platformu (Windows / Linux / Docker) a verziu aplikácie (dialógové okno O aplikácii alebo stránka Vydania).
+
+## Poďakovania
+
+Návrhy predvolieb v režime „Jednoduché“ v editore predvolieb používajú verejné hodnotiace údaje z:
+
+- [languagebench](https://huggingface.co/spaces/fair-forward/languagebench) (CC BY-SA 4.0)
+- [Artificial Analysis](https://artificialanalysis.ai/) (vyžaduje sa uvedenie zdroja pre údaje API)
+
+Licencie závislostí tretích strán a tieto oznámenia o zdrojoch údajov sú uvedené v [NOTICES](../NOTICES).
 
 ## Licencia
 

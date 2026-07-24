@@ -1214,6 +1214,28 @@ table.trans-table {
   line-height: 1.45;
 }
 
+.ai-suggest-setup-options {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.ai-suggest-live-timing-check {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  cursor: pointer;
+}
+
+.ai-suggest-live-timing-check input {
+  margin-top: 3px;
+  flex-shrink: 0;
+}
+
 .ai-suggest-preset-select-toolbar {
   display: flex;
   flex-wrap: wrap;

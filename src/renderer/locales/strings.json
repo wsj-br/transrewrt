@@ -2497,7 +2497,7 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 805
+        "line": 806
       },
       {
         "file": "src/renderer/components/DashboardTabAllCalls.tsx",
@@ -2529,7 +2529,7 @@
       },
       {
         "file": "src/renderer/components/MainContent.tsx",
-        "line": 214
+        "line": 219
       },
       {
         "file": "src/renderer/components/SettingsCostTrackingTab.tsx",
@@ -2650,7 +2650,7 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 825
+        "line": 826
       },
       {
         "file": "src/renderer/components/SettingsTransformPromptsTab.tsx",
@@ -2755,7 +2755,7 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 826
+        "line": 827
       },
       {
         "file": "src/renderer/components/SettingsTransformPromptsTab.tsx",
@@ -2852,7 +2852,7 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 827
+        "line": 828
       },
       {
         "file": "src/renderer/components/SettingsTransformPromptsTab.tsx",
@@ -2949,7 +2949,7 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 829
+        "line": 830
       },
       {
         "file": "src/renderer/components/SelectFromPresetsModal.tsx",
@@ -3050,15 +3050,15 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 830
+        "line": 831
       },
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 929
+        "line": 931
       },
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 1010
+        "line": 1013
       },
       {
         "file": "src/renderer/components/ChangePasswordModal.tsx",
@@ -3070,7 +3070,7 @@
       },
       {
         "file": "src/renderer/components/ModelSelector.tsx",
-        "line": 182
+        "line": 202
       },
       {
         "file": "src/renderer/components/SettingsApiTab.tsx",
@@ -3110,19 +3110,19 @@
       },
       {
         "file": "src/renderer/components/TransformGenerateModal.tsx",
-        "line": 122
+        "line": 125
       },
       {
         "file": "src/renderer/components/TransformImproveModal.tsx",
-        "line": 101
+        "line": 104
       },
       {
         "file": "src/renderer/components/TransformPromptEditor.tsx",
-        "line": 450
+        "line": 452
       },
       {
         "file": "src/renderer/components/TransformTranslateModal.tsx",
-        "line": 112
+        "line": 115
       }
     ]
   },
@@ -3215,11 +3215,11 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 926
+        "line": 928
       },
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 1007
+        "line": 1010
       },
       {
         "file": "src/renderer/components/SettingsTransformPromptsTab.tsx",
@@ -3316,11 +3316,11 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 927
+        "line": 929
       },
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 1008
+        "line": 1011
       }
     ]
   },
@@ -3413,11 +3413,11 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 927
+        "line": 929
       },
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 1008
+        "line": 1011
       }
     ]
   },
@@ -3510,11 +3510,11 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 928
+        "line": 930
       },
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 1009
+        "line": 1012
       },
       {
         "file": "src/renderer/components/DashboardPage.tsx",
@@ -3534,7 +3534,7 @@
       },
       {
         "file": "src/renderer/components/TransformPromptEditor.tsx",
-        "line": 455
+        "line": 457
       }
     ]
   },
@@ -11457,7 +11457,7 @@
       },
       {
         "file": "src/renderer/components/MainContent.tsx",
-        "line": 231
+        "line": 236
       },
       {
         "file": "src/renderer/components/Sidebar.tsx",
@@ -11465,19 +11465,19 @@
       },
       {
         "file": "src/renderer/components/workspace/RewriteWorkspace.tsx",
-        "line": 287
-      },
-      {
-        "file": "src/renderer/components/workspace/RewriteWorkspace.tsx",
         "line": 288
       },
       {
+        "file": "src/renderer/components/workspace/RewriteWorkspace.tsx",
+        "line": 289
+      },
+      {
         "file": "src/renderer/components/workspace/TranslateStackPanels.tsx",
-        "line": 296
+        "line": 297
       },
       {
         "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
-        "line": 254
+        "line": 255
       }
     ]
   },
@@ -11574,7 +11574,7 @@
       },
       {
         "file": "src/renderer/components/MainContent.tsx",
-        "line": 232
+        "line": 237
       },
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
@@ -11586,7 +11586,7 @@
       },
       {
         "file": "src/renderer/components/workspace/TransformWorkspace.tsx",
-        "line": 286
+        "line": 289
       }
     ]
   },
@@ -12160,15 +12160,15 @@
       },
       {
         "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
-        "line": 82
-      },
-      {
-        "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
         "line": 83
       },
       {
         "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
-        "line": 86
+        "line": 84
+      },
+      {
+        "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
+        "line": 87
       }
     ]
   },
@@ -13069,7 +13069,7 @@
       },
       {
         "file": "src/renderer/components/TransformPromptEditor.tsx",
-        "line": 446
+        "line": 448
       }
     ]
   },
@@ -13271,19 +13271,19 @@
       },
       {
         "file": "src/renderer/components/workspace/RewriteWorkspace.tsx",
-        "line": 136
+        "line": 137
       },
       {
         "file": "src/renderer/components/workspace/TransformWorkspace.tsx",
-        "line": 158
+        "line": 161
       },
       {
         "file": "src/renderer/components/workspace/TranslateStackPanels.tsx",
-        "line": 148
+        "line": 149
       },
       {
         "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
-        "line": 92
+        "line": 93
       }
     ]
   },
@@ -13388,19 +13388,19 @@
       },
       {
         "file": "src/renderer/components/workspace/RewriteWorkspace.tsx",
-        "line": 188
+        "line": 189
       },
       {
         "file": "src/renderer/components/workspace/TransformWorkspace.tsx",
-        "line": 216
+        "line": 219
       },
       {
         "file": "src/renderer/components/workspace/TranslateStackPanels.tsx",
-        "line": 221
+        "line": 222
       },
       {
         "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
-        "line": 169
+        "line": 170
       }
     ]
   },
@@ -14964,7 +14964,7 @@
     "locations": [
       {
         "file": "src/renderer/components/MainContent.tsx",
-        "line": 175
+        "line": 180
       }
     ]
   },
@@ -15057,7 +15057,7 @@
     "locations": [
       {
         "file": "src/renderer/components/MainContent.tsx",
-        "line": 190
+        "line": 195
       },
       {
         "file": "src/renderer/components/Sidebar.tsx",
@@ -15154,7 +15154,7 @@
     "locations": [
       {
         "file": "src/renderer/components/MainContent.tsx",
-        "line": 195
+        "line": 200
       }
     ]
   },
@@ -15247,7 +15247,7 @@
     "locations": [
       {
         "file": "src/renderer/components/MainContent.tsx",
-        "line": 209
+        "line": 214
       },
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
@@ -15348,7 +15348,7 @@
     "locations": [
       {
         "file": "src/renderer/components/MainContent.tsx",
-        "line": 230
+        "line": 235
       },
       {
         "file": "src/renderer/components/Sidebar.tsx",
@@ -15356,29 +15356,171 @@
       },
       {
         "file": "src/renderer/components/TransformTranslateModal.tsx",
-        "line": 115
+        "line": 118
       },
       {
         "file": "src/renderer/components/workspace/RewriteWorkspace.tsx",
-        "line": 287
-      },
-      {
-        "file": "src/renderer/components/workspace/TranslateStackPanels.tsx",
-        "line": 296
+        "line": 288
       },
       {
         "file": "src/renderer/components/workspace/TranslateStackPanels.tsx",
         "line": 297
       },
       {
-        "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
-        "line": 254
+        "file": "src/renderer/components/workspace/TranslateStackPanels.tsx",
+        "line": 298
       },
       {
         "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
         "line": 255
+      },
+      {
+        "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
+        "line": 256
       }
     ]
+  },
+  "6a26f548": {
+    "source": "Help",
+    "translated": {
+      "ar": "مساعدة",
+      "nl": "Help",
+      "de": "Hilfe",
+      "fr": "Aide",
+      "cs": "Nápověda",
+      "el": "Βοήθεια",
+      "zh-Hans": "帮助",
+      "zh-Hant": "說明",
+      "pl": "Pomoc",
+      "it": "Guida",
+      "fa": "راهنما",
+      "pt-BR": "Ajuda",
+      "hi": "सहायता",
+      "ko": "도움말",
+      "hu": "Súgó",
+      "ja": "ヘルプ",
+      "es": "Ayuda",
+      "ro": "Ajutor",
+      "ru": "Справка",
+      "tr": "Yardım",
+      "uk": "Довідка",
+      "sv": "Hjälp",
+      "sk": "Pomocník",
+      "th": "ช่วยเหลือ",
+      "vi": "Trợ giúp"
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/MainContent.tsx",
+        "line": 283
+      },
+      {
+        "file": "src/renderer/components/MainContent.tsx",
+        "line": 284
+      }
+    ],
+    "models": {
+      "ar": "~anthropic/claude-sonnet-latest",
+      "nl": "~anthropic/claude-sonnet-latest",
+      "de": "~anthropic/claude-sonnet-latest",
+      "fr": "~anthropic/claude-sonnet-latest",
+      "cs": "~anthropic/claude-sonnet-latest",
+      "el": "~anthropic/claude-sonnet-latest",
+      "zh-Hans": "z-ai/glm-5.2",
+      "zh-Hant": "z-ai/glm-5.2",
+      "pl": "~anthropic/claude-sonnet-latest",
+      "it": "~anthropic/claude-sonnet-latest",
+      "fa": "~anthropic/claude-sonnet-latest",
+      "pt-BR": "~anthropic/claude-sonnet-latest",
+      "hi": "~anthropic/claude-sonnet-latest",
+      "ko": "z-ai/glm-5.2",
+      "hu": "~anthropic/claude-sonnet-latest",
+      "ja": "z-ai/glm-5.2",
+      "es": "~anthropic/claude-sonnet-latest",
+      "ro": "~anthropic/claude-sonnet-latest",
+      "ru": "~anthropic/claude-sonnet-latest",
+      "tr": "~anthropic/claude-sonnet-latest",
+      "uk": "~anthropic/claude-sonnet-latest",
+      "sv": "~anthropic/claude-sonnet-latest",
+      "sk": "~anthropic/claude-sonnet-latest",
+      "th": "~anthropic/claude-sonnet-latest",
+      "vi": "~anthropic/claude-sonnet-latest"
+    }
+  },
+  "3bfd85ce": {
+    "source": "Switch to Advanced mode",
+    "translated": {
+      "ar": "التبديل إلى الوضع المتقدم",
+      "nl": "Overschakelen naar Geavanceerde modus",
+      "de": "Zum erweiterten Modus wechseln",
+      "fr": "Passer en mode avancé",
+      "cs": "Přepnout na pokročilý režim",
+      "el": "Εναλλαγή σε λειτουργία για προχωρημένους",
+      "zh-Hans": "切换到高级模式",
+      "zh-Hant": "切換至進階模式",
+      "pl": "Przełącz na tryb zaawansowany",
+      "it": "Passa alla modalità avanzata",
+      "fa": "تغییر به حالت پیشرفته",
+      "pt-BR": "Mudar para o modo Avançado",
+      "hi": "एडवांस्ड मोड में बदलें",
+      "ko": "고급 모드로 전환",
+      "hu": "Váltás Speciális módra",
+      "ja": "詳細モードに切り替え",
+      "es": "Cambiar a modo avanzado",
+      "ro": "Comută la modul Avansat",
+      "ru": "Перейти в расширенный режим",
+      "tr": "Gelişmiş moda geç",
+      "uk": "Перейти в розширений режим",
+      "sv": "Byt till avancerat läge",
+      "sk": "Prepnúť na pokročilý režim",
+      "th": "สลับไปที่โหมดขั้นสูง",
+      "vi": "Chuyển sang chế độ Nâng cao"
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/ModelOrPresetPicker.tsx",
+        "line": 79
+      },
+      {
+        "file": "src/renderer/components/ModelOrPresetPicker.tsx",
+        "line": 121
+      },
+      {
+        "file": "src/renderer/components/ModelSelector.tsx",
+        "line": 160
+      },
+      {
+        "file": "src/renderer/components/PresetSelector.tsx",
+        "line": 111
+      }
+    ],
+    "models": {
+      "ar": "~anthropic/claude-sonnet-latest",
+      "nl": "~anthropic/claude-sonnet-latest",
+      "de": "~anthropic/claude-sonnet-latest",
+      "fr": "~anthropic/claude-sonnet-latest",
+      "cs": "~anthropic/claude-sonnet-latest",
+      "el": "~anthropic/claude-sonnet-latest",
+      "zh-Hans": "z-ai/glm-5.2",
+      "zh-Hant": "z-ai/glm-5.2",
+      "pl": "~anthropic/claude-sonnet-latest",
+      "it": "~anthropic/claude-sonnet-latest",
+      "fa": "~anthropic/claude-sonnet-latest",
+      "pt-BR": "~anthropic/claude-sonnet-latest",
+      "hi": "~anthropic/claude-sonnet-latest",
+      "ko": "z-ai/glm-5.2",
+      "hu": "~anthropic/claude-sonnet-latest",
+      "ja": "z-ai/glm-5.2",
+      "es": "~anthropic/claude-sonnet-latest",
+      "ro": "~anthropic/claude-sonnet-latest",
+      "ru": "~anthropic/claude-sonnet-latest",
+      "tr": "~anthropic/claude-sonnet-latest",
+      "uk": "~anthropic/claude-sonnet-latest",
+      "sv": "~anthropic/claude-sonnet-latest",
+      "sk": "~anthropic/claude-sonnet-latest",
+      "th": "~anthropic/claude-sonnet-latest",
+      "vi": "~anthropic/claude-sonnet-latest"
+    }
   },
   "3bcf04db": {
     "source": "Configure Local LLM or choose another provider in Settings.",
@@ -15439,7 +15581,7 @@
     "locations": [
       {
         "file": "src/renderer/components/ModelOrPresetPicker.tsx",
-        "line": 75
+        "line": 88
       }
     ]
   },
@@ -15532,9 +15674,80 @@
     "locations": [
       {
         "file": "src/renderer/components/ModelOrPresetPicker.tsx",
-        "line": 103
+        "line": 130
       }
     ]
+  },
+  "fb919a11": {
+    "source": "Switch to Easy mode",
+    "translated": {
+      "ar": "التبديل إلى الوضع البسيط",
+      "nl": "Overschakelen naar Eenvoudige modus",
+      "de": "Zum einfachen Modus wechseln",
+      "fr": "Passer en mode simplifié",
+      "cs": "Přepnout na jednoduchý režim",
+      "el": "Εναλλαγή σε απλή λειτουργία",
+      "zh-Hans": "切换到简单模式",
+      "zh-Hant": "切換至簡易模式",
+      "pl": "Przełącz na tryb prosty",
+      "it": "Passa alla modalità semplice",
+      "fa": "تغییر به حالت ساده",
+      "pt-BR": "Mudar para o modo Fácil",
+      "hi": "आसान मोड में बदलें",
+      "ko": "쉬운 모드로 전환",
+      "hu": "Váltás Egyszerű módra",
+      "ja": "簡易モードに切り替え",
+      "es": "Cambiar a modo fácil",
+      "ro": "Comută la modul Simplu",
+      "ru": "Перейти в простой режим",
+      "tr": "Kolay moda geç",
+      "uk": "Перейти в простий режим",
+      "sv": "Byt till enkelt läge",
+      "sk": "Prepnúť na jednoduchý režim",
+      "th": "สลับไปที่โหมดง่าย",
+      "vi": "Chuyển sang chế độ Đơn giản"
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/ModelOrPresetPicker.tsx",
+        "line": 149
+      },
+      {
+        "file": "src/renderer/components/ModelSelector.tsx",
+        "line": 161
+      },
+      {
+        "file": "src/renderer/components/PresetSelector.tsx",
+        "line": 112
+      }
+    ],
+    "models": {
+      "ar": "~anthropic/claude-sonnet-latest",
+      "nl": "~anthropic/claude-sonnet-latest",
+      "de": "~anthropic/claude-sonnet-latest",
+      "fr": "~anthropic/claude-sonnet-latest",
+      "cs": "~anthropic/claude-sonnet-latest",
+      "el": "~anthropic/claude-sonnet-latest",
+      "zh-Hans": "z-ai/glm-5.2",
+      "zh-Hant": "z-ai/glm-5.2",
+      "pl": "~anthropic/claude-sonnet-latest",
+      "it": "~anthropic/claude-sonnet-latest",
+      "fa": "~anthropic/claude-sonnet-latest",
+      "pt-BR": "~anthropic/claude-sonnet-latest",
+      "hi": "~anthropic/claude-sonnet-latest",
+      "ko": "z-ai/glm-5.2",
+      "hu": "~anthropic/claude-sonnet-latest",
+      "ja": "z-ai/glm-5.2",
+      "es": "~anthropic/claude-sonnet-latest",
+      "ro": "~anthropic/claude-sonnet-latest",
+      "ru": "~anthropic/claude-sonnet-latest",
+      "tr": "~anthropic/claude-sonnet-latest",
+      "uk": "~anthropic/claude-sonnet-latest",
+      "sv": "~anthropic/claude-sonnet-latest",
+      "sk": "~anthropic/claude-sonnet-latest",
+      "th": "~anthropic/claude-sonnet-latest",
+      "vi": "~anthropic/claude-sonnet-latest"
+    }
   },
   "01d51f5f": {
     "source": "Open Settings → Models",
@@ -15625,11 +15838,11 @@
     "locations": [
       {
         "file": "src/renderer/components/ModelOrPresetPicker.tsx",
-        "line": 118
+        "line": 158
       },
       {
         "file": "src/renderer/components/ModelSelector.tsx",
-        "line": 90
+        "line": 94
       }
     ]
   },
@@ -15722,7 +15935,7 @@
     "locations": [
       {
         "file": "src/renderer/components/ModelSelector.tsx",
-        "line": 101
+        "line": 107
       }
     ]
   },
@@ -15815,7 +16028,7 @@
     "locations": [
       {
         "file": "src/renderer/components/ModelSelector.tsx",
-        "line": 163
+        "line": 183
       }
     ]
   },
@@ -15908,7 +16121,7 @@
     "locations": [
       {
         "file": "src/renderer/components/ModelSelector.tsx",
-        "line": 164
+        "line": 184
       }
     ]
   },
@@ -16001,7 +16214,7 @@
     "locations": [
       {
         "file": "src/renderer/components/ModelSelector.tsx",
-        "line": 171
+        "line": 191
       },
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
@@ -16068,7 +16281,7 @@
     "locations": [
       {
         "file": "src/renderer/components/ModelSelector.tsx",
-        "line": 174
+        "line": 194
       }
     ]
   },
@@ -16161,7 +16374,7 @@
     "locations": [
       {
         "file": "src/renderer/components/ModelSelector.tsx",
-        "line": 177
+        "line": 197
       }
     ]
   },
@@ -16254,7 +16467,7 @@
     "locations": [
       {
         "file": "src/renderer/components/ModelSelector.tsx",
-        "line": 181
+        "line": 201
       }
     ]
   },
@@ -16347,100 +16560,7 @@
     "locations": [
       {
         "file": "src/renderer/components/PresetSelector.tsx",
-        "line": 56
-      }
-    ]
-  },
-  "94436e76": {
-    "source": "Open Settings → General",
-    "translated": {
-      "pt-BR": "Abrir Configurações → Geral",
-      "ar": "افتح الإعدادات → عام",
-      "ca": "Obre Configuració → General",
-      "bn": "সেটিংস → সাধারণ খুলুন",
-      "zh-CN": "打开设置 → 常规",
-      "zh-TW": "開啟設定 → 一般",
-      "cs": "Otevřít Nastavení → Obecné",
-      "hr": "Otvorite Postavke → Općenito",
-      "en-US": "Open Settings → General",
-      "tl": "Buksan ang Mga Setting → Pangkalahatan",
-      "fr": "Ouvrir Paramètres → Général",
-      "nl": "Open Instellingen → Algemeen",
-      "de": "Öffnen Sie Einstellungen → Allgemein",
-      "hi": "सेटिंग्स → सामान्य खोलें",
-      "hu": "Nyissa meg a Beállítások → Általános menüpontot",
-      "el": "Ανοίξτε Ρυθμίσεις → Γενικά",
-      "ja": "設定 → 一般を開く",
-      "it": "Apri Impostazioni → Generale",
-      "ko": "설정 → 일반 열기",
-      "ms": "Buka Tetapan → Umum",
-      "pt": "Abrir Configurações → Geral",
-      "jv": "Bukak Setelan → Umum",
-      "fa": "تنظیمات → عمومی را باز کنید",
-      "pl": "Otwórz Ustawienia → Ogólne",
-      "ro": "Deschideți Setări → General",
-      "sk": "Otvoriť Nastavenia → Všeobecné",
-      "ru": "Открыть Настройки → Общие",
-      "pa": "ਸੈਟਿੰਗਾਂ → ਜਨਰਲ ਖੋਲ੍ਹੋ",
-      "es": "Abrir Configuración → General",
-      "sv": "Öppna Inställningar → Allmänt",
-      "sw": "Fungua Mipangilio → Jumla",
-      "te": "సెట్టింగులు → సాధారణం తెరవండి",
-      "vi": "Mở Cài đặt → Chung",
-      "tr": "Ayarlar → Genel'i açın",
-      "th": "เปิดการตั้งค่า → ทั่วไป",
-      "uk": "Відкрити Налаштування → Загальні",
-      "zh-Hans": "打开设置 → 常规",
-      "zh-Hant": "開啟「設定」→「一般」",
-      "pa-PK": "سیٹنگز کھولیں → عمومی",
-      "hi-Latn": "Settings → General kholein"
-    },
-    "models": {
-      "pt-BR": "anthropic/claude-3-haiku",
-      "ar": "anthropic/claude-3-haiku",
-      "ca": "anthropic/claude-3-haiku",
-      "bn": "anthropic/claude-3-haiku",
-      "zh-CN": "anthropic/claude-3-haiku",
-      "zh-TW": "anthropic/claude-3-haiku",
-      "cs": "anthropic/claude-3-haiku",
-      "hr": "anthropic/claude-3-haiku",
-      "en-US": "anthropic/claude-3-haiku",
-      "tl": "anthropic/claude-3-haiku",
-      "fr": "anthropic/claude-3-haiku",
-      "nl": "anthropic/claude-3-haiku",
-      "de": "anthropic/claude-3-haiku",
-      "hi": "anthropic/claude-3-haiku",
-      "hu": "anthropic/claude-3-haiku",
-      "el": "anthropic/claude-3-haiku",
-      "ja": "anthropic/claude-3-haiku",
-      "it": "anthropic/claude-3-haiku",
-      "ko": "anthropic/claude-3-haiku",
-      "ms": "anthropic/claude-3-haiku",
-      "pt": "anthropic/claude-3-haiku",
-      "jv": "anthropic/claude-3-haiku",
-      "fa": "anthropic/claude-3-haiku",
-      "pl": "anthropic/claude-3-haiku",
-      "ro": "anthropic/claude-3-haiku",
-      "sk": "anthropic/claude-3-haiku",
-      "ru": "anthropic/claude-3-haiku",
-      "pa": "anthropic/claude-3-haiku",
-      "es": "anthropic/claude-3-haiku",
-      "sv": "anthropic/claude-3-haiku",
-      "sw": "anthropic/claude-3-haiku",
-      "te": "anthropic/claude-3-haiku",
-      "vi": "anthropic/claude-3-haiku",
-      "tr": "anthropic/claude-3-haiku",
-      "th": "anthropic/claude-3-haiku",
-      "uk": "anthropic/claude-3-haiku",
-      "zh-Hans": "google/gemini-2.5-flash-lite",
-      "zh-Hant": "google/gemini-2.5-flash-lite",
-      "pa-PK": "google/gemini-2.5-flash",
-      "hi-Latn": "google/gemini-2.5-flash"
-    },
-    "locations": [
-      {
-        "file": "src/renderer/components/PresetSelector.tsx",
-        "line": 108
+        "line": 57
       }
     ]
   },
@@ -16731,15 +16851,15 @@
       },
       {
         "file": "src/renderer/components/TransformGenerateModal.tsx",
-        "line": 70
+        "line": 72
       },
       {
         "file": "src/renderer/components/TransformImproveModal.tsx",
-        "line": 64
+        "line": 66
       },
       {
         "file": "src/renderer/components/TransformTranslateModal.tsx",
-        "line": 67
+        "line": 69
       }
     ]
   },
@@ -17313,7 +17433,7 @@
       },
       {
         "file": "src/renderer/components/workspace/RewriteWorkspace.tsx",
-        "line": 72
+        "line": 73
       }
     ]
   },
@@ -27472,35 +27592,35 @@
       },
       {
         "file": "src/renderer/components/workspace/RewriteWorkspace.tsx",
-        "line": 79
-      },
-      {
-        "file": "src/renderer/components/workspace/RewriteWorkspace.tsx",
         "line": 80
       },
       {
-        "file": "src/renderer/components/workspace/TransformWorkspace.tsx",
-        "line": 132
+        "file": "src/renderer/components/workspace/RewriteWorkspace.tsx",
+        "line": 81
       },
       {
         "file": "src/renderer/components/workspace/TransformWorkspace.tsx",
-        "line": 133
+        "line": 135
       },
       {
-        "file": "src/renderer/components/workspace/TranslateStackPanels.tsx",
-        "line": 114
+        "file": "src/renderer/components/workspace/TransformWorkspace.tsx",
+        "line": 136
       },
       {
         "file": "src/renderer/components/workspace/TranslateStackPanels.tsx",
         "line": 115
       },
       {
-        "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
-        "line": 59
+        "file": "src/renderer/components/workspace/TranslateStackPanels.tsx",
+        "line": 116
       },
       {
         "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
         "line": 60
+      },
+      {
+        "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
+        "line": 61
       }
     ]
   },
@@ -27694,19 +27814,19 @@
       },
       {
         "file": "src/renderer/components/workspace/RewriteWorkspace.tsx",
-        "line": 79
+        "line": 80
       },
       {
         "file": "src/renderer/components/workspace/TransformWorkspace.tsx",
-        "line": 132
+        "line": 135
       },
       {
         "file": "src/renderer/components/workspace/TranslateStackPanels.tsx",
-        "line": 114
+        "line": 115
       },
       {
         "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
-        "line": 59
+        "line": 60
       }
     ]
   },
@@ -27803,19 +27923,19 @@
       },
       {
         "file": "src/renderer/components/workspace/RewriteWorkspace.tsx",
-        "line": 156
+        "line": 157
       },
       {
         "file": "src/renderer/components/workspace/TransformWorkspace.tsx",
-        "line": 179
+        "line": 182
       },
       {
         "file": "src/renderer/components/workspace/TranslateStackPanels.tsx",
-        "line": 169
+        "line": 170
       },
       {
         "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
-        "line": 119
+        "line": 120
       }
     ]
   },
@@ -27912,19 +28032,19 @@
       },
       {
         "file": "src/renderer/components/workspace/RewriteWorkspace.tsx",
-        "line": 226
+        "line": 227
       },
       {
         "file": "src/renderer/components/workspace/TransformWorkspace.tsx",
-        "line": 246
+        "line": 249
       },
       {
         "file": "src/renderer/components/workspace/TranslateStackPanels.tsx",
-        "line": 254
+        "line": 255
       },
       {
         "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
-        "line": 213
+        "line": 214
       }
     ]
   },
@@ -35117,11 +35237,11 @@
       },
       {
         "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
-        "line": 109
+        "line": 110
       },
       {
         "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
-        "line": 205
+        "line": 206
       }
     ]
   },
@@ -39086,7 +39206,7 @@
       },
       {
         "file": "src/renderer/components/TransformPromptEditor.tsx",
-        "line": 406
+        "line": 408
       }
     ]
   },
@@ -39381,7 +39501,7 @@
       },
       {
         "file": "src/renderer/components/TransformPromptEditor.tsx",
-        "line": 436
+        "line": 438
       }
     ]
   },
@@ -42983,7 +43103,7 @@
       },
       {
         "file": "src/renderer/components/TransformGenerateModal.tsx",
-        "line": 129
+        "line": 132
       }
     ]
   },
@@ -44802,35 +44922,35 @@
       },
       {
         "file": "src/renderer/components/workspace/RewriteWorkspace.tsx",
-        "line": 258
-      },
-      {
-        "file": "src/renderer/components/workspace/RewriteWorkspace.tsx",
         "line": 259
       },
       {
-        "file": "src/renderer/components/workspace/TransformWorkspace.tsx",
-        "line": 257
+        "file": "src/renderer/components/workspace/RewriteWorkspace.tsx",
+        "line": 260
       },
       {
         "file": "src/renderer/components/workspace/TransformWorkspace.tsx",
-        "line": 258
+        "line": 260
       },
       {
-        "file": "src/renderer/components/workspace/TranslateStackPanels.tsx",
-        "line": 266
+        "file": "src/renderer/components/workspace/TransformWorkspace.tsx",
+        "line": 261
       },
       {
         "file": "src/renderer/components/workspace/TranslateStackPanels.tsx",
         "line": 267
       },
       {
-        "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
-        "line": 224
+        "file": "src/renderer/components/workspace/TranslateStackPanels.tsx",
+        "line": 268
       },
       {
         "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
         "line": 225
+      },
+      {
+        "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
+        "line": 226
       }
     ]
   },
@@ -45299,35 +45419,35 @@
       },
       {
         "file": "src/renderer/components/workspace/RewriteWorkspace.tsx",
-        "line": 163
-      },
-      {
-        "file": "src/renderer/components/workspace/RewriteWorkspace.tsx",
         "line": 164
       },
       {
-        "file": "src/renderer/components/workspace/TransformWorkspace.tsx",
-        "line": 186
+        "file": "src/renderer/components/workspace/RewriteWorkspace.tsx",
+        "line": 165
       },
       {
         "file": "src/renderer/components/workspace/TransformWorkspace.tsx",
-        "line": 187
+        "line": 189
       },
       {
-        "file": "src/renderer/components/workspace/TranslateStackPanels.tsx",
-        "line": 177
+        "file": "src/renderer/components/workspace/TransformWorkspace.tsx",
+        "line": 190
       },
       {
         "file": "src/renderer/components/workspace/TranslateStackPanels.tsx",
         "line": 178
       },
       {
-        "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
-        "line": 126
+        "file": "src/renderer/components/workspace/TranslateStackPanels.tsx",
+        "line": 179
       },
       {
         "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
         "line": 127
+      },
+      {
+        "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
+        "line": 128
       }
     ]
   },
@@ -45513,7 +45633,7 @@
     "locations": [
       {
         "file": "src/renderer/components/TransformGenerateModal.tsx",
-        "line": 71
+        "line": 73
       }
     ]
   },
@@ -45606,7 +45726,7 @@
     "locations": [
       {
         "file": "src/renderer/components/TransformGenerateModal.tsx",
-        "line": 81
+        "line": 83
       }
     ]
   },
@@ -45699,11 +45819,11 @@
     "locations": [
       {
         "file": "src/renderer/components/TransformGenerateModal.tsx",
-        "line": 84
+        "line": 86
       },
       {
         "file": "src/renderer/components/TransformGenerateModal.tsx",
-        "line": 91
+        "line": 93
       }
     ]
   },
@@ -45796,7 +45916,7 @@
     "locations": [
       {
         "file": "src/renderer/components/TransformGenerateModal.tsx",
-        "line": 90
+        "line": 92
       }
     ]
   },
@@ -45889,7 +46009,7 @@
     "locations": [
       {
         "file": "src/renderer/components/TransformGenerateModal.tsx",
-        "line": 129
+        "line": 132
       }
     ]
   },
@@ -45982,7 +46102,7 @@
     "locations": [
       {
         "file": "src/renderer/components/TransformImproveModal.tsx",
-        "line": 65
+        "line": 67
       }
     ]
   },
@@ -46075,7 +46195,7 @@
     "locations": [
       {
         "file": "src/renderer/components/TransformImproveModal.tsx",
-        "line": 75
+        "line": 77
       }
     ]
   },
@@ -46168,7 +46288,7 @@
     "locations": [
       {
         "file": "src/renderer/components/TransformImproveModal.tsx",
-        "line": 104
+        "line": 107
       }
     ]
   },
@@ -46261,7 +46381,7 @@
     "locations": [
       {
         "file": "src/renderer/components/TransformImproveModal.tsx",
-        "line": 104
+        "line": 107
       }
     ]
   },
@@ -46354,7 +46474,7 @@
     "locations": [
       {
         "file": "src/renderer/components/TransformPromptEditor.tsx",
-        "line": 201
+        "line": 203
       }
     ]
   },
@@ -46447,11 +46567,11 @@
     "locations": [
       {
         "file": "src/renderer/components/TransformPromptEditor.tsx",
-        "line": 211
+        "line": 213
       },
       {
         "file": "src/renderer/components/TransformPromptEditor.tsx",
-        "line": 225
+        "line": 227
       },
       {
         "file": "src/renderer/utils/misc/apiErrorDisplay.ts",
@@ -46552,11 +46672,11 @@
     "locations": [
       {
         "file": "src/renderer/components/TransformPromptEditor.tsx",
-        "line": 261
+        "line": 263
       },
       {
         "file": "src/renderer/components/TransformPromptEditor.tsx",
-        "line": 277
+        "line": 279
       }
     ]
   },
@@ -46649,11 +46769,11 @@
     "locations": [
       {
         "file": "src/renderer/components/TransformPromptEditor.tsx",
-        "line": 312
+        "line": 314
       },
       {
         "file": "src/renderer/components/TransformPromptEditor.tsx",
-        "line": 327
+        "line": 329
       }
     ]
   },
@@ -46746,11 +46866,11 @@
     "locations": [
       {
         "file": "src/renderer/components/TransformPromptEditor.tsx",
-        "line": 345
+        "line": 347
       },
       {
         "file": "src/renderer/components/TransformPromptEditor.tsx",
-        "line": 349
+        "line": 351
       }
     ]
   },
@@ -46843,7 +46963,7 @@
     "locations": [
       {
         "file": "src/renderer/components/TransformPromptEditor.tsx",
-        "line": 362
+        "line": 364
       }
     ]
   },
@@ -46936,7 +47056,7 @@
     "locations": [
       {
         "file": "src/renderer/components/TransformPromptEditor.tsx",
-        "line": 369
+        "line": 371
       }
     ]
   },
@@ -47029,7 +47149,7 @@
     "locations": [
       {
         "file": "src/renderer/components/TransformPromptEditor.tsx",
-        "line": 374
+        "line": 376
       }
     ]
   },
@@ -47122,7 +47242,7 @@
     "locations": [
       {
         "file": "src/renderer/components/TransformPromptEditor.tsx",
-        "line": 379
+        "line": 381
       }
     ]
   },
@@ -47215,7 +47335,7 @@
     "locations": [
       {
         "file": "src/renderer/components/TransformPromptEditor.tsx",
-        "line": 384
+        "line": 386
       }
     ]
   },
@@ -47308,7 +47428,7 @@
     "locations": [
       {
         "file": "src/renderer/components/TransformPromptEditor.tsx",
-        "line": 385
+        "line": 387
       }
     ]
   },
@@ -47401,7 +47521,7 @@
     "locations": [
       {
         "file": "src/renderer/components/TransformPromptEditor.tsx",
-        "line": 389
+        "line": 391
       }
     ]
   },
@@ -47494,7 +47614,7 @@
     "locations": [
       {
         "file": "src/renderer/components/TransformPromptEditor.tsx",
-        "line": 394
+        "line": 396
       }
     ]
   },
@@ -47587,7 +47707,7 @@
     "locations": [
       {
         "file": "src/renderer/components/TransformPromptEditor.tsx",
-        "line": 399
+        "line": 401
       }
     ]
   },
@@ -47680,7 +47800,7 @@
     "locations": [
       {
         "file": "src/renderer/components/TransformPromptEditor.tsx",
-        "line": 405
+        "line": 407
       }
     ]
   },
@@ -47773,7 +47893,7 @@
     "locations": [
       {
         "file": "src/renderer/components/TransformPromptEditor.tsx",
-        "line": 411
+        "line": 413
       }
     ]
   },
@@ -47866,7 +47986,7 @@
     "locations": [
       {
         "file": "src/renderer/components/TransformPromptEditor.tsx",
-        "line": 416
+        "line": 418
       }
     ]
   },
@@ -47959,7 +48079,7 @@
     "locations": [
       {
         "file": "src/renderer/components/TransformPromptEditor.tsx",
-        "line": 422
+        "line": 424
       }
     ]
   },
@@ -48052,7 +48172,7 @@
     "locations": [
       {
         "file": "src/renderer/components/TransformPromptEditor.tsx",
-        "line": 426
+        "line": 428
       }
     ]
   },
@@ -48145,7 +48265,7 @@
     "locations": [
       {
         "file": "src/renderer/components/TransformPromptEditor.tsx",
-        "line": 438
+        "line": 440
       }
     ]
   },
@@ -48238,7 +48358,7 @@
     "locations": [
       {
         "file": "src/renderer/components/TransformPromptEditor.tsx",
-        "line": 463
+        "line": 465
       }
     ]
   },
@@ -48331,7 +48451,7 @@
     "locations": [
       {
         "file": "src/renderer/components/TransformPromptEditor.tsx",
-        "line": 469
+        "line": 471
       }
     ]
   },
@@ -49932,7 +50052,7 @@
     "locations": [
       {
         "file": "src/renderer/components/TransformTranslateModal.tsx",
-        "line": 68
+        "line": 70
       }
     ]
   },
@@ -50025,7 +50145,7 @@
     "locations": [
       {
         "file": "src/renderer/components/TransformTranslateModal.tsx",
-        "line": 78
+        "line": 80
       }
     ]
   },
@@ -50118,7 +50238,7 @@
     "locations": [
       {
         "file": "src/renderer/components/TransformTranslateModal.tsx",
-        "line": 81
+        "line": 83
       }
     ]
   },
@@ -50211,7 +50331,7 @@
     "locations": [
       {
         "file": "src/renderer/components/TransformTranslateModal.tsx",
-        "line": 115
+        "line": 118
       }
     ]
   },
@@ -51141,7 +51261,7 @@
       },
       {
         "file": "src/renderer/components/workspace/RewriteWorkspace.tsx",
-        "line": 73
+        "line": 74
       }
     ]
   },
@@ -51335,7 +51455,7 @@
     "locations": [
       {
         "file": "src/renderer/components/workspace/RewriteWorkspace.tsx",
-        "line": 86
+        "line": 87
       }
     ]
   },
@@ -51428,19 +51548,19 @@
     "locations": [
       {
         "file": "src/renderer/components/workspace/RewriteWorkspace.tsx",
-        "line": 97
+        "line": 98
       },
       {
         "file": "src/renderer/components/workspace/TransformWorkspace.tsx",
-        "line": 200
+        "line": 203
       },
       {
         "file": "src/renderer/components/workspace/TranslateStackPanels.tsx",
-        "line": 124
+        "line": 125
       },
       {
         "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
-        "line": 68
+        "line": 69
       }
     ]
   },
@@ -51533,15 +51653,15 @@
     "locations": [
       {
         "file": "src/renderer/components/workspace/RewriteWorkspace.tsx",
-        "line": 139
+        "line": 140
       },
       {
         "file": "src/renderer/components/workspace/TranslateStackPanels.tsx",
-        "line": 151
+        "line": 152
       },
       {
         "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
-        "line": 95
+        "line": 96
       }
     ]
   },
@@ -51634,19 +51754,19 @@
     "locations": [
       {
         "file": "src/renderer/components/workspace/RewriteWorkspace.tsx",
-        "line": 153
+        "line": 154
       },
       {
         "file": "src/renderer/components/workspace/TransformWorkspace.tsx",
-        "line": 176
+        "line": 179
       },
       {
         "file": "src/renderer/components/workspace/TranslateStackPanels.tsx",
-        "line": 166
+        "line": 167
       },
       {
         "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
-        "line": 116
+        "line": 117
       }
     ]
   },
@@ -51739,19 +51859,19 @@
     "locations": [
       {
         "file": "src/renderer/components/workspace/RewriteWorkspace.tsx",
-        "line": 191
+        "line": 192
       },
       {
         "file": "src/renderer/components/workspace/TransformWorkspace.tsx",
-        "line": 219
+        "line": 222
       },
       {
         "file": "src/renderer/components/workspace/TranslateStackPanels.tsx",
-        "line": 224
+        "line": 225
       },
       {
         "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
-        "line": 172
+        "line": 173
       }
     ]
   },
@@ -51844,19 +51964,19 @@
     "locations": [
       {
         "file": "src/renderer/components/workspace/RewriteWorkspace.tsx",
-        "line": 223
+        "line": 224
       },
       {
         "file": "src/renderer/components/workspace/TransformWorkspace.tsx",
-        "line": 243
+        "line": 246
       },
       {
         "file": "src/renderer/components/workspace/TranslateStackPanels.tsx",
-        "line": 251
+        "line": 252
       },
       {
         "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
-        "line": 210
+        "line": 211
       }
     ]
   },
@@ -51949,7 +52069,7 @@
     "locations": [
       {
         "file": "src/renderer/components/workspace/RewriteWorkspace.tsx",
-        "line": 245
+        "line": 246
       }
     ]
   },
@@ -52042,19 +52162,19 @@
     "locations": [
       {
         "file": "src/renderer/components/workspace/RewriteWorkspace.tsx",
-        "line": 278
+        "line": 279
       },
       {
         "file": "src/renderer/components/workspace/TransformWorkspace.tsx",
-        "line": 277
+        "line": 280
       },
       {
         "file": "src/renderer/components/workspace/TranslateStackPanels.tsx",
-        "line": 286
+        "line": 287
       },
       {
         "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
-        "line": 244
+        "line": 245
       }
     ]
   },
@@ -52147,15 +52267,15 @@
     "locations": [
       {
         "file": "src/renderer/components/workspace/RewriteWorkspace.tsx",
-        "line": 287
+        "line": 288
       },
       {
         "file": "src/renderer/components/workspace/TranslateStackPanels.tsx",
-        "line": 296
+        "line": 297
       },
       {
         "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
-        "line": 254
+        "line": 255
       }
     ]
   },
@@ -52248,7 +52368,7 @@
     "locations": [
       {
         "file": "src/renderer/components/workspace/TransformWorkspace.tsx",
-        "line": 161
+        "line": 164
       }
     ]
   },
@@ -52341,7 +52461,7 @@
     "locations": [
       {
         "file": "src/renderer/components/workspace/TransformWorkspace.tsx",
-        "line": 286
+        "line": 289
       }
     ]
   },
@@ -52434,11 +52554,11 @@
     "locations": [
       {
         "file": "src/renderer/components/workspace/TranslateStackPanels.tsx",
-        "line": 140
+        "line": 141
       },
       {
         "file": "src/renderer/components/workspace/TranslateStackPanels.tsx",
-        "line": 141
+        "line": 142
       }
     ]
   },
@@ -52531,11 +52651,11 @@
     "locations": [
       {
         "file": "src/renderer/components/workspace/TranslateStackPanels.tsx",
-        "line": 191
+        "line": 192
       },
       {
         "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
-        "line": 140
+        "line": 141
       }
     ]
   },
@@ -52628,11 +52748,11 @@
     "locations": [
       {
         "file": "src/renderer/components/workspace/TranslateStackPanels.tsx",
-        "line": 210
+        "line": 211
       },
       {
         "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
-        "line": 158
+        "line": 159
       }
     ]
   },
@@ -52725,11 +52845,11 @@
     "locations": [
       {
         "file": "src/renderer/components/workspace/TranslateStackPanels.tsx",
-        "line": 211
+        "line": 212
       },
       {
         "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
-        "line": 159
+        "line": 160
       }
     ]
   },
@@ -52822,7 +52942,7 @@
     "locations": [
       {
         "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
-        "line": 112
+        "line": 113
       }
     ]
   },
@@ -52915,7 +53035,7 @@
     "locations": [
       {
         "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
-        "line": 202
+        "line": 203
       }
     ]
   },

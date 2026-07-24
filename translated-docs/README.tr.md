@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.1-blue" alt="Version"></a>
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.2-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
 </p>
@@ -69,6 +69,15 @@ Tüm ürün belgeleri (kurulum, API anahtarları, kılavuzlar, ayarlar, sorun gi
 ## Destek
 
 [GitHub](https://github.com/wsj-br/transrewrt/issues) üzerinde bir sorun açın. Platformunuzu (Windows / Linux / Docker) ve uygulama sürümünüzü (Hakkında iletişim kutusu veya Sürümler sayfası) ekleyin.
+
+## Teşekkürler
+
+Ön ayarlar düzenleyicisindeki Kolay mod ön ayar önerileri, aşağıdaki kaynaklardan alınan genel değerlendirme verilerini kullanır:
+
+- [languagebench](https://huggingface.co/spaces/fair-forward/languagebench) (CC BY-SA 4.0)
+- [Artificial Analysis](https://artificialanalysis.ai/) (API verileri için atıf gereklidir)
+
+Üçüncü taraf bağımlılık lisansları ve bu veri kaynağı bildirimleri [BİLDİRİMLER](../NOTICES) bölümünde listelenmiştir.
 
 ## Lisans
 

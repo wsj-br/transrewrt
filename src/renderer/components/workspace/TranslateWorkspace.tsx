@@ -11,6 +11,7 @@ import { getTranslateStackPanels } from "./TranslateStackPanels";
 import { RephraseControls } from "./RephraseControls";
 import { WorkspaceOutputMeta } from "./WorkspaceOutputMeta";
 import { WorkspaceBehaviourSwitch } from "./WorkspaceBehaviourSwitch";
+import { WorkspaceActionBarVersionLink } from "./WorkspaceActionBarVersionLink";
 import { Button } from "@/components/ui/button";
 import { Zap, Square, Trash2, Clipboard, Copy, BookPlus, BookOpen } from "lucide-react";
 import { modelFooterDisplayId } from "../../utils/misc/modelIdUtils";
@@ -257,7 +258,7 @@ export function getTranslatePanels({ common, input, output, options }) {
           <span className="text-xs font-normal opacity-80">{shortcutLabel}</span>
         )}
       </Button>
-      <div className="min-w-0" aria-hidden />
+      <WorkspaceActionBarVersionLink />
     </div>
   );
 

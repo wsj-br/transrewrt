@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.1-blue" alt="Version"></a>
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.2-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
 </p>
@@ -69,6 +69,15 @@ Documentos completos do produto (instalação, chaves de API, guias, configuraç
 ## Suporte
 
 Abra um problema no [GitHub](https://github.com/wsj-br/transrewrt/issues). Inclua sua plataforma (Windows / Linux / Docker) e versão do aplicativo (caixa de diálogo Sobre ou página de Releases).
+
+## Agradecimentos
+
+As sugestões de predefinição do Modo Fácil no editor de predefinições usam dados de avaliação públicos de:
+
+- [languagebench](https://huggingface.co/spaces/fair-forward/languagebench) (CC BY-SA 4.0)
+- [Artificial Analysis](https://artificialanalysis.ai/) (atribuição necessária para dados da API)
+
+As licenças de dependência de terceiros e estes avisos de fonte de dados estão listados em [NOTICES](../NOTICES).
 
 ## Licença
 

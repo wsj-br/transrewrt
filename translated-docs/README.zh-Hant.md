@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.1-blue" alt="Version"></a>
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.2-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
 </p>
@@ -69,6 +69,15 @@ chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage
 ## 支援
 
 在 [GitHub](https://github.com/wsj-br/transrewrt/issues) 上回報問題。請附上您的平台（Windows / Linux / Docker）與應用程式版本（關於對話框或 Releases 頁面）。
+
+## 鳴謝
+
+簡易模式預設建議在預設編輯器中使用公開評估資料，來源為：
+
+- [languagebench](https://huggingface.co/spaces/fair-forward/languagebench)（CC BY-SA 4.0）
+- [Artificial Analysis](https://artificialanalysis.ai/)（API 資料需註明出處）
+
+第三方依賴授權條款與這些資料來源聲明列於 [NOTICES](../NOTICES)。
 
 ## 授權
 

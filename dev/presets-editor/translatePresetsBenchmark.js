@@ -6,6 +6,12 @@
 const { mergeKeys, streamCompletion, engineConfigured, ENV_KEY_BY_ENGINE } = require("../../src/shared/llm");
 const { streamTextChunkToString } = require("../../src/shared/llm/streamDeltaContent");
 const prompts = require("../../src/config-defaults/prompts.json");
+const {
+  defaultTimingCachePath,
+  getCachedTiming,
+  setCachedTiming,
+  TIMING_CACHE_TTL_MS,
+} = require("./timingCache.js");
 
 const BENCHMARK_DEFAULT_SAMPLE_TEXT_PT =
   `Ficamos no aguardo do envio do relatório financeiro atualizado para darmos andamento ao projeto conforme o cronograma estipulado.
@@ -175,8 +181,9 @@ function resolveActiveBenchmarkEngines(engines, keysMap, skipUnconfigured) {
  * @param {string} sampleText
  * @param {string | null | undefined} promptHint
  * @param {Record<string, string>} keysMap
+ * @param {{ signal?: AbortSignal }} [opts]
  */
-async function translateWithPresetModel(canonicalModelId, sampleText, promptHint, keysMap) {
+async function translateWithPresetModel(canonicalModelId, sampleText, promptHint, keysMap, opts = {}) {
   const systemPrompt = buildTranslatePrompt(
     BENCHMARK_SOURCE_LANG,
     BENCHMARK_TARGET_LANG,
@@ -192,7 +199,11 @@ async function translateWithPresetModel(canonicalModelId, sampleText, promptHint
   const { usage } = await streamCompletion(
     canonicalModelId,
     messages,
-    { keysMap, temperature: BENCHMARK_TRANSLATE_TEMPERATURE },
+    {
+      keysMap,
+      temperature: BENCHMARK_TRANSLATE_TEMPERATURE,
+      signal: opts.signal,
+    },
     {
       onText: (chunk) => {
         content += streamTextChunkToString(chunk);
@@ -356,6 +367,154 @@ async function runTranslatePresetsBenchmark(opts) {
   };
 }
 
+/**
+ * Time an arbitrary list of catalog model ids with the same translate path as the
+ * presets benchmark (used by AI Suggest live-latency pass for fast profiles).
+ *
+ * @param {{
+ *   engine: string,
+ *   model_ids: string[],
+ *   keysMap: Record<string, string>,
+ *   sample_text?: string,
+ *   prompt_hint?: string | null,
+ *   onProgress?: (p: { index: number, total: number, model_id: string, engine: string, from_cache?: boolean }) => void,
+ *   signal?: AbortSignal,
+ *   cachePath?: string,
+ *   useCache?: boolean,
+ *   root?: string,
+ * }} opts
+ * @returns {Promise<{ engine: string, rows: object[], cacheHits: number, cacheMisses: number }>}
+ */
+async function runCandidateTimingBenchmark(opts) {
+  const engine = String(opts.engine || "").trim();
+  const modelIds = [...new Set((Array.isArray(opts.model_ids) ? opts.model_ids : []).map((id) => String(id || "").trim()).filter(Boolean))];
+  const keysMap = opts.keysMap || mergeKeys({});
+  const sampleText = normalizeSampleText(opts.sample_text);
+  const promptHint = opts.prompt_hint != null ? String(opts.prompt_hint) : null;
+  const signal = opts.signal;
+  const useCache = opts.useCache !== false;
+  const cachePath =
+    opts.cachePath ||
+    (opts.root ? defaultTimingCachePath(opts.root) : null);
+
+  if (!engine) throw new Error("engine is required for candidate timing");
+  if (!modelIds.length) {
+    return { engine, rows: [], cacheHits: 0, cacheMisses: 0 };
+  }
+  if (!engineConfigured(engine, keysMap)) {
+    throw new Error(missingKeyMessage(engine));
+  }
+
+  const rows = [];
+  let cacheHits = 0;
+  let cacheMisses = 0;
+  const total = modelIds.length;
+  for (let index = 0; index < modelIds.length; index += 1) {
+    if (signal?.aborted) {
+      const err = new Error("Aborted");
+      err.name = "AbortError";
+      throw err;
+    }
+    const modelId = modelIds[index];
+
+    if (useCache && cachePath) {
+      const cached = getCachedTiming({
+        cachePath,
+        engine,
+        modelId,
+        sampleText,
+        promptHint,
+      });
+      if (cached) {
+        cacheHits += 1;
+        rows.push(cached);
+        if (opts.onProgress) {
+          opts.onProgress({
+            index: index + 1,
+            total,
+            model_id: modelId,
+            engine,
+            from_cache: true,
+          });
+        }
+        continue;
+      }
+    }
+
+    if (opts.onProgress) {
+      opts.onProgress({
+        index: index + 1,
+        total,
+        model_id: modelId,
+        engine,
+        from_cache: false,
+      });
+    }
+    cacheMisses += 1;
+    try {
+      const result = await translateWithPresetModel(modelId, sampleText, promptHint, keysMap, {
+        signal,
+      });
+      const row = {
+        engine,
+        model_id: modelId,
+        ok: true,
+        duration_ms: result.duration_ms,
+        duration_fmt: formatDurationMs(result.duration_ms),
+        cost_usd: result.cost_usd,
+        cost_known: result.cost_known,
+        prompt_tokens: result.prompt_tokens,
+        completion_tokens: result.completion_tokens,
+        error: null,
+        from_cache: false,
+      };
+      rows.push(row);
+      if (useCache && cachePath) {
+        setCachedTiming({
+          cachePath,
+          engine,
+          modelId,
+          sampleText,
+          promptHint,
+          row,
+        });
+      }
+    } catch (e) {
+      if (signal?.aborted || e?.name === "AbortError") {
+        const err = new Error("Aborted");
+        err.name = "AbortError";
+        throw err;
+      }
+      const row = {
+        engine,
+        model_id: modelId,
+        ok: false,
+        duration_ms: null,
+        duration_fmt: null,
+        cost_usd: null,
+        cost_known: false,
+        prompt_tokens: null,
+        completion_tokens: null,
+        error: formatBenchmarkError(e),
+        from_cache: false,
+      };
+      rows.push(row);
+      // Cache failures briefly too so we don't hammer broken/terms-gated models every run.
+      if (useCache && cachePath) {
+        setCachedTiming({
+          cachePath,
+          engine,
+          modelId,
+          sampleText,
+          promptHint,
+          row,
+        });
+      }
+    }
+  }
+  return { engine, rows, cacheHits, cacheMisses };
+}
+
 module.exports = {
   BENCHMARK_DEFAULT_SAMPLE_TEXT_PT,
   BENCHMARK_SOURCE_LANG,
@@ -367,4 +526,8 @@ module.exports = {
   buildBenchmarkRunQueue,
   resolveActiveBenchmarkEngines,
   runTranslatePresetsBenchmark,
+  runCandidateTimingBenchmark,
+  translateWithPresetModel,
+  TIMING_CACHE_TTL_MS,
+  defaultTimingCachePath,
 };

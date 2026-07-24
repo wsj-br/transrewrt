@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.1-blue" alt="Version"></a>
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.2-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
 </p>
@@ -69,6 +69,15 @@ Kompletní dokumentace produktu (instalace, klíče API, průvodci, nastavení, 
 ## Podpora
 
 Otevřete problém na [GitHubu](https://github.com/wsj-br/transrewrt/issues). Uveďte svou platformu (Windows / Linux / Docker) a verzi aplikace (dialog O aplikaci nebo stránka Vydání).
+
+## Poděkování
+
+Snadné režim předvolby návrhy v editoru předvoleb používají veřejná hodnocení data z:
+
+- [languagebench](https://huggingface.co/spaces/fair-forward/languagebench) (CC BY-SA 4.0)
+- [Artificial Analysis](https://artificialanalysis.ai/) (pro data API je vyžadována atribuce)
+
+Licence závislostí třetích stran a oznámení o zdrojích dat jsou uvedeny v [OZNÁMENÍCH](../NOTICES).
 
 ## Licence
 

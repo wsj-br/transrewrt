@@ -11,6 +11,7 @@ import {
 } from "./workspaceLayoutClasses";
 import { WorkspaceOutputMeta } from "./WorkspaceOutputMeta";
 import { WorkspaceBehaviourSwitch } from "./WorkspaceBehaviourSwitch";
+import { WorkspaceActionBarVersionLink } from "./WorkspaceActionBarVersionLink";
 import { RephraseControls } from "./RephraseControls";
 import { Button } from "@/components/ui/button";
 import { Zap, Square, Trash2, Clipboard, Copy } from "lucide-react";
@@ -290,7 +291,7 @@ export function getRewritePanels({ common, input, output, options }) {
           <span className="text-xs opacity-80 font-normal">{shortcutLabel}</span>
         )}
       </Button>
-      <div className="min-w-0" aria-hidden />
+      <WorkspaceActionBarVersionLink />
     </div>
   );
 

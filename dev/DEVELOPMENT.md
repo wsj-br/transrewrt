@@ -420,11 +420,11 @@ Regenerate the **production** dependency license bundle for releases and complia
 
 
 
-Implementation: [scripts/write-third-party-notices.mjs](../scripts/write-third-party-notices.mjs) resolves the production dependency tree via `pnpm licenses list --prod --json`, then selects each license body in order: a [scripts/write-third-party-notices.json](../scripts/write-third-party-notices.json) `packageOverrides` entry (matched by name + semver range), else a real license file (`LICENSE` / `LICENCE` / `COPYING` / `UNLICENSE`, including suffixed variants), never `README.md`, else the standard text for the package's SPDX id from `spdxLicenseTexts` (copyright line filled from the package `author` when present).
+Implementation: [scripts/write-third-party-notices.mjs](../scripts/write-third-party-notices.mjs) resolves the production dependency tree via `pnpm licenses list --prod --json`, then selects each license body in order: a [scripts/write-third-party-notices.json](../scripts/write-third-party-notices.json) `packageOverrides` entry (matched by name + semver range), else a real license file (`LICENSE` / `LICENCE` / `COPYING` / `UNLICENSE`, including suffixed variants), never `README.md`, else the standard text for the package's SPDX id from `spdxLicenseTexts` (copyright line filled from the package `author` when present). Non-npm data sources (e.g. languagebench, Artificial Analysis) are taken from `additionalNotices` in the same JSON file and written before the dependency blocks.
 
 **When to run:** After adding, removing, or bumping **production** dependencies, or when you edit `scripts/write-third-party-notices.json`. Commit the updated `NOTICES` with the dependency change when appropriate.
 
-**Overrides:** Edit [scripts/write-third-party-notices.json](../scripts/write-third-party-notices.json). Prefer adding an `spdxLicenseTexts` entry for a new SPDX id. Use `packageOverrides` keys of the form `packageName@versionOrRange` (the part after the **last** `@` is matched with `semver.satisfies`) only when a package needs custom text that the SPDX templates cannot cover — e.g. `esrecurse@^4.3.0` or scoped `@scope/name@^1.2.3`.
+**Overrides:** Edit [scripts/write-third-party-notices.json](../scripts/write-third-party-notices.json). Prefer adding an `spdxLicenseTexts` entry for a new SPDX id. Use `packageOverrides` keys of the form `packageName@versionOrRange` (the part after the **last** `@` is matched with `semver.satisfies`) only when a package needs custom text that the SPDX templates cannot cover — e.g. `esrecurse@^4.3.0` or scoped `@scope/name@^1.2.3`. Use `additionalNotices` (`name`, `licenses`, `licenseText`) for non-npm attributions.
 
 ---
 

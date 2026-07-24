@@ -14,6 +14,7 @@ import {
 } from "./workspaceLayoutClasses";
 import { WorkspaceOutputMeta } from "./WorkspaceOutputMeta";
 import { WorkspaceBehaviourSwitch } from "./WorkspaceBehaviourSwitch";
+import { WorkspaceActionBarVersionLink } from "./WorkspaceActionBarVersionLink";
 import { modelFooterDisplayId } from "../../utils/misc/modelIdUtils";
 import { copyTextToClipboard } from "../../utils/misc/clipboardUtils";
 
@@ -52,6 +53,7 @@ export function getTransformPanels({ common, input, output, options }) {
     model,
     models,
     experienceMode,
+    onExperienceModeChange,
     easyProvider,
     presets,
     selectedPresetId,
@@ -96,6 +98,7 @@ export function getTransformPanels({ common, input, output, options }) {
           model={model}
           models={models}
           experienceMode={experienceMode}
+          onExperienceModeChange={onExperienceModeChange}
           easyProvider={easyProvider}
           presets={presets}
           selectedPresetId={selectedPresetId}
@@ -288,7 +291,7 @@ export function getTransformPanels({ common, input, output, options }) {
           <span className="text-xs opacity-80 font-normal">{shortcutLabel}</span>
         )}
       </Button>
-      <div className="min-w-0" aria-hidden />
+      <WorkspaceActionBarVersionLink />
     </div>
   );
 

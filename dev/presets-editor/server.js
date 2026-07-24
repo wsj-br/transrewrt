@@ -141,12 +141,24 @@ const {
 } = require("./openRouterDiskCache.js");
 const {
   runTranslatePresetsBenchmark,
+  runCandidateTimingBenchmark,
   normalizeSampleText,
   formatDurationMs,
   BENCHMARK_DEFAULT_SAMPLE_TEXT_PT,
   BENCHMARK_SOURCE_LANG,
   BENCHMARK_TARGET_LANG,
+  defaultTimingCachePath,
+  TIMING_CACHE_TTL_MS,
 } = require("./translatePresetsBenchmark.js");
+const {
+  defaultBenchmarkCachePath,
+  buildBenchmarkShortlists,
+  formatShortlistEvidenceBlock,
+  enforceShortlistOnSuggestions,
+  applyLiveTimingToShortlist,
+  suggestionsFromTimingPicks,
+  resolveProfile,
+} = require("./benchmark-scores.js");
 const {
   parsePresetsJson,
   bumpPatchVersion,
@@ -173,6 +185,20 @@ const DATA_PRESETS_PATH =
 /** On-disk provider catalogs for the dev presets editor (repo root; gitignored). */
 const PROVIDER_CATALOGS_DISK_CACHE_PATH = path.join(ROOT, "presets-editor-provider-catalogs.json");
 const OPENROUTER_DISK_CACHE_PATH = defaultCachePath(ROOT);
+const BENCHMARK_SCORES_CACHE_PATH = defaultBenchmarkCachePath(ROOT);
+const TIMING_CACHE_PATH = defaultTimingCachePath(ROOT);
+
+/** Write one NDJSON record and flush so the browser stream updates promptly. */
+function writeSuggestNdjson(res, obj) {
+  if (!res || res.writableEnded) return false;
+  try {
+    res.write(`${JSON.stringify(obj)}\n`);
+    if (typeof res.flush === "function") res.flush();
+    return true;
+  } catch {
+    return false;
+  }
+}
 
 configureProviderCatalog({
   cachePath: PROVIDER_CATALOGS_DISK_CACHE_PATH,
@@ -291,6 +317,7 @@ async function openRouterChatNonStream({
   messages,
   temperature = 0,
   max_tokens = 256,
+  signal,
 }) {
   const { engine, innerModelId } = resolveEngine(canonicalModelId);
   if (engine !== "openrouter") {
@@ -322,6 +349,7 @@ async function openRouterChatNonStream({
       "X-Title": "Transrewrt presets-editor (dev)",
     },
     body: JSON.stringify(body),
+    signal,
   });
   const latencyMs = Date.now() - t0;
   const errText = await res.text().catch(() => "");
@@ -359,6 +387,7 @@ async function openRouterChatWithWebSearch({
   messages,
   temperature = 0.2,
   max_tokens = 4096,
+  signal,
 }) {
   const { engine, innerModelId } = resolveEngine(canonicalModelId);
   if (engine !== "openrouter") {
@@ -391,6 +420,7 @@ async function openRouterChatWithWebSearch({
       "X-Title": "Transrewrt presets-editor (dev)",
     },
     body: JSON.stringify(body),
+    signal,
   });
   const latencyMs = Date.now() - t0;
   const errText = await res.text().catch(() => "");
@@ -622,19 +652,20 @@ const TRANSREWRT_SUGGEST_CONTEXT = `Context:
 const SUGGEST_CATALOG_CAP = 200;
 
 const SUGGEST_SYSTEM = `You are an expert at matching LLM capabilities to product "presets" in Transrewrt (Easy mode presets).
-Use web search to look up current model availability, benchmarks, performance, and pricing for any providers you are unsure about.
+The user message includes a deterministic "Benchmark evidence" shortlist built from languagebench translation ChrF, Artificial Analysis intelligence/speed, and catalog pricing. Prefer that evidence over web search.
+Use web search only for tie-breaking or checking whether a shortlisted model was recently deprecated — never to invent model ids.
 Once you have gathered enough information, your ENTIRE response MUST be ONLY the raw JSON object — no preamble, no explanation, no markdown, no commentary.
 The response must start with { and end with }. Any text outside the JSON object will cause a parse failure.
 
 Selection guidelines:
-- For each provider, the model_id and fallback_model_id MUST be copied exactly from that provider's catalog "id" field in the user message. Do not invent, guess, or substitute ids from web search or memory.
+- When a provider has a Benchmark evidence shortlist, model_id and fallback_model_id MUST be exact copies of model_id values from that shortlist (not from web search or memory).
+- When a provider has no shortlist, model_id and fallback_model_id MUST be copied exactly from that provider's catalog "id" field in the user message.
 - If a provider's catalog is empty or missing, omit that provider from suggestions (do not guess a model_id).
-- For fast/quick/lightweight presets: prefer the lowest-latency models for BOTH the primary and fallback, at a reasonable cost.
+- For fast/quick/lightweight / "standard" presets: prefer the lowest-latency, best quality-per-dollar models for BOTH the primary and fallback. If the shortlist is already ordered by live timing, keep that order (first = primary, second = fallback).
 - Only suggest models that work with chat-style text generation (multi-turn messages in, assistant text out). Never pick completion-only, embedding, moderation, rerank, TTS, STT, or image-only models — they will fail at runtime with errors like "not a chat model" / "use v1/completions".
-- Prefer mainstream chat/instruct models (e.g. GPT-4o/4.1, Claude Sonnet/Haiku, Gemini Flash/Pro, Llama/Mistral/Qwen chat variants). When unsure from web search, pick a well-known chat model from that provider's catalog list instead of an experimental or API-surface-specific id.
-- For presets named or described as "fast", "quick", or "lightweight": prefer the highest-throughput, lowest-latency chat model at a reasonable cost.
-- For presets named or described as "advanced", "quality", or "best": prefer high-capability chat models; avoid the most expensive tier unless clearly superior.
-- For domain-specific presets (technical, legal, …): prefer chat models known for accuracy in that domain.`;
+- Prefer mainstream chat/instruct models. When unsure, pick the top shortlist entry for that provider.
+- For presets named or described as "advanced", "quality", or "best": prefer high ChrF / high intelligence shortlist entries; avoid the most expensive tier unless clearly superior on the scores shown.
+- For domain-specific presets (technical, legal, …): prefer shortlist entries with high intelligence / coding-oriented scores.`;
 
 const SUGGEST_USER_PRESET_HEADER = "Preset to configure:";
 
@@ -645,11 +676,13 @@ const SUGGEST_USER_JSON_SHAPE =
   'Return JSON exactly in this shape:\n{"preset_id":"<id>","suggestions":{"openrouter":{"model_id":"openrouter/...","reason":"short","fallback_model_id":"openrouter/...","fallback_reason":"short"},"openai":{...},...}}';
 
 const SUGGEST_USER_CATALOG_RULES = [
-  'Each model_id and fallback_model_id MUST be an exact copy of an "id" from that provider\'s models array below.',
-  "Do not use model names, slugs, or ids from web search unless they appear verbatim in that provider's list.",
-  "Only choose ids from the lists below: they are already filtered to chat-compatible models for Transrewrt's translate/rewrite/transform workflow.",
+  "When Benchmark evidence lists a shortlist for a provider, choose model_id and fallback_model_id ONLY from that shortlist's model_id values.",
+  'If a provider has no shortlist, each model_id and fallback_model_id MUST be an exact copy of an "id" from that provider\'s models array below.',
+  "Do not use model names, slugs, or ids from web search unless they appear verbatim in the shortlist or that provider's catalog list.",
+  "Only choose ids from the shortlist / catalogs below: they are already filtered to chat-compatible models for Transrewrt's translate/rewrite/transform workflow.",
   "Never suggest completion-only, embedding, audio, image, or rerank models (even if web search mentions them).",
   "Skip providers with an empty models array (shown: 0).",
+  "Cite the numeric scores (ChrF, AA intelligence, price, speed, or live duration) in the reason fields when available.",
 ]
   .map((line) => `- ${line}`)
   .join("\n");
@@ -669,10 +702,11 @@ function compactCatalogForPrompt(models, engine) {
   return { engine, count: list.length, shown: capped.length, models: capped };
 }
 
-function buildSuggestUserMessage(preset, catalogsByEngine) {
+function buildSuggestUserMessage(preset, catalogsByEngine, shortlistResult = null) {
   const engineSummaries = EASY_CLOUD_ENGINES.map((p) =>
     compactCatalogForPrompt(catalogsByEngine[p.id] || [], p.id),
   );
+  const evidence = formatShortlistEvidenceBlock(shortlistResult);
   const parts = [
     TRANSREWRT_SUGGEST_CONTEXT,
     "",
@@ -690,11 +724,16 @@ function buildSuggestUserMessage(preset, catalogsByEngine) {
     "Catalog rules:",
     SUGGEST_USER_CATALOG_RULES,
     "",
+  ];
+  if (evidence) {
+    parts.push(evidence, "");
+  }
+  parts.push(
     SUGGEST_USER_MODELS_HEADER,
     JSON.stringify(engineSummaries),
     "",
     SUGGEST_USER_OUTPUT_RULE,
-  ];
+  );
   return parts.join("\n");
 }
 
@@ -751,6 +790,14 @@ function normalizeSuggestResponse(parsed, preset, idSets) {
   return out;
 }
 
+function throwIfAborted(signal) {
+  if (signal?.aborted) {
+    const err = new Error("Aborted");
+    err.name = "AbortError";
+    throw err;
+  }
+}
+
 async function suggestModelsForPreset({
   keysMap,
   modelId,
@@ -758,13 +805,24 @@ async function suggestModelsForPreset({
   catalogsByEngine,
   idSets,
   useWebSearch = true,
+  shortlistResult = null,
+  timingPicksByEngine = null,
+  signal,
 }) {
-  const userMsg = buildSuggestUserMessage(preset, catalogsByEngine);
+  throwIfAborted(signal);
+  const userMsg = buildSuggestUserMessage(preset, catalogsByEngine, shortlistResult);
   const messages = [
     { role: "system", content: SUGGEST_SYSTEM },
     { role: "user", content: userMsg },
   ];
-  const callOpts = { keysMap, canonicalModelId: modelId, messages, temperature: 0.2, max_tokens: 65536 };
+  const callOpts = {
+    keysMap,
+    canonicalModelId: modelId,
+    messages,
+    temperature: 0.2,
+    max_tokens: 65536,
+    signal,
+  };
   const { text } = useWebSearch
     ? await openRouterChatWithWebSearch(callOpts)
     : await openRouterChatNonStream(callOpts);
@@ -776,11 +834,121 @@ async function suggestModelsForPreset({
     return { error: `Could not parse suggestion JSON for ${preset.id}: ${text.slice(0, 200)}` };
   }
 
-  const suggestions = normalizeSuggestResponse(parsed, preset, idSets);
+  let suggestions = normalizeSuggestResponse(parsed, preset, idSets);
+  const shortlists = shortlistResult?.ok ? shortlistResult.shortlists : null;
+  if (shortlists && Object.keys(shortlists).length) {
+    suggestions = enforceShortlistOnSuggestions(suggestions, shortlists);
+  }
+  if (timingPicksByEngine && Object.keys(timingPicksByEngine).length) {
+    const fromTiming = suggestionsFromTimingPicks(timingPicksByEngine);
+    suggestions = { ...suggestions, ...fromTiming };
+  }
   if (!Object.keys(suggestions).length) {
     return { error: `No provider suggestions in model response for ${preset.id}` };
   }
-  return { ok: true, suggestions };
+  return {
+    ok: true,
+    suggestions,
+    benchmarkProfile: shortlistResult?.profile || null,
+    benchmarkCacheLastUpdated: shortlistResult?.cacheLastUpdated || null,
+  };
+}
+
+/**
+ * Live-time top shortlist candidates for fast profiles; reorder shortlists by duration.
+ * @returns {Promise<{ shortlists: Record<string, object[]>, timingPicksByEngine: Record<string, object> }>}
+ */
+async function runLiveTimingForShortlists({
+  keysMap,
+  preset,
+  shortlistResult,
+  emit,
+  signal,
+}) {
+  const shortlists = { ...(shortlistResult.shortlists || {}) };
+  /** @type {Record<string, object>} */
+  const timingPicksByEngine = {};
+  const nCandidates = Number(shortlistResult.timingCandidates) || 0;
+  if (nCandidates <= 0) {
+    return { shortlists, timingPicksByEngine };
+  }
+
+  for (const { id: engine } of EASY_CLOUD_ENGINES) {
+    throwIfAborted(signal);
+    const list = shortlists[engine];
+    if (!Array.isArray(list) || !list.length) continue;
+    if (!engineConfigured(engine, keysMap)) {
+      if (emit) {
+        emit({
+          type: "log",
+          message: `Live timing skipped for ${engine} (API key not configured); using static shortlist order.`,
+        });
+      }
+      continue;
+    }
+    const modelIds = list.slice(0, nCandidates).map((r) => r.model_id);
+    if (emit) {
+      emit({
+        type: "log",
+        message: `Live timing ${engine}: ${modelIds.length} candidate(s) for “${preset.id}”…`,
+      });
+    }
+    try {
+      const { rows, cacheHits, cacheMisses } = await runCandidateTimingBenchmark({
+        engine,
+        model_ids: modelIds,
+        keysMap,
+        sample_text: BENCHMARK_DEFAULT_SAMPLE_TEXT_PT,
+        prompt_hint: preset.prompt_hint,
+        signal,
+        root: ROOT,
+        cachePath: TIMING_CACHE_PATH,
+        useCache: true,
+        onProgress: (p) => {
+          if (emit) {
+            emit({
+              type: "log",
+              message:
+                `Live timing ${engine} ${p.index}/${p.total}: ${p.model_id}` +
+                (p.from_cache ? " (cache)" : ""),
+            });
+          }
+        },
+      });
+      if (emit && (cacheHits || cacheMisses)) {
+        emit({
+          type: "log",
+          message: `Live timing ${engine}: cache hits ${cacheHits || 0}, measured ${cacheMisses || 0}`,
+        });
+      }
+      const { ordered, primary, fallback } = applyLiveTimingToShortlist(list, rows);
+      shortlists[engine] = ordered;
+      if (primary) {
+        timingPicksByEngine[engine] = { primary, fallback };
+        if (emit) {
+          const dur =
+            primary.live_duration_ms != null
+              ? `${(primary.live_duration_ms / 1000).toFixed(2)}s`
+              : "?";
+          emit({
+            type: "log",
+            message: `Live timing ${engine}: primary ${primary.model_id} (${dur})` +
+              (fallback ? `; fallback ${fallback.model_id}` : ""),
+          });
+        }
+      }
+    } catch (e) {
+      if (e?.name === "AbortError" || signal?.aborted) throw e;
+      if (emit) {
+        emit({
+          type: "log",
+          message: `Live timing failed for ${engine}: ${e.message || String(e)}`,
+          error: true,
+        });
+      }
+    }
+  }
+  return { shortlists, timingPicksByEngine };
 }
 
 async function suggestModelsForPresetCaught(params) {
@@ -799,8 +967,19 @@ async function suggestModelsForPresetWithFallback({
   catalogsByEngine,
   idSets,
   emit,
+  shortlistResult = null,
+  timingPicksByEngine = null,
+  signal,
 }) {
-  const base = { keysMap, preset, catalogsByEngine, idSets };
+  const base = {
+    keysMap,
+    preset,
+    catalogsByEngine,
+    idSets,
+    shortlistResult,
+    timingPicksByEngine,
+    signal,
+  };
   let r = await suggestModelsForPresetCaught({ ...base, modelId: primaryModelId, useWebSearch: true });
   if (!r.error) return { r, usedFallback: false };
 
@@ -851,7 +1030,7 @@ function normalizeSuggestPresetIds(raw) {
 }
 
 /**
- * @param {{ validated: object, primaryModelId: string, fallbackModelId: string, keysMap: object, presetIds?: string[] | null, resNdjson?: { write: (chunk: string) => void } }} p
+ * @param {{ validated: object, primaryModelId: string, fallbackModelId: string, keysMap: object, presetIds?: string[] | null, liveTiming?: boolean, signal?: AbortSignal, resNdjson?: { write: (chunk: string) => void } }} p
  */
 async function runSuggestModelsJobs({
   validated,
@@ -859,6 +1038,8 @@ async function runSuggestModelsJobs({
   fallbackModelId,
   keysMap,
   presetIds = null,
+  liveTiming = true,
+  signal,
   resNdjson,
 }) {
   const suggestable = (validated.presets || []).filter(
@@ -872,7 +1053,7 @@ async function runSuggestModelsJobs({
   const results = {};
 
   const emit = (obj) => {
-    if (resNdjson) resNdjson.write(`${JSON.stringify(obj)}\n`);
+    if (resNdjson) writeSuggestNdjson(resNdjson, obj);
   };
 
   const { catalogsByEngine, idSets } = await prefetchEngineCatalogs(keysMap, emit);
@@ -882,6 +1063,7 @@ async function runSuggestModelsJobs({
     totalPresets: presets.length,
     suggestionModel: primaryModelId,
     suggestionFallback: fallbackModelId || null,
+    liveTiming: Boolean(liveTiming),
   });
   emit({
     type: "log",
@@ -890,52 +1072,170 @@ async function runSuggestModelsJobs({
         ? `Processing ${presets.length} preset(s) (skipping free-router).`
         : `Processing ${presets.length} selected preset(s).`,
   });
-
-  const concurrency = 2;
-  await runPool(presets, concurrency, async (preset) => {
-    emit({ type: "job", status: "running", presetId: preset.id });
-    emit({ type: "log", message: `Processing preset “${preset.id}”…` });
-    emit({
-      type: "log",
-      message: `Calling OpenRouter (${primaryModelId}) with web search for “${preset.id}”…`,
-    });
-    const { r, usedFallback } = await suggestModelsForPresetWithFallback({
-      keysMap,
-      primaryModelId,
-      fallbackModelId,
-      preset,
-      catalogsByEngine,
-      idSets,
-      emit,
-    });
-    if (r.error) {
-      const msg = `${preset.id}: ${r.error}`;
-      errors.push(msg);
-      emit({ type: "log", message: `Error for “${preset.id}”: ${r.error}`, error: true });
-      emit({
-        type: "job",
-        status: "error",
-        presetId: preset.id,
-        error: r.error,
-      });
-      return;
-    }
-    results[preset.id] = r.suggestions;
-    const providerCount = r.suggestions ? Object.keys(r.suggestions).length : 0;
-    emit({
-      type: "log",
-      message: `Received ${providerCount} provider suggestion(s) for “${preset.id}”.`,
-    });
-    emit({
-      type: "job",
-      status: "ok",
-      presetId: preset.id,
-      suggestions: r.suggestions,
-      usedFallback: Boolean(usedFallback),
-    });
+  emit({
+    type: "log",
+    message: liveTiming
+      ? "Live timing: on for fast/standard profiles (real translate calls for top shortlist candidates)."
+      : "Live timing: off (static benchmark shortlists only).",
   });
 
-  return { results, errors, snapshot: buildModelIdsSnapshot(validated.presets) };
+  // Prefetch benchmark cache once so concurrent preset jobs share it.
+  try {
+    emit({ type: "log", message: "Loading benchmark scores cache (languagebench + Artificial Analysis)…" });
+    const probe = await buildBenchmarkShortlists({
+      root: ROOT,
+      preset: presets[0] || { id: "standard", name: "Standard", description: "" },
+      catalogsByEngine,
+      cachePath: BENCHMARK_SCORES_CACHE_PATH,
+      uiLanguagesPath: UI_LANGUAGES_PATH,
+      aaApiKey: process.env.ARTIFICIAL_INTELLIGENCE_API_KEY,
+      log: (msg) => emit({ type: "log", message: msg }),
+    });
+    if (probe.ok) {
+      emit({
+        type: "log",
+        message: `Benchmark cache ready (${probe.cacheLastUpdated || "unknown"}); profile probe=${probe.profile}.`,
+      });
+    } else {
+      emit({
+        type: "log",
+        message: `Benchmark shortlists unavailable: ${probe.error || "unknown"} — falling back to catalog-only LLM suggest.`,
+        error: true,
+      });
+    }
+  } catch (e) {
+    emit({
+      type: "log",
+      message: `Benchmark cache warm-up failed: ${e.message || String(e)} — continuing without shortlists.`,
+      error: true,
+    });
+  }
+
+  const concurrency = 2;
+  try {
+    await runPool(
+      presets,
+      concurrency,
+      async (preset) => {
+        throwIfAborted(signal);
+        emit({ type: "job", status: "running", presetId: preset.id });
+        emit({ type: "log", message: `Processing preset “${preset.id}”…` });
+
+        let shortlistResult = null;
+        /** @type {Record<string, object>} */
+        let timingPicksByEngine = {};
+        try {
+          shortlistResult = await buildBenchmarkShortlists({
+            root: ROOT,
+            preset,
+            catalogsByEngine,
+            cachePath: BENCHMARK_SCORES_CACHE_PATH,
+            uiLanguagesPath: UI_LANGUAGES_PATH,
+            aaApiKey: process.env.ARTIFICIAL_INTELLIGENCE_API_KEY,
+          });
+          throwIfAborted(signal);
+          if (shortlistResult.ok) {
+            const nEngines = Object.keys(shortlistResult.shortlists || {}).length;
+            emit({
+              type: "log",
+              message: `Benchmark shortlist for “${preset.id}”: profile=${shortlistResult.profile}, ${nEngines} provider(s).`,
+            });
+            const profile = shortlistResult.profile || resolveProfile(preset);
+            const wantsTiming =
+              liveTiming && profile === "standard" && (shortlistResult.timingCandidates || 0) > 0;
+            if (wantsTiming) {
+              const timed = await runLiveTimingForShortlists({
+                keysMap,
+                preset,
+                shortlistResult,
+                emit,
+                signal,
+              });
+              shortlistResult = { ...shortlistResult, shortlists: timed.shortlists };
+              timingPicksByEngine = timed.timingPicksByEngine;
+            }
+          } else {
+            emit({
+              type: "log",
+              message: `No benchmark shortlist for “${preset.id}”: ${shortlistResult.error || "unknown"}`,
+              error: true,
+            });
+          }
+        } catch (e) {
+          if (e?.name === "AbortError" || signal?.aborted) throw e;
+          emit({
+            type: "log",
+            message: `Benchmark scoring failed for “${preset.id}”: ${e.message || String(e)}`,
+            error: true,
+          });
+          shortlistResult = null;
+        }
+
+        throwIfAborted(signal);
+        emit({
+          type: "log",
+          message: `Calling OpenRouter (${primaryModelId}) with web search for “${preset.id}”…`,
+        });
+        const { r, usedFallback } = await suggestModelsForPresetWithFallback({
+          keysMap,
+          primaryModelId,
+          fallbackModelId,
+          preset,
+          catalogsByEngine,
+          idSets,
+          emit,
+          shortlistResult,
+          timingPicksByEngine,
+          signal,
+        });
+        throwIfAborted(signal);
+        if (r.error) {
+          const msg = `${preset.id}: ${r.error}`;
+          errors.push(msg);
+          emit({ type: "log", message: `Error for “${preset.id}”: ${r.error}`, error: true });
+          emit({
+            type: "job",
+            status: "error",
+            presetId: preset.id,
+            error: r.error,
+          });
+          return;
+        }
+        results[preset.id] = r.suggestions;
+        const providerCount = r.suggestions ? Object.keys(r.suggestions).length : 0;
+        emit({
+          type: "log",
+          message: `Received ${providerCount} provider suggestion(s) for “${preset.id}”.`,
+        });
+        emit({
+          type: "job",
+          status: "ok",
+          presetId: preset.id,
+          suggestions: r.suggestions,
+          usedFallback: Boolean(usedFallback),
+          benchmarkProfile: r.benchmarkProfile || shortlistResult?.profile || null,
+        });
+      },
+      { signal },
+    );
+  } catch (e) {
+    if (e?.name === "AbortError" || signal?.aborted) {
+      emit({ type: "log", message: "Suggestion run cancelled.", error: true });
+      return {
+        results,
+        errors,
+        snapshot: buildModelIdsSnapshot(validated.presets),
+        cancelled: true,
+      };
+    }
+    throw e;
+  }
+
+  emit({
+    type: "log",
+    message: `All ${presets.length} preset job(s) finished. Preparing review payload…`,
+  });
+  return { results, errors, snapshot: buildModelIdsSnapshot(validated.presets), cancelled: false };
 }
 
 function buildModelIdsSnapshot(presets) {
@@ -1094,10 +1394,16 @@ async function translatePresetLocaleWithFallback({
   };
 }
 
-async function runPool(items, concurrency, worker) {
+async function runPool(items, concurrency, worker, opts = {}) {
+  const signal = opts.signal;
   let i = 0;
   async function runner() {
     while (i < items.length) {
+      if (signal?.aborted) {
+        const err = new Error("Aborted");
+        err.name = "AbortError";
+        throw err;
+      }
       const idx = i++;
       const item = items[idx];
       await worker(item, idx);
@@ -1937,6 +2243,11 @@ app.post("/api/presets/suggest-models", async (req, res) => {
       error: "preset_ids must include at least one preset (excluding free-router)",
     });
   }
+  const liveTimingRaw = req.body && req.body.live_timing;
+  const liveTiming =
+    liveTimingRaw === undefined || liveTimingRaw === null
+      ? true
+      : !(liveTimingRaw === false || liveTimingRaw === 0 || liveTimingRaw === "0" || liveTimingRaw === "false");
   const suggestableIds = new Set(
     (validated.presets || [])
       .filter((s) => s && typeof s.id === "string" && s.id !== "free-router")
@@ -1953,6 +2264,22 @@ app.post("/api/presets/suggest-models", async (req, res) => {
 
   const wantStream = String(req.query.stream || "") === "1";
 
+  // Abort only when the *response* is closed before it finishes.
+  // Do not listen to req "close"/"aborted" — those fire when the POST body is fully
+  // read, which wrongly cancels the job immediately after catalogs load.
+  const abortController = new AbortController();
+  let responseFinished = false;
+  const onResponseFinish = () => {
+    responseFinished = true;
+  };
+  const onResponseClosedEarly = () => {
+    if (!responseFinished && !abortController.signal.aborted) {
+      abortController.abort();
+    }
+  };
+  res.on("finish", onResponseFinish);
+  res.on("close", onResponseClosedEarly);
+
   if (wantStream) {
     res.status(200);
     res.setHeader("Content-Type", "application/x-ndjson; charset=utf-8");
@@ -1960,6 +2287,13 @@ app.post("/api/presets/suggest-models", async (req, res) => {
     res.setHeader("Connection", "keep-alive");
     res.setHeader("X-Accel-Buffering", "no");
     if (typeof res.flushHeaders === "function") res.flushHeaders();
+    if (res.socket && typeof res.socket.setNoDelay === "function") {
+      try {
+        res.socket.setNoDelay(true);
+      } catch {
+        /* ignore */
+      }
+    }
 
     let errors = [];
     let results = {};
@@ -1971,37 +2305,42 @@ app.post("/api/presets/suggest-models", async (req, res) => {
         fallbackModelId,
         keysMap,
         presetIds: presetIdsFilter,
+        liveTiming,
+        signal: abortController.signal,
         resNdjson: res,
       });
       results = out.results;
       errors = out.errors;
       snapshot = out.snapshot;
-      res.write(
-        `${JSON.stringify({
+      if (!res.writableEnded) {
+        writeSuggestNdjson(res, {
           type: "done",
-          ok: true,
+          ok: !out.cancelled,
+          cancelled: Boolean(out.cancelled),
           results,
           snapshot,
           errors,
-        })}\n`,
-      );
-      res.end();
-    } catch (e) {
-      try {
-        res.write(
-          `${JSON.stringify({
-            type: "done",
-            ok: false,
-            results,
-            snapshot,
-            errors: [...errors, e.message || String(e)],
-            error: e.message || String(e),
-          })}\n`,
-        );
-      } catch {
-        /* ignore */
+          liveTiming,
+          ...(out.cancelled ? { error: "Cancelled" } : {}),
+        });
+        res.end();
       }
-      res.end();
+    } catch (e) {
+      if (!res.writableEnded) {
+        writeSuggestNdjson(res, {
+          type: "done",
+          ok: false,
+          cancelled: e?.name === "AbortError",
+          results,
+          snapshot,
+          errors: [...errors, e.message || String(e)],
+          error: e.message || String(e),
+        });
+        res.end();
+      }
+    } finally {
+      res.off("finish", onResponseFinish);
+      res.off("close", onResponseClosedEarly);
     }
     return;
   }
@@ -2016,26 +2355,44 @@ app.post("/api/presets/suggest-models", async (req, res) => {
       fallbackModelId,
       keysMap,
       presetIds: presetIdsFilter,
+      liveTiming,
+      signal: abortController.signal,
       resNdjson: null,
     });
     results = out.results;
     errors = out.errors;
     snapshot = out.snapshot;
+    if (out.cancelled) {
+      return res.status(499).json({
+        ok: false,
+        cancelled: true,
+        results,
+        snapshot,
+        errors,
+        error: "Cancelled",
+        liveTiming,
+      });
+    }
     res.json({
       ok: true,
       results,
       snapshot,
       errors,
+      liveTiming,
     });
   } catch (e) {
-    const status = e.status || 500;
+    const status = e?.name === "AbortError" ? 499 : e.status || 500;
     res.status(status).json({
       ok: false,
+      cancelled: e?.name === "AbortError",
       results,
       snapshot,
       errors: [...errors, e.message || String(e)],
       error: e.message || String(e),
     });
+  } finally {
+    res.off("finish", onResponseFinish);
+    res.off("close", onResponseClosedEarly);
   }
 });
 
@@ -2064,6 +2421,12 @@ server.on("listening", () => {
   console.log(`[presets-editor] Provider catalog cache: ${PROVIDER_CATALOGS_DISK_CACHE_PATH} (TTL 2h)`);
   console.log(
     `[presets-editor] OpenRouter models/pricing/performance cache: ${OPENROUTER_DISK_CACHE_PATH} (TTL ${OPENROUTER_DISK_TTL_MS / 3600000}h)`,
+  );
+  console.log(
+    `[presets-editor] Benchmark scores cache: ${BENCHMARK_SCORES_CACHE_PATH} (TTL 7d; languagebench + Artificial Analysis)`,
+  );
+  console.log(
+    `[presets-editor] Live-timing cache: ${TIMING_CACHE_PATH} (TTL ${TIMING_CACHE_TTL_MS / 3600000}h)`,
   );
   loadOpenRouterEditorCache(false).catch((e) => {
     console.warn("[presets-editor] OpenRouter disk cache warm-up failed:", e.message || String(e));

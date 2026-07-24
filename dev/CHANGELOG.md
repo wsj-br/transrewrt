@@ -11,6 +11,18 @@ Use conventional types (Added, Changed, Fixed, etc.) and short descriptions.
 
 ## Unreleased
 
+- **Added**: Workspace header has a Help (?) control (rightmost, separated from layout toggle) linking to the docs.
+- **Added**: Workspace action bar shows a small app version link (bottom-right) to the GitHub Pages site.
+- **Added**: Model/preset picker menu can switch Easy ↔ Advanced mode (item above Open Settings).
+- **Changed**: Header model picker shows “Open Settings → Models” only in Advanced mode; Easy mode omits the settings shortcut.
+- **Added**: README acknowledgments and `NOTICES` entries for languagebench (CC-BY-SA-4.0) and Artificial Analysis Data API; `write-third-party-notices` supports `additionalNotices` for non-npm sources.
+- **Fixed**: Chat completions omit `temperature` for GPT-5 / o-series and Claude 4.6+ models that reject non-default values, and still retry once without it if a provider rejects temperature at runtime.
+- **Fixed**: Easy-mode workflow model filter excludes prompt-guard, safeguard, multi-agent, and image/video specialty models so they are not shortlisted or live-timed.
+- **Added**: Presets-editor AI Suggestion run can be cancelled mid-flight (AbortController + server abort of live timing and OpenRouter calls).
+- **Fixed**: AI Suggestion NDJSON stream flushes each event (and disables Nagle) so the final `done`/review step appears without needing a click to “wake” the page.
+- **Added**: Live-timing measurements for AI Suggest are cached on disk for 2 hours (`presets-editor-timing-cache.json`) to avoid re-running the same translate timing calls.
+- **Fixed**: Easy-mode workflow filter also excludes Groq Orpheus (TTS) and Compound agent models.
+- **Added**: Presets-editor AI Suggest uses deterministic shortlists from languagebench (translation ChrF) and Artificial Analysis (intelligence/speed) plus catalog pricing; standard/fast presets can live-time top candidates and pick the two fastest.
 - **Fixed**: Website docs markdown links and images honour Astro `base` (`/transrewrt`) via a Sätteri hast plugin (Astro 7); `/docs/…` links also keep the current Starlight locale.
 - **Changed**: Rewrite tab "Changes" (diff) control is available for every rewrite mode, not only Check Spelling & Grammar.
 - **Fixed**: OpenRouter free model is optional in the selected models list — header removal stays in sync with Settings → Models, and the free model is no longer re-forced as selected.

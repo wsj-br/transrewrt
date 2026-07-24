@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.1-blue" alt="Version"></a>
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.2-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
 </p>
@@ -69,6 +69,15 @@ chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage
 ## 지원
 
 [GitHub](https://github.com/wsj-br/transrewrt/issues)에 이슈를 열어주세요. 플랫폼(Windows / Linux / Docker)과 앱 버전(정보 대화상자 또는 Releases 페이지)을 포함해 주세요.
+
+## 감사의 말
+
+사전 설정 편집기의 쉬움 모드 사전 설정 제안은 다음의 공개 평가 데이터를 사용합니다:
+
+- [languagebench](https://huggingface.co/spaces/fair-forward/languagebench) (CC BY-SA 4.0)
+- [Artificial Analysis](https://artificialanalysis.ai/) (API 데이터에 대한 출처 표시 필요)
+
+서드파티 종속성 라이선스 및 이러한 데이터 소스 공지는 [NOTICES](../NOTICES)에 나열되어 있습니다.
 
 ## 라이선스
 

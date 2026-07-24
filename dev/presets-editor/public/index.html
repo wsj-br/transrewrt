@@ -187,6 +187,19 @@
               aria-label="Presets to include in AI suggestion"
             ></div>
           </div>
+          <div class="ai-suggest-setup-options">
+            <label class="ai-suggest-live-timing-check">
+              <input type="checkbox" id="ai-suggest-live-timing" checked />
+              <span>
+                Live timing for fast/standard presets (time top shortlist candidates with a real
+                translate call; pick the two fastest as primary and fallback)
+              </span>
+            </label>
+            <p class="muted ai-suggest-setup-presets-note">
+              Suggestions are constrained to a deterministic shortlist from languagebench (translation
+              ChrF) and Artificial Analysis (intelligence/speed), plus catalog pricing.
+            </p>
+          </div>
           <div class="ai-suggest-flow-footer">
             <p
               id="ai-suggest-setup-continue-hint"

@@ -42,6 +42,7 @@ function ModelOrPresetPicker({
   onModelChange,
   onOpenSettingsModels = undefined,
   onRemoveModel = undefined,
+  onExperienceModeChange = undefined,
   presets = [],
   selectedPresetId,
   onPresetChange,
@@ -61,19 +62,33 @@ function ModelOrPresetPicker({
           models={localLlmModels}
           currentModel={easyLocalLlmModel || localLlmModels[0]}
           onModelChange={onEasyLocalLlmModelChange}
-          onIconClick={onOpenSettingsGeneral}
+          experienceMode={experienceMode}
+          onExperienceModeChange={onExperienceModeChange}
         />
       );
     }
-    if (onOpenSettingsGeneral) {
+    if (onOpenSettingsGeneral || onExperienceModeChange) {
       return (
-        <button
-          type="button"
-          className="text-sm text-muted-foreground underline-offset-2 hover:underline"
-          onClick={onOpenSettingsGeneral}
-        >
-          {t("Configure Local LLM or choose another provider in Settings.")}
-        </button>
+        <div className="flex flex-wrap items-center justify-end gap-x-3 gap-y-1">
+          {onExperienceModeChange ? (
+            <button
+              type="button"
+              className="text-sm text-muted-foreground underline-offset-2 hover:underline"
+              onClick={() => onExperienceModeChange("advanced")}
+            >
+              {t("Switch to Advanced mode")}
+            </button>
+          ) : null}
+          {onOpenSettingsGeneral ? (
+            <button
+              type="button"
+              className="text-sm text-muted-foreground underline-offset-2 hover:underline"
+              onClick={onOpenSettingsGeneral}
+            >
+              {t("Configure Local LLM or choose another provider in Settings.")}
+            </button>
+          ) : null}
+        </div>
       );
     }
     return null;
@@ -85,7 +100,8 @@ function ModelOrPresetPicker({
         presets={presets}
         selectedPresetId={selectedPresetId || undefined}
         onPresetChange={onPresetChange}
-        onOpenSettingsGeneral={onOpenSettingsGeneral}
+        experienceMode={experienceMode}
+        onExperienceModeChange={onExperienceModeChange}
         uiLocale={presetUiLocale}
         sourceLocale={presetSourceLocale}
       />
@@ -93,30 +109,56 @@ function ModelOrPresetPicker({
   }
 
   if (experienceMode === "easy") {
-    if (!onOpenSettingsGeneral) return null;
+    if (!onOpenSettingsGeneral && !onExperienceModeChange) return null;
     return (
-      <button
-        type="button"
-        className="text-sm text-muted-foreground underline-offset-2 hover:underline"
-        onClick={onOpenSettingsGeneral}
-      >
-        {t("No presets for this provider. Change provider in Settings.")}
-      </button>
+      <div className="flex flex-wrap items-center justify-end gap-x-3 gap-y-1">
+        {onExperienceModeChange ? (
+          <button
+            type="button"
+            className="text-sm text-muted-foreground underline-offset-2 hover:underline"
+            onClick={() => onExperienceModeChange("advanced")}
+          >
+            {t("Switch to Advanced mode")}
+          </button>
+        ) : null}
+        {onOpenSettingsGeneral ? (
+          <button
+            type="button"
+            className="text-sm text-muted-foreground underline-offset-2 hover:underline"
+            onClick={onOpenSettingsGeneral}
+          >
+            {t("No presets for this provider. Change provider in Settings.")}
+          </button>
+        ) : null}
+      </div>
     );
   }
 
   if (!onModelChange) return null;
 
   if (!models.length) {
-    if (!onOpenSettingsModels) return null;
+    if (!onOpenSettingsModels && !onExperienceModeChange) return null;
     return (
-      <button
-        type="button"
-        className="text-sm text-muted-foreground underline-offset-2 hover:underline"
-        onClick={onOpenSettingsModels}
-      >
-        {t("Open Settings → Models")}
-      </button>
+      <div className="flex flex-wrap items-center justify-end gap-x-3 gap-y-1">
+        {onExperienceModeChange ? (
+          <button
+            type="button"
+            className="text-sm text-muted-foreground underline-offset-2 hover:underline"
+            onClick={() => onExperienceModeChange("easy")}
+          >
+            {t("Switch to Easy mode")}
+          </button>
+        ) : null}
+        {onOpenSettingsModels ? (
+          <button
+            type="button"
+            className="text-sm text-muted-foreground underline-offset-2 hover:underline"
+            onClick={onOpenSettingsModels}
+          >
+            {t("Open Settings → Models")}
+          </button>
+        ) : null}
+      </div>
     );
   }
 
@@ -127,6 +169,8 @@ function ModelOrPresetPicker({
       onModelChange={onModelChange}
       onIconClick={onOpenSettingsModels}
       onRemoveModel={onRemoveModel}
+      experienceMode={experienceMode}
+      onExperienceModeChange={onExperienceModeChange}
     />
   );
 }
@@ -139,6 +183,7 @@ ModelOrPresetPicker.propTypes = {
   onModelChange: PropTypes.func,
   onOpenSettingsModels: PropTypes.func,
   onRemoveModel: PropTypes.func,
+  onExperienceModeChange: PropTypes.func,
   presets: PropTypes.array,
   selectedPresetId: PropTypes.string,
   onPresetChange: PropTypes.func,

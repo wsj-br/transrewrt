@@ -10,6 +10,7 @@ import {
 } from "./workspaceLayoutClasses";
 import { WorkspaceOutputMeta } from "./WorkspaceOutputMeta";
 import { WorkspaceBehaviourSwitch } from "./WorkspaceBehaviourSwitch";
+import { WorkspaceActionBarVersionLink } from "./WorkspaceActionBarVersionLink";
 import { Button } from "@/components/ui/button";
 import { Zap, Square, ArrowRightLeft, Clipboard, Copy, Trash2 } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -299,7 +300,7 @@ export function getTranslateStackPanels({
           <span className="text-xs font-normal opacity-80">{shortcutLabel}</span>
         )}
       </Button>
-      <div className="min-w-0" aria-hidden />
+      <WorkspaceActionBarVersionLink />
     </div>
   );
 

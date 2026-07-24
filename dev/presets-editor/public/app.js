@@ -304,6 +304,8 @@
   var modelsCatalogPrefetchState = "idle";
   var catalogLoadProgress = 0;
   var aiSuggestRunInFlight = false;
+  /** @type {AbortController | null} */
+  var aiSuggestAbortController = null;
   /** @type {Record<string, Record<string, { model_id: string, reason?: string, warning?: string }>>} */
   var aiSuggestStaging = {};
   /** @type {Record<string, Record<string, string>>} */
@@ -1057,10 +1059,19 @@
         displayIdForCatalogModel(catalog[KEY_SUGGESTION_MODEL]) +
         " (web search enabled). Extra search cost may apply (~$0.02 per request max at default settings).";
     }
-    if (cancelBtn) cancelBtn.disabled = true;
+    // Enabled while a run is in flight so the user can abort.
+    if (cancelBtn) cancelBtn.disabled = false;
   }
 
   function exitAiSuggestFlow() {
+    if (aiSuggestAbortController) {
+      try {
+        aiSuggestAbortController.abort();
+      } catch {
+        /* ignore */
+      }
+      aiSuggestAbortController = null;
+    }
     aiSuggestStaging = {};
     aiSuggestSnapshot = {};
     aiSuggestChoice = {};
@@ -1419,14 +1430,25 @@
 
   async function executeAiSuggestRun(presetIds) {
     const selectedPresetIds = Array.isArray(presetIds) ? presetIds.filter(Boolean) : [];
+    if (aiSuggestAbortController) {
+      try {
+        aiSuggestAbortController.abort();
+      } catch {
+        /* ignore */
+      }
+    }
+    aiSuggestAbortController = new AbortController();
+    const runSignal = aiSuggestAbortController.signal;
     aiSuggestRunInFlight = true;
     updateAiSuggestBar();
     updateTranslateBar();
     showAiSuggestRunPage();
     const summaryEl = document.getElementById("ai-suggest-run-summary");
     const cancelBtn = document.getElementById("btn-ai-suggest-run-cancel");
+    if (cancelBtn) cancelBtn.disabled = false;
     let completed = 0;
     let planned = 0;
+    let openedReview = false;
 
     appendAiSuggestRunLog("Starting AI model suggestion run…");
     appendAiSuggestRunLog(
@@ -1439,12 +1461,25 @@
     appendAiSuggestRunLog(
       "Presets selected: " + selectedPresetIds.length + " (" + selectedPresetIds.join(", ") + ")",
     );
+    const liveTimingEl = document.getElementById("ai-suggest-live-timing");
+    const liveTiming = !liveTimingEl || Boolean(liveTimingEl.checked);
+    appendAiSuggestRunLog(
+      liveTiming
+        ? "Live timing: on (standard/fast presets will time shortlist candidates)."
+        : "Live timing: off.",
+    );
+    appendAiSuggestRunLog("Cancel is available — click Cancel to abort the run.");
 
     try {
       const res = await fetch("/api/presets/suggest-models?stream=1", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ catalog: catalog, preset_ids: selectedPresetIds }),
+        body: JSON.stringify({
+          catalog: catalog,
+          preset_ids: selectedPresetIds,
+          live_timing: liveTiming,
+        }),
+        signal: runSignal,
       });
 
       if (!res.ok) {
@@ -1457,6 +1492,7 @@
       }
 
       await readNdjsonResponse(res, function (rec) {
+        if (runSignal.aborted) return;
         if (rec.type === "parse_error") {
           appendAiSuggestRunLog("Could not parse stream line: " + (rec.line || ""), true);
           return;
@@ -1508,6 +1544,11 @@
               "Progress: " + Math.min(completed, planned) + " / " + planned + " preset(s) done.";
           }
         } else if (rec.type === "done") {
+          if (rec.cancelled) {
+            appendAiSuggestRunLog("Run cancelled.", true);
+            if (summaryEl) summaryEl.textContent = "Cancelled.";
+            return;
+          }
           if (rec.ok) {
             if (rec.snapshot) aiSuggestSnapshot = rec.snapshot;
             if (summaryEl) {
@@ -1520,21 +1561,54 @@
               });
             }
             appendAiSuggestRunLog("Run complete. Opening review…");
-            showAiSuggestReview();
+            openedReview = true;
+            // Defer so the log line paints before the (heavier) review DOM swap.
+            setTimeout(function () {
+              showAiSuggestReview();
+            }, 0);
           } else {
             appendAiSuggestRunLog("Failed: " + (rec.error || "unknown"), true);
             if (summaryEl) summaryEl.textContent = rec.error || "Suggestion run failed.";
           }
         }
       });
+
+      // If the stream ended without a done event but we got results, still open review.
+      if (!openedReview && !runSignal.aborted && Object.keys(aiSuggestStaging).length) {
+        appendAiSuggestRunLog(
+          "Stream ended without a final done event; opening review with received results…",
+          true,
+        );
+        openedReview = true;
+        setTimeout(function () {
+          showAiSuggestReview();
+        }, 0);
+      }
     } catch (e) {
-      appendAiSuggestRunLog(e.message || String(e), true);
-      if (summaryEl) summaryEl.textContent = e.message || String(e);
+      const aborted =
+        runSignal.aborted ||
+        (e && (e.name === "AbortError" || /abort/i.test(String(e.message || ""))));
+      if (aborted) {
+        appendAiSuggestRunLog("Cancelled by user.", true);
+        if (summaryEl) summaryEl.textContent = "Cancelled.";
+      } else {
+        appendAiSuggestRunLog(e.message || String(e), true);
+        if (summaryEl) summaryEl.textContent = e.message || String(e);
+      }
     } finally {
       aiSuggestRunInFlight = false;
+      if (aiSuggestAbortController && aiSuggestAbortController.signal === runSignal) {
+        aiSuggestAbortController = null;
+      }
       if (cancelBtn) cancelBtn.disabled = false;
       updateAiSuggestBar();
       updateTranslateBar();
+      // If cancelled before review, return to setup so the user can restart.
+      if (runSignal.aborted && !openedReview) {
+        const run = document.getElementById("ai-suggest-run-panel");
+        if (run) run.classList.add("hidden");
+        showAiSuggestSetupPage();
+      }
     }
   }
 
@@ -1552,10 +1626,8 @@
     }
     const dec = new TextDecoder();
     var buf = "";
-    while (true) {
-      var read = await reader.read();
-      if (read.done) break;
-      buf += dec.decode(read.value, { stream: true });
+    function consumeBuffer(flush) {
+      if (flush) buf += dec.decode();
       var idx;
       while ((idx = buf.indexOf("\n")) >= 0) {
         var line = buf.slice(0, idx).trim();
@@ -1571,6 +1643,13 @@
         onRecord(rec);
       }
     }
+    while (true) {
+      var read = await reader.read();
+      if (read.done) break;
+      buf += dec.decode(read.value, { stream: true });
+      consumeBuffer(false);
+    }
+    consumeBuffer(true);
     var tail = buf.trim();
     if (tail) {
       try {
@@ -2786,7 +2865,18 @@
   const btnAiSuggestRunCancel = document.getElementById("btn-ai-suggest-run-cancel");
   if (btnAiSuggestRunCancel) {
     btnAiSuggestRunCancel.addEventListener("click", function () {
-      if (aiSuggestRunInFlight) return;
+      if (aiSuggestRunInFlight && aiSuggestAbortController) {
+        appendAiSuggestRunLog("Cancelling…", true);
+        const summaryEl = document.getElementById("ai-suggest-run-summary");
+        if (summaryEl) summaryEl.textContent = "Cancelling…";
+        btnAiSuggestRunCancel.disabled = true;
+        try {
+          aiSuggestAbortController.abort();
+        } catch {
+          /* ignore */
+        }
+        return;
+      }
       exitAiSuggestFlow();
     });
   }

@@ -406,9 +406,27 @@ function isTransrewrtWorkflowModel(m) {
     "babbage",
     "curie",
     "ada-002",
+    // Not usable via chat-completions translate/rewrite/transform:
+    "prompt-guard",
+    "safeguard",
+    "multi-agent",
+    "gpt-image",
+    "imagine-image",
+    "imagine-video",
+    "text-to-image",
+    "text-to-video",
+    "image-generation",
+    "orpheus", // Groq TTS (terms-gated, not chat)
+    "canopylabs/",
   ];
   if (block.some((s) => hay.includes(s))) return false;
   if (tail.startsWith("text-")) return false;
+  // Trailing / mid-path image|video specialty models (xAI grok-imagine-*, etc.)
+  if (/(^|\/|-)(image|video)(-|$)/.test(tail) && !/vision|multimodal/.test(hay)) {
+    return false;
+  }
+  // Groq Compound agent endpoints are not plain chat completions for Easy-mode.
+  if (/(^|\/)compound(-mini)?$/.test(tail)) return false;
   if (/^gpt-5\.\d+(-\d+)?-pro(-\d{4}-\d{2}-\d{2})?$/.test(tail)) return false;
   return true;
 }

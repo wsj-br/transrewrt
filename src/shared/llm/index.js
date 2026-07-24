@@ -1014,10 +1014,68 @@ function normalizeSdkError(e, engine) {
 }
 
 /**
+ * True when a provider rejects a non-default / deprecated `temperature` value
+ * (e.g. OpenAI gpt-5-mini, Anthropic Opus 4.7+).
+ * @param {unknown} error
+ */
+function isTemperatureUnsupportedError(error) {
+  const err = error || {};
+  const parts = [err.message, err.responseBody, err.cause?.message];
+  if (err.data && typeof err.data === "object") {
+    parts.push(err.data.message, err.data.error?.message, err.data.code, err.data.error?.code);
+  }
+  try {
+    parts.push(JSON.stringify(err.data));
+  } catch {
+    /* ignore */
+  }
+  const msg = parts
+    .filter((p) => p != null)
+    .map((p) => String(p))
+    .join(" ")
+    .toLowerCase();
+  if (!msg.includes("temperature")) return false;
+  return (
+    msg.includes("unsupported") ||
+    msg.includes("deprecated") ||
+    msg.includes("does not support") ||
+    msg.includes("only the default") ||
+    msg.includes("unsupported_value")
+  );
+}
+
+/**
+ * Models that reject non-default `temperature` — omit the param so the provider default is used.
+ * @param {string} innerModelId
+ */
+function shouldOmitTemperatureForModel(innerModelId) {
+  const id = String(innerModelId || "").toLowerCase();
+  // OpenAI GPT-5 / o-series: often only allow the default temperature
+  if (/(^|\/)(gpt-5|o1|o3|o4)([.\-/]|$)/.test(id)) return true;
+  // Anthropic Claude 4.6+ (opus/sonnet): temperature deprecated on several SKUs
+  if (/claude-(opus|sonnet)-4([.-]([6-9]|\d{2}))/.test(id)) return true;
+  return false;
+}
+
+/** Prevent AI SDK leftover promise rejections from dumping APICallError to the console. */
+function silenceStreamResultSideEffects(result) {
+  if (!result || typeof result !== "object") return;
+  for (const key of ["usage", "response", "text", "reasoning", "reasoningText", "totalUsage"]) {
+    const p = result[key];
+    if (p && typeof p.then === "function") {
+      Promise.resolve(p).catch(() => {});
+    }
+  }
+}
+
+/**
  * Stream chat completions for any engine through the OpenAI-compatible AI SDK transport.
  * Emits text via `onText` and synthesized OpenAI-style SSE lines via `onSseLine`, then a final
  * usage line + `[DONE]`. Cost is exact for OpenRouter (provider metadata / generation lookup) and
  * estimated from the OpenRouter pricing catalog for other engines.
+ *
+ * If the provider rejects `temperature`, the call is retried once without that parameter
+ * (model default), so translate/benchmark flows keep working on gpt-5-mini / Claude Opus 4.7+.
  *
  * @param {string} canonicalModelId
  * @param {Array<{role: string, content: string}>} messages
@@ -1030,7 +1088,14 @@ async function streamCompletion(canonicalModelId, messages, opts, handlers = {})
   if (!keysMap) throw new Error("keysMap is required");
 
   const { engine, innerModelId } = resolveEngine(canonicalModelId, keysMap);
-  const temperature = opts.temperature ?? 0.3;
+  const omitTemperature =
+    opts.omitTemperature === true || shouldOmitTemperatureForModel(innerModelId);
+  // `undefined` = omit param (provider default). Known GPT-5 / Claude 4.6+ SKUs reject 0.3.
+  const temperature = omitTemperature
+    ? undefined
+    : opts.temperature !== undefined
+      ? opts.temperature
+      : 0.3;
   const signal = opts.signal;
   const { onSseLine, onText } = handlers;
 
@@ -1048,57 +1113,88 @@ async function streamCompletion(canonicalModelId, messages, opts, handlers = {})
     .filter((m) => m.role !== "system")
     .map((m) => ({ role: m.role, content: m.content }));
 
-  const result = streamText({
-    model: provider(innerModelId),
-    ...(systemText ? { system: systemText } : {}),
-    messages: chatMessages,
-    temperature,
-    abortSignal: signal,
-  });
+  /**
+   * @param {number | undefined} temp
+   * @returns {Promise<{ aborted: boolean, sdkUsage: object | null, providerMetadata: object | null, generationId: string | null }>}
+   */
+  async function runOnce(temp) {
+    const result = streamText({
+      model: provider(innerModelId),
+      ...(systemText ? { system: systemText } : {}),
+      messages: chatMessages,
+      ...(temp !== undefined ? { temperature: temp } : {}),
+      abortSignal: signal,
+    });
 
-  let aborted = false;
-  try {
-    for await (const piece of result.textStream) {
-      if (!piece) continue;
-      if (onText) onText(piece);
-      if (onSseLine) {
-        onSseLine(
-          `data: ${JSON.stringify({
-            choices: [{ delta: { content: piece } }],
-            id: `aisdk-${engine}`,
-          })}`,
-        );
+    let aborted = false;
+    let emittedText = false;
+    try {
+      for await (const piece of result.textStream) {
+        if (!piece) continue;
+        emittedText = true;
+        if (onText) onText(piece);
+        if (onSseLine) {
+          onSseLine(
+            `data: ${JSON.stringify({
+              choices: [{ delta: { content: piece } }],
+              id: `aisdk-${engine}`,
+            })}`,
+          );
+        }
+      }
+    } catch (e) {
+      silenceStreamResultSideEffects(result);
+      if (signal?.aborted || isAbortError(e)) {
+        aborted = true;
+      } else if (
+        temp !== undefined &&
+        !emittedText &&
+        isTemperatureUnsupportedError(e)
+      ) {
+        const retryErr = new Error("TEMPERATURE_RETRY");
+        retryErr.cause = e;
+        throw retryErr;
+      } else {
+        throw normalizeSdkError(e, engine);
       }
     }
+
+    let sdkUsage = null;
+    let providerMetadata = null;
+    let generationId = null;
+    if (!aborted) {
+      try {
+        sdkUsage = await result.usage;
+      } catch {
+        /* usage unavailable */
+      }
+      try {
+        providerMetadata = await result.providerMetadata;
+      } catch {
+        /* metadata unavailable */
+      }
+      try {
+        const response = await result.response;
+        generationId = response?.id || null;
+      } catch {
+        /* response metadata unavailable */
+      }
+    }
+    return { aborted, sdkUsage, providerMetadata, generationId };
+  }
+
+  let run;
+  try {
+    run = await runOnce(temperature);
   } catch (e) {
-    if (signal?.aborted || isAbortError(e)) {
-      aborted = true;
+    if (e && e.message === "TEMPERATURE_RETRY") {
+      run = await runOnce(undefined);
     } else {
-      throw normalizeSdkError(e, engine);
+      throw e;
     }
   }
 
-  let sdkUsage = null;
-  let providerMetadata = null;
-  let generationId = null;
-  if (!aborted) {
-    try {
-      sdkUsage = await result.usage;
-    } catch {
-      /* usage unavailable */
-    }
-    try {
-      providerMetadata = await result.providerMetadata;
-    } catch {
-      /* metadata unavailable */
-    }
-    try {
-      const response = await result.response;
-      generationId = response?.id || null;
-    } catch {
-      /* response metadata unavailable */
-    }
-  }
+  const { sdkUsage, providerMetadata, generationId } = run;
 
   const accumulated = {
     prompt_tokens: sdkUsage?.inputTokens ?? 0,

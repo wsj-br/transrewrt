@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.1-blue" alt="Version"></a>
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.2-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
 </p>
@@ -69,6 +69,15 @@ Pełna dokumentacja produktu (instalacja, klucze API, przewodniki, ustawienia, r
 ## Wsparcie
 
 Otwórz zgłoszenie na [GitHub](https://github.com/wsj-br/transrewrt/issues). Podaj swoją platformę (Windows / Linux / Docker) i wersję aplikacji (okno O aplikacji lub strona Wydań).
+
+## Podziękowania
+
+Sugestie presetów w trybie Łatwym w edytorze presetów korzystają z publicznych danych ewaluacyjnych z:
+
+- [languagebench](https://huggingface.co/spaces/fair-forward/languagebench) (CC BY-SA 4.0)
+- [Artificial Analysis](https://artificialanalysis.ai/) (wymagana atrybucja dla danych API)
+
+Licencje zależności stron trzecich i te informacje o źródłach danych są wymienione w [NOTICES](../NOTICES).
 
 ## Licencja
 

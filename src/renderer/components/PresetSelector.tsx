@@ -21,7 +21,8 @@ function PresetSelector({
   presets = [],
   selectedPresetId,
   onPresetChange,
-  onOpenSettingsGeneral,
+  experienceMode = "easy" as "easy" | "advanced",
+  onExperienceModeChange = undefined,
   uiLocale,
   sourceLocale = "en-GB",
 }) {
@@ -96,16 +97,19 @@ function PresetSelector({
               </DropdownMenuItem>
             );
           })}
-          {onOpenSettingsGeneral ? (
+          {onExperienceModeChange ? (
             <>
               <DropdownMenuSeparator />
               <DropdownMenuItem
+                data-testid="experience-mode-toggle"
                 onClick={() => {
-                  onOpenSettingsGeneral();
+                  onExperienceModeChange(experienceMode === "easy" ? "advanced" : "easy");
                   setOpen(false);
                 }}
               >
-                {t("Open Settings → General")}
+                {experienceMode === "easy"
+                  ? t("Switch to Advanced mode")
+                  : t("Switch to Easy mode")}
               </DropdownMenuItem>
             </>
           ) : null}
@@ -129,7 +133,8 @@ PresetSelector.propTypes = {
   ),
   selectedPresetId: PropTypes.string,
   onPresetChange: PropTypes.func.isRequired,
-  onOpenSettingsGeneral: PropTypes.func,
+  experienceMode: PropTypes.oneOf(["easy", "advanced"]),
+  onExperienceModeChange: PropTypes.func,
   uiLocale: PropTypes.string,
   sourceLocale: PropTypes.string,
 };
