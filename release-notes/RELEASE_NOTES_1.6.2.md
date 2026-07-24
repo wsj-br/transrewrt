@@ -31,7 +31,7 @@ Transrewrt 1.6.2 tightens Easy/Advanced model picking, improves presets AI Sugge
 - **Release website deploy**: Release workflow dispatches `website-pages.yml` on `main` instead of calling it on the release tag (Pages environment only allows deployments from `main`).
 - **`pnpm dev:web` / better-sqlite3**: `node-rebuild.js` accepts v13 host prebuilds when the package skips compile.
 - **PowerShell upgrade scripts**: Tools phase runs inside the dotsource block; workspace dirs no longer nest under `@()`; browserslist update falls back when `npx` is missing.
-- **`release:github` on Windows**: Annotated tag creation no longer fails with `fatal: too many arguments` when the `-m` message contains spaces (spawn without a shell, matching ai-i18n-tools).
+- **`release:github` on Windows**: Annotated tag creation no longer fails with `fatal: too many arguments` when the `-m` message contains spaces; pnpm is invoked via `node $npm_execpath` (no DEP0190), matching ai-i18n-tools.
 
 ## Detailed changelog
 

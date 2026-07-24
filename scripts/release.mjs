@@ -66,20 +66,17 @@ function fail(message) {
 }
 
 /**
- * Run a command with an argv array. Prefer no shell so argv (e.g.
- * `-m "Release v1.6.2"`) is preserved on Windows and Linux — using a shell
- * splits on spaces and makes `git tag` fail with "fatal: too many arguments".
- *
- * Exception: on Windows, `pnpm` is typically a `.cmd` shim and needs shell:true
- * (git / gh / node are native executables and work with shell:false).
+ * Run a command with an argv array (no shell). `git` / `gh` / `node` are
+ * native executables on Windows; using a shell would split
+ * `-m "Release v1.6.2"` on spaces and make `git tag` fail with
+ * "fatal: too many arguments". Avoids DEP0190 as well.
  */
 function run(command, args, { quiet = false, inherit = true } = {}) {
-  const needsShell = process.platform === "win32" && command === "pnpm";
   const result = spawnSync(command, args, {
     cwd: root,
     encoding: "utf8",
     env: process.env,
-    shell: needsShell,
+    shell: false,
     stdio: quiet ? "pipe" : inherit ? "inherit" : "pipe",
   });
 
@@ -109,9 +106,58 @@ function run(command, args, { quiet = false, inherit = true } = {}) {
   };
 }
 
+/**
+ * Run pnpm with the given args. Prefer `node $npm_execpath` (set during pnpm
+ * lifecycle scripts); fall back to a single-string shell invocation so bare
+ * `pnpm` resolves as `pnpm.cmd` on Windows without DEP0190 (args + shell:true).
+ */
+function runPnpm(args, { quiet = false, inherit = true } = {}) {
+  const execPath = process.env.npm_execpath;
+  const result = execPath
+    ? spawnSync(process.execPath, [execPath, ...args], {
+        cwd: root,
+        encoding: "utf8",
+        env: process.env,
+        shell: false,
+        stdio: quiet ? "pipe" : inherit ? "inherit" : "pipe",
+      })
+    : spawnSync(`pnpm ${args.join(" ")}`, {
+        cwd: root,
+        encoding: "utf8",
+        env: process.env,
+        shell: true,
+        stdio: quiet ? "pipe" : inherit ? "inherit" : "pipe",
+      });
+
+  if (result.error) {
+    if (quiet) {
+      return { ok: false, stdout: "", status: 1 };
+    }
+    fail(`failed to start pnpm: ${result.error.message}`);
+  }
+
+  const status = result.status ?? 1;
+  if (status !== 0) {
+    if (quiet) {
+      return {
+        ok: false,
+        stdout: typeof result.stdout === "string" ? result.stdout : "",
+        status,
+      };
+    }
+    fail(`pnpm ${args.join(" ")} failed (exit ${status})`);
+  }
+
+  return {
+    ok: true,
+    stdout: typeof result.stdout === "string" ? result.stdout : "",
+    status,
+  };
+}
+
 function requireCmd(name) {
-  // Same probe on Windows and Linux: spawn the binary directly (no shell),
-  // except pnpm on Windows (see run()).
+  // Same probe on Windows and Linux: spawn the binary directly (no shell).
+  // Avoids DEP0190, `where.exe`, and non-portable `command -v` under dash.
   const check = run(name, ["--version"], { quiet: true });
   if (!check.ok) fail(`Missing required command: ${name}`);
 }
@@ -119,8 +165,9 @@ function requireCmd(name) {
 requireCmd("gh");
 requireCmd("git");
 requireCmd("node");
-requireCmd("pnpm");
-
+if (!runPnpm(["--version"], { quiet: true }).ok) {
+  fail("Missing required command: pnpm");
+}
 if (!run("git", ["rev-parse", "--is-inside-work-tree"], { quiet: true }).ok) {
   fail("Not inside a git repository.");
 }
@@ -159,7 +206,7 @@ if (!run("git", ["remote", "get-url", "origin"], { quiet: true }).ok) {
 }
 
 console.log("Syncing dependencies...");
-run("pnpm", ["install", "--no-frozen-lockfile"]);
+runPnpm(["install", "--no-frozen-lockfile"]);
 
 const headCommit = run("git", ["rev-parse", "HEAD"], { quiet: true, inherit: false }).stdout.trim();
 

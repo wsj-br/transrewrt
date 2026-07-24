@@ -13,7 +13,7 @@ Use conventional types (Added, Changed, Fixed, etc.) and short descriptions.
 
 ## [1.6.2] - 2026-07-25
 
-- **Fixed**: `pnpm release:github` on Windows — `git tag -a -m "Release v…"` no longer fails with `fatal: too many arguments` (spawn with `shell: false` like ai-i18n-tools; only `pnpm` still uses a shell on Windows for its `.cmd` shim).
+- **Fixed**: `pnpm release:github` on Windows — `git tag -a -m "Release v…"` no longer fails with `fatal: too many arguments`; spawn uses `shell: false` (like ai-i18n-tools) and runs pnpm via `node $npm_execpath` to avoid DEP0190.
 - **Changed**: Website `packageManager` aligned to `pnpm@11.17.0` to match the root app; website `pnpm-workspace.yaml` lists `minimumReleaseAgeExclude` entries needed for that pin.
 - **Fixed**: Docker Compose (`production.yml`, `docker-compose.yml`) forwards `NVIDIA_API_KEY`, `ALIBABA_API_KEY`, and `APIFUN_API_KEY` into the container (same as other LLM provider env vars).
 - **Changed**: Track `website/.translation-cache/cache.db` in git (same pattern as root `.translation-cache/`); `clean-workspace` no longer deletes that folder.
