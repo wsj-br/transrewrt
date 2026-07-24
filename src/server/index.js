@@ -74,12 +74,19 @@ function readBuildTimestamp() {
 
 /** Docker: /app/NOTICES or /app/dist/NOTICES (after build). Dev: repo root via src/server → ../.. */
 function resolveThirdPartyNoticesPath() {
-  const oneUp = path.join(__dirname, "..", "NOTICES");
-  const inDist = path.join(__dirname, "..", "dist", "NOTICES");
-  const twoUp = path.join(__dirname, "..", "..", "NOTICES");
-  if (fs.existsSync(oneUp)) return oneUp;
-  if (fs.existsSync(inDist)) return inDist;
-  if (fs.existsSync(twoUp)) return twoUp;
+  const candidates = [
+    path.join(__dirname, "..", "NOTICES"),
+    path.join(__dirname, "..", "dist", "NOTICES"),
+    path.join(__dirname, "..", "..", "NOTICES"),
+    path.join(__dirname, "..", "..", "dist", "NOTICES"),
+  ];
+  for (const p of candidates) {
+    try {
+      if (p && fs.existsSync(p) && fs.statSync(p).isFile()) return p;
+    } catch {
+      /* ignore */
+    }
+  }
   return null;
 }
 

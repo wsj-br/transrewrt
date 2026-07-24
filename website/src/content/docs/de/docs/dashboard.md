@@ -12,7 +12,7 @@ Verwenden Sie das **Dashboard**, um zu sehen, wie viel Sie die App nutzen und we
 ![Dashboard-Zusammenfassung](/images/screenshots/de/dashboard-summary.png)
 
 :::note
-Wenn Sie nur **kostenlose** Modelle verwenden, können die Kostenbeträge null sein. Die KPIs zur Anrufanzahl in der **Zusammenfassung** benötigen dennoch Aktivitäten im ausgewählten Zeitraum.
+Wenn Sie nur **kostenlose** Modelle verwenden, können die Kostenbeträge null sein. Die KPIs für die Anrufanzahl unter **Zusammenfassung** erfordern dennoch Aktivität im ausgewählten Zeitraum.
 :::
 
 ## Daten filtern
@@ -26,12 +26,12 @@ Der Filter **Benutzer** ist nur für Administratoren in der Webversion sichtbar.
 ## Registerkarten
 
 - **Zusammenfassung** – KPIs: Gesamtkosten, verwendete Modelle, Anrufanzahl und Kosten pro Modus, durchschnittliche Kosten pro Anruf, durchschnittliche TPS, Top-Modelle nach Anrufanzahl
-- **Nach Modell** – Anrufe, Kosten und TPS pro Modell; erweitern Sie eine Zeile für eine Modusaufschlüsselung
-- **Alle Anrufe** – vollständiges Anrufprotokoll (paginiert oder als Karten) mit Exportfunktion
+- **Nach Modell** – Anrufe, Kosten und TPS pro Modell; Zeile für eine Modusaufschlüsselung erweitern
+- **Alle Anrufe** – vollständiges Anrufprotokoll (paginiert oder als Karten) mit Export
 
 ## Daten exportieren
 
-Exportieren Sie Tabellen als **JSON**, **CSV** oder **XLSX**.
+Tabellen als **JSON**, **CSV** oder **XLSX** exportieren.
 
 ## Gespeicherte Datensätze für ein Modell löschen
 

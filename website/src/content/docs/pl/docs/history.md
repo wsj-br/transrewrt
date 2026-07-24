@@ -1,8 +1,8 @@
 ---
 title: Przeglądaj historię
 description: >-
-  Przeglądaj przeszłe uruchomienia tłumaczeń, przepisów i transformacji z pełnym
-  tekstem wejściowym i wyjściowym.
+  Przejrzyj poprzednie uruchomienia tłumaczenia, przepisywania i transformacji z
+  pełnym tekstem wejściowym i wyjściowym.
 ---
 
 
@@ -11,22 +11,22 @@ Otwórz **Historię**, aby zobaczyć poprzednie operacje, w tym dane wejściowe 
 
 ![Strona historii](/images/screenshots/pl/history.png)
 
-Historia używa tych samych filtrów zakresu czasu co [Pulpit nawigacyjny](/docs/dashboard/).
+Historia używa tych samych filtrów zakresu czasu, co [Panel kontrolny](/docs/dashboard/).
 
 :::note
-W **aplikacji internetowej** każdy (w tym administratorzy) widzi tylko własną historię wykonywania. Filtrowanie **Użytkownika** na Pulpicie nawigacyjnym nie ma tu zastosowania.
+W **aplikacji internetowej** każdy (w tym administratorzy) widzi tylko własną historię wykonania. Filtr **Użytkownik** w Panelu kontrolnym nie ma tu zastosowania.
 :::
 
-## Eksport
+## Eksportuj
 
 Eksportuj przefiltrowaną listę jako **JSON**, **CSV** lub **XLSX**.
 
-## Jeśli historia jest nieobecna
+## Jeśli brakuje historii
 
-**Zachowaj historię wykonywania** może być wyłączone. Włącz ją w [Ustawienia → Ustawienia ogólne](/docs/settings/#general-settings), chyba że administrator ustawił `HISTORY_DISABLED` — zobacz [Konfiguracja](/docs/configuration/#privacy-mode).
+Opcja **Zachowaj historię wykonania** może być wyłączona. Włącz ją w [Ustawieniach → Ustawienia ogólne](/docs/settings/#general-settings), chyba że administrator ustawił `HISTORY_DISABLED` — zobacz [Konfiguracja](/docs/configuration/#privacy-mode).
 
 ## Następne kroki
 
-- [Użyj pulpitu nawigacyjnego](/docs/dashboard/)
+- [Użyj Panelu kontrolnego](/docs/dashboard/)
 - [Ustawienia](/docs/settings/)
-- [Typowe problemy](/docs/common-issues/)
+- [Częste problemy](/docs/common-issues/)

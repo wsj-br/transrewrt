@@ -49,11 +49,13 @@ function Invoke-UpgradeToolsPhase {
     $env:TRANSREWRT_UPGRADE_TOOLS_EMBEDDED = '1'
     try {
         # Isolate dotsource so a nested `return` cannot exit this function.
+        # Call Invoke-UpgradeTools inside the same block: the nested dotsource
+        # defines it in this scriptblock scope, so it is gone after the block ends.
         & {
             . (Join-Path $script:UpgradeScriptDir 'upgrade-tools.ps1')
+            Remove-Item Env:UPGRADE_TOOLS_DEFINE_ONLY -ErrorAction SilentlyContinue
+            Invoke-UpgradeTools
         }
-        Remove-Item Env:UPGRADE_TOOLS_DEFINE_ONLY -ErrorAction SilentlyContinue
-        Invoke-UpgradeTools
     }
     finally {
         if ($hadPrev) {
@@ -785,7 +787,15 @@ function Invoke-UpgradeDependencies {
     }
 
     Write-UpgradeLog '🌐  Updating browserslist database...'
-    [void](Invoke-UpgradeStep { npx --yes update-browserslist-db@latest })
+    if (Get-Command npx -ErrorAction SilentlyContinue) {
+        [void](Invoke-UpgradeStep { npx --yes update-browserslist-db@latest })
+    }
+    elseif (Get-Command npm -ErrorAction SilentlyContinue) {
+        [void](Invoke-UpgradeStep { npm exec --yes -- update-browserslist-db@latest })
+    }
+    else {
+        Write-UpgradeWarn 'npx/npm not found; skipping browserslist database update.'
+    }
 
     Write-UpgradeOk '✅  Build-safe dependency upgrade completed'
 

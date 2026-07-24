@@ -30,15 +30,15 @@ Outil de texte alimenté par l'IA : **traduisez**, **réécrivez** et **transfor
 ```bash
 docker pull ghcr.io/wsj-br/transrewrt:latest
 
-OPENROUTER_API_KEY=sk-or-your-key docker run -d \
+docker run -d \
   -p 5000:5000 \
   -v transrewrt-data:/app/data \
-  -e OPENROUTER_API_KEY \
-  --name transrewrt-web \
+  -e PROVIDER_API_KEY=your-key \
+  --name transrewrt \
   ghcr.io/wsj-br/transrewrt:latest
 ```
 
-Ouvrez [http://localhost:5000](http://localhost:5000) et modifiez le mot de passe administrateur par défaut. Les clés de fournisseur sont définies via des variables d'environnement (pas l'interface web).
+Remplacez `PROVIDER_API_KEY` par la variable de votre fournisseur (par exemple `OPENROUTER_API_KEY`, `OPENAI_API_KEY`, `GROQ_API_KEY`). Ouvrez [http://localhost:5000](http://localhost:5000) et modifiez le mot de passe administrateur par défaut. Les clés sont définies via des variables d'environnement (et non l'interface utilisateur web).
 
 **Windows** — Téléchargez `Transrewrt Setup x.y.z.exe` depuis [Releases](https://github.com/wsj-br/transrewrt/releases), installez, puis ajoutez les clés dans **Paramètres → API**.
 

@@ -5,25 +5,27 @@ description: Transrewrt 是什么，以及如何查找安装、指南和设置�
 
 
 
-**Transrewrt** 是一款开源的 AI 驱动文本工具，可用于：
+**Transrewrt** 是一款开源的 AI 驱动文本工具，用于：
 
-- **翻译** — 支持数十种语言之间的互译，具备自动源语言检测和术语表功能
-- **重写** — 修复语法、提升清晰度、改变语气或长度
-- **转换** — 对任意文本运行您自定义的 AI 提示词
+- **Translate** — 在数十种语言之间翻译，支持自动源语言检测和术语表
+- **Rewrite** — 修复语法、提高清晰度、改变语气或长度
+- **Transform** — 对任何文本运行您自己的自定义 AI 提示词
 
-它支持许多 AI 提供商（OpenRouter、OpenAI、Anthropic、Google Gemini、DeepSeek、Groq、Mistral、xAI、Cerebras、NVIDIA、阿里云、apikey.fun、兼容 OpenAI 的端点，以及本地兼容 OpenAI 的服务器，如 Ollama、LM Studio 或 llama.cpp）。它可以作为**桌面应用**（Windows / Linux）或**自托管 Web 应用**（Docker）运行。
+它支持许多 AI 提供商（OpenRouter、OpenAI、Anthropic、Google Gemini、DeepSeek、Groq、Mistral、xAI、Cerebras、NVIDIA、Alibaba Cloud、apikey.fun、OpenAI 兼容端点，以及本地 OpenAI 兼容服务器，如 Ollama、LM Studio 或 llama.cpp）。将其作为**桌面应用**（Windows / Linux）或**自托管 Web 应用**（Docker）运行。
 
-您的密钥、您的模型、您的主机——没有 Transrewrt 云端账户。
+您的密钥，您的模型，您的主机——没有 Transrewrt 云账户。
 
 ## 窗口的组织方式
 
-- **侧边栏** — 翻译、改写、转换、仪表板、历史记录、设置（以及网页端已登录的用户）
-- **工具栏** — 页面标题、**预设**（简易）或**模型**（高级）选择器，以及**界面语言**（地球图标；不会更改翻译的源语言/目标语言）
-- **工作区** — 带有计数、计时、TPS 和可选成本的输入与输出面板
+![翻译工作区](/images/screenshots/zh-Hans/translate.png)
 
-默认情况下，应用程序在**简易**模式下运行：在设置中选择一个**预设**和一个**提供商**。在[设置 → 常规设置](/docs/settings/#general-settings)下切换到**高级**模式以获取完整的模型列表。
+- **Sidebar** — 主导航：翻译、重写、转换、仪表板、历史记录、设置（以及网页端已登录的用户）。
+- **Toolbar** — 页面标题、**preset**（简易）或 **model**（高级）选择器、**Interface language**（地球图标；不改变翻译来源/目标），以及链接到这些文档的帮助（**?**）。预设/模型菜单还可以 **Switch to Easy/Advanced mode**（位于“打开设置”上方）。
+- **Work area** — 输入和输出面板，包含计数、耗时、TPS 和可选成本。操作栏在右下角显示一个指向 GitHub Pages 站点的小型应用 **version** 链接。
 
-## 快速上手
+默认情况下，应用在**简易**模式下运行：在设置中选择一个**预设**和一个**提供商**。在 [设置 → 常规设置](/docs/settings/#general-settings) 下切换到**高级**以获取完整模型列表，或使用工具栏预设/模型菜单中的切换选项。
+
+## 开始使用
 
 1. [快速开始](/docs/quick-start/) — 安装桌面版或使用 Docker 运行
 2. [API 密钥](/docs/api-key/) — 连接免费的 OpenRouter 密钥或其他提供商
@@ -32,7 +34,7 @@ description: Transrewrt 是什么，以及如何查找安装、指南和设置�
 ## 指南
 
 - [翻译文本](/docs/translate/)
-- [改写文本](/docs/rewrite/)
+- [重写文本](/docs/rewrite/)
 - [使用提示词转换](/docs/transform/)
 - [使用仪表板](/docs/dashboard/)
 - [浏览历史记录](/docs/history/)

@@ -30,15 +30,15 @@ AI 기반 텍스트 도구: 사용자 정의 프롬프트로 **번역**, **다�
 ```bash
 docker pull ghcr.io/wsj-br/transrewrt:latest
 
-OPENROUTER_API_KEY=sk-or-your-key docker run -d \
+docker run -d \
   -p 5000:5000 \
   -v transrewrt-data:/app/data \
-  -e OPENROUTER_API_KEY \
-  --name transrewrt-web \
+  -e PROVIDER_API_KEY=your-key \
+  --name transrewrt \
   ghcr.io/wsj-br/transrewrt:latest
 ```
 
-[http://localhost:5000](http://localhost:5000)을 열고 기본 관리자 비밀번호를 변경하세요. 공급자 키는 환경 변수로 설정합니다(웹 UI가 아님).
+`PROVIDER_API_KEY`를 공급자 변수(예: `OPENROUTER_API_KEY`, `OPENAI_API_KEY`, `GROQ_API_KEY`)로 교체하세요. [http://localhost:5000](http://localhost:5000)를 열고 기본 관리자 비밀번호를 변경하세요. 키는 환경 변수를 통해 설정됩니다(웹 UI가 아님).
 
 **Windows** — [Releases](https://github.com/wsj-br/transrewrt/releases)에서 `Transrewrt Setup x.y.z.exe`를 다운로드하고, 설치한 후 **설정 → API**에서 키를 추가하세요.
 

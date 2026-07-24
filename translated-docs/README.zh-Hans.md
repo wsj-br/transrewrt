@@ -30,15 +30,15 @@ AI 驱动的文本工具：**翻译**、**改写**以及使用自定义提示词
 ```bash
 docker pull ghcr.io/wsj-br/transrewrt:latest
 
-OPENROUTER_API_KEY=sk-or-your-key docker run -d \
+docker run -d \
   -p 5000:5000 \
   -v transrewrt-data:/app/data \
-  -e OPENROUTER_API_KEY \
-  --name transrewrt-web \
+  -e PROVIDER_API_KEY=your-key \
+  --name transrewrt \
   ghcr.io/wsj-br/transrewrt:latest
 ```
 
-打开 [http://localhost:5000](http://localhost:5000) 并更改默认管理员密码。提供商密钥通过环境变量设置（而非 Web UI）。
+将 `PROVIDER_API_KEY` 替换为你的提供商变量（例如 `OPENROUTER_API_KEY`、`OPENAI_API_KEY`、`GROQ_API_KEY`）。打开 [http://localhost:5000](http://localhost:5000) 并更改默认管理员密码。密钥通过环境变量设置（而非 Web 界面）。
 
 **Windows** —— 从 [Releases](https://github.com/wsj-br/transrewrt/releases) 下载 `Transrewrt Setup x.y.z.exe`，安装，然后在 **设置 → API** 中添加密钥。
 

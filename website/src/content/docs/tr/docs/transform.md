@@ -1,57 +1,59 @@
 ---
-title: İsteğe bağlı iletileri dönüştür
+title: İstemlerle Dönüştür
 description: >-
-  Özel AI talimatlarını çalıştırın — Transform istemlerini oluşturun,
+  Özel yapay zeka talimatlarını çalıştırın — Dönüştürme istemleri oluşturun,
   düzenleyin, test edin ve yönetin.
 ---
 
 
 
-Özel talimatları AI'ın izlemesini istediğinizde **Dönüştür**'ü kullanın — özetleyin, bir e-postayı düzenleyin, ana noktaları çıkarın, metni yeniden biçimlendirin veya tanımladığınız herhangi bir iş akışı.
+Yapay zekanın özel talimatları takip etmesini istediğinizde **Dönüştür**'ü kullanın — özetleme, e-postayı düzeltme, anahtar noktaları çıkarma, metni yeniden biçimlendirme veya tanımladığınız herhangi bir iş akışı.
 
-![Dönüştürme alanı](/images/screenshots/tr/transform.png)
+![Dönüştürme çalışma alanı](/images/screenshots/tr/transform.png)
 
-## Var olan bir istemi çalıştır
+## Mevcut bir istemi çalıştırma
 
 1. **Dönüştür**'ü açın.
-2. Listedeki bir istemi seçin.
-3. Bir **Dil** kutusu görünürse, bir dil ayarlamak istiyorsanız bunu yapın.
-4. Metni **Giriş** alanına yazın veya yapıştırın.
+2. Listeden bir istem seçin.
+3. Bir **Kaynak** dil kutusu görünürse, isterseniz bir dil ayarlayın.
+4. Metni **Giriş**'e yazın veya yapıştırın.
 5. **Dönüştür**'e tıklayın.
-6. Sonucu **Çıktı** alanında okuyun.
+6. Sonucu **Çıkış**'ta okuyun.
 
-## Örnek istemleri yükle
+[Düzen değiştirme ve klavye kısayolları](/docs/translate/#layout-and-keyboard) Çevir'deki gibi çalışır.
 
-Eğer liste boşsa, Transform çalışma alanındaki **Örnek yükleyiciyi yükle** (ayrıca [Ayarlar → Dönüştür](/docs/settings/#transform) altında mevcuttur) tıklatın. Örnekler İngilizce olarak sunulmaktadır; yüklemeden sonra bir istemciyi düzenleyin ve gerekirse **İstemciyi çevir** seçeneğini kullanın.
+## Örnek istemleri yükleme
 
-## Bir istemi oluşturun
+Liste boşsa, Dönüştürme çalışma alanında **Örnek istemleri yükle**'ye tıklayın (ayrıca [Ayarlar → Dönüştür](/docs/settings/#transform) altında da mevcuttur). Örnekler İngilizcedir; yüklendikten sonra bir istemi düzenleyin ve gerekirse **İstemi çevir**'i kullanın.
 
-1. **Yeni istemi** tıklayın.
-2. **İstemi oluştur**'a tıklayın.
-3. İstemin ne yapmasını istediğinizi tanımlayın.
+## Bir istem oluşturma
+
+1. **Yeni istem**'e tıklayın.
+2. **İstem oluştur**'a tıklayın.
+3. İstemin ne yapmasını istediğinizi açıklayın.
 4. Bir ön ayar (Kolay) veya model (Gelişmiş) seçin.
 5. Taslağı gözden geçirin ve **Kaydet**'e tıklayın.
 
-## Bir istemi düzenleyin
+## Bir istemi düzenleme
 
-Düzenleyici solda, test alanı sağdadır.
+Düzenleyici solda; test alanı sağdadır.
 
-![Dönüştürme istemi düzenleyici](/images/screenshots/tr/transform-prompt-edit.png)
+![Dönüştürme istemi düzenleyicisi](/images/screenshots/tr/transform-prompt-edit.png)
 
 Ana alanlar:
 
-- **İstem adı** — istem listesinde görünen ad
-- **İstem talimatları (isteğe bağlı)** — kısa ipucu, istemi çalıştırırken
-- **Model Rolü** — AI için genel rol
-- **Model Talimatları (her satırda bir)** — takip edilecek kurallar
-- **Çıktı açıklaması** — kısa etiket, sonuç için (ör. özetlenmiş)
-- **Sıcaklık (0.0 → 1.0)** — daha düşük daha kararlı; daha yüksek daha çeşitli
-- **Hedef dili iste** — çalıştırırken bir dil seçici ekler
+- **İstem adı** — istem listesinde gösterilir
+- **İstem talimatları (isteğe bağlı)** — istemi çalıştırırken kısa ipucu
+- **Model Rolü** — yapay zeka için genel rol
+- **Model Talimatları (her satırda bir tane)** — takip edilecek kurallar
+- **Çıkış açıklaması** — sonuç için kısa etiket (örn. özetlenmiş)
+- **Sıcaklık (0.0 → 1.0)** — düşük daha istikrarlı; yüksek daha çeşitli
+- **Hedef dil iste** — çalıştırırken bir dil seçici ekler
 
-Yardımcılar: **İstemi oluştur**, **İstemi geliştir**, **İstemi çevir** (Kolay ön ayarları kullanır; Gelişmiş model listesini kullanır).
+Yardımcılar: **İstem oluştur**, **İstemi iyileştir**, **İstemi çevir** (Kolay ön ayarları kullanır; Gelişmiş model listesini kullanır).
 
 :::caution
-**Kaydet**'i **Geri Çalıştırmaya** gitmeden önce tıklatın. Kaydetmeden geri gitmek, düzenlemeleri atar.
+**Çalıştırmaya Geri Dön**'den önce **Kaydet**'e tıklayın. Kaydetmeden geri dönmek düzenlemeleri iptal eder.
 :::
 
 ## Günlük kullanımdan önce test edin
@@ -64,4 +66,4 @@ Yardımcılar: **İstemi oluştur**, **İstemi geliştir**, **İstemi çevir** (
 
 - [Ayarlar](/docs/settings/)
 - [Geçmişe Göz At](/docs/history/)
-- [Yaygın sorunlar](/docs/common-issues/)
+- [Sık karşılaşılan sorunlar](/docs/common-issues/)

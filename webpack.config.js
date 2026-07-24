@@ -107,8 +107,11 @@ module.exports = (env, argv) => {
       new CopyWebpackPlugin({
         patterns: [
           {
+            // Extensionless source: without toType:"file", copy-webpack-plugin treats
+            // `to: "NOTICES"` as a directory and writes dist/NOTICES/NOTICES.
             from: path.resolve(__dirname, "NOTICES"),
             to: "NOTICES",
+            toType: "file",
           },
         ],
       }),

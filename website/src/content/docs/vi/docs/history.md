@@ -23,7 +23,7 @@ Xuất danh sách đã lọc dưới dạng **JSON**, **CSV** hoặc **XLSX**.
 
 ## Nếu thiếu Lịch sử
 
-**Giữ lịch sử thực thi** có thể bị tắt. Bật tính năng này trong [Cài đặt → Cài đặt chung](/docs/settings/#general-settings) trừ khi quản trị viên đã đặt `HISTORY_DISABLED` — xem [Cấu hình](/docs/configuration/#privacy-mode).
+**Giữ lịch sử thực thi** có thể bị tắt. Bật tùy chọn này trong [Cài đặt → Cài đặt chung](/docs/settings/#general-settings) trừ khi quản trị viên đã đặt `HISTORY_DISABLED` — xem [Cấu hình](/docs/configuration/#privacy-mode).
 
 ## Các bước tiếp theo
 

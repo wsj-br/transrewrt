@@ -367,7 +367,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsCostTrackingTab.tsx",
-        "line": 229
+        "line": 232
       }
     ]
   },
@@ -1022,7 +1022,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsCostTrackingTab.tsx",
-        "line": 345
+        "line": 387
       }
     ]
   },
@@ -1980,15 +1980,15 @@
       },
       {
         "file": "src/renderer/components/SettingsCostTrackingTab.tsx",
-        "line": 305
-      },
-      {
-        "file": "src/renderer/components/SettingsCostTrackingTab.tsx",
-        "line": 326
-      },
-      {
-        "file": "src/renderer/components/SettingsCostTrackingTab.tsx",
         "line": 347
+      },
+      {
+        "file": "src/renderer/components/SettingsCostTrackingTab.tsx",
+        "line": 368
+      },
+      {
+        "file": "src/renderer/components/SettingsCostTrackingTab.tsx",
+        "line": 389
       }
     ]
   },
@@ -2093,11 +2093,11 @@
       },
       {
         "file": "src/renderer/components/SettingsCostTrackingTab.tsx",
-        "line": 319
+        "line": 361
       },
       {
         "file": "src/renderer/components/SettingsCostTrackingTab.tsx",
-        "line": 366
+        "line": 408
       }
     ]
   },
@@ -2533,7 +2533,7 @@
       },
       {
         "file": "src/renderer/components/SettingsCostTrackingTab.tsx",
-        "line": 124
+        "line": 127
       },
       {
         "file": "src/renderer/components/SettingsGlossaryTab.tsx",
@@ -2553,7 +2553,7 @@
       },
       {
         "file": "src/renderer/components/ThirdPartyNoticesModal.tsx",
-        "line": 139
+        "line": 147
       },
       {
         "file": "src/renderer/components/TransformPromptSelector.tsx",
@@ -3082,7 +3082,7 @@
       },
       {
         "file": "src/renderer/components/SettingsCostTrackingTab.tsx",
-        "line": 416
+        "line": 458
       },
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
@@ -8030,11 +8030,11 @@
       },
       {
         "file": "src/renderer/components/SettingsCostTrackingTab.tsx",
-        "line": 168
+        "line": 171
       },
       {
         "file": "src/renderer/components/SettingsCostTrackingTab.tsx",
-        "line": 293
+        "line": 335
       },
       {
         "file": "src/renderer/components/SettingsUsersTab.tsx",
@@ -10600,15 +10600,15 @@
       },
       {
         "file": "src/renderer/components/SettingsCostTrackingTab.tsx",
-        "line": 301
+        "line": 343
       },
       {
         "file": "src/renderer/components/SettingsCostTrackingTab.tsx",
-        "line": 322
+        "line": 364
       },
       {
         "file": "src/renderer/components/SettingsCostTrackingTab.tsx",
-        "line": 346
+        "line": 388
       }
     ]
   },
@@ -11691,7 +11691,7 @@
       },
       {
         "file": "src/renderer/components/ThirdPartyNoticesModal.tsx",
-        "line": 152
+        "line": 160
       }
     ]
   },
@@ -18092,7 +18092,7 @@
       },
       {
         "file": "src/renderer/components/ThirdPartyNoticesModal.tsx",
-        "line": 132
+        "line": 140
       }
     ]
   },
@@ -20620,7 +20620,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsCostTrackingTab.tsx",
-        "line": 62
+        "line": 65
       },
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
@@ -20717,7 +20717,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsCostTrackingTab.tsx",
-        "line": 63
+        "line": 66
       },
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
@@ -20814,7 +20814,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsCostTrackingTab.tsx",
-        "line": 64
+        "line": 67
       },
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
@@ -20911,7 +20911,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsCostTrackingTab.tsx",
-        "line": 65
+        "line": 68
       },
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
@@ -21008,7 +21008,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsCostTrackingTab.tsx",
-        "line": 66
+        "line": 69
       },
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
@@ -21105,7 +21105,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsCostTrackingTab.tsx",
-        "line": 67
+        "line": 70
       },
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
@@ -21202,7 +21202,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsCostTrackingTab.tsx",
-        "line": 68
+        "line": 71
       },
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
@@ -21299,7 +21299,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsCostTrackingTab.tsx",
-        "line": 69
+        "line": 72
       },
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
@@ -21396,7 +21396,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsCostTrackingTab.tsx",
-        "line": 80
+        "line": 83
       }
     ]
   },
@@ -21489,15 +21489,15 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsCostTrackingTab.tsx",
-        "line": 94
+        "line": 97
       },
       {
         "file": "src/renderer/components/SettingsCostTrackingTab.tsx",
-        "line": 105
+        "line": 108
       },
       {
         "file": "src/renderer/components/SettingsCostTrackingTab.tsx",
-        "line": 110
+        "line": 113
       }
     ]
   },
@@ -21590,7 +21590,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsCostTrackingTab.tsx",
-        "line": 133
+        "line": 136
       }
     ]
   },
@@ -21683,11 +21683,11 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsCostTrackingTab.tsx",
-        "line": 159
+        "line": 162
       },
       {
         "file": "src/renderer/components/SettingsCostTrackingTab.tsx",
-        "line": 163
+        "line": 166
       }
     ]
   },
@@ -21780,7 +21780,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsCostTrackingTab.tsx",
-        "line": 174
+        "line": 177
       },
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
@@ -21877,7 +21877,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsCostTrackingTab.tsx",
-        "line": 194
+        "line": 197
       }
     ]
   },
@@ -21970,7 +21970,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsCostTrackingTab.tsx",
-        "line": 196
+        "line": 199
       }
     ]
   },
@@ -22063,7 +22063,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsCostTrackingTab.tsx",
-        "line": 202
+        "line": 205
       }
     ]
   },
@@ -22156,7 +22156,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsCostTrackingTab.tsx",
-        "line": 202
+        "line": 205
       }
     ]
   },
@@ -22249,7 +22249,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsCostTrackingTab.tsx",
-        "line": 205
+        "line": 208
       }
     ]
   },
@@ -22342,7 +22342,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsCostTrackingTab.tsx",
-        "line": 206
+        "line": 209
       }
     ]
   },
@@ -22435,7 +22435,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsCostTrackingTab.tsx",
-        "line": 215
+        "line": 218
       },
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
@@ -22532,7 +22532,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsCostTrackingTab.tsx",
-        "line": 219
+        "line": 222
       }
     ]
   },
@@ -22625,7 +22625,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsCostTrackingTab.tsx",
-        "line": 226
+        "line": 229
       }
     ]
   },
@@ -22718,7 +22718,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsCostTrackingTab.tsx",
-        "line": 242
+        "line": 245
       }
     ]
   },
@@ -22811,7 +22811,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsCostTrackingTab.tsx",
-        "line": 249
+        "line": 252
       }
     ]
   },
@@ -22904,7 +22904,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsCostTrackingTab.tsx",
-        "line": 263
+        "line": 266
       }
     ]
   },
@@ -22997,7 +22997,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsCostTrackingTab.tsx",
-        "line": 264
+        "line": 267
       }
     ]
   },
@@ -23090,7 +23090,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsCostTrackingTab.tsx",
-        "line": 270
+        "line": 273
       }
     ]
   },
@@ -23183,7 +23183,302 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsCostTrackingTab.tsx",
-        "line": 274
+        "line": 277
+      }
+    ]
+  },
+  "69cb8508": {
+    "source": "Show cost information on the actions",
+    "translated": {
+      "pt-BR": "Mostrar informações de custo nas ações",
+      "ca": "Mostra la informació de cost a les accions",
+      "ar": "إظهار معلومات التكلفة على الإجراءات",
+      "bn": "ক্রিয়াগুলিতে খরচ তথ্য দেখান",
+      "zh-CN": "在操作上显示成本信息",
+      "zh-TW": "在操作上顯示成本資訊",
+      "hr": "Prikaži informacije o troškovima na radnjama",
+      "cs": "Zobrazovat informace o nákladech u akcí",
+      "en-US": "Show cost information on the actions",
+      "fr": "Afficher les informations de coût sur les actions",
+      "nl": "Kostgegevens op de acties weergeven",
+      "tl": "Ipakita ang impormasyon ng halaga sa mga aksyon",
+      "de": "Kostentinformationen zu den Aktionen anzeigen",
+      "hu": "Költséginformációk megjelenítése a műveleteken",
+      "hi": "कार्रवाइयों पर लागत जानकारी दिखाएं",
+      "el": "Εμφάνιση πληροφοριών κόστους στις ενέργειες",
+      "ms": "Tunjukkan maklumat kos pada tindakan",
+      "ko": "작업에 비용 정보 표시",
+      "ja": "アクションのコスト情報を表示する",
+      "it": "Mostra le informazioni sui costi sulle azioni",
+      "pt": "Mostrar informações de custo nas ações",
+      "pl": "Pokaż informacje o kosztach na akcjach",
+      "pa": "ਕਾਰਵਾਈਆਂ 'ਤੇ ਲਾਗਤ ਜਾਣਕਾਰੀ ਦਿਖਾਓ",
+      "fa": "نمایش اطلاعات هزینه در اقدامات",
+      "es": "Mostrar información de costes en las acciones",
+      "ro": "Afișează informații despre cost pe acțiuni",
+      "ru": "Показывать информацию о стоимости на действиях",
+      "sk": "Zobrazovať informácie o nákladoch na akciách",
+      "sw": "Onyesha taarifa ya gharama kwenye vitendo",
+      "sv": "Visa kostnadsinformation för åtgärderna",
+      "th": "แสดงข้อมูลค่าใช้จ่ายบนการดำเนินการ",
+      "te": "చర్యలపై ఖర్చు సమాచారాన్ని చూపించు",
+      "vi": "Hiển thị thông tin chi phí trên các hành động",
+      "tr": "İşlemlerde maliyet bilgisini göster",
+      "uk": "Показувати інформацію про вартість на діях",
+      "jv": "Tampilkan informasi biaya pada tindakan",
+      "zh-Hans": "在操作上显示成本信息",
+      "zh-Hant": "在動作上顯示成本資訊",
+      "pa-PK": "کارروائیاں اُتے لاگت دی معلومات وکھاؤ",
+      "hi-Latn": "Actions par laagat ki jaankari dikhayein"
+    },
+    "models": {
+      "pt-BR": "anthropic/claude-3-haiku",
+      "ca": "anthropic/claude-3-haiku",
+      "ar": "anthropic/claude-3-haiku",
+      "bn": "anthropic/claude-3-haiku",
+      "zh-CN": "anthropic/claude-3-haiku",
+      "zh-TW": "anthropic/claude-3-haiku",
+      "hr": "anthropic/claude-3-haiku",
+      "cs": "anthropic/claude-3-haiku",
+      "en-US": "anthropic/claude-3-haiku",
+      "fr": "anthropic/claude-3-haiku",
+      "nl": "anthropic/claude-3-haiku",
+      "tl": "anthropic/claude-3-haiku",
+      "de": "anthropic/claude-3-haiku",
+      "hu": "anthropic/claude-3-haiku",
+      "hi": "anthropic/claude-3-haiku",
+      "el": "anthropic/claude-3-haiku",
+      "ms": "anthropic/claude-3-haiku",
+      "ko": "anthropic/claude-3-haiku",
+      "ja": "anthropic/claude-3-haiku",
+      "it": "anthropic/claude-3-haiku",
+      "pt": "anthropic/claude-3-haiku",
+      "pl": "anthropic/claude-3-haiku",
+      "pa": "anthropic/claude-3-haiku",
+      "fa": "anthropic/claude-3-haiku",
+      "es": "anthropic/claude-3-haiku",
+      "ro": "anthropic/claude-3-haiku",
+      "ru": "anthropic/claude-3-haiku",
+      "sk": "anthropic/claude-3-haiku",
+      "sw": "anthropic/claude-3-haiku",
+      "sv": "anthropic/claude-3-haiku",
+      "th": "anthropic/claude-3-haiku",
+      "te": "anthropic/claude-3-haiku",
+      "vi": "anthropic/claude-3-haiku",
+      "tr": "anthropic/claude-3-haiku",
+      "uk": "anthropic/claude-3-haiku",
+      "jv": "anthropic/claude-3-haiku",
+      "zh-Hans": "google/gemini-2.5-flash-lite",
+      "zh-Hant": "google/gemini-2.5-flash-lite",
+      "pa-PK": "google/gemini-2.5-flash",
+      "hi-Latn": "google/gemini-2.5-flash"
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/SettingsCostTrackingTab.tsx",
+        "line": 288
+      },
+      {
+        "file": "src/renderer/components/SettingsGeneralTab.tsx",
+        "line": 433
+      }
+    ]
+  },
+  "f53e7e27": {
+    "source": "Cost fraction digits:",
+    "translated": {
+      "pt-BR": "Dígitos da fração de custo:",
+      "ca": "Dígits de fracció de cost:",
+      "ar": "أرقام كسور التكلفة:",
+      "bn": "খরচ ফ্র্যাকশন অঙ্ক:",
+      "zh-CN": "成本小数位数:",
+      "zh-TW": "成本小數位數:",
+      "hr": "Decimale troškova:",
+      "cs": "Počet desetinných míst nákladů:",
+      "en-US": "Cost fraction digits:",
+      "fr": "Chiffres après la virgule pour le coût :",
+      "nl": "Aantal decimalen voor kosten:",
+      "tl": "Mga digit ng bahagi ng halaga:",
+      "de": "Dezimalstellen der Kosten:",
+      "hu": "Költségek tizedesjegyei:",
+      "hi": "लागत अंक:",
+      "el": "Δεκαδικά ψηφία κόστους:",
+      "ms": "Digit pecahan kos:",
+      "ko": "비용 소수점 자릿수:",
+      "ja": "コストの小数点以下桁数:",
+      "it": "Cifre decimali dei costi:",
+      "pt": "Dígitos da fração de custo:",
+      "pl": "Liczba miejsc po przecinku dla kosztów:",
+      "pa": "ਲਾਗਤ ਫਰੈਕਸ਼ਨ ਅੰਕ:",
+      "fa": "رقم‌های اعشار هزینه:",
+      "es": "Dígitos de fracción de costes:",
+      "ro": "Zecimale cost:",
+      "ru": "Разряды дробной части стоимости:",
+      "sk": "Počet desatinných miest pre náklady:",
+      "sw": "Vidijiti vya gharama:",
+      "sv": "Kostnadsfraktionssiffror:",
+      "th": "ตัวเลขทศนิยมของค่าใช้จ่าย:",
+      "te": "ఖర్చు ఫ్రాక్షన్ అంకెలు:",
+      "vi": "Số chữ số thập phân chi phí:",
+      "tr": "Maliyet ondalık basamakları:",
+      "uk": "Розрядність дробової частини вартості:",
+      "jv": "Digit fraksi biaya:",
+      "zh-Hans": "成本小数位数：",
+      "zh-Hant": "成本小數位數：",
+      "pa-PK": "لاگت دے اعشاریہ دے ہندسے:",
+      "hi-Latn": "Laagat fraction digits:"
+    },
+    "models": {
+      "pt-BR": "anthropic/claude-3-haiku",
+      "ca": "anthropic/claude-3-haiku",
+      "ar": "anthropic/claude-3-haiku",
+      "bn": "anthropic/claude-3-haiku",
+      "zh-CN": "anthropic/claude-3-haiku",
+      "zh-TW": "anthropic/claude-3-haiku",
+      "hr": "anthropic/claude-3-haiku",
+      "cs": "anthropic/claude-3-haiku",
+      "en-US": "anthropic/claude-3-haiku",
+      "fr": "anthropic/claude-3-haiku",
+      "nl": "anthropic/claude-3-haiku",
+      "tl": "anthropic/claude-3-haiku",
+      "de": "anthropic/claude-3-haiku",
+      "hu": "anthropic/claude-3-haiku",
+      "hi": "anthropic/claude-3-haiku",
+      "el": "anthropic/claude-3-haiku",
+      "ms": "anthropic/claude-3-haiku",
+      "ko": "anthropic/claude-3-haiku",
+      "ja": "anthropic/claude-3-haiku",
+      "it": "anthropic/claude-3-haiku",
+      "pt": "anthropic/claude-3-haiku",
+      "pl": "anthropic/claude-3-haiku",
+      "pa": "anthropic/claude-3-haiku",
+      "fa": "anthropic/claude-3-haiku",
+      "es": "anthropic/claude-3-haiku",
+      "ro": "anthropic/claude-3-haiku",
+      "ru": "anthropic/claude-3-haiku",
+      "sk": "anthropic/claude-3-haiku",
+      "sw": "anthropic/claude-3-haiku",
+      "sv": "anthropic/claude-3-haiku",
+      "th": "anthropic/claude-3-haiku",
+      "te": "anthropic/claude-3-haiku",
+      "vi": "anthropic/claude-3-haiku",
+      "tr": "anthropic/claude-3-haiku",
+      "uk": "anthropic/claude-3-haiku",
+      "jv": "anthropic/claude-3-haiku",
+      "zh-Hans": "google/gemini-2.5-flash-lite",
+      "zh-Hant": "google/gemini-2.5-flash-lite",
+      "pa-PK": "google/gemini-2.5-flash",
+      "hi-Latn": "google/gemini-2.5-flash"
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/SettingsCostTrackingTab.tsx",
+        "line": 293
+      },
+      {
+        "file": "src/renderer/components/SettingsGeneralTab.tsx",
+        "line": 436
+      }
+    ]
+  },
+  "f0f5fac9": {
+    "source": "Sample:",
+    "translated": {
+      "pt-BR": "Amostra:",
+      "ca": "Exemple:",
+      "ar": "عينة:",
+      "bn": "নমুনা:",
+      "zh-CN": "示例:",
+      "zh-TW": "範例:",
+      "hr": "Primjer:",
+      "cs": "Ukázka:",
+      "en-US": "Sample:",
+      "fr": "Exemple :",
+      "nl": "Voorbeeld:",
+      "tl": "Halimbawa:",
+      "de": "Beispiel:",
+      "hu": "Minta:",
+      "hi": "नमूना:",
+      "el": "Δείγμα:",
+      "ms": "Contoh:",
+      "ko": "샘플:",
+      "ja": "サンプル:",
+      "it": "Esempio:",
+      "pt": "Exemplo:",
+      "pl": "Przykład:",
+      "pa": "ਨਮੂਨਾ:",
+      "fa": "نمونه:",
+      "es": "Muestra:",
+      "ro": "Exemplu:",
+      "ru": "Пример:",
+      "sk": "Ukážka:",
+      "sw": "Mfano:",
+      "sv": "Exempel:",
+      "th": "ตัวอย่าง:",
+      "te": "నమూనా:",
+      "vi": "Mẫu:",
+      "tr": "Örnek:",
+      "uk": "Приклад:",
+      "jv": "Contoh:",
+      "zh-Hans": "示例：",
+      "zh-Hant": "範例：",
+      "pa-PK": "نمونہ:",
+      "hi-Latn": "Udaharan:"
+    },
+    "models": {
+      "pt-BR": "anthropic/claude-3-haiku",
+      "ca": "anthropic/claude-3-haiku",
+      "ar": "anthropic/claude-3-haiku",
+      "bn": "anthropic/claude-3-haiku",
+      "zh-CN": "anthropic/claude-3-haiku",
+      "zh-TW": "anthropic/claude-3-haiku",
+      "hr": "anthropic/claude-3-haiku",
+      "cs": "anthropic/claude-3-haiku",
+      "en-US": "anthropic/claude-3-haiku",
+      "fr": "anthropic/claude-3-haiku",
+      "nl": "anthropic/claude-3-haiku",
+      "tl": "anthropic/claude-3-haiku",
+      "de": "anthropic/claude-3-haiku",
+      "hu": "anthropic/claude-3-haiku",
+      "hi": "anthropic/claude-3-haiku",
+      "el": "anthropic/claude-3-haiku",
+      "ms": "anthropic/claude-3-haiku",
+      "ko": "anthropic/claude-3-haiku",
+      "ja": "anthropic/claude-3-haiku",
+      "it": "anthropic/claude-3-haiku",
+      "pt": "anthropic/claude-3-haiku",
+      "pl": "anthropic/claude-3-haiku",
+      "pa": "anthropic/claude-3-haiku",
+      "fa": "anthropic/claude-3-haiku",
+      "es": "anthropic/claude-3-haiku",
+      "ro": "anthropic/claude-3-haiku",
+      "ru": "anthropic/claude-3-haiku",
+      "sk": "anthropic/claude-3-haiku",
+      "sw": "anthropic/claude-3-haiku",
+      "sv": "anthropic/claude-3-haiku",
+      "th": "anthropic/claude-3-haiku",
+      "te": "anthropic/claude-3-haiku",
+      "vi": "anthropic/claude-3-haiku",
+      "tr": "anthropic/claude-3-haiku",
+      "uk": "anthropic/claude-3-haiku",
+      "jv": "anthropic/claude-3-haiku",
+      "zh-Hans": "google/gemini-2.5-flash-lite",
+      "zh-Hant": "google/gemini-2.5-flash-lite",
+      "pa-PK": "google/gemini-2.5-flash",
+      "hi-Latn": "google/gemini-2.5-flash"
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/SettingsCostTrackingTab.tsx",
+        "line": 312
+      },
+      {
+        "file": "src/renderer/components/SettingsGeneralTab.tsx",
+        "line": 454
+      },
+      {
+        "file": "src/renderer/components/SettingsGeneralTab.tsx",
+        "line": 524
       }
     ]
   },
@@ -23276,7 +23571,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsCostTrackingTab.tsx",
-        "line": 280
+        "line": 322
       }
     ]
   },
@@ -23369,7 +23664,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsCostTrackingTab.tsx",
-        "line": 284
+        "line": 326
       }
     ]
   },
@@ -23462,15 +23757,15 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsCostTrackingTab.tsx",
-        "line": 309
+        "line": 351
       },
       {
         "file": "src/renderer/components/SettingsCostTrackingTab.tsx",
-        "line": 330
+        "line": 372
       },
       {
         "file": "src/renderer/components/SettingsCostTrackingTab.tsx",
-        "line": 348
+        "line": 390
       }
     ]
   },
@@ -23563,7 +23858,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsCostTrackingTab.tsx",
-        "line": 387
+        "line": 429
       }
     ]
   },
@@ -23656,7 +23951,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsCostTrackingTab.tsx",
-        "line": 391
+        "line": 433
       },
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
@@ -23753,7 +24048,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsCostTrackingTab.tsx",
-        "line": 403
+        "line": 445
       },
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
@@ -23850,11 +24145,11 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsCostTrackingTab.tsx",
-        "line": 403
+        "line": 445
       },
       {
         "file": "src/renderer/components/SettingsCostTrackingTab.tsx",
-        "line": 415
+        "line": 457
       },
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
@@ -26740,289 +27035,6 @@
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
         "line": 405
-      }
-    ]
-  },
-  "69cb8508": {
-    "source": "Show cost information on the actions",
-    "translated": {
-      "pt-BR": "Mostrar informações de custo nas ações",
-      "ca": "Mostra la informació de cost a les accions",
-      "ar": "إظهار معلومات التكلفة على الإجراءات",
-      "bn": "ক্রিয়াগুলিতে খরচ তথ্য দেখান",
-      "zh-CN": "在操作上显示成本信息",
-      "zh-TW": "在操作上顯示成本資訊",
-      "hr": "Prikaži informacije o troškovima na radnjama",
-      "cs": "Zobrazovat informace o nákladech u akcí",
-      "en-US": "Show cost information on the actions",
-      "fr": "Afficher les informations de coût sur les actions",
-      "nl": "Kostgegevens op de acties weergeven",
-      "tl": "Ipakita ang impormasyon ng halaga sa mga aksyon",
-      "de": "Kostentinformationen zu den Aktionen anzeigen",
-      "hu": "Költséginformációk megjelenítése a műveleteken",
-      "hi": "कार्रवाइयों पर लागत जानकारी दिखाएं",
-      "el": "Εμφάνιση πληροφοριών κόστους στις ενέργειες",
-      "ms": "Tunjukkan maklumat kos pada tindakan",
-      "ko": "작업에 비용 정보 표시",
-      "ja": "アクションのコスト情報を表示する",
-      "it": "Mostra le informazioni sui costi sulle azioni",
-      "pt": "Mostrar informações de custo nas ações",
-      "pl": "Pokaż informacje o kosztach na akcjach",
-      "pa": "ਕਾਰਵਾਈਆਂ 'ਤੇ ਲਾਗਤ ਜਾਣਕਾਰੀ ਦਿਖਾਓ",
-      "fa": "نمایش اطلاعات هزینه در اقدامات",
-      "es": "Mostrar información de costes en las acciones",
-      "ro": "Afișează informații despre cost pe acțiuni",
-      "ru": "Показывать информацию о стоимости на действиях",
-      "sk": "Zobrazovať informácie o nákladoch na akciách",
-      "sw": "Onyesha taarifa ya gharama kwenye vitendo",
-      "sv": "Visa kostnadsinformation för åtgärderna",
-      "th": "แสดงข้อมูลค่าใช้จ่ายบนการดำเนินการ",
-      "te": "చర్యలపై ఖర్చు సమాచారాన్ని చూపించు",
-      "vi": "Hiển thị thông tin chi phí trên các hành động",
-      "tr": "İşlemlerde maliyet bilgisini göster",
-      "uk": "Показувати інформацію про вартість на діях",
-      "jv": "Tampilkan informasi biaya pada tindakan",
-      "zh-Hans": "在操作上显示成本信息",
-      "zh-Hant": "在動作上顯示成本資訊",
-      "pa-PK": "کارروائیاں اُتے لاگت دی معلومات وکھاؤ",
-      "hi-Latn": "Actions par laagat ki jaankari dikhayein"
-    },
-    "models": {
-      "pt-BR": "anthropic/claude-3-haiku",
-      "ca": "anthropic/claude-3-haiku",
-      "ar": "anthropic/claude-3-haiku",
-      "bn": "anthropic/claude-3-haiku",
-      "zh-CN": "anthropic/claude-3-haiku",
-      "zh-TW": "anthropic/claude-3-haiku",
-      "hr": "anthropic/claude-3-haiku",
-      "cs": "anthropic/claude-3-haiku",
-      "en-US": "anthropic/claude-3-haiku",
-      "fr": "anthropic/claude-3-haiku",
-      "nl": "anthropic/claude-3-haiku",
-      "tl": "anthropic/claude-3-haiku",
-      "de": "anthropic/claude-3-haiku",
-      "hu": "anthropic/claude-3-haiku",
-      "hi": "anthropic/claude-3-haiku",
-      "el": "anthropic/claude-3-haiku",
-      "ms": "anthropic/claude-3-haiku",
-      "ko": "anthropic/claude-3-haiku",
-      "ja": "anthropic/claude-3-haiku",
-      "it": "anthropic/claude-3-haiku",
-      "pt": "anthropic/claude-3-haiku",
-      "pl": "anthropic/claude-3-haiku",
-      "pa": "anthropic/claude-3-haiku",
-      "fa": "anthropic/claude-3-haiku",
-      "es": "anthropic/claude-3-haiku",
-      "ro": "anthropic/claude-3-haiku",
-      "ru": "anthropic/claude-3-haiku",
-      "sk": "anthropic/claude-3-haiku",
-      "sw": "anthropic/claude-3-haiku",
-      "sv": "anthropic/claude-3-haiku",
-      "th": "anthropic/claude-3-haiku",
-      "te": "anthropic/claude-3-haiku",
-      "vi": "anthropic/claude-3-haiku",
-      "tr": "anthropic/claude-3-haiku",
-      "uk": "anthropic/claude-3-haiku",
-      "jv": "anthropic/claude-3-haiku",
-      "zh-Hans": "google/gemini-2.5-flash-lite",
-      "zh-Hant": "google/gemini-2.5-flash-lite",
-      "pa-PK": "google/gemini-2.5-flash",
-      "hi-Latn": "google/gemini-2.5-flash"
-    },
-    "locations": [
-      {
-        "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 433
-      }
-    ]
-  },
-  "f53e7e27": {
-    "source": "Cost fraction digits:",
-    "translated": {
-      "pt-BR": "Dígitos da fração de custo:",
-      "ca": "Dígits de fracció de cost:",
-      "ar": "أرقام كسور التكلفة:",
-      "bn": "খরচ ফ্র্যাকশন অঙ্ক:",
-      "zh-CN": "成本小数位数:",
-      "zh-TW": "成本小數位數:",
-      "hr": "Decimale troškova:",
-      "cs": "Počet desetinných míst nákladů:",
-      "en-US": "Cost fraction digits:",
-      "fr": "Chiffres après la virgule pour le coût :",
-      "nl": "Aantal decimalen voor kosten:",
-      "tl": "Mga digit ng bahagi ng halaga:",
-      "de": "Dezimalstellen der Kosten:",
-      "hu": "Költségek tizedesjegyei:",
-      "hi": "लागत अंक:",
-      "el": "Δεκαδικά ψηφία κόστους:",
-      "ms": "Digit pecahan kos:",
-      "ko": "비용 소수점 자릿수:",
-      "ja": "コストの小数点以下桁数:",
-      "it": "Cifre decimali dei costi:",
-      "pt": "Dígitos da fração de custo:",
-      "pl": "Liczba miejsc po przecinku dla kosztów:",
-      "pa": "ਲਾਗਤ ਫਰੈਕਸ਼ਨ ਅੰਕ:",
-      "fa": "رقم‌های اعشار هزینه:",
-      "es": "Dígitos de fracción de costes:",
-      "ro": "Zecimale cost:",
-      "ru": "Разряды дробной части стоимости:",
-      "sk": "Počet desatinných miest pre náklady:",
-      "sw": "Vidijiti vya gharama:",
-      "sv": "Kostnadsfraktionssiffror:",
-      "th": "ตัวเลขทศนิยมของค่าใช้จ่าย:",
-      "te": "ఖర్చు ఫ్రాక్షన్ అంకెలు:",
-      "vi": "Số chữ số thập phân chi phí:",
-      "tr": "Maliyet ondalık basamakları:",
-      "uk": "Розрядність дробової частини вартості:",
-      "jv": "Digit fraksi biaya:",
-      "zh-Hans": "成本小数位数：",
-      "zh-Hant": "成本小數位數：",
-      "pa-PK": "لاگت دے اعشاریہ دے ہندسے:",
-      "hi-Latn": "Laagat fraction digits:"
-    },
-    "models": {
-      "pt-BR": "anthropic/claude-3-haiku",
-      "ca": "anthropic/claude-3-haiku",
-      "ar": "anthropic/claude-3-haiku",
-      "bn": "anthropic/claude-3-haiku",
-      "zh-CN": "anthropic/claude-3-haiku",
-      "zh-TW": "anthropic/claude-3-haiku",
-      "hr": "anthropic/claude-3-haiku",
-      "cs": "anthropic/claude-3-haiku",
-      "en-US": "anthropic/claude-3-haiku",
-      "fr": "anthropic/claude-3-haiku",
-      "nl": "anthropic/claude-3-haiku",
-      "tl": "anthropic/claude-3-haiku",
-      "de": "anthropic/claude-3-haiku",
-      "hu": "anthropic/claude-3-haiku",
-      "hi": "anthropic/claude-3-haiku",
-      "el": "anthropic/claude-3-haiku",
-      "ms": "anthropic/claude-3-haiku",
-      "ko": "anthropic/claude-3-haiku",
-      "ja": "anthropic/claude-3-haiku",
-      "it": "anthropic/claude-3-haiku",
-      "pt": "anthropic/claude-3-haiku",
-      "pl": "anthropic/claude-3-haiku",
-      "pa": "anthropic/claude-3-haiku",
-      "fa": "anthropic/claude-3-haiku",
-      "es": "anthropic/claude-3-haiku",
-      "ro": "anthropic/claude-3-haiku",
-      "ru": "anthropic/claude-3-haiku",
-      "sk": "anthropic/claude-3-haiku",
-      "sw": "anthropic/claude-3-haiku",
-      "sv": "anthropic/claude-3-haiku",
-      "th": "anthropic/claude-3-haiku",
-      "te": "anthropic/claude-3-haiku",
-      "vi": "anthropic/claude-3-haiku",
-      "tr": "anthropic/claude-3-haiku",
-      "uk": "anthropic/claude-3-haiku",
-      "jv": "anthropic/claude-3-haiku",
-      "zh-Hans": "google/gemini-2.5-flash-lite",
-      "zh-Hant": "google/gemini-2.5-flash-lite",
-      "pa-PK": "google/gemini-2.5-flash",
-      "hi-Latn": "google/gemini-2.5-flash"
-    },
-    "locations": [
-      {
-        "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 436
-      }
-    ]
-  },
-  "f0f5fac9": {
-    "source": "Sample:",
-    "translated": {
-      "pt-BR": "Amostra:",
-      "ca": "Exemple:",
-      "ar": "عينة:",
-      "bn": "নমুনা:",
-      "zh-CN": "示例:",
-      "zh-TW": "範例:",
-      "hr": "Primjer:",
-      "cs": "Ukázka:",
-      "en-US": "Sample:",
-      "fr": "Exemple :",
-      "nl": "Voorbeeld:",
-      "tl": "Halimbawa:",
-      "de": "Beispiel:",
-      "hu": "Minta:",
-      "hi": "नमूना:",
-      "el": "Δείγμα:",
-      "ms": "Contoh:",
-      "ko": "샘플:",
-      "ja": "サンプル:",
-      "it": "Esempio:",
-      "pt": "Exemplo:",
-      "pl": "Przykład:",
-      "pa": "ਨਮੂਨਾ:",
-      "fa": "نمونه:",
-      "es": "Muestra:",
-      "ro": "Exemplu:",
-      "ru": "Пример:",
-      "sk": "Ukážka:",
-      "sw": "Mfano:",
-      "sv": "Exempel:",
-      "th": "ตัวอย่าง:",
-      "te": "నమూనా:",
-      "vi": "Mẫu:",
-      "tr": "Örnek:",
-      "uk": "Приклад:",
-      "jv": "Contoh:",
-      "zh-Hans": "示例：",
-      "zh-Hant": "範例：",
-      "pa-PK": "نمونہ:",
-      "hi-Latn": "Udaharan:"
-    },
-    "models": {
-      "pt-BR": "anthropic/claude-3-haiku",
-      "ca": "anthropic/claude-3-haiku",
-      "ar": "anthropic/claude-3-haiku",
-      "bn": "anthropic/claude-3-haiku",
-      "zh-CN": "anthropic/claude-3-haiku",
-      "zh-TW": "anthropic/claude-3-haiku",
-      "hr": "anthropic/claude-3-haiku",
-      "cs": "anthropic/claude-3-haiku",
-      "en-US": "anthropic/claude-3-haiku",
-      "fr": "anthropic/claude-3-haiku",
-      "nl": "anthropic/claude-3-haiku",
-      "tl": "anthropic/claude-3-haiku",
-      "de": "anthropic/claude-3-haiku",
-      "hu": "anthropic/claude-3-haiku",
-      "hi": "anthropic/claude-3-haiku",
-      "el": "anthropic/claude-3-haiku",
-      "ms": "anthropic/claude-3-haiku",
-      "ko": "anthropic/claude-3-haiku",
-      "ja": "anthropic/claude-3-haiku",
-      "it": "anthropic/claude-3-haiku",
-      "pt": "anthropic/claude-3-haiku",
-      "pl": "anthropic/claude-3-haiku",
-      "pa": "anthropic/claude-3-haiku",
-      "fa": "anthropic/claude-3-haiku",
-      "es": "anthropic/claude-3-haiku",
-      "ro": "anthropic/claude-3-haiku",
-      "ru": "anthropic/claude-3-haiku",
-      "sk": "anthropic/claude-3-haiku",
-      "sw": "anthropic/claude-3-haiku",
-      "sv": "anthropic/claude-3-haiku",
-      "th": "anthropic/claude-3-haiku",
-      "te": "anthropic/claude-3-haiku",
-      "vi": "anthropic/claude-3-haiku",
-      "tr": "anthropic/claude-3-haiku",
-      "uk": "anthropic/claude-3-haiku",
-      "jv": "anthropic/claude-3-haiku",
-      "zh-Hans": "google/gemini-2.5-flash-lite",
-      "zh-Hant": "google/gemini-2.5-flash-lite",
-      "pa-PK": "google/gemini-2.5-flash",
-      "hi-Latn": "google/gemini-2.5-flash"
-    },
-    "locations": [
-      {
-        "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 454
-      },
-      {
-        "file": "src/renderer/components/SettingsGeneralTab.tsx",
-        "line": 524
       }
     ]
   },
@@ -45540,7 +45552,7 @@
     "locations": [
       {
         "file": "src/renderer/components/ThirdPartyNoticesModal.tsx",
-        "line": 143
+        "line": 151
       }
     ]
   },

@@ -30,15 +30,15 @@ AI搭載のテキストツール：カスタムプロンプトを使用して**�
 ```bash
 docker pull ghcr.io/wsj-br/transrewrt:latest
 
-OPENROUTER_API_KEY=sk-or-your-key docker run -d \
+docker run -d \
   -p 5000:5000 \
   -v transrewrt-data:/app/data \
-  -e OPENROUTER_API_KEY \
-  --name transrewrt-web \
+  -e PROVIDER_API_KEY=your-key \
+  --name transrewrt \
   ghcr.io/wsj-br/transrewrt:latest
 ```
 
-[http://localhost:5000](http://localhost:5000)を開き、デフォルトの管理者パスワードを変更してください。プロバイダーキーは環境変数で設定します (Web UIからではありません)。
+`PROVIDER_API_KEY` をプロバイダー変数（例えば `OPENROUTER_API_KEY`, `OPENAI_API_KEY`, `GROQ_API_KEY`）に置き換えます。[http://localhost:5000](http://localhost:5000) を開き、デフォルトの管理者パスワードを変更します。キーは環境変数で設定されます（Web UIではありません）。
 
 **Windows** — [Releases](https://github.com/wsj-br/transrewrt/releases)から`Transrewrt Setup x.y.z.exe`をダウンロードし、インストール後、**設定 → API**でキーを追加してください。
 

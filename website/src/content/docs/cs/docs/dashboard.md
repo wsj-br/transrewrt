@@ -1,7 +1,7 @@
 ---
-title: Použít řídicí panel
+title: Používání řídicího panelu
 description: >-
-  Zkontrolujte využití, náklady a protokoly volání – filtrujte, exportujte a
+  Zkontrolujte protokoly využití, nákladů a volání – filtrujte, exportujte a
   spravujte uložené záznamy.
 ---
 
@@ -23,7 +23,7 @@ Pomocí tlačítek filtru nahoře změňte časové rozmezí.
 Filtr **Uživatel** je viditelný pouze pro administrátory ve webové verzi. Není k dispozici na počítači.
 :::
 
-## Záložky
+## Karty
 
 - **Souhrn** – KPI: celkové náklady, použité modely, počet volání a náklady na režim, průměrné náklady na volání, průměrné TPS, nejlepší modely podle počtu volání
 - **Podle modelu** – volání, náklady a TPS na model; rozbalte řádek pro rozpis režimu
@@ -33,12 +33,12 @@ Filtr **Uživatel** je viditelný pouze pro administrátory ve webové verzi. Ne
 
 Exportujte tabulky jako **JSON**, **CSV** nebo **XLSX**.
 
-## Smazání uložených záznamů pro model
+## Odstranění uložených záznamů pro model
 
 V části **Podle modelu** nebo **Všechna volání** použijte ikonu koše k odstranění záznamů pro model.
 
 :::caution
-Smazání nelze vrátit zpět. Chcete-li smazat podle stáří nebo vymazat všechna data o nákladech, použijte [Nastavení → Sledování nákladů](/docs/settings/#cost-tracking).
+Odstranění nelze vrátit zpět. Chcete-li odstranit podle stáří nebo vymazat všechna data o nákladech, použijte [Nastavení → Sledování nákladů](/docs/settings/#cost-tracking).
 :::
 
 ## Další kroky

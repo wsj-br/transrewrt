@@ -21,93 +21,105 @@ Uygulamanın nasıl davrandığını özelleştirmek için kenar çubuğundan **
 | API Yapılandırması | evet | evet | — | |
 | Hakkında | evet | evet | evet | |
 
-**Kolay** modda, araç çubuğundaki ön ayarlardan ve Genel Ayarlar'daki **Sağlayıcı**'dan yapay zekayı seçin; **Modeller** sekmesi gizlidir.
+**Kolay** modda, araç çubuğundaki ön ayarlar aracılığıyla yapay zekayı ve Genel Ayarlar'da **Sağlayıcı**'yı seçin; **Modeller** sekmesi gizlidir.
 
 :::note
 Web sürümünde, her kullanıcının kendi yapılandırması (yapay zeka deneyimi, sağlayıcı, modeller/ön ayarlar, diller, seçenekler, istemler) vardır. Yapılan değişiklikler diğer kullanıcıları etkilemez.
 :::
 
-## Genel ayarlar
+## Genel Ayarlar
+
+![Ayarlar Genel Ayarlar sekmesi](/images/screenshots/tr/settings-general.png)
 
 **Yapay zeka deneyimi**
 
-- **Kolay** (varsayılan): bir **Sağlayıcı** seçin. Bulut sağlayıcıları araç çubuğu ön ayarlarını kullanır (**Ücretsiz (OpenRouter)**, **Standart**, **Gelişmiş**, **Teknik**). **Yerel LLM** bunun yerine yüklü yerel modelleri listeler. **Ön ayar kataloğunu yenile** projenin deposundan en son ön ayar listesini getirir.
+- **Kolay** (varsayılan): bir **Sağlayıcı** seçin. Bulut sağlayıcıları araç çubuğu ön ayarlarını kullanır. **Yerel LLM** bunun yerine yüklü yerel modelleri listeler. **Ön ayar kataloğunu yenile** projenin deposundan en son ön ayar listesini getirir.
+  - **Ücretsiz (OpenRouter)** — mevcut ücretsiz modellere yönlendirilen sıfır maliyetli seçenek; kalite ve kullanılabilirlik değişebilir
+  - **Standart** — hafif ve uygun maliyetli; kısa metinler, hızlı taslaklar ve yüksek hacimli kullanım için en iyisi
+  - **Gelişmiş** — karmaşık veya nüanslı içerik için yüksek doğruluklu model, daha yüksek maliyetle
+  - **Teknik** — kod, API'ler, geliştirici belgeleri ve yapılandırılmış içerik için ayarlanmıştır; biçimlendirmeyi ve terminolojiyi korur
 - **Gelişmiş**: araç çubuğunda modelleri seçin; listeyi [Modeller](#models) altında yönetin.
 
-**Görünüm** — Tema; **Eylemlerde maliyet bilgisini göster**; **Maliyet kesir basamakları**; yalnızca web için uygulama etrafındaki kenar boşluğu; **Yazı Tipi Ailesi** ve **Boyutu**.
+Araç çubuğu ön ayar/model menüsünden de Kolay ↔ Gelişmiş arasında geçiş yapabilirsiniz (**Kolay/Gelişmiş moda geç**, Ayarları Aç'ın üstünde).
+
+**Görünüm** — Tema; **Eylemlerde maliyet bilgilerini göster**; **Maliyet kesir basamakları**; uygulama çevresindeki yalnızca web kenar boşluğu; **Yazı Tipi Ailesi** ve **Boyutu**.
 
 **Davranış** — **ENTER için davranış**; **Yapıştırmada otomatik yürütme**; **Sonucu panoya otomatik kopyala**; **Yazarken gerçek zamanlı çeviri**; **Zaman aşımı (ms)**.
 
 **Geçmiş**
 
-- **Yürütme geçmişini sakla** — [Geçmiş](/docs/history/) görünümü için girdi/çıktıyı saklar. Kapatmak onay ister ve depolanan metni kaldırabilir. *Yönetici tarafından devre dışı bırakıldı* olarak etiketlenmişse, `HISTORY_DISABLED` ayarlanmıştır — bkz. [Yapılandırma](/docs/configuration/#privacy-mode).
-- **Geçmiş verilerini sil** — depolanan metni yaşa göre kaldırın veya tümünü temizleyin. Maliyet toplamlarını **silmez** (bunun için Maliyet Takibi'ni kullanın).
+- **Yürütme geçmişini sakla** — [Geçmiş](/docs/history/) görünümü için girdi/çıktıyı depolar. Kapatmak onay ister ve depolanan metni kaldırabilir. *Yönetici tarafından devre dışı bırakıldı* olarak etiketlenmişse, `HISTORY_DISABLED` ayarlanır — bkz. [Yapılandırma](/docs/configuration/#privacy-mode).
+- **Geçmiş verilerini sil** — depolanan metni yaşa göre kaldırın veya tümünü temizleyin. Maliyet toplamlarını **silmez** (bunun için Maliyet Takibini kullanın).
 
 **Yapılandırma Yedeklemesi** (masaüstü ve web yöneticileri)
 
-- İsteğe bağlı **Kullanım verilerini yedeklemeye dahil et**
+- İsteğe bağlı **Yedeklemeye kullanım verilerini dahil et**
 - **Yapılandırmayı yedekle** — yapılandırma, durum, kullanıcılar, tercihler, istemler ve isteğe bağlı kullanım verileri içeren ZIP
-- **Yedekten geri yükle** — kullanım verilerini geri yükleme ve/veya temizleme seçenekleriyle onay iletişim kutusu
+- **Yedeklemeden geri yükle** — kullanım verilerini geri yükleme ve/veya temizleme seçenekleriyle onay iletişim kutusu
 
-Yedeklemeler masaüstü ve web arasında taşınabilir; bir masaüstü yedeklemesini web'e geri yüklemek, verileri yönetici kullanıcısına uygular.
+Yedeklemeler masaüstü ve web arasında taşınabilir; web'de bir masaüstü yedeklemesini geri yüklemek, verileri yönetici kullanıcısına uygular.
 
 ## Modeller
 
 Yalnızca **Gelişmiş** modda kullanılabilir.
 
-![Ayarlar Modeller sekmesi](/images/screenshots/tr/settings-general.png)
-
-- **Mevcut Modeller** (sol) ve **Seçili Modeller** (sağ)
-- Arama, **Sağlayıcı** çipleri, **Yalnızca Ücretsiz**, **Yenile**, Tümünü Genişlet/Daralt
+- **Mevcut Modeller** (sol) ve **Seçilen Modeller** (sağ)
+- Ara, **Sağlayıcı** çipleri, **Yalnızca Ücretsiz**, **Yenile**, Tümünü Genişlet/Daralt
 - Model kimlikleri bir sağlayıcı öneki kullanır (`openrouter/…`, `openai/…`, `local/…`, …)
 
 :::caution
 Çeviri, Yeniden Yazma veya Dönüştürme için OpenRouter **Body Builder** (`openrouter/bodybuilder`) kullanmayın — bitmiş metin değil, JSON istek yükleri döndürür.
 :::
 
-**Ekle** ile ekleyin; **X** ile kaldırın. **Tüm seçimleri kaldır** gerekli ücretsiz modeli tutar.
+**Ekle** ile ekleyin; **X** ile kaldırın. OpenRouter ücretsiz modeli isteğe bağlıdır — seçilen modeller boş olabilir. Araç çubuğundan son modeli kaldırmak **Ayarlar → Modeller**'i açar. Mevcut model kullanılamaz hale gelirse, uygulama ücretsiz modeli zorlamak yerine listedeki bir sonraki modeli seçer.
 
 ## Diller
 
-- **En çok kullanılan diller** — Çeviri ve Dönüştürme'deki dil listelerinin en üstüne yakın sabitlenmiş diller
-- **Özel dil** — yerleşik listede olmayan bir dil ekleyin
+- **En çok kullanılan diller** — Çeviri ve Dönüştürme'deki dil listelerinin en üstüne sabitlenmiş
+- **Özel dil** — yerleşik listede bulunmayan bir dil ekleyin
 
 ## Maliyet takibi
 
 - **Toplam Maliyet**, **Değeri Kopyala**, **Maliyeti Sıfırla**
-- **API anahtarı kullanımıyla senkronize et** — OpenRouter hesap kullanımıyla hizala (yalnızca OpenRouter)
+- **API anahtarı kullanımıyla senkronize et** — OpenRouter hesap kullanımıyla uyumlu hale getir (yalnızca OpenRouter)
 - **API Anahtarı Kullanımı** — mevcut olduğunda OpenRouter ayrıntıları
 - **Maliyet verilerini sil** — tüm veriler veya belirli bir tarihten eski girişler
 
-OpenRouter, uygulanabilir olduğunda gerçek faturalandırılan maliyeti gösterir; diğer sağlayıcılar OpenRouter fiyatlandırmasından tahminler kullanır. Tahminler fatura değildir.
+OpenRouter, uygun olduğunda gerçek faturalandırılmış maliyeti gösterir; diğer sağlayıcılar OpenRouter fiyatlandırmasından tahminler kullanır. Tahminler fatura değildir.
 
 :::caution
-Maliyet verisi silme işlemi geri alınamaz. Bir yedeğe ihtiyacınız varsa önce Geçmiş veya Kontrol Paneli → Tüm Çağrılar aracılığıyla dışa aktarın. Bu API çağrıları için ilgili girdi/çıktı geçmişi de kaldırılır.
+Maliyet verilerinin silinmesi geri alınamaz. Bir yedeğe ihtiyacınız varsa önce Geçmiş veya Kontrol Paneli → Tüm Çağrılar aracılığıyla dışa aktarın. Bu API çağrıları için ilgili girdi/çıktı geçmişi de kaldırılır.
 :::
 
 ## Dönüştür
 
-İstemleri toplu olarak yönetin: örnek istemleri inceleyin, silin, içe aktarın, dışa aktarın ve yükleyin.
+İstemleri toplu olarak yönetin: inceleyin, silin, içe aktarın, dışa aktarın ve örnek istemleri yükleyin.
 
 ## Terimler Sözlüğü
 
 [Çeviri](/docs/translate/#use-the-glossary) sırasında uygulanan terim çiftlerini yönetin. Her terimin kaynak/hedef dili ve kaynak/hedef metni vardır.
 
-- Alt satırdan ve **+** ile ekleyin
+- Alt satır ve **+** aracılığıyla ekleyin
 - Dillere veya metne göre filtreleyin
 - CSV veya XLSX içe/dışa aktarın; boş şablonları indirin
 
-Masaüstü sözlüğü yerel olarak depolar; web ise kullanıcı başına depolar.
+Masaüstü, terimler sözlüğünü yerel olarak depolar; web, kullanıcı başına depolar.
 
 ## Kullanıcılar
 
-Yalnızca web (yöneticiler): kullanıcı ekleyin, ayrıntıları güncelleyin, şifreleri sıfırlayın, hesapları silin.
+Yalnızca web (yöneticiler):
 
-## API yapılandırması
+- Kullanıcı ekleyin, ayrıntıları güncelleyin, parolaları sıfırlayın, hesapları silin
+- **Oturum Zaman Aşımı** — bir oturumun ne kadar sürdüğü (1 saatten 7 güne kadar); değişiklikler yalnızca yeni oturumlara uygulanır
+- **Oturumları İptal Et** — bir kullanıcıyı tüm cihazlardan hemen oturumdan çıkarın
+
+Oturum açmış her kullanıcı (yönetici olmayanlar dahil), kenar çubuğunun altındaki kullanıcı menüsünden kendi parolasını değiştirebilir veya oturumu kapatabilir.
+
+## API Yapılandırması
 
 Yalnızca kullandığınız sağlayıcıları yapılandırın: OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, **Yerel LLM** (Ollama, LM Studio, llama.cpp veya benzeri için temel URL) ve isteğe bağlı özel OpenAI uyumlu bir sağlayıcı.
 
-**Web (yönetici):** anahtarlar ortam değişkenlerinden gelir — bu sayfa hangilerinin ayarlandığını gösterir ve **Test Et**'menizi sağlar. Ortam değişkenlerini değiştirdikten sonra yeniden başlatın. [Yapılandırma](/docs/configuration/) bölümüne bakın.
+**Web (yönetici):** anahtarlar ortam değişkenlerinden gelir — bu sayfa hangilerinin ayarlandığını gösterir ve **Test Etmenizi** sağlar. Ortam değişkenlerini değiştirdikten sonra yeniden başlatın. [Yapılandırma](/docs/configuration/) bölümüne bakın.
 
 **Masaüstü:** anahtarları (veya Yerel LLM URL'sini) girin ve **Kaydet** / **Düzenle** / **Test Et**. Anahtarlar şifreli olarak saklanır; mevcut değeri görüntüleyemezsiniz, yalnızca değiştirebilirsiniz.
 

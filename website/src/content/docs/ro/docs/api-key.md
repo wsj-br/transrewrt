@@ -1,46 +1,73 @@
 ---
 title: Cheie API
 description: >-
-  Obțineți o cheie API OpenRouter gratuită și conectați alți furnizori AI la
-  Transrewrt.
+  Conectați Transrewrt la un furnizor AI la alegere adăugând o cheie API sau
+  utilizați un model local în schimb.
 ---
 
 
 
-Transrewrt are nevoie de acces la cel puțin un furnizor de AI. Nu ai **nevoie** de un model plătit pentru a începe: OpenRouter oferă modele gratuite după ce adaugi o cheie, iar mai mulți alți furnizori oferă, de asemenea, niveluri gratuite.
+Transrewrt nu include propriul AI — trimite textul dvs. către un furnizor AI pe care îl alegeți. Pentru a conecta un furnizor, adăugați o **cheie API**: un cod privat, emis de furnizor, care funcționează ca o parolă pentru serviciul lor. Aveți nevoie de **un singur** furnizor pentru a începe și nu trebuie să plătiți: mai mulți furnizori oferă modele gratuite sau niveluri gratuite și puteți rula modele pe propriul computer fără nicio cheie.
 
-Furnizorii acceptați includ [OpenRouter](https://openrouter.ai), OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, orice punct de capăt compatibil cu OpenAI și servere locale compatibile cu OpenAI (Ollama, LM Studio, llama.cpp și altele).
+Furnizorii acceptați includ OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, orice endpoint compatibil OpenAI și servere locale compatibile OpenAI (Ollama, LM Studio, llama.cpp și similare).
 
-## Ușor vs Avansat
+## Pasul 1 — Alegeți un furnizor
 
-- **Modul ușor** (implicit): alegeți un **preset** (Free (OpenRouter), Standard, Avansat sau Tehnic) asociat unui **furnizor**. Numai preseturile cu o asociere pentru furnizorul curent sunt afișate.
-- **Modul avansat**: selectați direct modelele. Id-urile modelului utilizează un prefix de furnizor (de exemplu `openrouter/…`, `openai/…`, `local/…`).
+Orice furnizor acceptat funcționează. Dacă nu sunteți sigur pe care să-l alegeți:
 
-## Cheie OpenRouter gratuită (desktop)
+- **Gratuit pentru a începe**: OpenRouter, Google Gemini, Groq, Mistral, Cerebras și NVIDIA oferă toate modele gratuite sau niveluri gratuite.
+- **Aveți deja un cont?** Dacă utilizați deja OpenAI, Anthropic sau un alt furnizor acceptat, puteți pur și simplu să reutilizați acel cont.
+- **Preferiți să păstrați totul pe propriul computer?** Omiteți complet cheia și utilizați un [model local](#using-a-local-model-instead-no-api-key) în schimb.
 
-1. Accesați [openrouter.ai](https://openrouter.ai) și înregistrați-vă sau conectați-vă.
-2. Deschideți pagina [Chei](https://openrouter.ai/keys) și creați o cheie nouă (numiți-o; limită de credit opțională). Puteți utiliza modele gratuite fără a adăuga credit.
-3. În Transrewrt, deschideți **Setări → Configurare API**, lipiți cheia în **Cheie API OpenRouter** și faceți clic pe **Testare cheie OpenRouter**.
+## Pasul 2 — Creați o cheie API
+
+Pașii exacți variază ușor în funcție de furnizor, dar modelul este același peste tot:
+
+1. Înregistrați-vă sau conectați-vă pe site-ul web al furnizorului. În **Settings → API Config** din Transrewrt, fiecare furnizor are un link **Open provider website** care vă duce la locul potrivit.
+2. Găsiți pagina **API keys** (uneori sub setările contului, tabloului de bord sau dezvoltatorului) și creați o cheie nouă. Unii furnizori vă cer să denumiți cheia sau să setați o limită de cheltuieli — ambele sunt opționale.
+3. Copiați cheia. Este un șir lung de litere și numere, adesea începând cu ceva de genul `sk-`.
 
 :::caution
-Nu utilizați modelul **Body Builder** (`openrouter/bodybuilder`) al OpenRouter pentru traducere, rescriere sau transformare – acesta returnează sarcini utile de cerere JSON, nu text finalizat.
+Tratați o cheie API ca o parolă: nu o partajați, nu o postați și nu o trimiteți nimănui. Dacă o cheie se scurge, ștergeți-o de pe site-ul web al furnizorului și creați una nouă.
 :::
 
-## Alte opțiuni gratuite
+## Pasul 3 — Adăugați și testați cheia (desktop)
 
-Puteți obține, de asemenea, chei API gratuite de la Cerebras, Google, Groq, Mistral AI sau [NVIDIA](https://build.nvidia.com/) (API compatibil cu OpenAI), sau puteți rula modele local cu Ollama, LM Studio, llama.cpp sau un alt server compatibil cu OpenAI (de exemplu `translategemma:4b` prin Ollama). Setați URL-ul de bază Local LLM la baza API completă (includeți calea, de exemplu `http://localhost:11434/v1`) în Setări (desktop) sau `LOCAL_LLM_URL` (Docker).
+1. În Transrewrt, deschideți **Settings → API Config**.
+2. Inserați cheia în câmpul pentru furnizorul dvs. (de exemplu **Google Gemini API key**) și salvați-o.
+3. Faceți clic pe **Test** lângă câmp pentru a confirma că cheia funcționează.
+
+Odată ce testul reușește, sunteți gata — alegeți acel furnizor pe ecranul principal și începeți să traduceți.
 
 :::caution
-Dacă utilizați un server LLM local de pe un alt dispozitiv sau container, configurați-l pentru a permite conexiuni externe (nu numai localhost).
+Evitați modelul **Body Builder** al OpenRouter (`openrouter/bodybuilder`) — acesta returnează sarcini utile de solicitare JSON, nu text completat. Consultați [Settings → Models](/docs/settings/#models).
+:::
+
+## Utilizarea unui model local în schimb (fără cheie API)
+
+Puteți rula modele pe propriul computer cu Ollama, LM Studio, llama.cpp sau un alt server compatibil OpenAI (de exemplu `google/gemma-4-e2b` prin LM Studio). Nimic nu părăsește mașina dvs. și nu este necesară nicio cheie API.
+
+Pentru a conecta unul, setați URL-ul de bază Local LLM la baza API completă, inclusiv calea — de exemplu `http://localhost:11434/v1`. Pe desktop, setați acest lucru în **Settings → API Config**; pe Docker, setați în schimb variabila de mediu `LOCAL_LLM_URL`.
+
+:::caution
+Dacă utilizați un server LLM local de pe un alt dispozitiv sau container, configurați-l să permită conexiuni externe (nu doar localhost).
 :::
 
 ## Docker / web
 
-Setați cheile furnizorului ca **variabile de mediu** pe server (de exemplu `PROVIDER_API_KEY`). Utilizatorii nu pot introduce cheile în interfața de utilizator a browserului. Consultați [Configurare](/docs/configuration/).
+Dacă utilizați Transrewrt într-un browser, cheile sunt gestionate de cel care rulează serverul, nu sunt tastate în interfața de utilizare a browserului. Administratorul setează cheile furnizorului ca **variabile de mediu** pe server (de exemplu `PROVIDER_API_KEY`) — consultați [Configuration](/docs/configuration/).
 
 ## Lista de verificare pentru prima rulare
 
-1. Deschideți aplicația și setați **Limba interfeței** dacă este necesar.
-2. Adăugați și testați cel puțin o cheie de furnizor (desktop) sau confirmați că serverul are chei de mediu (web).
-3. În modul **Ușor**, alegeți un **Furnizor** în Setări generale; în modul **Avansat**, adăugați modele sub **Setări → Modele**.
-4. Pe **Traducere**, alegeți o presetare sau un model și rulați un test scurt — consultați [Traducere text](/docs/translate/).
+1. Deschideți aplicația și setați **Interface language** dacă este necesar.
+2. Adăugați și testați cel puțin o cheie de furnizor — sau configurați un model local (desktop), sau confirmați că serverul are chei de mediu (web).
+3. În modul **Easy**, alegeți un **Provider** în General Settings; în **Advanced**, adăugați modele sub **Settings → Models** — consultați [Settings](/docs/settings/#general-settings) pentru cele două moduri.
+4. Pe **Translate**, alegeți o presetare sau un model și rulați un test scurt — consultați [Translate text](/docs/translate/).
+
+## Dacă ceva nu funcționează
+
+- **Testul cheii eșuează**: verifică dacă cheia a fost copiată complet (fără spații înainte sau după) și dacă nu a fost ștearsă sau dezactivată pe site-ul furnizorului.
+- **Traducerile eșuează cu o eroare de cotă sau credit**: nivelurile gratuite au limite zilnice sau lunare; așteaptă, treci la un alt furnizor gratuit sau adaugă credit.
+- **Niciun furnizor nu apare în modul Ușor**: deschide **Setări → Configurare API** și confirmă că cel puțin o cheie (sau URL-ul LLM local) este configurată și testată.
+
+Mai mult ajutor: [Probleme comune](/docs/common-issues/).

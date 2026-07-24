@@ -24,13 +24,15 @@ Le modalità includono:
 
 1. Apri **Riscrivi**.
 2. Scegli una **Modalità**.
-3. Facoltativamente, imposta **Da** sulla lingua del tuo testo (o lascia **Rileva lingua**).
+3. Facoltativamente imposta **Da** sulla lingua del tuo testo (o lascia **Rileva lingua**).
 4. Digita o incolla il testo in **Input**.
 5. Fai clic su **Riscrivi**.
 6. Leggi il risultato in **Output**.
 
+Il [layout toggle e le scorciatoie da tastiera](/docs/translate/#layout-and-keyboard) funzionano come in Traduci.
+
 :::tip
-In **Controlla ortografia e grammatica**, un interruttore **Mostra modifiche** appare accanto a **Copia**. Attivalo per mostrare o nascondere le correzioni.
+Dopo una riscrittura, un interruttore **Mostra modifiche** (**Modifiche**) appare accanto a **Copia** per **ogni** modalità di riscrittura. Attivalo per mostrare o nascondere una differenza tra input e output.
 :::
 
 :::note
@@ -39,13 +41,13 @@ In **Controlla ortografia e grammatica**, un interruttore **Mostra modifiche** a
 
 ## Affina una riscrittura
 
-Dopo un'esecuzione riuscita, **Riformula…** e il menu a discesa della versione appaiono sul lato dell'output (stessa idea di [Traduci](/docs/translate/#refine-a-translation), ma il testo rimane nella stessa lingua e mantiene la **Modalità** corrente):
+Dopo un'esecuzione riuscita, **Riformula…** e il menu a discesa delle versioni appaiono sul lato dell'output (stessa idea di [Traduci](/docs/translate/#refine-a-translation), ma il testo rimane nella stessa lingua e mantiene la **Modalità** corrente):
 
-1. **Riformula…** (nessuna selezione) — un'altra riscrittura completa con formulazione diversa. Fino a cinque versioni. Fai clic su **Interrompi riscrittura** per annullare.
-2. **Alternative di parole** — seleziona il testo, quindi fai clic con il pulsante destro del mouse o su **Riformula…**.
+1. **Riformula…** (nessuna selezione) — un'altra riscrittura completa con una formulazione diversa. Fino a cinque versioni. Fai clic su **Interrompi riscrittura** per annullare.
+2. **Alternative di parole** — seleziona il testo, quindi fai clic con il pulsante destro del mouse o **Riformula…**.
 3. Ogni richiesta può aggiungere costi di utilizzo.
 
-## Passi successivi
+## Passaggi successivi
 
 - [Traduci testo](/docs/translate/)
 - [Trasforma con prompt](/docs/transform/)

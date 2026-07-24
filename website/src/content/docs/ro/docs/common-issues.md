@@ -7,24 +7,24 @@ description: Depanare și sfaturi rapide pentru Transrewrt.
 
 Dacă ceva nu funcționează conform așteptărilor, verificați mai întâi aceste puncte.
 
-## Aplicația nu traduce, nu rescrie sau nu transformă
+## Aplicația nu traduce, rescrie sau transformă
 
 Verificați dacă:
 
 - ați selectat o **presetare** (Ușor) sau un **model** (Avansat) în bara de instrumente
 - în modul **Ușor**, **Setări → Setări generale** are un **Furnizor** cu o cheie funcțională (sau URL LLM local)
-- în modul **Avansat**, cel puțin un model este listat în **Setări → Modele**
-- configurarea API-ului funcționează (desktop: **Setări → Configurare API → Testare**)
+- în modul **Avansat**, un model este selectat în bara de instrumente (o listă goală este permisă, dar aveți nevoie de cel puțin un model în **Setări → Modele** pentru a rula)
+- configurarea API-ului dvs. funcționează (desktop: **Setări → Configurare API → Testare**)
 
 ## Lista de modele este goală
 
-În modul **Ușor**, confirmați că **Furnizorul** este setat și că cheile/URL-urile sunt testate. Pentru **LLM local**, asigurați-vă că serverul local rulează și că modelele sunt încărcate.
+În modul **Ușor**, confirmați că **Furnizorul** este setat și cheile/URL-urile sunt testate. Pentru **LLM local**, asigurați-vă că serverul dvs. local rulează și că modelele sunt încărcate.
 
-În modul **Avansat**, deschideți **Setări → Modele**, faceți clic pe **Reîmprospătare** și adăugați modele la **Modele selectate**. Opțional, activați **Doar gratuit**.
+În modul **Avansat**, modelele selectate pot fi goale. Deschideți **Setări → Modele**, faceți clic pe **Reîmprospătare** și adăugați modele la **Modele selectate**. Opțional, activați **Doar gratuit**. Eliminarea ultimului model din bara de instrumente deschide, de asemenea, Setări → Modele.
 
 ## Prea lent sau prea scump
 
-- Alegeți o altă presetare sau un alt model
+- Alegeți o presetare sau un model diferit
 - Utilizați o intrare mai scurtă
 - Dezactivați **Traducere în timp real în timpul tastării** în Setări generale
 - Utilizați modele gratuite pentru sarcini simple
@@ -37,34 +37,34 @@ Faceți clic pe pictograma globului din bara de instrumente și alegeți **Limba
 
 **Setări → Setări generale** → modificați **Familia de fonturi** și **Dimensiunea**.
 
-## Rezumatul tabloului de bord pare gol
+## Sumarul tabloului de bord pare gol
 
 Acest lucru este normal dacă:
 
-- utilizați doar **modele gratuite** și vă uitați la cifrele de **cost** (acestea pot fi zero); indicatorii cheie de performanță pentru numărul de apeluri necesită în continuare date pentru perioada selectată
+- utilizați doar **modele gratuite** și vă uitați la cifrele de **cost** (pot fi zero); indicatorii cheie de performanță pentru numărul de apeluri au nevoie în continuare de date pentru perioada selectată
 - **filtrul de timp** selectat nu acoperă momentul în care au fost efectuate apelurile — încercați **Toate**
 
 Dacă indicatorii cheie de performanță sunt încă zero după **Toate**, verificați [Istoric](/docs/history/) sau Tabloul de bord → **Toate apelurile**.
 
-## Costul afișează „indisponibil” sau pare incorect
+## Costul afișează „indisponibil” sau pare greșit
 
-OpenRouter afișează cheltuielile reale, atunci când este cazul. Pentru alți furnizori, costul este estimat pe baza prețurilor OpenRouter; dacă nu se potrivește niciun preț, costul este afișat ca **indisponibil** și nu este adăugat la total.
+OpenRouter afișează cheltuielile reale, acolo unde este cazul. Pentru alți furnizori, costul este estimat pe baza prețurilor OpenRouter; dacă nu se potrivește niciun preț, costul este afișat ca **indisponibil** și nu este adăugat la total.
 
 ## Costul total nu se potrivește cu factura furnizorului meu
 
-Cifrele din aplicație sunt **estimări pentru referință**, nu facturi. Pentru OpenRouter, utilizați **Setări → Urmărire costuri → Sincronizare cu utilizarea cheii API**.
+Cifrele din aplicație sunt **estimări de referință**, nu facturi. Pentru OpenRouter, utilizați **Setări → Urmărire costuri → Sincronizare cu utilizarea cheii API**.
 
 ## Pagina Istoric lipsește din bara laterală
 
-**Păstrarea istoricului execuției** poate fi dezactivată. Activați-o în Setări generale, cu excepția cazului în care istoricul este dezactivat de administrator (`HISTORY_DISABLED` — consultați [Configurare](/docs/configuration/#privacy-mode)).
+Este posibil ca opțiunea **Păstrare istoric execuție** să fie dezactivată. Activați-o în Setări generale, cu excepția cazului în care istoricul este dezactivat de administrator (`HISTORY_DISABLED` — consultați [Configurare](/docs/configuration/#privacy-mode)).
 
 ## Web: redirecționat la autentificare în mod neașteptat
 
-Sesiunea dvs. ar fi putut expira. Conectați-vă din nou. Dacă acest lucru se întâmplă des, verificați setările de durată a sesiunii serverului.
+Sesiunea dvs. ar fi putut expira. Conectați-vă din nou. Dacă acest lucru se întâmplă des, cereți unui administrator să mărească **Timpul de expirare a sesiunii** sub [Setări → Utilizatori](/docs/settings/#users) (un administrator ar fi putut, de asemenea, să vă revoce sesiunile).
 
-## Administrator web: parolă uitată
+## Administrator web: am uitat parola
 
-Dacă un alt administrator se poate conecta, acesta poate reseta parola în **Setări → Utilizatori**. Dacă sunteți blocat, dar aveți acces la shell:
+Dacă un alt administrator se poate conecta, acesta poate reseta parola sub **Setări → Utilizatori**. Dacă sunteți blocat, dar aveți acces la shell:
 
 ```bash
 docker exec transrewrt reset-web-password '<username>' '<new-password>'
@@ -76,7 +76,7 @@ Numele de utilizator implicit al administratorului este `admin`. Dintr-o verific
 
 Doar **administratorii** pot vizualiza alți utilizatori prin filtrul **Utilizator**. Utilizatorii obișnuiți văd doar propria activitate.
 
-## Ați modificat o solicitare și ați pierdut modificările
+## Am modificat o solicitare și am pierdut modificările
 
 Când editați o solicitare de transformare, faceți clic pe **Salvare** înainte de **Înapoi la rulare**.
 
@@ -86,7 +86,7 @@ Când editați o solicitare de transformare, faceți clic pe **Salvare** înaint
 - Utilizați [Rescriere](/docs/rewrite/) pentru îmbunătățiri zilnice ale formulării
 - Utilizați [Transformare](/docs/transform/) pentru fluxuri de lucru personalizate repetabile
 - Rămâneți în modul **Ușor** până când aveți nevoie de ID-uri de model detaliate
-- Exportați prompturile în mod regulat dacă construiți o bibliotecă de prompturi
+- Exportați solicitările în mod regulat dacă construiți o bibliotecă de solicitări
 - Utilizați [Tabloul de bord](/docs/dashboard/) și [Istoric](/docs/history/) pentru a revizui utilizarea și rulările anterioare
 
 [Report an issue](https://github.com/wsj-br/transrewrt/issues)

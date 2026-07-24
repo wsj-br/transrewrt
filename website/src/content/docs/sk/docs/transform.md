@@ -11,20 +11,22 @@ Použite **Transformovať**, keď chcete, aby AI postupovala podľa vlastných p
 
 ![Pracovný priestor Transform](/images/screenshots/sk/transform.png)
 
-## Spustenie existujúcej výzvy
+## Spustite existujúcu výzvu
 
 1. Otvorte **Transformovať**.
-2. Zo zoznamu vyberte výzvu.
+2. Vyberte výzvu zo zoznamu.
 3. Ak sa zobrazí pole jazyka **Z**, nastavte jazyk, ak ho chcete.
-4. Zadajte alebo prilepte text do **Vstupu**.
+4. Zadajte alebo prilepte text do **Vstup**.
 5. Kliknite na **Transformovať**.
-6. Prečítajte si výsledok vo **Výstupe**.
+6. Prečítajte si výsledok v **Výstup**.
 
-## Načítanie vzorových výziev
+[Prepínanie rozloženia a klávesové skratky](/docs/translate/#layout-and-keyboard) fungujú rovnako ako v Preklade.
 
-Ak je zoznam prázdny, kliknite na **Načítať vzorové výzvy** v pracovnom priestore Transform (dostupné aj v časti [Nastavenia → Transformovať](/docs/settings/#transform)). Vzorky sú v angličtine; po načítaní upravte výzvu a v prípade potreby použite **Preložiť výzvu**.
+## Načítajte vzorové výzvy
 
-## Vytvorenie výzvy
+Ak je zoznam prázdny, kliknite na **Načítať vzorové výzvy** v pracovnom priestore Transform (dostupné aj pod [Nastavenia → Transformovať](/docs/settings/#transform)). Vzorky sú v angličtine; po načítaní upravte výzvu a v prípade potreby použite **Preložiť výzvu**.
+
+## Vytvorte výzvu
 
 1. Kliknite na **Nová výzva**.
 2. Kliknite na **Generovať výzvu**.
@@ -32,7 +34,7 @@ Ak je zoznam prázdny, kliknite na **Načítať vzorové výzvy** v pracovnom pr
 4. Vyberte predvoľbu (Jednoduché) alebo model (Pokročilé).
 5. Skontrolujte návrh a kliknite na **Uložiť**.
 
-## Úprava výzvy
+## Upravte výzvu
 
 Editor je vľavo; testovacia oblasť je vpravo.
 
@@ -44,7 +46,7 @@ Hlavné polia:
 - **Pokyny k výzve (voliteľné)** — krátka nápoveda pri spúšťaní výzvy
 - **Rola modelu** — celková rola pre AI
 - **Pokyny modelu (jeden na riadok)** — pravidlá, ktoré treba dodržiavať
-- **Popis výstupu** — krátky štítok pre výsledok (napr. zhrnuté)
+- **Popis výstupu** — krátky štítok pre výsledok (napr. zhrnutý)
 - **Teplota (0,0 → 1,0)** — nižšia je stabilnejšia; vyššia je rozmanitejšia
 - **Požiadať o cieľový jazyk** — pridá výber jazyka pri spúšťaní
 
@@ -54,14 +56,14 @@ Pomocníci: **Generovať výzvu**, **Vylepšiť výzvu**, **Preložiť výzvu** 
 Pred **Späť na spustenie** kliknite na **Uložiť**. Návrat bez uloženia zahodí úpravy.
 :::
 
-## Testovanie pred každodenným použitím
+## Testovanie pred každodenným používaním
 
-Pri vytváraní alebo porovnávaní výziev použite pravý testovací panel s ukážkovým textom.
+Pri vytváraní alebo porovnávaní výziev použite pravý testovací panel so vzorovým textom.
 
-Exportujte a importujte výzvy hromadne v časti [Nastavenia → Transformácia](/docs/settings/#transform).
+Hromadný export a import výziev nájdete v časti [Nastavenia → Transformácia](/docs/settings/#transform).
 
 ## Ďalšie kroky
 
 - [Nastavenia](/docs/settings/)
 - [Prehliadať históriu](/docs/history/)
-- [Bežné problémy](/docs/common-issues/)
+- [Časté problémy](/docs/common-issues/)

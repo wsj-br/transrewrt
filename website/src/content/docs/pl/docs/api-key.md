@@ -1,46 +1,73 @@
 ---
 title: Klucz API
 description: >-
-  Uzyskaj darmowy klucz API OpenRouter i połącz innych dostawców AI z
-  Transrewrt.
+  Połącz Transrewrt z wybranym dostawcą AI, dodając klucz API, lub zamiast tego
+  użyj modelu lokalnego.
 ---
 
 
 
-Transrewrt potrzebuje dostępu do co najmniej jednego dostawcy AI. Do rozpoczęcia **nie** potrzebujesz płatnego modelu: OpenRouter oferuje darmowe modele po dodaniu klucza, a kilku innych dostawców również oferuje darmowe poziomy.
+Transrewrt nie zawiera własnej sztucznej inteligencji — wysyła Twój tekst do wybranego przez Ciebie dostawcy AI. Aby połączyć się z dostawcą, dodajesz **klucz API**: prywatny kod, wydany przez dostawcę, który działa jak hasło do jego usługi. Na początek potrzebujesz tylko **jednego** dostawcy i nie musisz płacić: kilku dostawców oferuje darmowe modele lub darmowe poziomy, a także możesz uruchamiać modele na własnym komputerze bez żadnego klucza.
 
-Obsługiwani dostawcy obejmują [OpenRouter](https://openrouter.ai), OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, każdy kompatybilny z OpenAI punkt końcowy oraz serwery lokalne kompatybilne z OpenAI (Ollama, LM Studio, llama.cpp i podobne).
+Obsługiwani dostawcy to OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, dowolny punkt końcowy zgodny z OpenAI oraz lokalne serwery zgodne z OpenAI (Ollama, LM Studio, llama.cpp i podobne).
 
-## Łatwy vs Zaawansowany
+## Krok 1 — Wybierz dostawcę
 
-- Tryb **łatwy** (domyślny): wybierz **wstępnie ustawiony** (Bezpłatny (OpenRouter), Standardowy, Zaawansowany lub Techniczny) przypisany do **dostawcy**. Wyświetlane są tylko wstępnie ustawione opcje z mapowaniem dla bieżącego dostawcy.
-- Tryb **zaawansowany**: wybierz modele bezpośrednio. Identyfikatory modeli używają prefiksu dostawcy (na przykład `openrouter/…`, `openai/…`, `local/…`).
+Działa każdy obsługiwany dostawca. Jeśli nie masz pewności, którego wybrać:
 
-## Darmowy klucz OpenRouter (komputer stacjonarny)
+- **Darmowy na początek**: OpenRouter, Google Gemini, Groq, Mistral, Cerebras i NVIDIA oferują darmowe modele lub darmowe poziomy.
+- **Masz już konto?** Jeśli używasz już OpenAI, Anthropic lub innego obsługiwanego dostawcy, możesz po prostu ponownie użyć tego konta.
+- **Wolisz trzymać wszystko na własnym komputerze?** Pomiń całkowicie klucz i zamiast tego użyj [modelu lokalnego](#using-a-local-model-instead-no-api-key).
 
-1. Przejdź do [openrouter.ai](https://openrouter.ai) i zarejestruj się lub zaloguj.
-2. Otwórz stronę [Klucze](https://openrouter.ai/keys) i utwórz nowy klucz (nazwij go; opcjonalny limit kredytu). Możesz używać darmowych modeli bez dodawania kredytu.
-3. W Transrewrt otwórz **Ustawienia → Konfiguracja API**, wklej klucz do **Klucz API OpenRouter** i kliknij **Testuj klucz OpenRouter**.
+## Krok 2 — Utwórz klucz API
+
+Dokładne kroki różnią się nieco w zależności od dostawcy, ale schemat jest wszędzie taki sam:
+
+1. Zarejestruj się lub zaloguj na stronie internetowej dostawcy. W Transrewrt w **Ustawienia → Konfiguracja API** każdy dostawca ma link **Otwórz stronę dostawcy**, który przeniesie Cię we właściwe miejsce.
+2. Znajdź stronę **Klucze API** (czasami w sekcji konto, pulpit nawigacyjny lub ustawienia programisty) i utwórz nowy klucz. Niektórzy dostawcy proszą o nazwanie klucza lub ustawienie limitu wydatków — oba są opcjonalne.
+3. Skopiuj klucz. Jest to długi ciąg liter i cyfr, często zaczynający się od czegoś w rodzaju `sk-`.
 
 :::caution
-Nie używaj modelu **Body Builder** OpenRouter (`openrouter/bodybuilder`) do tłumaczenia, przepisywania ani transformacji — zwraca on ładunki żądań JSON, a nie ukończony tekst.
+Traktuj klucz API jak hasło: nie udostępniaj go, nie publikuj ani nie wysyłaj nikomu. Jeśli klucz wycieknie, usuń go na stronie dostawcy i utwórz nowy.
 :::
 
-## Inne darmowe opcje
+## Krok 3 — Dodaj i przetestuj klucz (komputer stacjonarny)
 
-Możesz również uzyskać bezpłatne klucze API od Cerebras, Google, Groq, Mistral AI lub [NVIDIA](https://build.nvidia.com/) (API zgodne z OpenAI) albo uruchomić modele lokalnie za pomocą Ollama, LM Studio, llama.cpp lub innego serwera zgodnego z OpenAI (na przykład `translategemma:4b` za pośrednictwem Ollama). Ustaw podstawowy adres URL lokalnego LLM na pełną bazę API (uwzględnij ścieżkę, np. `http://localhost:11434/v1`) w Ustawieniach (wersja desktopowa) lub `LOCAL_LLM_URL` (Docker).
+1. W Transrewrt otwórz **Ustawienia → Konfiguracja API**.
+2. Wklej klucz w polu dla swojego dostawcy (na przykład **Klucz API Google Gemini**) i zapisz go.
+3. Kliknij **Testuj** obok pola, aby potwierdzić, że klucz działa.
+
+Po pomyślnym zakończeniu testu jesteś gotowy — wybierz tego dostawcę na ekranie głównym i rozpocznij tłumaczenie.
 
 :::caution
-Jeśli używasz serwera LLM lokalnego z innego urządzenia lub kontenera, skonfiguruj go w celu zezwolenia na połączenia zewnętrzne (nie tylko localhost).
+Unikaj modelu **Body Builder** OpenRouter (`openrouter/bodybuilder`) — zwraca on ładunki żądań JSON, a nie ukończony tekst. Zobacz [Ustawienia → Modele](/docs/settings/#models).
+:::
+
+## Używanie modelu lokalnego zamiast (bez klucza API)
+
+Możesz uruchamiać modele na własnym komputerze za pomocą Ollama, LM Studio, llama.cpp lub innego serwera zgodnego z OpenAI (na przykład `google/gemma-4-e2b` za pośrednictwem LM Studio). Nic nie opuszcza Twojej maszyny i nie jest potrzebny żaden klucz API.
+
+Aby połączyć jeden, ustaw podstawowy adres URL lokalnego LLM na pełną bazę API, włączając ścieżkę — na przykład `http://localhost:11434/v1`. Na komputerze stacjonarnym ustaw to w **Ustawienia → Konfiguracja API**; w Dockerze zamiast tego ustaw zmienną środowiskową `LOCAL_LLM_URL`.
+
+:::caution
+Jeśli używasz lokalnego serwera LLM z innego urządzenia lub kontenera, skonfiguruj go tak, aby zezwalał na połączenia zewnętrzne (nie tylko localhost).
 :::
 
 ## Docker / web
 
-Ustaw klucze dostawcy jako **zmienne środowiskowe** na serwerze (na przykład `PROVIDER_API_KEY`). Użytkownicy nie mogą wpisywać kluczy do interfejsu przeglądarki. Zobacz [Konfiguracja](/docs/configuration/).
+Jeśli używasz Transrewrt w przeglądarce, klucze są zarządzane przez osobę obsługującą serwer, a nie wpisywane w interfejsie użytkownika przeglądarki. Administrator ustawia klucze dostawcy jako **zmienne środowiskowe** na serwerze (na przykład `PROVIDER_API_KEY`) — zobacz [Konfiguracja](/docs/configuration/).
 
 ## Lista kontrolna pierwszego uruchomienia
 
 1. Otwórz aplikację i w razie potrzeby ustaw **Język interfejsu**.
-2. Dodaj i przetestuj co najmniej jeden klucz dostawcy (na komputerze) lub upewnij się, że serwer ma klucze środowiskowe (w sieci).
-3. W trybie **Łatwym** wybierz **Dostawcę** w Ustawieniach ogólnych; w trybie **Zaawansowanym** dodaj modele w **Ustawieniach → Modele**.
-4. W sekcji **Tłumacz** wybierz ustawienie wstępne lub model i uruchom krótki test — zobacz [Tłumaczenie tekstu](/docs/translate/).
+2. Dodaj i przetestuj co najmniej jeden klucz dostawcy — lub skonfiguruj model lokalny (komputer stacjonarny), lub potwierdź, że serwer ma klucze środowiskowe (internet).
+3. W trybie **Łatwy** wybierz **Dostawcę** w Ustawieniach ogólnych; w trybie **Zaawansowany** dodaj modele w **Ustawienia → Modele** — zobacz [Ustawienia](/docs/settings/#general-settings) dla obu trybów.
+4. Na stronie **Tłumacz** wybierz ustawienie wstępne lub model i uruchom krótki test — zobacz [Tłumaczenie tekstu](/docs/translate/).
+
+## Jeśli coś nie działa
+
+- **Test klucza kończy się niepowodzeniem**: sprawdź, czy klucz został skopiowany w całości (bez spacji przed i po) i czy nie został usunięty lub wyłączony na stronie dostawcy.
+- **Tłumaczenia kończą się niepowodzeniem z powodu błędu limitu lub kredytu**: darmowe poziomy mają dzienne lub miesięczne limity; poczekaj, przełącz się na innego darmowego dostawcę lub dodaj kredyt.
+- **W trybie łatwym nie pojawia się żaden dostawca**: otwórz **Ustawienia → Konfiguracja API** i upewnij się, że skonfigurowano i przetestowano co najmniej jeden klucz (lub adres URL lokalnego LLM).
+
+Więcej pomocy: [Częste problemy](/docs/common-issues/).

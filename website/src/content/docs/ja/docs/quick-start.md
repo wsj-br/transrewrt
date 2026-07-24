@@ -1,31 +1,31 @@
 ---
 title: クイックスタート
-description: Windows または Linux に Transrewrt をインストールするか、セルフホスト型の Docker Web アプリを実行します。
+description: WindowsまたはLinuxにTransrewrtをインストールするか、セルフホスト型のDocker Webアプリを実行します。
 ---
 
 
 
-ご自身に合った方法をお選びください。いずれも無料でオープンソース (Apache 2.0) です。
+ご自身に合った方法を選んでください。いずれも無料でオープンソース（Apache 2.0）です。
 
-## Docker (セルフホスト Web)
+## Docker（セルフホスト型Web）
 
 ```bash
 docker pull ghcr.io/wsj-br/transrewrt:latest
 
-PROVIDER_API_KEY=sk-or-your-key docker run -d \
+docker run -d \
   -p 5000:5000 \
   -v transrewrt-data:/app/data \
-  -e PROVIDER_API_KEY \
-  --name transrewrt-web \
+  -e PROVIDER_API_KEY=your-api-key \
+  --name transrewrt \
   ghcr.io/wsj-br/transrewrt:latest
 ```
 
-`PROVIDER_API_KEY=sk-or-your-key`を選択したプロバイダーのAPIキーに置き換えてください（サポートされているオプションについては[設定](/docs/configuration/)を参照してください）。
+`PROVIDER_API_KEY` をプロバイダーの変数（例えば `OPENROUTER_API_KEY`、`OPENAI_API_KEY`、`ANTHROPIC_API_KEY`、`XIA_API_KEY`、...）に置き換え、その値を設定します。完全なリストは[設定](/docs/configuration/#environment-variables-web--docker)を参照してください。
 
-その後、[http://localhost:5000](http://localhost:5000) を開き、サービスを公開する前に **デフォルトの管理者パスワードを変更**してください。
+次に、[http://localhost:5000](http://localhost:5000)を開き、サービスを公開する前に**デフォルトの管理者パスワードを変更**してください。
 
 :::caution
-Dockerでは、LLMの認証情報は環境変数（例えば `PROVIDER_API_KEY`）で設定されます。これらはWeb UIには入力**されません**。デスクトップ版では、**設定 → API**でキーを設定します。
+Dockerでは、LLMの認証情報は環境変数（例えば `PROVIDER_API_KEY`）で設定します。これらはWeb UIには**入力しません**。デスクトップ版では、**設定 → API設定**でキーを設定します。
 :::
 
 ### Docker Compose
@@ -38,36 +38,50 @@ docker compose -f transrewrt.yml up -d
 
 ## Windows
 
-1. [Releases](https://github.com/wsj-br/transrewrt/releases) から最新の `Transrewrt Setup x.y.z.exe` をダウンロードします。
+1. [Releases](https://github.com/wsj-br/transrewrt/releases)から最新の`Transrewrt Setup x.y.z.exe`をダウンロードします。
 2. インストーラーを実行します。
-3. アプリを開き、**設定 → API** で API キーを入力します。少なくとも 1 つのプロバイダーを構成してください。OpenRouter は無料モデルの一般的な選択肢です。
+3. アプリを開き、**Settings → API Config**でAPIキーを入力します。少なくとも1つのプロバイダーを設定してください。OpenRouterは無料モデルの一般的な選択肢です。
 
 :::note
-署名されていないインディーアプリの場合、Windows で UAC または SmartScreen の警告が表示されることがあります。公式の GitHub Releases ページからのダウンロードを推奨し、公開されている場合はチェックサムを検証してください。
+Windowsでは、署名されていない個人開発のアプリに対してUACまたはSmartScreenの警告が表示される場合があります。公式のGitHub Releasesページからのダウンロードを優先し、公開されている場合はチェックサムを確認してください。
 :::
 
 ## Linux
 
-[Releases](https://github.com/wsj-br/transrewrt/releases) からお使いの CPU に合った `.AppImage` をダウンロードします (`x64` または `arm64`、Raspberry Pi 4+ を含む):
+[Releases](https://github.com/wsj-br/transrewrt/releases)から、お使いのCPUに合った`.AppImage`をダウンロードしてください（`x64`または`arm64`、Raspberry Pi 4+を含む）:
 
 ```bash
 chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage
 ```
 
-**設定 → API** で API キーを入力します。
+**Settings → API Config**でAPIキーを入力します。
 
-Chromium が GPU / EGL エラーを出力してもアプリが動作する場合は、ハードウェア アクセラレーションを無効にできます:
+ChromiumがGPU / EGLエラーを出力してもアプリが動作する場合は、ハードウェアアクセラレーションを無効にできます:
 
 ```bash
 TRANSREWRT_DISABLE_GPU=1 ./Transrewrt-x.y.z-arm64.AppImage
 ```
 
 :::note
-現在 macOS はサポートされていません。Transrewrt は Windows、Linux、Docker で利用できます。
+現在、macOSはサポートされていません。TransrewrtはWindows、Linux、およびDockerで利用できます。
 :::
+
+## アップデート
+
+- **Windows** — [Releases](https://github.com/wsj-br/transrewrt/releases)から新しい`Transrewrt Setup x.y.z.exe`をダウンロードして実行します。設定とデータは保持されます。
+- **Linux** — 新しい`.AppImage`をダウンロードし、古いファイルを置き換えます。設定とデータは保持されます。
+- **Docker** — 新しいイメージをプルし、コンテナを再作成します。データは`/app/data`ボリュームに保持されます:
+
+```bash
+docker pull ghcr.io/wsj-br/transrewrt:latest
+docker stop transrewrt && docker rm transrewrt
+# then run the same `docker run` command as above
+# or, with Docker Compose:
+docker compose -f transrewrt.yml pull && docker compose -f transrewrt.yml up -d
+```
 
 ## 次のステップ
 
 1. [APIキーを取得する](/docs/api-key/)
-2. 簡単な翻訳を実行して、すべてが正常に動作することを確認する
-3. [翻訳](/docs/translate/)、[リライト](/docs/rewrite/)、[変換](/docs/transform/) の各ガイドを読む
+2. 簡単な翻訳を実行して、すべてが機能することを確認します
+3. [翻訳](/docs/translate/)、[リライト](/docs/rewrite/)、[変換](/docs/transform/)のガイドを読む

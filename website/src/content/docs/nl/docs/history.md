@@ -7,7 +7,7 @@ description: >-
 
 
 
-Open **Geschiedenis** om eerdere bewerkingen te zien, inclusief de invoer en uitvoer van elke run.
+Open **Geschiedenis** om eerdere bewerkingen te bekijken, inclusief de invoer en uitvoer van elke run.
 
 ![Geschiedenispagina](/images/screenshots/nl/history.png)
 
@@ -23,7 +23,7 @@ Exporteer de gefilterde lijst als **JSON**, **CSV** of **XLSX**.
 
 ## Als Geschiedenis ontbreekt
 
-**Uitvoeringsgeschiedenis bewaren** is mogelijk uitgeschakeld. Schakel dit in via [Instellingen → Algemene instellingen](/docs/settings/#general-settings), tenzij de beheerder `HISTORY_DISABLED` heeft ingesteld — zie [Configuratie](/docs/configuration/#privacy-mode).
+**Uitvoeringsgeschiedenis bijhouden** is mogelijk uitgeschakeld. Schakel dit in via [Instellingen → Algemene instellingen](/docs/settings/#general-settings), tenzij de beheerder `HISTORY_DISABLED` heeft ingesteld — zie [Configuratie](/docs/configuration/#privacy-mode).
 
 ## Volgende stappen
 

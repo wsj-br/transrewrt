@@ -1,46 +1,73 @@
 ---
 title: API kulcs
 description: >-
-  Szerezzen ingyenes OpenRouter API kulcsot, és csatlakoztasson más AI
-  szolgáltatókat a Transrewrt-hez.
+  Csatlakoztassa a Transrewrt-t egy tetszőleges AI-szolgáltatóhoz egy API-kulcs
+  hozzáadásával, vagy használjon helyi modellt.
 ---
 
 
 
-A Transrewrt-nek legalább egy AI-szolgáltatóhoz hozzáférésre van szüksége. A kezdéshez **nincs** szüksége fizetős modellre: az OpenRouter ingyenes modelleket kínál a kulcs hozzáadása után, és számos más szolgáltató is kínál ingyenes szinteket.
+A Transrewrt nem tartalmaz saját AI-t – a szöveget az Ön által választott AI-szolgáltatóhoz küldi. Egy szolgáltató csatlakoztatásához hozzá kell adnia egy **API-kulcsot**: egy privát kódot, amelyet a szolgáltató bocsát ki, és amely jelszóként működik a szolgáltatásukhoz. A kezdéshez csak **egy** szolgáltatóra van szüksége, és nem kell fizetnie: több szolgáltató kínál ingyenes modelleket vagy ingyenes szinteket, és modelleket futtathat saját számítógépén is, kulcs nélkül.
 
-A támogatott szolgáltatók közé tartozik az [OpenRouter](https://openrouter.ai), az OpenAI, az Anthropic, a Google Gemini, a DeepSeek, a Groq, a Mistral, az xAI, a Cerebras, az NVIDIA, az Alibaba Cloud, az apikey.fun, bármely OpenAI-kompatibilis végpont, és a helyi OpenAI-kompatibilis szerverek (Ollama, LM Studio, llama.cpp és hasonlók).
+A támogatott szolgáltatók közé tartozik az OpenRouter, az OpenAI, az Anthropic, a Google Gemini, a DeepSeek, a Groq, a Mistral, az xAI, a Cerebras, az NVIDIA, az Alibaba Cloud, az apikey.fun, bármely OpenAI-kompatibilis végpont, és a helyi OpenAI-kompatibilis szerverek (Ollama, LM Studio, llama.cpp és hasonlók).
 
-## Egyszerű vs. Haladó
+## 1. lépés – Válasszon szolgáltatót
 
-- **Egyszerű** mód (alapértelmezett): válasszon egy **előbeállítást** (Ingyenes (OpenRouter), Standard, Haladó vagy Technikai), amely egy **szolgáltatóhoz** van rendelve. Csak azok az előbeállítások jelennek meg, amelyek rendelkeznek leképezéssel az aktuális szolgáltatóhoz.
-- **Haladó** mód: közvetlenül választhat modelleket. A modellazonosítók szolgáltatói előtagot használnak (például `openrouter/…`, `openai/…`, `local/…`).
+Bármely támogatott szolgáltató működik. Ha nem biztos benne, melyiket válassza:
 
-## Ingyenes OpenRouter kulcs (asztali)
+- **Ingyenesen indítható**: Az OpenRouter, a Google Gemini, a Groq, a Mistral, a Cerebras és az NVIDIA mind ingyenes modelleket vagy ingyenes szinteket kínálnak.
+- **Már van fiókja?** Ha már használja az OpenAI-t, az Anthropic-ot vagy más támogatott szolgáltatót, egyszerűen újra felhasználhatja azt a fiókot.
+- **Inkább mindent a saját számítógépén tartana?** Hagyja ki teljesen a kulcsot, és használjon [helyi modellt](#using-a-local-model-instead-no-api-key) helyette.
 
-1. Látogasson el az [openrouter.ai](https://openrouter.ai) oldalra, és regisztráljon vagy jelentkezzen be.
-2. Nyissa meg a [Kulcsok](https://openrouter.ai/keys) oldalt, és hozzon létre egy új kulcsot (nevezze el; opcionális hitelkeret). Ingyenes modelleket használhat hitel hozzáadása nélkül.
-3. A Transrewrt-ben nyissa meg a **Beállítások → API konfiguráció** menüpontot, illessze be a kulcsot az **OpenRouter API kulcs** mezőbe, majd kattintson az **OpenRouter kulcs tesztelése** gombra.
+## 2. lépés – API-kulcs létrehozása
+
+A pontos lépések szolgáltatónként kissé eltérnek, de a minta mindenhol ugyanaz:
+
+1. Regisztráljon vagy jelentkezzen be a szolgáltató weboldalán. A Transrewrt **Beállítások → API konfiguráció** menüjében minden szolgáltatóhoz tartozik egy **Szolgáltató weboldalának megnyitása** link, amely a megfelelő helyre viszi.
+2. Keresse meg az **API-kulcsok** oldalt (néha a fiók, irányítópult vagy fejlesztői beállítások alatt), és hozzon létre egy új kulcsot. Néhány szolgáltató megkérdezi, hogy nevezze el a kulcsot, vagy állítson be költési korlátot – mindkettő opcionális.
+3. Másolja ki a kulcsot. Ez egy hosszú betű- és számsorozat, gyakran valami olyasmivel kezdődik, mint `sk-`.
 
 :::caution
-Ne használja az OpenRouter **Body Builder** modelljét (`openrouter/bodybuilder`) fordításra, átírásra vagy átalakításra – az JSON kéréseket ad vissza, nem pedig kész szöveget.
+Az API-kulcsot jelszóként kezelje: ne ossza meg, ne tegye közzé, és ne küldje el senkinek. Ha egy kulcs kiszivárog, törölje a szolgáltató weboldalán, és hozzon létre egy újat.
 :::
 
-## Egyéb ingyenes lehetőségek
+## 3. lépés – A kulcs hozzáadása és tesztelése (asztali)
 
-Ingyenes API-kulcsokat szerezhet a Cerebras, a Google, a Groq, a Mistral AI vagy az [NVIDIA](https://build.nvidia.com/) (OpenAI-kompatibilis API) szolgáltatóktól, vagy futtathat modelleket helyben az Ollama, az LM Studio, a llama.cpp vagy egy másik OpenAI-kompatibilis szerver segítségével (például `translategemma:4b` az Ollama-n keresztül). Állítsa be a Helyi LLM alap URL-t a teljes API alapra (beleértve az elérési utat is, pl. `http://localhost:11434/v1`) a Beállításokban (asztali) vagy a `LOCAL_LLM_URL` (Docker) alatt.
+1. A Transrewrt-ben nyissa meg a **Beállítások → API konfiguráció** menüpontot.
+2. Illessze be a kulcsot a szolgáltatójának megfelelő mezőbe (például **Google Gemini API kulcs**), és mentse el.
+3. Kattintson a mező melletti **Teszt** gombra a kulcs működésének ellenőrzéséhez.
+
+Amint a teszt sikeres, készen áll – válassza ki azt a szolgáltatót a főképernyőn, és kezdje el a fordítást.
 
 :::caution
-Ha egy másik eszközről vagy konténerből használ helyi LLM szervert, konfigurálja úgy, hogy engedélyezze a külső kapcsolatokat (ne csak a localhost-ot).
+Kerülje az OpenRouter **Body Builder** modelljét (`openrouter/bodybuilder`) – az JSON kérés-payloadokat ad vissza, nem pedig kész szöveget. Lásd: [Beállítások → Modellek](/docs/settings/#models).
+:::
+
+## Helyi modell használata (API-kulcs nélkül)
+
+Futtathat modelleket a saját számítógépén Ollama, LM Studio, llama.cpp vagy más OpenAI-kompatibilis szerver segítségével (például `google/gemma-4-e2b` az LM Studio-n keresztül). Semmi sem hagyja el a gépét, és nincs szükség API-kulcsra.
+
+A csatlakoztatáshoz állítsa be a Helyi LLM alap URL-jét a teljes API alapra, beleértve az elérési utat is – például `http://localhost:11434/v1`. Asztali gépen ezt a **Beállítások → API konfiguráció** menüpontban állítsa be; Docker esetén ehelyett az `LOCAL_LLM_URL` környezeti változót állítsa be.
+
+:::caution
+Ha egy másik eszközről vagy konténerből használ helyi LLM szervert, konfigurálja úgy, hogy engedélyezze a külső kapcsolatokat (ne csak localhost).
 :::
 
 ## Docker / web
 
-Állítsa be a szolgáltatói kulcsokat **környezeti változókként** a szerveren (például `PROVIDER_API_KEY`). A felhasználók nem írhatják be a kulcsokat a böngésző felhasználói felületébe. Lásd: [Konfiguráció](/docs/configuration/).
+Ha böngészőben használja a Transrewrt-t, a kulcsokat az kezeli, aki a szervert futtatja, nem pedig a böngésző felhasználói felületén kell beírni. Az adminisztrátor a szolgáltatói kulcsokat **környezeti változókként** állítja be a szerveren (például `PROVIDER_API_KEY`) – lásd: [Konfiguráció](/docs/configuration/).
 
-## Első futtatási ellenőrzőlista
+## Első futtatás ellenőrzőlista
 
 1. Nyissa meg az alkalmazást, és szükség esetén állítsa be az **Interfész nyelvét**.
-2. Adjon hozzá és teszteljen legalább egy szolgáltatói kulcsot (asztali), vagy ellenőrizze, hogy a szerver rendelkezik-e környezeti kulcsokkal (web).
-3. **Egyszerű** módban válasszon egy **Szolgáltatót** az Általános beállításokban; **Haladó** módban adjon hozzá modelleket a **Beállítások → Modellek** alatt.
-4. A **Fordítás** lapon válasszon egy előbeállítást vagy modellt, és futtasson egy rövid tesztet – lásd [Szöveg fordítása](/docs/translate/).
+2. Adjon hozzá és teszteljen legalább egy szolgáltatói kulcsot – vagy konfiguráljon egy helyi modellt (asztali), vagy ellenőrizze, hogy a szerveren vannak-e környezeti kulcsok (web).
+3. **Egyszerű** módban válasszon egy **Szolgáltatót** az Általános beállításokban; **Haladó** módban adjon hozzá modelleket a **Beállítások → Modellek** alatt – lásd a [Beállítások](/docs/settings/#general-settings) részt a két módhoz.
+4. A **Fordítás** oldalon válasszon egy előbeállítást vagy modellt, és futtasson egy rövid tesztet – lásd: [Szöveg fordítása](/docs/translate/).
+
+## Ha valami nem működik
+
+- **A kulcsteszt sikertelen**: ellenőrizze, hogy a kulcs teljes egészében át lett-e másolva (nincsenek szóközök előtte vagy utána), és hogy nem lett-e törölve vagy letiltva a szolgáltató webhelyén.
+- **A fordítások kvóta- vagy hitelhibával meghiúsulnak**: az ingyenes szintek napi vagy havi korlátokkal rendelkeznek; várjon, váltson másik ingyenes szolgáltatóra, vagy adjon hozzá hitelt.
+- **Nincs szolgáltató az Egyszerű módban**: nyissa meg a **Beállítások → API konfiguráció** menüpontot, és ellenőrizze, hogy legalább egy kulcs (vagy a Helyi LLM URL) konfigurálva és tesztelve van-e.
+
+További segítség: [Gyakori problémák](/docs/common-issues/).

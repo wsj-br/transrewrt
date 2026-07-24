@@ -7,12 +7,12 @@ description: >-
 
 
 
-Använd **Instrumentpanelen** för att se hur mycket du använder appen och vad den kostar (för betalmodeller).
+Använd **instrumentpanelen** för att se hur mycket du använder appen och vad den kostar (för betalmodeller).
 
-![Instrumentpanelöversikt](/images/screenshots/sv/dashboard-summary.png)
+![Instrumentpanelens sammanfattning](/images/screenshots/sv/dashboard-summary.png)
 
 :::note
-Om du bara använder **gratis** modeller kan kostnadsbeloppen vara noll. KPI:er för samtalsantal på **Översikt** kräver fortfarande aktivitet under den valda perioden.
+Om du bara använder **gratismodeller** kan kostnadsbeloppen vara noll. KPI:er för samtalsantal på **Sammanfattning** kräver fortfarande aktivitet under den valda perioden.
 :::
 
 ## Filtrera data
@@ -25,9 +25,9 @@ Använd filterknapparna högst upp för att ändra tidsintervallet.
 
 ## Flikar
 
-- **Översikt** — KPI:er: total kostnad, använda modeller, samtalsantal och kostnad per läge, genomsnittlig kostnad per samtal, genomsnittlig TPS, toppmodeller efter samtalsantal
-- **Per modell** — samtalsantal, kostnad och TPS per modell; expandera en rad för en uppdelning per läge
-- **Alla samtal** — fullständig samtalslogg (paginerad eller kort) med export
+- **Sammanfattning** – KPI:er: total kostnad, använda modeller, samtalsantal och kostnad per läge, genomsnittlig kostnad per samtal, genomsnittlig TPS, toppmodeller efter samtalsantal
+- **Per modell** – samtal, kostnad och TPS per modell; expandera en rad för en lägesuppdelning
+- **Alla samtal** – fullständig samtalslogg (paginerad eller kort) med export
 
 ## Exportera data
 

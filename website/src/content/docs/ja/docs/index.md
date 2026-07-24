@@ -1,45 +1,47 @@
 ---
 title: 概要
-description: Transrewrtとは何か、およびインストール、ガイド、設定のドキュメントの見つけ方。
+description: Transrewrtの概要と、インストール、ガイド、設定ドキュメントの見つけ方。
 ---
 
 
 
-**Transrewrt**は、以下の用途に使用できるオープンソースのAI搭載テキストツールです：
+**Transrewrt**は、AIを活用したオープンソースのテキストツールで、以下の機能を提供します：
 
-- **翻訳** — 数十の言語間で、ソース言語の自動検出と用語集に対応
+- **翻訳** — 数十の言語間での翻訳、自動ソース検出、用語集に対応
 - **リライト** — 文法の修正、明確さの向上、トーンや長さの変更
-- **トランスフォーム** — 任意のテキストに対して独自のカスタムAIプロンプトを実行
+- **トランスフォーム** — 任意のテキストに対してカスタムAIプロンプトを実行
 
-多くのAIプロバイダー（OpenRouter、OpenAI、Anthropic、Google Gemini、DeepSeek、Groq、Mistral、xAI、Cerebras、NVIDIA、Alibaba Cloud、apikey.fun、OpenAI互換エンドポイント、およびOllama、LM Studio、llama.cppなどのローカルOpenAI互換サーバー）をサポートしています。**デスクトップアプリ**（Windows / Linux）または**セルフホスト型Webアプリ**（Docker）として実行できます。
+多くのAIプロバイダーをサポートしています（OpenRouter、OpenAI、Anthropic、Google Gemini、DeepSeek、Groq、Mistral、xAI、Cerebras、NVIDIA、Alibaba Cloud、apikey.fun、OpenAI互換エンドポイント、Ollama、LM Studio、llama.cppなどのローカルOpenAI互換サーバーなど）。**デスクトップアプリ**（Windows / Linux）または**セルフホスト型Webアプリ**（Docker）として実行できます。
 
-キー、モデル、ホストはすべてユーザー自身のものです。Transrewrtのクラウドアカウントは存在しません。
+あなたのキー、あなたのモデル、あなたのホスト — Transrewrtのクラウドアカウントはありません。
 
 ## ウィンドウの構成
 
-- **Sidebar** — 翻訳、書き換え、変換、ダッシュボード、履歴、設定（およびWeb版のログインユーザー）
-- **Toolbar** — ページタイトル、**preset**（Easy）または**model**（Advanced）セレクター、および**Interface language**（地球アイコン、翻訳元/翻訳先は変更されません）
-- **Work area** — カウント、タイミング、TPS、およびオプションのコストを含む入力パネルと出力パネル
+![翻訳ワークスペース](/images/screenshots/ja/translate.png)
 
-デフォルトでは、アプリは**Easy**モードで実行されます。設定で**preset**と**Provider**を選択します。完全なモデルリストを表示するには、[設定 → 一般設定](/docs/settings/#general-settings)で**Advanced**に切り替えます。
+- **Sidebar** — メインナビゲーション: 翻訳、リライト、変換、ダッシュボード、履歴、設定 (およびウェブ版のログインユーザー)。
+- **Toolbar** — ページタイトル、**preset** (かんたん) または **model** (高度) のセレクター、**Interface language** (地球アイコン、翻訳元/先は変更されません)、およびこれらのドキュメントにリンクするヘルプ (**?**)。プリセット/モデルメニューでは、**Switch to Easy/Advanced mode** (「設定を開く」の上) も可能です。
+- **Work area** — 入力パネルと出力パネル (文字数、時間、TPS、オプションのコストを含む)。アクションバーには、GitHub Pages サイトへの小さなアプリの **version** リンク (右下) が表示されます。
+
+デフォルトでは、アプリは**イージーモード**で動作します：設定で**プリセット**と**プロバイダー**を選びます。[設定 → 全般設定](/docs/settings/#general-settings)で**アドバンストモード**に切り替えて完全なモデルリストを表示するか、ツールバーのプリセット/モデルメニュー内のスイッチを使用してください。
 
 ## はじめに
 
 1. [クイックスタート](/docs/quick-start/) — デスクトップ版のインストールまたはDockerでの実行
-2. [APIキー](/docs/api-key/) — 無料のOpenRouterキーまたは他のプロバイダーへの接続
+2. [APIキー](/docs/api-key/) — 無料のOpenRouterキーまたはその他のプロバイダーを接続
 3. [設定](/docs/configuration/) — 環境変数、設定パス、Web認証
 
 ## ガイド
 
-- [テキストの翻訳](/docs/translate/)
-- [テキストの書き換え](/docs/rewrite/)
-- [プロンプトによる変換](/docs/transform/)
-- [ダッシュボードの使用](/docs/dashboard/)
-- [履歴の閲覧](/docs/history/)
+- [テキストを翻訳する](/docs/translate/)
+- [テキストをリライトする](/docs/rewrite/)
+- [プロンプトでトランスフォームする](/docs/transform/)
+- [ダッシュボードを使う](/docs/dashboard/)
+- [履歴を閲覧する](/docs/history/)
 
 ## リファレンスとヘルプ
 
 - [設定](/docs/settings/)
-- [よくある問題](/docs/common-issues/)
+- [一般的な問題](/docs/common-issues/)
 
 [Download releases](https://github.com/wsj-br/transrewrt/releases) · [GitHub repository](https://github.com/wsj-br/transrewrt)

@@ -12,7 +12,7 @@ Use o **Painel** para ver o quanto você está usando o aplicativo e qual é o c
 ![Resumo do Painel](/images/screenshots/pt-BR/dashboard-summary.png)
 
 :::note
-Se você usar apenas modelos **gratuitos**, os valores de custo podem ser zero. Os KPIs de contagem de chamadas no **Resumo** ainda precisam de atividade no período selecionado.
+Se você usa apenas modelos **gratuitos**, os valores de custo podem ser zero. Os KPIs de contagem de chamadas no **Resumo** ainda precisam de atividade no período selecionado.
 :::
 
 ## Filtrar os dados

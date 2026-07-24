@@ -21,12 +21,12 @@ A **webalkalmazásban** mindenki (beleértve az adminisztrátorokat is) csak a s
 
 Exportálja a szűrt listát **JSON**, **CSV** vagy **XLSX** formátumban.
 
-## Ha hiányzik az előzmények
+## Ha hiányzik az Előzmények
 
 Lehet, hogy a **Végrehajtási előzmények megőrzése** ki van kapcsolva. Engedélyezze a [Beállítások → Általános beállítások](/docs/settings/#general-settings) menüpontban, hacsak az adminisztrátor nem állította be az `HISTORY_DISABLED` opciót – lásd a [Konfiguráció](/docs/configuration/#privacy-mode) részt.
 
 ## Következő lépések
 
-- [Az irányítópult használata](/docs/dashboard/)
+- [Az Irányítópult használata](/docs/dashboard/)
 - [Beállítások](/docs/settings/)
 - [Gyakori problémák](/docs/common-issues/)

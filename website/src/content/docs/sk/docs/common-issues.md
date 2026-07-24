@@ -1,5 +1,5 @@
 ---
-title: Časté problémy
+title: Bežné problémy
 description: Riešenie problémov a rýchle tipy pre Transrewrt.
 ---
 
@@ -11,16 +11,16 @@ Ak niečo nefunguje podľa očakávania, najprv skontrolujte tieto body.
 
 Skontrolujte, či:
 
-- na paneli nástrojov ste vybrali **predvoľbu** (Easy) alebo **model** (Advanced)
-- v režime **Easy** má sekcia **Settings → General Settings** nastavený **Provider** s funkčným kľúčom (alebo URL lokálneho LLM)
-- v režime **Advanced** je v sekcii **Settings → Models** uvedený aspoň jeden model
-- vaše nastavenie API funguje (desktop: **Settings → API Config → Test**)
+- ste vybrali **predvoľbu** (Jednoduché) alebo **model** (Pokročilé) na paneli nástrojov
+- v režime **Jednoduché** má **Nastavenia → Všeobecné nastavenia** **poskytovateľa** s funkčným kľúčom (alebo URL lokálneho LLM)
+- v režime **Pokročilé** je na paneli nástrojov vybraný model (prázdny zoznam je povolený, ale na spustenie potrebujete aspoň jeden model v **Nastavenia → Modely**)
+- vaše nastavenie API funguje (desktop: **Nastavenia → Konfigurácia API → Test**)
 
 ## Zoznam modelov je prázdny
 
-V režime **Easy** skontrolujte, či je nastavený **Provider** a či sú kľúče/URL otestované. Pre **Local LLM** sa uistite, že váš lokálny server beží a modely sú načítané.
+V režime **Jednoduché** potvrďte, že je nastavený **Poskytovateľ** a kľúče/URL sú otestované. Pre **Lokálny LLM** sa uistite, že váš lokálny server beží a modely sú načítané.
 
-V režime **Pokročilé** otvorte **Nastavenia → Modely**, kliknite na **Obnoviť** a pridajte modely do **Vybraných modelov**. Voliteľne zapnite **Len bezplatné**.
+V režime **Pokročilé** môžu byť vybrané modely prázdne. Otvorte **Nastavenia → Modely**, kliknite na **Obnoviť** a pridajte modely do **Vybraných modelov**. Voliteľne zapnite **Len bezplatné**. Odstránenie posledného modelu z panela nástrojov tiež otvorí Nastavenia → Modely.
 
 ## Príliš pomalé alebo príliš drahé
 
@@ -39,54 +39,54 @@ Kliknite na ikonu glóbusu na paneli nástrojov a vyberte si **Jazyk rozhrania**
 
 ## Súhrn na hlavnom paneli vyzerá prázdny
 
-Je to normálne, ak:
+To je normálne, ak:
 
 - používate iba **bezplatné modely** a pozeráte sa na údaje o **nákladoch** (môžu byť nulové); KPI počtu volaní stále potrebujú údaje za vybrané obdobie
 - vybraný **časový filter** nepokrýva čas, kedy boli volania uskutočnené – skúste **Všetky**
 
-Ak sú KPI po nastavení na **Všetky** stále nulové, skontrolujte [Históriu](/docs/history/) alebo Hlavný panel → **Všetky volania**.
+Ak sú KPI po **Všetkých** stále nulové, skontrolujte [Históriu](/docs/history/) alebo Hlavný panel → **Všetky volania**.
 
-## Náklady ukazujú „nie sú k dispozícii“ alebo sa zdajú byť nesprávne
+## Náklady ukazujú „nie sú k dispozícii“ alebo sa zdajú nesprávne
 
-OpenRouter zobrazuje skutočné výdavky, ak sú relevantné. Pre ostatných poskytovateľov sa náklady odhadujú z cien OpenRouter; ak sa žiadna cena nezhoduje, náklady sa zobrazia ako **nie sú k dispozícii** a nepridávajú sa k celkovej sume.
+OpenRouter zobrazuje skutočné výdavky, ak sú relevantné. Pre ostatných poskytovateľov sa náklady odhadujú z cien OpenRouter; ak sa žiadna cena nezhoduje, náklady sa zobrazia ako **nie sú k dispozícii** a nepridajú sa k celkovej sume.
 
 ## Celkové náklady sa nezhodujú s mojím účtom od poskytovateľa
 
-Údaje v aplikácii sú **odhadmi pre referenciu**, nie faktúrami. Pre OpenRouter použite **Nastavenia → Sledovanie nákladov → Synchronizovať s používaním kľúča API**.
+Údaje v aplikácii sú **odhadmi pre referenciu**, nie faktúrami. Pre OpenRouter použite **Nastavenia → Sledovanie nákladov → Synchronizovať s používaním API kľúča**.
 
-## Stránka histórie chýba na bočnom paneli
+## Stránka História chýba v bočnom paneli
 
-Možnosť **Ponechať históriu vykonávania** môže byť vypnutá. Povoľte ju vo Všeobecných nastaveniach, pokiaľ história nie je zakázaná administrátorom (`HISTORY_DISABLED` – pozrite si [Konfigurácia](/docs/configuration/#privacy-mode)).
+Možno je vypnutá možnosť **Ponechať históriu vykonávania**. Povoľte ju vo Všeobecných nastaveniach, pokiaľ história nie je zakázaná administrátorom (`HISTORY_DISABLED` — pozrite [Konfigurácia](/docs/configuration/#privacy-mode)).
 
 ## Web: neočakávané presmerovanie na prihlásenie
 
-Vaša relácia mohla vypršať. Prihláste sa znova. Ak sa to stáva často, skontrolujte nastavenia životnosti relácie servera.
+Vaša relácia mohla vypršať. Prihláste sa znova. Ak sa to stáva často, požiadajte administrátora, aby zvýšil **Časový limit relácie** v časti [Nastavenia → Používatelia](/docs/settings/#users) (administrátor vám tiež mohol zrušiť relácie).
 
 ## Webový administrátor: zabudnuté heslo
 
-Ak sa môže prihlásiť iný správca, môže resetovať heslo v časti **Nastavenia → Používatelia**. Ak ste zablokovaný, ale máte prístup k shellu:
+Ak sa môže prihlásiť iný administrátor, môže resetovať heslo v časti **Nastavenia → Používatelia**. Ak ste zablokovaní, ale máte prístup k shellu:
 
 ```bash
 docker exec transrewrt reset-web-password '<username>' '<new-password>'
 ```
 
-Predvolené používateľské meno správcu je `admin`. Z pokladne zdroja: `pnpm run reset-web-password -- <username> <new-password>`.
+Predvolené používateľské meno administrátora je `admin`. Z pôvodného úložiska: `pnpm run reset-web-password -- <username> <new-password>`.
 
-## Hlavný panel nezobrazuje žiadne údaje pre ostatných používateľov (web)
+## Dashboard nezobrazuje žiadne údaje pre ostatných používateľov (web)
 
 Iba **administrátori** môžu prezerať ostatných používateľov pomocou filtra **Používateľ**. Bežní používatelia vidia iba svoju vlastnú aktivitu.
 
-## Zmenili ste výzvu a stratili úpravy
+## Zmenil som výzvu a stratil úpravy
 
 Pri úprave výzvy Transform kliknite na **Uložiť** pred **Späť na spustenie**.
 
 ## Rýchle tipy
 
 - Začnite s [Preložiť](/docs/translate/), aby ste potvrdili svoje nastavenie pred Prepisom alebo Transformáciou
-- Použite [Prepísať](/docs/rewrite/) na každodenné zlepšenia formulácie
+- Použite [Prepísať](/docs/rewrite/) na každodenné zlepšenie formulácie
 - Použite [Transformovať](/docs/transform/) pre opakovateľné vlastné pracovné postupy
-- Zostaňte v režime **Jednoduché**, kým nebudete potrebovať podrobné ID modelov
+- Zostaňte v režime **Jednoduchý**, kým nebudete potrebovať podrobné ID modelov
 - Pravidelne exportujte výzvy, ak vytvárate knižnicu výziev
-- Používajte [Hlavný panel](/docs/dashboard/) a [Históriu](/docs/history/) na kontrolu používania a minulých spustení
+- Použite [Dashboard](/docs/dashboard/) a [Históriu](/docs/history/) na kontrolu používania a minulých spustení
 
 [Report an issue](https://github.com/wsj-br/transrewrt/issues)

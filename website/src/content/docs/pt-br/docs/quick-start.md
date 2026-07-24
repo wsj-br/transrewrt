@@ -14,20 +14,20 @@ Escolha o caminho que melhor se adapta a você. Todos são gratuitos e de códig
 ```bash
 docker pull ghcr.io/wsj-br/transrewrt:latest
 
-PROVIDER_API_KEY=sk-or-your-key docker run -d \
+docker run -d \
   -p 5000:5000 \
   -v transrewrt-data:/app/data \
-  -e PROVIDER_API_KEY \
-  --name transrewrt-web \
+  -e PROVIDER_API_KEY=your-api-key \
+  --name transrewrt \
   ghcr.io/wsj-br/transrewrt:latest
 ```
 
-Substitua `PROVIDER_API_KEY=sk-or-your-key` pela sua chave de API do provedor escolhido (veja as opções suportadas em [Configuração](/docs/configuration/)).
+Substitua `PROVIDER_API_KEY` pela variável do seu provedor (por exemplo, `OPENROUTER_API_KEY`, `OPENAI_API_KEY`, `ANTHROPIC_API_KEY`, `XIA_API_KEY`, ...) e defina seu valor. Veja a lista completa em [Configuração](/docs/configuration/#environment-variables-web--docker).
 
 Em seguida, abra [http://localhost:5000](http://localhost:5000) e **altere a senha de administrador padrão** antes de expor o serviço.
 
 :::caution
-No Docker, as credenciais LLM são definidas com variáveis de ambiente (por exemplo, `PROVIDER_API_KEY`). Elas **não** são inseridas na interface do usuário da web. No desktop, você configura as chaves em **Configurações → API**.
+No Docker, as credenciais LLM são definidas com variáveis de ambiente (por exemplo, `PROVIDER_API_KEY`). Elas **não** são inseridas na interface web. No desktop, você configura as chaves em **Configurações → Configuração da API**.
 :::
 
 ### Docker Compose
@@ -40,9 +40,9 @@ docker compose -f transrewrt.yml up -d
 
 ## Windows
 
-1. Baixe o `Transrewrt Setup x.y.z.exe` mais recente em [Releases](https://github.com/wsj-br/transrewrt/releases).
+1. Baixe o `Transrewrt Setup x.y.z.exe` mais recente em [Lançamentos](https://github.com/wsj-br/transrewrt/releases).
 2. Execute o instalador.
-3. Abra o aplicativo e insira as chaves de API em **Configurações → API**. Configure pelo menos um provedor; o OpenRouter é uma escolha comum para modelos gratuitos.
+3. Abra o aplicativo e insira as chaves da API em **Configurações → Configuração da API**. Configure pelo menos um provedor; o OpenRouter é uma escolha comum para modelos gratuitos.
 
 :::note
 O Windows pode exibir avisos de UAC ou SmartScreen para aplicativos independentes não assinados. Prefira downloads da página oficial do GitHub Releases e verifique os checksums quando publicados.
@@ -50,13 +50,13 @@ O Windows pode exibir avisos de UAC ou SmartScreen para aplicativos independente
 
 ## Linux
 
-Baixe o `.AppImage` para sua CPU em [Releases](https://github.com/wsj-br/transrewrt/releases) (`x64` ou `arm64`, incluindo Raspberry Pi 4+):
+Baixe o `.AppImage` para sua CPU em [Lançamentos](https://github.com/wsj-br/transrewrt/releases) (`x64` ou `arm64`, incluindo Raspberry Pi 4+):
 
 ```bash
 chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage
 ```
 
-Insira as chaves de API em **Configurações → API**.
+Insira as chaves da API em **Configurações → Configuração da API**.
 
 Se o Chromium imprimir erros de GPU / EGL, mas o aplicativo funcionar, você pode desativar a aceleração de hardware:
 
@@ -67,6 +67,20 @@ TRANSREWRT_DISABLE_GPU=1 ./Transrewrt-x.y.z-arm64.AppImage
 :::note
 O macOS não é atualmente suportado. O Transrewrt está disponível para Windows, Linux e Docker.
 :::
+
+## Atualizando
+
+- **Windows** — baixe o `Transrewrt Setup x.y.z.exe` mais recente em [Lançamentos](https://github.com/wsj-br/transrewrt/releases) e execute-o. As configurações e os dados são mantidos.
+- **Linux** — baixe o `.AppImage` mais recente e substitua o arquivo antigo. As configurações e os dados são mantidos.
+- **Docker** — puxe a nova imagem e recrie o contêiner. Os dados persistem no volume `/app/data`:
+
+```bash
+docker pull ghcr.io/wsj-br/transrewrt:latest
+docker stop transrewrt && docker rm transrewrt
+# then run the same `docker run` command as above
+# or, with Docker Compose:
+docker compose -f transrewrt.yml pull && docker compose -f transrewrt.yml up -d
+```
 
 ## Próximos passos
 

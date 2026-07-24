@@ -7,7 +7,7 @@ description: >-
 
 
 
-Sử dụng **Chuyển đổi** khi bạn muốn AI tuân theo các hướng dẫn tùy chỉnh — tóm tắt, trau chuốt email, trích xuất các điểm chính, định dạng lại văn bản hoặc bất kỳ quy trình làm việc nào bạn xác định.
+Sử dụng **Chuyển đổi** khi bạn muốn AI làm theo các hướng dẫn tùy chỉnh — tóm tắt, trau chuốt email, trích xuất các điểm chính, định dạng lại văn bản hoặc bất kỳ quy trình làm việc nào bạn xác định.
 
 ![Không gian làm việc Chuyển đổi](/images/screenshots/vi/transform.png)
 
@@ -19,6 +19,8 @@ Sử dụng **Chuyển đổi** khi bạn muốn AI tuân theo các hướng d�
 4. Nhập hoặc dán văn bản vào **Đầu vào**.
 5. Nhấp vào **Chuyển đổi**.
 6. Đọc kết quả trong **Đầu ra**.
+
+[Công tắc bố cục và phím tắt](/docs/translate/#layout-and-keyboard) hoạt động tương tự như trong Translate.
 
 ## Tải lời nhắc mẫu
 
@@ -43,15 +45,15 @@ Các trường chính:
 - **Tên lời nhắc** — hiển thị trong danh sách lời nhắc
 - **Hướng dẫn lời nhắc (tùy chọn)** — gợi ý ngắn khi chạy lời nhắc
 - **Vai trò mô hình** — vai trò tổng thể cho AI
-- **Hướng dẫn mô hình (một dòng mỗi dòng)** — các quy tắc cần tuân theo
+- **Hướng dẫn mô hình (một trên mỗi dòng)** — các quy tắc cần tuân theo
 - **Mô tả đầu ra** — nhãn ngắn cho kết quả (ví dụ: đã tóm tắt)
-- **Nhiệt độ (0.0 → 1.0)** — thấp hơn thì ổn định hơn; cao hơn thì đa dạng hơn
-- **Hỏi ngôn ngữ đích** — thêm bộ chọn ngôn ngữ khi chạy
+- **Nhiệt độ (0.0 → 1.0)** — thấp hơn ổn định hơn; cao hơn đa dạng hơn
+- **Yêu cầu ngôn ngữ đích** — thêm bộ chọn ngôn ngữ khi chạy
 
 Trợ giúp: **Tạo lời nhắc**, **Cải thiện lời nhắc**, **Dịch lời nhắc** (Dễ sử dụng cài đặt trước; Nâng cao sử dụng danh sách mô hình).
 
 :::caution
-Nhấp vào **Lưu** trước khi **Quay lại Chạy**. Quay lại mà không lưu sẽ loại bỏ các chỉnh sửa.
+Nhấp vào **Lưu** trước khi **Quay lại Chạy**. Quay lại mà không lưu sẽ hủy bỏ các chỉnh sửa.
 :::
 
 ## Kiểm tra trước khi sử dụng hàng ngày

@@ -2,27 +2,29 @@
 title: Transformați cu prompturi
 description: >-
   Rulați instrucțiuni AI personalizate — creați, editați, testați și gestionați
-  prompturi Transform.
+  prompturile Transform.
 ---
 
 
 
-Utilizați **Transformare** atunci când doriți ca AI-ul să urmeze instrucțiuni personalizate — rezumați, perfecționați un e-mail, extrageți puncte cheie, reformatați textul sau orice flux de lucru pe care îl definiți.
+Utilizați **Transform** atunci când doriți ca AI-ul să urmeze instrucțiuni personalizate — să rezume, să șlefuiască un e-mail, să extragă puncte cheie, să reformateze textul sau orice flux de lucru pe care îl definiți.
 
 ![Spațiul de lucru Transform](/images/screenshots/ro/transform.png)
 
 ## Rulați un prompt existent
 
-1. Deschideți **Transformare**.
+1. Deschideți **Transform**.
 2. Alegeți un prompt din listă.
 3. Dacă apare o casetă de limbă **De la**, setați o limbă dacă doriți una.
 4. Tastați sau lipiți text în **Intrare**.
-5. Faceți clic pe **Transformare**.
+5. Faceți clic pe **Transform**.
 6. Citiți rezultatul în **Ieșire**.
+
+[Comutatorul de aspect și scurtăturile de la tastatură](/docs/translate/#layout-and-keyboard) funcționează la fel ca în Traducere.
 
 ## Încărcați prompturi eșantion
 
-Dacă lista este goală, faceți clic pe **Încărcați prompturi eșantion** în spațiul de lucru Transform (disponibil și sub [Setări → Transformare](/docs/settings/#transform)). Eșantioanele sunt în engleză; după încărcare, editați un prompt și utilizați **Traduceți promptul** dacă este necesar.
+Dacă lista este goală, faceți clic pe **Încărcați prompturi eșantion** în spațiul de lucru Transform (disponibil și sub [Setări → Transform](/docs/settings/#transform)). Eșantioanele sunt în engleză; după încărcare, editați un prompt și utilizați **Traduceți promptul** dacă este necesar.
 
 ## Creați un prompt
 
@@ -42,11 +44,11 @@ Câmpuri principale:
 
 - **Nume prompt** — afișat în lista de prompturi
 - **Instrucțiuni prompt (opțional)** — scurt indiciu la rularea promptului
-- **Rol model** — rol general pentru AI
+- **Rol model** — rolul general pentru AI
 - **Instrucțiuni model (una pe linie)** — reguli de urmat
-- **Descriere ieșire** — etichetă scurtă pentru rezultat (de ex. rezumat)
-- **Temperatură (0.0 → 1.0)** — mai mică este mai stabilă; mai mare este mai variată
-- **Cereți limba țintă** — adaugă un selector de limbă la rulare
+- **Descriere ieșire** — etichetă scurtă pentru rezultat (ex: rezumat)
+- **Temperatură (0.0 → 1.0)** — mai mică înseamnă mai stabilă; mai mare înseamnă mai variată
+- **Solicitați limba țintă** — adaugă un selector de limbă la rulare
 
 Ajutoare: **Generați prompt**, **Îmbunătățiți prompt**, **Traduceți prompt** (Ușor utilizează presetări; Avansat utilizează lista de modele).
 
@@ -64,4 +66,4 @@ Exportați și importați prompturi în bloc sub [Setări → Transformare](/doc
 
 - [Setări](/docs/settings/)
 - [Istoric navigare](/docs/history/)
-- [Probleme frecvente](/docs/common-issues/)
+- [Probleme comune](/docs/common-issues/)

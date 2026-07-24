@@ -1,7 +1,7 @@
 ---
 title: Pornire rapidă
 description: >-
-  Instalați Transrewrt pe Windows sau Linux sau rulați aplicația web Docker
+  Instalați Transrewrt pe Windows sau Linux, sau rulați aplicația web Docker
   auto-găzduită.
 ---
 
@@ -14,20 +14,20 @@ Alegeți calea care vi se potrivește. Toate sunt gratuite și open source (Apac
 ```bash
 docker pull ghcr.io/wsj-br/transrewrt:latest
 
-PROVIDER_API_KEY=sk-or-your-key docker run -d \
+docker run -d \
   -p 5000:5000 \
   -v transrewrt-data:/app/data \
-  -e PROVIDER_API_KEY \
-  --name transrewrt-web \
+  -e PROVIDER_API_KEY=your-api-key \
+  --name transrewrt \
   ghcr.io/wsj-br/transrewrt:latest
 ```
 
-Înlocuiți `PROVIDER_API_KEY=sk-or-your-key` cu cheia API de la furnizorul ales (vedeți opțiunile acceptate în [Configurare](/docs/configuration/)).
+Înlocuiți `PROVIDER_API_KEY` cu variabila pentru furnizorul dvs. (de exemplu `OPENROUTER_API_KEY`, `OPENAI_API_KEY`, `ANTHROPIC_API_KEY`, `XIA_API_KEY`, ...) și setați-i valoarea. Consultați lista completă în [Configurație](/docs/configuration/#environment-variables-web--docker).
 
 Apoi deschideți [http://localhost:5000](http://localhost:5000) și **schimbați parola de administrator implicită** înainte de a expune serviciul.
 
 :::caution
-În Docker, acreditările LLM sunt setate cu variabile de mediu (de exemplu `PROVIDER_API_KEY`). Acestea **nu** sunt introduse în interfața web. Pe desktop, configurați cheile în **Setări → API**.
+În Docker, acreditările LLM sunt setate cu variabile de mediu (de exemplu `PROVIDER_API_KEY`). Acestea **nu** sunt introduse în interfața web. Pe desktop, configurați cheile în **Setări → Configurare API**.
 :::
 
 ### Docker Compose
@@ -42,7 +42,7 @@ docker compose -f transrewrt.yml up -d
 
 1. Descărcați cel mai recent `Transrewrt Setup x.y.z.exe` de la [Lansări](https://github.com/wsj-br/transrewrt/releases).
 2. Rulați programul de instalare.
-3. Deschideți aplicația și introduceți cheile API în **Setări → API**. Configurați cel puțin un furnizor; OpenRouter este o alegere comună pentru modele gratuite.
+3. Deschideți aplicația și introduceți cheile API în **Setări → Configurare API**. Configurați cel puțin un furnizor; OpenRouter este o alegere comună pentru modele gratuite.
 
 :::note
 Windows poate afișa avertismente UAC sau SmartScreen pentru aplicațiile independente nesemnate. Preferă descărcările de pe pagina oficială GitHub Releases și verifică sumele de control atunci când sunt publicate.
@@ -56,7 +56,7 @@ Descărcați `.AppImage` pentru CPU-ul dvs. de la [Lansări](https://github.com/
 chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage
 ```
 
-Introduceți cheile API în **Setări → API**.
+Introduceți cheile API în **Setări → Configurare API**.
 
 Dacă Chromium afișează erori GPU / EGL, dar aplicația funcționează, puteți dezactiva accelerarea hardware:
 
@@ -67,6 +67,20 @@ TRANSREWRT_DISABLE_GPU=1 ./Transrewrt-x.y.z-arm64.AppImage
 :::note
 macOS nu este acceptat în prezent. Transrewrt este disponibil pentru Windows, Linux și Docker.
 :::
+
+## Actualizare
+
+- **Windows** — descărcați noul `Transrewrt Setup x.y.z.exe` de la [Lansări](https://github.com/wsj-br/transrewrt/releases) și rulați-l. Setările și datele sunt păstrate.
+- **Linux** — descărcați noul `.AppImage` și înlocuiți fișierul vechi. Setările și datele sunt păstrate.
+- **Docker** — extrageți noua imagine și recreați containerul. Datele persistă în volumul `/app/data`:
+
+```bash
+docker pull ghcr.io/wsj-br/transrewrt:latest
+docker stop transrewrt && docker rm transrewrt
+# then run the same `docker run` command as above
+# or, with Docker Compose:
+docker compose -f transrewrt.yml pull && docker compose -f transrewrt.yml up -d
+```
 
 ## Pașii următori
 

@@ -646,12 +646,15 @@ function getThirdPartyNoticesPath() {
   }
   candidates.push(path.join(app.getAppPath(), "dist", "NOTICES"));
   candidates.push(path.join(app.getAppPath(), "NOTICES"));
-  // Dev: also check relative to main.js location (src/main/ → ../../NOTICES)
+  // dist-main/main.js → ../NOTICES; src/main/main.js → ../../NOTICES
+  candidates.push(path.join(__dirname, "..", "NOTICES"));
   candidates.push(path.join(__dirname, "..", "..", "NOTICES"));
   candidates.push(path.join(process.cwd(), "NOTICES"));
+  candidates.push(path.join(process.cwd(), "dist", "NOTICES"));
   for (const p of candidates) {
     try {
-      if (p && fs.existsSync(p)) return p;
+      // Prefer files only: a mistaken dist/NOTICES directory must not win over the root file.
+      if (p && fs.existsSync(p) && fs.statSync(p).isFile()) return p;
     } catch {
       /* ignore */
     }

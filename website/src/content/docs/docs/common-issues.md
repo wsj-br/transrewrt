@@ -11,14 +11,14 @@ Check that:
 
 - you have selected a **preset** (Easy) or **model** (Advanced) in the toolbar
 - in **Easy** mode, **Settings → General Settings** has a **Provider** with a working key (or Local LLM URL)
-- in **Advanced** mode, at least one model is listed in **Settings → Models**
+- in **Advanced** mode, a model is selected in the toolbar (an empty list is allowed, but you need at least one model in **Settings → Models** to run)
 - your API setup is working (desktop: **Settings → API Config → Test**)
 
 ## The model list is empty
 
 In **Easy** mode, confirm **Provider** is set and keys/URLs are tested. For **Local LLM**, ensure your local server is running and models are loaded.
 
-In **Advanced** mode, open **Settings → Models**, click **Refresh**, and add models to **Selected Models**. Optionally turn on **Free Only**.
+In **Advanced** mode, selected models may be empty. Open **Settings → Models**, click **Refresh**, and add models to **Selected Models**. Optionally turn on **Free Only**. Removing the last toolbar model also opens Settings → Models.
 
 ## Too slow or too expensive
 
@@ -58,7 +58,7 @@ Figures in the app are **estimates for reference**, not invoices. For OpenRouter
 
 ## Web: redirected to login unexpectedly
 
-Your session may have timed out. Log in again. If it happens often, check server session lifetime settings.
+Your session may have timed out. Log in again. If it happens often, ask an administrator to increase **Session Timeout** under [Settings → Users](/docs/settings/#users) (an admin may also have revoked your sessions).
 
 ## Web admin: forgot password
 

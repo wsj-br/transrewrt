@@ -1,7 +1,7 @@
 ---
 title: Nastavení
 description: >-
-  Stručná reference pro Obecné, Modely, Jazyky, Glosář, Náklady, Transformace,
+  Stručný přehled pro Obecné, Modely, Jazyky, Slovník, Náklady, Transformace,
   Uživatelé, API a O aplikaci.
 ---
 
@@ -12,11 +12,11 @@ Otevřete **Nastavení** z postranního panelu a přizpůsobte si chování apli
 | Karta | Desktop | Web (administrátor) | Web (uživatel) | Poznámky |
 | --- | :---: | :---: | :---: | --- |
 | Obecná nastavení | ano | ano | ano | Zahrnuje **Zkušenosti s AI** (Snadné / Pokročilé) |
-| Modely | ano | ano | ano | Pouze pokud je **Zkušenosti s AI** nastaveno na **Pokročilé** |
+| Modely | ano | ano | ano | Pouze když je **Zkušenosti s AI** **Pokročilé** |
 | Jazyky | ano | ano | ano | |
 | Sledování nákladů | ano | ano | — | |
 | Transformace | ano | ano | ano | Hromadný import/export promptů |
-| Glosář | ano | ano | ano | Páry termínů pro překlad |
+| Slovník | ano | ano | ano | Páry termínů pro překlad |
 | Uživatelé | — | ano | — | |
 | Konfigurace API | ano | ano | — | |
 | O aplikaci | ano | ano | ano | |
@@ -29,12 +29,20 @@ Ve webové verzi má každý uživatel svou vlastní konfiguraci (zkušenosti s 
 
 ## Obecná nastavení
 
+![Karta Nastavení Obecná nastavení](/images/screenshots/cs/settings-general.png)
+
 **Zkušenosti s AI**
 
-- **Jednoduché** (výchozí): zvolte **Poskytovatele**. Cloudoví poskytovatelé používají předvolby nástrojové lišty (**Zdarma (OpenRouter)**, **Standard**, **Pokročilé**, **Technické**). **Místní LLM** zobrazuje nainstalované místní modely. **Aktualizovat katalog předvoleb** načte nejnovější seznam předvoleb z repozitáře projektu.
-- **Pokročilé**: zvolte modely v nástrojové liště; spravujte seznam v [Modelech](#models).
+- **Snadné** (výchozí): vyberte **Poskytovatele**. Cloudoví poskytovatelé používají předvolby na panelu nástrojů. **Lokální LLM** místo toho vypisuje nainstalované lokální modely. **Obnovit katalog předvoleb** načte nejnovější seznam předvoleb z repozitáře projektu.
+  - **Zdarma (OpenRouter)** — bezplatná možnost směrovaná na dostupné bezplatné modely; kvalita a dostupnost se mohou lišit
+  - **Standardní** — lehký a nákladově efektivní; nejlepší pro krátké texty, rychlé návrhy a vysoký objem použití
+  - **Pokročilé** — vysoce přesný model pro komplexní nebo nuancovaný obsah, za vyšší cenu
+  - **Technické** — vyladěno pro kód, API, vývojářskou dokumentaci a strukturovaný obsah; zachovává formátování a terminologii
+- **Pokročilé**: vyberte modely na panelu nástrojů; spravujte seznam pod [Modely](#models).
 
-**Vzhled** — Téma; **Zobrazit informace o nákladech u akcí**; **Desetinná místa nákladů**; okraj kolem aplikace pouze pro web; **Rodina písem** a **Velikost**.
+Můžete také přepínat Snadné ↔ Pokročilé z nabídky předvoleb/modelů na panelu nástrojů (**Přepnout do režimu Snadné/Pokročilé**, nad Otevřít nastavení).
+
+**Vzhled** — motiv; **Zobrazit informace o nákladech u akcí**; **Počet desetinných míst u nákladů**; okraj kolem aplikace pouze na webu; **Rodina písma** a **Velikost**.
 
 **Chování** — **Chování pro ENTER**; **Automatické spuštění při vložení**; **Automatické kopírování výsledku do schránky**; **Překlad v reálném čase během psaní**; **Časový limit (ms)**.
 
@@ -55,22 +63,20 @@ Zálohy lze přesouvat mezi desktopem a webem; obnovení desktopové zálohy na 
 
 Dostupné pouze v režimu **Pokročilé**.
 
-![Karta Nastavení Modely](/images/screenshots/cs/settings-general.png)
-
 - **Dostupné modely** (vlevo) a **Vybrané modely** (vpravo)
-- Vyhledávání, **Poskytovatel** čipů, **Pouze zdarma**, **Aktualizovat**, Rozbalit/Sbalit vše
-- Identifikátory modelů používají předponu poskytovatele (`openrouter/…`, `openai/…`, `local/…`, …)
+- Hledat, čipy **Poskytovatel**, **Pouze zdarma**, **Obnovit**, Rozbalit/Sbalit vše
+- ID modelů používají předponu poskytovatele (`openrouter/…`, `openai/…`, `local/…`, …)
 
 :::caution
-Nepoužívejte OpenRouter **Body Builder** (`openrouter/bodybuilder`) pro Překlad, Přepis nebo Transformaci — vrací JSON request payloady, nikoli hotový text.
+Nepoužívejte OpenRouter **Body Builder** (`openrouter/bodybuilder`) pro Překlad, Přepsání nebo Transformaci — vrací JSON datové části požadavků, nikoli hotový text.
 :::
 
-Přidat pomocí **Přidat**; odebrat pomocí **X**. **Zrušit výběr všeho** ponechá požadovaný bezplatný model.
+Přidat pomocí **Přidat**; odebrat pomocí **X**. Bezplatný model OpenRouter je volitelný — vybrané modely mohou být prázdné. Odebrání posledního modelu z panelu nástrojů otevře **Nastavení → Modely**. Pokud se aktuální model stane nedostupným, aplikace vybere další model v seznamu namísto vynucení bezplatného modelu.
 
 ## Jazyky
 
 - **Nejpoužívanější jazyky** — připnuté blízko horní části seznamů jazyků v Překladu a Transformaci
-- **Vlastní jazyk** — přidat jazyk chybějící v předdefinovaném seznamu
+- **Vlastní jazyk** — přidat jazyk chybějící v vestavěném seznamu
 
 ## Sledování nákladů
 
@@ -82,10 +88,10 @@ Přidat pomocí **Přidat**; odebrat pomocí **X**. **Zrušit výběr všeho** p
 OpenRouter zobrazuje skutečné účtované náklady, pokud je to relevantní; ostatní poskytovatelé používají odhady z cen OpenRouter. Odhady nejsou faktury.
 
 :::caution
-Smazání dat o nákladech nelze vrátit zpět. Pokud potřebujete zálohu, nejprve exportujte přes Historii nebo Dashboard → Všechna volání. Související historie vstupu/výstupu pro tato volání API je také odstraněna.
+Smazání dat o nákladech nelze vrátit zpět. Nejprve exportujte přes Historii nebo Dashboard → Všechna volání, pokud potřebujete zálohu. Související historie vstupu/výstupu pro tato volání API je také odstraněna.
 :::
 
-## Transformovat
+## Transformace
 
 Hromadná správa výzev: kontrola, smazání, import, export a načtení ukázkových výzev.
 
@@ -101,20 +107,26 @@ Desktop ukládá glosář lokálně; web ho ukládá pro každého uživatele.
 
 ## Uživatelé
 
-Pouze web (administrátoři): přidávání uživatelů, aktualizace podrobností, resetování hesel, mazání účtů.
+Pouze web (administrátoři):
+
+- Přidávat uživatele, aktualizovat údaje, resetovat hesla, mazat účty
+- **Časový limit relace** — jak dlouho trvá přihlášení (1 hodina až 7 dní); změny se vztahují pouze na nová přihlášení
+- **Zrušit relace** — okamžitě odhlásit uživatele ze všech zařízení
+
+Každý přihlášený uživatel (včetně neadministrátorů) si může změnit své vlastní heslo nebo se odhlásit z uživatelského menu ve spodní části postranního panelu.
 
 ## Konfigurace API
 
-Konfigurujte pouze poskytovatele, které používáte: OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, **Místní LLM** (základní URL pro Ollama, LM Studio, llama.cpp, nebo podobné), a volitelného vlastního poskytovatele kompatibilního s OpenAI.
+Konfigurujte pouze poskytovatele, které používáte: OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, **Local LLM** (základní URL pro Ollama, LM Studio, llama.cpp nebo podobné) a volitelného vlastního poskytovatele kompatibilního s OpenAI.
 
-**Web (administrátor):** klíče pocházejí z proměnných prostředí – tato stránka ukazuje, které jsou nastaveny, a umožňuje vám je **Testovat**. Po změně proměnných prostředí restartujte. Viz [Konfigurace](/docs/configuration/).
+**Web (administrátor):** klíče pocházejí z proměnných prostředí – tato stránka ukazuje, které jsou nastaveny, a umožňuje vám **Testovat**. Po změně proměnných prostředí restartujte. Viz [Konfigurace](/docs/configuration/).
 
-**Desktop:** zadejte klíče (nebo URL Místního LLM) a **Uložit** / **Upravit** / **Otestovat**. Klíče jsou uloženy zašifrované; nelze zobrazit aktuální hodnotu, pouze ji nahradit.
+**Desktop:** zadejte klíče (nebo URL Local LLM) a **Uložit** / **Upravit** / **Testovat**. Klíče jsou uloženy šifrovaně; aktuální hodnotu nelze zobrazit, pouze ji nahradit.
 
 :::tip
-Žádný placený klíč není nutný pro spuštění: použijte bezplatné modely OpenRouter, jiné poskytovatele s bezplatnou úrovní, nebo místního server kompatibilního s OpenAI, jako je [Ollama](https://ollama.com), LM Studio, nebo llama.cpp (například `translategemma:4b`).
+K zahájení není potřeba žádný placený klíč: použijte bezplatné modely OpenRouter, jiné bezplatné poskytovatele nebo lokální server kompatibilní s OpenAI, jako je [Ollama](https://ollama.com), LM Studio nebo llama.cpp (např. `translategemma:4b`).
 :::
 
 ## O aplikaci
 
-Název aplikace, verze, datum sestavení, licence, oznámení třetích stran a odkaz na repozitář.
+Název aplikace, verze, datum sestavení, licence, oznámení třetích stran a odkaz na úložiště.

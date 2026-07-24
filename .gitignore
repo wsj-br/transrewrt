@@ -57,4 +57,6 @@ dev/presets-check/provider-catalogs-cache.json
 website/node_modules/
 website/dist/
 website/.astro/
-website/.translation-cache/
+# website i18n cache: ignore backups/logs; keep cache.db tracked
+website/.translation-cache/**
+!website/.translation-cache/cache.db

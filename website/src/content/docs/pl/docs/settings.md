@@ -1,63 +1,69 @@
 ---
 title: Ustawienia
 description: >-
-  Kompaktowy przewodnik po Ogólne, Modele, Języki, Słownik, Koszt,
-  Przekształcenie, Użytkownicy, API i Informacje.
+  Kompaktowe odniesienie do ustawień ogólnych, modeli, języków, słownika,
+  kosztów, transformacji, użytkowników, API i informacji „O programie”.
 ---
 
 
 
 Otwórz **Ustawienia** z paska bocznego, aby dostosować zachowanie aplikacji.
 
-| Zakładka | Komputer | Web (admin) | Web (użytkownik) | Notatki |
+| Zakładka | Komputer | Sieć (administrator) | Sieć (użytkownik) | Uwagi |
 | --- | :---: | :---: | :---: | --- |
-| Ustawienia ogólne | tak | tak | tak | Obejmuje **doświadczenie AI** (Łatwe / Zaawansowane) |
-| Modele | tak | tak | tak | Tylko gdy **doświadczenie AI** jest **Zaawansowane** |
+| Ustawienia ogólne | tak | tak | tak | Zawiera **Doświadczenie AI** (Łatwe / Zaawansowane) |
+| Modele | tak | tak | tak | Tylko gdy **Doświadczenie AI** jest **Zaawansowane** |
 | Języki | tak | tak | tak | |
 | Śledzenie kosztów | tak | tak | — | |
-| Przekształcenie | tak | tak | tak | Import/eksport partii poleceń |
+| Transformacja | tak | tak | tak | Masowy import/eksport podpowiedzi |
 | Słownik | tak | tak | tak | Pary terminów do tłumaczenia |
 | Użytkownicy | — | tak | — | |
 | Konfiguracja API | tak | tak | — | |
-| Informacje | tak | tak | tak | |
+| O programie | tak | tak | tak | |
 
-W trybie **Łatwym**, wybierz AI za pomocą ustawień w pasku narzędzi i **Dostawcy** w Ustawieniach ogólnych; zakładka **Modele** jest ukryta.
+W trybie **Łatwym** wybierz AI za pomocą ustawień wstępnych na pasku narzędzi i **Dostawcę** w Ustawieniach ogólnych; zakładka **Modele** jest ukryta.
 
 :::note
-W wersji internetowej każdy użytkownik ma własną konfigurację (doświadczenie AI, dostawca, modele/ustawienia, języki, opcje, polecenia). Zmiany nie wpływają na innych użytkowników.
+W wersji internetowej każdy użytkownik ma własną konfigurację (doświadczenie AI, dostawca, modele/ustawienia wstępne, języki, opcje, podpowiedzi). Zmiany nie wpływają na innych użytkowników.
 :::
 
 ## Ustawienia ogólne
 
+![Zakładka Ustawienia ogólne](/images/screenshots/pl/settings-general.png)
+
 **Doświadczenie AI**
 
-- **Łatwy** (domyślny): wybierz **Dostawcę**. Dostawcy chmurowi używają predefiniowanych ustawień paska narzędzi (**Darmowy (OpenRouter)**, **Standardowy**, **Zaawansowany**, **Techniczny**). **Lokalny LLM** wyświetla listę zainstalowanych modeli lokalnych. **Odśwież katalog ustawień** pobiera najnowszą listę ustawień z repozytorium projektu.
-- **Zaawansowany**: wybierz modele na pasku narzędzi; zarządzaj listą w [Modelach](#models).
+- **Łatwe** (domyślne): wybierz **Dostawcę**. Dostawcy chmurowi używają ustawień wstępnych paska narzędzi. **Lokalny LLM** zamiast tego wyświetla listę zainstalowanych modeli lokalnych. **Odśwież katalog ustawień wstępnych** pobiera najnowszą listę ustawień wstępnych z repozytorium projektu.
+  - **Darmowe (OpenRouter)** — opcja bezpłatna, kierowana do dostępnych darmowych modeli; jakość i dostępność mogą się różnić
+  - **Standardowe** — lekkie i ekonomiczne; najlepsze do krótkich tekstów, szybkich szkiców i intensywnego użytkowania
+  - **Zaawansowane** — model o wysokiej dokładności do złożonych lub niuansowych treści, za wyższą cenę
+  - **Techniczne** — dostosowane do kodu, API, dokumentacji deweloperskiej i treści strukturalnych; zachowuje formatowanie i terminologię
+- **Zaawansowane**: wybierz modele na pasku narzędzi; zarządzaj listą w [Modelach](#models).
 
-**Wygląd** — Motyw; **Pokaż informacje o kosztach na akcjach**; **Liczba cyfr ułamkowych kosztu**; margines wokół aplikacji w wersji internetowej; **Rodzina czcionek** i **Rozmiar**.
+Możesz również przełączać tryb Łatwy ↔ Zaawansowany z menu ustawień wstępnych/modeli na pasku narzędzi (**Przełącz na tryb Łatwy/Zaawansowany**, powyżej Otwórz Ustawienia).
 
-**Zachowanie** — **Zachowanie dla ENTER**; **Automatyczne wykonywanie po wklejeniu**; **Automatyczne kopiowanie wyniku do schowka**; **Tłumaczenie w czasie rzeczywistym podczas pisania**; **Limit czasu (ms)**.
+**Wygląd** — Motyw; **Pokaż informacje o kosztach w działaniach**; **Liczba cyfr po przecinku dla kosztów**; margines wokół aplikacji tylko w wersji webowej; **Rodzina czcionek** i **Rozmiar**.
+
+**Zachowanie** — **Zachowanie dla klawisza ENTER**; **Automatyczne wykonanie po wklejeniu**; **Automatyczne kopiowanie wyniku do schowka**; **Tłumaczenie w czasie rzeczywistym podczas pisania**; **Limit czasu (ms)**.
 
 **Historia**
 
 - **Zachowaj historię wykonania** — przechowuj dane wejściowe/wyjściowe dla widoku [Historia](/docs/history/). Wyłączenie wymaga potwierdzenia i może usunąć przechowywany tekst. Jeśli jest oznaczone jako *wyłączone przez administratora*, ustawione jest `HISTORY_DISABLED` — zobacz [Konfiguracja](/docs/configuration/#privacy-mode).
 - **Usuń dane historii** — usuń przechowywany tekst według wieku lub wyczyść wszystko. **Nie** usuwa sum kosztów (do tego służy Śledzenie kosztów).
 
-**Kopia zapasowa konfiguracji** (administratorzy komputerów stacjonarnych i sieci web)
+**Kopia zapasowa konfiguracji** (administratorzy desktopowi i webowi)
 
 - Opcjonalnie **Dołącz dane użycia do kopii zapasowej**
-- **Konfiguracja kopii zapasowej** — ZIP z konfiguracją, stanem, użytkownikami, preferencjami, monitami i opcjonalnymi danymi użycia
+- **Kopia zapasowa konfiguracji** — ZIP z konfiguracją, stanem, użytkownikami, preferencjami, promptami i opcjonalnymi danymi użycia
 - **Przywróć z kopii zapasowej** — okno dialogowe potwierdzenia z opcjami przywracania i/lub czyszczenia danych użycia
 
-Kopie zapasowe mogą być przenoszone między komputerami stacjonarnymi a siecią; przywrócenie kopii zapasowej komputera stacjonarnego w sieci stosuje dane do użytkownika administratora.
+Kopie zapasowe mogą być przenoszone między wersją desktopową a webową; przywracanie kopii zapasowej z wersji desktopowej w wersji webowej stosuje dane do użytkownika administratora.
 
 ## Modele
 
 Dostępne tylko w trybie **Zaawansowanym**.
 
-![Karta Ustawienia Modele](/images/screenshots/pl/settings-general.png)
-
-- **Dostępne modele** (po lewej) i **Wybrane modele** (po prawej)
+- **Dostępne modele** (lewa strona) i **Wybrane modele** (prawa strona)
 - Wyszukiwanie, etykiety **Dostawca**, **Tylko darmowe**, **Odśwież**, Rozwiń/Zwiń wszystko
 - Identyfikatory modeli używają prefiksu dostawcy (`openrouter/…`, `openai/…`, `local/…`, …)
 
@@ -65,7 +71,7 @@ Dostępne tylko w trybie **Zaawansowanym**.
 Nie używaj OpenRouter **Body Builder** (`openrouter/bodybuilder`) do tłumaczenia, przepisywania ani transformacji — zwraca on ładunki żądań JSON, a nie gotowy tekst.
 :::
 
-Dodaj za pomocą **Dodaj**; usuń za pomocą **X**. **Odznacz wszystko** zachowuje wymagany darmowy model.
+Dodaj za pomocą **Dodaj**; usuń za pomocą **X**. Darmowy model OpenRouter jest opcjonalny — wybrane modele mogą być puste. Usunięcie ostatniego modelu z paska narzędzi otwiera **Ustawienia → Modele**. Jeśli bieżący model stanie się niedostępny, aplikacja wybierze następny model z listy zamiast wymuszać darmowy model.
 
 ## Języki
 
@@ -76,18 +82,18 @@ Dodaj za pomocą **Dodaj**; usuń za pomocą **X**. **Odznacz wszystko** zachowu
 
 - **Całkowity koszt**, **Kopiuj wartość**, **Resetuj koszt**
 - **Synchronizuj z użyciem klucza API** — dopasuj do użycia konta OpenRouter (tylko OpenRouter)
-- **Użycie klucza API** — szczegóły OpenRouter, gdy są dostępne
-- **Usuń dane kosztów** — wszystkie dane lub wpisy starsze niż data
+- **Użycie klucza API** — szczegóły OpenRouter, gdy dostępne
+- **Usuń dane kosztów** — wszystkie dane lub wpisy starsze niż określona data
 
 OpenRouter pokazuje rzeczywisty naliczony koszt, gdy ma to zastosowanie; inni dostawcy używają szacunków z cennika OpenRouter. Szacunki nie są fakturami.
 
 :::caution
-Usunięcie danych kosztów jest nieodwracalne. Najpierw wyeksportuj dane za pośrednictwem Historii lub Pulpitu nawigacyjnego → Wszystkie połączenia, jeśli potrzebujesz kopii zapasowej. Powiązana historia danych wejściowych/wyjściowych dla tych wywołań API również zostanie usunięta.
+Usunięcia danych kosztów nie można cofnąć. Najpierw wyeksportuj dane za pośrednictwem Historii lub Pulpitu → Wszystkie połączenia, jeśli potrzebujesz kopii zapasowej. Powiązana historia wejść/wyjść dla tych wywołań API również zostanie usunięta.
 :::
 
-## Transformuj
+## Transformacja
 
-Zbiorcze zarządzanie monitami: przeglądanie, usuwanie, importowanie, eksportowanie i ładowanie przykładowych monitów.
+Zbiorcze zarządzanie promptami: przeglądanie, usuwanie, importowanie, eksportowanie i ładowanie przykładowych promptów.
 
 ## Słownik
 
@@ -101,18 +107,24 @@ Wersja desktopowa przechowuje słownik lokalnie; wersja webowa przechowuje go dl
 
 ## Użytkownicy
 
-Tylko wersja webowa (administratorzy): dodawaj użytkowników, aktualizuj dane, resetuj hasła, usuwaj konta.
+Tylko wersja webowa (administratorzy):
+
+- Dodawaj użytkowników, aktualizuj dane, resetuj hasła, usuwaj konta
+- **Limit czasu sesji** — jak długo trwa logowanie (od 1 godziny do 7 dni); zmiany dotyczą tylko nowych logowań
+- **Unieważnij sesje** — natychmiast wyloguj użytkownika ze wszystkich urządzeń
+
+Każdy zalogowany użytkownik (w tym nie-administratorzy) może zmienić swoje hasło lub wylogować się z menu użytkownika na dole paska bocznego.
 
 ## Konfiguracja API
 
-Skonfiguruj tylko tych dostawców, których używasz: OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, **Lokalny LLM** (podstawowy URL dla Ollama, LM Studio, llama.cpp lub podobnych) oraz opcjonalny niestandardowy dostawca zgodny z OpenAI.
+Skonfiguruj tylko używanych dostawców: OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, **Lokalny LLM** (podstawowy URL dla Ollama, LM Studio, llama.cpp lub podobnych) oraz opcjonalnego niestandardowego dostawcę kompatybilnego z OpenAI.
 
 **Wersja webowa (administrator):** klucze pochodzą ze zmiennych środowiskowych — ta strona pokazuje, które są ustawione i pozwala na **Testowanie**. Uruchom ponownie po zmianie zmiennych środowiskowych. Zobacz [Konfiguracja](/docs/configuration/).
 
-**Komputer stacjonarny:** wprowadź klucze (lub URL lokalnego LLM) i **Zapisz** / **Edytuj** / **Testuj**. Klucze są przechowywane w postaci zaszyfrowanej; nie możesz wyświetlić bieżącej wartości, możesz ją tylko zastąpić.
+**Wersja desktopowa:** wprowadź klucze (lub URL lokalnego LLM) i **Zapisz** / **Edytuj** / **Testuj**. Klucze są przechowywane zaszyfrowane; nie możesz wyświetlić bieżącej wartości, możesz ją tylko zastąpić.
 
 :::tip
-Nie potrzebujesz płatnego klucza, aby zacząć: użyj darmowych modeli OpenRouter, innych darmowych dostawców lub lokalnego serwera zgodnego z OpenAI, takiego jak [Ollama](https://ollama.com), LM Studio lub llama.cpp (np. `translategemma:4b`).
+Do rozpoczęcia nie jest potrzebny płatny klucz: użyj darmowych modeli OpenRouter, innych dostawców z darmową warstwą lub lokalnego serwera kompatybilnego z OpenAI, takiego jak [Ollama](https://ollama.com), LM Studio lub llama.cpp (np. `translategemma:4b`).
 :::
 
 ## Informacje

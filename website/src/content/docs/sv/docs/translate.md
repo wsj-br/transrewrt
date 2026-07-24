@@ -38,21 +38,27 @@ I [Inställningar → Allmänna inställningar](/docs/settings/#general-settings
 - **Tidsgräns (ms)** – vänta innan en realtidskörning
 - **Beteende för ENTER** – om Enter kör uppgiften eller infogar en ny rad
 
+## Layout och tangentbord
+
+- **Layoutväxling** – knapparna ovanför panelerna växlar mellan **sida vid sida** och **staplade** in-/utdatalayouter. Valet gäller för Översätt, Skriv om och Transformera och sparas på denna enhet.
+- **Enter** eller **Shift+Enter** kör uppgiften, beroende på **Beteende för ENTER** (se ovan).
+- **Escape** rensar indatapanelen (eller stänger först en öppen meny eller dialogruta).
+
 ## Förfina en översättning
 
 Efter en lyckad körning visas **Omformulera…** och en versionsrullgardinsmeny bredvid väljaren **Till:**:
 
 1. **Omformulera…** (inget val) – en annan fullständig översättning av samma indata. Upp till **fem** versioner; modellen ser tidigare versioner så formuleringen kan skilja sig. Klicka på **Stoppa översättning** för att avbryta en pågående omformulering.
-2. **Ordalternativ** – välj ord eller en kort fras, högerklicka sedan eller **Omformulera…**. Välj ett alternativ för att ersätta spannet (kan vidgas något för grammatik). Vid fem versioner uppdateras endast version 5.
-3. Varje omformulering eller begäran om alternativ använder modellen igen och kan medföra kostnad.
+2. **Ordalternativ** – välj ord eller en kort fras, högerklicka sedan eller **Omformulera…**. Välj ett alternativ för att ersätta spannet (kan breddas något för grammatik). Vid fem versioner uppdateras endast version 5.
+3. Varje omformulering eller alternativförfrågan använder modellen igen och kan medföra kostnad.
 
 ## Använd ordlistan
 
 En **ordlista** är käll-/måltermpar för ett språkpar. När den är aktiverad skickas matchande termer till modellen så att den föredragna formuleringen förblir konsekvent.
 
-1. Slå på **Ordlista** i inmatningspanelen.
+1. Aktivera **Ordlista** i inmatningspanelen.
 2. Översätt som vanligt – termer för det **Från** / **Till**-paret tillämpas automatiskt.
-3. Klicka på **Lägg till i ordlista** (bredvid **Från:**) för att snabbt fånga ett nytt par.
+3. Klicka på **Lägg till i ordlista** (bredvid **Från:**) för att snabbt lägga till ett nytt par.
 4. Hantera alla termer i [Inställningar → Ordlista](/docs/settings/#glossary).
 
 :::note

@@ -27,10 +27,12 @@ Režimy zahŕňajú:
 3. Voliteľne nastavte **Z** na jazyk vášho textu (alebo ponechajte **Rozpoznať jazyk**).
 4. Zadajte alebo prilepte text do **Vstup**.
 5. Kliknite na **Prepísať**.
-6. Prečítajte si výsledok v **Výstup**.
+6. Prečítajte si výsledok vo **Výstup**.
+
+[Prepínanie rozloženia a klávesové skratky](/docs/translate/#layout-and-keyboard) fungujú rovnako ako v Preklade.
 
 :::tip
-V časti **Kontrola pravopisu a gramatiky** sa vedľa tlačidla **Kopírovať** zobrazí prepínač **Zobraziť zmeny**. Prepnite ho, ak chcete zobraziť alebo skryť opravy.
+Po prepísaní sa vedľa **Kopírovať** pre **každý** režim prepísania zobrazí prepínač **Zobraziť zmeny** (**Zmeny**). Prepnite ho, aby ste zobrazili alebo skryli rozdiel medzi vstupom a výstupom.
 :::
 
 :::note
@@ -39,9 +41,9 @@ V časti **Kontrola pravopisu a gramatiky** sa vedľa tlačidla **Kopírovať** 
 
 ## Upraviť prepis
 
-Po úspešnom spustení sa na výstupnej strane zobrazí **Preformulovať…** a rozbaľovacia ponuka verzií (rovnaká myšlienka ako [Preložiť](/docs/translate/#refine-a-translation), ale text zostáva v rovnakom jazyku a zachováva aktuálny **Režim**):
+Po úspešnom spustení sa na výstupnej strane zobrazí **Preformulovať…** a rozbaľovacia ponuka verzií (rovnaký princíp ako [Preložiť](/docs/translate/#refine-a-translation), ale text zostáva v rovnakom jazyku a zachováva aktuálny **Režim**):
 
-1. **Preformulovať…** (bez výberu) – ďalšie úplné prepísanie s inou formuláciou. Až päť verzií. Kliknutím na **Zastaviť prepisovanie** zrušíte.
+1. **Preformulovať…** (bez výberu) – ďalšie úplné prepísanie s inou formuláciou. Až päť verzií. Kliknutím na **Zastaviť prepis** zrušíte.
 2. **Alternatívy slov** – vyberte text, potom kliknite pravým tlačidlom myši alebo **Preformulovať…**.
 3. Každá požiadavka môže zvýšiť náklady na používanie.
 

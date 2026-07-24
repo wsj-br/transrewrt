@@ -41,7 +41,7 @@ In **Per modello** o **Tutte le chiamate**, usa l'icona del cestino per rimuover
 L'eliminazione non può essere annullata. Per eliminare per età o cancellare tutti i dati sui costi, usa [Impostazioni → Monitoraggio costi](/docs/settings/#cost-tracking).
 :::
 
-## Passi successivi
+## Passaggi successivi
 
 - [Sfoglia cronologia](/docs/history/)
 - [Impostazioni](/docs/settings/)

@@ -1,18 +1,18 @@
 ---
 title: Utiliser le tableau de bord
 description: >-
-  Consultez l’utilisation, les coûts et les journaux d’appels — filtrez,
+  Consultez l'utilisation, les coûts et les journaux d'appels — filtrez,
   exportez et gérez les enregistrements stockés.
 ---
 
 
 
-Utilisez le **Tableau de bord** pour voir dans quelle mesure vous utilisez l’application et ce qu’elle coûte (pour les modèles payants).
+Utilisez le **Tableau de bord** pour voir votre utilisation de l'application et son coût (pour les modèles payants).
 
 ![Résumé du tableau de bord](/images/screenshots/fr/dashboard-summary.png)
 
 :::note
-Si vous n’utilisez que des modèles **gratuits**, les montants des coûts peuvent être nuls. Les indicateurs clés de performance (KPI) du nombre d’appels sur le **Résumé** nécessitent toujours une activité dans la période sélectionnée.
+Si vous n'utilisez que des modèles **gratuits**, les montants des coûts peuvent être nuls. Les KPI de nombre d'appels sur le **Résumé** nécessitent toujours une activité pendant la période sélectionnée.
 :::
 
 ## Filtrer les données
@@ -20,14 +20,14 @@ Si vous n’utilisez que des modèles **gratuits**, les montants des coûts peuv
 Utilisez les boutons de filtre en haut pour modifier la plage de temps.
 
 :::note
-Le filtre **Utilisateur** n’est visible que par les administrateurs dans la version web. Il n’est pas disponible sur ordinateur de bureau.
+Le filtre **Utilisateur** n'est visible que par les administrateurs dans la version web. Il n'est pas disponible sur le bureau.
 :::
 
 ## Onglets
 
-- **Résumé** — KPI : coût total, modèles utilisés, nombre d’appels et coût par mode, coût moyen par appel, TPS moyen, principaux modèles par nombre d’appels
-- **Par modèle** — appels, coût et TPS par modèle ; développez une ligne pour une répartition par mode
-- **Tous les appels** — journal d’appels complet (paginé ou par cartes) avec exportation
+- **Résumé** — KPI : coût total, modèles utilisés, nombre d'appels et coût par mode, coût moyen par appel, TPS moyen, meilleurs modèles par nombre d'appels
+- **Par modèle** — appels, coût et TPS par modèle ; développez une ligne pour une ventilation par mode
+- **Tous les appels** — journal complet des appels (paginé ou cartes) avec exportation
 
 ## Exporter les données
 
@@ -35,7 +35,7 @@ Exportez les tableaux au format **JSON**, **CSV** ou **XLSX**.
 
 ## Supprimer les enregistrements stockés pour un modèle
 
-Dans **Par modèle** ou **Tous les appels**, utilisez l’icône de la corbeille pour supprimer les enregistrements d’un modèle.
+Dans **Par modèle** ou **Tous les appels**, utilisez l'icône de la corbeille pour supprimer les enregistrements d'un modèle.
 
 :::caution
 La suppression est irréversible. Pour supprimer par âge ou effacer toutes les données de coût, utilisez [Paramètres → Suivi des coûts](/docs/settings/#cost-tracking).
@@ -43,6 +43,6 @@ La suppression est irréversible. Pour supprimer par âge ou effacer toutes les 
 
 ## Prochaines étapes
 
-- [Parcourir l’historique](/docs/history/)
+- [Parcourir l'historique](/docs/history/)
 - [Paramètres](/docs/settings/)
 - [Problèmes courants](/docs/common-issues/)

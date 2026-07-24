@@ -11,6 +11,18 @@ Use conventional types (Added, Changed, Fixed, etc.) and short descriptions.
 
 ## Unreleased
 
+## [1.6.2] - 2026-07-25
+
+- **Changed**: Website `packageManager` aligned to `pnpm@11.17.0` to match the root app; website `pnpm-workspace.yaml` lists `minimumReleaseAgeExclude` entries needed for that pin.
+- **Fixed**: Docker Compose (`production.yml`, `docker-compose.yml`) forwards `NVIDIA_API_KEY`, `ALIBABA_API_KEY`, and `APIFUN_API_KEY` into the container (same as other LLM provider env vars).
+- **Changed**: Track `website/.translation-cache/cache.db` in git (same pattern as root `.translation-cache/`); `clean-workspace` no longer deletes that folder.
+- **Changed**: `clean-workspace` scripts also remove website subproject artifacts (`node_modules`, lockfile, `dist`, `.astro`).
+- **Fixed**: Electron Settings → About → Third-party notices failed with “Could not load…” because webpack copied extensionless `NOTICES` into `dist/NOTICES/` (directory); path lookup now requires a real file and copy uses `toType: "file"`.
+- **Changed**: `release:github`, `website:publish`, and `docker:clean` use cross-platform Node scripts (`scripts/release.mjs`, `website/scripts/publish-pages.mjs`, `scripts/clean-docker.mjs`); removed Bash/PowerShell duplicates and `release:github:win` wrappers.
+- **Fixed**: `pnpm dev:web` / `node-rebuild.js` accepts `better-sqlite3` v13 host prebuilds (no `build/Release/better_sqlite3.node` when the package skips compile).
+- **Added**: Settings → Cost Tracking shows the same “Show cost information on the actions” and “Cost fraction digits” controls as Settings → General.
+- **Fixed**: Website Starlight favicon points at `/logos/transrewrt_logo.svg` instead of the missing default `/favicon.svg` (stops 404 / router warnings in `astro dev`).
+- **Fixed**: PowerShell `upgrade-dependencies.ps1` — tools phase runs inside the dotsource block, workspace dirs no longer nest under `@()`, and browserslist update falls back when `npx` is missing.
 - **Changed**: PowerShell upgrade/clean scripts aligned with Bash — restored `upgrade-dependencies.ps1` (doctor-based flow), added `upgrade-common.ps1`, updated `upgrade-tools.ps1` / `clean-workspace.ps1`; `release.ps1` post-release link matches `release.sh` (`…/actions`).
 - **Added**: Workspace header has a Help (?) control (rightmost, separated from layout toggle) linking to the docs.
 - **Added**: Workspace action bar shows a small app version link (bottom-right) to the GitHub Pages site.

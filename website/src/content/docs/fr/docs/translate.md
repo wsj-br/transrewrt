@@ -38,11 +38,17 @@ Dans [Paramètres → Paramètres généraux](/docs/settings/#general-settings) 
 - **Délai d'attente (ms)** — attente avant une exécution en temps réel
 - **Comportement pour ENTRÉE** — si Entrée exécute la tâche ou insère une nouvelle ligne
 
+## Disposition et clavier
+
+- **Bascule de disposition** — les boutons au-dessus des panneaux basculent entre les dispositions d'entrée/sortie **côte à côte** et **empilées**. Le choix s'applique à Traduire, Réécrire et Transformer et est mémorisé sur cet appareil.
+- **Entrée** ou **Maj+Entrée** exécute la tâche, selon le **Comportement pour ENTRÉE** (voir ci-dessus).
+- **Échap** efface le panneau d'entrée (ou ferme d'abord un menu ou une boîte de dialogue ouvert).
+
 ## Affiner une traduction
 
 Après une exécution réussie, **Reformuler…** et une liste déroulante de versions apparaissent à côté du sélecteur **À :** :
 
-1. **Reformuler…** (aucune sélection) — une autre traduction complète de la même entrée. Jusqu'à **cinq** versions ; le modèle voit les versions précédentes, donc la formulation peut différer. Cliquez sur **Arrêter la traduction** pour annuler une reformulation en cours.
+1. **Reformuler…** (aucune sélection) — une autre traduction complète de la même entrée. Jusqu'à **cinq** versions ; le modèle voit les versions précédentes, de sorte que la formulation peut différer. Cliquez sur **Arrêter la traduction** pour annuler une reformulation en cours.
 2. **Alternatives de mots** — sélectionnez des mots ou une courte phrase, puis faites un clic droit ou **Reformuler…**. Choisissez une alternative pour remplacer l'étendue (peut s'élargir légèrement pour la grammaire). À cinq versions, seule la version 5 est mise à jour.
 3. Chaque demande de reformulation ou d'alternatives utilise à nouveau le modèle et peut entraîner des coûts supplémentaires.
 
@@ -50,13 +56,13 @@ Après une exécution réussie, **Reformuler…** et une liste déroulante de ve
 
 Un **glossaire** est une paire de termes source/cible pour une paire de langues. Lorsqu'il est activé, les termes correspondants sont envoyés au modèle afin que la formulation préférée reste cohérente.
 
-1. Activez **Glossaire** dans le panneau de saisie.
+1. Activez le **Glossaire** dans le panneau de saisie.
 2. Traduisez comme d'habitude — les termes pour cette paire **De** / **À** s'appliquent automatiquement.
 3. Cliquez sur **Ajouter au glossaire** (à côté de **De :**) pour capturer rapidement une nouvelle paire.
 4. Gérez tous les termes dans [Paramètres → Glossaire](/docs/settings/#glossary).
 
 :::note
-Les termes du glossaire sont mis en correspondance par paire de langues. Ils ne peuvent pas être utilisés avec **Détecter la langue** comme source.
+Les termes du glossaire sont mis en correspondance par paire de langues. Ils ne peuvent pas être utilisés avec la **Détection de la langue** comme source.
 :::
 
 ## Prochaines étapes

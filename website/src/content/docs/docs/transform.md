@@ -16,6 +16,8 @@ Use **Transform** when you want the AI to follow custom instructions — summari
 5. Click **Transform**.
 6. Read the result in **Output**.
 
+The [layout toggle and keyboard shortcuts](/docs/translate/#layout-and-keyboard) work the same as in Translate.
+
 ## Load sample prompts
 
 If the list is empty, click **Load sample prompts** in the Transform workspace (also available under [Settings → Transform](/docs/settings/#transform)). Samples are in English; after loading, edit a prompt and use **Translate prompt** if needed.

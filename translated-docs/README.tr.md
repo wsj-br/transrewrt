@@ -30,15 +30,15 @@ Yapay zeka destekli metin aracı: Kendi yapay zeka sağlayıcılarınızı (Open
 ```bash
 docker pull ghcr.io/wsj-br/transrewrt:latest
 
-OPENROUTER_API_KEY=sk-or-your-key docker run -d \
+docker run -d \
   -p 5000:5000 \
   -v transrewrt-data:/app/data \
-  -e OPENROUTER_API_KEY \
-  --name transrewrt-web \
+  -e PROVIDER_API_KEY=your-key \
+  --name transrewrt \
   ghcr.io/wsj-br/transrewrt:latest
 ```
 
-[http://localhost:5000](http://localhost:5000) adresini açın ve varsayılan yönetici parolasını değiştirin. Sağlayıcı anahtarları ortam değişkenleri aracılığıyla ayarlanır (web kullanıcı arayüzü aracılığıyla değil).
+`PROVIDER_API_KEY` yerine sağlayıcı değişkeninizi (örneğin `OPENROUTER_API_KEY`, `OPENAI_API_KEY`, `GROQ_API_KEY`) yazın. [http://localhost:5000](http://localhost:5000) adresini açın ve varsayılan Yönetici parolasını değiştirin. Anahtarlar ortam değişkenleri aracılığıyla ayarlanır (web kullanıcı arayüzü aracılığıyla değil).
 
 **Windows** — [Sürümler](https://github.com/wsj-br/transrewrt/releases) sayfasından `Transrewrt Setup x.y.z.exe` dosyasını indirin, kurun, ardından **Ayarlar → API** bölümünden anahtarları ekleyin.
 

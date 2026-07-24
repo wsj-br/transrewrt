@@ -30,15 +30,15 @@ AI 驅動的文字工具：**翻譯**、**重寫**與**轉換**，並使用自�
 ```bash
 docker pull ghcr.io/wsj-br/transrewrt:latest
 
-OPENROUTER_API_KEY=sk-or-your-key docker run -d \
+docker run -d \
   -p 5000:5000 \
   -v transrewrt-data:/app/data \
-  -e OPENROUTER_API_KEY \
-  --name transrewrt-web \
+  -e PROVIDER_API_KEY=your-key \
+  --name transrewrt \
   ghcr.io/wsj-br/transrewrt:latest
 ```
 
-開啟 [http://localhost:5000](http://localhost:5000) 並變更預設管理員密碼。提供者金鑰透過環境變數設定（非透過網頁 UI）。
+將 `PROVIDER_API_KEY` 替換為您的提供者變數（例如 `OPENROUTER_API_KEY`、`OPENAI_API_KEY`、`GROQ_API_KEY`）。開啟 [http://localhost:5000](http://localhost:5000) 並變更預設管理員密碼。金鑰透過環境變數設定（而非網頁 UI）。
 
 **Windows** — 從 [Releases](https://github.com/wsj-br/transrewrt/releases) 下載 `Transrewrt Setup x.y.z.exe`，安裝後於 **設定 → API** 新增金鑰。
 

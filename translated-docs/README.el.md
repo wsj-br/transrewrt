@@ -30,15 +30,15 @@
 ```bash
 docker pull ghcr.io/wsj-br/transrewrt:latest
 
-OPENROUTER_API_KEY=sk-or-your-key docker run -d \
+docker run -d \
   -p 5000:5000 \
   -v transrewrt-data:/app/data \
-  -e OPENROUTER_API_KEY \
-  --name transrewrt-web \
+  -e PROVIDER_API_KEY=your-key \
+  --name transrewrt \
   ghcr.io/wsj-br/transrewrt:latest
 ```
 
-Ανοίξτε το [http://localhost:5000](http://localhost:5000) και αλλάξτε τον προεπιλεγμένο κωδικό πρόσβασης διαχειριστή. Τα κλειδιά παρόχου ορίζονται μέσω μεταβλητών περιβάλλοντος (όχι μέσω του περιβάλλοντος χρήστη web).
+Αντικαταστήστε το `PROVIDER_API_KEY` με τη μεταβλητή παρόχου σας (για παράδειγμα `OPENROUTER_API_KEY`, `OPENAI_API_KEY`, `GROQ_API_KEY`). Ανοίξτε το [http://localhost:5000](http://localhost:5000) και αλλάξτε τον προεπιλεγμένο κωδικό διαχειριστή. Τα κλειδιά ορίζονται μέσω μεταβλητών περιβάλλοντος (όχι μέσω του περιβάλλοντος εργασίας χρήστη).
 
 **Windows** — Κατεβάστε το `Transrewrt Setup x.y.z.exe` από τις [Εκδόσεις](https://github.com/wsj-br/transrewrt/releases), εγκαταστήστε το και, στη συνέχεια, προσθέστε κλειδιά στις **Ρυθμίσεις → API**.
 

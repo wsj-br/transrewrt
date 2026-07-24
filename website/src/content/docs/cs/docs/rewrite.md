@@ -15,7 +15,7 @@ Režimy zahrnují:
 
 - **Kontrola pravopisu a gramatiky**
 - **Zlepšit srozumitelnost**
-- **Alternativní verze** (několik přeformulování v jednom spuštění)
+- **Alternativní verze** (několik přeformulování v jednom běhu)
 - **Zformálnit** / **Zneformálnit**
 - **Zkrátit** / **Rozšířit**
 - **Ztechnizovat**
@@ -29,21 +29,23 @@ Režimy zahrnují:
 5. Klikněte na **Přepsat**.
 6. Přečtěte si výsledek v **Výstup**.
 
+[Přepínač rozložení a klávesové zkratky](/docs/translate/#layout-and-keyboard) fungují stejně jako v Překladu.
+
 :::tip
-V **Kontrola pravopisu a gramatiky** se vedle **Kopírovat** objeví přepínač **Zobrazit změny**. Přepněte jej pro zobrazení nebo skrytí oprav.
+Po přepsání se vedle **Kopírovat** objeví přepínač **Zobrazit změny** (**Změny**) pro **každý** režim přepsání. Přepnutím zobrazíte nebo skryjete rozdíly mezi vstupem a výstupem.
 :::
 
 :::note
-**Alternativní verze** vrátí několik přeformulování v **jednom** spuštění, oddělených `----`. To se liší od **Přeformulovat…**, které postupně vytváří historii verzí.
+**Alternativní verze** vrací několik přeformulování v **jednom** běhu, oddělených `----`. To se liší od **Přeformulovat…**, které postupně vytváří historii verzí.
 :::
 
-## Upřesnit přepsání
+## Upravit přepsání
 
-Po úspěšném spuštění se na výstupní straně objeví **Přeformulovat…** a rozbalovací nabídka verzí (stejný princip jako [Přeložit](/docs/translate/#refine-a-translation), ale text zůstává ve stejném jazyce a zachovává aktuální **Režim**):
+Po úspěšném spuštění se na výstupní straně objeví **Přeformulovat…** a rozbalovací nabídka verzí (stejný princip jako [Překlad](/docs/translate/#refine-a-translation), ale text zůstává ve stejném jazyce a zachovává aktuální **Režim**):
 
 1. **Přeformulovat…** (bez výběru) – další úplné přepsání s jinou formulací. Až pět verzí. Kliknutím na **Zastavit přepisování** zrušíte.
 2. **Alternativy slov** – vyberte text, poté klikněte pravým tlačítkem nebo **Přeformulovat…**.
-3. Každý požadavek může zvýšit náklady na použití.
+3. Každý požadavek může přidat náklady na použití.
 
 ## Další kroky
 

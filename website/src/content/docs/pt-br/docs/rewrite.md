@@ -9,7 +9,7 @@ description: >-
 
 Use **Reescrever** para melhorar a redação sem alterar o significado principal. O texto permanece no mesmo idioma.
 
-![Espaço de trabalho de reescrita](/images/screenshots/pt-BR/rewrite.png)
+![Área de trabalho de reescrita](/images/screenshots/pt-BR/rewrite.png)
 
 Os modos incluem:
 
@@ -29,8 +29,10 @@ Os modos incluem:
 5. Clique em **Reescrever**.
 6. Leia o resultado em **Saída**.
 
+O [alternador de layout e os atalhos de teclado](/docs/translate/#layout-and-keyboard) funcionam da mesma forma que em Traduzir.
+
 :::tip
-Em **Verificar Ortografia e Gramática**, um botão **Mostrar alterações** aparece ao lado de **Copiar**. Alterne-o para mostrar ou ocultar as correções.
+Após uma reescrita, um botão **Mostrar alterações** (**Alterações**) aparece ao lado de **Copiar** para **todos** os modos de reescrita. Alterne-o para mostrar ou ocultar uma diferença entre a entrada e a saída.
 :::
 
 :::note
@@ -41,7 +43,7 @@ Em **Verificar Ortografia e Gramática**, um botão **Mostrar alterações** apa
 
 Após uma execução bem-sucedida, **Reformular…** e o menu suspenso de versão aparecem no lado da saída (mesma ideia de [Traduzir](/docs/translate/#refine-a-translation), mas o texto permanece no mesmo idioma e mantém o **Modo** atual):
 
-1. **Reformular…** (nenhuma seleção) — outra reescrita completa com redação diferente. Até cinco versões. Clique em **Parar Reescrever** para cancelar.
+1. **Reformular…** (sem seleção) — outra reescrita completa com redação diferente. Até cinco versões. Clique em **Parar Reescrever** para cancelar.
 2. **Alternativas de palavras** — selecione o texto e clique com o botão direito ou em **Reformular…**.
 3. Cada solicitação pode adicionar custo de uso.
 

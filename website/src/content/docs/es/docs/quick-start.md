@@ -2,32 +2,32 @@
 title: Inicio rápido
 description: >-
   Instale Transrewrt en Windows o Linux, o ejecute la aplicación web Docker
-  autohospedada.
+  autoalojada.
 ---
 
 
 
 Elija la ruta que más le convenga. Todas son gratuitas y de código abierto (Apache 2.0).
 
-## Docker (web autohospedada)
+## Docker (web autoalojada)
 
 ```bash
 docker pull ghcr.io/wsj-br/transrewrt:latest
 
-PROVIDER_API_KEY=sk-or-your-key docker run -d \
+docker run -d \
   -p 5000:5000 \
   -v transrewrt-data:/app/data \
-  -e PROVIDER_API_KEY \
-  --name transrewrt-web \
+  -e PROVIDER_API_KEY=your-api-key \
+  --name transrewrt \
   ghcr.io/wsj-br/transrewrt:latest
 ```
 
-Reemplace `PROVIDER_API_KEY=sk-or-your-key` con su clave de API de su proveedor elegido (consulte las opciones admitidas en [Configuración](/docs/configuration/)).
+Reemplace `PROVIDER_API_KEY` con la variable de su proveedor (por ejemplo, `OPENROUTER_API_KEY`, `OPENAI_API_KEY`, `ANTHROPIC_API_KEY`, `XIA_API_KEY`, ...) y establezca su valor. Consulte la lista completa en [Configuración](/docs/configuration/#environment-variables-web--docker).
 
 Luego, abra [http://localhost:5000](http://localhost:5000) y **cambie la contraseña de administrador predeterminada** antes de exponer el servicio.
 
 :::caution
-En Docker, las credenciales de LLM se configuran con variables de entorno (por ejemplo, `PROVIDER_API_KEY`). **No** se introducen en la interfaz de usuario web. En el escritorio, configure las claves en **Configuración → API**.
+En Docker, las credenciales de LLM se configuran con variables de entorno (por ejemplo, `PROVIDER_API_KEY`). **No** se introducen en la interfaz de usuario web. En el escritorio, se configuran las claves en **Ajustes → Configuración de API**.
 :::
 
 ### Docker Compose
@@ -42,7 +42,7 @@ docker compose -f transrewrt.yml up -d
 
 1. Descargue el último `Transrewrt Setup x.y.z.exe` de [Versiones](https://github.com/wsj-br/transrewrt/releases).
 2. Ejecute el instalador.
-3. Abra la aplicación e introduzca las claves de API en **Configuración → API**. Configure al menos un proveedor; OpenRouter es una opción común para modelos gratuitos.
+3. Abra la aplicación e introduzca las claves de API en **Configuración → Configuración de API**. Configure al menos un proveedor; OpenRouter es una opción común para modelos gratuitos.
 
 :::note
 Windows puede mostrar advertencias de UAC o SmartScreen para aplicaciones independientes sin firmar. Prefiera las descargas de la página oficial de GitHub Releases y verifique las sumas de comprobación cuando se publiquen.
@@ -50,26 +50,40 @@ Windows puede mostrar advertencias de UAC o SmartScreen para aplicaciones indepe
 
 ## Linux
 
-Descargue el `.AppImage` para su CPU desde [Versiones](https://github.com/wsj-br/transrewrt/releases) (`x64` o `arm64`, incluyendo Raspberry Pi 4+):
+Descargue el `.AppImage` para su CPU de [Versiones](https://github.com/wsj-br/transrewrt/releases) (`x64` o `arm64`, incluido Raspberry Pi 4+):
 
 ```bash
 chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage
 ```
 
-Introduzca las claves de API en **Configuración → API**.
+Introduzca las claves de API en **Configuración → Configuración de API**.
 
-Si Chromium imprime errores de GPU / EGL pero la aplicación funciona, puede deshabilitar la aceleración de hardware:
+Si Chromium imprime errores de GPU/EGL pero la aplicación funciona, puede deshabilitar la aceleración de hardware:
 
 ```bash
 TRANSREWRT_DISABLE_GPU=1 ./Transrewrt-x.y.z-arm64.AppImage
 ```
 
 :::note
-Actualmente, macOS no es compatible. Transrewrt está disponible para Windows, Linux y Docker.
+macOS no es compatible actualmente. Transrewrt está disponible para Windows, Linux y Docker.
 :::
+
+## Actualización
+
+- **Windows** — descargue el `Transrewrt Setup x.y.z.exe` más reciente de [Versiones](https://github.com/wsj-br/transrewrt/releases) y ejecútelo. La configuración y los datos se conservan.
+- **Linux** — descargue el `.AppImage` más reciente y reemplace el archivo antiguo. La configuración y los datos se conservan.
+- **Docker** — extraiga la nueva imagen y vuelva a crear el contenedor. Los datos persisten en el volumen `/app/data`:
+
+```bash
+docker pull ghcr.io/wsj-br/transrewrt:latest
+docker stop transrewrt && docker rm transrewrt
+# then run the same `docker run` command as above
+# or, with Docker Compose:
+docker compose -f transrewrt.yml pull && docker compose -f transrewrt.yml up -d
+```
 
 ## Próximos pasos
 
-1. [Obtener una clave de API](/docs/api-key/)
-2. Ejecutar una traducción simple para confirmar que todo funciona
-3. Leer las guías [Traducir](/docs/translate/), [Reescribir](/docs/rewrite/) y [Transformar](/docs/transform/)
+1. [Obtenga una clave de API](/docs/api-key/)
+2. Ejecute una traducción simple para confirmar que todo funciona
+3. Lea las guías de [Traducción](/docs/translate/), [Reescritura](/docs/rewrite/) y [Transformación](/docs/transform/)

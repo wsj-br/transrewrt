@@ -30,15 +30,15 @@ Nástroj pro zpracování textu s umělou inteligencí: **přeložit**, **přeps
 ```bash
 docker pull ghcr.io/wsj-br/transrewrt:latest
 
-OPENROUTER_API_KEY=sk-or-your-key docker run -d \
+docker run -d \
   -p 5000:5000 \
   -v transrewrt-data:/app/data \
-  -e OPENROUTER_API_KEY \
-  --name transrewrt-web \
+  -e PROVIDER_API_KEY=your-key \
+  --name transrewrt \
   ghcr.io/wsj-br/transrewrt:latest
 ```
 
-Otevřete [http://localhost:5000](http://localhost:5000) a změňte výchozí heslo administrátora. Klíče poskytovatele se nastavují pomocí proměnných prostředí (nikoli webového uživatelského rozhraní).
+Nahraďte `PROVIDER_API_KEY` proměnnou vašeho poskytovatele (například `OPENROUTER_API_KEY`, `OPENAI_API_KEY`, `GROQ_API_KEY`). Otevřete [http://localhost:5000](http://localhost:5000) a změňte výchozí heslo administrátora. Klíče se nastavují pomocí proměnných prostředí (nikoli webového uživatelského rozhraní).
 
 **Windows** – Stáhněte si `Transrewrt Setup x.y.z.exe` z [Vydání](https://github.com/wsj-br/transrewrt/releases), nainstalujte a poté přidejte klíče v **Nastavení → API**.
 

@@ -2,34 +2,36 @@
 title: Áttekintés
 description: >-
   Mi az a Transrewrt, és hogyan találhat telepítési útmutatókat és beállítási
-  dokumentumokat.
+  dokumentációkat.
 ---
 
 
 
 A **Transrewrt** egy nyílt forráskódú, mesterséges intelligencia alapú szöveges eszköz a következőkhöz:
 
-- **Fordítás** – több tucat nyelv között, automatikus forrásfelismeréssel és szószedetekkel
-- **Átírás** – nyelvtani hibák javítása, érthetőség javítása, hangnem vagy hosszúság módosítása
-- **Átalakítás** – saját egyéni mesterséges intelligencia parancsok futtatása bármilyen szövegen
+- **Fordítás** – nyelvek tucatjai között, automatikus forrásfelismeréssel és szószedetekkel
+- **Átírás** – nyelvtani hibák javítása, egyértelműség javítása, hangnem vagy hosszúság megváltoztatása
+- **Átalakítás** – saját egyéni mesterséges intelligencia promptok futtatása bármilyen szövegen
 
-Számos AI-szolgáltatót támogat (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, OpenAI-kompatibilis végpontok, és helyi OpenAI-kompatibilis szerverek, mint például az Ollama, LM Studio vagy llama.cpp). Futtatható **asztali alkalmazásként** (Windows / Linux) vagy **saját üzemeltetésű webalkalmazásként** (Docker).
+Számos mesterséges intelligencia szolgáltatót támogat (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, OpenAI-kompatibilis végpontok, és helyi OpenAI-kompatibilis szerverek, mint például az Ollama, az LM Studio vagy a llama.cpp). Futtatható **asztali alkalmazásként** (Windows / Linux) vagy **saját üzemeltetésű webes alkalmazásként** (Docker).
 
 Az Ön kulcsai, az Ön modelljei, az Ön hosztja – nincs Transrewrt felhőfiók.
 
 ## Az ablak felépítése
 
-- **Oldalsáv** — Fordítás, Átírás, Átalakítás, Irányítópult, Előzmények, Beállítások (és a bejelentkezett felhasználó a weben)
-- **Eszköztár** — oldal címe, **előbeállítás** (Egyszerű) vagy **modell** (Haladó) választó, és **Felület nyelve** (földgömb ikon; nem változtatja meg a Fordítás innen/ide nyelvet)
-- **Munkaterület** — Bemeneti és Kimeneti panelek számlálókkal, időzítéssel, TPS-sel és opcionális költséggel
+![Fordítási munkaterület](/images/screenshots/hu/translate.png)
 
-Alapértelmezés szerint az alkalmazás **Egyszerű** módban fut: válasszon egy **előbeállítást** és egy **Szolgáltatót** a Beállításokban. Váltson **Haladó** módra a [Beállítások → Általános beállítások](/docs/settings/#general-settings) alatt a teljes modelllista megtekintéséhez.
+- **Oldalsáv** – a fő navigáció: Fordítás, Átírás, Átalakítás, Irányítópult, Előzmények, Beállítások (és a bejelentkezett felhasználó a weben).
+- **Eszköztár** – az oldal címe, az **előbeállítás** (Egyszerű) vagy a **modell** (Haladó) választó, az **interfész nyelve** (földgömb ikon; nem változtatja meg a Fordítás innen/ide nyelvet), és a Súgó (**?**), amely ezekre a dokumentumokra mutat. Az előbeállítás/modell menüben lehetőség van az **Egyszerű/Haladó módra váltásra** is (a Beállítások megnyitása felett).
+- **Munkaterület** – a Bemeneti és Kimeneti panelek, számlálókkal, időzítéssel, TPS-sel és opcionális költséggel. Az akciósáv egy kis alkalmazás **verzió** linket (jobbra lent) mutat a GitHub Pages oldalra.
+
+Alapértelmezés szerint az alkalmazás **Egyszerű** módban fut: válasszon egy **előbeállítást** és egy **Szolgáltatót** a Beállításokban. Váltson **Haladó** módra a [Beállítások → Általános beállítások](/docs/settings/#general-settings) alatt a teljes modelllista megtekintéséhez, vagy használja az eszköztár előbeállítás/modell menüjében található kapcsolót.
 
 ## Első lépések
 
-1. [Gyorsindítás](/docs/quick-start/) — telepítse az asztali verziót, vagy futtassa Dockerrel
-2. [API kulcs](/docs/api-key/) — csatlakoztasson egy ingyenes OpenRouter kulcsot vagy más szolgáltatót
-3. [Konfiguráció](/docs/configuration/) — környezeti változók, konfigurációs útvonalak, webes hitelesítés
+1. [Gyorsindítás](/docs/quick-start/) – asztali telepítés vagy futtatás Dockerrel
+2. [API kulcs](/docs/api-key/) – ingyenes OpenRouter kulcs vagy más szolgáltató csatlakoztatása
+3. [Konfiguráció](/docs/configuration/) – környezeti változók, konfigurációs útvonalak, webes hitelesítés
 
 ## Útmutatók
 

@@ -1,8 +1,8 @@
 ---
 title: Bläddra i historik
 description: >-
-  Granska tidigare översättnings-, omskrivnings- och transformeringskörningar
-  med fullständig indata- och utdatatext.
+  Granska tidigare körningar av översättning, omskrivning och transformering med
+  fullständig indata- och utdatatext.
 ---
 
 
@@ -11,10 +11,10 @@ description: >-
 
 ![Historiksida](/images/screenshots/sv/history.png)
 
-Historik använder samma tidsintervallsfilter som [instrumentpanelen](/docs/dashboard/).
+Historiken använder samma tidsintervallsfilter som [instrumentpanelen](/docs/dashboard/).
 
 :::note
-I **webbappen** ser alla (inklusive administratörer) endast sin egen körningshistorik. Instrumentpanelens **Användar**-filter gäller inte här.
+I **webbappen** ser alla (inklusive administratörer) endast sin egen körningshistorik. Filtret **Användare** i Dashboard gäller inte här.
 :::
 
 ## Exportera
@@ -23,7 +23,7 @@ Exportera den filtrerade listan som **JSON**, **CSV** eller **XLSX**.
 
 ## Om historiken saknas
 
-**Behåll körningshistorik** kan vara avstängd. Aktivera den i [Inställningar → Allmänna inställningar](/docs/settings/#general-settings) om inte administratören har ställt in `HISTORY_DISABLED` – se [Konfiguration](/docs/configuration/#privacy-mode).
+**Behåll körningshistorik** kan vara avstängt. Aktivera det i [Inställningar → Allmänna inställningar](/docs/settings/#general-settings) om inte administratören har ställt in `HISTORY_DISABLED` – se [Konfiguration](/docs/configuration/#privacy-mode).
 
 ## Nästa steg
 

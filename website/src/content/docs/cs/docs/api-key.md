@@ -1,46 +1,73 @@
 ---
 title: Klíč API
 description: >-
-  Získejte bezplatný klíč API OpenRouter a připojte další poskytovatele AI k
-  Transrewrt.
+  Připojte Transrewrt k poskytovateli AI dle vašeho výběru přidáním klíče API,
+  nebo místo toho použijte lokální model.
 ---
 
 
 
-Transrewrt potřebuje přístup alespoň k jednomu poskytovateli AI. K zahájení **nepotřebujete** placený model: OpenRouter nabízí bezplatné modely po přidání klíče a několik dalších poskytovatelů také nabízí bezplatné úrovně.
+Transrewrt neobsahuje vlastní AI – odesílá váš text poskytovateli AI, kterého si vyberete. Pro připojení poskytovatele přidáte **klíč API**: soukromý kód, vydaný poskytovatelem, který funguje jako heslo pro jeho službu. K zahájení potřebujete pouze **jednoho** poskytovatele a nemusíte platit: několik poskytovatelů nabízí bezplatné modely nebo bezplatné úrovně a modely můžete také spouštět na svém vlastním počítači zcela bez klíče.
 
-Mezi podporované poskytovatele patří [OpenRouter](https://openrouter.ai), OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, jakýkoli koncový bod kompatibilní s OpenAI a lokální servery kompatibilní s OpenAI (Ollama, LM Studio, llama.cpp a podobné).
+Mezi podporované poskytovatele patří OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, jakýkoli koncový bod kompatibilní s OpenAI a lokální servery kompatibilní s OpenAI (Ollama, LM Studio, llama.cpp a podobné).
 
-## Snadné vs. pokročilé
+## Krok 1 – Vyberte poskytovatele
 
-- Režim **Easy** (výchozí): vyberte **předvolbu** (Free (OpenRouter), Standard, Advanced nebo Technical) namapovanou na **poskytovatele**. Zobrazí se pouze předvolby s mapováním pro aktuálního poskytovatele.
-- Režim **Advanced**: vybírejte modely přímo. ID modelů používají předponu poskytovatele (například `openrouter/…`, `openai/…`, `local/…`).
+Funguje jakýkoli podporovaný poskytovatel. Pokud si nejste jisti, kterého vybrat:
 
-## Bezplatný klíč OpenRouter (desktop)
+- **Zdarma na začátek**: OpenRouter, Google Gemini, Groq, Mistral, Cerebras a NVIDIA nabízejí bezplatné modely nebo bezplatné úrovně.
+- **Už máte účet?** Pokud již používáte OpenAI, Anthropic nebo jiného podporovaného poskytovatele, můžete jednoduše znovu použít tento účet.
+- **Dáváte přednost tomu, aby vše zůstalo na vašem vlastním počítači?** Přeskočte klíč úplně a místo toho použijte [lokální model](#using-a-local-model-instead-no-api-key).
 
-1. Přejděte na [openrouter.ai](https://openrouter.ai) a zaregistrujte se nebo se přihlaste.
-2. Otevřete stránku [Klíče](https://openrouter.ai/keys) a vytvořte nový klíč (pojmenujte jej; volitelný kreditní limit). Bez přidání kreditu můžete používat bezplatné modely.
-3. V Transrewrt otevřete **Nastavení → Konfigurace API**, vložte klíč do **Klíč API OpenRouter** a klikněte na **Testovat klíč OpenRouter**.
+## Krok 2 – Vytvořte klíč API
+
+Přesné kroky se u jednotlivých poskytovatelů mírně liší, ale vzor je všude stejný:
+
+1. Zaregistrujte se nebo se přihlaste na webových stránkách poskytovatele. V Transrewrtu v **Nastavení → Konfigurace API** má každý poskytovatel odkaz **Otevřít webové stránky poskytovatele**, který vás zavede na správné místo.
+2. Najděte stránku **Klíče API** (někdy pod účtem, řídicím panelem nebo nastavením pro vývojáře) a vytvořte nový klíč. Někteří poskytovatelé vás požádají o pojmenování klíče nebo nastavení limitu útraty – obojí je volitelné.
+3. Zkopírujte klíč. Jedná se o dlouhý řetězec písmen a čísel, často začínající něčím jako `sk-`.
 
 :::caution
-Nepoužívejte model **Body Builder** (`openrouter/bodybuilder`) od OpenRouter pro překlad, přepis nebo transformaci – vrací JSON datové části požadavků, nikoli dokončený text.
+S klíčem API zacházejte jako s heslem: nesdílejte ho, nezveřejňujte ho ani ho nikomu neposílejte. Pokud klíč unikne, smažte ho na webových stránkách poskytovatele a vytvořte nový.
 :::
 
-## Další bezplatné možnosti
+## Krok 3 – Přidání a testování klíče (desktop)
 
-Bezplatné klíče API můžete také získat od společností Cerebras, Google, Groq, Mistral AI nebo [NVIDIA](https://build.nvidia.com/) (API kompatibilní s OpenAI), nebo spouštět modely lokálně pomocí Ollama, LM Studio, llama.cpp nebo jiného serveru kompatibilního s OpenAI (například `translategemma:4b` přes Ollama). Nastavte základní URL místního LLM na plnou základní adresu API (včetně cesty, např. `http://localhost:11434/v1`) v Nastavení (desktop) nebo `LOCAL_LLM_URL` (Docker).
+1. V Transrewrtu otevřete **Nastavení → Konfigurace API**.
+2. Vložte klíč do pole pro vašeho poskytovatele (například **Klíč API Google Gemini**) a uložte jej.
+3. Klikněte na **Test** vedle pole, abyste potvrdili, že klíč funguje.
+
+Jakmile test uspěje, jste připraveni – vyberte si tohoto poskytovatele na hlavní obrazovce a začněte překládat.
 
 :::caution
-Pokud používáte lokální LLM server z jiného zařízení nebo kontejneru, nakonfigurujte jej tak, aby umožňoval externí připojení (ne pouze localhost).
+Vyhněte se modelu **Body Builder** (`openrouter/bodybuilder`) od OpenRouteru – vrací JSON datové části požadavků, nikoli dokončený text. Viz [Nastavení → Modely](/docs/settings/#models).
+:::
+
+## Použití lokálního modelu místo toho (bez klíče API)
+
+Modely můžete spouštět na svém vlastním počítači pomocí Ollamy, LM Studia, llama.cpp nebo jiného serveru kompatibilního s OpenAI (například `google/gemma-4-e2b` přes LM Studio). Nic neopustí váš počítač a není potřeba žádný klíč API.
+
+Pro připojení jednoho nastavte základní URL lokálního LLM na plnou základní API, včetně cesty – například `http://localhost:11434/v1`. Na desktopu to nastavte v **Nastavení → Konfigurace API**; na Dockeru místo toho nastavte proměnnou prostředí `LOCAL_LLM_URL`.
+
+:::caution
+Pokud používáte lokální server LLM z jiného zařízení nebo kontejneru, nakonfigurujte jej tak, aby umožňoval externí připojení (ne pouze localhost).
 :::
 
 ## Docker / web
 
-Nastavte klíče poskytovatele jako **proměnné prostředí** na serveru (například `PROVIDER_API_KEY`). Uživatelé nemohou zadávat klíče do uživatelského rozhraní prohlížeče. Viz [Konfigurace](/docs/configuration/).
+Pokud používáte Transrewrt v prohlížeči, klíče spravuje ten, kdo provozuje server, nikoli se zadávají do uživatelského rozhraní prohlížeče. Administrátor nastavuje klíče poskytovatele jako **proměnné prostředí** na serveru (například `PROVIDER_API_KEY`) – viz [Konfigurace](/docs/configuration/).
 
-## Kontrolní seznam pro první spuštění
+## Kontrolní seznam prvního spuštění
 
 1. Otevřete aplikaci a v případě potřeby nastavte **Jazyk rozhraní**.
-2. Přidejte a otestujte alespoň jeden klíč poskytovatele (desktop) nebo ověřte, že server má klíče prostředí (web).
-3. V režimu **Easy** zvolte **Poskytovatele** v Obecném nastavení; v režimu **Advanced** přidejte modely pod **Nastavení → Modely**.
+2. Přidejte a otestujte alespoň jeden klíč poskytovatele – nebo nakonfigurujte lokální model (desktop), nebo potvrďte, že server má klíče prostředí (web).
+3. V režimu **Snadné** vyberte **Poskytovatele** v Obecných nastaveních; v režimu **Pokročilé** přidejte modely pod **Nastavení → Modely** – viz [Nastavení](/docs/settings/#general-settings) pro oba režimy.
 4. Na kartě **Přeložit** vyberte předvolbu nebo model a spusťte krátký test – viz [Překlad textu](/docs/translate/).
+
+## Pokud něco nefunguje
+
+- **Test klíče selže**: zkontrolujte, zda byl klíč zkopírován kompletně (bez mezer před nebo za) a zda nebyl na webu poskytovatele smazán nebo deaktivován.
+- **Překlady selžou s chybou kvóty nebo kreditu**: bezplatné úrovně mají denní nebo měsíční limity; počkejte, přepněte na jiného bezplatného poskytovatele nebo přidejte kredit.
+- **V režimu Easy se nezobrazí žádný poskytovatel**: otevřete **Nastavení → Konfigurace API** a ověřte, že je nakonfigurován a otestován alespoň jeden klíč (nebo URL místního LLM).
+
+Další nápověda: [Běžné problémy](/docs/common-issues/).

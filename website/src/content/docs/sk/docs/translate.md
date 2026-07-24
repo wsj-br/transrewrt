@@ -1,60 +1,68 @@
 ---
 title: Preložiť text
-description: Preložte text medzi jazykmi, použite glosár a upravené výsledky s Rephrase.
+description: >-
+  Prekladajte text medzi jazykmi, používajte glosár a spresňujte výsledky
+  pomocou funkcie Preformulovať.
 ---
 
 
 
-Použite **Preložiť**, aby ste preložili text z jedného jazyka do druhého.
+Použite funkciu **Preložiť** na preklad textu z jedného jazyka do druhého.
 
-![Preložiť pracovný priestor](/images/screenshots/sk/translate.png)
+![Pracovný priestor prekladu](/images/screenshots/sk/translate.png)
 
 ## Predpoklady
 
-- Aspoň jeden poskytovateľský kľúč (desktop) alebo serverový env kľúč (web) — pozri [API kľúč](/docs/api-key/)
-- **Preset** (Ľahký) alebo **model** (Pokročilý) vybraný v paneli nástrojov
+- Aspoň jeden kľúč poskytovateľa (desktop) alebo kľúč prostredia servera (web) — pozrite si [API kľúč](/docs/api-key/)
+- V paneli nástrojov vybratá **predvoľba** (Jednoduché) alebo **model** (Pokročilé)
 
 ## Preložiť text
 
-1. Otvorte **Preložiť** v bočnom paneli.
-2. Vyberte jazyk v **Z** (alebo **Zistite jazyk**).
-3. Vyberte jazyk v **Do**.
-4. Vyberte preset alebo model v paneli nástrojov.
-5. Zadajte alebo vložte text do **Vstup**.
-6. Kliknite **Preložiť**.
-7. Čítajte výsledok v **Výstup**, potom skopírujte ak je potreba.
+1. Otvorte **Preložiť** na bočnom paneli.
+2. Vyberte jazyk v poli **Z** (alebo **Rozpoznať jazyk**).
+3. Vyberte jazyk v poli **Do**.
+4. Vyberte predvoľbu alebo model v paneli nástrojov.
+5. Zadajte alebo prilepte text do poľa **Vstup**.
+6. Kliknite na **Preložiť**.
+7. Prečítajte si výsledok v poli **Výstup** a v prípade potreby ho skopírujte.
 
-**Hlavné jazyky** sa zobrazujú najskôr v zoznamoch — nastavte ich v [Nastavenia → Jazyky](/docs/settings/#languages).
+**Najpoužívanejšie jazyky** sa zobrazujú ako prvé v zoznamoch — nastavte ich v časti [Nastavenia → Jazyky](/docs/settings/#languages).
 
 ## Užitočné nastavenia
 
-V [Nastavenia → Všeobecné nastavenia](/docs/settings/#general-settings):
+V časti [Nastavenia → Všeobecné nastavenia](/docs/settings/#general-settings):
 
-- **Automatické spustenie pri vkladaní** — spustí sa okamžite po vkladaní
-- **Automatické kopírovanie výsledku do schránky** — kopíruje po úspešnom spustení
-- **Preklad v reálnom čase počas písania** — spustí sa počas písania (môže zvyšovať náklady)
-- **Časový limit (ms)** — čakajte pred spustením v reálnom čase
-- **Správanie pri ENTER** — či Enter spustí úlohu alebo vloží nový riadok
+- **Automatické spustenie po prilepení** — spustí sa hneď po prilepení
+- **Automatické kopírovanie výsledku do schránky** — skopíruje sa po úspešnom spustení
+- **Preklad v reálnom čase počas písania** — spustí sa počas písania (môže zvýšiť náklady)
+- **Časový limit (ms)** — počkajte pred spustením v reálnom čase
+- **Správanie pre ENTER** — či kláves Enter spustí úlohu alebo vloží nový riadok
 
-## Upraviť preklad
+## Rozloženie a klávesnica
 
-Po úspešnom spustení sa zobrazí **Rephrase…** a rozbaľovacie menu vedľa **Do:** selektora:
+- **Prepínač rozloženia** — tlačidlá nad panelmi prepínajú medzi **vedľa seba** a **naskladanými** rozloženiami Vstup/Výstup. Voľba sa vzťahuje na Preložiť, Preformulovať a Transformovať a je zapamätaná na tomto zariadení.
+- **Enter** alebo **Shift+Enter** spustí úlohu v závislosti od **Správania pre ENTER** (pozri vyššie).
+- **Escape** vymaže vstupný panel (alebo najprv zatvorí otvorené menu alebo dialógové okno).
 
-1. **Rephrase…** (žiadna výber) — ďalší plný preklad rovnakého vstupu. Maximálne **päť** verzií; model vidí predchádzajúce verzie, takže sa môže líšiť slovná zásoba. Kliknite **Stop Translate**, aby ste zrušili bežiace rephrasovanie.
-2. **Alternatívy slov** — vyberte slová alebo krátky výraz, potom kliknite pravým tlačidlom alebo **Rephrase…**. Vyberte alternatívu, ktorá nahradí daný úsek (môže sa míľne rozšíriť pre gramatiku). Pri piatich verziách sa aktualizuje len verzia 5.
-3. Každá žiadosť o rephrasovanie alebo alternatívy používa model znovu a môže pridať náklady.
+## Spresniť preklad
 
-## Použite glosár
+Po úspešnom spustení sa vedľa selektora **Do:** zobrazí **Preformulovať…** a rozbaľovacia ponuka verzií:
 
-**Glossár** je zber párov zdrojových a cieľových termínov pre jazykový pár. Keď je povolený, zhodné termíny sa odosielajú modelu, aby sa zachovala konzistentnosť preferovaného slovného použitia.
+1. **Preformulovať…** (bez výberu) — ďalší úplný preklad rovnakého vstupu. Až **päť** verzií; model vidí predchádzajúce verzie, takže formulácia sa môže líšiť. Kliknutím na **Zastaviť preklad** zrušíte prebiehajúce preformulovanie.
+2. **Alternatívy slov** — vyberte slová alebo krátku frázu, potom kliknite pravým tlačidlom myši alebo na **Preformulovať…**. Vyberte alternatívu, ktorá nahradí rozsah (môže sa mierne rozšíriť kvôli gramatike). Pri piatich verziách sa aktualizuje iba verzia 5.
+3. Každá požiadavka na preformulovanie alebo alternatívy opäť použije model a môže zvýšiť náklady.
 
-1. Zapnite **Glosár** v vstupnom paneli.
-2. Preložte ako obvykle — termíny pre daný **Z** / **Do** pár sa aplikujú automaticky.
-3. Kliknite **Pridať do glosáru** (vedľa **Z:**), aby ste rýchlo zachytili nový pár.
+## Použiť glosár
+
+**Glosár** sú páry zdrojových/cieľových výrazov pre jazykový pár. Keď je povolený, zodpovedajúce výrazy sa odošlú do modelu, aby sa zachovala konzistentnosť preferovanej formulácie.
+
+1. Zapnite **Glosár** na vstupnom paneli.
+2. Prekladajte ako zvyčajne – termíny pre daný pár **Z** / **Do** sa použijú automaticky.
+3. Kliknite na **Pridať do glosára** (vedľa **Z:**), aby ste rýchlo zachytili nový pár.
 4. Spravujte všetky termíny v [Nastavenia → Glosár](/docs/settings/#glossary).
 
 :::note
-Termíny glosára sa zhodujú podľa jazykového páru. Nemožno ich použiť s možnosťou **Detect Language** ako zdrojom.
+Termíny glosára sa zhodujú podľa jazykového páru. Nemôžu byť použité s **Rozpoznať jazyk** ako zdroj.
 :::
 
 ## Ďalšie kroky

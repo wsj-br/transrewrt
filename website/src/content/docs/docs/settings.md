@@ -23,12 +23,20 @@ In **Easy** mode, pick AI via presets in the toolbar and **Provider** in General
 In the web version, each user has their own configuration (AI experience, provider, models/presets, languages, options, prompts). Changes do not affect other users.
 :::
 
-## General settings
+## General Settings
+
+![Settings General Settings tab](/images/screenshots/en-GB/settings-general.png)
 
 **AI experience**
 
-- **Easy** (default): choose a **Provider**. Cloud providers use toolbar presets (**Free (OpenRouter)**, **Standard**, **Advanced**, **Technical**). **Local LLM** lists installed local models instead. **Refresh presets catalog** fetches the latest preset list from the project repository.
+- **Easy** (default): choose a **Provider**. Cloud providers use toolbar presets. **Local LLM** lists installed local models instead. **Refresh presets catalog** fetches the latest preset list from the project repository.
+  - **Free (OpenRouter)** — zero-cost option routed to available free models; quality and availability may vary
+  - **Standard** — lightweight and cost-efficient; best for short texts, quick drafts, and high-volume use
+  - **Advanced** — high-accuracy model for complex or nuanced content, at a higher cost
+  - **Technical** — tuned for code, APIs, developer docs, and structured content; preserves formatting and terminology
 - **Advanced**: pick models in the toolbar; manage the list under [Models](#models).
+
+You can also switch Easy ↔ Advanced from the toolbar preset/model menu (**Switch to Easy/Advanced mode**, above Open Settings).
 
 **Appearance** — Theme; **Show cost information on the actions**; **Cost fraction digits**; web-only margin around the app; **Font Family** and **Size**.
 
@@ -51,8 +59,6 @@ Backups can move between desktop and web; restoring a desktop backup on web appl
 
 Available only in **Advanced** mode.
 
-![Settings Models tab](/images/screenshots/en-GB/settings-general.png)
-
 - **Available Models** (left) and **Selected Models** (right)
 - Search, **Provider** chips, **Free Only**, **Refresh**, Expand/Collapse All
 - Model ids use a provider prefix (`openrouter/…`, `openai/…`, `local/…`, …)
@@ -61,7 +67,7 @@ Available only in **Advanced** mode.
 Do not use OpenRouter **Body Builder** (`openrouter/bodybuilder`) for Translate, Rewrite, or Transform — it returns JSON request payloads, not finished text.
 :::
 
-Add with **Add**; remove with **X**. **Deselect all** keeps the required free model.
+Add with **Add**; remove with **X**. The OpenRouter free model is optional — selected models may be empty. Removing the last model from the toolbar opens **Settings → Models**. If the current model becomes unavailable, the app selects the next model in the list instead of forcing the free model.
 
 ## Languages
 
@@ -97,9 +103,15 @@ Desktop stores the glossary locally; web stores it per user.
 
 ## Users
 
-Web only (admins): add users, update details, reset passwords, delete accounts.
+Web only (admins):
 
-## API config
+- Add users, update details, reset passwords, delete accounts
+- **Session Timeout** — how long a login lasts (1 hour to 7 days); changes apply only to new logins
+- **Revoke sessions** — sign a user out of all devices immediately
+
+Every signed-in user (including non-admins) can change their own password or sign out from the user menu at the bottom of the sidebar.
+
+## API Config
 
 Configure only the providers you use: OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, **Local LLM** (base URL for Ollama, LM Studio, llama.cpp, or similar), and an optional custom OpenAI-compatible provider.
 

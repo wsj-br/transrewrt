@@ -11,7 +11,7 @@ Transrewrt is an AI-powered text translation, rewriting, and transformation tool
 ### Language & Module Boundaries
 - **Frontend / Renderer** ([src/renderer/](file:///home/wsj/src/transrewrt/src/renderer)): Built with React 19 and **TypeScript** (`.ts`, `.tsx`). Uses ES Modules (`import`/`export`).
 - **Backend / Server** ([src/server/](file:///home/wsj/src/transrewrt/src/server)): Built with Express 5 and **JavaScript** (`.js`). Uses **CommonJS** (`require`).
-- **Electron Main / Preload** ([src/main/](file:///home/wsj/src/transrewrt/src/main)): Built with Electron 42 and **JavaScript** (`.js`). Uses **CommonJS** (`require`).
+- **Electron Main / Preload** ([src/main/](file:///home/wsj/src/transrewrt/src/main)): Built with Electron 43 and **JavaScript** (`.js`). Uses **CommonJS** (`require`).
 - **Shared Code** ([src/shared/](file:///home/wsj/src/transrewrt/src/shared)): Node-compatible utility files in **JavaScript** (`.js`) using **CommonJS** (`require`).
 
 ### Styling & UI Components
@@ -46,6 +46,7 @@ For detailed system details, consult [dev/SYSTEM-OVERVIEW.md](file:///home/wsj/s
 Transrewrt uses a workflow based on `ai-i18n-tools` + `react-i18next` (key-as-default).
 - Before changing UI strings, localization settings, or translations, read the [dev/ai-i18n-tools-context.md](file:///home/wsj/src/transrewrt/dev/ai-i18n-tools-context.md) file.
 - **Source Locale**: Must match `en-GB`.
+- **English-only edits**: Change only English (source-locale) UI strings and documentation. Do **not** hand-edit translated locale files or non-English docs; `ai-i18n-tools` performs those translations.
 - **Localization Files**:
   - Configuration: `ai-i18n-tools.config.json`
   - Master catalog: [strings.json](file:///home/wsj/src/transrewrt/src/renderer/locales/strings.json)
@@ -76,6 +77,7 @@ For more development scripts and troubleshooting, see [dev/DEVELOPMENT.md](file:
 
 ## 7. Documentation & Markdown Rules
 
+- **English source only**: Edit documentation only in English (the source locale). Do **not** update translated docs in other languages (for example `website/src/content/docs/{locale}/…`, `translated-docs/`). Translations are produced by `ai-i18n-tools` (e.g. `translate-docs` / `sync`); agents must not hand-maintain non-English documentation.
 - Do **not** use bold formatting around inline code—avoid putting asterisks outside a backtick span. Use plain `code` spans, or apply emphasis and code styling separately; never nest both on the same element.
   - *Correct*: The config file `config.json` or `**Important**: check config.json`
   - *Incorrect*: Avoid wrapping backticks inside asterisks (such as putting double asterisks outside backticks).

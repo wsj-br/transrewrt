@@ -30,15 +30,15 @@ Instrument de text bazat pe inteligența artificială: **traduceți**, **rescrie
 ```bash
 docker pull ghcr.io/wsj-br/transrewrt:latest
 
-OPENROUTER_API_KEY=sk-or-your-key docker run -d \
+docker run -d \
   -p 5000:5000 \
   -v transrewrt-data:/app/data \
-  -e OPENROUTER_API_KEY \
-  --name transrewrt-web \
+  -e PROVIDER_API_KEY=your-key \
+  --name transrewrt \
   ghcr.io/wsj-br/transrewrt:latest
 ```
 
-Deschideți [http://localhost:5000](http://localhost:5000) și schimbați parola de administrator implicită. Cheile furnizorului sunt setate prin variabile de mediu (nu prin interfața web).
+Înlocuiți `PROVIDER_API_KEY` cu variabila furnizorului dvs. (de exemplu, `OPENROUTER_API_KEY`, `OPENAI_API_KEY`, `GROQ_API_KEY`). Deschideți [http://localhost:5000](http://localhost:5000) și schimbați parola de Administrator implicită. Cheile sunt setate prin variabile de mediu (nu prin interfața web).
 
 **Windows** — Descărcați `Transrewrt Setup x.y.z.exe` de la [Lansări](https://github.com/wsj-br/transrewrt/releases), instalați, apoi adăugați cheile în **Setări → API**.
 

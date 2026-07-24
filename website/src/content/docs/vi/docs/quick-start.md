@@ -14,20 +14,20 @@ Chọn đường dẫn phù hợp với bạn. Tất cả đều miễn phí và
 ```bash
 docker pull ghcr.io/wsj-br/transrewrt:latest
 
-PROVIDER_API_KEY=sk-or-your-key docker run -d \
+docker run -d \
   -p 5000:5000 \
   -v transrewrt-data:/app/data \
-  -e PROVIDER_API_KEY \
-  --name transrewrt-web \
+  -e PROVIDER_API_KEY=your-api-key \
+  --name transrewrt \
   ghcr.io/wsj-br/transrewrt:latest
 ```
 
-Thay thế `PROVIDER_API_KEY=sk-or-your-key` bằng khóa API của bạn từ nhà cung cấp đã chọn (xem các tùy chọn được hỗ trợ trong [Cấu hình](/docs/configuration/)).
+Thay thế `PROVIDER_API_KEY` bằng biến cho nhà cung cấp của bạn (ví dụ: `OPENROUTER_API_KEY`, `OPENAI_API_KEY`, `ANTHROPIC_API_KEY`, `XIA_API_KEY`, ...) và đặt giá trị của nó. Xem danh sách đầy đủ trong [Cấu hình](/docs/configuration/#environment-variables-web--docker).
 
 Sau đó mở [http://localhost:5000](http://localhost:5000) và **thay đổi mật khẩu quản trị mặc định** trước khi hiển thị dịch vụ.
 
 :::caution
-Trong Docker, thông tin xác thực LLM được đặt bằng các biến môi trường (ví dụ: `PROVIDER_API_KEY`). Chúng **không** được nhập vào giao diện người dùng web. Trên máy tính để bàn, bạn định cấu hình khóa trong **Cài đặt → API**.
+Trong Docker, thông tin xác thực LLM được đặt bằng các biến môi trường (ví dụ: `PROVIDER_API_KEY`). Chúng **không** được nhập vào giao diện người dùng web. Trên máy tính để bàn, bạn định cấu hình khóa trong **Cài đặt → Cấu hình API**.
 :::
 
 ### Docker Compose
@@ -42,7 +42,7 @@ docker compose -f transrewrt.yml up -d
 
 1. Tải xuống `Transrewrt Setup x.y.z.exe` mới nhất từ [Bản phát hành](https://github.com/wsj-br/transrewrt/releases).
 2. Chạy trình cài đặt.
-3. Mở ứng dụng và nhập khóa API trong **Cài đặt → API**. Định cấu hình ít nhất một nhà cung cấp; OpenRouter là một lựa chọn phổ biến cho các mô hình miễn phí.
+3. Mở ứng dụng và nhập khóa API trong **Cài đặt → Cấu hình API**. Cấu hình ít nhất một nhà cung cấp; OpenRouter là một lựa chọn phổ biến cho các mô hình miễn phí.
 
 :::note
 Windows có thể hiển thị cảnh báo UAC hoặc SmartScreen cho các ứng dụng độc lập không có chữ ký. Ưu tiên tải xuống từ trang GitHub Releases chính thức và xác minh tổng kiểm tra khi được xuất bản.
@@ -56,7 +56,7 @@ Tải xuống `.AppImage` cho CPU của bạn từ [Bản phát hành](https://g
 chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage
 ```
 
-Nhập khóa API trong **Cài đặt → API**.
+Nhập khóa API trong **Cài đặt → Cấu hình API**.
 
 Nếu Chromium in lỗi GPU / EGL nhưng ứng dụng vẫn hoạt động, bạn có thể tắt tăng tốc phần cứng:
 
@@ -68,8 +68,22 @@ TRANSREWRT_DISABLE_GPU=1 ./Transrewrt-x.y.z-arm64.AppImage
 macOS hiện không được hỗ trợ. Transrewrt có sẵn cho Windows, Linux và Docker.
 :::
 
+## Cập nhật
+
+- **Windows** — tải xuống `Transrewrt Setup x.y.z.exe` mới hơn từ [Bản phát hành](https://github.com/wsj-br/transrewrt/releases) và chạy nó. Cài đặt và dữ liệu được giữ nguyên.
+- **Linux** — tải xuống `.AppImage` mới hơn và thay thế tệp cũ. Cài đặt và dữ liệu được giữ nguyên.
+- **Docker** — kéo hình ảnh mới và tạo lại vùng chứa. Dữ liệu vẫn tồn tại trong ổ đĩa `/app/data`:
+
+```bash
+docker pull ghcr.io/wsj-br/transrewrt:latest
+docker stop transrewrt && docker rm transrewrt
+# then run the same `docker run` command as above
+# or, with Docker Compose:
+docker compose -f transrewrt.yml pull && docker compose -f transrewrt.yml up -d
+```
+
 ## Các bước tiếp theo
 
 1. [Lấy khóa API](/docs/api-key/)
-2. Chạy bản dịch đơn giản để xác nhận mọi thứ hoạt động
+2. Chạy một bản dịch đơn giản để xác nhận mọi thứ hoạt động
 3. Đọc các hướng dẫn [Dịch](/docs/translate/), [Viết lại](/docs/rewrite/) và [Chuyển đổi](/docs/transform/)

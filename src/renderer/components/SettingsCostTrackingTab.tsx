@@ -10,6 +10,7 @@ import {
   formatAvgCost,
   formatCount,
   getDeleteCutoffIso,
+  getCostFractionStyleOptions,
 } from "../utils/misc/costUtils";
 import {
   formatDecimal,
@@ -19,6 +20,8 @@ import { flipUiArrowsForRtl, getTextDirection } from "ai-i18n-tools/runtime";
 import { SOURCE_LOCALE } from "../i18n";
 import { translateApiErrorMessage } from "../utils/misc/apiErrorDisplay";
 import { Button } from "@/components/ui/button";
+import { Label } from "@/components/ui/label";
+import { Checkbox } from "@/components/ui/checkbox";
 import {
   Select,
   SelectContent,
@@ -273,6 +276,45 @@ const SettingsCostTrackingTab = ({
           <span className="text-xs text-muted-foreground italic">
             {t("Usage updates may have a short delay (15s to 1min), even after refreshing.")}
           </span>
+        </div>
+        <div className="ps-6 mt-8">
+          <div className="flex items-center gap-2 mb-3.5">
+            <Checkbox
+              id="cost-tab-show-cost-on-actions"
+              checked={localSettings.show_cost_on_actions !== false}
+              onCheckedChange={(c) => onSettingChange("show_cost_on_actions", !!c)}
+            />
+            <Label htmlFor="cost-tab-show-cost-on-actions" className="m-0 cursor-pointer">
+              {t("Show cost information on the actions")}
+            </Label>
+          </div>
+          <div className="flex items-center gap-2 mb-0 flex-wrap">
+            <Label htmlFor="cost-tab-cost-fraction-style" className="m-0 whitespace-nowrap text-sm">
+              {t("Cost fraction digits:")}
+            </Label>
+            <Select
+              value={localSettings.cost_fraction_style || "muted"}
+              onValueChange={(v) => {
+                const opts = getCostFractionStyleOptions(t);
+                if (v && opts.some((o) => o.value === v)) onSettingChange("cost_fraction_style", v);
+              }}
+            >
+              <SelectTrigger id="cost-tab-cost-fraction-style" className="min-w-[120px]">
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                {getCostFractionStyleOptions(t).map((o) => (
+                  <SelectItem key={o.value} value={o.value}>{o.label}</SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+            <span className="ms-2 inline-flex items-baseline gap-1.5">
+              <span className="text-muted-foreground text-xs">{t("Sample:")}</span>
+              <span className="text-base text-green-400 whitespace-nowrap">
+                {formatCost(0.001234, localSettings.cost_fraction_style || "muted", locale)}
+              </span>
+            </span>
+          </div>
         </div>
       </div>
 

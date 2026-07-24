@@ -30,15 +30,15 @@
 ```bash
 docker pull ghcr.io/wsj-br/transrewrt:latest
 
-OPENROUTER_API_KEY=sk-or-your-key docker run -d \
+docker run -d \
   -p 5000:5000 \
   -v transrewrt-data:/app/data \
-  -e OPENROUTER_API_KEY \
-  --name transrewrt-web \
+  -e PROVIDER_API_KEY=your-key \
+  --name transrewrt \
   ghcr.io/wsj-br/transrewrt:latest
 ```
 
-Відкрийте [http://localhost:5000](http://localhost:5000) та змініть пароль адміністратора за замовчуванням. Ключі постачальника встановлюються через змінні середовища (не через веб-інтерфейс).
+Замініть `PROVIDER_API_KEY` на змінну вашого постачальника (наприклад, `OPENROUTER_API_KEY`, `OPENAI_API_KEY`, `GROQ_API_KEY`). Відкрийте [http://localhost:5000](http://localhost:5000) і змініть стандартний Пароль Адміністратора. Ключі встановлюються через змінні середовища (не через веб-інтерфейс).
 
 **Windows** — Завантажте `Transrewrt Setup x.y.z.exe` з [Релізів](https://github.com/wsj-br/transrewrt/releases), встановіть, а потім додайте ключі в **Налаштування → API**.
 

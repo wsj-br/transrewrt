@@ -7,7 +7,7 @@ description: >-
 
 
 
-Öffnen Sie den **Verlauf**, um vergangene Vorgänge anzuzeigen, einschließlich der Eingabe und Ausgabe jedes Laufs.
+Öffnen Sie den **Verlauf**, um vergangene Vorgänge einschließlich der Eingabe und Ausgabe jedes Laufs anzuzeigen.
 
 ![Verlaufsseite](/images/screenshots/de/history.png)
 

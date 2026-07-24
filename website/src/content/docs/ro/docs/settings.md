@@ -11,10 +11,10 @@ Deschideți **Setări** din bara laterală pentru a personaliza comportamentul a
 
 | Fila | Desktop | Web (admin) | Web (utilizator) | Note |
 | --- | :---: | :---: | :---: | --- |
-| Setări generale | da | da | da | Include **experiența AI** (Ușor / Avansat) |
-| Modele | da | da | da | Numai când **experiența AI** este **Avansată** |
+| Setări generale | da | da | da | Include **Experiența AI** (Ușor / Avansat) |
+| Modele | da | da | da | Doar când **Experiența AI** este **Avansată** |
 | Limbi | da | da | da | |
-| Urmărire costuri | da | da | — | |
+| Urmărirea costurilor | da | da | — | |
 | Transformare | da | da | da | Import/export în masă de prompturi |
 | Glosar | da | da | da | Perechi de termeni pentru traducere |
 | Utilizatori | — | da | — | |
@@ -23,29 +23,37 @@ Deschideți **Setări** din bara laterală pentru a personaliza comportamentul a
 
 În modul **Ușor**, alegeți AI prin presetări în bara de instrumente și **Furnizor** în Setări generale; fila **Modele** este ascunsă.
 
-:::noteNotă
+:::note
 În versiunea web, fiecare utilizator are propria configurație (experiență AI, furnizor, modele/presetări, limbi, opțiuni, prompturi). Modificările nu afectează alți utilizatori.
 :::
 
 ## Setări generale
 
+![Fila Setări generale](/images/screenshots/ro/settings-general.png)
+
 **Experiența AI**
 
-- **Ușor** (implicit): alegeți un **Furnizor**. Furnizorii de cloud utilizează presetări de bare de instrumente (**Gratuit (OpenRouter)**, **Standard**, **Avansat**, **Tehnic**). **LLM local** listează în schimb modelele locale instalate. **Reîmprospătare catalog presetări** preia cea mai recentă listă de presetări din depozitul proiectului.
+- **Ușor** (implicit): alegeți un **Furnizor**. Furnizorii cloud utilizează presetări din bara de instrumente. **LLM local** listează în schimb modelele locale instalate. **Reîmprospătare catalog presetări** preia cea mai recentă listă de presetări din depozitul proiectului.
+  - **Gratuit (OpenRouter)** — opțiune fără costuri direcționată către modele gratuite disponibile; calitatea și disponibilitatea pot varia
+  - **Standard** — ușor și eficient din punct de vedere al costurilor; cel mai bun pentru texte scurte, schițe rapide și utilizare în volum mare
+  - **Avansat** — model de înaltă precizie pentru conținut complex sau nuanțat, la un cost mai mare
+  - **Tehnic** — optimizat pentru cod, API-uri, documentație pentru dezvoltatori și conținut structurat; păstrează formatarea și terminologia
 - **Avansat**: alegeți modele din bara de instrumente; gestionați lista sub [Modele](#models).
 
-**Aspect** — Temă; **Afișează informații despre costuri la acțiuni**; **Cifre fracționare cost**; margine doar pentru web în jurul aplicației; **Familie de fonturi** și **Dimensiune**.
+Puteți comuta, de asemenea, Ușor ↔ Avansat din meniul de presetări/modele din bara de instrumente (**Comutați la modul Ușor/Avansat**, deasupra Deschideți Setări).
 
-**Comportament** — **Comportament pentru ENTER**; **Executare automată la lipire**; **Copiere automată rezultat în clipboard**; **Traducere în timp real în timpul tastării**; **Timp de expirare (ms)**.
+**Aspect** — Temă; **Afișează informații despre costuri la acțiuni**; **Cifre zecimale cost**; marjă doar pe web în jurul aplicației; **Familia de fonturi** și **Dimensiunea**.
+
+**Comportament** — **Comportament pentru ENTER**; **Execută automat la lipire**; **Copiază automat rezultatul în clipboard**; **Traducere în timp real în timpul tastării**; **Timeout (ms)**.
 
 **Istoric**
 
-- **Păstrați istoricul execuției** — stocați intrările/ieșirile pentru vizualizarea [Istoric](/docs/history/). Dezactivarea solicită confirmare și poate elimina textul stocat. Dacă este etichetat *dezactivat de administrator*, `HISTORY_DISABLED` este setat — consultați [Configurație](/docs/configuration/#privacy-mode).
-- **Ștergeți datele istoricului** — eliminați textul stocat în funcție de vechime sau ștergeți tot. **Nu** șterge totalurile costurilor (utilizați Urmărirea costurilor pentru asta).
+- **Păstrați istoricul execuțiilor** — stochează intrările/ieșirile pentru vizualizarea [Istoric](/docs/history/). Dezactivarea solicită confirmare și poate elimina textul stocat. Dacă este etichetat ca *dezactivat de administrator*, `HISTORY_DISABLED` este setat — consultați [Configurare](/docs/configuration/#privacy-mode).
+- **Ștergeți datele istoricului** — eliminați textul stocat în funcție de vechime sau ștergeți tot. **Nu** șterge totalurile costurilor (utilizați Urmărirea costurilor pentru aceasta).
 
 **Backup configurație** (administratori desktop și web)
 
-- Opțional **Includeți datele de utilizare în backup**
+- Opțional **Include date de utilizare în backup**
 - **Configurație backup** — ZIP cu configurație, stare, utilizatori, preferințe, prompturi și date de utilizare opționale
 - **Restaurare din backup** — dialog de confirmare cu opțiuni de restaurare și/sau ștergere a datelor de utilizare
 
@@ -55,17 +63,15 @@ Backup-urile pot fi mutate între desktop și web; restaurarea unui backup deskt
 
 Disponibil doar în modul **Avansat**.
 
-![Setări fila Modele](/images/screenshots/ro/settings-general.png)
-
 - **Modele disponibile** (stânga) și **Modele selectate** (dreapta)
 - Căutare, etichete **Furnizor**, **Doar gratuit**, **Reîmprospătare**, Extinde/Restrânge tot
-- ID-urile modelului utilizează un prefix de furnizor (`openrouter/…`, `openai/…`, `local/…`, …)
+- ID-urile modelelor utilizează un prefix de furnizor (`openrouter/…`, `openai/…`, `local/…`, …)
 
 :::caution
-Nu utilizați OpenRouter **Body Builder** (`openrouter/bodybuilder`) pentru Traducere, Rescriere sau Transformare — returnează sarcini utile de solicitare JSON, nu text finalizat.
+Nu utilizați OpenRouter **Body Builder** (`openrouter/bodybuilder`) pentru Traducere, Rescriere sau Transformare — acesta returnează sarcini utile de cerere JSON, nu text finalizat.
 :::
 
-Adăugați cu **Adăugați**; eliminați cu **X**. **Deselectați tot** păstrează modelul gratuit necesar.
+Adăugați cu **Adaugă**; eliminați cu **X**. Modelul gratuit OpenRouter este opțional — modelele selectate pot fi goale. Eliminarea ultimului model din bara de instrumente deschide **Setări → Modele**. Dacă modelul curent devine indisponibil, aplicația selectează următorul model din listă în loc să forțeze modelul gratuit.
 
 ## Limbi
 
@@ -74,10 +80,10 @@ Adăugați cu **Adăugați**; eliminați cu **X**. **Deselectați tot** păstrea
 
 ## Urmărirea costurilor
 
-- **Cost total**, **Copiere valoare**, **Resetare cost**
-- **Sincronizare cu utilizarea cheii API** — aliniere cu utilizarea contului OpenRouter (doar OpenRouter)
-- **Utilizare cheie API** — detalii OpenRouter când sunt disponibile
-- **Ștergere date costuri** — toate datele sau intrările mai vechi decât o anumită dată
+- **Cost total**, **Copiază valoarea**, **Resetează costul**
+- **Sincronizează cu utilizarea cheii API** — aliniere cu utilizarea contului OpenRouter (doar OpenRouter)
+- **Utilizarea cheii API** — Detalii OpenRouter când sunt disponibile
+- **Șterge datele de cost** — toate datele sau intrările mai vechi decât o anumită dată
 
 OpenRouter afișează costul real facturat atunci când este cazul; alți furnizori utilizează estimări din prețurile OpenRouter. Estimările nu sunt facturi.
 
@@ -101,7 +107,13 @@ Desktop stochează glosarul local; web îl stochează per utilizator.
 
 ## Utilizatori
 
-Doar web (administratori): adăugați utilizatori, actualizați detalii, resetați parole, ștergeți conturi.
+Doar web (administratori):
+
+- Adăugați utilizatori, actualizați detalii, resetați parole, ștergeți conturi
+- **Timp de expirare sesiune** — cât durează o autentificare (de la 1 oră la 7 zile); modificările se aplică doar autentificărilor noi
+- **Revocați sesiunile** — deconectați imediat un utilizator de pe toate dispozitivele
+
+Fiecare utilizator autentificat (inclusiv non-administratorii) își poate schimba propria parolă sau se poate deconecta din meniul utilizatorului din partea de jos a barei laterale.
 
 ## Configurare API
 
@@ -109,12 +121,12 @@ Configurați doar furnizorii pe care îi utilizați: OpenRouter, OpenAI, Anthrop
 
 **Web (administrator):** cheile provin din variabilele de mediu — această pagină arată care sunt setate și vă permite să **Testați**. Reporniți după modificarea variabilelor de mediu. Consultați [Configurare](/docs/configuration/).
 
-**Desktop:** introduceți cheile (sau URL-ul LLM local) și **Salvați** / **Editați** / **Testați**. Cheile sunt stocate criptat; nu puteți vizualiza valoarea curentă, ci doar o puteți înlocui.
+**Desktop:** introduceți cheile (sau URL-ul LLM local) și **Salvați** / **Editați** / **Testați**. Cheile sunt stocate criptat; nu puteți vizualiza valoarea curentă, ci doar să o înlocuiți.
 
 :::tip
-Nu este necesară o cheie plătită pentru a începe: utilizați modele OpenRouter gratuite, alți furnizori cu nivel gratuit sau un server local compatibil cu OpenAI, cum ar fi [Ollama](https://ollama.com), LM Studio sau llama.cpp (de exemplu, `translategemma:4b`).
+Nu este necesară o cheie plătită pentru a începe: utilizați modele OpenRouter gratuite, alți furnizori cu nivel gratuit sau un server local compatibil cu OpenAI, cum ar fi [Ollama](https://ollama.com), LM Studio sau llama.cpp (de exemplu `translategemma:4b`).
 :::
 
 ## Despre
 
-Numele aplicației, versiunea, data construirii, licența, notificările terților și linkul către depozit.
+Numele aplicației, versiunea, data construirii, licența, notificări de la terți și linkul către depozit.

@@ -1,44 +1,71 @@
 ---
 title: APIキー
-description: 無料のOpenRouter APIキーを取得し、他のAIプロバイダーをTransrewrtに接続します。
+description: TransrewrtをAPIキーを追加して任意のAIプロバイダーに接続するか、代わりにローカルモデルを使用します。
 ---
 
 
 
-Transrewrtは少なくとも1つのAIプロバイダーへのアクセスを必要とします。開始するのに有料モデルは**必要ありません**：OpenRouterはキーを追加後に無料モデルを提供し、他のいくつかのプロバイダーも無料枠を提供しています。
+Transrewrtには独自のAIは含まれていません。選択したAIプロバイダーにテキストを送信します。プロバイダーを接続するには、**APIキー**を追加します。これはプロバイダーが発行するプライベートコードであり、そのサービスのパスワードのように機能します。開始するには**1つ**のプロバイダーだけで十分であり、支払いも不要です。いくつかのプロバイダーは無料モデルまたは無料枠を提供しており、キーをまったく使用せずに自分のコンピューターでモデルを実行することもできます。
 
-サポートされているプロバイダーには、[OpenRouter](https://openrouter.ai)、OpenAI、Anthropic、Google Gemini、DeepSeek、Groq、Mistral、xAI、Cerebras、NVIDIA、Alibaba Cloud、apikey.fun、任意のOpenAI互換エンドポイント、およびローカルのOpenAI互換サーバー（Ollama、LM Studio、llama.cppなど）が含まれます。
+対応プロバイダーには、OpenRouter、OpenAI、Anthropic、Google Gemini、DeepSeek、Groq、Mistral、xAI、Cerebras、NVIDIA、Alibaba Cloud、apikey.fun、OpenAI互換の任意のエンドポイント、およびローカルのOpenAI互換サーバー（Ollama、LM Studio、llama.cppなど）が含まれます。
 
-## 簡易モードと詳細モード
+## ステップ1 — プロバイダーを選択する
 
-- **Easy**モード（デフォルト）：**プロバイダー**にマッピングされた**プリセット**（Free (OpenRouter)、Standard、Advanced、またはTechnical）を選択します。現在のプロバイダーにマッピングされているプリセットのみが表示されます。
-- **Advanced**モード：モデルを直接選択します。モデルIDにはプロバイダーのプレフィックスが使用されます（例：`openrouter/…`、`openai/…`、`local/…`）。
+対応しているプロバイダーであればどれでも機能します。どれを選ぶべきか迷った場合は:
 
-## 無料のOpenRouterキー（デスクトップ）
+- **無料で開始**: OpenRouter、Google Gemini、Groq、Mistral、Cerebras、NVIDIAはすべて無料モデルまたは無料枠を提供しています。
+- **すでにアカウントをお持ちですか？** すでにOpenAI、Anthropic、またはその他の対応プロバイダーを使用している場合は、そのアカウントをそのまま再利用できます。
+- **すべてを自分のコンピューター上で保持したいですか？** キーを完全にスキップし、代わりに[ローカルモデル](#using-a-local-model-instead-no-api-key)を使用します。
 
-1. [openrouter.ai](https://openrouter.ai)にアクセスし、サインアップまたはログインします。
-2. [Keys](https://openrouter.ai/keys)ページを開き、新しいキーを作成します（名前を付けます；クレジット制限は任意）。クレジットを追加せずに無料モデルを使用できます。
-3. Transrewrtで**Settings → API Config**を開き、キーを**OpenRouter API key**に貼り付けて、**Test OpenRouter key**をクリックします。
+## ステップ2 — APIキーを作成する
+
+正確な手順はプロバイダーによってわずかに異なりますが、パターンはどこでも同じです:
+
+1. プロバイダーのウェブサイトでサインアップまたはログインします。Transrewrtの**Settings → API Config**で、各プロバイダーには適切な場所に移動する**Open provider website**リンクがあります。
+2. **API keys**ページ（アカウント、ダッシュボード、または開発者設定の下にある場合があります）を見つけて、新しいキーを作成します。一部のプロバイダーはキーに名前を付けたり、支出制限を設定するよう求めますが、どちらも任意です。
+3. キーをコピーします。これは文字と数字の長い文字列であり、多くの場合`sk-`などで始まります。
 
 :::caution
-OpenRouterの**Body Builder**モデル（`openrouter/bodybuilder`）を翻訳、リライト、または変換に使用しないでください — これは完成したテキストではなく、JSONリクエストペイロードを返します。
+APIキーはパスワードと同様に扱ってください。共有、投稿、誰にも送信しないでください。キーが漏洩した場合は、プロバイダーのウェブサイトで削除し、新しいキーを作成してください。
 :::
 
-## その他の無料オプション
+## ステップ3 — キーを追加してテストする（デスクトップ）
 
-Cerebras、Google、Groq、Mistral AI、または [NVIDIA](https://build.nvidia.com/)（OpenAI互換API）から無料のAPIキーを取得することもできます。または、Ollama、LM Studio、llama.cpp、または別のOpenAI互換サーバー（例: Ollama経由の `translategemma:4b`）を使用してモデルをローカルで実行することもできます。設定（デスクトップ）または `LOCAL_LLM_URL`（Docker）で、Local LLM base URL を完全なAPIベース（パスを含む、例: `http://localhost:11434/v1`）に設定します。
+1. Transrewrtで、**Settings → API Config**を開きます。
+2. プロバイダーのフィールド（例: **Google Gemini API key**）にキーを貼り付けて保存します。
+3. キーが機能することを確認するには、フィールドの横にある**Test**をクリックします。
+
+テストが成功したら、準備完了です。メイン画面でそのプロバイダーを選択し、翻訳を開始します。
 
 :::caution
-別のデバイスやコンテナからローカルLLMサーバーを使用する場合は、外部接続を許可するように設定してください（localhostのみに限定しないでください）。
+OpenRouterの**Body Builder**モデル（`openrouter/bodybuilder`）は避けてください。これは完成したテキストではなく、JSONリクエストペイロードを返します。[Settings → Models](/docs/settings/#models)を参照してください。
+:::
+
+## 代わりにローカルモデルを使用する（APIキー不要）
+
+Ollama、LM Studio、llama.cpp、または別のOpenAI互換サーバー（例: LM Studio経由の`google/gemma-4-e2b`）を使用して、自分のコンピューターでモデルを実行できます。データはマシンから外部に出ず、APIキーも不要です。
+
+接続するには、Local LLMベースURLをパスを含む完全なAPIベースに設定します（例: `http://localhost:11434/v1`）。デスクトップでは、これを**Settings → API Config**で設定します。Dockerでは、代わりに`LOCAL_LLM_URL`環境変数を設定します。
+
+:::caution
+別のデバイスやコンテナからローカルLLMサーバーを使用する場合は、外部接続を許可するように設定してください（localhostのみではない）。
 :::
 
 ## Docker / ウェブ
 
-サーバー上でプロバイダーキーを**環境変数**として設定します（例: `PROVIDER_API_KEY`）。ユーザーがブラウザUIにキーを入力することはできません。[設定](/docs/configuration/)を参照してください。
+ブラウザーでTransrewrtを使用する場合、キーはブラウザーUIに入力するのではなく、サーバーを実行するユーザーが管理します。管理者はサーバー上でプロバイダーキーを**環境変数**として設定します（例: `PROVIDER_API_KEY`）。[Configuration](/docs/configuration/)を参照してください。
 
-## 初回実行時のチェックリスト
+## 初回実行チェックリスト
 
-1. アプリを開き、必要に応じて**インターフェース言語**を設定します。
-2. プロバイダーキーを少なくとも1つ追加してテストする（デスクトップ）、またはサーバーに環境キーがあることを確認します（ウェブ）。
-3. **Easy**モードでは、一般設定で**プロバイダー**を選択します。**Advanced**モードでは、**設定 → モデル**でモデルを追加します。
-4. **Translate**で、プリセットまたはモデルを選択し、短いテストを実行します — [テキストの翻訳](/docs/translate/)を参照してください。
+1. アプリを開き、必要に応じて**Interface language**を設定します。
+2. 少なくとも1つのプロバイダーキーを追加してテストするか、ローカルモデルを構成する（デスクトップ）、またはサーバーに環境キーがあることを確認します（ウェブ）。
+3. **Easy**モードでは、General Settingsで**Provider**を選択します。**Advanced**では、**Settings → Models**でモデルを追加します。2つのモードについては[Settings](/docs/settings/#general-settings)を参照してください。
+4. **Translate**で、プリセットまたはモデルを選択し、短いテストを実行します。[Translate text](/docs/translate/)を参照してください。
+
+## 機能しない場合
+
+- **キーのテストが失敗する**: キーが完全にコピーされていること（前後にスペースがないこと）、およびプロバイダーのウェブサイトで削除または無効化されていないことを確認してください。
+- **クォータまたはクレジットのエラーで翻訳が失敗する**: 無料枠には日次または月次の制限があります。待つか、別の無料プロバイダーに切り替えるか、クレジットを追加してください。
+- **イージーモードでプロバイダーが表示されない**: **設定 → API設定**を開き、少なくとも1つのキー（またはローカルLLMのURL）が設定およびテストされていることを確認してください。
+
+その他のヘルプ: [よくある問題](/docs/common-issues/)。

@@ -29,8 +29,10 @@ Los modos incluyen:
 5. Haga clic en **Reescribir**.
 6. Lea el resultado en **Salida**.
 
+El [selector de diseño y los atajos de teclado](/docs/translate/#layout-and-keyboard) funcionan igual que en Traducir.
+
 :::tip
-En **Revisar ortografía y gramática**, aparece un interruptor **Mostrar cambios** junto a **Copiar**. Actívelo para mostrar u ocultar las correcciones.
+Después de una reescritura, aparece un interruptor **Mostrar cambios** (**Cambios**) junto a **Copiar** para **cada** modo de reescritura. Actívelo para mostrar u ocultar una diferencia entre la entrada y la salida.
 :::
 
 :::note
@@ -39,11 +41,11 @@ En **Revisar ortografía y gramática**, aparece un interruptor **Mostrar cambio
 
 ## Refinar una reescritura
 
-Después de una ejecución exitosa, **Reformular…** y el menú desplegable de versiones aparecen en el lado de salida (la misma idea que [Traducir](/docs/translate/#refine-a-translation), pero el texto permanece en el mismo idioma y mantiene el **Modo** actual):
+Después de una ejecución exitosa, **Reformular…** y el menú desplegable de versiones aparecen en el lado de la salida (la misma idea que [Traducir](/docs/translate/#refine-a-translation), pero el texto permanece en el mismo idioma y mantiene el **Modo** actual):
 
 1. **Reformular…** (sin selección) — otra reescritura completa con una redacción diferente. Hasta cinco versiones. Haga clic en **Detener reescritura** para cancelar.
-2. **Alternativas de palabras** — seleccione el texto y luego haga clic con el botón derecho o en **Reformular…**.
-3. Cada solicitud puede añadir un coste de uso.
+2. **Alternativas de palabras** — seleccione texto, luego haga clic derecho o **Reformular…**.
+3. Cada solicitud puede añadir costes de uso.
 
 ## Próximos pasos
 

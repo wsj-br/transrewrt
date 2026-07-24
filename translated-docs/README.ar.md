@@ -30,15 +30,15 @@
 ```bash
 docker pull ghcr.io/wsj-br/transrewrt:latest
 
-OPENROUTER_API_KEY=sk-or-your-key docker run -d \
+docker run -d \
   -p 5000:5000 \
   -v transrewrt-data:/app/data \
-  -e OPENROUTER_API_KEY \
-  --name transrewrt-web \
+  -e PROVIDER_API_KEY=your-key \
+  --name transrewrt \
   ghcr.io/wsj-br/transrewrt:latest
 ```
 
-افتح [http://localhost:5000](http://localhost:5000) وقم بتغيير كلمة مرور المسؤول الافتراضية. يتم تعيين مفاتيح المزود عبر متغيرات البيئة (وليس واجهة الويب).
+استبدل `PROVIDER_API_KEY` بمتغير المزود الخاص بك (على سبيل المثال `OPENROUTER_API_KEY`، `OPENAI_API_KEY`، `GROQ_API_KEY`). افتح [http://localhost:5000](http://localhost:5000) وقم بتغيير كلمة مرور المسؤول الافتراضية. يتم تعيين المفاتيح عبر متغيرات البيئة (وليس واجهة المستخدم على الويب).
 
 **Windows** — قم بتنزيل `Transrewrt Setup x.y.z.exe` من [الإصدارات](https://github.com/wsj-br/transrewrt/releases)، ثم قم بالتثبيت، ثم أضف المفاتيح في **الإعدادات ← API**.
 

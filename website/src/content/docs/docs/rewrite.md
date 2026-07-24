@@ -25,8 +25,10 @@ Modes include:
 5. Click **Rewrite**.
 6. Read the result in **Output**.
 
+The [layout toggle and keyboard shortcuts](/docs/translate/#layout-and-keyboard) work the same as in Translate.
+
 :::tip
-In **Check Spelling & Grammar**, a **Show changes** switch appears next to **Copy**. Toggle it to show or hide corrections.
+After a rewrite, a **Show changes** (**Changes**) switch appears next to **Copy** for **every** rewrite mode. Toggle it to show or hide a diff between input and output.
 :::
 
 :::note

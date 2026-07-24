@@ -9,13 +9,13 @@ description: >-
 
 Ouvrez les **Paramètres** depuis la barre latérale pour personnaliser le comportement de l'application.
 
-| Onglet | Bureau | Web (administrateur) | Web (utilisateur) | Notes |
+| Onglet | Bureau | Web (admin) | Web (utilisateur) | Notes |
 | --- | :---: | :---: | :---: | --- |
 | Paramètres généraux | oui | oui | oui | Inclut l'**expérience IA** (Facile / Avancée) |
 | Modèles | oui | oui | oui | Uniquement lorsque l'**expérience IA** est **Avancée** |
 | Langues | oui | oui | oui | |
 | Suivi des coûts | oui | oui | — | |
-| Transformer | oui | oui | oui | Importation/exportation en masse des invites |
+| Transformer | oui | oui | oui | Importation/exportation en masse d'invites |
 | Glossaire | oui | oui | oui | Paires de termes pour la traduction |
 | Utilisateurs | — | oui | — | |
 | Configuration API | oui | oui | — | |
@@ -29,19 +29,27 @@ Dans la version web, chaque utilisateur a sa propre configuration (expérience I
 
 ## Paramètres généraux
 
+![Onglet Paramètres généraux](/images/screenshots/fr/settings-general.png)
+
 **Expérience IA**
 
-- **Facile** (par défaut) : choisissez un **Fournisseur**. Les fournisseurs cloud utilisent des préréglages de barre d'outils (**Gratuit (OpenRouter)**, **Standard**, **Avancé**, **Technique**). **LLM local** répertorie les modèles locaux installés. **Actualiser le catalogue de préréglages** récupère la dernière liste de préréglages du référentiel du projet.
+- **Facile** (par défaut) : choisissez un **Fournisseur**. Les fournisseurs cloud utilisent les préréglages de la barre d'outils. **LLM local** liste les modèles locaux installés à la place. **Actualiser le catalogue de préréglages** récupère la dernière liste de préréglages du référentiel du projet.
+  - **Gratuit (OpenRouter)** — option sans coût acheminée vers les modèles gratuits disponibles ; la qualité et la disponibilité peuvent varier
+  - **Standard** — léger et économique ; idéal pour les textes courts, les brouillons rapides et l'utilisation à grand volume
+  - **Avancé** — modèle de haute précision pour le contenu complexe ou nuancé, à un coût plus élevé
+  - **Technique** — optimisé pour le code, les API, la documentation développeur et le contenu structuré ; préserve le formatage et la terminologie
 - **Avancé** : choisissez les modèles dans la barre d'outils ; gérez la liste sous [Modèles](#models).
 
-**Apparence** — Thème ; **Afficher les informations de coût sur les actions** ; **Chiffres fractionnaires du coût** ; marge autour de l'application (web uniquement) ; **Famille de polices** et **Taille**.
+Vous pouvez également basculer Facile ↔ Avancé depuis le menu préréglage/modèle de la barre d'outils (**Passer en mode Facile/Avancé**, au-dessus d'Ouvrir les paramètres).
 
-**Comportement** — **Comportement pour ENTRÉE** ; **Exécution automatique au collage** ; **Copie automatique du résultat dans le presse-papiers** ; **Traduction en temps réel pendant la saisie** ; **Délai d'expiration (ms)**.
+**Apparence** — Thème ; **Afficher les informations de coût sur les actions** ; **Chiffres fractionnaires du coût** ; marge web uniquement autour de l'application ; **Famille de polices** et **Taille**.
+
+**Comportement** — **Comportement pour ENTRÉE** ; **Exécution automatique au collage** ; **Copie automatique du résultat dans le presse-papiers** ; **Traduction en temps réel pendant la saisie** ; **Délai d'attente (ms)**.
 
 **Historique**
 
 - **Conserver l'historique d'exécution** — stocke les entrées/sorties pour la vue [Historique](/docs/history/). La désactivation demande une confirmation et peut supprimer le texte stocké. Si l'option est *désactivée par l'administrateur*, `HISTORY_DISABLED` est défini — voir [Configuration](/docs/configuration/#privacy-mode).
-- **Supprimer les données d'historique** — supprime le texte stocké par ancienneté ou efface tout. Ne supprime **pas** les totaux de coûts (utilisez le Suivi des coûts pour cela).
+- **Supprimer les données d'historique** — supprime le texte stocké par âge ou efface tout. Ne supprime **pas** les totaux de coûts (utilisez le Suivi des coûts pour cela).
 
 **Sauvegarde de la configuration** (administrateurs de bureau et web)
 
@@ -55,17 +63,15 @@ Les sauvegardes peuvent être déplacées entre le bureau et le web ; la restaur
 
 Disponible uniquement en mode **Avancé**.
 
-![Onglet Modèles des paramètres](/images/screenshots/fr/settings-general.png)
-
-- **Modèles disponibles** (à gauche) et **Modèles sélectionnés** (à droite)
+- **Modèles disponibles** (gauche) et **Modèles sélectionnés** (droite)
 - Recherche, puces **Fournisseur**, **Gratuit uniquement**, **Actualiser**, Développer/Réduire tout
 - Les identifiants de modèle utilisent un préfixe de fournisseur (`openrouter/…`, `openai/…`, `local/…`, …)
 
 :::caution
-N'utilisez pas OpenRouter **Body Builder** (`openrouter/bodybuilder`) pour Traduire, Réécrire ou Transformer — il renvoie des charges utiles de requête JSON, pas du texte fini.
+N'utilisez pas OpenRouter **Body Builder** (`openrouter/bodybuilder`) pour Traduire, Réécrire ou Transformer — il renvoie des charges utiles de requêtes JSON, pas du texte fini.
 :::
 
-Ajouter avec **Ajouter** ; supprimer avec **X**. **Désélectionner tout** conserve le modèle gratuit requis.
+Ajouter avec **Ajouter** ; supprimer avec **X**. Le modèle gratuit OpenRouter est facultatif — les modèles sélectionnés peuvent être vides. La suppression du dernier modèle de la barre d'outils ouvre **Paramètres → Modèles**. Si le modèle actuel devient indisponible, l'application sélectionne le modèle suivant dans la liste au lieu de forcer le modèle gratuit.
 
 ## Langues
 
@@ -75,14 +81,14 @@ Ajouter avec **Ajouter** ; supprimer avec **X**. **Désélectionner tout** conse
 ## Suivi des coûts
 
 - **Coût total**, **Copier la valeur**, **Réinitialiser le coût**
-- **Synchroniser avec l'utilisation de la clé API** — s'aligner sur l'utilisation du compte OpenRouter (OpenRouter uniquement)
-- **Utilisation de la clé API** — détails OpenRouter si disponibles
+- **Synchroniser avec l'utilisation de la clé API** — aligner avec l'utilisation du compte OpenRouter (OpenRouter uniquement)
+- **Utilisation de la clé API** — détails OpenRouter lorsqu'ils sont disponibles
 - **Supprimer les données de coût** — toutes les données ou les entrées antérieures à une date
 
 OpenRouter affiche le coût réel facturé le cas échéant ; les autres fournisseurs utilisent des estimations basées sur les tarifs OpenRouter. Les estimations ne sont pas des factures.
 
 :::caution
-La suppression des données de coût est irréversible. Exportez d'abord via Historique ou Tableau de bord → Tous les appels si vous avez besoin d'une sauvegarde. L'historique d'entrée/sortie lié à ces appels API est également supprimé.
+La suppression des données de coût est irréversible. Exportez via Historique ou Tableau de bord → Tous les appels d'abord si vous avez besoin d'une sauvegarde. L'historique d'entrée/sortie lié à ces appels API est également supprimé.
 :::
 
 ## Transformer
@@ -91,17 +97,23 @@ Gérez les invites en masse : examinez, supprimez, importez, exportez et chargez
 
 ## Glossaire
 
-Gérez les paires de termes appliquées lors de la [traduction](/docs/translate/#use-the-glossary). Chaque terme a une langue source/cible et un texte source/cible.
+Gérez les paires de termes appliquées pendant la [traduction](/docs/translate/#use-the-glossary). Chaque terme a une langue source/cible et un texte source/cible.
 
-- Ajouter via la rangée du bas et **+**
-- Filtrer par langues ou texte
-- Importer/exporter CSV ou XLSX ; télécharger des modèles vides
+- Ajoutez via la ligne du bas et **+**
+- Filtrez par langues ou par texte
+- Importez/exportez CSV ou XLSX ; téléchargez des modèles vides
 
 Le bureau stocke le glossaire localement ; le web le stocke par utilisateur.
 
 ## Utilisateurs
 
-Web uniquement (administrateurs) : ajouter des utilisateurs, mettre à jour les détails, réinitialiser les mots de passe, supprimer des comptes.
+Web uniquement (administrateurs) :
+
+- Ajouter des utilisateurs, mettre à jour les détails, réinitialiser les mots de passe, supprimer des comptes
+- **Délai d'expiration de la session** — durée d'une connexion (1 heure à 7 jours) ; les modifications s'appliquent uniquement aux nouvelles connexions
+- **Révoquer les sessions** — déconnecter immédiatement un utilisateur de tous les appareils
+
+Chaque utilisateur connecté (y compris les non-administrateurs) peut modifier son propre mot de passe ou se déconnecter à partir du menu utilisateur dans la barre latérale.
 
 ## Configuration de l'API
 
@@ -109,12 +121,12 @@ Configurez uniquement les fournisseurs que vous utilisez : OpenRouter, OpenAI, A
 
 **Web (administrateur) :** les clés proviennent des variables d'environnement — cette page indique celles qui sont définies et vous permet de les **Tester**. Redémarrez après avoir modifié les variables d'environnement. Voir [Configuration](/docs/configuration/).
 
-**Bureau :** saisissez les clés (ou l'URL du LLM local) et **Enregistrer** / **Modifier** / **Tester**. Les clés sont stockées chiffrées ; vous ne pouvez pas afficher la valeur actuelle, seulement la remplacer.
+**Bureau :** entrez les clés (ou l'URL du LLM local) et **Enregistrer** / **Modifier** / **Tester**. Les clés sont stockées cryptées ; vous ne pouvez pas voir la valeur actuelle, seulement la remplacer.
 
 :::tip
-Aucune clé payante n'est nécessaire pour commencer : utilisez les modèles OpenRouter gratuits, d'autres fournisseurs de niveau gratuit, ou un serveur local compatible OpenAI tel que [Ollama](https://ollama.com), LM Studio, ou llama.cpp (par exemple `translategemma:4b`).
+Aucune clé payante n'est nécessaire pour commencer : utilisez les modèles gratuits d'OpenRouter, d'autres fournisseurs gratuits, ou un serveur local compatible OpenAI tel que [Ollama](https://ollama.com), LM Studio, ou llama.cpp (par exemple `translategemma:4b`).
 :::
 
 ## À propos
 
-Nom de l'application, version, date de compilation, licence, avis de tiers et lien vers le dépôt.
+Nom de l'application, version, date de compilation, licence, avis de tiers et lien du dépôt.

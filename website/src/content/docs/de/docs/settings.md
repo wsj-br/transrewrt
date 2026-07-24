@@ -7,12 +7,12 @@ description: >-
 
 
 
-Öffnen Sie die **Einstellungen** in der Seitenleiste, um das Verhalten der App anzupassen.
+Öffnen Sie die **Einstellungen** über die Seitenleiste, um das Verhalten der App anzupassen.
 
 | Registerkarte | Desktop | Web (Admin) | Web (Benutzer) | Hinweise |
 | --- | :---: | :---: | :---: | --- |
 | Allgemeine Einstellungen | ja | ja | ja | Beinhaltet **KI-Erfahrung** (Einfach / Erweitert) |
-| Modelle | ja | ja | ja | Nur wenn **KI-Erfahrung** auf **Erweitert** eingestellt ist |
+| Modelle | ja | ja | ja | Nur wenn **KI-Erfahrung** **Erweitert** ist |
 | Sprachen | ja | ja | ja | |
 | Kostenverfolgung | ja | ja | — | |
 | Transformieren | ja | ja | ja | Massenimport/-export von Prompts |
@@ -21,7 +21,7 @@ description: >-
 | API-Konfiguration | ja | ja | — | |
 | Über | ja | ja | ja | |
 
-Im Modus **Einfach** wählen Sie die KI über Voreinstellungen in der Symbolleiste und den **Anbieter** in den Allgemeinen Einstellungen; die Registerkarte **Modelle** ist ausgeblendet.
+Im Modus **Einfach** wählen Sie die KI über Voreinstellungen in der Symbolleiste und den **Anbieter** in den Allgemeinen Einstellungen aus; die Registerkarte **Modelle** ist ausgeblendet.
 
 :::note
 In der Webversion hat jeder Benutzer seine eigene Konfiguration (KI-Erfahrung, Anbieter, Modelle/Voreinstellungen, Sprachen, Optionen, Prompts). Änderungen wirken sich nicht auf andere Benutzer aus.
@@ -29,23 +29,31 @@ In der Webversion hat jeder Benutzer seine eigene Konfiguration (KI-Erfahrung, A
 
 ## Allgemeine Einstellungen
 
+![Registerkarte „Allgemeine Einstellungen“](/images/screenshots/de/settings-general.png)
+
 **KI-Erfahrung**
 
-- **Einfach** (Standard): Wählen Sie einen **Anbieter**. Cloud-Anbieter verwenden Voreinstellungen in der Symbolleiste (**Kostenlos (OpenRouter)**, **Standard**, **Erweitert**, **Technisch**). **Lokales LLM** listet stattdessen installierte lokale Modelle auf. **Voreinstellungskatalog aktualisieren** ruft die neueste Voreinstellungsliste aus dem Projekt-Repository ab.
+- **Einfach** (Standard): Wählen Sie einen **Anbieter**. Cloud-Anbieter verwenden Voreinstellungen in der Symbolleiste. **Lokales LLM** listet stattdessen installierte lokale Modelle auf. **Voreinstellungskatalog aktualisieren** ruft die neueste Voreinstellungsliste aus dem Projekt-Repository ab.
+  - **Kostenlos (OpenRouter)** – kostenlose Option, die an verfügbare kostenlose Modelle weitergeleitet wird; Qualität und Verfügbarkeit können variieren
+  - **Standard** – leicht und kostengünstig; am besten für kurze Texte, schnelle Entwürfe und den Einsatz in großen Mengen
+  - **Erweitert** – hochpräzises Modell für komplexe oder nuancierte Inhalte, zu höheren Kosten
+  - **Technisch** – optimiert für Code, APIs, Entwicklerdokumentation und strukturierte Inhalte; bewahrt Formatierung und Terminologie
 - **Erweitert**: Wählen Sie Modelle in der Symbolleiste aus; verwalten Sie die Liste unter [Modelle](#models).
 
-**Erscheinungsbild** — Thema; **Kosteninformationen bei Aktionen anzeigen**; **Nachkommastellen für Kosten**; nur im Web sichtbarer Rand um die App; **Schriftfamilie** und **Größe**.
+Sie können auch zwischen Einfach ↔ Erweitert über das Voreinstellungs-/Modellmenü der Symbolleiste wechseln (**In den einfachen/erweiterten Modus wechseln**, über „Einstellungen öffnen“).
 
-**Verhalten** — **Verhalten bei ENTER**; **Automatische Ausführung beim Einfügen**; **Ergebnis automatisch in die Zwischenablage kopieren**; **Echtzeitübersetzung während der Eingabe**; **Timeout (ms)**.
+**Erscheinungsbild** – Design; **Kosteninformationen für Aktionen anzeigen**; **Kosten-Nachkommastellen**; Nur-Web-Rand um die App; **Schriftfamilie** und **Schriftgröße**.
+
+**Verhalten** – **Verhalten bei ENTER**; **Automatische Ausführung beim Einfügen**; **Ergebnis automatisch in die Zwischenablage kopieren**; **Echtzeitübersetzung während der Eingabe**; **Zeitüberschreitung (ms)**.
 
 **Verlauf**
 
-- **Ausführungsverlauf beibehalten** – speichert Eingaben/Ausgaben für die [Verlaufsansicht](/docs/history/). Das Deaktivieren erfordert eine Bestätigung und kann gespeicherten Text entfernen. Wenn als *vom Administrator deaktiviert* gekennzeichnet, ist `HISTORY_DISABLED` festgelegt – siehe [Konfiguration](/docs/configuration/#privacy-mode).
+- **Ausführungsverlauf beibehalten** – speichert Eingaben/Ausgaben für die Ansicht [Verlauf](/docs/history/). Das Deaktivieren erfordert eine Bestätigung und kann gespeicherten Text entfernen. Wenn als *vom Administrator deaktiviert* gekennzeichnet, ist `HISTORY_DISABLED` eingestellt – siehe [Konfiguration](/docs/configuration/#privacy-mode).
 - **Verlaufsdaten löschen** – gespeicherten Text nach Alter entfernen oder alles löschen. Löscht **nicht** die Gesamtkosten (verwenden Sie dafür die Kostenverfolgung).
 
 **Konfigurationssicherung** (Desktop- und Web-Administratoren)
 
-- Optional **Nutzungsdaten in die Sicherung einschließen**
+- Optional **Nutzungsdaten in die Sicherung aufnehmen**
 - **Konfiguration sichern** – ZIP mit Konfiguration, Status, Benutzern, Einstellungen, Prompts und optionalen Nutzungsdaten
 - **Aus Sicherung wiederherstellen** – Bestätigungsdialog mit Optionen zum Wiederherstellen und/oder Löschen von Nutzungsdaten
 
@@ -55,31 +63,29 @@ Sicherungen können zwischen Desktop und Web verschoben werden; das Wiederherste
 
 Nur im Modus **Erweitert** verfügbar.
 
-![Registerkarte „Einstellungen Modelle“](/images/screenshots/de/settings-general.png)
-
 - **Verfügbare Modelle** (links) und **Ausgewählte Modelle** (rechts)
-- Suche, **Anbieter**-Chips, **Nur Kostenlos**, **Aktualisieren**, Alle erweitern/reduzieren
+- Suche, **Anbieter**-Chips, **Nur kostenlos**, **Aktualisieren**, Alle erweitern/reduzieren
 - Modell-IDs verwenden ein Anbieterpräfix (`openrouter/…`, `openai/…`, `local/…`, …)
 
 :::caution
-Verwenden Sie den OpenRouter **Body Builder** (`openrouter/bodybuilder`) nicht für Übersetzen, Umschreiben oder Transformieren – er gibt JSON-Anforderungs-Payloads zurück, keinen fertigen Text.
+Verwenden Sie OpenRouter **Body Builder** (`openrouter/bodybuilder`) nicht für Übersetzen, Umschreiben oder Transformieren – es gibt JSON-Anforderungs-Payloads zurück, keinen fertigen Text.
 :::
 
-Mit **Hinzufügen** hinzufügen; mit **X** entfernen. **Alle abwählen** behält das erforderliche kostenlose Modell bei.
+Hinzufügen mit **Hinzufügen**; Entfernen mit **X**. Das kostenlose OpenRouter-Modell ist optional – ausgewählte Modelle können leer sein. Das Entfernen des letzten Modells aus der Symbolleiste öffnet **Einstellungen → Modelle**. Wenn das aktuelle Modell nicht verfügbar wird, wählt die App das nächste Modell in der Liste aus, anstatt das kostenlose Modell zu erzwingen.
 
 ## Sprachen
 
-- **Top-Sprachen** – oben in den Sprachlisten unter Übersetzen und Transformieren angeheftet
+- **Top-Sprachen** – oben in den Sprachlisten in Übersetzen und Transformieren angeheftet
 - **Benutzerdefinierte Sprache** – fügt eine Sprache hinzu, die in der integrierten Liste fehlt
 
 ## Kostenverfolgung
 
 - **Gesamtkosten**, **Wert kopieren**, **Kosten zurücksetzen**
 - **Mit API-Schlüsselnutzung synchronisieren** – Abgleich mit der OpenRouter-Kontonutzung (nur OpenRouter)
-- **API-Schlüsselnutzung** – OpenRouter-Details, wenn verfügbar
+- **API-Schlüsselnutzung** – OpenRouter-Details, falls verfügbar
 - **Kostendaten löschen** – alle Daten oder Einträge, die älter als ein bestimmtes Datum sind
 
-OpenRouter zeigt die tatsächlich abgerechneten Kosten an, sofern zutreffend; andere Anbieter verwenden Schätzungen aus der OpenRouter-Preisgestaltung. Schätzungen sind keine Rechnungen.
+OpenRouter zeigt die tatsächlich abgerechneten Kosten an, sofern zutreffend; andere Anbieter verwenden Schätzungen basierend auf der OpenRouter-Preisgestaltung. Schätzungen sind keine Rechnungen.
 
 :::caution
 Das Löschen von Kostendaten kann nicht rückgängig gemacht werden. Exportieren Sie zuerst über Verlauf oder Dashboard → Alle Anrufe, wenn Sie eine Sicherung benötigen. Der zugehörige Eingabe-/Ausgabeverlauf für diese API-Aufrufe wird ebenfalls entfernt.
@@ -87,7 +93,7 @@ Das Löschen von Kostendaten kann nicht rückgängig gemacht werden. Exportieren
 
 ## Transformieren
 
-Prompts in großen Mengen verwalten: Prompts überprüfen, löschen, importieren, exportieren und Beispiel-Prompts laden.
+Prompts in großen Mengen verwalten: überprüfen, löschen, importieren, exportieren und Beispiel-Prompts laden.
 
 ## Glossar
 
@@ -101,18 +107,24 @@ Desktop speichert das Glossar lokal; Web speichert es pro Benutzer.
 
 ## Benutzer
 
-Nur Web (Admins): Benutzer hinzufügen, Details aktualisieren, Passwörter zurücksetzen, Konten löschen.
+Nur Web (Administratoren):
+
+- Benutzer hinzufügen, Details aktualisieren, Passwörter zurücksetzen, Konten löschen
+- **Sitzungs-Timeout** – wie lange ein Login dauert (1 Stunde bis 7 Tage); Änderungen gelten nur für neue Logins
+- **Sitzungen widerrufen** – einen Benutzer sofort von allen Geräten abmelden
+
+Jeder angemeldete Benutzer (einschließlich Nicht-Administratoren) kann sein eigenes Passwort ändern oder sich über das Benutzermenü am unteren Rand der Seitenleiste abmelden.
 
 ## API-Konfiguration
 
-Konfigurieren Sie nur die Anbieter, die Sie verwenden: OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, **Lokales LLM** (Basis-URL für Ollama, LM Studio, llama.cpp oder ähnliches) und einen optionalen benutzerdefinierten OpenAI-kompatiblen Anbieter.
+Konfigurieren Sie nur die von Ihnen verwendeten Anbieter: OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, **Lokales LLM** (Basis-URL für Ollama, LM Studio, llama.cpp oder ähnliches) und einen optionalen benutzerdefinierten OpenAI-kompatiblen Anbieter.
 
-**Web (Admin):** Schlüssel stammen aus Umgebungsvariablen – diese Seite zeigt, welche gesetzt sind, und ermöglicht Ihnen das **Testen**. Nach dem Ändern von Umgebungsvariablen neu starten. Siehe [Konfiguration](/docs/configuration/).
+**Web (Admin):** Schlüssel stammen aus Umgebungsvariablen – diese Seite zeigt, welche gesetzt sind, und ermöglicht Ihnen das **Testen**. Starten Sie nach dem Ändern der Umgebungsvariablen neu. Siehe [Konfiguration](/docs/configuration/).
 
-**Desktop:** Geben Sie Schlüssel (oder die URL des lokalen LLM) ein und **Speichern** / **Bearbeiten** / **Testen**. Schlüssel werden verschlüsselt gespeichert; Sie können den aktuellen Wert nicht anzeigen, sondern nur ersetzen.
+**Desktop:** Geben Sie Schlüssel (oder die lokale LLM-URL) ein und **Speichern** / **Bearbeiten** / **Testen**. Schlüssel werden verschlüsselt gespeichert; Sie können den aktuellen Wert nicht anzeigen, sondern nur ersetzen.
 
 :::tip
-Es ist kein kostenpflichtiger Schlüssel erforderlich, um zu beginnen: Verwenden Sie kostenlose OpenRouter-Modelle, andere kostenlose Anbieter oder einen lokalen OpenAI-kompatiblen Server wie [Ollama](https://ollama.com), LM Studio oder llama.cpp (z. B. `translategemma:4b`).
+Zum Starten ist kein kostenpflichtiger Schlüssel erforderlich: Verwenden Sie kostenlose OpenRouter-Modelle, andere kostenlose Anbieter oder einen lokalen OpenAI-kompatiblen Server wie [Ollama](https://ollama.com), LM Studio oder llama.cpp (z. B. `translategemma:4b`).
 :::
 
 ## Über

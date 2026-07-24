@@ -7,7 +7,7 @@ description: >-
 
 
 
-Ouvrez l'**Historique** pour voir les opérations passées, y compris l'entrée et la sortie de chaque exécution.
+Ouvrez **Historique** pour voir les opérations passées, y compris l'entrée et la sortie de chaque exécution.
 
 ![Page Historique](/images/screenshots/fr/history.png)
 
@@ -27,6 +27,6 @@ L'option **Conserver l'historique d'exécution** est peut-être désactivée. Ac
 
 ## Prochaines étapes
 
-- [Utiliser le tableau de bord](/docs/dashboard/)
+- [Utiliser le Tableau de bord](/docs/dashboard/)
 - [Paramètres](/docs/settings/)
 - [Problèmes courants](/docs/common-issues/)

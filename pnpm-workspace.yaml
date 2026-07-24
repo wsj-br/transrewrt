@@ -17,7 +17,7 @@ minimumReleaseAgeExclude:
   - lucide-react@1.17.0 || 1.21.0
   - webpack-cli@7.0.3
   - electron@42.4.1 || 43.1.1
-  - ai-i18n-tools@1.6.1 || 1.7.1 || 1.8.2
+  - ai-i18n-tools@1.6.1 || 1.7.1 || 1.8.2 || 1.8.3
   - "@ai-sdk/openai-compatible@3.0.10"
   - "@ai-sdk/provider-utils@5.0.10"
   - "@ai-sdk/gateway@4.0.20 || 4.0.28"

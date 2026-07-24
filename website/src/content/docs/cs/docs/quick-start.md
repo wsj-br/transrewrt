@@ -14,20 +14,20 @@ Vyberte si cestu, která vám vyhovuje. Všechny jsou zdarma a s otevřeným zdr
 ```bash
 docker pull ghcr.io/wsj-br/transrewrt:latest
 
-PROVIDER_API_KEY=sk-or-your-key docker run -d \
+docker run -d \
   -p 5000:5000 \
   -v transrewrt-data:/app/data \
-  -e PROVIDER_API_KEY \
-  --name transrewrt-web \
+  -e PROVIDER_API_KEY=your-api-key \
+  --name transrewrt \
   ghcr.io/wsj-br/transrewrt:latest
 ```
 
-Nahraďte `PROVIDER_API_KEY=sk-or-your-key` svým API klíčem od zvoleného poskytovatele (viz podporované možnosti v [Konfiguraci](/docs/configuration/)).
+Nahraďte `PROVIDER_API_KEY` proměnnou pro vašeho poskytovatele (například `OPENROUTER_API_KEY`, `OPENAI_API_KEY`, `ANTHROPIC_API_KEY`, `XIA_API_KEY`, ...) a nastavte její hodnotu. Úplný seznam naleznete v [Konfiguraci](/docs/configuration/#environment-variables-web--docker).
 
-Poté otevřete [http://localhost:5000](http://localhost:5000) a **změňte výchozí heslo správce**, než službu vystavíte.
+Poté otevřete [http://localhost:5000](http://localhost:5000) a **změňte výchozí heslo správce** před zpřístupněním služby.
 
 :::caution
-V Dockeru se přihlašovací údaje LLM nastavují pomocí proměnných prostředí (například `PROVIDER_API_KEY`). **Nezadávají** se do webového uživatelského rozhraní. Na počítači konfigurujete klíče v **Nastavení → API**.
+V Dockeru se přihlašovací údaje LLM nastavují pomocí proměnných prostředí (například `PROVIDER_API_KEY`). **Nezadávají** se do webového uživatelského rozhraní. Na desktopu konfigurujete klíče v **Nastavení → Konfigurace API**.
 :::
 
 ### Docker Compose
@@ -42,7 +42,7 @@ docker compose -f transrewrt.yml up -d
 
 1. Stáhněte si nejnovější `Transrewrt Setup x.y.z.exe` z [Vydání](https://github.com/wsj-br/transrewrt/releases).
 2. Spusťte instalační program.
-3. Otevřete aplikaci a zadejte klíče API v **Nastavení → API**. Nakonfigurujte alespoň jednoho poskytovatele; OpenRouter je běžnou volbou pro bezplatné modely.
+3. Otevřete aplikaci a zadejte klíče API v **Nastavení → Konfigurace API**. Nakonfigurujte alespoň jednoho poskytovatele; OpenRouter je běžná volba pro bezplatné modely.
 
 :::note
 Windows mohou zobrazovat upozornění UAC nebo SmartScreen pro nepodepsané nezávislé aplikace. Upřednostňujte stahování z oficiální stránky GitHub Releases a ověřte kontrolní součty, pokud jsou zveřejněny.
@@ -56,7 +56,7 @@ Stáhněte si `.AppImage` pro váš CPU z [Vydání](https://github.com/wsj-br/t
 chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage
 ```
 
-Zadejte klíče API v **Nastavení → API**.
+Zadejte klíče API v **Nastavení → Konfigurace API**.
 
 Pokud Chromium tiskne chyby GPU / EGL, ale aplikace funguje, můžete zakázat hardwarovou akceleraci:
 
@@ -65,11 +65,25 @@ TRANSREWRT_DISABLE_GPU=1 ./Transrewrt-x.y.z-arm64.AppImage
 ```
 
 :::note
-macOS aktuálně není podporován. Transrewrt je k dispozici pro Windows, Linux a Docker.
+macOS v současné době není podporován. Transrewrt je k dispozici pro Windows, Linux a Docker.
 :::
+
+## Aktualizace
+
+- **Windows** – stáhněte si novější `Transrewrt Setup x.y.z.exe` z [Vydání](https://github.com/wsj-br/transrewrt/releases) a spusťte jej. Nastavení a data zůstanou zachována.
+- **Linux** – stáhněte si novější `.AppImage` a nahraďte starý soubor. Nastavení a data zůstanou zachována.
+- **Docker** – stáhněte nový obraz a znovu vytvořte kontejner. Data přetrvávají ve svazku `/app/data`:
+
+```bash
+docker pull ghcr.io/wsj-br/transrewrt:latest
+docker stop transrewrt && docker rm transrewrt
+# then run the same `docker run` command as above
+# or, with Docker Compose:
+docker compose -f transrewrt.yml pull && docker compose -f transrewrt.yml up -d
+```
 
 ## Další kroky
 
 1. [Získejte klíč API](/docs/api-key/)
-2. Spusťte jednoduchý překlad a ověřte, že vše funguje
+2. Spusťte jednoduchý překlad, abyste potvrdili, že vše funguje
 3. Přečtěte si průvodce [Překlad](/docs/translate/), [Přepsání](/docs/rewrite/) a [Transformace](/docs/transform/)

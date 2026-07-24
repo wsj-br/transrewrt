@@ -14,20 +14,20 @@ description: >-
 ```bash
 docker pull ghcr.io/wsj-br/transrewrt:latest
 
-PROVIDER_API_KEY=sk-or-your-key docker run -d \
+docker run -d \
   -p 5000:5000 \
   -v transrewrt-data:/app/data \
-  -e PROVIDER_API_KEY \
-  --name transrewrt-web \
+  -e PROVIDER_API_KEY=your-api-key \
+  --name transrewrt \
   ghcr.io/wsj-br/transrewrt:latest
 ```
 
-`PROVIDER_API_KEY=sk-or-your-key` را با کلید API خود از ارائه‌دهنده انتخابی خود جایگزین کنید (گزینه‌های پشتیبانی شده را در [پیکربندی](/docs/configuration/) ببینید).
+`PROVIDER_API_KEY` را با متغیر ارائه‌دهنده خود (برای مثال `OPENROUTER_API_KEY`، `OPENAI_API_KEY`، `ANTHROPIC_API_KEY`، `XIA_API_KEY`، ...) جایگزین کرده و مقدار آن را تنظیم کنید. لیست کامل را در [پیکربندی](/docs/configuration/#environment-variables-web--docker) ببینید.
 
 سپس [http://localhost:5000](http://localhost:5000) را باز کنید و **رمز عبور پیش‌فرض مدیر را تغییر دهید** قبل از اینکه سرویس را در معرض دید قرار دهید.
 
 :::caution
-در Docker، اعتبارنامه‌های LLM با متغیرهای محیطی تنظیم می‌شوند (برای مثال `PROVIDER_API_KEY`). آنها در رابط کاربری وب وارد **نمی‌شوند**. در دسکتاپ، کلیدها را در **تنظیمات ← API** پیکربندی می‌کنید.
+در داکر، اعتبارنامه‌های LLM با متغیرهای محیطی (برای مثال `PROVIDER_API_KEY`) تنظیم می‌شوند. آنها در رابط کاربری وب وارد **نمی‌شوند**. در دسکتاپ، کلیدها را در **تنظیمات ← پیکربندی API** پیکربندی می‌کنید.
 :::
 
 ### Docker Compose
@@ -40,9 +40,9 @@ docker compose -f transrewrt.yml up -d
 
 ## ویندوز
 
-1. آخرین `Transrewrt Setup x.y.z.exe` را از [انتشارات](https://github.com/wsj-br/transrewrt/releases) دانلود کنید.
+1. جدیدترین `Transrewrt Setup x.y.z.exe` را از [انتشارات](https://github.com/wsj-br/transrewrt/releases) دانلود کنید.
 2. نصب‌کننده را اجرا کنید.
-3. برنامه را باز کنید و کلیدهای API را در **تنظیمات ← API** وارد کنید. حداقل یک ارائه‌دهنده را پیکربندی کنید؛ OpenRouter یک انتخاب رایج برای مدل‌های رایگان است.
+3. برنامه را باز کنید و کلیدهای API را در **تنظیمات ← پیکربندی API** وارد کنید. حداقل یک ارائه‌دهنده را پیکربندی کنید؛ OpenRouter یک انتخاب رایج برای مدل‌های رایگان است.
 
 :::note
 ویندوز ممکن است هشدارهای UAC یا SmartScreen را برای برنامه‌های مستقل بدون امضا نشان دهد. دانلودها را از صفحه رسمی GitHub Releases ترجیح دهید و در صورت انتشار، چک‌سام‌ها را تأیید کنید.
@@ -56,9 +56,9 @@ docker compose -f transrewrt.yml up -d
 chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage
 ```
 
-کلیدهای API را در **تنظیمات ← API** وارد کنید.
+کلیدهای API را در **تنظیمات ← پیکربندی API** وارد کنید.
 
-اگر Chromium خطاهای GPU / EGL را چاپ می‌کند اما برنامه کار می‌کند، می‌توانید شتاب سخت‌افزاری را غیرفعال کنید:
+اگر Chromium خطاهای GPU / EGL را چاپ می‌کند اما برنامه کار می‌کند، می‌توانید شتاب‌دهنده سخت‌افزاری را غیرفعال کنید:
 
 ```bash
 TRANSREWRT_DISABLE_GPU=1 ./Transrewrt-x.y.z-arm64.AppImage
@@ -67,6 +67,20 @@ TRANSREWRT_DISABLE_GPU=1 ./Transrewrt-x.y.z-arm64.AppImage
 :::note
 macOS در حال حاضر پشتیبانی نمی‌شود. Transrewrt برای ویندوز، لینوکس و Docker در دسترس است.
 :::
+
+## به‌روزرسانی
+
+- **ویندوز** — `Transrewrt Setup x.y.z.exe` جدیدتر را از [انتشارات](https://github.com/wsj-br/transrewrt/releases) دانلود کرده و آن را اجرا کنید. تنظیمات و داده‌ها حفظ می‌شوند.
+- **لینوکس** — `.AppImage` جدیدتر را دانلود کرده و فایل قدیمی را جایگزین کنید. تنظیمات و داده‌ها حفظ می‌شوند.
+- **Docker** — ایمیج جدید را pull کرده و کانتینر را دوباره ایجاد کنید. داده‌ها در حجم `/app/data` باقی می‌مانند:
+
+```bash
+docker pull ghcr.io/wsj-br/transrewrt:latest
+docker stop transrewrt && docker rm transrewrt
+# then run the same `docker run` command as above
+# or, with Docker Compose:
+docker compose -f transrewrt.yml pull && docker compose -f transrewrt.yml up -d
+```
 
 ## مراحل بعدی
 

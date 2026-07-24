@@ -20,6 +20,8 @@ Použijte **Transformaci**, když chcete, aby AI následovala vlastní pokyny �
 5. Klikněte na **Transformovat**.
 6. Přečtěte si výsledek ve **Výstupu**.
 
+[Přepínač rozložení a klávesové zkratky](/docs/translate/#layout-and-keyboard) fungují stejně jako v Překladu.
+
 ## Načtení ukázkových výzev
 
 Pokud je seznam prázdný, klikněte na **Načíst ukázkové výzvy** v pracovním prostoru Transformace (k dispozici také pod [Nastavení → Transformace](/docs/settings/#transform)). Ukázky jsou v angličtině; po načtení upravte výzvu a v případě potřeby použijte **Přeložit výzvu**.
@@ -43,7 +45,7 @@ Hlavní pole:
 - **Název výzvy** – zobrazeno v seznamu výzev
 - **Pokyny k výzvě (volitelné)** – krátká nápověda při spouštění výzvy
 - **Role modelu** – celková role pro AI
-- **Pokyny modelu (jeden na řádek)** – pravidla, která je třeba dodržovat
+- **Pokyny k modelu (jeden na řádek)** – pravidla, která je třeba dodržovat
 - **Popis výstupu** – krátký popisek výsledku (např. shrnuto)
 - **Teplota (0,0 → 1,0)** – nižší je stabilnější; vyšší je rozmanitější
 - **Požádat o cílový jazyk** – přidá výběr jazyka při spouštění
@@ -51,7 +53,7 @@ Hlavní pole:
 Pomocníci: **Generovat výzvu**, **Vylepšit výzvu**, **Přeložit výzvu** (Snadné používá předvolby; Pokročilé používá seznam modelů).
 
 :::caution
-Před **Zpět na Spustit** klikněte na **Uložit**. Návrat bez uložení zahodí úpravy.
+Klikněte na **Uložit** před **Zpět na Spustit**. Návrat bez uložení zahodí úpravy.
 :::
 
 ## Testování před každodenním použitím

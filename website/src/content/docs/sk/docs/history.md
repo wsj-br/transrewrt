@@ -14,7 +14,7 @@ Otvorte **Históriu** a zobrazte minulé operácie vrátane vstupu a výstupu ka
 História používa rovnaké filtre časového rozsahu ako [Dashboard](/docs/dashboard/).
 
 :::note
-V **webovej aplikácii** každý (vrátane administrátorov) vidí iba svoju vlastnú históriu vykonávania. Filter **Používateľ** na Dashboarde sa tu neuplatňuje.
+V **webovej aplikácii** vidí každý (vrátane administrátorov) iba svoju vlastnú históriu vykonávania. Filter **Používateľ** na Dashboarde sa tu neuplatňuje.
 :::
 
 ## Export
@@ -23,10 +23,10 @@ Exportujte filtrovaný zoznam ako **JSON**, **CSV** alebo **XLSX**.
 
 ## Ak história chýba
 
-Možno je vypnutá možnosť **Uchovávať históriu vykonávania**. Povoľte ju v [Nastaveniach → Všeobecné nastavenia](/docs/settings/#general-settings), pokiaľ administrátor nenastavil `HISTORY_DISABLED` – pozrite si [Konfiguráciu](/docs/configuration/#privacy-mode).
+Možno je vypnutá možnosť **Uchovávať históriu vykonávania**. Povoľte ju v [Nastaveniach → Všeobecné nastavenia](/docs/settings/#general-settings), pokiaľ administrátor nenastavil `HISTORY_DISABLED` — pozrite si [Konfiguráciu](/docs/configuration/#privacy-mode).
 
 ## Ďalšie kroky
 
 - [Používanie Dashboardu](/docs/dashboard/)
 - [Nastavenia](/docs/settings/)
-- [Časté problémy](/docs/common-issues/)
+- [Bežné problémy](/docs/common-issues/)

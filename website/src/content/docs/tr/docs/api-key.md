@@ -1,46 +1,73 @@
 ---
 title: API anahtarı
 description: >-
-  Ücretsiz bir OpenRouter API anahtarı alın ve diğer yapay zeka sağlayıcılarını
-  Transrewrt'e bağlayın.
+  Transrewrt'ü bir API anahtarı ekleyerek seçtiğiniz bir yapay zeka
+  sağlayıcısına bağlayın veya bunun yerine yerel bir model kullanın.
 ---
 
 
 
-Transrewrt'in en az bir yapay zeka sağlayıcısına erişimi olması gerekir. Başlamak için ücretli bir modele ihtiyacınız **yoktur**: OpenRouter, bir anahtar ekledikten sonra ücretsiz modeller sunar ve diğer bazı sağlayıcılar da ücretsiz katmanlar sunar.
+Transrewrt kendi yapay zekasını içermez; metninizi seçtiğiniz bir yapay zeka sağlayıcısına gönderir. Bir sağlayıcıyı bağlamak için bir **API anahtarı** eklersiniz: sağlayıcı tarafından verilen ve hizmetleri için bir parola gibi çalışan özel bir kod. Başlamak için yalnızca **bir** sağlayıcıya ihtiyacınız vardır ve ödeme yapmanız gerekmez: çeşitli sağlayıcılar ücretsiz modeller veya ücretsiz katmanlar sunar ve ayrıca hiçbir anahtar olmadan kendi bilgisayarınızda modeller çalıştırabilirsiniz.
 
-Desteklenen sağlayıcılar arasında [OpenRouter](https://openrouter.ai), OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, herhangi bir OpenAI uyumlu uç nokta ve yerel OpenAI uyumlu sunucular (Ollama, LM Studio, llama.cpp ve benzerleri) bulunur.
+Desteklenen sağlayıcılar arasında OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, herhangi bir OpenAI uyumlu uç nokta ve yerel OpenAI uyumlu sunucular (Ollama, LM Studio, llama.cpp ve benzerleri) bulunur.
 
-## Kolay ve Gelişmiş
+## Adım 1 — Bir sağlayıcı seçin
 
-- **Kolay** mod (varsayılan): bir **sağlayıcıya** eşlenmiş bir **ön ayar** (Ücretsiz (OpenRouter), Standart, Gelişmiş veya Teknik) seçin. Yalnızca mevcut sağlayıcı için eşleşen ön ayarlar görünür.
-- **Gelişmiş** mod: modelleri doğrudan seçin. Model kimlikleri bir sağlayıcı öneki kullanır (örneğin `openrouter/…`, `openai/…`, `local/…`).
+Desteklenen herhangi bir sağlayıcı çalışır. Hangisini seçeceğinizden emin değilseniz:
 
-## Ücretsiz OpenRouter anahtarı (masaüstü)
+- **Başlamak için ücretsiz**: OpenRouter, Google Gemini, Groq, Mistral, Cerebras ve NVIDIA'nın tümü ücretsiz modeller veya ücretsiz katmanlar sunar.
+- **Zaten bir hesabınız var mı?** Halihazırda OpenAI, Anthropic veya başka bir desteklenen sağlayıcı kullanıyorsanız, bu hesabı yeniden kullanabilirsiniz.
+- **Her şeyi kendi bilgisayarınızda tutmayı mı tercih edersiniz?** Anahtarı tamamen atlayın ve bunun yerine [yerel bir model](#using-a-local-model-instead-no-api-key) kullanın.
 
-1. [openrouter.ai](https://openrouter.ai) adresine gidin ve kaydolun veya oturum açın.
-2. [Anahtarlar](https://openrouter.ai/keys) sayfasını açın ve yeni bir anahtar oluşturun (adlandırın; isteğe bağlı kredi limiti). Kredi eklemeden ücretsiz modelleri kullanabilirsiniz.
-3. Transrewrt'te **Ayarlar → API Yapılandırması**'nı açın, anahtarı **OpenRouter API anahtarı**'na yapıştırın ve **OpenRouter anahtarını test et**'e tıklayın.
+## Adım 2 — Bir API anahtarı oluşturun
+
+Kesin adımlar sağlayıcıya göre biraz değişir, ancak desen her yerde aynıdır:
+
+1. Sağlayıcının web sitesine kaydolun veya giriş yapın. Transrewrt'ün **Ayarlar → API Yapılandırması** bölümünde, her sağlayıcının sizi doğru yere götüren bir **Sağlayıcı web sitesini aç** bağlantısı vardır.
+2. **API anahtarları** sayfasını bulun (bazen hesap, kontrol paneli veya geliştirici ayarları altında) ve yeni bir anahtar oluşturun. Bazı sağlayıcılar anahtarı adlandırmanızı veya bir harcama limiti belirlemenizi ister; her ikisi de isteğe bağlıdır.
+3. Anahtarı kopyalayın. Genellikle `sk-` gibi bir şeyle başlayan uzun bir harf ve sayı dizisidir.
 
 :::caution
-Çeviri, yeniden yazma veya dönüştürme için OpenRouter'ın **Body Builder** modelini (`openrouter/bodybuilder`) kullanmayın; tamamlanmış metin değil, JSON istek yükleri döndürür.
+Bir API anahtarını bir parola gibi ele alın: paylaşmayın, yayınlamayın veya kimseye göndermeyin. Bir anahtar sızarsa, sağlayıcının web sitesinde silin ve yeni bir tane oluşturun.
 :::
 
-## Diğer ücretsiz seçenekler
+## Adım 3 — Anahtarı ekleyin ve test edin (masaüstü)
 
-Cerebras, Google, Groq, Mistral AI veya [NVIDIA](https://build.nvidia.com/) (OpenAI uyumlu API) adreslerinden ücretsiz API anahtarları da alabilir veya Ollama, LM Studio, llama.cpp veya başka bir OpenAI uyumlu sunucu (örneğin Ollama aracılığıyla `translategemma:4b`) ile modelleri yerel olarak çalıştırabilirsiniz. Yerel LLM temel URL'sini Ayarlar'da (masaüstü) veya `LOCAL_LLM_URL`'de (Docker) tam API tabanına (yolu dahil edin, örn. `http://localhost:11434/v1`) ayarlayın.
+1. Transrewrt'te **Ayarlar → API Yapılandırması**'nı açın.
+2. Anahtarı sağlayıcınızın alanına yapıştırın (örneğin **Google Gemini API anahtarı**) ve kaydedin.
+3. Anahtarın çalıştığını doğrulamak için alanın yanındaki **Test Et**'e tıklayın.
+
+Test başarılı olduğunda hazırsınız; ana ekranda o sağlayıcıyı seçin ve çevirmeye başlayın.
 
 :::caution
-Başka bir cihazdan veya kapsayıcıdan yerel bir LLM sunucusu kullanıyorsanız, harici bağlantılara izin verecek şekilde yapılandırın (yalnızca yerel ana bilgisayar değil).
+OpenRouter'ın **Body Builder** modelinden (`openrouter/bodybuilder`) kaçının; tamamlanmış metin değil, JSON istek yükleri döndürür. Bkz. [Ayarlar → Modeller](/docs/settings/#models).
+:::
+
+## Bunun yerine yerel bir model kullanma (API anahtarı yok)
+
+Kendi bilgisayarınızda Ollama, LM Studio, llama.cpp veya başka bir OpenAI uyumlu sunucu (örneğin LM Studio aracılığıyla `google/gemma-4-e2b`) ile modeller çalıştırabilirsiniz. Makinenizden hiçbir şey ayrılmaz ve API anahtarına gerek yoktur.
+
+Birini bağlamak için, Yerel LLM temel URL'sini yol dahil olmak üzere tam API tabanına ayarlayın; örneğin `http://localhost:11434/v1`. Masaüstünde, bunu **Ayarlar → API Yapılandırması**'nda ayarlayın; Docker'da bunun yerine `LOCAL_LLM_URL` ortam değişkenini ayarlayın.
+
+:::caution
+Başka bir cihazdan veya kapsayıcıdan yerel bir LLM sunucusu kullanıyorsanız, harici bağlantılara izin verecek şekilde yapılandırın (yalnızca localhost değil).
 :::
 
 ## Docker / web
 
-Sağlayıcı anahtarlarını sunucuda **ortam değişkenleri** olarak ayarlayın (örneğin `PROVIDER_API_KEY`). Kullanıcılar anahtarları tarayıcı kullanıcı arayüzüne yazamazlar. Bkz. [Yapılandırma](/docs/configuration/).
+Transrewrt'ü bir tarayıcıda kullanıyorsanız, anahtarlar tarayıcı kullanıcı arayüzüne yazılmaz, sunucuyu çalıştıran kişi tarafından yönetilir. Yönetici, sağlayıcı anahtarlarını sunucuda **ortam değişkenleri** olarak ayarlar (örneğin `PROVIDER_API_KEY`) — bkz. [Yapılandırma](/docs/configuration/).
 
 ## İlk çalıştırma kontrol listesi
 
 1. Uygulamayı açın ve gerekirse **Arayüz dilini** ayarlayın.
-2. En az bir sağlayıcı anahtarı ekleyin ve test edin (masaüstü) veya sunucunun ortam anahtarlarına sahip olduğunu onaylayın (web).
-3. **Kolay** modda, Genel Ayarlar'da bir **Sağlayıcı** seçin; **Gelişmiş** modda, **Ayarlar → Modeller** altında modeller ekleyin.
-4. **Çevir** bölümünde, bir ön ayar veya model seçin ve kısa bir test çalıştırın — [Metin çevir](/docs/translate/) bölümüne bakın.
+2. En az bir sağlayıcı anahtarı ekleyin ve test edin — veya yerel bir model yapılandırın (masaüstü) veya sunucunun ortam anahtarlarına sahip olduğunu onaylayın (web).
+3. **Kolay** modda, Genel Ayarlar'da bir **Sağlayıcı** seçin; **Gelişmiş** modda, **Ayarlar → Modeller** altında modeller ekleyin — iki mod için [Ayarlar](/docs/settings/#general-settings) bölümüne bakın.
+4. **Çevir**'de, bir ön ayar veya model seçin ve kısa bir test çalıştırın — bkz. [Metin çevir](/docs/translate/).
+
+## Bir şeyler çalışmazsa
+
+- **Anahtar testi başarısız oluyor**: Anahtarın tamamen kopyalandığını (önünde veya arkasında boşluk olmadan) ve sağlayıcının web sitesinde silinmediğini veya devre dışı bırakılmadığını kontrol edin.
+- **Çeviriler kota veya kredi hatasıyla başarısız oluyor**: Ücretsiz katmanların günlük veya aylık limitleri vardır; bekleyin, başka bir ücretsiz sağlayıcıya geçin veya kredi ekleyin.
+- **Kolay modda sağlayıcı görünmüyor**: **Ayarlar → API Yapılandırması**'nı açın ve en az bir anahtarın (veya Yerel LLM URL'sinin) yapılandırıldığını ve test edildiğini onaylayın.
+
+Daha fazla yardım: [Yaygın sorunlar](/docs/common-issues/).

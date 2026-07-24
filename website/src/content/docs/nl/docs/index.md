@@ -1,8 +1,8 @@
 ---
 title: Overzicht
 description: >-
-  Wat Transrewrt is en hoe u installatiegidsen en instellingendocumentatie kunt
-  vinden.
+  Wat Transrewrt is en hoe u installatie-, handleidingen- en
+  instellingendocumenten kunt vinden.
 ---
 
 
@@ -19,11 +19,13 @@ Uw sleutels, uw modellen, uw host — er is geen Transrewrt cloudaccount.
 
 ## Hoe het venster is georganiseerd
 
-- **Zijbalk** — Vertalen, Herscheven, Transformeren, Dashboard, Geschiedenis, Instellingen (en de ingelogde gebruiker op het web)
-- **Werkbalk** — paginatitel, **preset** (Eenvoudig) of **model** (Geavanceerd) selector, en **Interfacetaal** (wereldbolpictogram; verandert Vertalen Van/Naar niet)
-- **Werkgebied** — Invoer- en uitvoerpanelen met tellingen, timing, TPS en optionele kosten
+![Vertaalwerkruimte](/images/screenshots/nl/translate.png)
 
-Standaard draait de app in de modus **Eenvoudig**: kies een **preset** en een **Provider** in Instellingen. Schakel over naar **Geavanceerd** onder [Instellingen → Algemene instellingen](/docs/settings/#general-settings) voor een volledige modellijst.
+- **Zijbalk** — de hoofdnavigatie: Vertalen, Herscheven, Transformeren, Dashboard, Geschiedenis, Instellingen (en de ingelogde gebruiker op het web).
+- **Werkbalk** — de paginatitel, de selector voor de **preset** (Eenvoudig) of het **model** (Geavanceerd), de **Interfacetaal** (wereldbolpictogram; verandert Vertalen Van/Naar niet), en Help (**?**) die linkt naar deze documentatie. Het preset/model-menu kan ook **Overschakelen naar Eenvoudige/Geavanceerde modus** (boven Instellingen openen).
+- **Werkgebied** — de Invoer- en Uitvoerpanelen, met tellingen, timing, TPS en optionele kosten. De actiebalk toont een kleine app **versie** link (rechtsonder) naar de GitHub Pages-site.
+
+Standaard draait de app in de modus **Eenvoudig**: kies een **preset** en een **Provider** in Instellingen. Schakel over naar **Geavanceerd** onder [Instellingen → Algemene instellingen](/docs/settings/#general-settings) voor een volledige modellijst, of gebruik de schakelaar in het preset/model-menu van de werkbalk.
 
 ## Aan de slag
 
@@ -31,7 +33,7 @@ Standaard draait de app in de modus **Eenvoudig**: kies een **preset** en een **
 2. [API-sleutel](/docs/api-key/) — verbind een gratis OpenRouter-sleutel of een andere provider
 3. [Configuratie](/docs/configuration/) — omgevingsvariabelen, configuratiepaden, webauthenticatie
 
-## Gidsen
+## Handleidingen
 
 - [Tekst vertalen](/docs/translate/)
 - [Tekst herschrijven](/docs/rewrite/)

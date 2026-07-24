@@ -2,7 +2,7 @@
 title: Trasforma con i prompt
 description: >-
   Esegui istruzioni AI personalizzate: crea, modifica, testa e gestisci i prompt
-  di Trasforma.
+  di Trasformazione.
 ---
 
 
@@ -19,6 +19,8 @@ Usa **Trasforma** quando vuoi che l'AI segua istruzioni personalizzate: riassume
 4. Digita o incolla il testo in **Input**.
 5. Fai clic su **Trasforma**.
 6. Leggi il risultato in **Output**.
+
+Il [layout toggle e le scorciatoie da tastiera](/docs/translate/#layout-and-keyboard) funzionano come in Traduci.
 
 ## Carica prompt di esempio
 
@@ -44,7 +46,7 @@ Campi principali:
 - **Istruzioni prompt (facoltativo)** — breve suggerimento durante l'esecuzione del prompt
 - **Ruolo modello** — ruolo generale per l'AI
 - **Istruzioni modello (una per riga)** — regole da seguire
-- **Descrizione output** — breve etichetta per il risultato (es. riassunto)
+- **Descrizione output** — breve etichetta per il risultato (ad es. riassunto)
 - **Temperatura (0.0 → 1.0)** — più bassa è più stabile; più alta è più varia
 - **Chiedi lingua di destinazione** — aggiunge un selettore di lingua durante l'esecuzione
 
@@ -58,9 +60,9 @@ Fai clic su **Salva** prima di **Torna a Esegui**. Tornare indietro senza salvar
 
 Usa il pannello di test a destra con il testo di esempio quando crei o confronti i prompt.
 
-Esporta e importa i prompt in blocco in [Impostazioni → Trasforma](/docs/settings/#transform).
+Esporta e importa prompt in blocco in [Impostazioni → Trasforma](/docs/settings/#transform).
 
-## Passi successivi
+## Passaggi successivi
 
 - [Impostazioni](/docs/settings/)
 - [Sfoglia cronologia](/docs/history/)

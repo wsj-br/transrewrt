@@ -2,7 +2,7 @@
 title: Transformar com prompts
 description: >-
   Execute instruções de IA personalizadas — crie, edite, teste e gerencie
-  prompts de Transformação.
+  prompts de Transformar.
 ---
 
 
@@ -14,11 +14,13 @@ Use **Transformar** quando quiser que a IA siga instruções personalizadas — 
 ## Executar um prompt existente
 
 1. Abra **Transformar**.
-2. Escolha um prompt da lista.
+2. Escolha um prompt na lista.
 3. Se uma caixa de idioma **De** aparecer, defina um idioma, se desejar.
 4. Digite ou cole o texto em **Entrada**.
 5. Clique em **Transformar**.
 6. Leia o resultado em **Saída**.
+
+O [alternador de layout e os atalhos de teclado](/docs/translate/#layout-and-keyboard) funcionam da mesma forma que em Traduzir.
 
 ## Carregar prompts de exemplo
 
@@ -28,15 +30,15 @@ Se a lista estiver vazia, clique em **Carregar prompts de exemplo** no espaço d
 
 1. Clique em **Novo prompt**.
 2. Clique em **Gerar prompt**.
-3. Descreva o que você deseja que o prompt faça.
-4. Escolha um preset (Fácil) ou modelo (Avançado).
+3. Descreva o que você quer que o prompt faça.
+4. Escolha um predefinido (Fácil) ou modelo (Avançado).
 5. Revise o rascunho e clique em **Salvar**.
 
 ## Editar um prompt
 
 O editor está à esquerda; uma área de teste está à direita.
 
-![Editor de prompt de Transformação](/images/screenshots/pt-BR/transform-prompt-edit.png)
+![Editor de prompt Transformar](/images/screenshots/pt-BR/transform-prompt-edit.png)
 
 Campos principais:
 
@@ -48,7 +50,7 @@ Campos principais:
 - **Temperatura (0.0 → 1.0)** — menor é mais estável; maior é mais variado
 - **Pedir idioma de destino** — adiciona um seletor de idioma ao executar
 
-Ajudantes: **Gerar prompt**, **Melhorar prompt**, **Traduzir prompt** (Fácil usa presets; Avançado usa a lista de modelos).
+Ajudantes: **Gerar prompt**, **Melhorar prompt**, **Traduzir prompt** (Fácil usa predefinidos; Avançado usa a lista de modelos).
 
 :::caution
 Clique em **Salvar** antes de **Voltar para Executar**. Voltar sem salvar descarta as edições.

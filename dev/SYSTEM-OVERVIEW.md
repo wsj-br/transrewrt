@@ -20,7 +20,7 @@ Technical architecture, folder structure, tech stack, and design decisions for t
 - [Easy mode and presets catalog](#easy-mode-and-presets-catalog)
   - [AI experience (Easy vs Advanced)](#ai-experience-easy-vs-advanced)
   - [Presets catalog file and sync](#presets-catalog-file-and-sync)
-  - [Development skills editor](#development-skills-editor)
+  - [Development presets editor](#development-presets-editor)
 - [Config and State](#config-and-state)
   - [Electron (desktop)](#electron-desktop-1)
   - [Web / Docker](#web--docker-1)
@@ -35,7 +35,7 @@ Technical architecture, folder structure, tech stack, and design decisions for t
 
 ## Product
 
-**Transrewrt** is an AI-powered text tool that provides **translation**, **rewrite** (style transformation), and **transform** (transform prompts) using **multiple LLM backends** (OpenRouter, native vendor APIs, Local LLM, etc.). By default the app uses **Easy** mode: curated **skills** (**Free (OpenRouter)**, **Standard**, **Advanced**, **Technical**) mapped to models per **provider**, without picking raw model IDs. **Advanced** mode exposes the classic per-model toolbar and **Settings → Models** list. When **execution history** is enabled, past runs (input/output text and metadata) are stored in the app database and browsable from the **History** sidebar view. The same codebase runs as:
+**Transrewrt** is an AI-powered text tool that provides **translation**, **rewrite** (style transformation), and **transform** (transform prompts) using **multiple LLM backends** (OpenRouter, native vendor APIs, Local LLM, etc.). By default the app uses **Easy** mode: curated **presets** (**Free (OpenRouter)**, **Standard**, **Advanced**, **Technical**) mapped to models per **provider**, without picking raw model IDs. **Advanced** mode exposes the classic per-model toolbar and **Settings → Models** list. When **execution history** is enabled, past runs (input/output text and metadata) are stored in the app database and browsable from the **History** sidebar view. The same codebase runs as:
 
 - **Desktop**: Electron app (Windows, Linux).
 - **Web**: Self-hosted web app served from a Docker container (or local Express server).
@@ -51,7 +51,7 @@ The application uses **runtime environment detection** to switch between Electro
 ```mermaid
 flowchart TB
   subgraph renderer [Shared React Renderer]
-    UI[Translate / Rewrite / Transform / Dashboard / History / Settings / Skills toolbar]
+    UI[Translate / Rewrite / Transform / Dashboard / History / Settings / Preset or model toolbar]
     ConfigMgr[configManager]
     ApiSvc[apiService]
     UI --> ConfigMgr
@@ -97,7 +97,7 @@ In web mode, provider API keys are stored only in server config or environment; 
 | Layer | Technology |
 |-------|------------|
 | **Frontend** | React 19, Tailwind v4 + shadcn/Radix primitives, react-i18next (key-as-default, locales in `src/renderer/locales/`), Webpack 5, Babel, TypeScript. Build target `web` for both Electron and browser. **AppRoot** applies `dir` for RTL via `useDirection` (see `i18n.ts`). |
-| **Desktop** | Electron 42 (Node 24). Main: [src/main/main.js](../src/main/main.js). Preload: [src/main/preload.js](../src/main/preload.js). LLM IPC: [src/main/ipc/llmIpc.js](../src/main/ipc/llmIpc.js). Custom `app://` protocol for production renderer. |
+| **Desktop** | Electron 43 (Node 24). Main: [src/main/main.js](../src/main/main.js). Preload: [src/main/preload.js](../src/main/preload.js). LLM IPC: [src/main/ipc/llmIpc.js](../src/main/ipc/llmIpc.js). Custom `app://` protocol for production renderer. |
 | **Web server** | Express 5 ([src/server/index.js](../src/server/index.js)). Static `dist/`, session auth (cookie + SQLite `sessions`, Argon2 passwords), `/api/config`, `/api/llm/*` (streaming), `/api/calls/*`, `/api/glossary/*`, users and custom prompts routes. SQLite (**better-sqlite3**): `users`, `user_preferences`, `sessions`, `api_calls`, `action_content`, `custom_prompts`, `glossary_terms`, etc. (`transrewrt.db` under the data directory). |
 | **LLM integration** | Shared [src/shared/llm/index.js](../src/shared/llm/index.js) uses the **Vercel AI SDK** (`ai` + `@ai-sdk/openai-compatible`) for chat streaming and provider-catalog listing. See [LLM integration and provider support](#llm-integration-and-provider-support). |
 
@@ -121,6 +121,8 @@ The Node-side LLM stack uses the **[Vercel AI SDK](https://sdk.vercel.ai/)** (`s
 **Model ids** must be **namespaced** (`engine/innerModelId`). Unknown engines are rejected at resolve time. **mergeKeys()** builds the credential map from **saved config plus `process.env`**, with **config winning** over env for the same logical key, so Docker/Electron can override env with UI-saved keys.
 
 **Pricing / “free” UI**: OpenRouter’s public model list can populate a **pricing cache** (TTL in code) for cost estimates; direct engines use cached or list pricing when available - see `modelPricingUtils` and CHANGELOG entries on “Cost not available” / free models.
+
+**Temperature**: Chat completions omit `temperature` for GPT-5 / o-series and Claude 4.6+ models that reject non-default values, and retry once without it if a provider still rejects temperature at runtime.
 
 ---
 
@@ -165,7 +167,7 @@ All application source lives under `src/`: main (Electron), renderer (React), se
 │   │   └── appDb.js       # SQLite: api_calls, action_content, custom_prompts
 │   ├── renderer/          # Shared React app
 │   │   ├── components/    # App, PresetSelector, HistoryPage, SettingsPanel, …
-│   │   ├── contexts/      # AppContext (mode, skills, easy provider)
+│   │   ├── contexts/      # AppContext (mode, presets, easy provider)
 │   │   ├── hooks/         # useProcessing, useWordAlternatives, useCostTracking, …
 │   │   ├── services/      # apiService (translate / rephrase / word alternatives / rewrite / transform / models)
 │   │   ├── utils/         # configManager, webApiClient, presets/presetsManager, …
@@ -204,7 +206,7 @@ All application source lives under `src/`: main (Electron), renderer (React), se
 - **Web multi-user**: After migration, **workspace settings** (models, languages, `total_cost`, transform prompts linkage, session fields like `last_used_model`) live in `user_preferences` per `user_id`. **Global** `config.json` keeps **server-global** keys only (`webConfigKeys.js`). **Custom prompts** are scoped with `user_id` where applicable.
 - **Authorization**: **Settings → Cost tracking** and **provider keys** in `/api/config` are **admin-only** on web. `GET /api/calls/*` applies **username** filters for non-admins server-side.
 - **Execution history**: Optional `keep_execution_history`. Text in `action_content` linked to `api_calls`. History UI via Electron IPC or `GET /api/calls/history`. **Settings → General** vs cost/history deletion semantics: see [docs Settings](https://wsj-br.github.io/transrewrt/docs/settings/). Optional environment `HISTORY_DISABLED` (`true` / `1`, case-insensitive) on the **Electron main process** or **Node server** forces history off and locks the History settings card; omit unless an administrator requires it.
-- **Easy vs Advanced**: `mode` in config (`"easy"` default from [config_default.json](../src/config-defaults/config_default.json)); legacy installs without `mode` are normalized to `"easy"` on load. Advanced mode uses `available_models` and model-list error handling; Easy mode resolves `model_ids[provider]` from the presets catalog and does not auto-remove models on 404.
+- **Easy vs Advanced**: `mode` in config (`"easy"` default from [config_default.json](../src/config-defaults/config_default.json)); legacy installs without `mode` are normalized to `"easy"` on load. Advanced mode uses `available_models` (may be empty; OpenRouter free model is not forced) and model-list error handling (unavailable-model fallback selects the next listed model). Easy mode resolves `model_ids[provider]` from the presets catalog and does not auto-remove models on 404. The toolbar preset/model menu can switch Easy ↔ Advanced; **Open Settings → Models** appears only in Advanced. The header Help (**?**) links to the product docs; the workspace action bar shows a small app version link to the GitHub Pages site.
 
 ### Translate and Rewrite workspaces (rephrase)
 
@@ -213,6 +215,7 @@ Translate and Rewrite share the same refinement UI and version-cap behaviour; on
 - **Shared UI**: **Rephrase…** and version selector in [RephraseControls.tsx](../src/renderer/components/workspace/RephraseControls.tsx); word-alternative popover in [WordAlternativesPopover.tsx](../src/renderer/components/WordAlternativesPopover.tsx); hook [useWordAlternatives.ts](../src/renderer/hooks/useWordAlternatives.ts); selection expansion in [textSelectionUtils.ts](../src/renderer/utils/misc/textSelectionUtils.ts). Version state lives in [useProcessing.ts](../src/renderer/hooks/useProcessing.ts). Cap: **5** variants (`MAX_TRANSLATE_VERSIONS` in [translateVersions.ts](../src/renderer/constants/translateVersions.ts); rewrite uses the same limit).
 - **Full rephrase**: Appends a new full output until the version cap (disabled at cap). Translate: [translateAlternative](../src/renderer/services/apiService.ts) / prompt `translate_alternative` / history `translate_alternative`. Rewrite: [rewriteAlternative](../src/renderer/services/apiService.ts) / prompt `rewrite_alternative` / history `rewrite_alternative` ([AppContext](../src/renderer/contexts/AppContext.tsx), [prompts.json](../src/config-defaults/prompts.json)).
 - **Word alternatives**: Right-click (or **Rephrase…** with a selection) on output text. With no selection, right-click selects the word under the cursor when there is one. Translate: [translateWordAlternatives](../src/renderer/services/apiService.ts) / prompt `translate_word_alternatives`. Rewrite: [rewriteWordAlternatives](../src/renderer/services/apiService.ts) / prompt `rewrite_word_alternatives`. At cap, applying an alternative overwrites version 5 only.
+- **Rewrite Changes (diff)**: After a rewrite, the output **Changes** / **Show changes** control is available for **every** rewrite mode (not only Check Spelling & Grammar), toggling a diff between input and output.
 
 ---
 
@@ -222,21 +225,21 @@ Translate and Rewrite share the same refinement UI and version-cap behaviour; on
 
 | Mode | Config `mode` | Toolbar | Settings |
 |------|---------------|---------|----------|
-| **Easy** (default) | `"easy"` or unset | **Skill** selector (**Free (OpenRouter)**, **Standard**, **Advanced**, **Technical**; provider-dependent) | **General** → **Provider** + presets catalog refresh; **Models** tab hidden |
-| **Advanced** | `"advanced"` | **Model** selector from `available_models` | **Models** tab for selected models list |
+| **Easy** (default) | `"easy"` or unset | **Preset** selector (**Free (OpenRouter)**, **Standard**, **Advanced**, **Technical**; provider-dependent) | **General** → **Provider** + presets catalog refresh; **Models** tab hidden |
+| **Advanced** | `"advanced"` | **Model** selector from `available_models` (may be empty) | **Models** tab for selected models list |
 
-Built-in skills in [easy-mode-config/presets.json](../easy-mode-config/presets.json) (as of catalog v1.1.x):
+Built-in presets in [easy-mode-config/presets.json](../easy-mode-config/presets.json):
 
-| Skill id | Display name | Providers |
+| Preset id | Display name | Providers |
 |----------|--------------|-----------|
 | `free-router` | Free (OpenRouter) | OpenRouter only |
-| `regular` | Standard | All cloud engines with `model_ids` |
+| `standard` | Standard | All cloud engines with `model_ids` |
 | `advanced` | Advanced | All cloud engines with `model_ids` |
 | `technical` | Technical | All cloud engines with `model_ids` |
 
-In **Easy** mode, each skill row in `presets.json` can define `model_ids` for cloud providers (OpenRouter, OpenAI, Anthropic, Google, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba, apikey.fun, and custom when keyed). The app **omits** skills that have no non-empty `model_ids` entry for the current provider (so **Free (OpenRouter)** appears only when **Provider** is OpenRouter). **Local LLM** does not use skills: the toolbar lists installed local models (`easy_local_llm_model` in user config). Optional per-skill `prompt_hint` is appended to translate/rewrite/transform system prompts. Display names use `translated_name` / `translated_description` for `ui_locale`, then `source_locale`, then `name` / `description`.
+In **Easy** mode, each preset row in `presets.json` can define `model_ids` for cloud providers (OpenRouter, OpenAI, Anthropic, Google, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba, apikey.fun, and custom when keyed). The app **omits** presets that have no non-empty `model_ids` entry for the current provider (so **Free (OpenRouter)** appears only when **Provider** is OpenRouter). **Local LLM** does not use presets: the toolbar lists installed local models (`easy_local_llm_model` in user config). Optional per-preset `prompt_hint` is appended to translate/rewrite/transform system prompts. Display names use `translated_name` / `translated_description` for `ui_locale`, then `source_locale`, then `name` / `description`.
 
-Transform prompt editor actions (translate / improve / generate fields) use the same preset selector in Easy mode and the model list in Advanced mode.
+Transform prompt editor actions (translate / improve / generate fields) use the same preset selector in Easy mode and the model list in Advanced mode. The toolbar preset/model menu can also switch Easy ↔ Advanced (item above Open Settings).
 
 Web **Provider** options use `configuredEngines` from `GET /api/status` (server env keys), not Electron-only `*_configured` flags.
 
@@ -244,24 +247,24 @@ Web **Provider** options use `configuredEngines` from `GET /api/status` (server 
 
 | Artifact | Role |
 |----------|------|
-| [easy-mode-config/presets.json](../easy-mode-config/presets.json) | **Canonical** catalog in the repo (`version`, `updated_at`, `skills[]`, editor-only `translation_model` / `suggestion_model`, …) |
+| [easy-mode-config/presets.json](../easy-mode-config/presets.json) | **Canonical** catalog in the repo (`version`, `updated_at`, `presets[]`, editor-only `translation_model` / `suggestion_model`, …) |
 | User / data `presets.json` | **Runtime** copy beside `config.json` (Electron) or `data/presets.json` (web/Docker) |
 | Packaged Electron | `config/presets.json` copied from `easy-mode-config/presets.json` at build ([package.json](../package.json) `extraFiles`) |
-| Remote | [shared/presetsCatalog.js](../src/shared/presetsCatalog.js) `SKILLS_REMOTE_URL` → `main` branch `easy-mode-config/presets.json` on GitHub |
+| Remote | [shared/presetsCatalog.js](../src/shared/presetsCatalog.js) `PRESETS_REMOTE_URL` → `main` branch `easy-mode-config/presets.json` on GitHub |
 
-**Merge rules** (shared module): do not overwrite local file when local `updated_at` is newer than remote; otherwise prefer newer `updated_at`, then higher semver `version`. A sidecar `.skills-remote-sync.json` stores `last_checked_at` for the **6 hour** throttle.
+**Merge rules** (shared module): do not overwrite local file when local `updated_at` is newer than remote; otherwise prefer newer `updated_at`, then higher semver `version`. A sidecar `.presets-remote-sync.json` stores `last_checked_at` for the **6 hour** throttle.
 
 **Sync behaviour**:
 
-- **Electron**: Remote fetch only while `mode` is Easy (unless forced). Throttled to once per 6 h; **Settings → General** shows catalog `version` / `updated_at` and a **Refresh** button (`skills:sync` IPC).
+- **Electron**: Remote fetch only while `mode` is Easy (unless forced). Throttled to once per 6 h; **Settings → General** shows catalog `version` / `updated_at` and a **Refresh** button (`presets:updateFromRemote` / `presets:syncState` IPC).
 - **Web server**: Bootstraps missing `data/presets.json`, then syncs on startup and every 6 h for **all** users (shared file). Authenticated Easy users can call `POST /api/presets/sync` (skipped when `user_preferences.mode` is Advanced).
 - **Docker**: Image includes `easy-mode-config/`; server default path resolves under `/app/easy-mode-config` when `data/presets.json` is absent.
 
 Renderer loads the catalog via `window.electronAPI.readPresets()` or `GET /api/presets` ([presetsManager.ts](../src/renderer/utils/presets/presetsManager.ts), [presets.js](../src/server/routes/presets.js), [presetsIpc.js](../src/main/ipc/presetsIpc.js)).
 
-### Development skills editor
+### Development presets editor
 
-Not shipped in production builds. Maintainers edit the canonical catalog with **`pnpm run presets-editor`** ([dev/presets-editor/README.md](presets-editor/README.md)): saves `easy-mode-config/presets.json`, mirrors to `data/presets.json` for local web dev, per-provider `model_ids`, translation/suggestion model pickers, **Test**, **Translate missing**, and **AI Suggestion** flows. See [DEVELOPMENT.md](DEVELOPMENT.md#presets-catalog-editor-development).
+Not shipped in production builds. Maintainers edit the canonical catalog with **`pnpm run presets-editor`** ([dev/presets-editor/README.md](presets-editor/README.md)): saves `easy-mode-config/presets.json`, mirrors to `data/presets.json` for local web dev, per-provider `model_ids`, translation/suggestion model pickers, **Test**, **Translate missing**, and **AI Suggestion** flows. AI Suggestion uses a hybrid shortlist (languagebench + Artificial Analysis + optional live timing); see [ai-suggestion-model-selection.md](ai-suggestion-model-selection.md). Broader editor notes: [DEVELOPMENT.md](DEVELOPMENT.md#presets-catalog-editor-development).
 
 ---
 
@@ -270,13 +273,13 @@ Not shipped in production builds. Maintainers edit the canonical catalog with **
 ### Electron (desktop)
 
 - **Storage**: One merged `config.json`; provider secrets are **encrypted at rest** when written ([encryption.js](../src/main/encryption.js)). Defaults from [config_default.json](../src/config-defaults/config_default.json) (`mode: "easy"`, `source_locale`, …).
-- **Skills**: `presets.json` in the config directory ([getPresetsFilePath](../src/main/configPath.js)); first launch copies or downloads catalog; remote updates when in Easy mode (see [Easy mode and presets catalog](#easy-mode-and-presets-catalog)).
+- **Presets catalog**: `presets.json` in the config directory ([getPresetsFilePath](../src/main/configPath.js)); first launch copies or downloads catalog; remote updates when in Easy mode (see [Easy mode and presets catalog](#easy-mode-and-presets-catalog)).
 - **State keys** (e.g. `last_used_model`, `easy_provider`, `easy_local_llm_model`, `source_language`) live in the same file as other settings from the app’s perspective; the main process may split persistence as implemented in IPC.
 
 ### Web / Docker
 
 - **Global file** (`data/config.json`, e.g. `/app/data/config.json` in Docker): **Server-only** keys - provider secret fields (see [webConfigKeys.js](../src/server/utils/webConfigKeys.js)), `web_session_timeout`, etc. **Not** used for per-user workspace after migration.
-- **Shared skills file** (`data/presets.json`): Easy-mode catalog for all web users; server sync from GitHub (see [Presets catalog file and sync](#presets-catalog-file-and-sync)). Per-user `mode`, `easy_provider`, and `easy_local_llm_model` live in `user_preferences`.
+- **Shared presets file** (`data/presets.json`): Easy-mode catalog for all web users; server sync from GitHub (see [Presets catalog file and sync](#presets-catalog-file-and-sync)). Per-user `mode`, `easy_provider`, and `easy_local_llm_model` live in `user_preferences`.
 - **SQLite** (`transrewrt.db` next to the config file): `user_preferences` JSON per user (merged into `GET /api/config` and updated via `POST /api/config` for non-global keys), `users`, `sessions`, `api_calls`, `action_content`, `custom_prompts`, glossary terms, etc.
 - **Legacy `state.json`**: Still managed by [configFile.js](../src/server/utils/configFile.js) for load/save helpers; after the **user_prefs_migrated_from_global** migration it is reset toward defaults while live prefs are in `user_preferences`.
 - **UI language**: `ui_locale` is part of merged settings; [i18n.ts](../src/renderer/i18n.ts) and `locales/`. Login may use `localStorage` for locale before session exists.
@@ -285,7 +288,7 @@ Not shipped in production builds. Maintainers edit the canonical catalog with **
 
 ## Settings UI
 
-Implemented in [SettingsPanel.tsx](../src/renderer/components/SettingsPanel.tsx) as horizontal tabs: **General** (behaviour, appearance, **AI experience** Easy/Advanced, **Provider** and presets catalog refresh in Easy mode, execution history), **Models** (only when `mode` is **Advanced**), **Languages**, **Glossary**, **Cost tracking** (web: **admin-only**), **Transform prompts**, **Users** (web: admin), **API** (provider keys / tests; **admin-only** on web, per-provider layout on Electron), **About**. Tab visibility uses `canAccessApiTab`, `canAccessCostTab`, `canAccessUsersTab`, and experience mode (Models hidden in Easy). The **header** language selector ([HeaderLanguageSelector](../src/renderer/components/HeaderLanguageSelector.tsx)) is outside the panel but persists `ui_locale`. End-user behaviour is described in the [website Settings docs](https://wsj-br.github.io/transrewrt/docs/settings/).
+Implemented in [SettingsPanel.tsx](../src/renderer/components/SettingsPanel.tsx) as horizontal tabs: **General** (behaviour, appearance, **AI experience** Easy/Advanced, **Provider** and presets catalog refresh in Easy mode, execution history), **Models** (only when `mode` is **Advanced**; selected list may be empty; free model optional), **Languages**, **Glossary**, **Cost tracking** (web: **admin-only**), **Transform prompts**, **Users** (web: admin), **API** (provider keys / tests; **admin-only** on web, per-provider layout on Electron), **About**. Tab visibility uses `canAccessApiTab`, `canAccessCostTab`, `canAccessUsersTab`, and experience mode (Models hidden in Easy). The **header** language selector ([HeaderLanguageSelector](../src/renderer/components/HeaderLanguageSelector.tsx)) and Help (**?**) control are outside the panel; language persists `ui_locale`. End-user behaviour is described in the [website Settings docs](https://wsj-br.github.io/transrewrt/docs/settings/).
 
 ---
 
@@ -298,7 +301,7 @@ Native Node addons:
 
 **ABI alignment**:
 
-- **Electron**: `pnpm install` runs `electron-rebuild` (see [scripts/electron-rebuild.js](../scripts/electron-rebuild.js)) so addons match Electron’s Node (Electron 42 / Node 24).
+- **Electron**: `pnpm install` runs `electron-rebuild` (see [scripts/electron-rebuild.js](../scripts/electron-rebuild.js)) so addons match Electron’s Node (Electron 43 / Node 24).
 - **Standalone server** (`pnpm dev:web`, `pnpm serve`): Use **Node 24**; [scripts/node-rebuild.js](../scripts/node-rebuild.js) rebuilds for system Node when starting web dev.
 
 [.nvmrc](../.nvmrc) and [package.json](../package.json) `engines` require Node 24 to match Electron tooling.

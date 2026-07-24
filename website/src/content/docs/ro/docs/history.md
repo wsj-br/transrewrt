@@ -1,32 +1,32 @@
 ---
-title: Navigare în istoric
+title: Răsfoiți istoricul
 description: >-
-  Revizuiți rulările trecute de traducere, rescriere și transformare cu text
-  complet de intrare și ieșire.
+  Examinați rulările anterioare de traducere, rescriere și transformare cu
+  textul complet de intrare și ieșire.
 ---
 
 
 
-Deschideți **Istoric** pentru a vedea operațiunile trecute, inclusiv intrarea și ieșirea fiecărui rulări.
+Deschideți **Istoric** pentru a vedea operațiunile anterioare, inclusiv intrarea și ieșirea fiecărei rulări.
 
-![Pagina istoric](/images/screenshots/ro/history.png)
+![Pagina Istoric](/images/screenshots/ro/history.png)
 
-Istoricul utilizează aceleași filtre de interval de timp ca și [Dashboard](/docs/dashboard/).
+Istoricul utilizează aceleași filtre de interval de timp ca și [Tabloul de bord](/docs/dashboard/).
 
 :::note
-În **aplicația web**, toată lumea (inclusiv administratorii) vede doar istoricul de execuție propriu. Filtul **Utilizator** de pe Dashboard nu se aplică aici.
+În **aplicația web**, toată lumea (inclusiv administratorii) își vede doar propriul istoric de execuție. Filtrul **Utilizator** din Tabloul de bord nu se aplică aici.
 :::
 
 ## Export
 
-Exportați lista filtrată sub formă de **JSON**, **CSV** sau **XLSX**.
+Exportați lista filtrată ca **JSON**, **CSV** sau **XLSX**.
 
-## Dacă Istoricul lipsește
+## Dacă istoricul lipsește
 
-**Păstrarea istoricului de execuție** poate fi dezactivată. Activati-o în [Setări → Setări generale](/docs/settings/#general-settings) dacă administratorul nu a setat `HISTORY_DISABLED` — vedeți [Configurare](/docs/configuration/#privacy-mode).
+Este posibil ca opțiunea **Păstrați istoricul execuțiilor** să fie dezactivată. Activați-o în [Setări → Setări generale](/docs/settings/#general-settings), cu excepția cazului în care administratorul a setat `HISTORY_DISABLED` — consultați [Configurare](/docs/configuration/#privacy-mode).
 
 ## Pașii următori
 
-- [Utilizați Dashboard](/docs/dashboard/)
+- [Utilizați Tabloul de bord](/docs/dashboard/)
 - [Setări](/docs/settings/)
 - [Probleme comune](/docs/common-issues/)

@@ -16,7 +16,7 @@ Các chế độ bao gồm:
 - **Kiểm tra chính tả & ngữ pháp**
 - **Cải thiện độ rõ ràng**
 - **Các phiên bản thay thế** (một số cách diễn đạt lại trong một lần chạy)
-- **Làm cho trang trọng** / **Làm cho không trang trọng**
+- **Làm cho trang trọng** / **Làm cho thân mật**
 - **Rút ngắn** / **Mở rộng**
 - **Làm cho mang tính kỹ thuật**
 
@@ -29,8 +29,10 @@ Các chế độ bao gồm:
 5. Nhấp vào **Viết lại**.
 6. Đọc kết quả trong **Đầu ra**.
 
+[Công tắc bố cục và phím tắt](/docs/translate/#layout-and-keyboard) hoạt động tương tự như trong Translate.
+
 :::tip
-Trong **Kiểm tra chính tả & ngữ pháp**, một công tắc **Hiển thị thay đổi** xuất hiện bên cạnh **Sao chép**. Bật/tắt công tắc này để hiển thị hoặc ẩn các chỉnh sửa.
+Sau khi viết lại, một công tắc **Hiển thị thay đổi** (**Thay đổi**) xuất hiện bên cạnh **Sao chép** cho **mọi** chế độ viết lại. Chuyển đổi nó để hiển thị hoặc ẩn sự khác biệt giữa đầu vào và đầu ra.
 :::
 
 :::note
@@ -41,7 +43,7 @@ Trong **Kiểm tra chính tả & ngữ pháp**, một công tắc **Hiển thị
 
 Sau khi chạy thành công, **Diễn đạt lại…** và menu thả xuống phiên bản xuất hiện ở phía đầu ra (ý tưởng tương tự như [Dịch](/docs/translate/#refine-a-translation), nhưng văn bản vẫn giữ nguyên ngôn ngữ và giữ nguyên **Chế độ** hiện tại):
 
-1. **Diễn đạt lại…** (không có lựa chọn) — một bản viết lại hoàn chỉnh khác với cách diễn đạt khác. Tối đa năm phiên bản. Nhấp vào **Dừng viết lại** để hủy.
+1. **Diễn đạt lại…** (không chọn) — một bản viết lại hoàn chỉnh khác với cách diễn đạt khác. Tối đa năm phiên bản. Nhấp vào **Dừng viết lại** để hủy.
 2. **Các từ thay thế** — chọn văn bản, sau đó nhấp chuột phải hoặc **Diễn đạt lại…**.
 3. Mỗi yêu cầu có thể làm tăng chi phí sử dụng.
 

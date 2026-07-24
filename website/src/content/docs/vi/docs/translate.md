@@ -9,7 +9,7 @@ description: >-
 
 Sử dụng **Dịch** để chuyển đổi văn bản từ ngôn ngữ này sang ngôn ngữ khác.
 
-![Dịch không gian làm việc](/images/screenshots/vi/translate.png)
+![Không gian làm việc dịch](/images/screenshots/vi/translate.png)
 
 ## Điều kiện tiên quyết
 
@@ -34,29 +34,35 @@ Trong [Cài đặt → Cài đặt chung](/docs/settings/#general-settings):
 
 - **Tự động thực thi khi dán** — chạy ngay sau khi bạn dán
 - **Tự động sao chép kết quả vào khay nhớ tạm** — sao chép sau khi chạy thành công
-- **Dịch thời gian thực khi gõ** — chạy trong khi bạn gõ (có thể tăng chi phí)
-- **Thời gian chờ (ms)** — đợi trước khi chạy thời gian thực
+- **Dịch theo thời gian thực khi gõ** — chạy khi bạn gõ (có thể tăng chi phí)
+- **Thời gian chờ (ms)** — đợi trước khi chạy theo thời gian thực
 - **Hành vi cho ENTER** — liệu Enter có chạy tác vụ hay chèn một dòng mới
+
+## Bố cục và bàn phím
+
+- **Chuyển đổi bố cục** — các nút phía trên bảng điều khiển chuyển đổi giữa bố cục Đầu vào/Đầu ra **cạnh nhau** và **xếp chồng**. Lựa chọn này áp dụng cho Dịch, Viết lại và Chuyển đổi và được ghi nhớ trên thiết bị này.
+- **Enter** hoặc **Shift+Enter** chạy tác vụ, tùy thuộc vào **Hành vi cho ENTER** (xem ở trên).
+- **Escape** xóa bảng Đầu vào (hoặc đóng một menu hoặc hộp thoại đang mở trước).
 
 ## Tinh chỉnh bản dịch
 
-Sau khi chạy thành công, **Diễn giải lại…** và một menu thả xuống phiên bản sẽ xuất hiện bên cạnh bộ chọn **Đến:**:
+Sau khi chạy thành công, **Diễn giải lại…** và một menu thả xuống phiên bản xuất hiện bên cạnh bộ chọn **Đến:**:
 
 1. **Diễn giải lại…** (không chọn) — một bản dịch đầy đủ khác của cùng một đầu vào. Tối đa **năm** phiên bản; mô hình xem các phiên bản trước đó để cách diễn đạt có thể khác nhau. Nhấp vào **Dừng dịch** để hủy một lần diễn giải lại đang chạy.
-2. **Các từ thay thế** — chọn các từ hoặc một cụm từ ngắn, sau đó nhấp chuột phải hoặc **Diễn giải lại…**. Chọn một từ thay thế để thay thế khoảng (có thể mở rộng một chút cho ngữ pháp). Ở năm phiên bản, chỉ phiên bản 5 được cập nhật.
-3. Mỗi yêu cầu diễn giải lại hoặc thay thế đều sử dụng lại mô hình và có thể làm tăng chi phí.
+2. **Các từ thay thế** — chọn các từ hoặc một cụm từ ngắn, sau đó nhấp chuột phải hoặc **Diễn giải lại…**. Chọn một lựa chọn thay thế để thay thế khoảng (có thể mở rộng một chút cho ngữ pháp). Ở năm phiên bản, chỉ phiên bản 5 được cập nhật.
+3. Mỗi yêu cầu diễn giải lại hoặc thay thế sử dụng lại mô hình và có thể tăng chi phí.
 
 ## Sử dụng bảng thuật ngữ
 
-Một **bảng thuật ngữ** là các cặp thuật ngữ nguồn/đích cho một cặp ngôn ngữ. Khi được bật, các thuật ngữ khớp sẽ được gửi đến mô hình để cách diễn đạt ưa thích luôn nhất quán.
+Một **bảng thuật ngữ** là các cặp thuật ngữ nguồn/đích cho một cặp ngôn ngữ. Khi được bật, các thuật ngữ khớp sẽ được gửi đến mô hình để cách diễn đạt ưu tiên vẫn nhất quán.
 
-1. Bật **Bảng thuật ngữ** trong bảng nhập.
+1. Bật **Thuật ngữ** trong bảng nhập liệu.
 2. Dịch như bình thường — các thuật ngữ cho cặp **Từ** / **Đến** đó sẽ tự động được áp dụng.
-3. Nhấp vào **Thêm vào Bảng thuật ngữ** (bên cạnh **Từ:**) để nhanh chóng thêm một cặp mới.
-4. Quản lý tất cả các thuật ngữ trong [Cài đặt → Bảng thuật ngữ](/docs/settings/#glossary).
+3. Nhấp vào **Thêm vào Thuật ngữ** (bên cạnh **Từ:**) để nhanh chóng thêm một cặp mới.
+4. Quản lý tất cả các thuật ngữ trong [Cài đặt → Thuật ngữ](/docs/settings/#glossary).
 
 :::note
-Các thuật ngữ trong bảng chú giải được khớp theo cặp ngôn ngữ. Chúng không thể được sử dụng với **Phát hiện ngôn ngữ** làm nguồn.
+Các thuật ngữ trong bảng thuật ngữ được khớp theo cặp ngôn ngữ. Chúng không thể được sử dụng với **Phát hiện ngôn ngữ** làm nguồn.
 :::
 
 ## Các bước tiếp theo

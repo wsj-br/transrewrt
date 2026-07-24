@@ -142,7 +142,9 @@ process.stdout.write(Array.from(dirs).join("\n"));
     $out = [System.Collections.Generic.List[string]]::new()
     if ($rootLine) { [void]$out.Add($rootLine) }
     foreach ($p in $rest) { [void]$out.Add($p) }
-    return , @($out)
+    # Emit paths as pipeline objects (no unary comma). Callers use
+    # @(Get-UpgradeWorkspaceDirs); a comma-wrapped array would nest under @().
+    return @($out)
 }
 
 function Get-UpgradeVerifyCmd {

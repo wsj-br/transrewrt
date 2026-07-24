@@ -15,11 +15,13 @@ Your keys, your models, your host — there is no Transrewrt cloud account.
 
 ## How the window is organised
 
-- **Sidebar** — Translate, Rewrite, Transform, Dashboard, History, Settings (and the logged-in user on web)
-- **Toolbar** — page title, **preset** (Easy) or **model** (Advanced) selector, and **Interface language** (globe icon; does not change Translate From/To)
-- **Work area** — Input and Output panels with counts, timing, TPS, and optional cost
+![Translate workspace](/images/screenshots/en-GB/translate.png)
 
-By default the app runs in **Easy** mode: pick a **preset** and a **Provider** in Settings. Switch to **Advanced** under [Settings → General Settings](/docs/settings/#general-settings) for a full model list.
+- **Sidebar** — the main navigation: Translate, Rewrite, Transform, Dashboard, History, Settings (and the logged-in user on web).
+- **Toolbar** — the page title, the **preset** (Easy) or **model** (Advanced) selector, the **Interface language** (globe icon; does not change Translate From/To), and Help (**?**) linking to these docs. The preset/model menu can also **Switch to Easy/Advanced mode** (above Open Settings).
+- **Work area** — the Input and Output panels, with counts, timing, TPS, and optional cost. The action bar shows a small app **version** link (bottom-right) to the GitHub Pages site.
+
+By default the app runs in **Easy** mode: pick a **preset** and a **Provider** in Settings. Switch to **Advanced** under [Settings → General Settings](/docs/settings/#general-settings) for a full model list, or use the switch in the toolbar preset/model menu.
 
 ## Get started
 

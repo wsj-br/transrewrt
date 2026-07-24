@@ -7,7 +7,7 @@ description: >-
 
 
 
-Gebruik **Transformeren** wanneer u wilt dat de AI aangepaste instructies volgt — samenvatten, een e-mail polijsten, kernpunten extraheren, tekst opnieuw formatteren, of elke workflow die u definieert.
+Gebruik **Transformeren** wanneer u wilt dat de AI aangepaste instructies volgt — samenvatten, een e-mail polijsten, kernpunten extraheren, tekst herformatteren, of elke workflow die u definieert.
 
 ![Transformeer werkruimte](/images/screenshots/nl/transform.png)
 
@@ -15,14 +15,16 @@ Gebruik **Transformeren** wanneer u wilt dat de AI aangepaste instructies volgt 
 
 1. Open **Transformeren**.
 2. Kies een prompt uit de lijst.
-3. Als er een **Van** taalvak verschijnt, stel dan een taal in als u dat wilt.
+3. Als er een **Van**-taalvak verschijnt, stel dan een taal in als u dat wilt.
 4. Typ of plak tekst in **Invoer**.
 5. Klik op **Transformeren**.
 6. Lees het resultaat in **Uitvoer**.
 
+De [lay-outschakelaar en sneltoetsen](/docs/translate/#layout-and-keyboard) werken hetzelfde als in Vertalen.
+
 ## Voorbeeldprompts laden
 
-Als de lijst leeg is, klikt u op **Voorbeeldprompts laden** in de Transformeer-werkruimte (ook beschikbaar onder [Instellingen → Transformeren](/docs/settings/#transform)). Voorbeelden zijn in het Engels; bewerk na het laden een prompt en gebruik **Prompt vertalen** indien nodig.
+Als de lijst leeg is, klikt u op **Voorbeeldprompts laden** in de Transformeer-werkruimte (ook beschikbaar onder [Instellingen → Transformeren](/docs/settings/#transform)). Voorbeelden zijn in het Engels; na het laden bewerkt u een prompt en gebruikt u **Prompt vertalen** indien nodig.
 
 ## Een prompt maken
 
@@ -45,7 +47,7 @@ Hoofdvelden:
 - **Modelrol** — algemene rol voor de AI
 - **Modelinstructies (één per regel)** — regels die moeten worden gevolgd
 - **Uitvoerbeschrijving** — kort label voor het resultaat (bijv. samengevat)
-- **Temperatuur (0.0 → 1.0)** — lager is stabieler; hoger is gevarieerder
+- **Temperatuur (0,0 → 1,0)** — lager is stabieler; hoger is gevarieerder
 - **Vragen om doeltaal** — voegt een taalkiezer toe bij het uitvoeren
 
 Hulpmiddelen: **Prompt genereren**, **Prompt verbeteren**, **Prompt vertalen** (Eenvoudig gebruikt voorinstellingen; Geavanceerd gebruikt de modellijst).

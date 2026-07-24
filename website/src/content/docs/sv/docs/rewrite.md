@@ -29,8 +29,10 @@ Lägen inkluderar:
 5. Klicka på **Skriv om**.
 6. Läs resultatet i **Utdata**.
 
+[Växlingsknappen för layout och kortkommandon](/docs/translate/#layout-and-keyboard) fungerar på samma sätt som i Translate.
+
 :::tip
-I **Kontrollera stavning och grammatik** visas en växel för **Visa ändringar** bredvid **Kopiera**. Växla den för att visa eller dölja korrigeringar.
+Efter en omskrivning visas en växel för **Visa ändringar** (**Ändringar**) bredvid **Kopiera** för **alla** omskrivningslägen. Växla den för att visa eller dölja en diff mellan indata och utdata.
 :::
 
 :::note
@@ -39,11 +41,11 @@ I **Kontrollera stavning och grammatik** visas en växel för **Visa ändringar*
 
 ## Förfina en omskrivning
 
-Efter en lyckad körning visas **Omformulera…** och rullgardinsmenyn för versioner på utdatasidan (samma idé som [Översätt](/docs/translate/#refine-a-translation), men texten förblir på samma språk och behåller det aktuella **Läget**):
+Efter en lyckad körning visas **Omformulera…** och versionsrullgardinsmenyn på utdatasidan (samma idé som [Översätt](/docs/translate/#refine-a-translation), men texten förblir på samma språk och behåller det aktuella **Läget**):
 
 1. **Omformulera…** (inget val) – en annan fullständig omskrivning med annorlunda formulering. Upp till fem versioner. Klicka på **Stoppa omskrivning** för att avbryta.
-2. **Ordalternativ** – markera text, högerklicka sedan eller **Omformulera…**.
-3. Varje begäran kan medföra användningskostnad.
+2. **Ordalternativ** – markera text, sedan högerklicka eller **Omformulera…**.
+3. Varje begäran kan lägga till användningskostnad.
 
 ## Nästa steg
 

@@ -3,5 +3,6 @@ dist/
 .astro/
 .DS_Store
 *.log
-.translation-cache/
-src/i18n/locales/*.json
+# i18n docs translate cache (keep cache.db in repo, like root project)
+.translation-cache/**
+!.translation-cache/cache.db

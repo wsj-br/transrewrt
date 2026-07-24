@@ -15,14 +15,16 @@ Använd **Transformera** när du vill att AI:n ska följa anpassade instruktione
 
 1. Öppna **Transformera**.
 2. Välj en prompt från listan.
-3. Om en ruta för **Från** språk visas, ange ett språk om du vill ha ett.
-4. Skriv eller klistra in text i **Indata**.
+3. Om en **Från** språk-ruta visas, ställ in ett språk om du vill ha ett.
+4. Skriv eller klistra in text i **Input**.
 5. Klicka på **Transformera**.
-6. Läs resultatet i **Utdata**.
+6. Läs resultatet i **Output**.
+
+[Växlingsknappen för layout och kortkommandon](/docs/translate/#layout-and-keyboard) fungerar på samma sätt som i Translate.
 
 ## Ladda exempelprompter
 
-Om listan är tom, klicka på **Ladda exempelprompter** i Transform-arbetsytan (finns även under [Inställningar → Transformera](/docs/settings/#transform)). Exemplen är på engelska; efter laddning, redigera en prompt och använd **Översätt prompt** om det behövs.
+Om listan är tom, klicka på **Ladda exempelprompter** i Transformera-arbetsytan (finns även under [Inställningar → Transformera](/docs/settings/#transform)). Exemplen är på engelska; efter laddning, redigera en prompt och använd **Översätt prompt** vid behov.
 
 ## Skapa en prompt
 
@@ -36,22 +38,22 @@ Om listan är tom, klicka på **Ladda exempelprompter** i Transform-arbetsytan (
 
 Redigeraren är till vänster; ett testområde är till höger.
 
-![Transform-promptredigerare](/images/screenshots/sv/transform-prompt-edit.png)
+![Transformera promptredigerare](/images/screenshots/sv/transform-prompt-edit.png)
 
 Huvudfält:
 
 - **Promptnamn** – visas i promptlistan
 - **Promptinstruktioner (valfritt)** – kort tips när prompten körs
-- **Modellroll** – AI:ns övergripande roll
+- **Modellroll** – övergripande roll för AI:n
 - **Modellinstruktioner (en per rad)** – regler att följa
 - **Utdata beskrivning** – kort etikett för resultatet (t.ex. sammanfattat)
 - **Temperatur (0.0 → 1.0)** – lägre är stabilare; högre är mer varierat
 - **Fråga efter målspråk** – lägger till en språk väljare vid körning
 
-Hjälpmedel: **Generera prompt**, **Förbättra prompt**, **Översätt prompt** (Enkel använder förinställningar; Avancerad använder modellistan).
+Hjälpmedel: **Generera prompt**, **Förbättra prompt**, **Översätt prompt** (Enkel använder förinställningar; Avancerad använder modelllistan).
 
 :::caution
-Klicka på **Spara** innan **Tillbaka till Kör**. Att gå tillbaka utan att spara kastar bort ändringar.
+Klicka på **Spara** innan **Tillbaka till Kör**. Att gå tillbaka utan att spara kasserar ändringar.
 :::
 
 ## Testa före daglig användning

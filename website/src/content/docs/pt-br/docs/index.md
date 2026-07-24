@@ -1,13 +1,13 @@
 ---
-title: Visão Geral
+title: Visão geral
 description: >-
-  O que é o Transrewrt e como encontrar a instalação, guias e documentos de
+  O que é o Transrewrt e como encontrar documentos de instalação, guias e
   configurações.
 ---
 
 
 
-O **Transrewrt** é uma ferramenta de texto de código aberto com IA para:
+**Transrewrt** é uma ferramenta de texto de código aberto com IA para:
 
 - **Traduzir** — entre dezenas de idiomas, com detecção automática de origem e glossários
 - **Reescrever** — corrigir gramática, melhorar a clareza, mudar o tom ou o comprimento
@@ -15,15 +15,17 @@ O **Transrewrt** é uma ferramenta de texto de código aberto com IA para:
 
 Ele suporta muitos provedores de IA (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, endpoints compatíveis com OpenAI e servidores locais compatíveis com OpenAI, como Ollama, LM Studio ou llama.cpp). Execute-o como um **aplicativo de desktop** (Windows / Linux) ou um **aplicativo web auto-hospedado** (Docker).
 
-Suas chaves, seus modelos, seu host — não há conta na nuvem Transrewrt.
+Suas chaves, seus modelos, seu host — não há conta Transrewrt na nuvem.
 
 ## Como a janela é organizada
 
-- **Barra lateral** — Traduzir, Reescrever, Transformar, Painel, Histórico, Configurações (e o usuário logado na web)
-- **Barra de ferramentas** — título da página, seletor de **predefinição** (Fácil) ou **modelo** (Avançado), e **Idioma da interface** (ícone de globo; não altera Traduzir De/Para)
-- **Área de trabalho** — Painéis de Entrada e Saída com contagens, tempo, TPS e custo opcional
+![Espaço de trabalho de tradução](/images/screenshots/pt-BR/translate.png)
 
-Por padrão, o aplicativo é executado no modo **Fácil**: escolha uma **predefinição** e um **Provedor** em Configurações. Mude para **Avançado** em [Configurações → Configurações Gerais](/docs/settings/#general-settings) para uma lista completa de modelos.
+- **Barra lateral** — a navegação principal: Traduzir, Reescrever, Transformar, Painel, Histórico, Configurações (e o usuário logado na web).
+- **Barra de ferramentas** — o título da página, o seletor de **predefinição** (Fácil) ou **modelo** (Avançado), o seletor de **Idioma da interface** (ícone de globo; não altera Traduzir De/Para) e Ajuda (**?**) com link para esta documentação. O menu de predefinição/modelo também pode **Alternar para o modo Fácil/Avançado** (acima de Abrir Configurações).
+- **Área de trabalho** — os painéis de Entrada e Saída, com contagens, tempo, TPS e custo opcional. A barra de ação mostra um pequeno link de **versão** do aplicativo (canto inferior direito) para o site do GitHub Pages.
+
+Por padrão, o aplicativo é executado no modo **Fácil**: escolha uma **predefinição** e um **Provedor** em Configurações. Mude para **Avançado** em [Configurações → Configurações Gerais](/docs/settings/#general-settings) para uma lista completa de modelos, ou use o botão no menu de predefinição/modelo da barra de ferramentas.
 
 ## Primeiros passos
 

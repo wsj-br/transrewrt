@@ -1,14 +1,16 @@
 "use strict";
 
 /**
- * Ensure better-sqlite3 is built for the current system Node.js (not Electron).
+ * Ensure better-sqlite3 can load under the current system Node.js (not Electron).
  * Quiet on success (exit 0). Prints only on failure (exit 1).
  *
- * After a successful rebuild, writes
+ * better-sqlite3 v13+ ships N-API prebuilds under prebuilds/{platform}-{arch}.node and
+ * skips compiling build/Release when a host prebuild is present. Prefer that path.
+ *
+ * When only a node-gyp Release binary exists (no prebuild), keep the previous marker:
  *   node_modules/better-sqlite3/build/Release/.transrewrt-system-node.json
- * with NODE_MODULE_VERSION + sha256 of better_sqlite3.node. Skip rebuild when that
- * file exists, the version matches process.versions.modules, and the addon hash matches -
- * so an Electron rebuild (different binary) invalidates the marker without relying on require().
+ * with NODE_MODULE_VERSION + sha256 of better_sqlite3.node so an Electron rebuild
+ * (different binary) invalidates the marker without require()-ing the addon.
  */
 
 const fs = require("fs");
@@ -19,6 +21,9 @@ const { spawnSync } = require("child_process");
 const RED = "\x1b[31m";
 const RESET = "\x1b[0m";
 
+const PREBUILD_PLATFORMS = ["linux", "darwin", "win32"];
+const PREBUILD_ARCHS = ["x64", "arm64"];
+
 const extraArgs = process.argv.slice(2);
 if (extraArgs.length === 1 && (extraArgs[0] === "--help" || extraArgs[0] === "-h")) {
   console.log(
@@ -27,8 +32,9 @@ if (extraArgs.length === 1 && (extraArgs[0] === "--help" || extraArgs[0] === "-h
   console.log("Usage: node scripts/node-rebuild.js");
   console.log("       (run via pnpm dev:web, translate:docs, etc.)\n");
   console.log(
-    "Writes build/Release/.transrewrt-system-node.json under better-sqlite3 after a good rebuild;\n" +
-      "skips pnpm rebuild when that marker matches current NODE_MODULE_VERSION and the .node file.\n"
+    "Accepts packaged prebuilds (better-sqlite3 v13+) or build/Release/better_sqlite3.node.\n" +
+      "For Release builds, writes .transrewrt-system-node.json and skips pnpm rebuild when the\n" +
+      "marker matches current NODE_MODULE_VERSION and the .node file hash.\n"
   );
   console.log("Options:\n  --help, -h   Show this help and exit.\n");
   process.exit(0);
@@ -49,6 +55,20 @@ function sha256File(filePath) {
   return crypto.createHash("sha256").update(fs.readFileSync(filePath)).digest("hex");
 }
 
+function isLinuxMusl() {
+  return process.platform === "linux" && !process.report.getReport().header.glibcVersionRuntime;
+}
+
+/** Host prebuild path used by better-sqlite3/lib/binding.js, or null. */
+function getPrebuildPath() {
+  if (!PREBUILD_PLATFORMS.includes(process.platform) || !PREBUILD_ARCHS.includes(process.arch)) {
+    return null;
+  }
+  const target = `${isLinuxMusl() ? "linuxmusl" : process.platform}-${process.arch}`;
+  const filename = path.join(betterRoot, "prebuilds", `${target}.node`);
+  return fs.existsSync(filename) ? filename : null;
+}
+
 function readMarker() {
   try {
     const raw = fs.readFileSync(markerPath, "utf8");
@@ -60,6 +80,7 @@ function readMarker() {
 
 function writeMarker() {
   const addonSha256 = sha256File(addonPath);
+  fs.mkdirSync(releaseDir, { recursive: true });
   fs.writeFileSync(
     markerPath,
     JSON.stringify(
@@ -74,7 +95,7 @@ function writeMarker() {
   );
 }
 
-function systemNodeAddonAlreadyValid() {
+function releaseAddonAlreadyValid() {
   if (!fs.existsSync(addonPath)) return false;
   const m = readMarker();
   if (!m || typeof m.addonSha256 !== "string" || typeof m.nodeModuleVersion !== "string") {
@@ -86,6 +107,12 @@ function systemNodeAddonAlreadyValid() {
   } catch {
     return false;
   }
+}
+
+function systemNodeAddonAlreadyValid() {
+  // v13+: packaged N-API prebuild is the system-Node binary; binding.js prefers it.
+  if (getPrebuildPath()) return true;
+  return releaseAddonAlreadyValid();
 }
 
 if (systemNodeAddonAlreadyValid()) {
@@ -111,9 +138,18 @@ if (result.status !== 0) {
   process.exit(1);
 }
 
+// Rebuild may be a no-op when a prebuild exists (binding.gyp target type: none).
+if (getPrebuildPath()) {
+  process.exit(0);
+}
+
 if (!fs.existsSync(addonPath)) {
   console.error(
-    RED + "better-sqlite3 rebuild finished but " + addonPath + " is missing." + RESET
+    RED +
+      "better-sqlite3 rebuild finished but neither a host prebuild nor " +
+      addonPath +
+      " is available." +
+      RESET
   );
   process.exit(1);
 }

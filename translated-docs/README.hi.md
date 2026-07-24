@@ -30,15 +30,15 @@ AI-संचालित टेक्स्ट टूल: अपने स्व
 ```bash
 docker pull ghcr.io/wsj-br/transrewrt:latest
 
-OPENROUTER_API_KEY=sk-or-your-key docker run -d \
+docker run -d \
   -p 5000:5000 \
   -v transrewrt-data:/app/data \
-  -e OPENROUTER_API_KEY \
-  --name transrewrt-web \
+  -e PROVIDER_API_KEY=your-key \
+  --name transrewrt \
   ghcr.io/wsj-br/transrewrt:latest
 ```
 
-[http://localhost:5000](http://localhost:5000) खोलें और डिफ़ॉल्ट व्यवस्थापक पासवर्ड बदलें। प्रदाता कुंजियाँ पर्यावरण चर (वेब UI नहीं) के माध्यम से सेट की जाती हैं।
+अपने प्रदाता वेरिएबल (उदाहरण के लिए `OPENROUTER_API_KEY`, `OPENAI_API_KEY`, `GROQ_API_KEY`) के साथ `PROVIDER_API_KEY` को बदलें। [http://localhost:5000](http://localhost:5000) खोलें और डिफ़ॉल्ट व्यवस्थापक पासवर्ड बदलें। कुंजियाँ पर्यावरण वेरिएबल के माध्यम से सेट की जाती हैं (वेब UI के माध्यम से नहीं)।
 
 **Windows** — [रिलीज़](https://github.com/wsj-br/transrewrt/releases) से `Transrewrt Setup x.y.z.exe` डाउनलोड करें, इंस्टॉल करें, फिर **सेटिंग्स → API** में कुंजियाँ जोड़ें।
 

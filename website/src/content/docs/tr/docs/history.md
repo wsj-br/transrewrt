@@ -23,7 +23,7 @@ Filtrelenmiş listeyi **JSON**, **CSV** veya **XLSX** olarak dışa aktarın.
 
 ## Geçmiş eksikse
 
-**Yürütme geçmişini sakla** kapalı olabilir. Yönetici `HISTORY_DISABLED` ayarını yapmadıysa [Ayarlar → Genel Ayarlar](/docs/settings/#general-settings) bölümünden etkinleştirin — bkz. [Yapılandırma](/docs/configuration/#privacy-mode).
+**Yürütme geçmişini tut** kapalı olabilir. Yönetici `HISTORY_DISABLED` ayarını yapmadığı sürece [Ayarlar → Genel Ayarlar](/docs/settings/#general-settings) bölümünden etkinleştirin — bkz. [Yapılandırma](/docs/configuration/#privacy-mode).
 
 ## Sonraki adımlar
 

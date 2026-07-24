@@ -30,15 +30,15 @@ AI-powered text tool: **translate**, **rewrite**, and **transform** with custom 
 ```bash
 docker pull ghcr.io/wsj-br/transrewrt:latest
 
-OPENROUTER_API_KEY=sk-or-your-key docker run -d \
+docker run -d \
   -p 5000:5000 \
   -v transrewrt-data:/app/data \
-  -e OPENROUTER_API_KEY \
-  --name transrewrt-web \
+  -e PROVIDER_API_KEY=your-key \
+  --name transrewrt \
   ghcr.io/wsj-br/transrewrt:latest
 ```
 
-Open [http://localhost:5000](http://localhost:5000) and change the default admin password. Provider keys are set via environment variables (not the web UI).
+Replace `PROVIDER_API_KEY` with your provider variable (for example `OPENROUTER_API_KEY`, `OPENAI_API_KEY`, `GROQ_API_KEY`). Open [http://localhost:5000](http://localhost:5000) and change the default admin password. Keys are set via environment variables (not the web UI).
 
 **Windows** — Download `Transrewrt Setup x.y.z.exe` from [Releases](https://github.com/wsj-br/transrewrt/releases), install, then add keys in **Settings → API**.
 

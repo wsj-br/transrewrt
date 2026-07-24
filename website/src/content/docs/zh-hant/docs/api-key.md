@@ -1,44 +1,71 @@
 ---
 title: API 金鑰
-description: 取得免費的 OpenRouter API 金鑰，並將其他 AI 供應商連接到 Transrewrt。
+description: 透過新增 API 金鑰，將 Transrewrt 連接至您選擇的 AI 供應商，或改用本地模型。
 ---
 
 
 
-Transrewrt 需要存取至少一個 AI 供應商。您**不需要**付費模型即可開始：OpenRouter 在您新增金鑰後提供免費模型，且其他數個供應商也提供免費方案。
+Transrewrt 本身不內建 AI — 它會將您的文字傳送至您選擇的 AI 供應商。要連接供應商，您需新增一個 **API 金鑰**：這是由供應商核發的私密代碼，作用如同該服務的密碼。您只需 **一個** 供應商即可開始使用，且無需付費：多家供應商提供免費模型或免費方案，您也可以完全不需要金鑰，直接在自己的電腦上執行模型。
 
-支援的供應商包括 [OpenRouter](https://openrouter.ai)、OpenAI、Anthropic、Google Gemini、DeepSeek、Groq、Mistral、xAI、Cerebras、NVIDIA、Alibaba Cloud、apikey.fun、任何 OpenAI 相容端點，以及本地 OpenAI 相容伺服器（Ollama、LM Studio、llama.cpp 等）。
+支援的供應商包括 OpenRouter、OpenAI、Anthropic、Google Gemini、DeepSeek、Groq、Mistral、xAI、Cerebras、NVIDIA、Alibaba Cloud、apikey.fun、任何 OpenAI 相容端點，以及本地的 OpenAI 相容伺服器（Ollama、LM Studio、llama.cpp 等）。
 
-## 簡易與進階
+## 步驟 1 — 選擇供應商
 
-- **Easy** 模式（預設）：選擇對應至 **provider** 的 **preset**（Free (OpenRouter)、Standard、Advanced 或 Technical）。僅顯示具備目前供應商對應的預設設定。
-- **Advanced** 模式：直接挑選模型。模型 ID 使用供應商前綴（例如 `openrouter/…`、`openai/…`、`local/…`）。
+任何支援的供應商皆可使用。若您不確定該選哪一個：
 
-## 免費 OpenRouter 金鑰（桌面版）
+- **免費開始**：OpenRouter、Google Gemini、Groq、Mistral、Cerebras 與 NVIDIA 皆提供免費模型或免費方案。
+- **已有帳號？** 若您已在使用 OpenAI、Anthropic 或其他支援的供應商，可直接沿用該帳號。
+- **偏好將一切保留在自己的電腦上？** 完全跳過金鑰，改用[本地模型](#using-a-local-model-instead-no-api-key)。
 
-1. 前往 [openrouter.ai](https://openrouter.ai) 並註冊或登入。
-2. 開啟 [Keys](https://openrouter.ai/keys) 頁面並建立新金鑰（為其命名；可選擇設定額度限制）。您無需新增額度即可使用免費模型。
-3. 在 Transrewrt 中，開啟 **設定 → API 設定**，將金鑰貼上至 **OpenRouter API 金鑰**，然後點擊 **測試 OpenRouter 金鑰**。
+## 步驟 2 — 建立 API 金鑰
+
+各供應商的確切步驟略有不同，但整體流程皆相同：
+
+1. 在供應商網站上註冊或登入。在 Transrewrt 的 **設定 → API 設定** 中，每個供應商都有一個 **開啟供應商網站** 連結，可直接帶您前往正確頁面。
+2. 找到 **API 金鑰** 頁面（有時位於帳號、儀表板或開發者設定底下）並建立新金鑰。部分供應商會要求您為金鑰命名或設定消費上限 — 兩者皆為選用。
+3. 複製金鑰。它是一長串字母與數字，通常以類似 `sk-` 的內容開頭。
 
 :::caution
-請勿使用 OpenRouter 的 **Body Builder** 模型（`openrouter/bodybuilder`）進行翻譯、重寫或轉換 — 它會傳回 JSON 請求負載，而非完成的文字。
+請將 API 金鑰視為密碼：切勿分享、公開發布或傳送給任何人。若金鑰外洩，請在供應商網站上刪除該金鑰並重新建立一個。
 :::
 
-## 其他免費選項
+## 步驟 3 — 新增並測試金鑰（桌面版）
 
-您也可以從 Cerebras、Google、Groq、Mistral AI 或 [NVIDIA](https://build.nvidia.com/)（OpenAI 相容 API）取得免費的 API 金鑰，或者使用 Ollama、LM Studio、llama.cpp 或其他 OpenAI 相容伺服器在本機執行模型（例如透過 Ollama 使用 `translategemma:4b`）。請在「設定」（桌面版）或 `LOCAL_LLM_URL`（Docker）中，將 Local LLM 基礎 URL 設定為完整的 API 基礎位置（包含路徑，例如 `http://localhost:11434/v1`）。
+1. 在 Transrewrt 中，開啟 **設定 → API 設定**。
+2. 將金鑰貼上至您所使用供應商的欄位（例如 **Google Gemini API 金鑰**）並儲存。
+3. 點擊欄位旁的 **測試** 以確認金鑰可用。
+
+測試成功後，您就準備好了 — 在主畫面上選擇該供應商並開始翻譯。
 
 :::caution
-如果您使用來自其他裝置或容器的本地 LLM 伺服器，請將其設定為允許外部連線（不僅限 localhost）。
+請避免使用 OpenRouter 的 **Body Builder** 模型（`openrouter/bodybuilder`）— 它會回傳 JSON 請求酬載，而非完成的文字。請參閱[設定 → 模型](/docs/settings/#models)。
+:::
+
+## 改用本地模型（無需 API 金鑰）
+
+您可以使用 Ollama、LM Studio、llama.cpp 或其他 OpenAI 相容伺服器（例如透過 LM Studio 的 `google/gemma-4-e2b`），在自己的電腦上執行模型。所有資料都不會離開您的機器，且無需 API 金鑰。
+
+要連接此類模型，請將 Local LLM 基礎 URL 設為完整的 API 基礎位址（包含路徑）— 例如 `http://localhost:11434/v1`。在桌面版中，請於 **設定 → API 設定** 中設定；在 Docker 中，請改為設定 `LOCAL_LLM_URL` 環境變數。
+
+:::caution
+如果您從其他裝置或容器使用本機 LLM 伺服器，請將其設定為允許外部連線（非僅限本機）。
 :::
 
 ## Docker / 網頁版
 
-在伺服器上將供應商金鑰設定為 **環境變數**（例如 `PROVIDER_API_KEY`）。使用者無法在瀏覽器 UI 中輸入金鑰。請參閱[設定](/docs/configuration/)。
+若您在瀏覽器中使用 Transrewrt，金鑰由執行伺服器的人員管理，而非在瀏覽器介面中輸入。管理員會在伺服器上將供應商金鑰設為 **環境變數**（例如 `PROVIDER_API_KEY`）— 請參閱[設定](/docs/configuration/)。
 
 ## 首次執行檢查清單
 
-1. 開啟應用程式，並視需要設定**介面語言**。
-2. 新增並測試至少一個供應商金鑰（桌面版），或確認伺服器具備環境變數金鑰（網頁版）。
-3. 在**簡易**模式下，於「一般設定」中選擇**供應商**；在**進階**模式下，於**設定 → 模型**下新增模型。
-4. 在**翻譯**中，挑選預設設定或模型並執行簡短測試 — 請參閱[翻譯文字](/docs/translate/)。
+1. 開啟應用程式，並視需要設定 **介面語言**。
+2. 新增並測試至少一個供應商金鑰 — 或設定本地模型（桌面版），或確認伺服器已設有環境變數金鑰（網頁版）。
+3. 在 **簡易** 模式下，於一般設定中選擇 **供應商**；在 **進階** 模式下，於 **設定 → 模型** 中新增模型 — 兩種模式的說明請見[設定](/docs/settings/#general-settings)。
+4. 在 **翻譯** 頁面上，選擇預設設定或模型並執行簡短測試 — 請參閱[翻譯文字](/docs/translate/)。
+
+## 若發生問題
+
+- **金鑰測試失敗**：檢查金鑰是否完整複製（前後沒有空格），以及是否已在供應商網站上被刪除或停用。
+- **翻譯失敗並出現配額或額度錯誤**：免費方案有每日或每月限制；請等待、切換至其他免費供應商，或增加額度。
+- **簡易模式下未顯示供應商**：開啟 **設定 → API 設定** 並確認至少已設定並測試一個金鑰（或本機 LLM URL）。
+
+更多說明：[常見問題](/docs/common-issues/)。

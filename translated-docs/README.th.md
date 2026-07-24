@@ -30,15 +30,15 @@
 ```bash
 docker pull ghcr.io/wsj-br/transrewrt:latest
 
-OPENROUTER_API_KEY=sk-or-your-key docker run -d \
+docker run -d \
   -p 5000:5000 \
   -v transrewrt-data:/app/data \
-  -e OPENROUTER_API_KEY \
-  --name transrewrt-web \
+  -e PROVIDER_API_KEY=your-key \
+  --name transrewrt \
   ghcr.io/wsj-br/transrewrt:latest
 ```
 
-เปิด [http://localhost:5000](http://localhost:5000) และเปลี่ยนรหัสผ่านผู้ดูแลระบบเริ่มต้น คีย์ผู้ให้บริการถูกตั้งค่าผ่านตัวแปรสภาพแวดล้อม (ไม่ใช่ UI เว็บ)
+แทนที่ `PROVIDER_API_KEY` ด้วยตัวแปรผู้ให้บริการของคุณ (เช่น `OPENROUTER_API_KEY`, `OPENAI_API_KEY`, `GROQ_API_KEY`) เปิด [http://localhost:5000](http://localhost:5000) และเปลี่ยนรหัสผ่านผู้ดูแลระบบเริ่มต้น คีย์จะถูกตั้งค่าผ่านตัวแปรสภาพแวดล้อม (ไม่ใช่ UI บนเว็บ)
 
 **Windows** — ดาวน์โหลด `Transrewrt Setup x.y.z.exe` จาก [Releases](https://github.com/wsj-br/transrewrt/releases) ติดตั้ง จากนั้นเพิ่มคีย์ใน **การตั้งค่า → API**
 

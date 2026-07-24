@@ -1,33 +1,33 @@
 ---
 title: Gyorsindítás
 description: >-
-  Telepítse a Transrewrt alkalmazást Windowsra vagy Linuxra, vagy futtassa az
-  önállóan üzemeltetett Docker webalkalmazást.
+  Telepítse a Transrewrt-t Windowsra vagy Linuxra, vagy futtassa az önálló
+  Docker webes alkalmazást.
 ---
 
 
 
 Válassza ki az Önnek megfelelő utat. Mindegyik ingyenes és nyílt forráskódú (Apache 2.0).
 
-## Docker (önállóan üzemeltetett web)
+## Docker (önálló web)
 
 ```bash
 docker pull ghcr.io/wsj-br/transrewrt:latest
 
-PROVIDER_API_KEY=sk-or-your-key docker run -d \
+docker run -d \
   -p 5000:5000 \
   -v transrewrt-data:/app/data \
-  -e PROVIDER_API_KEY \
-  --name transrewrt-web \
+  -e PROVIDER_API_KEY=your-api-key \
+  --name transrewrt \
   ghcr.io/wsj-br/transrewrt:latest
 ```
 
-Cserélje le az `PROVIDER_API_KEY=sk-or-your-key` elemet a választott szolgáltatótól származó API-kulcsára (lásd a támogatott lehetőségeket a [Konfiguráció](/docs/configuration/) részben).
+Cserélje ki az `PROVIDER_API_KEY` változót a szolgáltatójának megfelelő változóra (például `OPENROUTER_API_KEY`, `OPENAI_API_KEY`, `ANTHROPIC_API_KEY`, `XIA_API_KEY`, ...), és állítsa be az értékét. A teljes listát a [Konfiguráció](/docs/configuration/#environment-variables-web--docker) részben találja.
 
-Ezután nyissa meg a [http://localhost:5000](http://localhost:5000) címet, és **változtassa meg az alapértelmezett rendszergazdai jelszót**, mielőtt elérhetővé tenné a szolgáltatást.
+Ezután nyissa meg a [http://localhost:5000](http://localhost:5000) címet, és **változtassa meg az alapértelmezett adminisztrátori jelszót**, mielőtt elérhetővé tenné a szolgáltatást.
 
 :::caution
-Dockerben az LLM hitelesítő adatok környezeti változókkal vannak beállítva (például `PROVIDER_API_KEY`). Ezek **nincsenek** beírva a webes felhasználói felületre. Asztali számítógépen a kulcsokat a **Beállítások → API** menüpontban konfigurálhatja.
+Dockerben az LLM hitelesítő adatok környezeti változókkal (például `PROVIDER_API_KEY`) vannak beállítva. Ezeket **nem** a webes felhasználói felületen kell megadni. Asztali gépen a kulcsokat a **Beállítások → API konfiguráció** menüpontban konfigurálhatja.
 :::
 
 ### Docker Compose
@@ -42,7 +42,7 @@ docker compose -f transrewrt.yml up -d
 
 1. Töltse le a legújabb `Transrewrt Setup x.y.z.exe` fájlt a [Kiadások](https://github.com/wsj-br/transrewrt/releases) oldalról.
 2. Futtassa a telepítőt.
-3. Nyissa meg az alkalmazást, és adja meg az API kulcsokat a **Beállítások → API** menüpontban. Konfiguráljon legalább egy szolgáltatót; az OpenRouter gyakori választás az ingyenes modellekhez.
+3. Nyissa meg az alkalmazást, és adja meg az API kulcsokat a **Beállítások → API konfiguráció** menüpontban. Konfiguráljon legalább egy szolgáltatót; az OpenRouter gyakori választás az ingyenes modellekhez.
 
 :::note
 A Windows UAC vagy SmartScreen figyelmeztetéseket jeleníthet meg az aláíratlan független alkalmazások esetében. Előnyben részesítse a hivatalos GitHub Kiadások oldalról történő letöltéseket, és ellenőrizze az ellenőrző összegeket, amikor közzéteszik.
@@ -56,9 +56,9 @@ Töltse le a `.AppImage` fájlt a CPU-jához a [Kiadások](https://github.com/ws
 chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage
 ```
 
-Adja meg az API kulcsokat a **Beállítások → API** menüpontban.
+Adja meg az API kulcsokat a **Beállítások → API konfiguráció** menüpontban.
 
-Ha a Chromium GPU / EGL hibákat jelez, de az alkalmazás működik, letilthatja a hardveres gyorsítást:
+Ha a Chromium GPU / EGL hibákat ír ki, de az alkalmazás működik, letilthatja a hardveres gyorsítást:
 
 ```bash
 TRANSREWRT_DISABLE_GPU=1 ./Transrewrt-x.y.z-arm64.AppImage
@@ -68,8 +68,22 @@ TRANSREWRT_DISABLE_GPU=1 ./Transrewrt-x.y.z-arm64.AppImage
 A macOS jelenleg nem támogatott. A Transrewrt elérhető Windows, Linux és Docker rendszerekre.
 :::
 
+## Frissítés
+
+- **Windows** – töltse le az újabb `Transrewrt Setup x.y.z.exe` fájlt a [Kiadások](https://github.com/wsj-br/transrewrt/releases) oldalról, és futtassa. A beállítások és az adatok megmaradnak.
+- **Linux** – töltse le az újabb `.AppImage` fájlt, és cserélje le a régi fájlt. A beállítások és az adatok megmaradnak.
+- **Docker** – húzza le az új képet, és hozza létre újra a tárolót. Az adatok megmaradnak a `/app/data` kötetben:
+
+```bash
+docker pull ghcr.io/wsj-br/transrewrt:latest
+docker stop transrewrt && docker rm transrewrt
+# then run the same `docker run` command as above
+# or, with Docker Compose:
+docker compose -f transrewrt.yml pull && docker compose -f transrewrt.yml up -d
+```
+
 ## Következő lépések
 
 1. [API kulcs beszerzése](/docs/api-key/)
-2. Futtasson egy egyszerű fordítást, hogy megbizonyosodjon arról, minden működik
-3. Olvassa el a [Fordítás](/docs/translate/), [Újraírás](/docs/rewrite/) és [Átalakítás](/docs/transform/) útmutatókat
+2. Futtasson egy egyszerű fordítást, hogy megbizonyosodjon arról, hogy minden működik
+3. Olvassa el a [Fordítás](/docs/translate/), [Átírás](/docs/rewrite/) és [Átalakítás](/docs/transform/) útmutatókat

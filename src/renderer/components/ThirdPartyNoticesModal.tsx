@@ -69,30 +69,38 @@ const ThirdPartyNoticesModal = ({ open, onClose }) => {
 
     (async () => {
       try {
+        // Electron: prefer IPC (reads from disk / asar / extraFiles). Fall back to fetch if IPC fails.
         if (typeof window !== "undefined" && window.electronAPI?.readThirdPartyNotices) {
-          const r = (await window.electronAPI.readThirdPartyNotices()) as {
-            ok?: boolean;
-            text?: string;
-            error?: string;
-          };
-          if (cancelled) return;
-          if (r?.ok && typeof r.text === "string") {
-            setText(r.text);
-          } else {
-            setError(r?.error || "not_found");
+          try {
+            const r = (await window.electronAPI.readThirdPartyNotices()) as {
+              ok?: boolean;
+              text?: string;
+              error?: string;
+            };
+            if (r?.ok && typeof r.text === "string") {
+              if (!cancelled) setText(r.text);
+              return;
+            }
+          } catch {
+            /* fall through to fetch */
           }
-        } else {
-          // Same base path as webApiClient (urlUtils.getBasePath): relative "NOTICES"
-          // against document.baseURI breaks when the app is served under a path prefix
-          // without a trailing slash (resolves to origin /NOTICES instead of prefix/NOTICES).
-          let pathPrefix = getBasePath();
-          if (pathPrefix === "/index.html") pathPrefix = "";
-          const noticesUrl = `${window.location.origin}${pathPrefix}/NOTICES`;
-          const res = await fetch(noticesUrl, { cache: "no-store" });
-          if (!res.ok) throw new Error(String(res.status));
-          const body = await res.text();
-          if (!cancelled) setText(body);
         }
+
+        // Web / Docker / Electron fallback. Prefer URL relative to the document for app://
+        // (…/dist/index.html → …/dist/NOTICES). For HTTP path prefixes without a trailing
+        // slash, use getBasePath() so /translator → /translator/NOTICES (not /NOTICES).
+        let noticesUrl: string;
+        if (typeof window !== "undefined" && window.location.protocol === "app:") {
+          noticesUrl = new URL("NOTICES", window.location.href).href;
+        } else {
+          let pathPrefix = getBasePath().replace(/\/index\.html$/i, "");
+          if (pathPrefix === "/index.html") pathPrefix = "";
+          noticesUrl = `${window.location.origin}${pathPrefix}/NOTICES`;
+        }
+        const res = await fetch(noticesUrl, { cache: "no-store" });
+        if (!res.ok) throw new Error(String(res.status));
+        const body = await res.text();
+        if (!cancelled) setText(body);
       } catch (e) {
         if (!cancelled) setError(e?.message || "fetch_failed");
       } finally {

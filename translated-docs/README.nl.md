@@ -30,15 +30,15 @@ AI-aangedreven teksttool: **vertalen**, **herschrijven** en **transformeren** me
 ```bash
 docker pull ghcr.io/wsj-br/transrewrt:latest
 
-OPENROUTER_API_KEY=sk-or-your-key docker run -d \
+docker run -d \
   -p 5000:5000 \
   -v transrewrt-data:/app/data \
-  -e OPENROUTER_API_KEY \
-  --name transrewrt-web \
+  -e PROVIDER_API_KEY=your-key \
+  --name transrewrt \
   ghcr.io/wsj-br/transrewrt:latest
 ```
 
-Open [http://localhost:5000](http://localhost:5000) en wijzig het standaard beheerderswachtwoord. Providersleutels worden ingesteld via omgevingsvariabelen (niet de web-UI).
+Vervang `PROVIDER_API_KEY` door uw provider-variabele (bijvoorbeeld `OPENROUTER_API_KEY`, `OPENAI_API_KEY`, `GROQ_API_KEY`). Open [http://localhost:5000](http://localhost:5000) en wijzig het standaard beheerderswachtwoord. Sleutels worden ingesteld via omgevingsvariabelen (niet de web-UI).
 
 **Windows** — Download `Transrewrt Setup x.y.z.exe` van [Releases](https://github.com/wsj-br/transrewrt/releases), installeer, en voeg vervolgens sleutels toe in **Instellingen → API**.
 

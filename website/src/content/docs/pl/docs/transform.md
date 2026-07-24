@@ -7,7 +7,7 @@ description: >-
 
 
 
-Użyj **Transform**, gdy chcesz, aby AI postępowała zgodnie z niestandardowymi instrukcjami — podsumowywała, dopracowywała e-mail, wyodrębniała kluczowe punkty, zmieniała format tekstu lub wykonywała dowolny zdefiniowany przez Ciebie przepływ pracy.
+Użyj **Transform**, gdy chcesz, aby AI postępowała zgodnie z niestandardowymi instrukcjami — podsumowywała, poprawiała e-mail, wyodrębniała kluczowe punkty, zmieniała format tekstu lub wykonywała dowolny zdefiniowany przez Ciebie przepływ pracy.
 
 ![Obszar roboczy Transform](/images/screenshots/pl/transform.png)
 
@@ -19,6 +19,8 @@ Użyj **Transform**, gdy chcesz, aby AI postępowała zgodnie z niestandardowymi
 4. Wpisz lub wklej tekst do pola **Wejście**.
 5. Kliknij **Transformuj**.
 6. Przeczytaj wynik w polu **Wyjście**.
+
+[Przełącznik układu i skróty klawiaturowe](/docs/translate/#layout-and-keyboard) działają tak samo jak w Tłumaczeniu.
 
 ## Załaduj przykładowe prompty
 
@@ -51,7 +53,7 @@ Główne pola:
 Pomocnicy: **Generuj prompt**, **Ulepsz prompt**, **Przetłumacz prompt** (Łatwe używa ustawień wstępnych; Zaawansowane używa listy modeli).
 
 :::caution
-Kliknij **Zapisz** przed **Powrót do uruchamiania**. Powrót bez zapisywania spowoduje odrzucenie zmian.
+Kliknij **Zapisz** przed **Powrót do uruchomienia**. Powrót bez zapisywania spowoduje odrzucenie zmian.
 :::
 
 ## Testowanie przed codziennym użyciem

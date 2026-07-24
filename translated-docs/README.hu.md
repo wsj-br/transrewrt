@@ -30,15 +30,15 @@ AI-alapú szöveges eszköz: **fordítás**, **átírás** és **átalakítás**
 ```bash
 docker pull ghcr.io/wsj-br/transrewrt:latest
 
-OPENROUTER_API_KEY=sk-or-your-key docker run -d \
+docker run -d \
   -p 5000:5000 \
   -v transrewrt-data:/app/data \
-  -e OPENROUTER_API_KEY \
-  --name transrewrt-web \
+  -e PROVIDER_API_KEY=your-key \
+  --name transrewrt \
   ghcr.io/wsj-br/transrewrt:latest
 ```
 
-Nyissa meg a [http://localhost:5000](http://localhost:5000) címet, és módosítsa az alapértelmezett rendszergazdai jelszót. A szolgáltatói kulcsok környezeti változókon keresztül vannak beállítva (nem a webes felhasználói felületen).
+Cserélje le az `PROVIDER_API_KEY` elemet a szolgáltatói változóra (például `OPENROUTER_API_KEY`, `OPENAI_API_KEY`, `GROQ_API_KEY`). Nyissa meg a [http://localhost:5000](http://localhost:5000) címet, és módosítsa az alapértelmezett rendszergazdai jelszót. A kulcsok környezeti változókon keresztül vannak beállítva (nem a webes felhasználói felületen keresztül).
 
 **Windows** – Töltse le az `Transrewrt Setup x.y.z.exe` fájlt a [Kiadások](https://github.com/wsj-br/transrewrt/releases) oldalról, telepítse, majd adja hozzá a kulcsokat a **Beállítások → API** menüpontban.
 

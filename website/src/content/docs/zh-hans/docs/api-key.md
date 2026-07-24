@@ -1,44 +1,71 @@
 ---
 title: API 密钥
-description: 获取免费的 OpenRouter API 密钥，并将其他 AI 提供商连接到 Transrewrt。
+description: 通过添加 API 密钥将 Transrewrt 连接到您选择的 AI 提供商，或者改用本地模型。
 ---
 
 
 
-Transrewrt 需要访问至少一个 AI 提供商。开始时你**不**需要付费模型：添加密钥后 OpenRouter 会提供免费模型，其他几家提供商也提供免费层级。
+Transrewrt 不包含自己的 AI —— 它会将您的文本发送到您选择的 AI 提供商。要连接提供商，您需要添加 **API 密钥**：这是由提供商签发的私有代码，类似于其服务的密码。您只需 **一个** 提供商即可开始，而且无需付费：多家提供商提供免费模型或免费层级，您也可以完全不用密钥而在自己的计算机上运行模型。
 
-支持的提供商包括 [OpenRouter](https://openrouter.ai)、OpenAI、Anthropic、Google Gemini、DeepSeek、Groq、Mistral、xAI、Cerebras、NVIDIA、阿里云、apikey.fun、任何兼容 OpenAI 的端点，以及本地兼容 OpenAI 的服务器（Ollama、LM Studio、llama.cpp 等）。
+受支持的提供商包括 OpenRouter、OpenAI、Anthropic、Google Gemini、DeepSeek、Groq、Mistral、xAI、Cerebras、NVIDIA、阿里云、apikey.fun、任何兼容 OpenAI 的端点，以及本地兼容 OpenAI 的服务器（Ollama、LM Studio、llama.cpp 等）。
 
-## 简易与高级
+## 第 1 步 — 选择提供商
 
-- **简易**模式（默认）：选择映射到 **提供商** 的 **预设**（免费 (OpenRouter)、标准、高级或技术）。仅显示为当前提供商配置了映射的预设。
-- **高级**模式：直接选择模型。模型 ID 使用提供商前缀（例如 `openrouter/…`、`openai/…`、`local/…`）。
+任何受支持的提供商都可以。如果您不确定选哪个：
 
-## 免费 OpenRouter 密钥（桌面版）
+- **免费开始**：OpenRouter、Google Gemini、Groq、Mistral、Cerebras 和 NVIDIA 都提供免费模型或免费层级。
+- **已有账户？** 如果您已经在使用 OpenAI、Anthropic 或其他受支持的提供商，只需复用该账户即可。
+- **倾向于将一切保留在自己的计算机上？** 完全跳过密钥，改用[本地模型](#using-a-local-model-instead-no-api-key)。
 
-1. 前往 [openrouter.ai](https://openrouter.ai) 注册或登录。
-2. 打开 [Keys](https://openrouter.ai/keys) 页面并创建新密钥（为其命名；可选设置额度限制）。无需充值即可使用免费模型。
-3. 在 Transrewrt 中，打开 **设置 → API 配置**，将密钥粘贴到 **OpenRouter API 密钥** 中，然后点击 **测试 OpenRouter 密钥**。
+## 第 2 步 — 创建 API 密钥
+
+具体步骤因提供商而略有不同，但各处的模式都是一样的：
+
+1. 在提供商的网站上注册或登录。在 Transrewrt 的 **设置 → API 配置** 中，每个提供商都有一个 **打开提供商网站** 链接，可将您带到正确的位置。
+2. 找到 **API 密钥** 页面（有时位于账户、仪表板或开发者设置下）并创建新密钥。有些提供商会要求您为密钥命名或设置支出限额 —— 两者都是可选的。
+3. 复制密钥。它是一长串字母和数字，通常以类似 `sk-` 的内容开头。
 
 :::caution
-请勿使用 OpenRouter 的 **Body Builder** 模型 (`openrouter/bodybuilder`) 进行翻译、重写或转换——它返回的是 JSON 请求负载，而不是完成的文本。
+请像对待密码一样对待 API 密钥：不要分享、发布或发送给任何人。如果密钥泄露，请在提供商的网站上将其删除并创建新密钥。
 :::
 
-## 其他免费选项
+## 第 3 步 — 添加并测试密钥（桌面版）
 
-您还可以从 Cerebras、Google、Groq、Mistral AI 或 [NVIDIA](https://build.nvidia.com/)（兼容 OpenAI 的 API）获取免费的 API 密钥，或者使用 Ollama、LM Studio、llama.cpp 或其他兼容 OpenAI 的服务器在本地运行模型（例如通过 Ollama 运行 `translategemma:4b`）。在“设置”（桌面版）或 `LOCAL_LLM_URL`（Docker 版）中，将本地 LLM 基础 URL 设置为完整的 API 基础地址（包含路径，例如 `http://localhost:11434/v1`）。
+1. 在 Transrewrt 中，打开 **设置 → API 配置**。
+2. 将密钥粘贴到您的提供商对应的字段中（例如 **Google Gemini API 密钥**）并保存。
+3. 点击该字段旁边的 **测试** 以确认密钥有效。
+
+测试成功后，您就准备就绪了 —— 在主屏幕上选择该提供商并开始翻译。
 
 :::caution
-如果您使用来自其他设备或容器的本地 LLM 服务器，请将其配置为允许外部连接（而非仅限 localhost）。
+避免使用 OpenRouter 的 **Body Builder** 模型 (`openrouter/bodybuilder`) —— 它返回的是 JSON 请求负载，而不是完成的文本。请参阅[设置 → 模型](/docs/settings/#models)。
+:::
+
+## 改用本地模型（无 API 密钥）
+
+您可以使用 Ollama、LM Studio、llama.cpp 或其他兼容 OpenAI 的服务器（例如通过 LM Studio 的 `google/gemma-4-e2b`）在自己的计算机上运行模型。数据不会离开您的机器，也不需要 API 密钥。
+
+要连接本地模型，请将 Local LLM base URL 设置为完整的 API 基础地址（包括路径）—— 例如 `http://localhost:11434/v1`。在桌面版中，在 **设置 → API 配置** 中进行设置；在 Docker 中，请改为设置 `LOCAL_LLM_URL` 环境变量。
+
+:::caution
+如果你从其他设备或容器使用本地 LLM 服务器，请将其配置为允许外部连接（而非仅限 localhost）。
 :::
 
 ## Docker / 网页版
 
-在服务器上将提供商密钥设置为**环境变量**（例如 `PROVIDER_API_KEY`）。用户无法在浏览器界面中输入密钥。请参阅[配置](/docs/configuration/)。
+如果您在浏览器中使用 Transrewrt，密钥由运行服务器的人员管理，而不是在浏览器界面中输入。管理员在服务器上将提供商密钥设置为 **环境变量**（例如 `PROVIDER_API_KEY`）—— 请参阅[配置](/docs/configuration/)。
 
 ## 首次运行检查清单
 
-1. 打开应用，如有需要，设置**界面语言**。
-2. 添加并测试至少一个提供商密钥（桌面版），或确认服务器具有环境变量密钥（网页版）。
-3. 在**简易**模式下，于常规设置中选择一个**提供商**；在**高级**模式下，于**设置 → 模型**下添加模型。
-4. 在**翻译**页面上，选择一个预设或模型并运行简短测试 — 参见[翻译文本](/docs/translate/)。
+1. 打开应用，如有需要请设置 **界面语言**。
+2. 添加并测试至少一个提供商密钥 —— 或者配置本地模型（桌面版），或者确认服务器具有环境密钥（网页版）。
+3. 在 **简易** 模式下，在常规设置中选择 **提供商**；在 **高级** 模式下，在 **设置 → 模型** 下添加模型 —— 有关这两种模式，请参阅[设置](/docs/settings/#general-settings)。
+4. 在 **翻译** 中，选择预设或模型并运行简短测试 —— 请参阅[翻译文本](/docs/translate/)。
+
+## 如果出现问题
+
+- **密钥测试失败**：检查密钥是否已完整复制（前后没有空格），以及是否已在提供商网站上被删除或禁用。
+- **翻译失败并出现配额或额度错误**：免费套餐有每日或每月限制；请等待、切换到其他免费提供商，或充值。
+- **简易模式下未显示提供商**：打开**设置 → API 配置**，确认至少配置并测试了一个密钥（或本地 LLM URL）。
+
+更多帮助：[常见问题](/docs/common-issues/)。

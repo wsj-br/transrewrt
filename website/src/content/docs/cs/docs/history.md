@@ -14,8 +14,8 @@ Otevřete **Historii** a zobrazte minulé operace, včetně vstupu a výstupu ka
 Historie používá stejné filtry časového rozsahu jako [Řídicí panel](/docs/dashboard/).
 
 :::note
-Ve **webové aplikaci** každý (včetně administrátorů) vidí pouze svou vlastní historii spuštění. Filtr **Uživatel** na řídicím panelu se zde neuplatňuje.
-{{ADM_ADM_END_0}}
+Ve **webové aplikaci** vidí každý (včetně administrátorů) pouze svou vlastní historii spuštění. Filtr **Uživatel** na řídicím panelu se zde neuplatňuje.
+:::
 
 ## Export
 
@@ -23,7 +23,7 @@ Exportujte filtrovaný seznam jako **JSON**, **CSV** nebo **XLSX**.
 
 ## Pokud historie chybí
 
-Možná je vypnutá volba **Udržovat historii spuštění**. Povolte ji v [Nastavení → Obecná nastavení](/docs/settings/#general-settings), pokud administrátor nenastavil `HISTORY_DISABLED` – viz [Konfigurace](/docs/configuration/#privacy-mode).
+**Udržovat historii spuštění** může být vypnuto. Povolte ji v [Nastavení → Obecná nastavení]({{URL_0}), pokud administrátor nenastavil `HISTORY_DISABLED` – viz [Konfigurace](/docs/configuration/#privacy-mode).
 
 ## Další kroky
 

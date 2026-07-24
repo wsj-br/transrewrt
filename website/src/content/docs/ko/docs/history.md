@@ -21,7 +21,7 @@ description: 과거 번역, 재작성 및 변환 실행의 전체 입력 및 출
 
 ## 기록이 누락된 경우
 
-**실행 기록 유지**가 꺼져 있을 수 있습니다. 관리자가 `HISTORY_DISABLED`을(를) 설정하지 않은 경우 [설정 → 일반 설정](/docs/settings/#general-settings)에서 활성화하세요. [구성](/docs/configuration/#privacy-mode)을 참조하세요.
+**실행 기록 유지**가 꺼져 있을 수 있습니다. 관리자가 `HISTORY_DISABLED`를 설정하지 않은 경우 [설정 → 일반 설정](/docs/settings/#general-settings)에서 이를 활성화합니다. [구성](/docs/configuration/#privacy-mode)을 참조하십시오.
 
 ## 다음 단계
 

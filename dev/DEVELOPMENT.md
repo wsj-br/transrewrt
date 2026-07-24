@@ -11,6 +11,7 @@ Setup, build, test, and deploy instructions for the Transrewrt application (Elec
 - [Prerequisites](#prerequisites)
   - [Windows 11](#windows-11)
   - [Linux (Debian-based: Ubuntu, Debian, Zorin, Mint)](#linux-debian-based-ubuntu-debian-zorin-mint)
+  - [Git symlinks (required on Windows)](#git-symlinks-required-on-windows)
 - [Setup](#setup)
 - [Development Workflow](#development-workflow)
   - [Presets catalog editor (development)](#presets-catalog-editor-development)
@@ -52,7 +53,7 @@ Setup, build, test, and deploy instructions for the Transrewrt application (Elec
 
 ## Prerequisites
 
-- **Node.js 24** (LTS). The project uses Electron 42, which bundles Node 24. Use [.nvmrc](../.nvmrc) and `engines` in [package.json](../package.json). Run `nvm use` from the project root if using nvm.
+- **Node.js 24** (LTS). The project uses Electron 43, which bundles Node 24. Use [.nvmrc](../.nvmrc) and `engines` in [package.json](../package.json). Run `nvm use` from the project root if using nvm.
 - **pnpm** (package manager). Install globally: `npm install -g pnpm`.
 - **Git**.
 - **direnv** (recommended): Loads environment variables when you enter the project directory. The repo’s [.envrc](../.envrc) sources `.env` and `.env.local` if present (copy [.env.example](../.env.example) to `.env` and adjust). **Install:** macOS `brew install direnv`; Debian/Ubuntu `sudo apt install direnv`; other systems see [direnv installation](https://direnv.net/docs/installation.html). **Use:** Add a shell hook - Bash: `eval "$(direnv hook bash)"` in `~/.bashrc`; Zsh: `eval "$(direnv hook zsh)"` in `~/.zshrc`; Fish: `direnv hook fish | source` in `~/.config/fish/config.fish`. Open a new shell (or `source` the file), `cd` into the repo, then run `direnv allow` once to approve `.envrc`. On Windows, use WSL or Git Bash with the same hook pattern, or use the PowerShell helpers in [scripts/Load-DotEnv.ps1](../scripts/Load-DotEnv.ps1) instead.
@@ -93,7 +94,7 @@ Setup, build, test, and deploy instructions for the Transrewrt application (Elec
   - **Option C:** Install [Python 3.12+](https://www.python.org/downloads/) and [Visual Studio Build Tools](https://visualstudio.microsoft.com/downloads/) with the "Desktop development with C++" workload.
   - Restart the terminal after install. See [node-gyp on Windows](https://github.com/nodejs/node-gyp#on-windows).
 
-4. **Developer Mode**: Recommended to avoid symlink errors when installing dependencies or packaging. Settings → System → Developer Mode **On**.
+4. **Developer Mode** and **Git symlinks**: Turn on Developer Mode (Settings → System → Developer Mode **On**) so Git and pnpm can create symlinks. Also set `core.symlinks true` **before** cloning — see [Git symlinks (required on Windows)](#git-symlinks-required-on-windows). Without this, website screenshot images stay broken locally.
 
    ```powershell
    pnpm install
@@ -134,13 +135,7 @@ Setup, build, test, and deploy instructions for the Transrewrt application (Elec
    winget install Docker.DockerDesktop
    ```
 
-8. (optional)Set an alias for the `ai-i18n-tools` command: (already included in the `Register-DotEnvHook.ps1` script)
-
-  ```powershell
-  Set-Alias ai-i18n-tools ".\node_modules\.bin\ai-i18n-tools"  
-  ```
-
-  This will allow you to run `ai-i18n-tools` from the command line.
+8. (optional) Register the `ai-i18n-tools` shell command: already included in `Register-DotEnvHook.ps1`. It walks ancestor directories for a `node_modules/.bin` shim (consumer installs), falls back to `bin/ai-i18n-tools.mjs` inside the ai-i18n-tools source repo, then to a global install on `PATH`.
 
   ```powershell
   ai-i18n-tools --help
@@ -218,6 +213,32 @@ Setup, build, test, and deploy instructions for the Transrewrt application (Elec
 
    Log out and back in after `usermod`.
 
+### Git symlinks (required on Windows)
+
+This repository tracks [`website/public/images/screenshots`](../website/public/images/screenshots) as a **git symlink** to [`images/screenshots/`](../images/screenshots/) (so the Astro site can serve docs/marketing screenshots from `public/` without duplicating the PNG tree). New clones must enable Git symlink support **before** checkout, or restore the link afterward.
+
+On a new machine (especially Windows):
+
+1. Enable OS symlink creation — turn on [Developer Mode](https://learn.microsoft.com/windows/apps/get-started/enable-your-device-for-development), or use an elevated shell. Without this, Git cannot create symlinks even when `core.symlinks` is true.
+2. Tell Git to materialize symlinks (global once per machine, or local to this repo):
+
+```bash
+git config --global core.symlinks true
+# or, inside the clone only:
+git config --local core.symlinks true
+```
+
+3. Clone (or re-checkout the path if the repo already exists):
+
+```bash
+git clone git@github.com:wsj-br/transrewrt.git
+cd transrewrt
+# If you cloned earlier with core.symlinks=false:
+git checkout -- website/public/images/screenshots
+```
+
+If the path is a plain text file whose only content is `../../../images/screenshots`, the symlink was not created. After enabling the settings above, re-run the `git checkout --` command. Until the real symlink is restored, `pnpm website:build` / `pnpm website:dev` will not include the screenshot PNGs under `/images/screenshots/…`, so docs and marketing pages show broken images.
+
 ---
 
 ## Setup
@@ -227,6 +248,8 @@ git clone git@github.com:wsj-br/transrewrt.git
 cd transrewrt
 pnpm install
 ```
+
+On Windows, enable [Git symlinks](#git-symlinks-required-on-windows) before cloning (or re-checkout `website/public/images/screenshots` afterward).
 
 The **postinstall** script runs `electron-rebuild` so native addons match Electron's Node. Use Node 24 in the same environment where you run the server (see [Troubleshooting](#troubleshooting)).
 
@@ -475,7 +498,7 @@ Optional: `pnpm generate-test-data` to generate test data for the cost dashboard
 
 Official web (Docker container), desktop and AppImage binaries are built by [`.github/workflows/release.yml`](../.github/workflows/release.yml) when a **GitHub Release is published** (and Docker images are pushed to GHCR).
 
-Use a version branch for new features or patch lines (for example `v1.1.x`). Do release prep there, merge into `main` through the GitHub website, then publish a GitHub Release (prefer **`pnpm run release:github`** on Linux/macOS, or **`pnpm run release:github:win`** on Windows) so CI attaches installers to the release.
+Use a version branch for new features or patch lines (for example `v1.1.x`). Do release prep there, merge into `main` through the GitHub website, then publish a GitHub Release (prefer **`pnpm run release:github`**) so CI attaches installers to the release.
 
 Publishing the release creates tag **`vX.Y.Z`** at **HEAD**, pushes it to **`origin`**, and opens a GitHub Release whose body comes from **`release-notes/RELEASE_NOTES_<version>.md`** (see [Publish the GitHub Release](#publish-the-github-release-releasegithub)). That publication triggers [`.github/workflows/release.yml`](../.github/workflows/release.yml).
 
@@ -500,7 +523,7 @@ Do this on the development branch you intend to merge (e.g., `v1.1.x`), then pus
 
 Copy **[release-new-version-prompt.md](release-new-version-prompt.md)** into a Cursor chat to draft release notes and fold [CHANGELOG.md](CHANGELOG.md) in one step, or follow the steps below manually.
 
-1. **Release notes**: Add **`release-notes/RELEASE_NOTES_<version>.md`** for the exact version in [package.json](../package.json) (for example `release-notes/RELEASE_NOTES_1.3.3.md` when the version is `1.3.3`). Match the style of prior files under [release-notes/](../release-notes/) (older releases may use the legacy name `RELEASE-NOTES-v<version>.md`; new releases should use the `RELEASE_NOTES_<version>.md` name expected by [scripts/release.sh](../scripts/release.sh) and [scripts/release.ps1](../scripts/release.ps1)).
+1. **Release notes**: Add **`release-notes/RELEASE_NOTES_<version>.md`** for the exact version in [package.json](../package.json) (for example `release-notes/RELEASE_NOTES_1.3.3.md` when the version is `1.3.3`). Match the style of prior files under [release-notes/](../release-notes/) (older releases may use the legacy name `RELEASE-NOTES-v<version>.md`; new releases should use the `RELEASE_NOTES_<version>.md` name expected by [scripts/release.mjs](../scripts/release.mjs)).
 2. **Changelog**: In [CHANGELOG.md](CHANGELOG.md), move the bullet points from under `## Unreleased` into a new section titled `## [X.Y.Z] - YYYY-MM-DD`, following the Keep a Changelog format. Leave a blank `## Unreleased` heading for the next release cycle.
 3. **Version**: Update the `"version": "X.Y.Z"` field in [package.json](../package.json) (use proper Semantic Versioning).
 4. **Security audit**: Run `pnpm audit` to ensure no known vulnerabilities exist. If vulnerabilities are found, add overrides to `pnpm.overrides` in [pnpm-workspace.yaml](../pnpm-workspace.yaml) (pnpm 11) and run `pnpm install` until clean.
@@ -511,7 +534,7 @@ Copy **[release-new-version-prompt.md](release-new-version-prompt.md)** into a C
 9. **Third-party notices**: Run `pnpm run 3p-notices` if production dependencies changed; commit [NOTICES](../NOTICES) when appropriate.
 10. **Commit and push**: Commit your changes to the changelog, release notes, `package.json`, and any files changed by `update-version` (e.g., `chore: release vX.Y.Z`). Then push your version branch to the remote using your preferred Git client or desktop tool.
 
-Commit the release-notes file and changelog together with other release prep so **`git status` is clean** before you run `release:github` (unless you pass `--verify-clean=false` / `-VerifyClean:$false` to the script).
+Commit the release-notes file and changelog together with other release prep so **`git status` is clean** before you run `release:github` (unless you pass `--verify-clean=false` to the script).
 
 
 ---
@@ -528,19 +551,18 @@ Commit the release-notes file and changelog together with other release prep so 
 
 ### Publish the GitHub Release (`release:github`)
 
-After `main` contains the release commit(s), check out `main` locally at the commit you want to tag (pull from `origin` if needed). Publishing uses [scripts/release.sh](../scripts/release.sh) on Linux/macOS or [scripts/release.ps1](../scripts/release.ps1) on Windows (pnpm wrappers below).
+After `main` contains the release commit(s), check out `main` locally at the commit you want to tag (pull from `origin` if needed). Publishing uses the cross-platform [scripts/release.mjs](../scripts/release.mjs) (pnpm wrappers below).
 
-| Platform | Script | Dry-run | Create release |
-|----------|--------|---------|----------------|
-| **Linux / macOS** | [scripts/release.sh](../scripts/release.sh) | `pnpm run release:github:dry` | `pnpm run release:github` |
-| **Windows (PowerShell)** | [scripts/release.ps1](../scripts/release.ps1) | `pnpm run release:github:dry:win` | `pnpm run release:github:win` |
+| Script | Dry-run | Create release |
+|--------|---------|----------------|
+| [scripts/release.mjs](../scripts/release.mjs) | `pnpm run release:github:dry` | `pnpm run release:github` |
 
 **Prerequisites**
 
 - [GitHub CLI](https://cli.github.com/) (`gh`) installed and authenticated (`gh auth login`).
 - Remote **`origin`** configured (e.g. `git@github.com:wsj-br/transrewrt.git`).
 - **`release-notes/RELEASE_NOTES_<version>.md`** present for the current `package.json` version.
-- Working tree clean (default), or pass `--verify-clean=false` (Bash) / `-VerifyClean:$false` (PowerShell) to the script.
+- Working tree clean (default), or pass `--verify-clean=false` to the script.
 
 **Steps**
 
@@ -551,37 +573,19 @@ After `main` contains the release commit(s), check out `main` locally at the com
    git pull origin main
    ```
 
-   On Windows (PowerShell), the same `git` commands apply.
-
 2. Dry-run (prints planned steps; no tag deletion, push, or release):
-
-   **Linux / macOS:**
 
    ```bash
    pnpm run release:github:dry
    ```
 
-   **Windows (PowerShell):**
-
-   ```powershell
-   pnpm run release:github:dry:win
-   ```
-
 3. Create the release:
-
-   **Linux / macOS:**
 
    ```bash
    pnpm run release:github
    ```
 
-   **Windows (PowerShell):**
-
-   ```powershell
-   pnpm run release:github:win
-   ```
-
-   Direct invocation: `bash scripts/release.sh` or `.\scripts\release.ps1` from the repo root. Help: `bash scripts/release.sh --help` or `.\scripts\release.ps1 --help`. Bash-style flags (`--dry-run`, `--verify-clean=false`) work on the PowerShell script; native parameters are `-DryRun` and `-VerifyClean:$false`.
+   Direct invocation: `node scripts/release.mjs` from the repo root. Help: `node scripts/release.mjs --help`. Flags: `--dry-run`, `--verify-clean=false`.
 
 The script creates an annotated tag **`v<version>`** at **HEAD**, pushes it to **`origin`**, and runs `gh release create` with title **`v<version>`** and body from **`release-notes/RELEASE_NOTES_<version>.md`**. If that tag or a GitHub release for it already exists, the script deletes them and recreates the tag at the current **HEAD** so you can fix a mistaken tag or add follow-up commits before releasing again.
 
@@ -715,7 +719,7 @@ Models and fallbacks: `openrouter.translationModels` in [`ai-i18n-tools.config.j
 | `docker build -t transrewrt-web .` | Build production web image                                                                          |
 | `pnpm docker:up`                   | `docker compose up --build -d`                                                                      |
 | `pnpm docker:down`                 | Stop compose stack                                                                                  |
-| `pnpm docker:clean`                | Remove image/volumes (runs `scripts/clean-docker.sh`; Bash)                                         |
+| `pnpm docker:clean`                | Remove unused Docker build cache, images, networks, and volumes ([scripts/clean-docker.mjs](../scripts/clean-docker.mjs)) |
 | `pnpm docker:devel`                | Build image tagged `wsj-br/transrewrt:devel`                                                        |
 | `pnpm docker:logs`                 | Logs from container `transrewrt` (see [docker-compose.yml](../docker-compose.yml) `container_name`) |
 | `pnpm docker:shell`                | Shell into running container `transrewrt`                                                           |
@@ -726,10 +730,8 @@ See [Releasing (CI builds and GitHub Release)](#releasing-ci-builds-and-github-r
 
 | Command                           | Purpose                                                                                                      |
 |-----------------------------------|--------------------------------------------------------------------------------------------------------------|
-| `pnpm run release:github`         | Tag `v<version>` at HEAD, push to `origin`, create GitHub release from `release-notes/RELEASE_NOTES_<version>.md` (Bash; Linux/macOS) |
-| `pnpm run release:github:dry`     | Validate inputs and print planned steps (no tag push or GitHub release); Bash                                |
-| `pnpm run release:github:win`     | Same as `release:github`; PowerShell ([scripts/release.ps1](../scripts/release.ps1))                         |
-| `pnpm run release:github:dry:win` | Same as `release:github:dry`; PowerShell                                                                     |
+| `pnpm run release:github`         | Tag `v<version>` at HEAD, push to `origin`, create GitHub release from `release-notes/RELEASE_NOTES_<version>.md` ([scripts/release.mjs](../scripts/release.mjs)) |
+| `pnpm run release:github:dry`     | Validate inputs and print planned steps (no tag push or GitHub release)                                      |
 
 ### Toolchain
 
@@ -760,7 +762,7 @@ See [Upgrading Node and dependencies (nvm)](#upgrading-node-and-dependencies-nvm
   ```
 
   After adding the override, verify with `pnpm audit` - it should report no vulnerabilities.
-- **Symlink errors on Windows:** Enable Developer Mode (Settings → For developers) or run the terminal as Administrator.
+- **Symlink errors / broken website screenshots on Windows:** Enable Developer Mode and `core.symlinks true`, then restore the `website/public/images/screenshots` symlink — see [Git symlinks (required on Windows)](#git-symlinks-required-on-windows).
 - **Node not found (nvm):** Restart the IDE/terminal so it picks up nvm's PATH, or add the nvm Node path to your user PATH.
 
 For more detail (including Node version alignment and Windows-specific issues), see [troubleshooting-node-version.md](troubleshooting-node-version.md).
@@ -816,8 +818,8 @@ For more detail (including Node version alignment and Windows-specific issues), 
 | [scripts/write-third-party-notices.json](../scripts/write-third-party-notices.json)         | SPDX license templates + optional per-package overrides for `3p-notices`                                      |
 | [src/renderer/assets/icons_with_files.json](../src/renderer/assets/icons_with_files.json) | Provider id → `.ico` filename (+ optional URL) for `ProviderIcon`                                             |
 | [scripts/trim-ico-sizes.sh](../scripts/trim-ico-sizes.sh)                                   | Trim provider `.ico` assets to 16×16 + 32×32 (see [Provider icons](#provider-icons-trim-ico-sizes))          |
-| [scripts/release.sh](../scripts/release.sh)                                                 | Local GitHub release (Bash): tag `v<version>`, push, `gh release create` using `release-notes/RELEASE_NOTES_<version>.md` |
-| [scripts/release.ps1](../scripts/release.ps1)                                               | Same as `release.sh` for Windows (PowerShell); `pnpm run release:github:win` / `release:github:dry:win` |
+| [scripts/release.mjs](../scripts/release.mjs)                                               | Local GitHub release (cross-platform Node): tag `v<version>`, push, `gh release create` using `release-notes/RELEASE_NOTES_<version>.md` |
+| [website/scripts/publish-pages.mjs](../website/scripts/publish-pages.mjs)                   | Dispatch GitHub Pages deploy for `website/` (`pnpm website:publish` / `website:publish:dry`) |
 
 
 Deploy and command tables above are **operational**; **system design** (LLM stack, security, data model) is in **[SYSTEM-OVERVIEW.md](SYSTEM-OVERVIEW.md) and [Related documentation](#related-documentation).

@@ -24,6 +24,9 @@ services:
       - GROQ_API_KEY
       - MISTRAL_API_KEY
       - XAI_API_KEY
+      - NVIDIA_API_KEY
+      - ALIBABA_API_KEY
+      - APIFUN_API_KEY
       - LOCAL_LLM_URL
       - CUSTOM_PROVIDER_NAME
       - CUSTOM_PROVIDER_URL

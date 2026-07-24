@@ -15,6 +15,8 @@ export default defineConfig({
   integrations: [
     starlight({
       title: 'Transrewrt Docs',
+      // Starlight defaults to /favicon.svg; use the existing brand mark (same as marketing layout).
+      favicon: '/logos/transrewrt_logo.svg',
       logo: {
         src: './public/logos/transrewrt_logo.svg',
         alt: 'Transrewrt',

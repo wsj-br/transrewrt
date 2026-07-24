@@ -34,6 +34,12 @@ In [Settings → General Settings](/docs/settings/#general-settings):
 - **Timeout (ms)** — wait before a real-time run
 - **Behaviour for ENTER** — whether Enter runs the task or inserts a new line
 
+## Layout and keyboard
+
+- **Layout toggle** — the buttons above the panels switch between **side-by-side** and **stacked** Input/Output layouts. The choice applies to Translate, Rewrite, and Transform and is remembered on this device.
+- **Enter** or **Shift+Enter** runs the task, depending on **Behaviour for ENTER** (see above).
+- **Escape** clears the Input panel (or closes an open menu or dialog first).
+
 ## Refine a translation
 
 After a successful run, **Rephrase…** and a version dropdown appear next to the **To:** selector:

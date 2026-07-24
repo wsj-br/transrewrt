@@ -12,7 +12,7 @@ Uygulamayı ne kadar kullandığınızı ve maliyetini (ücretli modeller için)
 ![Kontrol Paneli özeti](/images/screenshots/tr/dashboard-summary.png)
 
 :::note
-Yalnızca **ücretsiz** modeller kullanıyorsanız, maliyet tutarları sıfır olabilir. **Özet** bölümündeki çağrı sayısı KPI'ları, seçilen dönemde yine de etkinlik gerektirir.
+Yalnızca **ücretsiz** modelleri kullanıyorsanız, maliyet tutarları sıfır olabilir. **Özet** bölümündeki çağrı sayısı KPI'ları yine de seçilen dönemde etkinlik gerektirir.
 :::
 
 ## Verileri filtrele
@@ -25,15 +25,15 @@ Zaman aralığını değiştirmek için üstteki filtre düğmelerini kullanın.
 
 ## Sekmeler
 
-- **Özet** — KPI'lar: toplam maliyet, kullanılan modeller, mod başına çağrı sayıları ve maliyeti, çağrı başına ortalama maliyet, ortalama TPS, çağrı sayısına göre en iyi modeller
+- **Özet** — KPI'lar: toplam maliyet, kullanılan modeller, mod başına çağrı sayıları ve maliyet, çağrı başına ortalama maliyet, ortalama TPS, çağrı sayısına göre en iyi modeller
 - **Modele Göre** — model başına çağrılar, maliyet ve TPS; mod dökümü için bir satırı genişletin
-- **Tüm Çağrılar** — dışa aktarma özellikli tam çağrı günlüğü (sayfalandırılmış veya kartlar)
+- **Tüm Çağrılar** — dışa aktarma özellikli tam çağrı günlüğü (sayfalı veya kartlar)
 
 ## Verileri dışa aktar
 
 Tabloları **JSON**, **CSV** veya **XLSX** olarak dışa aktarın.
 
-## Bir model için depolanan kayıtları silin
+## Bir model için depolanan kayıtları sil
 
 **Modele Göre** veya **Tüm Çağrılar** bölümünde, bir modelin kayıtlarını kaldırmak için çöp kutusu simgesini kullanın.
 
@@ -45,4 +45,4 @@ Silme işlemi geri alınamaz. Yaşa göre silmek veya tüm maliyet verilerini te
 
 - [Geçmişe Göz At](/docs/history/)
 - [Ayarlar](/docs/settings/)
-- [Yaygın sorunlar](/docs/common-issues/)
+- [Sık karşılaşılan sorunlar](/docs/common-issues/)

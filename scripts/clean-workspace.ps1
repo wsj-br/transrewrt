@@ -60,7 +60,8 @@ $logExcludeDirs = @(
     (Join-Path $ProjectRoot '.git'),
     (Join-Path $ProjectRoot 'dist'),
     (Join-Path $ProjectRoot 'release'),
-    (Join-Path $ProjectRoot 'documentation\node_modules')
+    (Join-Path $ProjectRoot 'documentation\node_modules'),
+    (Join-Path $ProjectRoot 'website\node_modules')
 )
 $logFiles = Get-ChildItem -Path $ProjectRoot -Filter '*.log' -Recurse -File -ErrorAction SilentlyContinue |
     Where-Object {
@@ -102,6 +103,10 @@ $itemsToRemove = @(
     'documentation/build',
     'documentation/node_modules',
     'documentation/pnpm-lock.yaml',
+    'website/node_modules',
+    'website/pnpm-lock.yaml',
+    'website/dist',
+    'website/.astro',
     '.genkit'
 )
 

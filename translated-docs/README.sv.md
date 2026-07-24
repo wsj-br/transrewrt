@@ -30,15 +30,15 @@ AI-drivet textverktyg: **översätt**, **skriv om** och **transformera** med anp
 ```bash
 docker pull ghcr.io/wsj-br/transrewrt:latest
 
-OPENROUTER_API_KEY=sk-or-your-key docker run -d \
+docker run -d \
   -p 5000:5000 \
   -v transrewrt-data:/app/data \
-  -e OPENROUTER_API_KEY \
-  --name transrewrt-web \
+  -e PROVIDER_API_KEY=your-key \
+  --name transrewrt \
   ghcr.io/wsj-br/transrewrt:latest
 ```
 
-Öppna [http://localhost:5000](http://localhost:5000) och ändra standardlösenordet för admin. Leverantörsnycklar ställs in via miljövariabler (inte webbgränssnittet).
+Ersätt `PROVIDER_API_KEY` med din leverantörsvariabel (till exempel `OPENROUTER_API_KEY`, `OPENAI_API_KEY`, `GROQ_API_KEY`). Öppna [http://localhost:5000](http://localhost:5000) och ändra standardlösenordet för Admin. Nycklar ställs in via miljövariabler (inte webbgränssnittet).
 
 **Windows** — Ladda ner `Transrewrt Setup x.y.z.exe` från [Releases](https://github.com/wsj-br/transrewrt/releases), installera, lägg sedan till nycklar i **Inställningar → API**.
 

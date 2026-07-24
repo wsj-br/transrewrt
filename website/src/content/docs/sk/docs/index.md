@@ -7,39 +7,41 @@ description: Čo je Transrewrt a ako nájsť inštaláciu, príručky a dokument
 
 **Transrewrt** je open-source nástroj na prácu s textom poháňaný AI, určený na:
 
-- **Prekladanie** — medzi desiatkami jazykov, s automatickou detekciou zdroja a glosármi
-- **Prepisovanie** — oprava gramatiky, zlepšenie zrozumiteľnosti, zmena tónu alebo dĺžky
-- **Transformáciu** — spúšťanie vlastných AI promptov na akomkoľvek texte
+- **Preklad** — medzi desiatkami jazykov, s automatickou detekciou zdroja a glosármi
+- **Prepísanie** — oprava gramatiky, zlepšenie zrozumiteľnosti, zmena tónu alebo dĺžky
+- **Transformácia** — spustenie vlastných AI výziev na akomkoľvek texte
 
-Podporuje mnoho poskytovateľov AI (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, koncové body kompatibilné s OpenAI a lokálne servery kompatibilné s OpenAI, ako sú Ollama, LM Studio alebo llama.cpp). Spustite ju ako **desktopovú aplikáciu** (Windows / Linux) alebo **samoobslužnú webovú aplikáciu** (Docker).
+Podporuje mnoho poskytovateľov AI (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, koncové body kompatibilné s OpenAI a lokálne servery kompatibilné s OpenAI, ako sú Ollama, LM Studio alebo llama.cpp). Spustite ho ako **desktopovú aplikáciu** (Windows / Linux) alebo **samo-hostovanú webovú aplikáciu** (Docker).
 
 Vaše kľúče, vaše modely, váš hostiteľ – neexistuje žiadny cloudový účet Transrewrt.
 
-## Ako je okno organizované
+## Ako je usporiadané okno
 
-- **Bočný panel** — Preložiť, Prepracovať, Transformovať, Dashboard, História, Nastavenia (a prihlásený užívateľ na webe)
-- **Nástrojová lišta** — názov stránky, **predvolené nastavenie** (Ľahké) alebo **model** (Pokročilé) výber, a **Jazyk rozhrania** (ikona glóbusu; nezmení Preložiť z/Do)
-- **Pracovná oblasť** — Vstupné a Výstupné panely s počtom, časom, TPS a voliteľnou cenou
+![Pracovný priestor prekladu](/images/screenshots/sk/translate.png)
 
-V predvolenom režime beží aplikácia v **Ľahkom** režime: vyberte **predvolené nastavenie** a **Dodávateľ** v Nastaveniach. Prepnite sa do **Pokročilého** režimu v [Nastavenia → Všeobecné nastavenia](/docs/settings/#general-settings) pre zoznam všetkých modelov.
+- **Bočný panel** — hlavná navigácia: Preložiť, Prepísať, Transformovať, Dashboard, História, Nastavenia (a prihlásený používateľ na webe).
+- **Panel nástrojov** — názov stránky, volič **predvoľby** (Jednoduché) alebo **modelu** (Pokročilé), **Jazyk rozhrania** (ikona glóbusu; nemení Preložiť z/do) a Pomocník (**?**) odkazujúci na túto dokumentáciu. Ponuka predvolieb/modelov môže tiež **Prepnúť do režimu Jednoduché/Pokročilé** (nad Otvoriť nastavenia).
+- **Pracovná oblasť** — vstupné a výstupné panely s počtami, časovaním, TPS a voliteľnými nákladmi. Panel akcií zobrazuje malý odkaz na **verziu** aplikácie (vpravo dole) na stránku GitHub Pages.
 
-## Začnite
+Predvolene aplikácia beží v režime **Jednoduché**: vyberte **predvoľbu** a **poskytovateľa** v Nastaveniach. Prepnite na **Pokročilé** v časti [Nastavenia → Všeobecné nastavenia](/docs/settings/#general-settings) pre úplný zoznam modelov, alebo použite prepínač v menu predvoľby/modelu na paneli nástrojov.
 
-1. [Rýchly štart](/docs/quick-start/) — inštalujte desktopovú verziu alebo bežte s Dockerom
-2. [Kľúč API](/docs/api-key/) — pripojte bezplatný kľúč OpenRouter alebo iného dodávateľa
-3. [Konfigurácia](/docs/configuration/) — premenné prostredia, cesty konfigurácie, webová autentifikácia
+## Začíname
+
+1. [Rýchly štart](/docs/quick-start/) — inštalácia desktopovej verzie alebo spustenie s Dockerom
+2. [API kľúč](/docs/api-key/) — pripojenie bezplatného kľúča OpenRouter alebo iného poskytovateľa
+3. [Konfigurácia](/docs/configuration/) — premenné prostredia, cesty ku konfigurácii, webová autentifikácia
 
 ## Príručky
 
-- [Preložiť text](/docs/translate/)
-- [Prepracovať text](/docs/rewrite/)
-- [Transformovať s pomocou podnetov](/docs/transform/)
-- [Používať Dashboard](/docs/dashboard/)
-- [Prehľad histórie](/docs/history/)
+- [Preklad textu](/docs/translate/)
+- [Prepísanie textu](/docs/rewrite/)
+- [Transformácia pomocou výziev](/docs/transform/)
+- [Používanie Dashboardu](/docs/dashboard/)
+- [Prehliadanie histórie](/docs/history/)
 
 ## Referencie a pomoc
 
 - [Nastavenia](/docs/settings/)
-- [Bežné problémy](/docs/common-issues/)
+- [Časté problémy](/docs/common-issues/)
 
 [Download releases](https://github.com/wsj-br/transrewrt/releases) · [GitHub repository](https://github.com/wsj-br/transrewrt)

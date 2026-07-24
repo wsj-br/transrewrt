@@ -20,6 +20,8 @@ Utilisez **Transformer** lorsque vous souhaitez que l'IA suive des instructions 
 5. Cliquez sur **Transformer**.
 6. Lisez le résultat dans **Sortie**.
 
+Le [basculement de la mise en page et les raccourcis clavier](/docs/translate/#layout-and-keyboard) fonctionnent de la même manière que dans Traduire.
+
 ## Charger des exemples d'invites
 
 Si la liste est vide, cliquez sur **Charger des exemples d'invites** dans l'espace de travail Transformer (également disponible sous [Paramètres → Transformer](/docs/settings/#transform)). Les exemples sont en anglais ; après le chargement, modifiez une invite et utilisez **Traduire l'invite** si nécessaire.
@@ -45,7 +47,7 @@ Champs principaux :
 - **Rôle du modèle** — rôle global de l'IA
 - **Instructions du modèle (une par ligne)** — règles à suivre
 - **Description de la sortie** — courte étiquette pour le résultat (par exemple, résumé)
-- **Température (0.0 → 1.0)** — plus elle est basse, plus c'est stable ; plus elle est haute, plus c'est varié
+- **Température (0,0 → 1,0)** — plus elle est basse, plus elle est stable ; plus elle est élevée, plus elle est variée
 - **Demander la langue cible** — ajoute un sélecteur de langue lors de l'exécution
 
 Aides : **Générer l'invite**, **Améliorer l'invite**, **Traduire l'invite** (Facile utilise des préréglages ; Avancé utilise la liste des modèles).
@@ -58,7 +60,7 @@ Cliquez sur **Enregistrer** avant de cliquer sur **Retour à l'exécution**. Rev
 
 Utilisez le panneau de test de droite avec un exemple de texte lors de la création ou de la comparaison d'invites.
 
-Exportez et importez des invites en masse sous [Paramètres → Transformer](/docs/settings/#transform).
+Exportez et importez des invites en bloc sous [Paramètres → Transformer](/docs/settings/#transform).
 
 ## Prochaines étapes
 

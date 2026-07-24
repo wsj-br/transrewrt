@@ -30,15 +30,15 @@
 ```bash
 docker pull ghcr.io/wsj-br/transrewrt:latest
 
-OPENROUTER_API_KEY=sk-or-your-key docker run -d \
+docker run -d \
   -p 5000:5000 \
   -v transrewrt-data:/app/data \
-  -e OPENROUTER_API_KEY \
-  --name transrewrt-web \
+  -e PROVIDER_API_KEY=your-key \
+  --name transrewrt \
   ghcr.io/wsj-br/transrewrt:latest
 ```
 
-[http://localhost:5000](http://localhost:5000) را باز کنید و رمز عبور پیش‌فرض مدیر را تغییر دهید. کلیدهای ارائه‌دهنده از طریق متغیرهای محیطی (نه رابط کاربری وب) تنظیم می‌شوند.
+`PROVIDER_API_KEY` را با متغیر ارائه‌دهنده خود جایگزین کنید (برای مثال `OPENROUTER_API_KEY`، `OPENAI_API_KEY`، `GROQ_API_KEY`). [http://localhost:5000](http://localhost:5000) را باز کرده و رمز عبور پیش‌فرض مدیر را تغییر دهید. کلیدها از طریق متغیرهای محیطی تنظیم می‌شوند (نه رابط کاربری وب).
 
 **ویندوز** — `Transrewrt Setup x.y.z.exe` را از [انتشارات](https://github.com/wsj-br/transrewrt/releases) دانلود کنید، نصب کنید، سپس کلیدها را در **تنظیمات ← API** اضافه کنید.
 

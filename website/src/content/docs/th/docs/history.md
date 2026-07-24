@@ -25,7 +25,7 @@ description: >-
 
 **เก็บประวัติการดำเนินการ** อาจปิดอยู่ เปิดใช้งานได้ใน [การตั้งค่า → การตั้งค่าทั่วไป](/docs/settings/#general-settings) เว้นแต่ผู้ดูแลระบบจะตั้งค่า `HISTORY_DISABLED` — ดู [การกำหนดค่า](/docs/configuration/#privacy-mode)
 
-## ขั้นตอนต่อไป
+## ขั้นตอนถัดไป
 
 - [ใช้แดชบอร์ด](/docs/dashboard/)
 - [การตั้งค่า](/docs/settings/)

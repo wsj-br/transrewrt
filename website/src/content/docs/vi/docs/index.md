@@ -17,11 +17,13 @@ Khóa của bạn, mô hình của bạn, máy chủ của bạn — không có 
 
 ## Cách sắp xếp cửa sổ
 
-- **Thanh bên** — Dịch, Viết lại, Chuyển đổi, Bảng điều khiển, Lịch sử, Cài đặt (và người dùng đã đăng nhập trên web)
-- **Thanh công cụ** — tiêu đề trang, bộ chọn **cài đặt trước** (Dễ) hoặc **mô hình** (Nâng cao), và **Ngôn ngữ giao diện** (biểu tượng quả địa cầu; không thay đổi Dịch từ/sang)
-- **Khu vực làm việc** — Bảng điều khiển Đầu vào và Đầu ra với số lượng, thời gian, TPS và chi phí tùy chọn
+![Không gian làm việc dịch](/images/screenshots/vi/translate.png)
 
-Theo mặc định, ứng dụng chạy ở chế độ **Dễ**: chọn một **cài đặt trước** và một **Nhà cung cấp** trong Cài đặt. Chuyển sang **Nâng cao** trong [Cài đặt → Cài đặt chung](/docs/settings/#general-settings) để xem danh sách mô hình đầy đủ.
+- **Thanh bên** — điều hướng chính: Dịch, Viết lại, Chuyển đổi, Bảng điều khiển, Lịch sử, Cài đặt (và người dùng đã đăng nhập trên web).
+- **Thanh công cụ** — tiêu đề trang, bộ chọn **cài đặt trước** (Dễ) hoặc **mô hình** (Nâng cao), **Ngôn ngữ giao diện** (biểu tượng quả địa cầu; không thay đổi Dịch từ/sang), và Trợ giúp (**?**) liên kết đến các tài liệu này. Menu cài đặt trước/mô hình cũng có thể **Chuyển sang chế độ Dễ/Nâng cao** (phía trên Mở Cài đặt).
+- **Khu vực làm việc** — các bảng Đầu vào và Đầu ra, với số lượng, thời gian, TPS và chi phí tùy chọn. Thanh hành động hiển thị một liên kết **phiên bản** ứng dụng nhỏ (dưới cùng bên phải) đến trang GitHub Pages.
+
+Theo mặc định, ứng dụng chạy ở chế độ **Dễ**: chọn một **cài đặt trước** và một **Nhà cung cấp** trong Cài đặt. Chuyển sang **Nâng cao** trong [Cài đặt → Cài đặt chung](/docs/settings/#general-settings) để xem danh sách mô hình đầy đủ hoặc sử dụng công tắc trong menu cài đặt trước/mô hình của thanh công cụ.
 
 ## Bắt đầu
 

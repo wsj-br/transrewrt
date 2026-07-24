@@ -7,20 +7,20 @@ description: Hibaelhárítás és gyors tippek a Transrewrt-hez.
 
 Ha valami nem a várt módon működik, először ellenőrizze ezeket a pontokat.
 
-## Az alkalmazás nem fordít, nem ír újra, vagy nem alakít át
+## Az alkalmazás nem fordít, nem ír újra vagy nem alakít át
 
 Ellenőrizze, hogy:
 
 - kiválasztott egy **előbeállítást** (Egyszerű) vagy **modellt** (Haladó) az eszköztáron
-- **Egyszerű** módban a **Beállítások → Általános beállítások** menüpontban a **Szolgáltató** rendelkezik működő kulccsal (vagy helyi LLM URL-lel)
-- **Haladó** módban legalább egy modell szerepel a **Beállítások → Modellek** menüpontban
+- **Egyszerű** módban a **Beállítások → Általános beállítások** menüben van egy **Szolgáltató** működő kulccsal (vagy Helyi LLM URL-lel)
+- **Haladó** módban ki van választva egy modell az eszköztáron (üres lista megengedett, de legalább egy modellre van szüksége a **Beállítások → Modellek** menüben a futtatáshoz)
 - az API beállítása működik (asztali: **Beállítások → API konfiguráció → Teszt**)
 
 ## A modelllista üres
 
 **Egyszerű** módban ellenőrizze, hogy a **Szolgáltató** be van-e állítva, és a kulcsok/URL-ek tesztelve vannak-e. **Helyi LLM** esetén győződjön meg arról, hogy a helyi szerver fut, és a modellek be vannak töltve.
 
-**Haladó** módban nyissa meg a **Beállítások → Modellek** menüpontot, kattintson a **Frissítés** gombra, és adja hozzá a modelleket a **Kiválasztott modellek** listához. Opcionálisan kapcsolja be a **Csak ingyenes** opciót.
+**Haladó** módban a kiválasztott modellek üresek lehetnek. Nyissa meg a **Beállítások → Modellek** menüt, kattintson a **Frissítés** gombra, és adja hozzá a modelleket a **Kiválasztott modellek**hez. Opcionálisan kapcsolja be a **Csak ingyenes** opciót. Az utolsó eszköztári modell eltávolítása szintén megnyitja a Beállítások → Modellek menüt.
 
 ## Túl lassú vagy túl drága
 
@@ -41,30 +41,30 @@ Kattintson a földgömb ikonra az eszköztáron, és válassza ki a **Felület n
 
 Ez normális, ha:
 
-- csak **ingyenes modelleket** használ, és a **költség**adatokat nézi (ezek nullák lehetnek); a hívásszám KPI-knek továbbra is adatokra van szükségük a kiválasztott időszakra vonatkozóan
-- a kiválasztott **időszűrő** nem fedi le a hívások idejét – próbálja meg az **Összes** lehetőséget
+- csak **ingyenes modelleket** használ, és a **költség** adatokra néz (ezek nullák lehetnek); a hívásszám KPI-knek még adatokra van szükségük a kiválasztott időszakra vonatkozóan
+- a kiválasztott **időszűrő** nem fedi le a hívások idejét — próbálja meg az **Összes** opciót
 
-Ha a KPI-k az **Összes** után is nullák, ellenőrizze az [Előzmények](/docs/history/) vagy az Irányítópult → **Összes hívás** lehetőséget.
+Ha a KPI-k továbbra is nullák az **Összes** után, ellenőrizze az [Előzmények](/docs/history/) vagy az Irányítópult → **Összes hívás** menüt.
 
 ## A költség „nem elérhető” vagy hibásnak tűnik
 
-Az OpenRouter a tényleges kiadásokat mutatja, ha alkalmazható. Más szolgáltatók esetében a költség az OpenRouter árazásából becsült; ha nincs megfelelő ár, a költség **nem elérhető**ként jelenik meg, és nem adódik hozzá az összeghez.
+Az OpenRouter a tényleges költést mutatja, ha alkalmazható. Más szolgáltatók esetében a költséget az OpenRouter árazása alapján becsüljük; ha nincs áregyezés, a költség **nem elérhető**-ként jelenik meg, és nem adódik hozzá az összeghez.
 
-## A teljes költség nem egyezik meg a szolgáltatói számlámmal
+## A teljes költség nem egyezik a szolgáltatói számlámmal
 
-Az alkalmazásban szereplő adatok **referencia becslések**, nem számlák. Az OpenRouter esetében használja a **Beállítások → Költségkövetés → Szinkronizálás API kulcs használatával** lehetőséget.
+Az alkalmazásban szereplő adatok **becsült értékek, tájékoztató jellegűek**, nem számlák. Az OpenRouter esetében használja a **Beállítások → Költségkövetés → Szinkronizálás API kulcs használatával** lehetőséget.
 
-## A történet oldal hiányzik az oldalsávból
+## Hiányzik az előzmények oldal az oldalsávból
 
-Lehet, hogy a **végrehajtási előzmények megőrzése** ki van kapcsolva. Engedélyezze az Általános beállításokban, hacsak az előzményeket az adminisztrátor nem tiltotta le (`HISTORY_DISABLED` – lásd a [Konfiguráció](/docs/configuration/#privacy-mode) részt).
+Lehet, hogy a **Végrehajtási előzmények megőrzése** ki van kapcsolva. Engedélyezze az Általános beállításokban, hacsak az előzményeket az adminisztrátor nem tiltotta le (`HISTORY_DISABLED` – lásd [Konfiguráció](/docs/configuration/#privacy-mode)).
 
-## Web: váratlanul átirányítva a bejelentkezési oldalra
+## Web: váratlanul átirányított a bejelentkezésre
 
-Lehet, hogy a munkamenete lejárt. Jelentkezzen be újra. Ha ez gyakran előfordul, ellenőrizze a szerver munkamenet élettartam beállításait.
+Lehet, hogy a munkamenet lejárt. Jelentkezzen be újra. Ha ez gyakran előfordul, kérjen meg egy adminisztrátort, hogy növelje a **Munkamenet időtúllépése** értékét a [Beállítások → Felhasználók](/docs/settings/#users) alatt (egy adminisztrátor visszavonhatta a munkameneteit is).
 
-## Webes adminisztrátor: elfelejtett jelszó
+## Web admin: elfelejtett jelszó
 
-Ha egy másik adminisztrátor be tud jelentkezni, akkor a jelszót a **Beállítások → Felhasználók** menüpont alatt tudja visszaállítani. Ha Ön kizárta magát, de van shell hozzáférése:
+Ha egy másik adminisztrátor be tud jelentkezni, visszaállíthatja a jelszót a **Beállítások → Felhasználók** alatt. Ha kizárta magát, de van shell hozzáférése:
 
 ```bash
 docker exec transrewrt reset-web-password '<username>' '<new-password>'
@@ -72,21 +72,21 @@ docker exec transrewrt reset-web-password '<username>' '<new-password>'
 
 Az alapértelmezett adminisztrátori felhasználónév `admin`. Forráskód ellenőrzésből: `pnpm run reset-web-password -- <username> <new-password>`.
 
-## Az irányítópult nem mutat adatokat más felhasználók számára (web)
+## A műszerfal nem mutat adatokat más felhasználók számára (web)
 
 Csak az **adminisztrátorok** tekinthetik meg más felhasználókat a **Felhasználó** szűrőn keresztül. A normál felhasználók csak a saját tevékenységüket látják.
 
-## Módosított egy promptot és elveszítette a szerkesztéseket
+## Megváltoztattam egy promptot és elvesztettem a szerkesztéseket
 
-A Transform prompt szerkesztésekor kattintson a **Mentés** gombra a **Vissza a futtatáshoz** előtt.
+Amikor egy Transform promptot szerkeszt, kattintson a **Mentés** gombra, mielőtt a **Vissza a futtatáshoz** gombra kattintana.
 
 ## Gyors tippek
 
 - Kezdje a [Fordítás](/docs/translate/) funkcióval, hogy megerősítse a beállításait az Átírás vagy Átalakítás előtt
-- Használja az [Átírás](/docs/rewrite/) funkciót a mindennapi szövegjavításokhoz
+- Használja az [Átírás](/docs/rewrite/) funkciót a mindennapi megfogalmazás javításához
 - Használja az [Átalakítás](/docs/transform/) funkciót az ismételhető egyéni munkafolyamatokhoz
-- Maradjon az **Egyszerű** módban, amíg finomhangolt modellazonosítókra nincs szüksége
-- Exportálja a promptokat rendszeresen, ha prompt könyvtárat épít
-- Használja az [Irányítópult](/docs/dashboard/) és az [Előzmények](/docs/history/) funkciót a használat és a korábbi futtatások áttekintéséhez
+- Maradjon az **Egyszerű** módban, amíg szüksége nem lesz finomhangolt modellazonosítókra
+- Exportálja a promptokat rendszeresen, ha promptkönyvtárat épít
+- Használja a [Műszerfal](/docs/dashboard/) és az [Előzmények](/docs/history/) funkciót a használat és a korábbi futtatások áttekintéséhez
 
 [Report an issue](https://github.com/wsj-br/transrewrt/issues)

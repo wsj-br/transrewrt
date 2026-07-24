@@ -25,7 +25,7 @@ Esporta l'elenco filtrato come **JSON**, **CSV** o **XLSX**.
 
 L'opzione **Mantieni cronologia esecuzioni** potrebbe essere disattivata. Abilitala in [Impostazioni → Impostazioni generali](/docs/settings/#general-settings) a meno che l'amministratore non abbia impostato `HISTORY_DISABLED` — vedi [Configurazione](/docs/configuration/#privacy-mode).
 
-## Passi successivi
+## Passaggi successivi
 
 - [Usa il Dashboard](/docs/dashboard/)
 - [Impostazioni](/docs/settings/)

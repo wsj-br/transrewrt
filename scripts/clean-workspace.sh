@@ -19,9 +19,13 @@ ITEMS_TO_REMOVE=(
     "documentation/.docusaurus"
     "documentation/.cache-loader"
     "documentation/.cache"
-    "documentation/build"   
+    "documentation/build"
     "documentation/node_modules"
     "documentation/pnpm-lock.yaml"
+    "website/node_modules"
+    "website/pnpm-lock.yaml"
+    "website/dist"
+    "website/.astro"
     ".genkit"
 )
 
@@ -36,7 +40,8 @@ while IFS= read -r -d '' logfile; do
     fi
 done < <(find "$ROOT_DIR" \
     \( -path "$ROOT_DIR/node_modules" -o -path "$ROOT_DIR/.git" -o -path "$ROOT_DIR/dist" \
-       -o -path "$ROOT_DIR/release" -o -path "$ROOT_DIR/documentation/node_modules" \) -prune \
+       -o -path "$ROOT_DIR/release" -o -path "$ROOT_DIR/documentation/node_modules" \
+       -o -path "$ROOT_DIR/website/node_modules" \) -prune \
     -o -type f -name '*.log' -print0)
 
 for cache in \

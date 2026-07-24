@@ -1,15 +1,15 @@
 ---
-title: Usar el panel de control
+title: Usar el Panel de control
 description: >-
-  Revisar el uso, el costo y los registros de llamadas: filtrar, exportar y
-  administrar los registros almacenados.
+  Revise el uso, el costo y los registros de llamadas: filtre, exporte y
+  administre los registros almacenados.
 ---
 
 
 
 Utilice el **Panel de control** para ver cuánto está utilizando la aplicación y cuánto le está costando (para modelos de pago).
 
-![Resumen del panel de control](/images/screenshots/es/dashboard-summary.png)
+![Resumen del Panel de control](/images/screenshots/es/dashboard-summary.png)
 
 :::note
 Si solo utiliza modelos **gratuitos**, los importes de los costos pueden ser cero. Los KPI de recuento de llamadas en **Resumen** aún necesitan actividad en el período seleccionado.
@@ -25,7 +25,7 @@ El filtro de **Usuario** solo es visible para los administradores en la versión
 
 ## Pestañas
 
-- **Resumen** — KPI: costo total, modelos utilizados, recuentos de llamadas y costos por modo, costo promedio por llamada, TPS promedio, modelos principales por recuento de llamadas
+- **Resumen** — KPI: costo total, modelos utilizados, recuentos de llamadas y costo por modo, costo promedio por llamada, TPS promedio, modelos principales por recuento de llamadas
 - **Por modelo** — llamadas, costo y TPS por modelo; expanda una fila para ver un desglose por modo
 - **Todas las llamadas** — registro completo de llamadas (paginado o en tarjetas) con exportación
 
@@ -43,6 +43,6 @@ La eliminación no se puede deshacer. Para eliminar por antigüedad o borrar tod
 
 ## Próximos pasos
 
-- [Historial de navegación](/docs/history/)
+- [Explorar historial](/docs/history/)
 - [Configuración](/docs/settings/)
 - [Problemas comunes](/docs/common-issues/)
