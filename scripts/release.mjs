@@ -14,7 +14,7 @@
  *   node scripts/release.mjs --verify-clean=false
  */
 
-import { execFileSync } from "node:child_process";
+import { spawnSync } from "node:child_process";
 import fs from "node:fs";
 import path from "node:path";
 import process from "node:process";
@@ -22,7 +22,6 @@ import { fileURLToPath } from "node:url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.join(__dirname, "..");
-const useShell = process.platform === "win32";
 
 let verifyClean = true;
 let dryRun = false;
@@ -66,29 +65,53 @@ function fail(message) {
   process.exit(1);
 }
 
+/**
+ * Run a command with an argv array. Prefer no shell so argv (e.g.
+ * `-m "Release v1.6.2"`) is preserved on Windows and Linux — using a shell
+ * splits on spaces and makes `git tag` fail with "fatal: too many arguments".
+ *
+ * Exception: on Windows, `pnpm` is typically a `.cmd` shim and needs shell:true
+ * (git / gh / node are native executables and work with shell:false).
+ */
 function run(command, args, { quiet = false, inherit = true } = {}) {
-  try {
-    const stdout = execFileSync(command, args, {
-      cwd: root,
-      encoding: "utf8",
-      stdio: quiet ? "pipe" : inherit ? "inherit" : "pipe",
-      shell: useShell,
-    });
-    return { ok: true, stdout: typeof stdout === "string" ? stdout : "" };
-  } catch (err) {
+  const needsShell = process.platform === "win32" && command === "pnpm";
+  const result = spawnSync(command, args, {
+    cwd: root,
+    encoding: "utf8",
+    env: process.env,
+    shell: needsShell,
+    stdio: quiet ? "pipe" : inherit ? "inherit" : "pipe",
+  });
+
+  if (result.error) {
+    if (quiet) {
+      return { ok: false, stdout: "", status: 1 };
+    }
+    fail(`failed to start ${command}: ${result.error.message}`);
+  }
+
+  const status = result.status ?? 1;
+  if (status !== 0) {
     if (quiet) {
       return {
         ok: false,
-        stdout: typeof err.stdout === "string" ? err.stdout : "",
-        status: err.status ?? 1,
+        stdout: typeof result.stdout === "string" ? result.stdout : "",
+        status,
       };
     }
-    const detail = err.status != null ? ` (exit ${err.status})` : "";
-    fail(`${command} ${args.join(" ")} failed${detail}`);
+    fail(`${command} ${args.join(" ")} failed (exit ${status})`);
   }
+
+  return {
+    ok: true,
+    stdout: typeof result.stdout === "string" ? result.stdout : "",
+    status,
+  };
 }
 
 function requireCmd(name) {
+  // Same probe on Windows and Linux: spawn the binary directly (no shell),
+  // except pnpm on Windows (see run()).
   const check = run(name, ["--version"], { quiet: true });
   if (!check.ok) fail(`Missing required command: ${name}`);
 }
