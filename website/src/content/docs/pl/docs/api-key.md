@@ -27,7 +27,7 @@ Dokładne kroki różnią się nieco w zależności od dostawcy, ale schemat jes
 2. Znajdź stronę **Klucze API** (czasami w sekcji konto, pulpit nawigacyjny lub ustawienia programisty) i utwórz nowy klucz. Niektórzy dostawcy proszą o nazwanie klucza lub ustawienie limitu wydatków — oba są opcjonalne.
 3. Skopiuj klucz. Jest to długi ciąg liter i cyfr, często zaczynający się od czegoś w rodzaju `sk-`.
 
-:::caution
+:::note
 Traktuj klucz API jak hasło: nie udostępniaj go, nie publikuj ani nie wysyłaj nikomu. Jeśli klucz wycieknie, usuń go na stronie dostawcy i utwórz nowy.
 :::
 
@@ -39,17 +39,13 @@ Traktuj klucz API jak hasło: nie udostępniaj go, nie publikuj ani nie wysyłaj
 
 Po pomyślnym zakończeniu testu jesteś gotowy — wybierz tego dostawcę na ekranie głównym i rozpocznij tłumaczenie.
 
-:::caution
-Unikaj modelu **Body Builder** OpenRouter (`openrouter/bodybuilder`) — zwraca on ładunki żądań JSON, a nie ukończony tekst. Zobacz [Ustawienia → Modele](/docs/settings/#models).
-:::
-
 ## Używanie modelu lokalnego zamiast (bez klucza API)
 
 Możesz uruchamiać modele na własnym komputerze za pomocą Ollama, LM Studio, llama.cpp lub innego serwera zgodnego z OpenAI (na przykład `google/gemma-4-e2b` za pośrednictwem LM Studio). Nic nie opuszcza Twojej maszyny i nie jest potrzebny żaden klucz API.
 
 Aby połączyć jeden, ustaw podstawowy adres URL lokalnego LLM na pełną bazę API, włączając ścieżkę — na przykład `http://localhost:11434/v1`. Na komputerze stacjonarnym ustaw to w **Ustawienia → Konfiguracja API**; w Dockerze zamiast tego ustaw zmienną środowiskową `LOCAL_LLM_URL`.
 
-:::caution
+:::tip
 Jeśli używasz lokalnego serwera LLM z innego urządzenia lub kontenera, skonfiguruj go tak, aby zezwalał na połączenia zewnętrzne (nie tylko localhost).
 :::
 

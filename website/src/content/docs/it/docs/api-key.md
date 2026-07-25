@@ -27,8 +27,8 @@ I passaggi esatti variano leggermente a seconda del provider, ma il modello è l
 2. Trova la pagina **Chiavi API** (a volte sotto account, dashboard o impostazioni sviluppatore) e crea una nuova chiave. Alcuni provider ti chiedono di dare un nome alla chiave o di impostare un limite di spesa — entrambi sono opzionali.
 3. Copia la chiave. È una lunga stringa di lettere e numeri, spesso che inizia con qualcosa come `sk-`.
 
-:::caution
-Tratta una chiave API come una password: non condividerla, pubblicarla o inviarla a nessuno. Se una chiave viene compromessa, eliminala sul sito web del provider e creane una nuova.
+:::note
+Tratta una chiave API come una password: non condividerla, pubblicarla o inviarla a nessuno. Se una chiave viene divulgata, eliminala sul sito web del provider e creane una nuova.
 :::
 
 ## Passaggio 3 — Aggiungi e testa la chiave (desktop)
@@ -39,18 +39,14 @@ Tratta una chiave API come una password: non condividerla, pubblicarla o inviarl
 
 Una volta che il test ha successo, sei pronto — scegli quel provider nella schermata principale e inizia a tradurre.
 
-:::caution
-Evita il modello **Body Builder** di OpenRouter (`openrouter/bodybuilder`) — restituisce payload di richieste JSON, non testo completato. Vedi [Impostazioni → Modelli](/docs/settings/#models).
-:::
-
 ## Utilizzo di un modello locale (senza chiave API)
 
 Puoi eseguire modelli sul tuo computer con Ollama, LM Studio, llama.cpp o un altro server compatibile con OpenAI (ad esempio `google/gemma-4-e2b` tramite LM Studio). Nulla lascia la tua macchina e non è necessaria alcuna chiave API.
 
 Per connetterne uno, imposta l'URL di base LLM locale sull'API base completa, incluso il percorso — ad esempio `http://localhost:11434/v1`. Sul desktop, impostalo in **Impostazioni → Configurazione API**; su Docker, imposta invece la variabile d'ambiente `LOCAL_LLM_URL`.
 
-:::caution
-Se usi un server LLM locale da un altro dispositivo o container, configuralo per consentire connessioni esterne (non solo localhost).
+:::tip
+Se utilizzi un server LLM locale da un altro dispositivo o container, configuralo per consentire connessioni esterne (non solo localhost).
 :::
 
 ## Docker / web

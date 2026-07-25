@@ -22,6 +22,10 @@ description: 配置文件位置、Docker 环境变量、隐私模式和 Web 身�
 
 你也可以从应用中创建便携备份 ZIP — 参见[设置 → 常规设置](/docs/settings/#general-settings)。
 
+## 数据持久化（Docker）
+
+在 `/app/data` 挂载卷，以便配置文件和 SQLite 数据库（请参阅[配置文件位置](#config-file-locations)）在容器重启后保留。若无卷，容器停止时数据将丢失。
+
 ## 环境变量（Web / Docker）
 
 Electron 使用本地配置文件。以下仅适用于 Web/Docker 服务器：
@@ -61,10 +65,6 @@ Electron 使用本地配置文件。以下仅适用于 Web/Docker 服务器：
 ## 隐私模式
 
 在 Web/Docker 服务器进程和/或 Electron 主进程上将 `HISTORY_DISABLED` 设置为 `true` 或 `1`，可强制关闭历史记录，无论 `config.json` 或用户偏好如何。此操作会禁用输入/输出历史记录存储、锁定 **设置 → 通用设置 → 历史记录**，并阻止历史记录相关 API。
-
-## 数据持久化（Docker）
-
-在 `/app/data` 挂载卷，以便配置文件和 SQLite 数据库（请参阅[配置文件位置](#config-file-locations)）在容器重启后保留。若无卷，容器停止时数据将丢失。
 
 ## Web 身份验证
 

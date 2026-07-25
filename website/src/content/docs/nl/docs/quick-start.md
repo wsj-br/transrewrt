@@ -26,8 +26,8 @@ Vervang `PROVIDER_API_KEY` door de variabele voor uw provider (bijvoorbeeld `OPE
 
 Open vervolgens [http://localhost:5000](http://localhost:5000) en **wijzig het standaard beheerderswachtwoord** voordat u de service beschikbaar maakt.
 
-:::caution
-In Docker worden LLM-referenties ingesteld met omgevingsvariabelen (bijvoorbeeld `PROVIDER_API_KEY`). Ze worden **niet** ingevoerd in de web-UI. Op desktop configureert u sleutels in **Instellingen → API-configuratie**.
+:::tip
+In Docker worden LLM-referenties ingesteld met omgevingsvariabelen (bijvoorbeeld `PROVIDER_API_KEY`). Ze worden **niet** ingevoerd in de web-UI. Op de desktop configureert u sleutels in **Instellingen → API-configuratie**.
 :::
 
 ### Docker Compose
@@ -45,7 +45,7 @@ docker compose -f transrewrt.yml up -d
 3. Open de app en voer API-sleutels in bij **Instellingen → API-configuratie**. Configureer ten minste één provider; OpenRouter is een veelvoorkomende keuze voor gratis modellen.
 
 :::note
-Windows kan UAC- of SmartScreen-waarschuwingen weergeven voor niet-ondertekende indie-apps. Geef de voorkeur aan downloads van de officiële GitHub Releases-pagina en verifieer checksums wanneer deze worden gepubliceerd.
+Windows kan UAC- of SmartScreen-waarschuwingen weergeven bij het installeren van de app. Het is veilig om te installeren als u deze downloadt van de officiële GitHub Releases-pagina. Klik op "Meer info" en "Toch uitvoeren" om te installeren.
 :::
 
 ## Linux

@@ -67,8 +67,8 @@ Dostupné len v režime **Pokročilé**.
 - Vyhľadávanie, čipy **Poskytovateľ**, **Len zadarmo**, **Obnoviť**, Rozbaliť/Zbaliť všetko
 - ID modelov používajú predponu poskytovateľa (`openrouter/…`, `openai/…`, `local/…`, …)
 
-:::caution
-Nepoužívajte OpenRouter **Body Builder** (`openrouter/bodybuilder`) pre Preklad, Prepis alebo Transformáciu — vracia JSON požiadavky, nie hotový text.
+:::tip
+Nepoužívajte OpenRouter **Body Builder** (`openrouter/bodybuilder`) pre funkcie Preložiť, Prepísať alebo Transformovať – vracia JSON dátové časti požiadaviek, nie hotový text.
 :::
 
 Pridajte pomocou **Pridať**; odstráňte pomocou **X**. Bezplatný model OpenRouter je voliteľný — vybrané modely môžu byť prázdne. Odstránenie posledného modelu z panela nástrojov otvorí **Nastavenia → Modely**. Ak sa aktuálny model stane nedostupným, aplikácia namiesto vynútenia bezplatného modelu vyberie ďalší model v zozname.

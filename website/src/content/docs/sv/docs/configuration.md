@@ -24,6 +24,10 @@ Datamappen innehåller allt som är värt att säkerhetskopiera:
 
 Du kan också skapa en portabel säkerhetskopia i ZIP-format från appen – se [Inställningar → Allmänna inställningar](/docs/settings/#general-settings).
 
+## Datapersistens (Docker)
+
+Montera en volym vid `/app/data` så att konfigurationsfilerna och SQLite-databasen (se [Konfigurationsfilplatser](#config-file-locations)) överlever omstarter av containern. Utan en volym förloras data när containern stoppas.
+
 ## Miljövariabler (webb / Docker)
 
 Electron använder den lokala konfigurationsfilen. Endast för webb-/Docker-servern:
@@ -63,10 +67,6 @@ Alla tre variablerna `CUSTOM_PROVIDER_*` krävs när du använder en anpassad sl
 ## Sekretessläge
 
 Ställ in `HISTORY_DISABLED` på `true` eller `1` på webb-/Docker-serverprocessen och/eller Electron-huvudprocessen för att tvinga historiken av oavsett `config.json` eller användarinställningar. Detta inaktiverar lagring av in-/utdatahistorik, låser **Inställningar → Allmänna inställningar → Historik** och blockerar historikrelaterade API:er.
-
-## Datapersistens (Docker)
-
-Montera en volym vid `/app/data` så att konfigurationsfilerna och SQLite-databasen (se [Konfigurationsfilplatser](#config-file-locations)) överlever omstarter av containern. Utan en volym förloras data när containern stoppas.
 
 ## Webbautentisering
 

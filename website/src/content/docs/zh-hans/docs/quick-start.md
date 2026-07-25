@@ -24,8 +24,8 @@ docker run -d \
 
 然后打开 [http://localhost:5000](http://localhost:5000)，在公开服务之前**修改默认管理员密码**。
 
-:::caution
-在 Docker 中，LLM 凭证通过环境变量设置（例如 `PROVIDER_API_KEY`）。它们**不会**在网页界面中输入。在桌面版中，你可以在**设置 → API 配置**中配置密钥。
+:::tip
+在 Docker 中，LLM 凭据通过环境变量设置（例如 `PROVIDER_API_KEY`）。它们**不**在 Web UI 中输入。在桌面版中，您可以在**设置 → API 配置**中配置密钥。
 :::
 
 ### Docker Compose
@@ -43,7 +43,7 @@ docker compose -f transrewrt.yml up -d
 3. 打开应用并在**设置 → API 配置**中输入 API 密钥。至少配置一个提供商；OpenRouter 是获取免费模型的常用选择。
 
 :::note
-Windows 可能会对未签名的独立应用显示 UAC 或 SmartScreen 警告。建议从官方 GitHub 发布页面下载，并在有发布校验和时进行验证。
+安装本应用时，Windows 可能会显示 UAC 或 SmartScreen 警告。如果您是从官方 GitHub Releases 页面下载的，则可以放心安装。请点击"更多信息"和"仍然运行"以完成安装。
 :::
 
 ## Linux

@@ -27,8 +27,8 @@ Přesné kroky se u jednotlivých poskytovatelů mírně liší, ale vzor je vš
 2. Najděte stránku **Klíče API** (někdy pod účtem, řídicím panelem nebo nastavením pro vývojáře) a vytvořte nový klíč. Někteří poskytovatelé vás požádají o pojmenování klíče nebo nastavení limitu útraty – obojí je volitelné.
 3. Zkopírujte klíč. Jedná se o dlouhý řetězec písmen a čísel, často začínající něčím jako `sk-`.
 
-:::caution
-S klíčem API zacházejte jako s heslem: nesdílejte ho, nezveřejňujte ho ani ho nikomu neposílejte. Pokud klíč unikne, smažte ho na webových stránkách poskytovatele a vytvořte nový.
+:::note
+S klíčem API zacházejte jako s heslem: nesdílejte ho, nezveřejňujte ho ani ho nikomu neposílejte. Pokud klíč unikne, smažte ho na webu poskytovatele a vytvořte nový.
 :::
 
 ## Krok 3 – Přidání a testování klíče (desktop)
@@ -39,18 +39,14 @@ S klíčem API zacházejte jako s heslem: nesdílejte ho, nezveřejňujte ho ani
 
 Jakmile test uspěje, jste připraveni – vyberte si tohoto poskytovatele na hlavní obrazovce a začněte překládat.
 
-:::caution
-Vyhněte se modelu **Body Builder** (`openrouter/bodybuilder`) od OpenRouteru – vrací JSON datové části požadavků, nikoli dokončený text. Viz [Nastavení → Modely](/docs/settings/#models).
-:::
-
 ## Použití lokálního modelu místo toho (bez klíče API)
 
 Modely můžete spouštět na svém vlastním počítači pomocí Ollamy, LM Studia, llama.cpp nebo jiného serveru kompatibilního s OpenAI (například `google/gemma-4-e2b` přes LM Studio). Nic neopustí váš počítač a není potřeba žádný klíč API.
 
 Pro připojení jednoho nastavte základní URL lokálního LLM na plnou základní API, včetně cesty – například `http://localhost:11434/v1`. Na desktopu to nastavte v **Nastavení → Konfigurace API**; na Dockeru místo toho nastavte proměnnou prostředí `LOCAL_LLM_URL`.
 
-:::caution
-Pokud používáte lokální server LLM z jiného zařízení nebo kontejneru, nakonfigurujte jej tak, aby umožňoval externí připojení (ne pouze localhost).
+:::tip
+Používáte-li lokální server LLM z jiného zařízení nebo kontejneru, nakonfigurujte jej tak, aby umožňoval externí připojení (nejen localhost).
 :::
 
 ## Docker / web

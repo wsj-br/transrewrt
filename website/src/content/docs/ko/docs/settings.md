@@ -65,8 +65,8 @@ description: 일반, 모델, 언어, 용어집, 비용, 변환, 사용자, API, 
 - 검색, **제공자** 칩, **무료만**, **새로고침**, 모두 펼치기/접기
 - 모델 ID는 제공자 접두사를 사용합니다 (`openrouter/…`, `openai/…`, `local/…`, …)
 
-:::caution
-번역, 다시 쓰기 또는 변환에 OpenRouter **Body Builder** (`openrouter/bodybuilder`)를 사용하지 마세요 — 완성된 텍스트가 아닌 JSON 요청 페이로드를 반환합니다.
+:::tip
+Translate, Rewrite 또는 Transform에는 OpenRouter **Body Builder** (`openrouter/bodybuilder`)를 사용하지 마세요. 완성된 텍스트가 아닌 JSON 요청 페이로드를 반환합니다.
 :::
 
 **추가**로 추가; **X**로 제거. OpenRouter 무료 모델은 선택 사항입니다 — 선택된 모델이 비어 있을 수 있습니다. 도구 모음에서 마지막 모델을 제거하면 **설정 → 모델**이 열립니다. 현재 모델을 사용할 수 없게 되면, 앱은 무료 모델을 강제 적용하는 대신 목록의 다음 모델을 선택합니다.

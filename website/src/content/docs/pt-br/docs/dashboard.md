@@ -12,16 +12,14 @@ Use o **Painel** para ver o quanto você está usando o aplicativo e qual é o c
 ![Resumo do Painel](/images/screenshots/pt-BR/dashboard-summary.png)
 
 :::note
-Se você usa apenas modelos **gratuitos**, os valores de custo podem ser zero. Os KPIs de contagem de chamadas no **Resumo** ainda precisam de atividade no período selecionado.
+Os valores de custo podem aparecer como **$0** se você usar modelos gratuitos, o provedor não oferecer suporte ao rastreamento de custos ou se você estiver usando um LLM local. Os KPIs de contagem de chamadas em **Resumo** refletem o uso real, independentemente — eles são zero apenas se não houve atividade no período selecionado.
 :::
 
 ## Filtrar os dados
 
 Use os botões de filtro na parte superior para alterar o intervalo de tempo.
 
-:::note
-O filtro **Usuário** é visível apenas para administradores na versão web. Não está disponível na área de trabalho.
-:::
+O filtro **Usuário** é visível apenas para administradores na versão web; não está disponível na área de trabalho.
 
 ## Abas
 

@@ -67,8 +67,8 @@ Alleen beschikbaar in de modus **Geavanceerd**.
 - Zoeken, **Provider**-chips, **Alleen gratis**, **Vernieuwen**, Alles uitvouwen/samenvouwen
 - Model-ID's gebruiken een providervoorvoegsel (`openrouter/…`, `openai/…`, `local/…`, …)
 
-:::caution
-Gebruik OpenRouter **Body Builder** (`openrouter/bodybuilder`) niet voor Vertalen, Herschrijven of Transformeren — het retourneert JSON-aanvraagpayloads, geen voltooide tekst.
+:::tip
+Gebruik OpenRouter **Body Builder** (`openrouter/bodybuilder`) niet voor Vertalen, Herscheven of Transformeren — het retourneert JSON-aanvraagpayloads, geen voltooide tekst.
 :::
 
 Toevoegen met **Toevoegen**; verwijderen met **X**. Het gratis OpenRouter-model is optioneel — geselecteerde modellen kunnen leeg zijn. Het verwijderen van het laatste model uit de werkbalk opent **Instellingen → Modellen**. Als het huidige model niet beschikbaar wordt, selecteert de app het volgende model in de lijst in plaats van het gratis model af te dwingen.

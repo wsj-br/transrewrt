@@ -27,8 +27,8 @@ Presné kroky sa mierne líšia v závislosti od poskytovateľa, ale vzor je vš
 2. Nájdite stránku **API keys** (niekedy pod nastaveniami účtu, ovládacieho panela alebo vývojára) a vytvorte nový kľúč. Niektorí poskytovatelia vás požiadajú o pomenovanie kľúča alebo nastavenie limitu výdavkov – oboje je voliteľné.
 3. Skopírujte kľúč. Je to dlhý reťazec písmen a číslic, často začínajúci niečím ako `sk-`.
 
-:::caution
-S kľúčom API zaobchádzajte ako s heslom: nezdieľajte ho, nezverejňujte ho ani ho nikomu neposielajte. Ak kľúč unikne, odstráňte ho na webovej stránke poskytovateľa a vytvorte nový.
+:::note
+S kľúčom API zaobchádzajte ako s heslom: nezdieľajte ho, nezverejňujte ho ani ho nikomu neposielajte. Ak kľúč unikne, odstráňte ho na webovej lokalite poskytovateľa a vytvorte nový.
 :::
 
 ## Krok 3 – Pridajte a otestujte kľúč (desktop)
@@ -39,17 +39,13 @@ S kľúčom API zaobchádzajte ako s heslom: nezdieľajte ho, nezverejňujte ho 
 
 Akonáhle test uspeje, ste pripravení – vyberte si tohto poskytovateľa na hlavnej obrazovke a začnite prekladať.
 
-:::caution
-Vyhnite sa modelu **Body Builder** od OpenRouter (`openrouter/bodybuilder`) – vracia JSON požiadavky, nie dokončený text. Pozrite si [Settings → Models](/docs/settings/#models).
-:::
-
 ## Používanie lokálneho modelu namiesto toho (bez kľúča API)
 
 Modely môžete spúšťať na vlastnom počítači pomocou Ollama, LM Studio, llama.cpp alebo iného servera kompatibilného s OpenAI (napríklad `google/gemma-4-e2b` cez LM Studio). Nič neopustí váš počítač a nie je potrebný žiadny kľúč API.
 
 Ak chcete pripojiť jeden, nastavte základnú URL lokálneho LLM na úplnú základnú URL API, vrátane cesty – napríklad `http://localhost:11434/v1`. Na desktope to nastavte v **Settings → API Config**; na Docker namiesto toho nastavte premennú prostredia `LOCAL_LLM_URL`.
 
-:::caution
+:::tip
 Ak používate lokálny server LLM z iného zariadenia alebo kontajnera, nakonfigurujte ho tak, aby umožňoval externé pripojenia (nie iba localhost).
 :::
 

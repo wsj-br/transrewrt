@@ -26,8 +26,8 @@ Thay thế `PROVIDER_API_KEY` bằng biến cho nhà cung cấp của bạn (ví
 
 Sau đó mở [http://localhost:5000](http://localhost:5000) và **thay đổi mật khẩu quản trị mặc định** trước khi hiển thị dịch vụ.
 
-:::caution
-Trong Docker, thông tin xác thực LLM được đặt bằng các biến môi trường (ví dụ: `PROVIDER_API_KEY`). Chúng **không** được nhập vào giao diện người dùng web. Trên máy tính để bàn, bạn định cấu hình khóa trong **Cài đặt → Cấu hình API**.
+:::tip
+Trong Docker, thông tin đăng nhập LLM được đặt bằng các biến môi trường (ví dụ: `PROVIDER_API_KEY`). Chúng **không** được nhập vào giao diện người dùng web. Trên máy tính để bàn, bạn định cấu hình khóa trong **Cài đặt → Cấu hình API**.
 :::
 
 ### Docker Compose
@@ -45,7 +45,7 @@ docker compose -f transrewrt.yml up -d
 3. Mở ứng dụng và nhập khóa API trong **Cài đặt → Cấu hình API**. Cấu hình ít nhất một nhà cung cấp; OpenRouter là một lựa chọn phổ biến cho các mô hình miễn phí.
 
 :::note
-Windows có thể hiển thị cảnh báo UAC hoặc SmartScreen cho các ứng dụng độc lập không có chữ ký. Ưu tiên tải xuống từ trang GitHub Releases chính thức và xác minh tổng kiểm tra khi được xuất bản.
+Windows có thể hiển thị cảnh báo UAC hoặc SmartScreen khi cài đặt ứng dụng. Bạn có thể cài đặt an toàn nếu tải xuống từ trang GitHub Releases chính thức. Nhấp vào "More info" (Thông tin thêm) và "Run anyway" (Vẫn chạy) để cài đặt.
 :::
 
 ## Linux

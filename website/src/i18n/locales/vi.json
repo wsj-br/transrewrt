@@ -30,7 +30,7 @@
   "Three ways to run Transrewrt": "Ba cách chạy Transrewrt",
   "Pick the path that fits you — desktop app or self-hosted web. All paths are free and open source.": "Chọn phương án phù hợp với bạn — ứng dụng desktop hoặc web tự lưu trữ. Tất cả đều miễn phí và mã nguồn mở.",
   "Run with Docker": "Chạy với Docker",
-  "Then open": "Sau đó mở",
+  "Replace PROVIDER_API_KEY with your provider(OPENROUTER_API_KEY, ANTHROPIC_API_KEY, XIA_API_KEY, ...). Open the web UI at": "Thay thế PROVIDER_API_KEY bằng khóa API của nhà cung cấp của bạn (OPENROUTER_API_KEY, ANTHROPIC_API_KEY, XIA_API_KEY, ...). Mở giao diện web tại",
   "and change the default admin password before exposing the service.": "và đổi mật khẩu quản trị mặc định trước khi công khai dịch vụ.",
   "Transrewrt logo — two overlapping speech bubbles": "Logo Transrewrt — hai bong bóng thoại chồng nhau",
   "Translate, rewrite, and transform text": "Dịch, viết lại và biến đổi văn bản",

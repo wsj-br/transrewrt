@@ -67,8 +67,8 @@ Chỉ khả dụng ở chế độ **Nâng cao**.
 - Tìm kiếm, các thẻ **Nhà cung cấp**, **Chỉ miễn phí**, **Làm mới**, Mở rộng/Thu gọn tất cả
 - ID mô hình sử dụng tiền tố nhà cung cấp (`openrouter/…`, `openai/…`, `local/…`, …)
 
-:::caution
-Không sử dụng OpenRouter **Body Builder** (`openrouter/bodybuilder`) để Dịch, Viết lại hoặc Chuyển đổi — nó trả về các tải trọng yêu cầu JSON, không phải văn bản hoàn chỉnh.
+:::tip
+Không sử dụng OpenRouter **Body Builder** (`openrouter/bodybuilder`) cho Translate, Rewrite hoặc Transform — nó trả về các tải trọng yêu cầu JSON, không phải văn bản hoàn chỉnh.
 :::
 
 Thêm bằng **Thêm**; xóa bằng **X**. Mô hình miễn phí OpenRouter là tùy chọn — các mô hình đã chọn có thể trống. Xóa mô hình cuối cùng khỏi thanh công cụ sẽ mở **Cài đặt → Mô hình**. Nếu mô hình hiện tại không khả dụng, ứng dụng sẽ chọn mô hình tiếp theo trong danh sách thay vì buộc sử dụng mô hình miễn phí.

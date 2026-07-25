@@ -24,8 +24,8 @@ docker run -d \
 
 次に、[http://localhost:5000](http://localhost:5000)を開き、サービスを公開する前に**デフォルトの管理者パスワードを変更**してください。
 
-:::caution
-Dockerでは、LLMの認証情報は環境変数（例えば `PROVIDER_API_KEY`）で設定します。これらはWeb UIには**入力しません**。デスクトップ版では、**設定 → API設定**でキーを設定します。
+:::tip
+Dockerでは、LLMの認証情報は環境変数（例えば `PROVIDER_API_KEY`）で設定します。これらはWeb UIには入力し**ません**。デスクトップ版では、**Settings → API Config**でキーを設定します。
 :::
 
 ### Docker Compose
@@ -43,7 +43,7 @@ docker compose -f transrewrt.yml up -d
 3. アプリを開き、**Settings → API Config**でAPIキーを入力します。少なくとも1つのプロバイダーを設定してください。OpenRouterは無料モデルの一般的な選択肢です。
 
 :::note
-Windowsでは、署名されていない個人開発のアプリに対してUACまたはSmartScreenの警告が表示される場合があります。公式のGitHub Releasesページからのダウンロードを優先し、公開されている場合はチェックサムを確認してください。
+アプリのインストール時に、WindowsでUACまたはSmartScreenの警告が表示されることがあります。公式のGitHub Releasesページからダウンロードしたものであれば、安全にインストールできます。インストールするには、「詳細情報」をクリックし、「そのまま実行」を選択してください。
 :::
 
 ## Linux

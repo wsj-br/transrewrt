@@ -1,6 +1,8 @@
 # Build and deploy the Astro marketing site + docs (`website/`) to GitHub Pages.
-# Triggers: manual workflow_dispatch, or dispatched from the Release workflow on main
-# (release tag runs cannot deploy to the github-pages environment — only main is allowed).
+# Triggers:
+#   - pull_request (website/ paths): frozen install + build only (catch lockfile drift)
+#   - workflow_dispatch: full build + deploy (manual or dispatched from Release on main)
+# Release tag runs cannot deploy to the github-pages environment — only main is allowed.
 #
 # Repo Settings → Pages → Source must be "GitHub Actions".
 # Live URL: https://wsj-br.github.io/transrewrt/
@@ -8,6 +10,10 @@
 name: Deploy website (GitHub Pages)
 
 on:
+  pull_request:
+    paths:
+      - "website/**"
+      - ".github/workflows/website-pages.yml"
   workflow_dispatch:
 
 permissions:
@@ -16,8 +22,8 @@ permissions:
   id-token: write
 
 concurrency:
-  group: pages
-  cancel-in-progress: false
+  group: pages-${{ github.event_name }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 jobs:
   build:
@@ -48,12 +54,14 @@ jobs:
         working-directory: website
 
       - name: Upload Pages artifact
+        if: github.event_name == 'workflow_dispatch'
         uses: actions/upload-pages-artifact@v5
         with:
           path: website/dist
 
   deploy:
     name: Deploy to GitHub Pages
+    if: github.event_name == 'workflow_dispatch'
     needs: build
     runs-on: ubuntu-latest
     environment:

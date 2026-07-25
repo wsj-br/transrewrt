@@ -24,6 +24,10 @@ A pasta de dados contém tudo o que vale a pena fazer backup:
 
 Você também pode criar um ZIP de backup portátil a partir do aplicativo — consulte [Configurações → Configurações Gerais](/docs/settings/#general-settings).
 
+## Persistência de dados (Docker)
+
+Monte um volume em `/app/data` para que os arquivos de configuração e o banco de dados SQLite (consulte [Locais dos arquivos de configuração](#config-file-locations)) sobrevivam às reinicializações do contêiner. Sem um volume, os dados são perdidos quando o contêiner para.
+
 ## Variáveis de ambiente (web / Docker)
 
 O Electron usa o arquivo de configuração local. Apenas para o servidor web/Docker:
@@ -63,10 +67,6 @@ Todas as três variáveis `CUSTOM_PROVIDER_*` são necessárias ao usar um endpo
 ## Modo de privacidade
 
 Defina `HISTORY_DISABLED` como `true` ou `1` no processo do servidor web/Docker e/ou no processo principal do Electron para forçar o histórico a ser desativado, independentemente de `config.json` ou das preferências do usuário. Isso desabilita o armazenamento do histórico de entrada/saída, bloqueia **Configurações → Configurações Gerais → Histórico** e bloqueia as APIs relacionadas ao Histórico.
-
-## Persistência de dados (Docker)
-
-Monte um volume em `/app/data` para que os arquivos de configuração e o banco de dados SQLite (consulte [Locais dos arquivos de configuração](#config-file-locations)) sobrevivam às reinicializações do contêiner. Sem um volume, os dados são perdidos quando o contêiner para.
 
 ## Autenticação web
 

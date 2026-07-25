@@ -12,16 +12,14 @@ A **Műszerfal** segítségével megtekintheti, mennyit használja az alkalmazá
 ![Műszerfal összefoglaló](/images/screenshots/hu/dashboard-summary.png)
 
 :::note
-Ha csak **ingyenes** modelleket használ, a költség összege nulla lehet. A hívásszám KPI-k az **Összefoglalóban** továbbra is tevékenységet igényelnek a kiválasztott időszakban.
+A költség összege **0 dollárként** jelenhet meg, ha ingyenes modelleket használ, a szolgáltató nem támogatja a költségkövetést, vagy helyi LLM-et használ. A **Összefoglaló** oldalon található hívásszám KPI-k ettől függetlenül a tényleges használatot tükrözik – csak akkor nullák, ha a kiválasztott időszakban nem volt tevékenység.
 :::
 
 ## Az adatok szűrése
 
 Az időtartomány módosításához használja a szűrőgombokat felül.
 
-:::note
-A **Felhasználó** szűrő csak a rendszergazdák számára látható a webes verzióban. Asztali gépen nem érhető el.
-:::
+A **Felhasználó** szűrő csak a webes verzióban látható az adminisztrátorok számára; asztali gépen nem érhető el.
 
 ## Lapok
 

@@ -67,8 +67,8 @@ Disponible solo en modo **Avanzado**.
 - Búsqueda, chips de **Proveedor**, **Solo gratis**, **Actualizar**, Expandir/Contraer todo
 - Los ID de modelo usan un prefijo de proveedor (`openrouter/…`, `openai/…`, `local/…`, …)
 
-:::caution
-No utilice OpenRouter **Body Builder** (`openrouter/bodybuilder`) para Traducir, Reescribir o Transformar — devuelve cargas útiles de solicitud JSON, no texto terminado.
+:::tip
+No utilice OpenRouter **Body Builder** (`openrouter/bodybuilder`) para Traducir, Reescribir o Transformar; devuelve cargas útiles de solicitud JSON, no texto terminado.
 :::
 
 Añada con **Añadir**; elimine con **X**. El modelo gratuito de OpenRouter es opcional — los modelos seleccionados pueden estar vacíos. Eliminar el último modelo de la barra de herramientas abre **Configuración → Modelos**. Si el modelo actual deja de estar disponible, la aplicación selecciona el siguiente modelo de la lista en lugar de forzar el modelo gratuito.

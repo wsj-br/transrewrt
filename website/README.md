@@ -9,8 +9,9 @@ Independent pnpm project (own lockfile). Do **not** use `pnpm -w` from the Elect
 ```bash
 # from repo root
 pnpm --dir website install
+# Before publish / to match CI: CI=true pnpm --dir website install --frozen-lockfile
 pnpm --dir website dev
-pnpm --dir website build
+pnpm --dir website build   # prebuild re-checks frozen-lockfile
 
 # i18n pipeline (wired; translate-docs calls OpenRouter — run when ready)
 pnpm --dir website i18n:status

@@ -24,6 +24,10 @@ La carpeta de datos contiene todo lo que vale la pena respaldar:
 
 También puedes crear una copia de seguridad ZIP portátil desde la aplicación; consulta [Ajustes → Ajustes generales](/docs/settings/#general-settings).
 
+## Persistencia de datos (Docker)
+
+Monte un volumen en `/app/data` para que los archivos de configuración y la base de datos SQLite (consulte [Ubicaciones de archivos de configuración](#config-file-locations)) sobrevivan a los reinicios del contenedor. Sin un volumen, los datos se pierden cuando el contenedor se detiene.
+
 ## Variables de entorno (web / Docker)
 
 Electron usa el archivo de configuración local. Solo para el servidor web/Docker:
@@ -63,10 +67,6 @@ Las tres variables `CUSTOM_PROVIDER_*` son obligatorias cuando se utiliza un pun
 ## Modo de privacidad
 
 Establezca `HISTORY_DISABLED` en `true` o `1` en el proceso del servidor web/Docker y/o en el proceso principal de Electron para forzar la desactivación del historial, independientemente de `config.json` o las preferencias por usuario. Esto deshabilita el almacenamiento del historial de entrada/salida, bloquea **Configuración → Ajustes generales → Historial** y bloquea las API relacionadas con el historial.
-
-## Persistencia de datos (Docker)
-
-Monte un volumen en `/app/data` para que los archivos de configuración y la base de datos SQLite (consulte [Ubicaciones de archivos de configuración](#config-file-locations)) sobrevivan a los reinicios del contenedor. Sin un volumen, los datos se pierden cuando el contenedor se detiene.
 
 ## Autenticación web
 

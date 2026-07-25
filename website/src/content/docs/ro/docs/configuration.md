@@ -24,6 +24,10 @@ Folderul de date conține tot ce merită să fie salvat:
 
 Puteți crea și o arhivă ZIP de backup portabilă din aplicație — consultați [Setări → Setări generale](/docs/settings/#general-settings).
 
+## Persistența datelor (Docker)
+
+Montați un volum la `/app/data` astfel încât fișierele de configurare și baza de date SQLite (vezi [Locațiile fișierelor de configurare](#config-file-locations)) să supraviețuiască repornirilor containerului. Fără un volum, datele se pierd la oprirea containerului.
+
 ## Variabile de mediu (web / Docker)
 
 Electron utilizează fișierul de configurare local. Doar pentru serverul web/Docker:
@@ -63,10 +67,6 @@ Toate cele trei variabile `CUSTOM_PROVIDER_*` sunt necesare atunci când utiliza
 ## Modul de confidențialitate
 
 Setați `HISTORY_DISABLED` la `true` sau `1` în procesul serverului web/Docker și/sau în procesul principal Electron pentru a forța dezactivarea istoricului, indiferent de `config.json` sau de preferințele per utilizator. Aceasta dezactivează stocarea istoricului de intrare/ieșire, blochează **Setări → Setări generale → Istoric** și blochează API-urile legate de Istoric.
-
-## Persistența datelor (Docker)
-
-Montați un volum la `/app/data` astfel încât fișierele de configurare și baza de date SQLite (vezi [Locațiile fișierelor de configurare](#config-file-locations)) să supraviețuiască repornirilor containerului. Fără un volum, datele se pierd la oprirea containerului.
 
 ## Autentificare web
 

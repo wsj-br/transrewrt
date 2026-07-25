@@ -12,16 +12,14 @@ Verwenden Sie das **Dashboard**, um zu sehen, wie viel Sie die App nutzen und we
 ![Dashboard-Zusammenfassung](/images/screenshots/de/dashboard-summary.png)
 
 :::note
-Wenn Sie nur **kostenlose** Modelle verwenden, können die Kostenbeträge null sein. Die KPIs für die Anrufanzahl unter **Zusammenfassung** erfordern dennoch Aktivität im ausgewählten Zeitraum.
+Kostenbeträge können als **$0** angezeigt werden, wenn Sie kostenlose Modelle verwenden, der Anbieter keine Kostenverfolgung unterstützt oder Sie ein lokales LLM verwenden. Die KPIs der Anrufanzahl in der **Zusammenfassung** spiegeln die tatsächliche Nutzung wider – sie sind nur dann Null, wenn im ausgewählten Zeitraum keine Aktivität stattfand.
 :::
 
 ## Daten filtern
 
 Verwenden Sie die Filter-Schaltflächen oben, um den Zeitraum zu ändern.
 
-:::note
-Der Filter **Benutzer** ist nur für Administratoren in der Webversion sichtbar. Er ist auf dem Desktop nicht verfügbar.
-:::
+Der Filter **Benutzer** ist nur für Administratoren in der Webversion sichtbar; er ist auf dem Desktop nicht verfügbar.
 
 ## Registerkarten
 

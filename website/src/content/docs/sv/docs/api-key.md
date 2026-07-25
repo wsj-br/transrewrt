@@ -27,8 +27,8 @@ De exakta stegen varierar något beroende på leverantör, men mönstret är det
 2. Hitta sidan **API-nycklar** (ibland under konto, instrumentpanel eller utvecklarinställningar) och skapa en ny nyckel. Vissa leverantörer ber dig att namnge nyckeln eller ange en utgiftsgräns – båda är valfria.
 3. Kopiera nyckeln. Det är en lång sträng av bokstäver och siffror, som ofta börjar med något som `sk-`.
 
-:::caution
-Behandla en API-nyckel som ett lösenord: dela den inte, posta den inte eller skicka den till någon. Om en nyckel läcker, radera den på leverantörens webbplats och skapa en ny.
+:::note
+Behandla en API-nyckel som ett lösenord: dela den inte, publicera den inte och skicka den inte till någon. Om en nyckel läcker ut, radera den på leverantörens webbplats och skapa en ny.
 :::
 
 ## Steg 3 – Lägg till och testa nyckeln (skrivbord)
@@ -39,18 +39,14 @@ Behandla en API-nyckel som ett lösenord: dela den inte, posta den inte eller sk
 
 När testet lyckats är du redo – välj den leverantören på huvudskärmen och börja översätta.
 
-:::caution
-Undvik OpenRouters **Body Builder**-modell (`openrouter/bodybuilder`) – den returnerar JSON-förfrågningsnyttolaster, inte färdig text. Se [Inställningar → Modeller](/docs/settings/#models).
-:::
-
 ## Använda en lokal modell istället (ingen API-nyckel)
 
 Du kan köra modeller på din egen dator med Ollama, LM Studio, llama.cpp eller en annan OpenAI-kompatibel server (till exempel `google/gemma-4-e2b` via LM Studio). Inget lämnar din maskin och ingen API-nyckel behövs.
 
 För att ansluta en, ställ in den lokala LLM-bas-URL:en till den fullständiga API-basen, inklusive sökvägen – till exempel `http://localhost:11434/v1`. På skrivbordet ställer du in detta i **Inställningar → API-konfiguration**; på Docker ställer du istället in miljövariabeln `LOCAL_LLM_URL`.
 
-:::caution
-Om du använder en lokal LLM-server från en annan enhet eller container, konfigurera den för att tillåta externa anslutningar (inte endast localhost).
+:::tip
+Om du använder en lokal LLM-server från en annan enhet eller container, konfigurera den för att tillåta externa anslutningar (inte bara localhost).
 :::
 
 ## Docker / webb

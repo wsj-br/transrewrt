@@ -24,6 +24,10 @@ Az adatmappa mindent tartalmaz, amit érdemes biztonsági másolatot készíteni
 
 Hordozható biztonsági mentési ZIP-fájlt is létrehozhat az alkalmazásból – lásd: [Beállítások → Általános beállítások](/docs/settings/#general-settings).
 
+## Adatmegőrzés (Docker)
+
+Csatlakoztasson egy kötetet az `/app/data` útvonalra, hogy a konfigurációs fájlok és az SQLite adatbázis (lásd [Konfigurációs fájlok helye](#config-file-locations)) túléljék a tároló újraindítását. Kötet nélkül az adatok elvesznek, amikor a tároló leáll.
+
 ## Környezeti változók (web / Docker)
 
 Az Electron a helyi konfigurációs fájlt használja. Csak a web/Docker szerverhez:
@@ -63,10 +67,6 @@ Mindhárom `CUSTOM_PROVIDER_*` változó szükséges egyéni végpont használat
 ## Adatvédelmi mód
 
 Állítsa az `HISTORY_DISABLED` változót `true` vagy `1` értékre a web/Docker szerverfolyamaton és/vagy az Electron főfolyamaton, hogy az előzményeket kikényszerítse, függetlenül az `config.json` beállítástól vagy a felhasználói preferenciáktól. Ez letiltja a bemeneti/kimeneti előzmények tárolását, zárolja a **Beállítások → Általános beállítások → Előzmények** menüpontot, és blokkolja az előzményekkel kapcsolatos API-kat.
-
-## Adatmegőrzés (Docker)
-
-Csatlakoztasson egy kötetet az `/app/data` útvonalra, hogy a konfigurációs fájlok és az SQLite adatbázis (lásd [Konfigurációs fájlok helye](#config-file-locations)) túléljék a tároló újraindítását. Kötet nélkül az adatok elvesznek, amikor a tároló leáll.
 
 ## Webes hitelesítés
 

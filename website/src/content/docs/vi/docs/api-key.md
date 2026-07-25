@@ -27,8 +27,8 @@ Các bước chính xác hơi khác nhau tùy theo nhà cung cấp, nhưng mẫu
 2. Tìm trang **Khóa API** (đôi khi nằm trong cài đặt tài khoản, bảng điều khiển hoặc nhà phát triển) và tạo một khóa mới. Một số nhà cung cấp yêu cầu bạn đặt tên cho khóa hoặc đặt giới hạn chi tiêu — cả hai đều là tùy chọn.
 3. Sao chép khóa. Đó là một chuỗi dài các chữ cái và số, thường bắt đầu bằng một cái gì đó như `sk-`.
 
-:::caution
-Hãy coi khóa API như một mật khẩu: không chia sẻ, đăng hoặc gửi nó cho bất kỳ ai. Nếu khóa bị rò rỉ, hãy xóa nó trên trang web của nhà cung cấp và tạo một khóa mới.
+:::note
+Hãy coi khóa API như một mật khẩu: không chia sẻ, đăng tải hoặc gửi cho bất kỳ ai. Nếu khóa bị lộ, hãy xóa khóa đó trên trang web của nhà cung cấp và tạo một khóa mới.
 :::
 
 ## Bước 3 — Thêm và kiểm tra khóa (máy tính để bàn)
@@ -39,18 +39,14 @@ Hãy coi khóa API như một mật khẩu: không chia sẻ, đăng hoặc gử
 
 Khi kiểm tra thành công, bạn đã sẵn sàng — chọn nhà cung cấp đó trên màn hình chính và bắt đầu dịch.
 
-:::caution
-Tránh mô hình **Body Builder** của OpenRouter (`openrouter/bodybuilder`) — nó trả về các tải trọng yêu cầu JSON, không phải văn bản đã hoàn thành. Xem [Cài đặt → Mô hình](/docs/settings/#models).
-:::
-
 ## Sử dụng mô hình cục bộ thay thế (không có khóa API)
 
 Bạn có thể chạy các mô hình trên máy tính của riêng mình với Ollama, LM Studio, llama.cpp hoặc một máy chủ tương thích OpenAI khác (ví dụ: `google/gemma-4-e2b` qua LM Studio). Không có gì rời khỏi máy của bạn và không cần khóa API.
 
 Để kết nối một cái, hãy đặt URL cơ sở LLM cục bộ thành cơ sở API đầy đủ, bao gồm cả đường dẫn — ví dụ: `http://localhost:11434/v1`. Trên máy tính để bàn, đặt cái này trong **Cài đặt → Cấu hình API**; trên Docker, đặt biến môi trường `LOCAL_LLM_URL` thay thế.
 
-:::caution
-Nếu bạn sử dụng máy chủ LLM cục bộ từ một thiết bị hoặc vùng chứa khác, hãy cấu hình nó để cho phép các kết nối bên ngoài (không chỉ localhost).
+:::tip
+Nếu bạn sử dụng máy chủ LLM cục bộ từ một thiết bị hoặc vùng chứa khác, hãy định cấu hình máy chủ đó để cho phép các kết nối bên ngoài (không chỉ localhost).
 :::
 
 ## Docker / web

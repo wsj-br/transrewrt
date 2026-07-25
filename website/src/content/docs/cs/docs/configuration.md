@@ -24,6 +24,10 @@ Datová složka obsahuje vše, co stojí za zálohování:
 
 Přenosnou záložní složku ZIP můžete také vytvořit z aplikace – viz [Nastavení → Obecná nastavení](/docs/settings/#general-settings).
 
+## Trvalost dat (Docker)
+
+Připojte svazek na `/app/data`, aby konfigurační soubory a databáze SQLite (viz [Umístění konfiguračních souborů](#config-file-locations)) přežily restarty kontejneru. Bez svazku se data ztratí, když se kontejner zastaví.
+
 ## Proměnné prostředí (web / Docker)
 
 Electron používá lokální konfigurační soubor. Pouze pro webový/Docker server:
@@ -63,10 +67,6 @@ Všechny tři proměnné `CUSTOM_PROVIDER_*` jsou vyžadovány při použití vl
 ## Režim soukromí
 
 Nastavte `HISTORY_DISABLED` na `true` nebo `1` v procesu webového/Docker serveru a/nebo v hlavním procesu Electron, abyste vynutili vypnutí historie bez ohledu na `config.json` nebo uživatelské preference. Tím se zakáže ukládání historie vstupů/výstupů, uzamkne se **Nastavení → Obecná nastavení → Historie** a zablokují se API související s historií.
-
-## Trvalost dat (Docker)
-
-Připojte svazek na `/app/data`, aby konfigurační soubory a databáze SQLite (viz [Umístění konfiguračních souborů](#config-file-locations)) přežily restarty kontejneru. Bez svazku se data ztratí, když se kontejner zastaví.
 
 ## Webová autentizace
 

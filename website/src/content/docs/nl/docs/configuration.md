@@ -24,6 +24,10 @@ De gegevensmap bevat alles wat de moeite waard is om een back-up van te maken:
 
 Je kunt ook een draagbare back-up-ZIP maken vanuit de app — zie [Instellingen → Algemene instellingen](/docs/settings/#general-settings).
 
+## Gegevenspersistentie (Docker)
+
+Koppel een volume aan `/app/data` zodat de configuratiebestanden en de SQLite-database (zie [Locaties van configuratiebestanden](#config-file-locations)) containerherstarts overleven. Zonder een volume gaan gegevens verloren wanneer de container stopt.
+
 ## Omgevingsvariabelen (web / Docker)
 
 Electron gebruikt het lokale configuratiebestand. Alleen voor de web/Docker-server:
@@ -63,10 +67,6 @@ Alle drie de `CUSTOM_PROVIDER_*`-variabelen zijn vereist bij het gebruik van een
 ## Privacymodus
 
 Stel `HISTORY_DISABLED` in op `true` of `1` op het web-/Docker-serverproces en/of het Electron-hoofdproces om de geschiedenis geforceerd uit te schakelen, ongeacht `config.json` of gebruikersvoorkeuren. Dit schakelt het opslaan van invoer-/uitvoergeschiedenis uit, vergrendelt **Instellingen → Algemene instellingen → Geschiedenis** en blokkeert geschiedenisgerelateerde API's.
-
-## Gegevenspersistentie (Docker)
-
-Koppel een volume aan `/app/data` zodat de configuratiebestanden en de SQLite-database (zie [Locaties van configuratiebestanden](#config-file-locations)) containerherstarts overleven. Zonder een volume gaan gegevens verloren wanneer de container stopt.
 
 ## Webauthenticatie
 

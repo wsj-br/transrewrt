@@ -12,16 +12,14 @@ Sử dụng **Bảng điều khiển** để xem bạn đang sử dụng ứng d
 ![Tóm tắt bảng điều khiển](/images/screenshots/vi/dashboard-summary.png)
 
 :::note
-Nếu bạn chỉ sử dụng các mô hình **miễn phí**, số tiền chi phí có thể bằng không. Các KPI số lượng cuộc gọi trên **Tóm tắt** vẫn cần hoạt động trong khoảng thời gian đã chọn.
+Số tiền chi phí có thể hiển thị là **$0** nếu bạn sử dụng các mô hình miễn phí, nhà cung cấp không hỗ trợ theo dõi chi phí hoặc bạn đang sử dụng LLM cục bộ. KPI số lượng cuộc gọi trên **Tóm tắt** phản ánh mức sử dụng thực tế bất kể — chúng chỉ bằng 0 nếu không có hoạt động nào trong khoảng thời gian đã chọn.
 :::
 
 ## Lọc dữ liệu
 
 Sử dụng các nút lọc ở trên cùng để thay đổi phạm vi thời gian.
 
-:::note
-Bộ lọc **Người dùng** chỉ hiển thị với quản trị viên trong phiên bản web. Nó không có sẵn trên máy tính để bàn.
-:::
+Bộ lọc **Người dùng** chỉ hiển thị với quản trị viên trong phiên bản web; bộ lọc này không có sẵn trên máy tính để bàn.
 
 ## Các tab
 

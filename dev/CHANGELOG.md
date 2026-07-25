@@ -13,6 +13,10 @@ Use conventional types (Added, Changed, Fixed, etc.) and short descriptions.
 
 ## [1.6.2] - 2026-07-25
 
+- **Fixed**: Align `glob` pnpm override with the direct dependency (`^13.0.6`) so `pnpm install --frozen-lockfile` (release CI) no longer fails with `ERR_PNPM_OUTDATED_LOCKFILE`.
+- **Added**: GitHub Actions `ci.yml` runs frozen-lockfile install plus `pnpm lint` on PRs and pushes to `main`.
+- **Changed**: `prepackage` and the release checklist use `--frozen-lockfile` so local packaging matches CI.
+- **Changed**: Website `prebuild` uses `--frozen-lockfile`; `website-pages.yml` builds on PRs that touch `website/` (deploy still only on `workflow_dispatch`).
 - **Fixed**: `pnpm release:github` on Windows — `git tag -a -m "Release v…"` no longer fails with `fatal: too many arguments`; spawn uses `shell: false` (like ai-i18n-tools) and runs pnpm via `node $npm_execpath` to avoid DEP0190.
 - **Changed**: Website `packageManager` aligned to `pnpm@11.17.0` to match the root app; website `pnpm-workspace.yaml` lists `minimumReleaseAgeExclude` entries needed for that pin.
 - **Fixed**: Docker Compose (`production.yml`, `docker-compose.yml`) forwards `NVIDIA_API_KEY`, `ALIBABA_API_KEY`, and `APIFUN_API_KEY` into the container (same as other LLM provider env vars).

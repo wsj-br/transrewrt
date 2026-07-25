@@ -30,7 +30,7 @@
   "Three ways to run Transrewrt": "Háromféleképpen futtathatod a Transrewrtet",
   "Pick the path that fits you — desktop app or self-hosted web. All paths are free and open source.": "Válaszd ki a számodra megfelelő megoldást — asztali alkalmazás vagy saját szerveren futtatott webalkalmazás. Minden lehetőség ingyenes és nyílt forráskódú.",
   "Run with Docker": "Futtatás Dockerrel",
-  "Then open": "Ezután nyisd meg a következőt:",
+  "Replace PROVIDER_API_KEY with your provider(OPENROUTER_API_KEY, ANTHROPIC_API_KEY, XIA_API_KEY, ...). Open the web UI at": "Cserélje ki a PROVIDER_API_KEY-t a szolgáltatójára (OPENROUTER_API_KEY, ANTHROPIC_API_KEY, XIA_API_KEY, ...). Nyissa meg a webes felületet itt:",
   "and change the default admin password before exposing the service.": ", és cseréld le az alapértelmezett admin jelszót, mielőtt elérhetővé teszed a szolgáltatást.",
   "Transrewrt logo — two overlapping speech bubbles": "Transrewrt logó — két egymást átfedő beszédbuborék",
   "Translate, rewrite, and transform text": "Fordíts, fogalmazz át és alakíts át szöveget",

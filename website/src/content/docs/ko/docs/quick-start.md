@@ -24,8 +24,8 @@ docker run -d \
 
 그 다음 [http://localhost:5000](http://localhost:5000)을 열고, 서비스를 노출하기 전에 **기본 관리자 비밀번호를 변경**하세요.
 
-:::caution
-Docker에서 LLM 자격 증명은 환경 변수(예: `PROVIDER_API_KEY`)로 설정됩니다. 웹 UI에서 **입력하지** 않습니다. 데스크톱에서는 **Settings → API Config**에서 키를 구성합니다.
+:::tip
+Docker에서 LLM 자격 증명은 환경 변수(예: `PROVIDER_API_KEY`)로 설정됩니다. 웹 UI에 입력하지 **않습니다**. 데스크톱에서는 **Settings → API Config**에서 키를 구성합니다.
 :::
 
 ### Docker Compose
@@ -43,7 +43,7 @@ docker compose -f transrewrt.yml up -d
 3. 앱을 열고 **설정 → API 구성**에서 API 키를 입력하세요. 최소 한 개의 제공자를 구성해야 합니다. OpenRouter는 무료 모델을 위한 일반적인 선택입니다.
 
 :::note
-Windows에서는 서명되지 않은 인디 앱에 대해 UAC 또는 SmartScreen 경고가 표시될 수 있습니다. 공식 GitHub 릴리스 페이지에서 다운로드하는 것을 권장하며, 체크섬이 게시된 경우 확인하세요.
+앱을 설치할 때 Windows에서 UAC 또는 SmartScreen 경고가 표시될 수 있습니다. 공식 GitHub Releases 페이지에서 다운로드한 경우 안전하게 설치할 수 있습니다. 설치하려면 "추가 정보"와 "그래도 실행"을 클릭하세요.
 :::
 
 ## Linux

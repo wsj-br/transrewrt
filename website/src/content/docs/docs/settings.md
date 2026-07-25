@@ -63,7 +63,7 @@ Available only in **Advanced** mode.
 - Search, **Provider** chips, **Free Only**, **Refresh**, Expand/Collapse All
 - Model ids use a provider prefix (`openrouter/…`, `openai/…`, `local/…`, …)
 
-:::caution
+:::tip
 Do not use OpenRouter **Body Builder** (`openrouter/bodybuilder`) for Translate, Rewrite, or Transform — it returns JSON request payloads, not finished text.
 :::
 

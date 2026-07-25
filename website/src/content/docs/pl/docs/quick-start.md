@@ -26,7 +26,7 @@ Zastąp `PROVIDER_API_KEY` zmienną dla swojego dostawcy (na przykład `OPENROUT
 
 Następnie otwórz [http://localhost:5000](http://localhost:5000) i **zmień domyślne hasło administratora** przed udostępnieniem usługi.
 
-:::caution
+:::tip
 W Dockerze poświadczenia LLM są ustawiane za pomocą zmiennych środowiskowych (na przykład `PROVIDER_API_KEY`). **Nie** wprowadza się ich w interfejsie użytkownika. Na komputerze stacjonarnym klucze konfiguruje się w **Ustawienia → Konfiguracja API**.
 :::
 
@@ -45,7 +45,7 @@ docker compose -f transrewrt.yml up -d
 3. Otwórz aplikację i wprowadź klucze API w **Ustawienia → Konfiguracja API**. Skonfiguruj co najmniej jednego dostawcę; OpenRouter jest często wybieranym rozwiązaniem dla darmowych modeli.
 
 :::note
-System Windows może wyświetlać ostrzeżenia UAC lub SmartScreen dla niepodpisanych aplikacji niezależnych. Preferuj pobieranie z oficjalnej strony GitHub Releases i weryfikuj sumy kontrolne, gdy są publikowane.
+System Windows może wyświetlać ostrzeżenia UAC lub SmartScreen podczas instalacji aplikacji. Instalacja jest bezpieczna, jeśli pobierzesz ją z oficjalnej strony GitHub Releases. Kliknij „Więcej informacji” i „Uruchom mimo to”, aby zainstalować.
 :::
 
 ## Linux

@@ -22,7 +22,7 @@ Replace `PROVIDER_API_KEY` with the variable for your provider (for example `OPE
 
 Then open [http://localhost:5000](http://localhost:5000) and **change the default admin password** before exposing the service.
 
-:::caution
+:::tip
 In Docker, LLM credentials are set with environment variables (for example `PROVIDER_API_KEY`). They are **not** entered in the web UI. On desktop, you configure keys in **Settings → API Config**.
 :::
 
@@ -41,7 +41,7 @@ docker compose -f transrewrt.yml up -d
 3. Open the app and enter API keys in **Settings → API Config**. Configure at least one provider; OpenRouter is a common choice for free models.
 
 :::note
-Windows may show UAC or SmartScreen warnings for unsigned indie apps. Prefer downloads from the official GitHub Releases page and verify checksums when published.
+Windows may show UAC or SmartScreen warnings when installing the app. It's safe to install if you download it from the official GitHub Releases page. Click "More info" and "Run anyway" to install.
 :::
 
 ## Linux

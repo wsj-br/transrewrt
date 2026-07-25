@@ -67,8 +67,8 @@ Endast tillgänglig i **Avancerat** läge.
 - Sök, **Leverantörs**-taggar, **Endast gratis**, **Uppdatera**, Expandera/Fäll ihop alla
 - Modell-ID använder ett leverantörsprefix (`openrouter/…`, `openai/…`, `local/…`, …)
 
-:::caution
-Använd inte OpenRouter **Body Builder** (`openrouter/bodybuilder`) för Översätt, Skriv om eller Transformera — den returnerar JSON-förfrågningsnyttolaster, inte färdig text.
+:::tip
+Använd inte OpenRouter **Body Builder** (`openrouter/bodybuilder`) för Översätt, Skriv om eller Transformera – den returnerar JSON-begäransnyttolaster, inte färdig text.
 :::
 
 Lägg till med **Lägg till**; ta bort med **X**. Den kostnadsfria OpenRouter-modellen är valfri — valda modeller kan vara tomma. Att ta bort den sista modellen från verktygsfältet öppnar **Inställningar → Modeller**. Om den aktuella modellen blir otillgänglig väljer appen nästa modell i listan istället för att tvinga fram den kostnadsfria modellen.

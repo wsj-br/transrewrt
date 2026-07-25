@@ -67,7 +67,7 @@ Disponibil doar în modul **Avansat**.
 - Căutare, etichete **Furnizor**, **Doar gratuit**, **Reîmprospătare**, Extinde/Restrânge tot
 - ID-urile modelelor utilizează un prefix de furnizor (`openrouter/…`, `openai/…`, `local/…`, …)
 
-:::caution
+:::tip
 Nu utilizați OpenRouter **Body Builder** (`openrouter/bodybuilder`) pentru Traducere, Rescriere sau Transformare — acesta returnează sarcini utile de cerere JSON, nu text finalizat.
 :::
 

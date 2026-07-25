@@ -23,7 +23,7 @@ The exact steps vary slightly by provider, but the pattern is the same everywher
 2. Find the **API keys** page (sometimes under account, dashboard, or developer settings) and create a new key. Some providers ask you to name the key or set a spending limit — both are optional.
 3. Copy the key. It is a long string of letters and numbers, often starting with something like `sk-`.
 
-:::caution
+:::note
 Treat an API key like a password: do not share it, post it, or send it to anyone. If a key leaks, delete it on the provider's website and create a new one.
 :::
 
@@ -35,17 +35,13 @@ Treat an API key like a password: do not share it, post it, or send it to anyone
 
 Once the test succeeds, you are ready — pick that provider on the main screen and start translating.
 
-:::caution
-Avoid OpenRouter's **Body Builder** model (`openrouter/bodybuilder`) — it returns JSON request payloads, not completed text. See [Settings → Models](/docs/settings/#models).
-:::
-
 ## Using a local model instead (no API key)
 
 You can run models on your own computer with Ollama, LM Studio, llama.cpp, or another OpenAI-compatible server (for example `google/gemma-4-e2b` via LM Studio). Nothing leaves your machine and no API key is needed.
 
 To connect one, set the Local LLM base URL to the full API base, including the path — for example `http://localhost:11434/v1`. On desktop, set this in **Settings → API Config**; on Docker, set the `LOCAL_LLM_URL` environment variable instead.
 
-:::caution
+:::tip
 If you use a local LLM server from another device or container, configure it to allow external connections (not localhost-only).
 :::
 

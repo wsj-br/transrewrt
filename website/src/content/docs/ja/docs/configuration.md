@@ -22,6 +22,10 @@ description: 設定ファイルの場所、Docker環境変数、プライバシ�
 
 アプリからポータブルバックアップZIPを作成することもできます — [設定 → 一般設定](/docs/settings/#general-settings) を参照してください。
 
+## データ永続化（Docker）
+
+コンテナの再起動後も設定ファイルとSQLiteデータベース（[設定ファイルの場所](#config-file-locations)を参照）が維持されるように、`/app/data`にボリュームをマウントしてください。ボリュームがない場合、コンテナが停止するとデータは失われます。
+
 ## 環境変数 (Web / Docker)
 
 Electronはローカルの設定ファイルを使用します。Web/Dockerサーバーの場合のみ：
@@ -61,10 +65,6 @@ Electronはローカルの設定ファイルを使用します。Web/Dockerサ�
 ## プライバシーモード
 
 Web/Dockerサーバープロセスおよび/またはElectronメインプロセスで`HISTORY_DISABLED`を`true`または`1`に設定すると、`config.json`やユーザーごとの設定に関係なく、履歴を強制的にオフにします。これにより、入出力履歴の保存が無効になり、**Settings → General Settings → History**がロックされ、履歴関連のAPIがブロックされます。
-
-## データ永続化（Docker）
-
-コンテナの再起動後も設定ファイルとSQLiteデータベース（[設定ファイルの場所](#config-file-locations)を参照）が維持されるように、`/app/data`にボリュームをマウントしてください。ボリュームがない場合、コンテナが停止するとデータは失われます。
 
 ## Web認証
 

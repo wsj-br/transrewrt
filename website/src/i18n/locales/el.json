@@ -30,7 +30,7 @@
   "Three ways to run Transrewrt": "Τρεις τρόποι εκτέλεσης του Transrewrt",
   "Pick the path that fits you — desktop app or self-hosted web. All paths are free and open source.": "Επιλέξτε τον τρόπο που σας ταιριάζει — εφαρμογή desktop ή αυτοφιλοξενούμενο web. Όλες οι επιλογές είναι δωρεάν και ανοιχτού κώδικα.",
   "Run with Docker": "Εκτέλεση με Docker",
-  "Then open": "Στη συνέχεια ανοίξτε",
+  "Replace PROVIDER_API_KEY with your provider(OPENROUTER_API_KEY, ANTHROPIC_API_KEY, XIA_API_KEY, ...). Open the web UI at": "Αντικαταστήστε το PROVIDER_API_KEY με το δικό σας provider(OPENROUTER_API_KEY, ANTHROPIC_API_KEY, XIA_API_KEY, ...). Ανοίξτε το web UI στη διεύθυνση",
   "and change the default admin password before exposing the service.": "και αλλάξτε τον προεπιλεγμένο κωδικό διαχειριστή πριν εκθέσετε την υπηρεσία.",
   "Transrewrt logo — two overlapping speech bubbles": "Λογότυπο Transrewrt — δύο επικαλυπτόμενα συννεφάκια ομιλίας",
   "Translate, rewrite, and transform text": "Μεταφράστε, αναδιατυπώστε και μετασχηματίστε κείμενο",

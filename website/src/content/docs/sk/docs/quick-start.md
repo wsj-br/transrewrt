@@ -26,8 +26,8 @@ Nahraďte `PROVIDER_API_KEY` premennou pre vášho poskytovateľa (napríklad `O
 
 Potom otvorte [http://localhost:5000](http://localhost:5000) a **zmeňte predvolené heslo správcu** predtým, ako sprístupníte službu.
 
-:::caution
-V Dockeri sa poverenia LLM nastavujú pomocou premenných prostredia (napríklad `PROVIDER_API_KEY`). **Nezadávajú** sa do webového používateľského rozhrania. Na počítači konfigurujete kľúče v časti **Nastavenia → Konfigurácia API**.
+:::tip
+V Docker sa poverenia LLM nastavujú pomocou premenných prostredia (napríklad `PROVIDER_API_KEY`). **Nezadávajú** sa do webového používateľského rozhrania. Na počítači konfigurujete kľúče v časti **Nastavenia → Konfigurácia API**.
 :::
 
 ### Docker Compose
@@ -45,7 +45,7 @@ docker compose -f transrewrt.yml up -d
 3. Otvorte aplikáciu a zadajte kľúče API v časti **Nastavenia → Konfigurácia rozhrania API**. Nakonfigurujte aspoň jedného poskytovateľa; OpenRouter je bežná voľba pre bezplatné modely.
 
 :::note
-Systém Windows môže zobrazovať upozornenia UAC alebo SmartScreen pre nepodpísané nezávislé aplikácie. Uprednostnite sťahovanie z oficiálnej stránky GitHub Releases a overte kontrolné súčty, keď sú zverejnené.
+Systém Windows môže pri inštalácii aplikácie zobrazovať upozornenia UAC alebo SmartScreen. Inštalácia je bezpečná, ak si ju stiahnete z oficiálnej stránky GitHub Releases. Ak chcete nainštalovať, kliknite na „Viac informácií“ a „Spustiť aj tak“.
 :::
 
 ## Linux

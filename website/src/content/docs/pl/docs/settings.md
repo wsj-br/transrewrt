@@ -67,7 +67,7 @@ Dostępne tylko w trybie **Zaawansowanym**.
 - Wyszukiwanie, etykiety **Dostawca**, **Tylko darmowe**, **Odśwież**, Rozwiń/Zwiń wszystko
 - Identyfikatory modeli używają prefiksu dostawcy (`openrouter/…`, `openai/…`, `local/…`, …)
 
-:::caution
+:::tip
 Nie używaj OpenRouter **Body Builder** (`openrouter/bodybuilder`) do tłumaczenia, przepisywania ani transformacji — zwraca on ładunki żądań JSON, a nie gotowy tekst.
 :::
 

@@ -12,16 +12,14 @@ Použite **Ovládací panel** na zistenie, koľko aplikáciu používate a aké 
 ![Súhrn ovládacieho panela](/images/screenshots/sk/dashboard-summary.png)
 
 :::note
-Ak používate iba **bezplatné** modely, sumy nákladov môžu byť nulové. KPI počtu hovorov v časti **Súhrn** stále potrebujú aktivitu vo vybranom období.
+Čiastky nákladov sa môžu zobraziť ako **0 USD**, ak používate bezplatné modely, poskytovateľ nepodporuje sledovanie nákladov alebo používate lokálny LLM. KPI počtu volaní v časti **Súhrn** odrážajú skutočné využitie bez ohľadu na to – sú nulové iba v prípade, že vo vybranom období nebola žiadna aktivita.
 :::
 
 ## Filtrovanie údajov
 
 Použite tlačidlá filtra v hornej časti na zmenu časového rozsahu.
 
-:::note
-Filter **Používateľ** je viditeľný iba pre administrátorov vo webovej verzii. Nie je k dispozícii na počítači.
-:::
+Filter **Používateľ** je viditeľný iba pre administrátorov vo webovej verzii; nie je dostupný na počítači.
 
 ## Karty
 

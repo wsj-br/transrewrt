@@ -24,6 +24,10 @@ Der Datenordner enthält alles, was gesichert werden sollte:
 
 Sie können auch ein portables Backup-ZIP aus der App erstellen – siehe [Einstellungen → Allgemeine Einstellungen](/docs/settings/#general-settings).
 
+## Datenpersistenz (Docker)
+
+Mounten Sie ein Volume unter `/app/data`, damit die Konfigurationsdateien und die SQLite-Datenbank (siehe [Speicherorte der Konfigurationsdateien](#config-file-locations)) Container-Neustarts überleben. Ohne ein Volume gehen Daten verloren, wenn der Container stoppt.
+
 ## Umgebungsvariablen (Web / Docker)
 
 Electron verwendet die lokale Konfigurationsdatei. Nur für den Web-/Docker-Server:
@@ -63,10 +67,6 @@ Alle drei `CUSTOM_PROVIDER_*`-Variablen sind erforderlich, wenn ein benutzerdefi
 ## Datenschutzmodus
 
 Setzen Sie `HISTORY_DISABLED` auf `true` oder `1` im Web-/Docker-Serverprozess und/oder im Electron-Hauptprozess, um den Verlauf unabhängig von `config.json` oder benutzerspezifischen Einstellungen zu deaktivieren. Dies deaktiviert die Speicherung des Eingabe-/Ausgabeverlaufs, sperrt **Einstellungen → Allgemeine Einstellungen → Verlauf** und blockiert verlaufsbezogene APIs.
-
-## Datenpersistenz (Docker)
-
-Mounten Sie ein Volume unter `/app/data`, damit die Konfigurationsdateien und die SQLite-Datenbank (siehe [Speicherorte der Konfigurationsdateien](#config-file-locations)) Container-Neustarts überleben. Ohne ein Volume gehen Daten verloren, wenn der Container stoppt.
 
 ## Web-Authentifizierung
 

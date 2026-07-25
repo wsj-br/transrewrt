@@ -26,7 +26,7 @@ Reemplace `PROVIDER_API_KEY` con la variable de su proveedor (por ejemplo, `OPEN
 
 Luego, abra [http://localhost:5000](http://localhost:5000) y **cambie la contraseña de administrador predeterminada** antes de exponer el servicio.
 
-:::caution
+:::tip
 En Docker, las credenciales de LLM se configuran con variables de entorno (por ejemplo, `PROVIDER_API_KEY`). **No** se introducen en la interfaz de usuario web. En el escritorio, se configuran las claves en **Ajustes → Configuración de API**.
 :::
 
@@ -45,7 +45,7 @@ docker compose -f transrewrt.yml up -d
 3. Abra la aplicación e introduzca las claves de API en **Configuración → Configuración de API**. Configure al menos un proveedor; OpenRouter es una opción común para modelos gratuitos.
 
 :::note
-Windows puede mostrar advertencias de UAC o SmartScreen para aplicaciones independientes sin firmar. Prefiera las descargas de la página oficial de GitHub Releases y verifique las sumas de comprobación cuando se publiquen.
+Windows puede mostrar advertencias de UAC o SmartScreen al instalar la aplicación. Es seguro instalarla si la descarga desde la página oficial de GitHub Releases. Haga clic en "Más información" y "Ejecutar de todos modos" para instalar.
 :::
 
 ## Linux

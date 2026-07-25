@@ -12,16 +12,14 @@ Użyj **Pulpitu nawigacyjnego**, aby zobaczyć, ile używasz aplikacji i ile to 
 ![Podsumowanie pulpitu nawigacyjnego](/images/screenshots/pl/dashboard-summary.png)
 
 :::note
-Jeśli używasz tylko **bezpłatnych** modeli, kwoty kosztów mogą wynosić zero. Wskaźniki KPI liczby połączeń w **Podsumowaniu** nadal wymagają aktywności w wybranym okresie.
+Kwoty kosztów mogą być wyświetlane jako **0 USD**, jeśli używasz bezpłatnych modeli, dostawca nie obsługuje śledzenia kosztów lub używasz lokalnego LLM. Wskaźniki KPI liczby wywołań w sekcji **Podsumowanie** odzwierciedlają rzeczywiste użycie niezależnie od tego — są równe zero tylko wtedy, gdy w wybranym okresie nie było żadnej aktywności.
 :::
 
 ## Filtrowanie danych
 
 Użyj przycisków filtra u góry, aby zmienić zakres czasu.
 
-:::note
-Filtr **Użytkownik** jest widoczny tylko dla administratorów w wersji internetowej. Nie jest dostępny na komputerach stacjonarnych.
-:::
+Filtr **Użytkownik** jest widoczny tylko dla administratorów w wersji internetowej; nie jest dostępny na komputerach stacjonarnych.
 
 ## Zakładki
 

@@ -8,16 +8,14 @@ Use **Dashboard** to see how much you are using the app and what it is costing (
 ![Dashboard summary](/images/screenshots/en-GB/dashboard-summary.png)
 
 :::note
-If you only use **free** models, cost amounts may be zero. Call-count KPIs on **Summary** still need activity in the selected period.
+Cost amounts may show as **$0** if you use free models, the provider doesn't support cost tracking, or you're using a local LLM. Call-count KPIs on **Summary** reflect actual usage regardless — they're only zero if there was no activity in the selected period.
 :::
 
 ## Filter the data
 
-Use the filter buttons at the top to change the time range.
+Use the filter buttons at the top to change the time range. 
 
-:::note
-The **User** filter is visible only to administrators in the web version. It is not available on desktop.
-:::
+The **User** filter is visible only to administrators in the web version; it is not available on desktop.
 
 ## Tabs
 

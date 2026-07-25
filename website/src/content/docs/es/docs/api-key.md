@@ -27,7 +27,7 @@ Los pasos exactos varían ligeramente según el proveedor, pero el patrón es el
 2. Busque la página **Claves API** (a veces en la configuración de la cuenta, el panel de control o el desarrollador) y cree una nueva clave. Algunos proveedores le piden que nombre la clave o que establezca un límite de gasto; ambos son opcionales.
 3. Copie la clave. Es una cadena larga de letras y números, que a menudo comienza con algo como `sk-`.
 
-:::caution
+:::note
 Trate una clave API como una contraseña: no la comparta, publique ni envíe a nadie. Si una clave se filtra, elimínela en el sitio web del proveedor y cree una nueva.
 :::
 
@@ -39,17 +39,13 @@ Trate una clave API como una contraseña: no la comparta, publique ni envíe a n
 
 Una vez que la prueba tenga éxito, estará listo: elija ese proveedor en la pantalla principal y comience a traducir.
 
-:::caution
-Evite el modelo **Body Builder** de OpenRouter (`openrouter/bodybuilder`): devuelve cargas útiles de solicitud JSON, no texto completado. Consulte [Ajustes → Modelos](/docs/settings/#models).
-:::
-
 ## Uso de un modelo local en su lugar (sin clave API)
 
 Puede ejecutar modelos en su propio ordenador con Ollama, LM Studio, llama.cpp u otro servidor compatible con OpenAI (por ejemplo, `google/gemma-4-e2b` a través de LM Studio). Nada sale de su máquina y no se necesita ninguna clave API.
 
 Para conectar uno, establezca la URL base del LLM local en la base API completa, incluida la ruta, por ejemplo `http://localhost:11434/v1`. En el escritorio, configúrelo en **Ajustes → Configuración de API**; en Docker, establezca la variable de entorno `LOCAL_LLM_URL` en su lugar.
 
-:::caution
+:::tip
 Si utiliza un servidor LLM local desde otro dispositivo o contenedor, configúrelo para permitir conexiones externas (no solo localhost).
 :::
 

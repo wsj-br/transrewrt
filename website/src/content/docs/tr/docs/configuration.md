@@ -24,6 +24,10 @@ Veri klasörü, yedeklemeye değer her şeyi barındırır:
 
 Uygulamadan taşınabilir bir yedekleme ZIP'i de oluşturabilirsiniz — bkz. [Ayarlar → Genel Ayarlar](/docs/settings/#general-settings).
 
+## Veri kalıcılığı (Docker)
+
+Yapılandırma dosyalarının ve SQLite veritabanının (bkz. [Yapılandırma dosyası konumları](#config-file-locations)) kapsayıcı yeniden başlatmalarında hayatta kalması için `/app/data` konumuna bir birim bağlayın. Bir birim olmadan, kapsayıcı durduğunda veriler kaybolur.
+
 ## Ortam değişkenleri (web / Docker)
 
 Electron yerel yapılandırma dosyasını kullanır. Yalnızca web/Docker sunucusu için:
@@ -63,10 +67,6 @@ Electron yerel yapılandırma dosyasını kullanır. Yalnızca web/Docker sunucu
 ## Gizlilik modu
 
 Geçmişi `config.json` veya kullanıcı başına tercihlerden bağımsız olarak kapatmaya zorlamak için web/Docker sunucu işleminde ve/veya Electron ana işleminde `HISTORY_DISABLED` değerini `true` veya `1` olarak ayarlayın. Bu, giriş/çıkış geçmişinin depolanmasını devre dışı bırakır, **Ayarlar → Genel Ayarlar → Geçmiş**'i kilitler ve Geçmişle ilgili API'leri engeller.
-
-## Veri kalıcılığı (Docker)
-
-Yapılandırma dosyalarının ve SQLite veritabanının (bkz. [Yapılandırma dosyası konumları](#config-file-locations)) kapsayıcı yeniden başlatmalarında hayatta kalması için `/app/data` konumuna bir birim bağlayın. Bir birim olmadan, kapsayıcı durduğunda veriler kaybolur.
 
 ## Web kimlik doğrulaması
 

@@ -27,8 +27,8 @@ Kesin adımlar sağlayıcıya göre biraz değişir, ancak desen her yerde aynı
 2. **API anahtarları** sayfasını bulun (bazen hesap, kontrol paneli veya geliştirici ayarları altında) ve yeni bir anahtar oluşturun. Bazı sağlayıcılar anahtarı adlandırmanızı veya bir harcama limiti belirlemenizi ister; her ikisi de isteğe bağlıdır.
 3. Anahtarı kopyalayın. Genellikle `sk-` gibi bir şeyle başlayan uzun bir harf ve sayı dizisidir.
 
-:::caution
-Bir API anahtarını bir parola gibi ele alın: paylaşmayın, yayınlamayın veya kimseye göndermeyin. Bir anahtar sızarsa, sağlayıcının web sitesinde silin ve yeni bir tane oluşturun.
+:::note
+Bir API anahtarını parola gibi değerlendirin: kimseyle paylaşmayın, yayınlamayın veya göndermeyin. Bir anahtar sızarsa, sağlayıcının web sitesinden silin ve yeni bir tane oluşturun.
 :::
 
 ## Adım 3 — Anahtarı ekleyin ve test edin (masaüstü)
@@ -39,17 +39,13 @@ Bir API anahtarını bir parola gibi ele alın: paylaşmayın, yayınlamayın ve
 
 Test başarılı olduğunda hazırsınız; ana ekranda o sağlayıcıyı seçin ve çevirmeye başlayın.
 
-:::caution
-OpenRouter'ın **Body Builder** modelinden (`openrouter/bodybuilder`) kaçının; tamamlanmış metin değil, JSON istek yükleri döndürür. Bkz. [Ayarlar → Modeller](/docs/settings/#models).
-:::
-
 ## Bunun yerine yerel bir model kullanma (API anahtarı yok)
 
 Kendi bilgisayarınızda Ollama, LM Studio, llama.cpp veya başka bir OpenAI uyumlu sunucu (örneğin LM Studio aracılığıyla `google/gemma-4-e2b`) ile modeller çalıştırabilirsiniz. Makinenizden hiçbir şey ayrılmaz ve API anahtarına gerek yoktur.
 
 Birini bağlamak için, Yerel LLM temel URL'sini yol dahil olmak üzere tam API tabanına ayarlayın; örneğin `http://localhost:11434/v1`. Masaüstünde, bunu **Ayarlar → API Yapılandırması**'nda ayarlayın; Docker'da bunun yerine `LOCAL_LLM_URL` ortam değişkenini ayarlayın.
 
-:::caution
+:::tip
 Başka bir cihazdan veya kapsayıcıdan yerel bir LLM sunucusu kullanıyorsanız, harici bağlantılara izin verecek şekilde yapılandırın (yalnızca localhost değil).
 :::
 

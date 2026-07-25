@@ -2,7 +2,7 @@
 
 **Release date:** 2026-07-25
 
-Transrewrt 1.6.2 tightens Easy/Advanced model picking, improves presets AI Suggest, and polishes everyday workspace UX. The model/preset menu can switch Easy ↔ Advanced without opening Settings; Cost Tracking shares the same cost-display controls as General; and Help plus a version link sit in the workspace chrome. Presets-editor AI Suggest can be cancelled mid-run, caches live-timing for two hours, and shortlists from languagebench and Artificial Analysis. Rewrite’s Changes (diff) control works in every rewrite mode, the OpenRouter free model is optional in the selected list, and temperature is omitted for models that reject non-default values.
+Transrewrt 1.6.2 tightens Easy/Advanced model picking, improves presets AI Suggest, and polishes everyday workspace UX. The model/preset menu can switch Easy ↔ Advanced without opening Settings; Cost Tracking shares the same cost-display controls as General; and Help plus a version link sit in the workspace chrome. Presets-editor AI Suggest can be cancelled mid-run, caches live-timing for two hours, and shortlists from languagebench and Artificial Analysis. Rewrite’s Changes (diff) control works in every rewrite mode, the OpenRouter free model is optional in the selected list, and temperature is omitted for models that reject non-default values. Packaging and CI now use frozen lockfiles end-to-end, with a PR lint workflow and a `glob` override fix so release installs no longer fail on outdated lockfiles.
 
 ## Highlights
 
@@ -22,6 +22,8 @@ Transrewrt 1.6.2 tightens Easy/Advanced model picking, improves presets AI Sugge
 - **Docker Compose**: `production.yml` / `docker-compose.yml` forward `NVIDIA_API_KEY`, `ALIBABA_API_KEY`, and `APIFUN_API_KEY` into the container.
 - **Cross-platform scripts**: `release:github`, `website:publish`, and `docker:clean` use Node scripts; Bash/PowerShell duplicates and `release:github:win` wrappers removed. PowerShell upgrade/clean scripts aligned with Bash.
 - **Website tooling**: Website `packageManager` aligned to `pnpm@11.17.0`; translation cache tracked like the root app; `clean-workspace` also clears website subproject artifacts.
+- **Frozen lockfiles**: `prepackage`, the release checklist, and website `prebuild` use `--frozen-lockfile` so local packaging matches CI.
+- **CI lint workflow**: GitHub Actions `ci.yml` runs frozen-lockfile install plus `pnpm lint` on PRs and pushes to `main`; `website-pages.yml` builds on PRs that touch `website/` (deploy still only on `workflow_dispatch`).
 
 ## Fixes
 
@@ -32,6 +34,7 @@ Transrewrt 1.6.2 tightens Easy/Advanced model picking, improves presets AI Sugge
 - **`pnpm dev:web` / better-sqlite3**: `node-rebuild.js` accepts v13 host prebuilds when the package skips compile.
 - **PowerShell upgrade scripts**: Tools phase runs inside the dotsource block; workspace dirs no longer nest under `@()`; browserslist update falls back when `npx` is missing.
 - **`release:github` on Windows**: Annotated tag creation no longer fails with `fatal: too many arguments` when the `-m` message contains spaces; pnpm is invoked via `node $npm_execpath` (no DEP0190), matching ai-i18n-tools.
+- **Frozen-lockfile install**: `glob` pnpm override aligned with the direct dependency (`^13.0.6`) so `pnpm install --frozen-lockfile` (release CI) no longer fails with `ERR_PNPM_OUTDATED_LOCKFILE`.
 
 ## Detailed changelog
 

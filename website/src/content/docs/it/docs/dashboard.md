@@ -12,16 +12,14 @@ Usa la **Dashboard** per vedere quanto stai usando l'app e quanto costa (per i m
 ![Riepilogo della Dashboard](/images/screenshots/it/dashboard-summary.png)
 
 :::note
-Se usi solo modelli **gratuiti**, gli importi dei costi potrebbero essere zero. I KPI del conteggio delle chiamate su **Riepilogo** richiedono comunque attività nel periodo selezionato.
+Gli importi dei costi potrebbero essere visualizzati come **$0** se si utilizzano modelli gratuiti, il provider non supporta il monitoraggio dei costi o si utilizza un LLM locale. I KPI del conteggio delle chiamate in **Riepilogo** riflettono l'utilizzo effettivo indipendentemente: sono zero solo se non c'è stata attività nel periodo selezionato.
 :::
 
 ## Filtra i dati
 
 Usa i pulsanti del filtro in alto per cambiare l'intervallo di tempo.
 
-:::note
-Il filtro **Utente** è visibile solo agli amministratori nella versione web. Non è disponibile su desktop.
-:::
+Il filtro **Utente** è visibile solo agli amministratori nella versione web; non è disponibile sul desktop.
 
 ## Schede
 

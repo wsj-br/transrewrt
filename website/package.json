@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "astro dev",
+    "prebuild": "pnpm install --frozen-lockfile",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",

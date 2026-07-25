@@ -12,16 +12,14 @@ Använd **instrumentpanelen** för att se hur mycket du använder appen och vad 
 ![Instrumentpanelens sammanfattning](/images/screenshots/sv/dashboard-summary.png)
 
 :::note
-Om du bara använder **gratismodeller** kan kostnadsbeloppen vara noll. KPI:er för samtalsantal på **Sammanfattning** kräver fortfarande aktivitet under den valda perioden.
+Kostnadsbelopp kan visas som **0 USD** om du använder kostnadsfria modeller, leverantören inte stöder kostnadsspårning eller om du använder en lokal LLM. KPI:er för antal anrop på **Sammanfattning** återspeglar faktisk användning oavsett – de är bara noll om det inte fanns någon aktivitet under den valda perioden.
 :::
 
 ## Filtrera data
 
 Använd filterknapparna högst upp för att ändra tidsintervallet.
 
-:::note
-**Användarfiltret** är endast synligt för administratörer i webbversionen. Det är inte tillgängligt på skrivbordet.
-:::
+Filtret **Användare** är endast synligt för administratörer i webbversionen; det är inte tillgängligt på skrivbordet.
 
 ## Flikar
 

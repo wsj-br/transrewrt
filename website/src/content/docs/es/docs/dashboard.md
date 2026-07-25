@@ -12,16 +12,14 @@ Utilice el **Panel de control** para ver cuánto está utilizando la aplicación
 ![Resumen del Panel de control](/images/screenshots/es/dashboard-summary.png)
 
 :::note
-Si solo utiliza modelos **gratuitos**, los importes de los costos pueden ser cero. Los KPI de recuento de llamadas en **Resumen** aún necesitan actividad en el período seleccionado.
+Los importes de los costos pueden aparecer como **$0** si utiliza modelos gratuitos, el proveedor no admite el seguimiento de costos o está utilizando un LLM local. Los KPI de recuento de llamadas en **Resumen** reflejan el uso real, independientemente; solo son cero si no hubo actividad en el período seleccionado.
 :::
 
 ## Filtrar los datos
 
 Utilice los botones de filtro en la parte superior para cambiar el rango de tiempo.
 
-:::note
-El filtro de **Usuario** solo es visible para los administradores en la versión web. No está disponible en el escritorio.
-:::
+El filtro **Usuario** solo es visible para los administradores en la versión web; no está disponible en el escritorio.
 
 ## Pestañas
 

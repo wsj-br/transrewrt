@@ -22,6 +22,10 @@ description: 設定檔位置、Docker 環境變數、隱私模式與網頁驗證
 
 你也可以從應用程式建立可攜式備份 ZIP — 請參閱[設定 → 一般設定](/docs/settings/#general-settings)。
 
+## 資料持久性（Docker）
+
+在 `/app/data` 掛載磁碟區，讓設定檔和 SQLite 資料庫（請參閱[設定檔位置](#config-file-locations)）在容器重新啟動後依然存在。若未掛載磁碟區，容器停止時資料將會遺失。
+
 ## 環境變數（web / Docker）
 
 Electron 使用本機設定檔。僅適用於 web/Docker 伺服器：
@@ -61,10 +65,6 @@ Electron 使用本機設定檔。僅適用於 web/Docker 伺服器：
 ## 隱私模式
 
 在網頁/Docker 伺服器程序及/或 Electron 主程序上將 `HISTORY_DISABLED` 設為 `true` 或 `1`，即可不論 `config.json` 或每位使用者的偏好設定，強制關閉歷史記錄。這會停用輸入/輸出歷史記錄的儲存、鎖定 **設定 → 一般設定 → 歷史記錄**，並封鎖歷史記錄相關 API。
-
-## 資料持久性（Docker）
-
-在 `/app/data` 掛載磁碟區，讓設定檔和 SQLite 資料庫（請參閱[設定檔位置](#config-file-locations)）在容器重新啟動後依然存在。若未掛載磁碟區，容器停止時資料將會遺失。
 
 ## 網頁驗證
 

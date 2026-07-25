@@ -67,8 +67,8 @@ Yalnızca **Gelişmiş** modda kullanılabilir.
 - Ara, **Sağlayıcı** çipleri, **Yalnızca Ücretsiz**, **Yenile**, Tümünü Genişlet/Daralt
 - Model kimlikleri bir sağlayıcı öneki kullanır (`openrouter/…`, `openai/…`, `local/…`, …)
 
-:::caution
-Çeviri, Yeniden Yazma veya Dönüştürme için OpenRouter **Body Builder** (`openrouter/bodybuilder`) kullanmayın — bitmiş metin değil, JSON istek yükleri döndürür.
+:::tip
+Çeviri, Yeniden Yazma veya Dönüştürme için OpenRouter **Body Builder** (`openrouter/bodybuilder`) kullanmayın; bitmiş metin değil, JSON istek yükleri döndürür.
 :::
 
 **Ekle** ile ekleyin; **X** ile kaldırın. OpenRouter ücretsiz modeli isteğe bağlıdır — seçilen modeller boş olabilir. Araç çubuğundan son modeli kaldırmak **Ayarlar → Modeller**'i açar. Mevcut model kullanılamaz hale gelirse, uygulama ücretsiz modeli zorlamak yerine listedeki bir sonraki modeli seçer.

@@ -12,16 +12,14 @@ Uygulamayı ne kadar kullandığınızı ve maliyetini (ücretli modeller için)
 ![Kontrol Paneli özeti](/images/screenshots/tr/dashboard-summary.png)
 
 :::note
-Yalnızca **ücretsiz** modelleri kullanıyorsanız, maliyet tutarları sıfır olabilir. **Özet** bölümündeki çağrı sayısı KPI'ları yine de seçilen dönemde etkinlik gerektirir.
+Ücretsiz modeller kullanıyorsanız, sağlayıcı maliyet takibini desteklemiyorsa veya yerel bir LLM kullanıyorsanız maliyet tutarları **0 $** olarak görünebilir. **Özet** bölümündeki çağrı sayısı KPI'ları gerçek kullanımı yansıtır; yalnızca seçilen dönemde etkinlik yoksa sıfır olurlar.
 :::
 
 ## Verileri filtrele
 
 Zaman aralığını değiştirmek için üstteki filtre düğmelerini kullanın.
 
-:::note
-**Kullanıcı** filtresi yalnızca web sürümündeki yöneticiler tarafından görülebilir. Masaüstünde mevcut değildir.
-:::
+**Kullanıcı** filtresi yalnızca web sürümündeki yöneticiler tarafından görülebilir; masaüstünde kullanılamaz.
 
 ## Sekmeler
 

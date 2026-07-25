@@ -26,8 +26,8 @@ docker run -d \
 
 Apoi deschideți [http://localhost:5000](http://localhost:5000) și **schimbați parola de administrator implicită** înainte de a expune serviciul.
 
-:::caution
-În Docker, acreditările LLM sunt setate cu variabile de mediu (de exemplu `PROVIDER_API_KEY`). Acestea **nu** sunt introduse în interfața web. Pe desktop, configurați cheile în **Setări → Configurare API**.
+:::tip
+În Docker, acreditările LLM sunt setate cu variabile de mediu (de exemplu, `PROVIDER_API_KEY`). Acestea **nu** sunt introduse în interfața web. Pe desktop, configurați cheile în **Settings → API Config**.
 :::
 
 ### Docker Compose
@@ -45,7 +45,7 @@ docker compose -f transrewrt.yml up -d
 3. Deschideți aplicația și introduceți cheile API în **Setări → Configurare API**. Configurați cel puțin un furnizor; OpenRouter este o alegere comună pentru modele gratuite.
 
 :::note
-Windows poate afișa avertismente UAC sau SmartScreen pentru aplicațiile independente nesemnate. Preferă descărcările de pe pagina oficială GitHub Releases și verifică sumele de control atunci când sunt publicate.
+Windows poate afișa avertismente UAC sau SmartScreen la instalarea aplicației. Este sigur să o instalați dacă o descărcați de pe pagina oficială GitHub Releases. Faceți clic pe „Mai multe informații” și „Rulează oricum” pentru a instala.
 :::
 
 ## Linux

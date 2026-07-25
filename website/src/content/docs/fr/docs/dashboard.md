@@ -12,16 +12,14 @@ Utilisez le **Tableau de bord** pour voir votre utilisation de l'application et 
 ![Résumé du tableau de bord](/images/screenshots/fr/dashboard-summary.png)
 
 :::note
-Si vous n'utilisez que des modèles **gratuits**, les montants des coûts peuvent être nuls. Les KPI de nombre d'appels sur le **Résumé** nécessitent toujours une activité pendant la période sélectionnée.
+Les montants des coûts peuvent s'afficher comme **0 $** si vous utilisez des modèles gratuits, si le fournisseur ne prend pas en charge le suivi des coûts ou si vous utilisez un LLM local. Les KPI de nombre d'appels sur le **Résumé** reflètent l'utilisation réelle, quoi qu'il arrive — ils ne sont à zéro que s'il n'y a eu aucune activité pendant la période sélectionnée.
 :::
 
 ## Filtrer les données
 
 Utilisez les boutons de filtre en haut pour modifier la plage de temps.
 
-:::note
-Le filtre **Utilisateur** n'est visible que par les administrateurs dans la version web. Il n'est pas disponible sur le bureau.
-:::
+Le filtre **Utilisateur** n'est visible que par les administrateurs dans la version web ; il n'est pas disponible sur le bureau.
 
 ## Onglets
 

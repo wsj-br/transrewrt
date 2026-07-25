@@ -30,7 +30,7 @@
   "Three ways to run Transrewrt": "Drie manieren om Transrewrt te draaien",
   "Pick the path that fits you — desktop app or self-hosted web. All paths are free and open source.": "Kies de manier die bij je past — desktopapp of self-hosted web. Alle manieren zijn gratis en open source.",
   "Run with Docker": "Uitvoeren met Docker",
-  "Then open": "Open vervolgens",
+  "Replace PROVIDER_API_KEY with your provider(OPENROUTER_API_KEY, ANTHROPIC_API_KEY, XIA_API_KEY, ...). Open the web UI at": "Vervang PROVIDER_API_KEY door uw provider (OPENROUTER_API_KEY, ANTHROPIC_API_KEY, XIA_API_KEY, ...). Open de webinterface op",
   "and change the default admin password before exposing the service.": "en wijzig het standaard beheerderswachtwoord voordat je de service blootstelt.",
   "Transrewrt logo — two overlapping speech bubbles": "Transrewrt-logo — twee overlappende spraakballonnen",
   "Translate, rewrite, and transform text": "Vertaal, herschrijf en transformeer tekst",

@@ -26,7 +26,7 @@ Cserélje ki az `PROVIDER_API_KEY` változót a szolgáltatójának megfelelő v
 
 Ezután nyissa meg a [http://localhost:5000](http://localhost:5000) címet, és **változtassa meg az alapértelmezett adminisztrátori jelszót**, mielőtt elérhetővé tenné a szolgáltatást.
 
-:::caution
+:::tip
 Dockerben az LLM hitelesítő adatok környezeti változókkal (például `PROVIDER_API_KEY`) vannak beállítva. Ezeket **nem** a webes felhasználói felületen kell megadni. Asztali gépen a kulcsokat a **Beállítások → API konfiguráció** menüpontban konfigurálhatja.
 :::
 
@@ -45,7 +45,7 @@ docker compose -f transrewrt.yml up -d
 3. Nyissa meg az alkalmazást, és adja meg az API kulcsokat a **Beállítások → API konfiguráció** menüpontban. Konfiguráljon legalább egy szolgáltatót; az OpenRouter gyakori választás az ingyenes modellekhez.
 
 :::note
-A Windows UAC vagy SmartScreen figyelmeztetéseket jeleníthet meg az aláíratlan független alkalmazások esetében. Előnyben részesítse a hivatalos GitHub Kiadások oldalról történő letöltéseket, és ellenőrizze az ellenőrző összegeket, amikor közzéteszik.
+A Windows UAC vagy SmartScreen figyelmeztetéseket jeleníthet meg az alkalmazás telepítésekor. Biztonságos a telepítés, ha a hivatalos GitHub Releases oldalról tölti le. A telepítéshez kattintson a „További információ” és a „Futtatás mindenképpen” gombokra.
 :::
 
 ## Linux

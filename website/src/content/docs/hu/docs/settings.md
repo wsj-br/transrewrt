@@ -67,8 +67,8 @@ Csak **Haladó** módban érhető el.
 - Keresés, **Szolgáltató** chipek, **Csak ingyenes**, **Frissítés**, Összes kibontása/összecsukása
 - A modellazonosítók szolgáltatói előtagot használnak (`openrouter/…`, `openai/…`, `local/…`, …)
 
-:::caution
-Ne használja az OpenRouter **Body Builder** (`openrouter/bodybuilder`) funkcióját fordításhoz, átíráshoz vagy átalakításhoz – JSON kérés-adatcsomagokat ad vissza, nem kész szöveget.
+:::tip
+Ne használja az OpenRouter **Body Builder** (`openrouter/bodybuilder`) funkcióját fordításhoz, átíráshoz vagy átalakításhoz – az JSON kérés-adatcsomagokat ad vissza, nem kész szöveget.
 :::
 
 Hozzáadás a **Hozzáadás** gombbal; eltávolítás az **X** gombbal. Az OpenRouter ingyenes modellje opcionális – a kiválasztott modellek üresek is lehetnek. Az utolsó modell eltávolítása az eszköztárról megnyitja a **Beállítások → Modellek** menüt. Ha az aktuális modell elérhetetlenné válik, az alkalmazás a lista következő modelljét választja az ingyenes modell kényszerítése helyett.

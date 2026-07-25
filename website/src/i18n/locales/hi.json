@@ -30,7 +30,7 @@
   "Three ways to run Transrewrt": "Transrewrt चलाने के तीन तरीके",
   "Pick the path that fits you — desktop app or self-hosted web. All paths are free and open source.": "अपने अनुकूल तरीका चुनें — डेस्कटॉप ऐप या सेल्फ़-होस्टेड वेब। सभी तरीके मुफ़्त और ओपन सोर्स हैं।",
   "Run with Docker": "Docker के साथ चलाएँ",
-  "Then open": "फिर खोलें",
+  "Replace PROVIDER_API_KEY with your provider(OPENROUTER_API_KEY, ANTHROPIC_API_KEY, XIA_API_KEY, ...). Open the web UI at": "PROVIDER_API_KEY को अपने प्रोवाइडर से बदलें (OPENROUTER_API_KEY, ANTHROPIC_API_KEY, XIA_API_KEY, ...)। वेब यूआई यहाँ खोलें",
   "and change the default admin password before exposing the service.": "और सेवा को एक्सपोज़ करने से पहले डिफ़ॉल्ट एडमिन पासवर्ड बदलें।",
   "Transrewrt logo — two overlapping speech bubbles": "Transrewrt लोगो — दो ओवरलैपिंग स्पीच बबल",
   "Translate, rewrite, and transform text": "टेक्स्ट का अनुवाद, पुनर्लेखन और रूपांतरण करें",

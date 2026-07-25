@@ -27,8 +27,8 @@ Die genauen Schritte variieren je nach Anbieter geringfügig, aber das Muster is
 2. Suchen Sie die Seite **API-Schlüssel** (manchmal unter Konto, Dashboard oder Entwicklereinstellungen) und erstellen Sie einen neuen Schlüssel. Einige Anbieter bitten Sie, den Schlüssel zu benennen oder ein Ausgabenlimit festzulegen – beides ist optional.
 3. Kopieren Sie den Schlüssel. Es ist eine lange Zeichenfolge aus Buchstaben und Zahlen, die oft mit etwas wie `sk-` beginnt.
 
-:::caution
-Behandeln Sie einen API-Schlüssel wie ein Passwort: Geben Sie ihn nicht weiter, veröffentlichen Sie ihn nicht und senden Sie ihn niemandem. Wenn ein Schlüssel verloren geht, löschen Sie ihn auf der Website des Anbieters und erstellen Sie einen neuen.
+:::note
+Behandeln Sie einen API-Schlüssel wie ein Passwort: Geben Sie ihn nicht weiter, veröffentlichen Sie ihn nicht und senden Sie ihn niemandem. Wenn ein Schlüssel bekannt wird, löschen Sie ihn auf der Website des Anbieters und erstellen Sie einen neuen.
 :::
 
 ## Schritt 3 – Schlüssel hinzufügen und testen (Desktop)
@@ -39,18 +39,14 @@ Behandeln Sie einen API-Schlüssel wie ein Passwort: Geben Sie ihn nicht weiter,
 
 Sobald der Test erfolgreich ist, sind Sie bereit – wählen Sie diesen Anbieter auf dem Hauptbildschirm aus und beginnen Sie mit der Übersetzung.
 
-:::caution
-Vermeiden Sie OpenRouters **Body Builder**-Modell (`openrouter/bodybuilder`) – es gibt JSON-Anforderungs-Payloads zurück, keine vollständigen Texte. Siehe [Einstellungen → Modelle](/docs/settings/#models).
-:::
-
 ## Stattdessen ein lokales Modell verwenden (kein API-Schlüssel)
 
 Sie können Modelle auf Ihrem eigenen Computer mit Ollama, LM Studio, llama.cpp oder einem anderen OpenAI-kompatiblen Server ausführen (zum Beispiel `google/gemma-4-e2b` über LM Studio). Nichts verlässt Ihren Computer und es wird kein API-Schlüssel benötigt.
 
 Um eine Verbindung herzustellen, setzen Sie die Basis-URL des lokalen LLM auf die vollständige API-Basis, einschließlich des Pfads – zum Beispiel `http://localhost:11434/v1`. Auf dem Desktop stellen Sie dies in **Einstellungen → API-Konfiguration** ein; unter Docker setzen Sie stattdessen die Umgebungsvariable `LOCAL_LLM_URL`.
 
-:::caution
-Wenn Sie einen lokalen LLM-Server von einem anderen Gerät oder Container verwenden, konfigurieren Sie ihn so, dass externe Verbindungen zugelassen werden (nicht nur localhost).
+:::tip
+Wenn Sie einen lokalen LLM-Server von einem anderen Gerät oder Container verwenden, konfigurieren Sie ihn so, dass er externe Verbindungen zulässt (nicht nur localhost).
 :::
 
 ## Docker / Web

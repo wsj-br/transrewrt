@@ -2,9 +2,10 @@ Create a new release notes file `release-notes/RELEASE_NOTES_<x.y.z>.md` for **T
 
 **Before you start:** run checks that mirror what CI runs before packaging:
 
-1. `pnpm install`
-2. `pnpm lint`
-3. `pnpm build` then `pnpm build:main`
+1. `CI=true pnpm install --frozen-lockfile` (plain `pnpm install` can miss override/lockfile mismatches that fail release CI)
+2. `CI=true pnpm --dir website install --frozen-lockfile` (same check for the marketing/docs site lockfile)
+3. `pnpm lint`
+4. `pnpm build` then `pnpm build:main`
 
 Fix any failures. Optionally run `pnpm package` on your machine for a full Electron packaging smoke test (slow; CI runs this on Windows/Linux).
 

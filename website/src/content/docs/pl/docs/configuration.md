@@ -24,6 +24,10 @@ Folder danych zawiera wszystko, co warto zarchiwizować:
 
 Możesz również utworzyć przenośną kopię zapasową ZIP z poziomu aplikacji — zobacz [Ustawienia → Ustawienia ogólne](/docs/settings/#general-settings).
 
+## Trwałość danych (Docker)
+
+Zamontuj wolumin w `/app/data`, aby pliki konfiguracyjne i baza danych SQLite (zobacz [Lokalizacje plików konfiguracyjnych](#config-file-locations)) przetrwały ponowne uruchomienia kontenera. Bez woluminu dane zostaną utracone po zatrzymaniu kontenera.
+
 ## Zmienne środowiskowe (web / Docker)
 
 Electron używa lokalnego pliku konfiguracyjnego. Tylko dla serwera web/Docker:
@@ -63,10 +67,6 @@ Wszystkie trzy zmienne `CUSTOM_PROVIDER_*` są wymagane podczas korzystania z ni
 ## Tryb prywatności
 
 Ustaw `HISTORY_DISABLED` na `true` lub `1` w procesie serwera web/Docker i/lub głównym procesie Electron, aby wymusić wyłączenie historii niezależnie od `config.json` lub preferencji użytkownika. Spowoduje to wyłączenie przechowywania historii wejść/wyjść, zablokowanie **Ustawienia → Ustawienia ogólne → Historia** oraz zablokowanie interfejsów API związanych z historią.
-
-## Trwałość danych (Docker)
-
-Zamontuj wolumin w `/app/data`, aby pliki konfiguracyjne i baza danych SQLite (zobacz [Lokalizacje plików konfiguracyjnych](#config-file-locations)) przetrwały ponowne uruchomienia kontenera. Bez woluminu dane zostaną utracone po zatrzymaniu kontenera.
 
 ## Uwierzytelnianie w sieci
 

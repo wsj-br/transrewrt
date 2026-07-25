@@ -20,6 +20,10 @@ The data folder holds everything worth backing up:
 
 You can also create a portable backup ZIP from the app — see [Settings → General Settings](/docs/settings/#general-settings).
 
+## Data persistence (Docker)
+
+Mount a volume at `/app/data` so the config files and the SQLite database (see [Config file locations](#config-file-locations)) survive container restarts. Without a volume, data is lost when the container stops.
+
 ## Environment variables (web / Docker)
 
 Electron uses the local config file. For the web/Docker server only:
@@ -59,10 +63,6 @@ All three `CUSTOM_PROVIDER_*` variables are required when using a custom endpoin
 ## Privacy mode
 
 Set `HISTORY_DISABLED` to `true` or `1` on the web/Docker server process and/or the Electron main process to force history off regardless of `config.json` or per-user preferences. This disables storing input/output history, locks **Settings → General Settings → History**, and blocks History-related APIs.
-
-## Data persistence (Docker)
-
-Mount a volume at `/app/data` so the config files and the SQLite database (see [Config file locations](#config-file-locations)) survive container restarts. Without a volume, data is lost when the container stops.
 
 ## Web authentication
 

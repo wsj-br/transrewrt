@@ -12,16 +12,14 @@ Utilizați **Tabloul de bord** pentru a vedea cât de mult utilizați aplicația
 ![Sumarul Tabloului de bord](/images/screenshots/ro/dashboard-summary.png)
 
 :::note
-Dacă utilizați doar modele **gratuite**, sumele costurilor pot fi zero. KPI-urile de număr de apeluri din **Sumar** necesită în continuare activitate în perioada selectată.
+Sumele costurilor pot apărea ca **0 $** dacă utilizați modele gratuite, furnizorul nu acceptă urmărirea costurilor sau utilizați un LLM local. KPI-urile numărului de apeluri din **Sumar** reflectă utilizarea reală, indiferent de situație – acestea sunt zero doar dacă nu a existat nicio activitate în perioada selectată.
 :::
 
 ## Filtrați datele
 
 Utilizați butoanele de filtrare din partea de sus pentru a schimba intervalul de timp.
 
-:::note
-Filtrul **Utilizator** este vizibil doar pentru administratori în versiunea web. Nu este disponibil pe desktop.
-:::
+Filtrul **Utilizator** este vizibil doar pentru administratori în versiunea web; nu este disponibil pe desktop.
 
 ## File
 

@@ -67,8 +67,8 @@ Disponibile solo in modalità **Avanzata**.
 - Ricerca, chip **Provider**, **Solo gratuiti**, **Aggiorna**, Espandi/Comprimi tutto
 - Gli ID dei modelli utilizzano un prefisso del provider (`openrouter/…`, `openai/…`, `local/…`, …)
 
-:::caution
-Non usare OpenRouter **Body Builder** (`openrouter/bodybuilder`) per Traduci, Riscrivi o Trasforma — restituisce payload di richieste JSON, non testo finito.
+:::tip
+Non usare OpenRouter **Body Builder** (`openrouter/bodybuilder`) per Traduci, Riscrivi o Trasforma: restituisce payload di richieste JSON, non testo finito.
 :::
 
 Aggiungi con **Aggiungi**; rimuovi con **X**. Il modello gratuito di OpenRouter è opzionale — i modelli selezionati possono essere vuoti. La rimozione dell'ultimo modello dalla barra degli strumenti apre **Impostazioni → Modelli**. Se il modello corrente diventa non disponibile, l'app seleziona il modello successivo nell'elenco invece di forzare il modello gratuito.

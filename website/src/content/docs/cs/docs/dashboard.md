@@ -12,16 +12,14 @@ Použijte **řídicí panel** k zobrazení, kolik aplikaci používáte a jaké 
 ![Souhrn řídicího panelu](/images/screenshots/cs/dashboard-summary.png)
 
 :::note
-Pokud používáte pouze **bezplatné** modely, částky nákladů mohou být nulové. KPI počtu volání v části **Souhrn** stále vyžadují aktivitu ve vybraném období.
+Částky nákladů se mohou zobrazit jako **0 $**, pokud používáte bezplatné modely, poskytovatel nepodporuje sledování nákladů nebo používáte lokální LLM. KPI počtu volání v části **Souhrn** odrážejí skutečné využití bez ohledu na to – jsou nulové pouze v případě, že ve vybraném období nebyla žádná aktivita.
 :::
 
 ## Filtrování dat
 
 Pomocí tlačítek filtru nahoře změňte časové rozmezí.
 
-:::note
-Filtr **Uživatel** je viditelný pouze pro administrátory ve webové verzi. Není k dispozici na počítači.
-:::
+Filtr **Uživatel** je viditelný pouze pro administrátory ve webové verzi; není k dispozici na počítači.
 
 ## Karty
 

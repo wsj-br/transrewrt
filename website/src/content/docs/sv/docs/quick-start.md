@@ -26,7 +26,7 @@ Ersätt `PROVIDER_API_KEY` med variabeln för din leverantör (till exempel `OPE
 
 Öppna sedan [http://localhost:5000](http://localhost:5000) och **ändra standardlösenordet för administratören** innan du exponerar tjänsten.
 
-:::caution
+:::tip
 I Docker ställs LLM-autentiseringsuppgifter in med miljövariabler (till exempel `PROVIDER_API_KEY`). De anges **inte** i webbgränssnittet. På skrivbordet konfigurerar du nycklar i **Inställningar → API-konfiguration**.
 :::
 
@@ -45,7 +45,7 @@ docker compose -f transrewrt.yml up -d
 3. Öppna appen och ange API-nycklar i **Inställningar → API-konfiguration**. Konfigurera minst en leverantör; OpenRouter är ett vanligt val för gratismodeller.
 
 :::note
-Windows kan visa UAC- eller SmartScreen-varningar för osignerade indie-appar. Föredra nedladdningar från den officiella GitHub Releases-sidan och verifiera kontrollsummor när de publiceras.
+Windows kan visa UAC- eller SmartScreen-varningar när du installerar appen. Det är säkert att installera om du laddar ner den från den officiella GitHub Releases-sidan. Klicka på ”Mer info” och ”Kör ändå” för att installera.
 :::
 
 ## Linux

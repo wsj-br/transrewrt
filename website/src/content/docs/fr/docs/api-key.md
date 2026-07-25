@@ -27,8 +27,8 @@ Les étapes exactes varient légèrement selon le fournisseur, mais le schéma e
 2. Trouvez la page **Clés API** (parfois sous les paramètres de compte, de tableau de bord ou de développeur) et créez une nouvelle clé. Certains fournisseurs vous demandent de nommer la clé ou de définir une limite de dépenses — les deux sont facultatifs.
 3. Copiez la clé. C'est une longue chaîne de lettres et de chiffres, commençant souvent par quelque chose comme `sk-`.
 
-:::caution
-Traitez une clé API comme un mot de passe : ne la partagez pas, ne la publiez pas et ne l'envoyez à personne. Si une clé est compromise, supprimez-la sur le site web du fournisseur et créez-en une nouvelle.
+:::note
+Traitez une clé API comme un mot de passe : ne la partagez pas, ne la publiez pas et ne l'envoyez à personne. Si une clé est divulguée, supprimez-la sur le site web du fournisseur et créez-en une nouvelle.
 :::
 
 ## Étape 3 — Ajouter et tester la clé (ordinateur de bureau)
@@ -39,18 +39,14 @@ Traitez une clé API comme un mot de passe : ne la partagez pas, ne la publiez p
 
 Une fois le test réussi, vous êtes prêt — choisissez ce fournisseur sur l'écran principal et commencez à traduire.
 
-:::caution
-Évitez le modèle **Body Builder** d'OpenRouter (`openrouter/bodybuilder`) — il renvoie des charges utiles de requête JSON, pas du texte complété. Voir [Paramètres → Modèles](/docs/settings/#models).
-:::
-
 ## Utiliser un modèle local à la place (pas de clé API)
 
 Vous pouvez exécuter des modèles sur votre propre ordinateur avec Ollama, LM Studio, llama.cpp ou un autre serveur compatible OpenAI (par exemple `google/gemma-4-e2b` via LM Studio). Rien ne quitte votre machine et aucune clé API n'est nécessaire.
 
 Pour en connecter un, définissez l'URL de base du LLM local sur l'API de base complète, y compris le chemin — par exemple `http://localhost:11434/v1`. Sur un ordinateur de bureau, définissez cela dans **Paramètres → Configuration API** ; sur Docker, définissez plutôt la variable d'environnement `LOCAL_LLM_URL`.
 
-:::caution
-Si vous utilisez un serveur LLM local depuis un autre appareil ou conteneur, configurez-le pour autoriser les connexions externes (pas seulement localhost).
+:::tip
+Si vous utilisez un serveur LLM local depuis un autre appareil ou conteneur, configurez-le pour autoriser les connexions externes (pas uniquement localhost).
 :::
 
 ## Docker / web

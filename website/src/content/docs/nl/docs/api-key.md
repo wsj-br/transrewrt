@@ -27,8 +27,8 @@ De exacte stappen variëren enigszins per provider, maar het patroon is overal h
 2. Zoek de pagina **API-sleutels** (soms onder account, dashboard of ontwikkelaarsinstellingen) en maak een nieuwe sleutel aan. Sommige providers vragen u om de sleutel een naam te geven of een bestedingslimiet in te stellen — beide zijn optioneel.
 3. Kopieer de sleutel. Het is een lange reeks letters en cijfers, vaak beginnend met iets als `sk-`.
 
-:::caution
-Behandel een API-sleutel als een wachtwoord: deel deze niet, plaats deze niet en stuur deze naar niemand. Als een sleutel lekt, verwijder deze dan op de website van de provider en maak een nieuwe aan.
+:::note
+Behandel een API-sleutel als een wachtwoord: deel deze niet, plaats deze niet en verstuur deze niet naar iemand anders. Als een sleutel uitlekt, verwijder deze dan op de website van de provider en maak een nieuwe aan.
 :::
 
 ## Stap 3 — Voeg de sleutel toe en test deze (desktop)
@@ -39,18 +39,14 @@ Behandel een API-sleutel als een wachtwoord: deel deze niet, plaats deze niet en
 
 Zodra de test is geslaagd, bent u klaar — kies die provider op het hoofdscherm en begin met vertalen.
 
-:::caution
-Vermijd OpenRouter's **Body Builder**-model (`openrouter/bodybuilder`) — het retourneert JSON-aanvraagpayloads, geen voltooide tekst. Zie [Instellingen → Modellen](/docs/settings/#models).
-:::
-
 ## Een lokaal model gebruiken (geen API-sleutel)
 
 U kunt modellen op uw eigen computer draaien met Ollama, LM Studio, llama.cpp of een andere OpenAI-compatibele server (bijvoorbeeld `google/gemma-4-e2b` via LM Studio). Niets verlaat uw machine en er is geen API-sleutel nodig.
 
 Om er een te verbinden, stelt u de basis-URL van de lokale LLM in op de volledige API-basis, inclusief het pad — bijvoorbeeld `http://localhost:11434/v1`. Op desktop stelt u dit in via **Instellingen → API-configuratie**; op Docker stelt u in plaats daarvan de omgevingsvariabele `LOCAL_LLM_URL` in.
 
-:::caution
-Als je een lokale LLM-server vanaf een ander apparaat of container gebruikt, configureer deze dan om externe verbindingen toe te staan (niet alleen localhost).
+:::tip
+Als u een lokale LLM-server gebruikt vanaf een ander apparaat of een andere container, configureer deze dan om externe verbindingen toe te staan (niet alleen localhost).
 :::
 
 ## Docker / web

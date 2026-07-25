@@ -26,8 +26,8 @@ Ersetzen Sie `PROVIDER_API_KEY` durch die Variable für Ihren Anbieter (z. B. `O
 
 Öffnen Sie dann [http://localhost:5000](http://localhost:5000) und **ändern Sie das Standard-Admin-Passwort**, bevor Sie den Dienst freigeben.
 
-:::caution
-In Docker werden LLM-Anmeldeinformationen mit Umgebungsvariablen (z. B. `PROVIDER_API_KEY`) festgelegt. Sie werden **nicht** in die Weboberfläche eingegeben. Auf dem Desktop konfigurieren Sie Schlüssel unter **Einstellungen → API-Konfiguration**.
+:::tip
+In Docker werden LLM-Anmeldeinformationen mit Umgebungsvariablen (z. B. `PROVIDER_API_KEY`) festgelegt. Sie werden **nicht** in der Web-Benutzeroberfläche eingegeben. Auf dem Desktop konfigurieren Sie Schlüssel unter **Einstellungen → API-Konfiguration**.
 :::
 
 ### Docker Compose
@@ -45,7 +45,7 @@ docker compose -f transrewrt.yml up -d
 3. Öffnen Sie die App und geben Sie API-Schlüssel unter **Einstellungen → API-Konfiguration** ein. Konfigurieren Sie mindestens einen Anbieter; OpenRouter ist eine gängige Wahl für kostenlose Modelle.
 
 :::note
-Windows kann UAC- oder SmartScreen-Warnungen für nicht signierte Indie-Apps anzeigen. Bevorzugen Sie Downloads von der offiziellen GitHub-Releases-Seite und überprüfen Sie die Prüfsummen, wenn diese veröffentlicht werden.
+Windows zeigt möglicherweise UAC- oder SmartScreen-Warnungen an, wenn Sie die App installieren. Die Installation ist sicher, wenn Sie sie von der offiziellen GitHub Releases-Seite herunterladen. Klicken Sie auf „Weitere Informationen“ und „Trotzdem ausführen“, um die Installation durchzuführen.
 :::
 
 ## Linux

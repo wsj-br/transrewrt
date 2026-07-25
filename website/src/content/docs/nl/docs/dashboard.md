@@ -12,16 +12,14 @@ Gebruik **Dashboard** om te zien hoeveel u de app gebruikt en wat de kosten zijn
 ![Dashboardoverzicht](/images/screenshots/nl/dashboard-summary.png)
 
 :::note
-Als u alleen **gratis** modellen gebruikt, kunnen de kosten nul zijn. KPI's voor het aantal oproepen op **Overzicht** vereisen nog steeds activiteit in de geselecteerde periode.
+Kostenbedragen kunnen als **$0** worden weergegeven als u gratis modellen gebruikt, de provider geen kostenregistratie ondersteunt of als u een lokale LLM gebruikt. KPI's voor het aantal oproepen op **Samenvatting** weerspiegelen desondanks het werkelijke gebruik — ze zijn alleen nul als er geen activiteit was in de geselecteerde periode.
 :::
 
 ## De gegevens filteren
 
 Gebruik de filterknoppen bovenaan om het tijdsbereik te wijzigen.
 
-:::note
-Het filter **Gebruiker** is alleen zichtbaar voor beheerders in de webversie. Het is niet beschikbaar op desktop.
-:::
+Het filter **Gebruiker** is alleen zichtbaar voor beheerders in de webversie; het is niet beschikbaar op de desktop.
 
 ## Tabs
 

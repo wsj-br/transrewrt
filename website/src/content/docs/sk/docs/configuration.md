@@ -24,6 +24,10 @@ Priečinok s dátami obsahuje všetko, čo stojí za zálohovanie:
 
 Prenosnú zálohu ZIP môžete vytvoriť aj z aplikácie – pozrite si [Nastavenia → Všeobecné nastavenia](/docs/settings/#general-settings).
 
+## Trvalosť dát (Docker)
+
+Pripojte zväzok na `/app/data`, aby konfiguračné súbory a databáza SQLite (pozrite si [Umiestnenia konfiguračných súborov](#config-file-locations)) prežili reštarty kontajnera. Bez zväzku sa dáta stratia po zastavení kontajnera.
+
 ## Premenné prostredia (web / Docker)
 
 Electron používa lokálny konfiguračný súbor. Len pre webový/Docker server:
@@ -63,10 +67,6 @@ Všetky tri premenné `CUSTOM_PROVIDER_*` sú povinné pri použití vlastného 
 ## Režim súkromia
 
 Nastavte `HISTORY_DISABLED` na `true` alebo `1` v procese webového/Docker servera a/alebo v hlavnom procese Electronu, aby ste vynútili vypnutie histórie bez ohľadu na `config.json` alebo preferencie jednotlivých používateľov. Tým sa zakáže ukladanie histórie vstupov/výstupov, uzamkne sa **Nastavenia → Všeobecné nastavenia → História** a zablokujú sa API súvisiace s históriou.
-
-## Trvalosť dát (Docker)
-
-Pripojte zväzok na `/app/data`, aby konfiguračné súbory a databáza SQLite (pozrite si [Umiestnenia konfiguračných súborov](#config-file-locations)) prežili reštarty kontajnera. Bez zväzku sa dáta stratia po zastavení kontajnera.
 
 ## Webová autentifikácia
 

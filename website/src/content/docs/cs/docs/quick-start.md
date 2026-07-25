@@ -26,8 +26,8 @@ Nahraďte `PROVIDER_API_KEY` proměnnou pro vašeho poskytovatele (například `
 
 Poté otevřete [http://localhost:5000](http://localhost:5000) a **změňte výchozí heslo správce** před zpřístupněním služby.
 
-:::caution
-V Dockeru se přihlašovací údaje LLM nastavují pomocí proměnných prostředí (například `PROVIDER_API_KEY`). **Nezadávají** se do webového uživatelského rozhraní. Na desktopu konfigurujete klíče v **Nastavení → Konfigurace API**.
+:::tip
+V Dockeru se přihlašovací údaje LLM nastavují pomocí proměnných prostředí (například `PROVIDER_API_KEY`). **Nezadávají** se do webového uživatelského rozhraní. Na počítači nakonfigurujete klíče v **Nastavení → Konfigurace API**.
 :::
 
 ### Docker Compose
@@ -45,7 +45,7 @@ docker compose -f transrewrt.yml up -d
 3. Otevřete aplikaci a zadejte klíče API v **Nastavení → Konfigurace API**. Nakonfigurujte alespoň jednoho poskytovatele; OpenRouter je běžná volba pro bezplatné modely.
 
 :::note
-Windows mohou zobrazovat upozornění UAC nebo SmartScreen pro nepodepsané nezávislé aplikace. Upřednostňujte stahování z oficiální stránky GitHub Releases a ověřte kontrolní součty, pokud jsou zveřejněny.
+Při instalaci aplikace se v systému Windows mohou zobrazit upozornění UAC nebo SmartScreen. Instalace je bezpečná, pokud si ji stáhnete z oficiální stránky GitHub Releases. Pro instalaci klikněte na „Další informace“ a „Spustit i přesto“.
 :::
 
 ## Linux

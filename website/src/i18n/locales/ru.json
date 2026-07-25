@@ -30,7 +30,7 @@
   "Three ways to run Transrewrt": "Три способа запустить Transrewrt",
   "Pick the path that fits you — desktop app or self-hosted web. All paths are free and open source.": "Выберите подходящий вариант — приложение для компьютера или веб-версия на своём сервере. Все варианты бесплатны и с открытым исходным кодом.",
   "Run with Docker": "Запустить с Docker",
-  "Then open": "Затем откройте",
+  "Replace PROVIDER_API_KEY with your provider(OPENROUTER_API_KEY, ANTHROPIC_API_KEY, XIA_API_KEY, ...). Open the web UI at": "Замените PROVIDER_API_KEY на ключ вашего провайдера (OPENROUTER_API_KEY, ANTHROPIC_API_KEY, XIA_API_KEY, ...). Откройте веб-интерфейс по адресу",
   "and change the default admin password before exposing the service.": "и смените пароль администратора по умолчанию перед публикацией сервиса.",
   "Transrewrt logo — two overlapping speech bubbles": "Логотип Transrewrt — два пересекающихся речевых пузыря",
   "Translate, rewrite, and transform text": "Перевод, переписывание и преобразование текста",

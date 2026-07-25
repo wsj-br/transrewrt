@@ -9,7 +9,7 @@ PROVIDER_API_KEY=sk-or-your-key docker run -d \\
   -p 5000:5000 \\
   -v transrewrt-data:/app/data \\
   -e PROVIDER_API_KEY \\
-  --name transrewrt-web \\
+  --name transrewrt \\
   ${DOCKER_IMAGE}`;
 
 function CodeBlock({ code }: { code: string }) {
@@ -148,7 +148,7 @@ export default function GetStarted() {
           </div>
           <CodeBlock code={DOCKER_SNIPPET} />
           <p className="mt-4 text-sm text-neutral-500">
-            {t('Then open')}{' '}
+            {t('Replace PROVIDER_API_KEY with your provider(OPENROUTER_API_KEY, ANTHROPIC_API_KEY, XIA_API_KEY, ...). Open the web UI at')}{' '}
             <code className="rounded bg-white/5 px-1.5 py-0.5 font-mono text-brand-green-400">
               http://localhost:5000
             </code>{' '}

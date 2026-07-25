@@ -30,7 +30,7 @@
   "Three ways to run Transrewrt": "Trei moduri de a rula Transrewrt",
   "Pick the path that fits you — desktop app or self-hosted web. All paths are free and open source.": "Alegeți varianta potrivită pentru dvs. — aplicație desktop sau web auto-găzduit. Toate variantele sunt gratuite și open source.",
   "Run with Docker": "Rulați cu Docker",
-  "Then open": "Apoi deschideți",
+  "Replace PROVIDER_API_KEY with your provider(OPENROUTER_API_KEY, ANTHROPIC_API_KEY, XIA_API_KEY, ...). Open the web UI at": "Înlocuiește PROVIDER_API_KEY cu cheia furnizorului tău(OPENROUTER_API_KEY, ANTHROPIC_API_KEY, XIA_API_KEY, ...). Deschide interfața web la",
   "and change the default admin password before exposing the service.": "și schimbați parola implicită de administrator înainte de a expune serviciul.",
   "Transrewrt logo — two overlapping speech bubbles": "Sigla Transrewrt — două baloane de dialog suprapuse",
   "Translate, rewrite, and transform text": "Traduceți, rescrieți și transformați text",

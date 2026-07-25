@@ -65,8 +65,8 @@ description: 一般、模型、語言、詞彙表、成本、轉換、使用者�
 - 搜尋、**供應商**晶片、**僅限免費**、**重新整理**、全部展開/摺疊
 - 模型 ID 使用供應商前綴（`openrouter/…`、`openai/…`、`local/…`、…）
 
-:::caution
-不要將 OpenRouter **Body Builder** (`openrouter/bodybuilder`) 用於翻譯、改寫或轉換 — 它會傳回 JSON 請求負載，而非完成的文字。
+:::tip
+請勿使用 OpenRouter **Body Builder** (`openrouter/bodybuilder`) 進行翻譯、改寫或轉換 — 它會傳回 JSON 請求負載，而非完成的文字。
 :::
 
 使用**新增**來新增；使用**X**來移除。OpenRouter 免費模型是選用的 — 已選模型可以為空。從工具列移除最後一個模型會開啟**設定 → 模型**。如果目前模型變得不可用，應用程式會選擇清單中的下一個模型，而不是強制使用免費模型。

@@ -24,6 +24,10 @@ La cartella dati contiene tutto ciò che vale la pena di salvare:
 
 Puoi anche creare un backup ZIP portatile dall'app — vedi [Impostazioni → Impostazioni generali](/docs/settings/#general-settings).
 
+## Persistenza dei dati (Docker)
+
+Montare un volume su `/app/data` in modo che i file di configurazione e il database SQLite (vedere [Posizioni dei file di configurazione](#config-file-locations)) sopravvivano ai riavvii del contenitore. Senza un volume, i dati vengono persi quando il contenitore si ferma.
+
 ## Variabili d'ambiente (web / Docker)
 
 Electron usa il file di configurazione locale. Solo per il server web/Docker:
@@ -63,10 +67,6 @@ Tutte e tre le variabili `CUSTOM_PROVIDER_*` sono richieste quando si utilizza u
 ## Modalità privacy
 
 Impostare `HISTORY_DISABLED` su `true` o `1` sul processo del server web/Docker e/o sul processo principale di Electron per forzare la disattivazione della cronologia indipendentemente da `config.json` o dalle preferenze per utente. Questo disabilita la memorizzazione della cronologia di input/output, blocca **Impostazioni → Impostazioni generali → Cronologia** e blocca le API relative alla cronologia.
-
-## Persistenza dei dati (Docker)
-
-Montare un volume su `/app/data` in modo che i file di configurazione e il database SQLite (vedere [Posizioni dei file di configurazione](#config-file-locations)) sopravvivano ai riavvii del contenitore. Senza un volume, i dati vengono persi quando il contenitore si ferma.
 
 ## Autenticazione web
 

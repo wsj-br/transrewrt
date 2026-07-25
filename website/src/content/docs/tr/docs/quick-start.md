@@ -26,8 +26,8 @@ docker run -d \
 
 Ardından [http://localhost:5000](http://localhost:5000) adresini açın ve hizmeti kullanıma sunmadan önce **varsayılan yönetici parolasını değiştirin**.
 
-:::caution
-Docker'da LLM kimlik bilgileri ortam değişkenleriyle ayarlanır (örneğin `PROVIDER_API_KEY`). Web kullanıcı arayüzüne **girilmezler**. Masaüstünde anahtarları **Ayarlar → API Yapılandırması** bölümünde yapılandırırsınız.
+:::tip
+Docker'da LLM kimlik bilgileri ortam değişkenleriyle (örneğin `PROVIDER_API_KEY`) ayarlanır. Bunlar web kullanıcı arayüzüne **girilmez**. Masaüstünde, anahtarları **Ayarlar → API Yapılandırması** bölümünde yapılandırırsınız.
 :::
 
 ### Docker Compose
@@ -45,7 +45,7 @@ docker compose -f transrewrt.yml up -d
 3. Uygulamayı açın ve API anahtarlarını **Ayarlar → API Yapılandırması** bölümüne girin. En az bir sağlayıcı yapılandırın; OpenRouter, ücretsiz modeller için yaygın bir seçimdir.
 
 :::note
-Windows, imzasız bağımsız uygulamalar için UAC veya SmartScreen uyarıları gösterebilir. Resmi GitHub Sürümler sayfasından indirmeleri tercih edin ve yayınlandığında sağlama toplamlarını doğrulayın.
+Windows, uygulamayı yüklerken UAC veya SmartScreen uyarıları gösterebilir. Resmi GitHub Sürümleri sayfasından indirirseniz yüklemek güvenlidir. Yüklemek için "Daha fazla bilgi" ve "Yine de çalıştır"a tıklayın.
 :::
 
 ## Linux

@@ -22,6 +22,10 @@ Thư mục dữ liệu chứa mọi thứ đáng sao lưu:
 
 Bạn cũng có thể tạo bản sao lưu ZIP di động từ ứng dụng — xem [Cài đặt → Cài đặt chung](/docs/settings/#general-settings).
 
+## Duy trì dữ liệu (Docker)
+
+Gắn một ổ đĩa tại `/app/data` để các tệp cấu hình và cơ sở dữ liệu SQLite (xem [Vị trí tệp cấu hình](#config-file-locations)) tồn tại sau khi khởi động lại vùng chứa. Nếu không có ổ đĩa, dữ liệu sẽ bị mất khi vùng chứa dừng.
+
 ## Biến môi trường (web / Docker)
 
 Electron sử dụng tệp cấu hình cục bộ. Chỉ dành cho máy chủ web/Docker:
@@ -61,10 +65,6 @@ Cả ba biến `CUSTOM_PROVIDER_*` đều bắt buộc khi sử dụng điểm c
 ## Chế độ riêng tư
 
 Đặt `HISTORY_DISABLED` thành `true` hoặc `1` trên tiến trình máy chủ web/Docker và/hoặc tiến trình chính Electron để buộc tắt lịch sử bất kể `config.json` hoặc tùy chọn của từng người dùng. Điều này vô hiệu hóa việc lưu trữ lịch sử nhập/xuất, khóa **Cài đặt → Cài đặt chung → Lịch sử** và chặn các API liên quan đến Lịch sử.
-
-## Duy trì dữ liệu (Docker)
-
-Gắn một ổ đĩa tại `/app/data` để các tệp cấu hình và cơ sở dữ liệu SQLite (xem [Vị trí tệp cấu hình](#config-file-locations)) tồn tại sau khi khởi động lại vùng chứa. Nếu không có ổ đĩa, dữ liệu sẽ bị mất khi vùng chứa dừng.
 
 ## Xác thực web
 

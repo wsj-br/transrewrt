@@ -27,8 +27,8 @@ Pașii exacți variază ușor în funcție de furnizor, dar modelul este acelaș
 2. Găsiți pagina **API keys** (uneori sub setările contului, tabloului de bord sau dezvoltatorului) și creați o cheie nouă. Unii furnizori vă cer să denumiți cheia sau să setați o limită de cheltuieli — ambele sunt opționale.
 3. Copiați cheia. Este un șir lung de litere și numere, adesea începând cu ceva de genul `sk-`.
 
-:::caution
-Tratați o cheie API ca o parolă: nu o partajați, nu o postați și nu o trimiteți nimănui. Dacă o cheie se scurge, ștergeți-o de pe site-ul web al furnizorului și creați una nouă.
+:::note
+Tratați o cheie API ca pe o parolă: nu o partajați, nu o postați și nu o trimiteți nimănui. Dacă o cheie se scurge, ștergeți-o de pe site-ul furnizorului și creați una nouă.
 :::
 
 ## Pasul 3 — Adăugați și testați cheia (desktop)
@@ -39,17 +39,13 @@ Tratați o cheie API ca o parolă: nu o partajați, nu o postați și nu o trimi
 
 Odată ce testul reușește, sunteți gata — alegeți acel furnizor pe ecranul principal și începeți să traduceți.
 
-:::caution
-Evitați modelul **Body Builder** al OpenRouter (`openrouter/bodybuilder`) — acesta returnează sarcini utile de solicitare JSON, nu text completat. Consultați [Settings → Models](/docs/settings/#models).
-:::
-
 ## Utilizarea unui model local în schimb (fără cheie API)
 
 Puteți rula modele pe propriul computer cu Ollama, LM Studio, llama.cpp sau un alt server compatibil OpenAI (de exemplu `google/gemma-4-e2b` prin LM Studio). Nimic nu părăsește mașina dvs. și nu este necesară nicio cheie API.
 
 Pentru a conecta unul, setați URL-ul de bază Local LLM la baza API completă, inclusiv calea — de exemplu `http://localhost:11434/v1`. Pe desktop, setați acest lucru în **Settings → API Config**; pe Docker, setați în schimb variabila de mediu `LOCAL_LLM_URL`.
 
-:::caution
+:::tip
 Dacă utilizați un server LLM local de pe un alt dispozitiv sau container, configurați-l să permită conexiuni externe (nu doar localhost).
 :::
 

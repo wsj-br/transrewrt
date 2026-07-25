@@ -27,8 +27,8 @@ A pontos lépések szolgáltatónként kissé eltérnek, de a minta mindenhol ug
 2. Keresse meg az **API-kulcsok** oldalt (néha a fiók, irányítópult vagy fejlesztői beállítások alatt), és hozzon létre egy új kulcsot. Néhány szolgáltató megkérdezi, hogy nevezze el a kulcsot, vagy állítson be költési korlátot – mindkettő opcionális.
 3. Másolja ki a kulcsot. Ez egy hosszú betű- és számsorozat, gyakran valami olyasmivel kezdődik, mint `sk-`.
 
-:::caution
-Az API-kulcsot jelszóként kezelje: ne ossza meg, ne tegye közzé, és ne küldje el senkinek. Ha egy kulcs kiszivárog, törölje a szolgáltató weboldalán, és hozzon létre egy újat.
+:::note
+Az API-kulcsot jelszóként kell kezelni: ne ossza meg, ne tegye közzé, és ne küldje el senkinek. Ha egy kulcs kiszivárog, törölje a szolgáltató webhelyén, és hozzon létre egy újat.
 :::
 
 ## 3. lépés – A kulcs hozzáadása és tesztelése (asztali)
@@ -39,18 +39,14 @@ Az API-kulcsot jelszóként kezelje: ne ossza meg, ne tegye közzé, és ne kül
 
 Amint a teszt sikeres, készen áll – válassza ki azt a szolgáltatót a főképernyőn, és kezdje el a fordítást.
 
-:::caution
-Kerülje az OpenRouter **Body Builder** modelljét (`openrouter/bodybuilder`) – az JSON kérés-payloadokat ad vissza, nem pedig kész szöveget. Lásd: [Beállítások → Modellek](/docs/settings/#models).
-:::
-
 ## Helyi modell használata (API-kulcs nélkül)
 
 Futtathat modelleket a saját számítógépén Ollama, LM Studio, llama.cpp vagy más OpenAI-kompatibilis szerver segítségével (például `google/gemma-4-e2b` az LM Studio-n keresztül). Semmi sem hagyja el a gépét, és nincs szükség API-kulcsra.
 
 A csatlakoztatáshoz állítsa be a Helyi LLM alap URL-jét a teljes API alapra, beleértve az elérési utat is – például `http://localhost:11434/v1`. Asztali gépen ezt a **Beállítások → API konfiguráció** menüpontban állítsa be; Docker esetén ehelyett az `LOCAL_LLM_URL` környezeti változót állítsa be.
 
-:::caution
-Ha egy másik eszközről vagy konténerből használ helyi LLM szervert, konfigurálja úgy, hogy engedélyezze a külső kapcsolatokat (ne csak localhost).
+:::tip
+Ha egy másik eszközről vagy tárolóból használ helyi LLM-szervert, konfigurálja úgy, hogy engedélyezze a külső kapcsolatokat (ne csak a localhostot).
 :::
 
 ## Docker / web

@@ -30,7 +30,7 @@
   "Three ways to run Transrewrt": "运行 Transrewrt 的三种方式",
   "Pick the path that fits you — desktop app or self-hosted web. All paths are free and open source.": "选择适合你的方式 — 桌面应用或自托管 Web。所有方式均免费且开源。",
   "Run with Docker": "使用 Docker 运行",
-  "Then open": "然后打开",
+  "Replace PROVIDER_API_KEY with your provider(OPENROUTER_API_KEY, ANTHROPIC_API_KEY, XIA_API_KEY, ...). Open the web UI at": "将 PROVIDER_API_KEY 替换为你的服务商密钥(OPENROUTER_API_KEY, ANTHROPIC_API_KEY, XIA_API_KEY, ...)。打开网页界面：",
   "and change the default admin password before exposing the service.": "并在公开服务前更改默认管理员密码。",
   "Transrewrt logo — two overlapping speech bubbles": "Transrewrt 徽标 — 两个重叠的对话气泡",
   "Translate, rewrite, and transform text": "翻译、改写和转换文本",

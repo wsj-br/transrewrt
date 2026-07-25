@@ -30,7 +30,7 @@
   "Three ways to run Transrewrt": "Transrewrtの3つの実行方法",
   "Pick the path that fits you — desktop app or self-hosted web. All paths are free and open source.": "自分に合った方法を選択してください — デスクトップアプリまたはセルフホストWeb。すべての方法で無料かつオープンソースです。",
   "Run with Docker": "Dockerで実行",
-  "Then open": "次に開いて",
+  "Replace PROVIDER_API_KEY with your provider(OPENROUTER_API_KEY, ANTHROPIC_API_KEY, XIA_API_KEY, ...). Open the web UI at": "PROVIDER_API_KEY をご利用のプロバイダー (OPENROUTER_API_KEY, ANTHROPIC_API_KEY, XIA_API_KEY, ...) に置き換えてください。Web UI を開く:",
   "and change the default admin password before exposing the service.": "サービスを公開する前に、デフォルトの管理者パスワードを変更してください。",
   "Transrewrt logo — two overlapping speech bubbles": "Transrewrt ロゴ — 重なり合う2つの吹き出し",
   "Translate, rewrite, and transform text": "テキストの翻訳、書き換え、変換",
