@@ -2,17 +2,21 @@
   <img src="../images/transrewrt_banner.png" alt="Transrewrt Banner"  />
 </p>
 
+<h1 align="center">Transrewrt</h1>
+
 <p align="center">
   <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.2-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
 </p>
 
-AI-aangedreven teksttool: **vertalen**, **herschrijven** en **transformeren** met aangepaste prompts — met behulp van uw eigen AI-providers (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, OpenAI-compatibele endpoints en lokale OpenAI-compatibele servers zoals Ollama, LM Studio of llama.cpp). Desktop-app (Windows / Linux) of zelf-gehoste web-app (Docker). Geen Transrewrt cloudaccount.
+AI-aangedreven teksttool voor **vertalen**, **herschrijven** en **transformeren** met aangepaste prompts. Gebruik uw eigen AI-providers (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, OpenAI-compatibele endpoints en lokale servers zoals Ollama, LM Studio of llama.cpp). Draait als een desktop-app (Windows / Linux) of een zelf-gehoste web-app (Docker). Geen Transrewrt cloudaccount.
 
-| | |
+## Functies
+
+| Mogelijkheid | Beschrijving |
 | --- | --- |
-| **Vertalen** | Tientallen talen, automatische detectie, woordenlijsten, verfijnen met Herschrijven |
+| **Vertalen** | Tientallen talen, automatische detectie, woordenlijsten, verfijnen met Parafraseren |
 | **Herschrijven** | Duidelijkheid, toon, lengte, spelling & grammatica — dezelfde taal |
 | **Transformeren** | Aangepaste AI-prompts die u aanmaakt, bewerkt en hergebruikt |
 | **Implementeren** | Electron desktop of Docker web (amd64 & arm64) |
@@ -85,10 +89,10 @@ Copyright © 2026 Waldemar Scudeller Jr.
 
 [Apache License 2.0](../LICENSE)
 
-Productnamen en -pictogrammen behoren toe aan hun respectievelijke eigenaren en worden alleen ter identificatie gebruikt. Deze software is niet gelieerd aan of goedgekeurd door deze merken.
+Productnamen en -iconen behoren tot hun respectieve eigenaren en worden alleen gebruikt voor identificatiedoeleinden. Deze software is niet gelieerd aan of goedgekeurd door die merken.
 
 <small>
 
-> **Opmerking over UI- en documentatievertalingen:** Alle interface- en documentatietalen, behalve het originele Engels, zijn vertaald met behulp van AI-modellen via [ai-i18n-tools](https://wsj-br.github.io/ai-i18n-tools/); de formulering kan onnauwkeurig zijn of fouten bevatten.
+> **Opmerking over UI- en documentatievertalingen:** Alle interface- en documentatietalen behalve Engels (VK) zijn vertaald met AI met behulp van [ai-i18n-tools](https://wsj-br.github.io/ai-i18n-tools/); de formulering kan onnauwkeurig zijn of fouten bevatten.
 
 </small>

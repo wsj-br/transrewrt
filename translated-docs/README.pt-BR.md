@@ -2,17 +2,21 @@
   <img src="../images/transrewrt_banner.png" alt="Transrewrt Banner"  />
 </p>
 
+<h1 align="center">Transrewrt</h1>
+
 <p align="center">
   <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.2-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
 </p>
 
-Ferramenta de texto com IA: **traduzir**, **reescrever** e **transformar** com prompts personalizados — usando seus próprios provedores de IA (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, endpoints compatíveis com OpenAI e servidores locais compatíveis com OpenAI, como Ollama, LM Studio ou llama.cpp). Aplicativo de desktop (Windows / Linux) ou aplicativo web auto-hospedado (Docker). Sem conta Transrewrt na nuvem.
+Ferramenta de texto com IA para **traduzir**, **reescrever** e **transformar** com prompts personalizados. Use seus próprios provedores de IA (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, endpoints compatíveis com OpenAI e servidores locais como Ollama, LM Studio ou llama.cpp). Execute como um aplicativo de desktop (Windows / Linux) ou um aplicativo web auto-hospedado (Docker). Sem conta Transrewrt na nuvem.
 
-| | |
+## Recursos
+
+| Capacidade | Descrição |
 | --- | --- |
-| **Traduzir** | Dezenas de idiomas, detecção automática, glossários, refinamento com Rephrase |
+| **Traduzir** | Dezenas de idiomas, detecção automática, glossários, refinar com Rephrase |
 | **Reescrever** | Clareza, tom, comprimento, ortografia e gramática — no mesmo idioma |
 | **Transformar** | Prompts de IA personalizados que você cria, edita e reutiliza |
 | **Implantar** | Desktop Electron ou web Docker (amd64 e arm64) |
@@ -85,10 +89,10 @@ Direitos autorais © 2026 Waldemar Scudeller Jr.
 
 [Apache License 2.0](../LICENSE)
 
-Nomes e ícones de produtos pertencem aos seus respectivos proprietários e são usados apenas para identificação. Este software não é afiliado nem endossado por essas marcas.
+Os nomes e ícones dos produtos pertencem a seus respectivos proprietários e são usados apenas para fins de identificação. Este software não é afiliado ou endossado por essas marcas.
 
 <small>
 
-> **Observação sobre traduções de UI e documentação:** Todos os idiomas da interface e da documentação, exceto o inglês original, foram traduzidos usando modelos de IA com [ai-i18n-tools](https://wsj-br.github.io/ai-i18n-tools/); a redação pode ser imprecisa ou conter erros.
+> **Observação sobre traduções de UI e documentação:** Todos os idiomas de interface e documentação, exceto inglês (Reino Unido), foram traduzidos com IA usando [ai-i18n-tools](https://wsj-br.github.io/ai-i18n-tools/); a redação pode ser imprecisa ou conter erros.
 
 </small>

@@ -70,19 +70,19 @@ Setup, build, test, and deploy instructions for the Transrewrt application (Elec
   nvm use 24
   ```
 
-2. **pnpm**: Install pnpm globally:
+2. **pnpm**: Install pnpm, npm-check-updates and doctoc globally:
 
   ```powershell
-  npm install -g pnpm
+  npm install -g pnpm npm-check-updates doctoc
   ```
 
-3. **Build tools for native modules** (`better-sqlite3`, `argon2`): Required for compilation. Use an **elevated** PowerShell:
+3. **Build tools for native modules** (`better-sqlite3`, `argon2`): Required for compilation. Use an **elevated** PowerShell (Admin). The base Build Tools product is not enough — node-gyp needs the **MSVC C++ toolset** (`Microsoft.VisualStudio.Workload.VCTools`). Without it, `pnpm install` fails with `missing any VC++ toolset`.
 
-  - **Option A (winget):**  
+  - **Option A (winget):** Use `--force` so the VCTools workload is applied even if Build Tools is already installed, and `--passive` so the installer UI can complete the workload add (fully `--quiet` often leaves only the base product):
 
   ```powershell
-    winget install Python.Python.3.12 --accept-package-agreements --accept-source-agreements
-    winget install Microsoft.VisualStudio.2022.BuildTools --accept-package-agreements --accept-source-agreements --override "--wait --quiet --add Microsoft.VisualStudio.Workload.VCTools --includeRecommended"
+  winget install Python.Python.3.14 --accept-package-agreements --accept-source-agreements
+  winget install --id Microsoft.VisualStudio.2022.BuildTools --force --accept-package-agreements --accept-source-agreements --override "--wait --passive --add Microsoft.VisualStudio.Workload.VCTools --includeRecommended"
   ```
 
   - **Option B (Chocolatey):**
@@ -91,8 +91,14 @@ Setup, build, test, and deploy instructions for the Transrewrt application (Elec
   choco install python visualstudio2022-workload-vctools -y
   ```
 
-  - **Option C:** Install [Python 3.12+](https://www.python.org/downloads/) and [Visual Studio Build Tools](https://visualstudio.microsoft.com/downloads/) with the "Desktop development with C++" workload.
-  - Restart the terminal after install. See [node-gyp on Windows](https://github.com/nodejs/node-gyp#on-windows).
+  - **Option C:** Install [Python 3.14+](https://www.python.org/downloads/) and [Visual Studio Build Tools 2022](https://visualstudio.microsoft.com/downloads/) with the "Desktop development with C++" workload.
+  - **Verify** the MSVC toolset is present (should print `True`), then restart the terminal:
+
+  ```powershell
+  Test-Path "C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC"
+  ```
+
+  - If Build Tools is installed but the check returns `False`, re-run the Option A winget command (with `--force`) to add the missing workload. See [node-gyp on Windows](https://github.com/nodejs/node-gyp#on-windows).
 
 4. **Developer Mode** and **Git symlinks**: Turn on Developer Mode (Settings → System → Developer Mode **On**) so Git and pnpm can create symlinks. Also set `core.symlinks true` **before** cloning — see [Git symlinks (required on Windows)](#git-symlinks-required-on-windows). Without this, website screenshot images stay broken locally.
 
@@ -152,10 +158,10 @@ Setup, build, test, and deploy instructions for the Transrewrt application (Elec
    nvm use 24
    ```
 
-2. **pnpm**: Install pnpm globally:
+2. **pnpm**: Install pnpm, npm-check-updates and doctoc globally:
 
    ```bash
-   npm install -g pnpm
+   npm install -g pnpm npm-check-updates doctoc
    ```
 
 3. **Electron runtime dependencies** (to run `pnpm dev` / `electron .` on Linux; use `libnotify4`, not `libnotify-dev`):
@@ -215,7 +221,7 @@ Setup, build, test, and deploy instructions for the Transrewrt application (Elec
 
 ### Git symlinks (required on Windows)
 
-This repository tracks [`website/public/images/screenshots`](../website/public/images/screenshots) as a **git symlink** to [`images/screenshots/`](../images/screenshots/) (so the Astro site can serve docs/marketing screenshots from `public/` without duplicating the PNG tree). New clones must enable Git symlink support **before** checkout, or restore the link afterward.
+This repository tracks `[website/public/images/screenshots](../website/public/images/screenshots)` as a **git symlink** to `[images/screenshots/](../images/screenshots/)` (so the Astro site can serve docs/marketing screenshots from `public/` without duplicating the PNG tree). New clones must enable Git symlink support **before** checkout, or restore the link afterward.
 
 On a new machine (especially Windows):
 
@@ -412,7 +418,7 @@ Before doctor upgrades, the dependency script checks whether the latest React ES
 
 ### UI translations and documentation (ai-i18n-tools)
 
-The UI uses **react-i18next** with a key-as-default pattern (English in source is the key; no `en-GB.json`). Per-locale JSON files live in `src/renderer/locales/`. **Extract, UI translation, and markdown documentation translation** share one config file: **[`ai-i18n-tools.config.json`](../ai-i18n-tools.config.json)** (`sourceLocale`, `targetLocales`, `openrouter`, `ui`, `glossary`, `cacheDir`, `documentations`).
+The UI uses **react-i18next** with a key-as-default pattern (English in source is the key; no `en-GB.json`). Per-locale JSON files live in `src/renderer/locales/`. **Extract, UI translation, and markdown documentation translation** share one config file: **`[ai-i18n-tools.config.json](../ai-i18n-tools.config.json)`** (`sourceLocale`, `targetLocales`, `openrouter`, `ui`, `glossary`, `cacheDir`, `documentations`).
 
 | Command                                         | Purpose                                                                                                                                                                                    |
 |-------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -426,17 +432,17 @@ The UI uses **react-i18next** with a key-as-default pattern (English in source i
 | `pnpm run i18n:cleanup`                         | Remove stale i18n pipeline artifacts (see `ai-i18n-tools cleanup --help`)                                                                                                                    |
 | `pnpm run clean-temp`                           | Find and remove `*.log` and `cache.db.backup*.sqlite` under a tree (`ai-i18n-tools clean-temp`; use `--force` to skip prompt)                                                              |
 | `pnpm run i18n:editor`                          | Open the string editor when configured                                                                                                                                                     |
-| `pnpm run i18n:locales`                         | Regenerate [`src/renderer/locales/ui-languages.json`](../src/renderer/locales/ui-languages.json) from config (includes `direction` per locale); alias for `ai-i18n-tools generate-ui-languages` |
+| `pnpm run i18n:locales`                         | Regenerate `[src/renderer/locales/ui-languages.json](../src/renderer/locales/ui-languages.json)` from config (includes `direction` per locale); alias for `ai-i18n-tools generate-ui-languages` |
 
-**OpenRouter model ids** (default and fallback order) live under `openrouter.translationModels` in `ai-i18n-tools.config.json` — **not** app `config.json`. The same list is consumed by [`scripts/generate-test-data.js`](../scripts/generate-test-data.js). Override for a single run where supported (e.g. `pnpm run i18n:translate:ui -- --model <id>`).
+**OpenRouter model ids** (default and fallback order) live under `openrouter.translationModels` in `ai-i18n-tools.config.json` — **not** app `config.json`. The same list is consumed by `[scripts/generate-test-data.js](../scripts/generate-test-data.js)`. Override for a single run where supported (e.g. `pnpm run i18n:translate:ui -- --model <id>`).
 
-**Add a new UI language:** (1) Add the locale to `targetLocales` in `ai-i18n-tools.config.json`, (2) run `pnpm run i18n:locales` (or `pnpm exec ai-i18n-tools generate-ui-languages`) and review `ui-languages.json`, (3) run `pnpm run i18n:extract` then `pnpm run i18n:translate:ui` (or `i18n:sync`). Document and layout direction use `direction` in `ui-languages.json` via `applyDirection` in [`src/renderer/i18n.ts`](../src/renderer/i18n.ts) — see [i18n.md](i18n.md).
+**Add a new UI language:** (1) Add the locale to `targetLocales` in `ai-i18n-tools.config.json`, (2) run `pnpm run i18n:locales` (or `pnpm exec ai-i18n-tools generate-ui-languages`) and review `ui-languages.json`, (3) run `pnpm run i18n:extract` then `pnpm run i18n:translate:ui` (or `i18n:sync`). Document and layout direction use `direction` in `ui-languages.json` via `applyDirection` in `[src/renderer/i18n.ts](../src/renderer/i18n.ts)` — see [i18n.md](i18n.md).
 
 **Documentation translation:** The `docs` array in `ai-i18n-tools.config.json` lists content paths (e.g. `README.md`), `outputDir` (e.g. `translated-docs/`), and post-processing (screenshot paths, language-list block). Outputs are typically `basename.<locale>.md`. Caching uses `cacheDir` (default `.translation-cache`); it is **not** compatible with a legacy custom cache under `translated-docs/.cache` — archive or remove old caches when migrating.
 
 Screenshots follow Pattern B (per-locale folder): `images/screenshots/<locale>/<name>.png`. The `take-screenshots.js` script writes PNG files for all locales; `translate-docs` rewrites the locale segment via `postProcessing.regexAdjustments`. See the [ai-i18n-tools locale assets guide](https://github.com/wsj-br/ai-i18n-tools/blob/main/docs/locale-assets.md) for full documentation of this pattern.
 
-**Glossaries:** Optional [`glossary-user.csv`](../glossary-user.csv) is referenced from config. UI string catalog [`src/renderer/locales/strings.json`](../src/renderer/locales/strings.json) aligns doc terminology with the app when both use the same pipeline.
+**Glossaries:** Optional `[glossary-user.csv](../glossary-user.csv)` is referenced from config. UI string catalog `[src/renderer/locales/strings.json](../src/renderer/locales/strings.json)` aligns doc terminology with the app when both use the same pipeline.
 
 For all CLI flags, run `pnpm exec ai-i18n-tools --help` and `pnpm exec ai-i18n-tools translate-docs --help` / `translate-ui --help`. Full patterns (`SOURCE_LOCALE`, `t(key, vars)`): **[i18n.md](i18n.md)**.
 
@@ -496,11 +502,11 @@ Optional: `pnpm generate-test-data` to generate test data for the cost dashboard
 
 ## Releasing (CI builds and GitHub Release)
 
-Official web (Docker container), desktop and AppImage binaries are built by [`.github/workflows/release.yml`](../.github/workflows/release.yml) when a **GitHub Release is published** (and Docker images are pushed to GHCR).
+Official web (Docker container), desktop and AppImage binaries are built by `[.github/workflows/release.yml](../.github/workflows/release.yml)` when a **GitHub Release is published** (and Docker images are pushed to GHCR).
 
 Use a version branch for new features or patch lines (for example `v1.1.x`). Do release prep there, merge into `main` through the GitHub website, then publish a GitHub Release (prefer **`pnpm run release:github`**) so CI attaches installers to the release.
 
-Publishing the release creates tag **`vX.Y.Z`** at **HEAD**, pushes it to **`origin`**, and opens a GitHub Release whose body comes from **`release-notes/RELEASE_NOTES_<version>.md`** (see [Publish the GitHub Release](#publish-the-github-release-releasegithub)). That publication triggers [`.github/workflows/release.yml`](../.github/workflows/release.yml).
+Publishing the release creates tag **`vX.Y.Z`** at **HEAD**, pushes it to **`origin`**, and opens a GitHub Release whose body comes from **`release-notes/RELEASE_NOTES_<version>.md`** (see [Publish the GitHub Release](#publish-the-github-release-releasegithub)). That publication triggers `[.github/workflows/release.yml](../.github/workflows/release.yml)`.
 
 ---
 
@@ -589,7 +595,7 @@ After `main` contains the release commit(s), check out `main` locally at the com
 
 The script creates an annotated tag **`v<version>`** at **HEAD**, pushes it to **`origin`**, and runs `gh release create` with title **`v<version>`** and body from **`release-notes/RELEASE_NOTES_<version>.md`**. If that tag or a GitHub release for it already exists, the script deletes them and recreates the tag at the current **HEAD** so you can fix a mistaken tag or add follow-up commits before releasing again.
 
-That GitHub release triggers [`.github/workflows/release.yml`](../.github/workflows/release.yml), which builds Windows and Linux installers, pushes the Docker image to GHCR, and deploys `website/` to GitHub Pages (`https://wsj-br.github.io/transrewrt/`). Check the **Actions** tab on https://github.com/wsj-br/transrewrt for progress. To redeploy the site without an app release, run `pnpm website:publish` (see [website/README.md](../website/README.md)).
+That GitHub release triggers `[.github/workflows/release.yml](../.github/workflows/release.yml)`, which builds Windows and Linux installers, pushes the Docker image to GHCR, and deploys `website/` to GitHub Pages (`https://wsj-br.github.io/transrewrt/`). Check the **Actions** tab on https://github.com/wsj-br/transrewrt for progress. To redeploy the site without an app release, run `pnpm website:publish` (see [website/README.md](../website/README.md)).
 
 **Manual alternative:** you can still create a release from the GitHub **Releases** UI (**Draft a new release** → tag `vX.Y.Z` targeting `main` → paste notes → **Publish release**). Prefer the script so the tag, title, and notes stay aligned with `package.json` and `release-notes/RELEASE_NOTES_<version>.md`.
 
@@ -695,7 +701,7 @@ See also [UI translations and documentation (ai-i18n-tools)](#ui-translations-an
 | `pnpm run clean-temp`          | Remove `*.log` and `cache.db.backup*.sqlite` under a tree (`ai-i18n-tools clean-temp`; `--force` to skip prompt) |
 | `pnpm run i18n:dashboard` / `i18n:editor` | Open the ai-i18n-tools dashboard / string editor when configured                            |
 
-Models and fallbacks: `openrouter.translationModels` in [`ai-i18n-tools.config.json`](../ai-i18n-tools.config.json) — not app `config.json`.
+Models and fallbacks: `openrouter.translationModels` in `[ai-i18n-tools.config.json](../ai-i18n-tools.config.json)` — not app `config.json`.
 
 ### Data, assets, and docs scripts
 
@@ -771,7 +777,7 @@ For more detail (including Node version alignment and Windows-specific issues), 
 
 ## Related documentation
 
-- **[SYSTEM-OVERVIEW.md](SYSTEM-OVERVIEW.md)** — Product and **runtime architecture** (Electron IPC `llm:*` vs web `/api/llm/stream` SSE), **Vercel AI SDK** LLM layer and supported providers (including **Local LLM** full OpenAI-compatible base URL), **Easy mode / presets catalog** (sync, `model_ids`, providers), **Translate/Rewrite rephrase** (shared controls, version history, word alternatives), **config/state** (desktop `config.json` + encryption; web global config vs `user_preferences` / `transrewrt.db`), **security** (sanitized IPC, Argon2, cookies), settings UI summary, native modules.
+- **[SYSTEM-OVERVIEW.md](SYSTEM-OVERVIEW.md)** — Product and **runtime architecture** (Electron IPC `llm:`* vs web `/api/llm/stream` SSE), **Vercel AI SDK** LLM layer and supported providers (including **Local LLM** full OpenAI-compatible base URL), **Easy mode / presets catalog** (sync, `model_ids`, providers), **Translate/Rewrite rephrase** (shared controls, version history, word alternatives), **config/state** (desktop `config.json` + encryption; web global config vs `user_preferences` / `transrewrt.db`), **security** (sanitized IPC, Argon2, cookies), settings UI summary, native modules.
 - **[presets-editor/README.md](presets-editor/README.md)** — Development catalog editor (`pnpm run presets-editor`), env vars, mirror paths, AI Suggestion / translate-missing APIs.
 - **[i18n.md](i18n.md)** — UI strings: extract/translate workflow, key-as-default, RTL, native `t(key, vars)` interpolation.
 - **[https://wsj-br.github.io/transrewrt/docs/](https://wsj-br.github.io/transrewrt/docs/)** — End-user docs (install, guides, settings, troubleshooting).

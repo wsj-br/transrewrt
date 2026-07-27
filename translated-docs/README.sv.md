@@ -2,17 +2,21 @@
   <img src="../images/transrewrt_banner.png" alt="Transrewrt Banner"  />
 </p>
 
+<h1 align="center">Transrewrt</h1>
+
 <p align="center">
   <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.2-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
 </p>
 
-AI-drivet textverktyg: **översätt**, **skriv om** och **transformera** med anpassade prompter – med dina egna AI-leverantörer (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, OpenAI-kompatibla slutpunkter och lokala OpenAI-kompatibla servrar som Ollama, LM Studio eller llama.cpp). Skrivbordsapp (Windows/Linux) eller självhostad webbapp (Docker). Inget Transrewrt-molnkonto.
+AI-drivet textverktyg för att **översätta**, **skriva om** och **transformera** med anpassade prompter. Använd dina egna AI-leverantörer (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, OpenAI-kompatibla slutpunkter och lokala servrar som Ollama, LM Studio eller llama.cpp). Kör som en skrivbordsapp (Windows/Linux) eller en självhostad webbapp (Docker). Inget Transrewrt-molnkonto.
 
-| | |
+## Funktioner
+
+| Funktion | Beskrivning |
 | --- | --- |
-| **Översätt** | Dussintals språk, automatisk upptäckt, ordlistor, förfina med omformulering |
+| **Översätt** | Dussintals språk, automatisk identifiering, ordlistor, förfina med Rephrase |
 | **Omskrivning** | Tydlighet, ton, längd, stavning och grammatik — samma språk |
 | **Transformera** | Anpassade AI-prompter som du skapar, redigerar och återanvänder |
 | **Distribuera** | Electron desktop eller Docker webb (amd64 & arm64) |
@@ -85,12 +89,10 @@ Copyright © 2026 Waldemar Scudeller Jr.
 
 [Apache License 2.0](../LICENSE)
 
-Produktnamn och ikoner tillhör respektive ägare och används endast för identifiering. Denna programvara är inte ansluten till eller godkänd av dessa varumärken.
+Produktnamn och ikoner tillhör respektive ägare och används endast för identifieringsändamål. Denna programvara är inte ansluten till eller godkänd av dessa varumärken.
 
 <small>
 
-> **Obs! Översättningar av användargränssnitt och dokumentation:** Alla gränssnitt och dokumentationsspråk utom det 
-> ursprungliga engelska översattes med AI-modeller med hjälp av [ai-i18n-tools](https://wsj-br.github.io/ai-i18n-tools/); 
-> formuleringen kan vara oprecis eller innehålla fel.
+> **Obs om UI- och dokumentationsöversättningar:** Alla gränssnitts- och dokumentationsspråk utom engelska (Storbritannien) översattes med AI med hjälp av [ai-i18n-tools](https://wsj-br.github.io/ai-i18n-tools/); formuleringen kan vara oprecis eller innehålla fel.
 
 </small>

@@ -2,15 +2,19 @@
   <img src="../images/transrewrt_banner.png" alt="Transrewrt Banner"  />
 </p>
 
+<h1 align="center">Transrewrt</h1>
+
 <p align="center">
   <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.2-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
 </p>
 
-Yapay zeka destekli metin aracı: Kendi yapay zeka sağlayıcılarınızı (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, OpenAI uyumlu uç noktalar ve Ollama, LM Studio veya llama.cpp gibi yerel OpenAI uyumlu sunucular) kullanarak özel istemlerle **çevirin**, **yeniden yazın** ve **dönüştürün**. Masaüstü uygulaması (Windows / Linux) veya kendi kendine barındırılan web uygulaması (Docker). Transrewrt bulut hesabı yok.
+Özel istemlerle **çeviri**, **yeniden yazma** ve **dönüştürme** için yapay zeka destekli metin aracı. Kendi yapay zeka sağlayıcılarınızı kullanın (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, OpenAI uyumlu uç noktalar ve Ollama, LM Studio veya llama.cpp gibi yerel sunucular). Bir masaüstü uygulaması (Windows / Linux) veya kendi kendine barındırılan bir web uygulaması (Docker) olarak çalıştırın. Transrewrt bulut hesabı yok.
 
-| | |
+## Özellikler
+
+| Yetenek | Açıklama |
 | --- | --- |
 | **Çevir** | Düzinelerce dil, otomatik algılama, sözlükler, Yeniden İfade Et ile iyileştirme |
 | **Yeniden yazma** | Netlik, ton, uzunluk, yazım ve dilbilgisi — aynı dil |
@@ -85,11 +89,10 @@ Telif Hakkı © 2026 Waldemar Scudeller Jr.
 
 [Apache License 2.0](../LICENSE)
 
-Ürün adları ve simgeleri ilgili sahiplerine aittir ve yalnızca tanımlama amacıyla kullanılır. Bu yazılım, bu markalarla bağlantılı değildir veya bu markalar tarafından desteklenmemektedir.
+Ürün adları ve simgeleri, ilgili sahiplerine aittir ve yalnızca tanımlama amaçlı kullanılır. Bu yazılım, bu markalarla bağlantılı değildir veya onlar tarafından desteklenmemektedir.
 
 <small>
 
-> **Kullanıcı arayüzü ve dokümantasyon çevirileri hakkında not:** Orijinal İngilizce dışındaki tüm arayüz ve dokümantasyon dilleri, [ai-i18n-tools](https://wsj-br.github.io/ai-i18n-tools/) kullanılarak yapay zeka modelleriyle çevrilmiştir;
-> bu nedenle ifadeler hatalı veya eksik olabilir.
+> **Kullanıcı arayüzü ve dokümantasyon çevirileri hakkında not:** İngilizce (Birleşik Krallık) dışındaki tüm arayüz ve dokümantasyon dilleri, [ai-i18n-tools](https://wsj-br.github.io/ai-i18n-tools/) kullanılarak yapay zeka ile çevrilmiştir; ifade biçimi yanlış veya hatalar içerebilir.
 
 </small>

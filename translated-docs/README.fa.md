@@ -2,15 +2,19 @@
   <img src="../images/transrewrt_banner.png" alt="Transrewrt Banner"  />
 </p>
 
+<h1 align="center">Transrewrt</h1>
+
 <p align="center">
   <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.2-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
 </p>
 
-ابزار متنی مبتنی بر هوش مصنوعی: **ترجمه**، **بازنویسی**، و **تبدیل** با پرامپت‌های سفارشی — با استفاده از ارائه‌دهندگان هوش مصنوعی خودتان (OpenRouter، OpenAI، Anthropic، Google Gemini، DeepSeek، Groq، Mistral، xAI، Cerebras، NVIDIA، Alibaba Cloud، apikey.fun، نقاط پایانی سازگار با OpenAI، و سرورهای محلی سازگار با OpenAI مانند Ollama، LM Studio، یا llama.cpp). برنامه دسکتاپ (ویندوز / لینوکس) یا برنامه وب خودمیزبان (Docker). بدون حساب ابری Transrewrt.
+ابزار متنی مبتنی بر هوش مصنوعی برای **ترجمه**، **بازنویسی**، و **تبدیل** با پرامپت‌های سفارشی. از ارائه‌دهندگان هوش مصنوعی خود (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, نقاط پایانی سازگار با OpenAI، و سرورهای محلی مانند Ollama, LM Studio, یا llama.cpp) استفاده کنید. به عنوان یک برنامه دسکتاپ (ویندوز / لینوکس) یا یک برنامه وب خودمیزبان (Docker) اجرا کنید. بدون حساب ابری Transrewrt.
 
-| | |
+## ویژگی‌ها
+
+| قابلیت | توضیحات |
 | --- | --- |
 | **ترجمه** | ده‌ها زبان، تشخیص خودکار، واژه‌نامه‌ها، بهبود با بازنویسی |
 | **بازنویسی** | وضوح، لحن، طول، املا و گرامر — همان زبان |
@@ -85,11 +89,10 @@ chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage
 
 [Apache License 2.0](../LICENSE)
 
-نام‌ها و آیکون‌های محصولات متعلق به صاحبان مربوطه هستند و فقط برای شناسایی استفاده می‌شوند. این نرم‌افزار به این برندها وابسته نیست و توسط آن‌ها تأیید نشده است.
+نام‌ها و آیکون‌های محصول متعلق به صاحبان آن‌ها هستند و فقط برای شناسایی استفاده می‌شوند. این نرم‌افزار وابسته به این برندها نیست و توسط آن‌ها تأیید نشده است.
 
 <small>
 
-> **نکته‌ای درباره ترجمه‌های رابط کاربری و مستندات:** همه زبان‌های رابط کاربری و مستندات، به جز انگلیسی اصلی، با استفاده از مدل‌های هوش مصنوعی و با [ai-i18n-tools](https://wsj-br.github.io/ai-i18n-tools/) ترجمه شده‌اند؛
-> ممکن است کلمات دقیق نباشند یا حاوی خطا باشند.
+> **نکته در مورد ترجمه‌های رابط کاربری و مستندات:** تمام زبان‌های رابط کاربری و مستندات به جز انگلیسی (بریتانیا) با هوش مصنوعی با استفاده از [ai-i18n-tools](https://wsj-br.github.io/ai-i18n-tools/) ترجمه شده‌اند؛ ممکن است کلمات دقیق نباشند یا حاوی خطا باشند.
 
 </small>

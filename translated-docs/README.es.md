@@ -2,17 +2,21 @@
   <img src="../images/transrewrt_banner.png" alt="Transrewrt Banner"  />
 </p>
 
+<h1 align="center">Transrewrt</h1>
+
 <p align="center">
   <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.2-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
 </p>
 
-Herramienta de texto con IA: **Traducir**, **Reescritura** y **Transformar** con indicaciones personalizadas, utilizando sus propios proveedores de IA (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, puntos finales compatibles con OpenAI y servidores locales compatibles con OpenAI como Ollama, LM Studio o llama.cpp). Aplicación de escritorio (Windows / Linux) o aplicación web autoalojada (Docker). Sin cuenta en la nube de Transrewrt.
+Herramienta de texto con IA para **traducir**, **reescribir** y **transformar** con indicaciones personalizadas. Utiliza tus propios proveedores de IA (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, puntos finales compatibles con OpenAI y servidores locales como Ollama, LM Studio o llama.cpp). Ejecútala como una aplicación de escritorio (Windows/Linux) o una aplicación web autoalojada (Docker). No se requiere cuenta en la nube de Transrewrt.
 
-| | |
+## Características
+
+| Capacidad | Descripción |
 | --- | --- |
-| **Traducir** | Decenas de idiomas, detección automática, glosarios, refinar con Rephrase |
+| **Traducir** | Decenas de idiomas, detección automática, glosarios, refinar con Reescritura |
 | **Reescritura** | Claridad, tono, longitud, ortografía y gramática — mismo idioma |
 | **Transformar** | Indicaciones de IA personalizadas que creas, editas y reutilizas |
 | **Implementar** | Escritorio Electron o web Docker (amd64 y arm64) |
@@ -85,10 +89,10 @@ Derechos de autor © 2026 Waldemar Scudeller Jr.
 
 [Apache License 2.0](../LICENSE)
 
-Los nombres de productos e iconos pertenecen a sus respectivos propietarios y se utilizan únicamente para fines de identificación. Este software no está afiliado ni respaldado por dichas marcas.
+Los nombres y los iconos de los productos pertenecen a sus respectivos propietarios y se utilizan solo con fines de identificación. Este software no está afiliado ni respaldado por esas marcas.
 
 <small>
 
-> **Nota sobre las traducciones de la interfaz de usuario y la documentación:** Todos los idiomas de la interfaz y la documentación, excepto el inglés original, se tradujeron utilizando modelos de IA con [ai-i18n-tools](https://wsj-br.github.io/ai-i18n-tools/); el texto puede ser impreciso o contener errores.
+> **Nota sobre las traducciones de la interfaz de usuario y la documentación:** Todos los idiomas de la interfaz y la documentación, excepto el inglés (Reino Unido), se tradujeron con IA utilizando [ai-i18n-tools](https://wsj-br.github.io/ai-i18n-tools/); la redacción puede ser imprecisa o contener errores.
 
 </small>

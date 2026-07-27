@@ -2,17 +2,21 @@
   <img src="../images/transrewrt_banner.png" alt="Transrewrt Banner"  />
 </p>
 
+<h1 align="center">Transrewrt</h1>
+
 <p align="center">
   <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.2-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
 </p>
 
-Nástroj pro zpracování textu s umělou inteligencí: **přeložit**, **přepsat** a **transformovat** s vlastními výzvami — pomocí vlastních poskytovatelů umělé inteligence (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, kompatibilní koncové body OpenAI a místní servery kompatibilní s OpenAI, jako je Ollama, LM Studio nebo llama.cpp). Aplikace pro desktop (Windows / Linux) nebo samo-hostovaná webová aplikace (Docker). Bez účtu Transrewrt cloud.
+Nástroj pro text s umělou inteligencí pro **překlad**, **přepis** a **transformaci** s vlastními výzvami. Použijte své vlastní poskytovatele AI (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, koncové body kompatibilní s OpenAI a lokální servery jako Ollama, LM Studio nebo llama.cpp). Spusťte jako desktopovou aplikaci (Windows / Linux) nebo jako samoobslužnou webovou aplikaci (Docker). Žádný cloudový účet Transrewrt.
 
-| | |
+## Funkce
+
+| Schopnost | Popis |
 | --- | --- |
-| **Přeložit** | Desítky jazyků, automatická detekce, glosáře, upřesnění pomocí funkce Rephrase |
+| **Přeložit** | Desítky jazyků, automatická detekce, glosáře, upřesnění pomocí funkce Přeformulovat |
 | **Přepis** | Jasnost, tón, délka, pravopis a gramatika – stejný jazyk |
 | **Transformace** | Vlastní výzvy AI, které vytváříte, upravujete a znovu používáte |
 | **Nasazení** | Desktop Electron nebo web Docker (amd64 a arm64) |
@@ -85,12 +89,10 @@ Copyright © 2026 Waldemar Scudeller Jr.
 
 [Apache License 2.0](../LICENSE)
 
-Názvy produktů a ikony patří jejich příslušným vlastníkům a slouží pouze k identifikaci. Tento software není přidružen k těmto značkám ani jimi není schválen.
+Názvy produktů a ikony patří jejich příslušným vlastníkům a jsou používány pouze pro účely identifikace. Tento software není přidružen k těmto značkám ani jimi není schválen.
 
 <small>
 
-> **Poznámka k překladům uživatelského rozhraní a dokumentace:** Všechny jazyky rozhraní a dokumentace kromě 
-> původní angličtiny byly přeloženy pomocí modelů umělé inteligence s využitím [ai-i18n-tools](https://wsj-br.github.io/ai-i18n-tools/); 
-> formulace může být nepřesná nebo obsahovat chyby.
+> **Poznámka k překladům uživatelského rozhraní a dokumentace:** Všechny jazyky rozhraní a dokumentace kromě angličtiny (UK) byly přeloženy pomocí AI s použitím [ai-i18n-tools](https://wsj-br.github.io/ai-i18n-tools/); formulace může být nepřesná nebo obsahovat chyby.
 
 </small>

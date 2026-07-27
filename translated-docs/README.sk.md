@@ -2,15 +2,19 @@
   <img src="../images/transrewrt_banner.png" alt="Transrewrt Banner"  />
 </p>
 
+<h1 align="center">Transrewrt</h1>
+
 <p align="center">
   <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.2-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
 </p>
 
-Textový nástroj poháňaný AI: **prekladajte**, **prepíšte** a **transformujte** pomocou vlastných výziev – s použitím vlastných poskytovateľov AI (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, koncové body kompatibilné s OpenAI a lokálne servery kompatibilné s OpenAI, ako sú Ollama, LM Studio alebo llama.cpp). Desktopová aplikácia (Windows / Linux) alebo samoobslužná webová aplikácia (Docker). Žiadny cloudový účet Transrewrt.
+Textový nástroj poháňaný AI na **prekladanie**, **prepisovanie** a **transformáciu** s vlastnými výzvami. Používajte vlastných poskytovateľov AI (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, koncové body kompatibilné s OpenAI a lokálne servery ako Ollama, LM Studio alebo llama.cpp). Spustite ako desktopovú aplikáciu (Windows / Linux) alebo samoobslužnú webovú aplikáciu (Docker). Žiadny cloudový účet Transrewrt.
 
-| | |
+## Funkcie
+
+| Schopnosť | Popis |
 | --- | --- |
 | **Preložiť** | Desiatky jazykov, automatická detekcia, glosáre, spresnenie pomocou funkcie Preformulovať |
 | **Prepísať** | Jasnosť, tón, dĺžka, pravopis a gramatika – rovnaký jazyk |
@@ -85,12 +89,10 @@ Autorské práva © 2026 Waldemar Scudeller Jr.
 
 [Apache License 2.0](../LICENSE)
 
-Názvy produktov a ikony patria ich príslušným vlastníkom a používajú sa len na identifikáciu. Tento softvér nie je pridružený k týmto značkám ani nimi nie je schválený.
+Názvy produktov a ikony patria ich príslušným vlastníkom a používajú sa len na identifikačné účely. Tento softvér nie je pridružený ani schválený týmito značkami.
 
 <small>
 
-> **Poznámka k prekladom používateľského rozhrania a dokumentácie:** Všetky jazyky rozhrania a dokumentácie okrem 
-> pôvodnej angličtiny boli preložené pomocou modelov AI s použitím [ai-i18n-tools](https://wsj-br.github.io/ai-i18n-tools/); 
-> formulácia môže byť nepresná alebo môže obsahovať chyby.
+> **Poznámka k prekladom používateľského rozhrania a dokumentácie:** Všetky jazyky rozhrania a dokumentácie okrem angličtiny (UK) boli preložené pomocou AI s použitím [ai-i18n-tools](https://wsj-br.github.io/ai-i18n-tools/); formulácia môže byť nepresná alebo môže obsahovať chyby.
 
 </small>

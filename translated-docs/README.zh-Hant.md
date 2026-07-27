@@ -2,17 +2,21 @@
   <img src="../images/transrewrt_banner.png" alt="Transrewrt Banner"  />
 </p>
 
+<h1 align="center">Transrewrt</h1>
+
 <p align="center">
   <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.2-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
 </p>
 
-AI 驅動的文字工具：**翻譯**、**重寫**與**轉換**，並使用自訂提示詞 —— 透過您自己的 AI 供應商（OpenRouter、OpenAI、Anthropic、Google Gemini、DeepSeek、Groq、Mistral、xAI、Cerebras、NVIDIA、Alibaba Cloud、apikey.fun、OpenAI 相容端點，以及本地 OpenAI 相容伺服器如 Ollama、LM Studio 或 llama.cpp）。桌面應用程式（Windows / Linux）或自架網頁應用程式（Docker）。無需 Transrewrt 雲端帳號。
+AI 驅動的文字工具，用於透過自訂提示詞進行**翻譯**、**重寫**與**轉換**。使用您自己的 AI 供應商（OpenRouter、OpenAI、Anthropic、Google Gemini、DeepSeek、Groq、Mistral、xAI、Cerebras、NVIDIA、Alibaba Cloud、apikey.fun、OpenAI 相容端點，以及本地伺服器如 Ollama、LM Studio 或 llama.cpp）。可作為桌面應用程式（Windows / Linux）或自架網頁應用程式（Docker）執行。無需 Transrewrt 雲端帳號。
 
-| | |
+## 功能
+
+| 功能 | 說明 |
 | --- | --- |
-| **翻譯** | 數十種語言、自動偵測、詞彙表，以 Rephrase 進一步潤飾 |
+| **翻譯** | 數十種語言、自動偵測、詞彙表、以 Rephrase 潤飾 |
 | **重寫** | 清晰度、語氣、長度、拼寫與文法 — 同一語言 |
 | **轉換** | 您可建立、編輯並重複使用的自訂 AI 提示詞 |
 | **部署** | Electron 桌面版或 Docker 網頁版（amd64 與 arm64） |
@@ -85,12 +89,10 @@ Copyright © 2026 Waldemar Scudeller Jr.
 
 [Apache License 2.0](../LICENSE)
 
-產品名稱與圖示分屬其各自擁有者所有，僅供識別之用。本軟體不隸屬於這些品牌，亦未獲其背書。
+產品名稱和圖示屬於其各自擁有者，僅用於識別目的。本軟體不隸屬於這些品牌，亦未獲其背書。
 
 <small>
 
-> **關於介面與文件翻譯的注意事項：** 除了
-> 原始英文外，全部介面與文件語言皆使用 AI 模型透過 [ai-i18n-tools](https://wsj-br.github.io/ai-i18n-tools/) 進行翻譯；
-> 措辭可能不夠精確或包含錯誤。
+> **關於 UI 與文件翻譯的注意事項：** 除英文（英國）外，所有介面與文件語言皆使用 [ai-i18n-tools](https://wsj-br.github.io/ai-i18n-tools/) 透過 AI 翻譯；其用詞可能不夠精確或包含錯誤。
 
 </small>

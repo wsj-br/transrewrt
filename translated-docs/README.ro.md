@@ -2,15 +2,19 @@
   <img src="../images/transrewrt_banner.png" alt="Transrewrt Banner"  />
 </p>
 
+<h1 align="center">Transrewrt</h1>
+
 <p align="center">
   <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.2-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
 </p>
 
-Instrument de text bazat pe inteligența artificială: **traduceți**, **rescrieți** și **transformați** cu prompturi personalizate — utilizând proprii furnizori de inteligență artificială (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, puncte finale compatibile cu OpenAI și servere locale compatibile cu OpenAI, cum ar fi Ollama, LM Studio sau llama.cpp). Aplicație desktop (Windows / Linux) sau aplicație web auto-găzduită (Docker). Fără cont Transrewrt în cloud.
+Instrument de text bazat pe inteligență artificială pentru **traducere**, **rescriere** și **transformare** cu prompturi personalizate. Utilizați proprii furnizori de inteligență artificială (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, puncte finale compatibile cu OpenAI și servere locale precum Ollama, LM Studio sau llama.cpp). Rulați ca aplicație desktop (Windows / Linux) sau ca aplicație web auto-găzduită (Docker). Fără cont Transrewrt cloud.
 
-| | |
+## Caracteristici
+
+| Capacitate | Descriere |
 | --- | --- |
 | **Traducere** | Zeci de limbi, detectare automată, glosare, rafinare cu Parafrazare |
 | **Reescriere** | Claritate, ton, lungime, ortografie și gramatică — aceeași limbă |
@@ -85,10 +89,10 @@ Drepturi de autor © 2026 Waldemar Scudeller Jr.
 
 [Apache License 2.0](../LICENSE)
 
-Numele și pictogramele produselor aparțin proprietarilor respectivi și sunt utilizate doar pentru identificare. Acest software nu este afiliat sau aprobat de aceste mărci.
+Numele și pictogramele produselor aparțin proprietarilor respectivi și sunt utilizate doar în scopuri de identificare. Acest software nu este afiliat sau aprobat de aceste mărci.
 
 <small>
 
-> **Notă privind traducerile UI și ale documentației:** Toate limbile interfeței și ale documentației, cu excepția limbii engleze originale, au fost traduse folosind modele AI cu ajutorul [ai-i18n-tools](https://wsj-br.github.io/ai-i18n-tools/); formularea poate fi imprecisă sau poate conține erori.
+> **Notă privind traducerile UI și ale documentației:** Toate limbile interfeței și ale documentației, cu excepția englezei (UK), au fost traduse cu AI folosind [ai-i18n-tools](https://wsj-br.github.io/ai-i18n-tools/); formularea poate fi imprecisă sau poate conține erori.
 
 </small>

@@ -2,17 +2,21 @@
   <img src="../images/transrewrt_banner.png" alt="Transrewrt Banner"  />
 </p>
 
+<h1 align="center">Transrewrt</h1>
+
 <p align="center">
   <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.2-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
 </p>
 
-Інструмент для роботи з текстом на базі ШІ: **перекладайте**, **переписуйте** та **трансформуйте** за допомогою власних підказок — використовуючи ваших власних постачальників ШІ (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, OpenAI-сумісні кінцеві точки та локальні OpenAI-сумісні сервери, такі як Ollama, LM Studio або llama.cpp). Десктопний застосунок (Windows / Linux) або веб-застосунок із самостійним розміщенням (Docker). Без хмарного облікового запису Transrewrt.
+Інструмент для роботи з текстом на основі ШІ для **перекладу**, **перезапису** та **трансформації** за допомогою власних підказок. Використовуйте власних постачальників ШІ (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, кінцеві точки, сумісні з OpenAI, та локальні сервери, такі як Ollama, LM Studio або llama.cpp). Запускайте як настільну програму (Windows / Linux) або як самостійний веб-додаток (Docker). Без хмарного облікового запису Transrewrt.
 
-| | |
+## Можливості
+
+| Можливість | Опис |
 | --- | --- |
-| **Перекласти** | Десятки мов, автовизначення, глосарії, уточнення за допомогою функції «Перефразувати» |
+| **Перекласти** | Десятки мов, автоматичне визначення, глосарії, уточнення за допомогою функції «Перефразувати» |
 | **Перезапис** | Чіткість, тон, довжина, орфографія та граматика — тією ж мовою |
 | **Трансформація** | Спеціальні підказки ШІ, які ви створюєте, редагуєте та повторно використовуєте |
 | **Розгортання** | Настільний додаток Electron або веб-додаток Docker (amd64 та arm64) |
@@ -89,8 +93,6 @@ chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage
 
 <small>
 
-> **Примітка щодо перекладів інтерфейсу користувача та документації:** Усі мови інтерфейсу та документації, окрім 
-> оригінальної англійської, були перекладені за допомогою моделей ШІ з використанням [ai-i18n-tools](https://wsj-br.github.io/ai-i18n-tools/); 
-> формулювання може бути неточним або містити помилки.
+> **Примітка щодо перекладів інтерфейсу користувача та документації:** Усі мови інтерфейсу та документації, крім англійської (Велика Британія), були перекладені за допомогою ШІ з використанням [ai-i18n-tools](https://wsj-br.github.io/ai-i18n-tools/); формулювання може бути неточним або містити помилки.
 
 </small>

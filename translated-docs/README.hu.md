@@ -2,15 +2,19 @@
   <img src="../images/transrewrt_banner.png" alt="Transrewrt Banner"  />
 </p>
 
+<h1 align="center">Transrewrt</h1>
+
 <p align="center">
   <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.2-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
 </p>
 
-AI-alapú szöveges eszköz: **fordítás**, **átírás** és **átalakítás** egyéni promptokkal – saját AI-szolgáltatók (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, OpenAI-kompatibilis végpontok és helyi OpenAI-kompatibilis szerverek, mint például az Ollama, LM Studio vagy llama.cpp) használatával. Asztali alkalmazás (Windows / Linux) vagy saját üzemeltetésű webalkalmazás (Docker). Nincs Transrewrt felhőfiók.
+AI-alapú szöveges eszköz **fordításhoz**, **átíráshoz** és **átalakításhoz** egyéni promptokkal. Használja saját AI-szolgáltatóit (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, OpenAI-kompatibilis végpontok és helyi szerverek, mint például az Ollama, LM Studio vagy llama.cpp). Futtatható asztali alkalmazásként (Windows / Linux) vagy saját üzemeltetésű webalkalmazásként (Docker). Nincs Transrewrt felhőfiók.
 
-| | |
+## Funkciók
+
+| Képesség | Leírás |
 | --- | --- |
 | **Fordítás** | Több tucat nyelv, automatikus felismerés, szószedetek, finomítás átfogalmazással |
 | **Átírás** | Tisztaság, hangnem, hossz, helyesírás és nyelvtan – azonos nyelven |
@@ -85,11 +89,10 @@ Szerzői jog © 2026 Waldemar Scudeller Jr.
 
 [Apache License 2.0](../LICENSE)
 
-A terméknevek és ikonok a megfelelő tulajdonosokhoz tartoznak, és kizárólag azonosításra szolgálnak. Ez a szoftver nem áll kapcsolatban ezekkel a márkákkal, és nem is támogatja azokat.
+A terméknevek és ikonok a megfelelő tulajdonosok tulajdonát képezik, és csak azonosítási célokra használják őket. Ez a szoftver nem áll kapcsolatban ezekkel a márkákkal, és nem is támogatja őket.
 
 <small>
 
-> **Megjegyzés a felhasználói felület és a dokumentáció fordításairól:** Az eredeti angol kivételével az összes felület- és dokumentációs nyelvet AI-modellekkel fordították le az [ai-i18n-tools](https://wsj-br.github.io/ai-i18n-tools/) segítségével;
-> a megfogalmazás pontatlan vagy hibákat tartalmazhat.
+> **Megjegyzés a felhasználói felület és a dokumentáció fordításairól:** Az angol (UK) kivételével az összes felület- és dokumentációs nyelvet AI fordította a [ai-i18n-tools](https://wsj-br.github.io/ai-i18n-tools/) segítségével; a megfogalmazás pontatlan lehet, vagy hibákat tartalmazhat.
 
 </small>

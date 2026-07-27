@@ -2,9 +2,21 @@
 
 **Release date:** 2026-07-25
 
-Transrewrt 1.6.2 tightens Easy/Advanced model picking, improves presets AI Suggest, and polishes everyday workspace UX. The model/preset menu can switch Easy ↔ Advanced without opening Settings; Cost Tracking shares the same cost-display controls as General; and Help plus a version link sit in the workspace chrome. Presets-editor AI Suggest can be cancelled mid-run, caches live-timing for two hours, and shortlists from languagebench and Artificial Analysis. Rewrite’s Changes (diff) control works in every rewrite mode, the OpenRouter free model is optional in the selected list, and temperature is omitted for models that reject non-default values. Packaging and CI now use frozen lockfiles end-to-end, with a PR lint workflow and a `glob` override fix so release installs no longer fail on outdated lockfiles.
+Transrewrt 1.6.2 tightens Easy/Advanced model picking, improves presets AI Suggest, and polishes everyday workspace UX. Packaging and CI now use frozen lockfiles end-to-end, with a PR lint workflow and a `glob` override fix so release installs no longer fail on outdated lockfiles.
 
-## Highlights
+## Downloads
+
+Published builds are attached to the GitHub **Releases** page for this tag:
+
+- **Windows**: Installer (x64)
+- **Linux**: AppImage (x64 and arm64)
+- **Docker**: `ghcr.io/wsj-br/transrewrt:1.6.2` (and `latest` when tagged accordingly); multi-arch images as published on GHCR.
+- **Website / docs**: https://wsj-br.github.io/transrewrt/ (also redeployable with `pnpm website:publish`)
+
+Exact filenames and checksums appear on the release page.
+
+<details>
+<summary><strong>Highlights</strong></summary>
 
 - **Easy ↔ Advanced in the picker**: The model/preset menu can switch modes (item above Open Settings). “Open Settings → Models” appears only in Advanced mode.
 - **Cost Tracking parity**: Settings → Cost Tracking includes the same “Show cost information on the actions” and “Cost fraction digits” controls as Settings → General.
@@ -13,7 +25,10 @@ Transrewrt 1.6.2 tightens Easy/Advanced model picking, improves presets AI Sugge
 - **Rewrite Changes**: The “Changes” (diff) control is available for every rewrite mode, not only Check Spelling & Grammar.
 - **Selected models**: The OpenRouter free model is optional; the selected list may be empty (removing the last header model opens Settings → Models). Unavailable-model fallback picks the next model instead of forcing free.
 
-## Improvements
+</details>
+
+<details>
+<summary><strong>Improvements</strong></summary>
 
 - **Temperature handling**: Chat completions omit `temperature` for GPT-5 / o-series and Claude 4.6+ models that reject non-default values, and still retry once without it if a provider rejects temperature at runtime.
 - **Easy-mode model filter**: Excludes prompt-guard, safeguard, multi-agent, image/video specialty models, Groq Orpheus (TTS), and Compound agent models from shortlists and live-timing.
@@ -25,7 +40,10 @@ Transrewrt 1.6.2 tightens Easy/Advanced model picking, improves presets AI Sugge
 - **Frozen lockfiles**: `prepackage`, the release checklist, and website `prebuild` use `--frozen-lockfile` so local packaging matches CI.
 - **CI lint workflow**: GitHub Actions `ci.yml` runs frozen-lockfile install plus `pnpm lint` on PRs and pushes to `main`; `website-pages.yml` builds on PRs that touch `website/` (deploy still only on `workflow_dispatch`).
 
-## Fixes
+</details>
+
+<details>
+<summary><strong>Fixes</strong></summary>
 
 - **Third-party notices in Electron**: Settings → About → Third-party notices failed because webpack treated extensionless `NOTICES` as a directory; copy/path lookup now require a real file.
 - **Website favicon**: Starlight favicon points at `/logos/transrewrt_logo.svg` (stops 404 / router warnings in `astro dev`).
@@ -36,28 +54,21 @@ Transrewrt 1.6.2 tightens Easy/Advanced model picking, improves presets AI Sugge
 - **`release:github` on Windows**: Annotated tag creation no longer fails with `fatal: too many arguments` when the `-m` message contains spaces; pnpm is invoked via `node $npm_execpath` (no DEP0190), matching ai-i18n-tools.
 - **Frozen-lockfile install**: `glob` pnpm override aligned with the direct dependency (`^13.0.6`) so `pnpm install --frozen-lockfile` (release CI) no longer fails with `ERR_PNPM_OUTDATED_LOCKFILE`.
 
+</details>
+
 ## Detailed changelog
 
-For a complete, line-by-line list of changes (Added / Changed / Fixed), see **[CHANGELOG.md](https://github.com/wsj-br/transrewrt/blob/main/dev/CHANGELOG.md)** — section **[1.6.2] - 2026-07-25**.
+For a complete, line-by-line list of changes (Added / Changed / Fixed), see [CHANGELOG.md](https://github.com/wsj-br/transrewrt/blob/main/dev/CHANGELOG.md) — section **[1.6.2] - 2026-07-25**.
 
-## Getting This Release
+<details>
+<summary><strong>Documentation</strong></summary>
 
-Published builds for this release are attached to the GitHub **Releases** page for this tag. Typical artifacts include:
+- **[README](https://github.com/wsj-br/transrewrt/blob/main/README.md)** — Overview and quick start
+- **[Product docs](https://wsj-br.github.io/transrewrt/docs/)** — Install, guides, settings, and troubleshooting
+- **[DEVELOPMENT.md](https://github.com/wsj-br/transrewrt/blob/main/dev/DEVELOPMENT.md)** — Local setup, `release:github`, `website:publish`, and pre-release checks
+- **[SYSTEM-OVERVIEW.md](https://github.com/wsj-br/transrewrt/blob/main/dev/SYSTEM-OVERVIEW.md)** — Architecture (LLM wrapper and providers)
 
-- **Windows**: Installer (x64)
-- **Linux**: AppImage (x64 and arm64)
-- **Docker**: `ghcr.io/wsj-br/transrewrt:1.6.2` (and `latest` when tagged accordingly); multi-arch images as published on GHCR.
-- **Website / docs**: `https://wsj-br.github.io/transrewrt/` (also redeployable with `pnpm website:publish`)
-
-Exact filenames and checksums appear on the release page.
-
-## Documentation
-
-- **[README](https://github.com/wsj-br/transrewrt/blob/main/README.md)** — Overview and quick start  
-- **[Product docs](https://wsj-br.github.io/transrewrt/docs/)** — Install, guides, settings, and troubleshooting  
-- **[DEVELOPMENT.md](https://github.com/wsj-br/transrewrt/blob/main/dev/DEVELOPMENT.md)** — Local setup, `release:github`, `website:publish`, and pre-release checks  
-- **[SYSTEM-OVERVIEW.md](https://github.com/wsj-br/transrewrt/blob/main/dev/SYSTEM-OVERVIEW.md)** — Architecture (LLM wrapper and providers)  
-- **[i18n.md](https://github.com/wsj-br/transrewrt/blob/main/dev/i18n.md)** — UI and docs translation workflow
+</details>
 
 ## Disclaimer
 

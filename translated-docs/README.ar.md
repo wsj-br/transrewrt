@@ -2,17 +2,21 @@
   <img src="../images/transrewrt_banner.png" alt="Transrewrt Banner"  />
 </p>
 
+<h1 align="center">Transrewrt</h1>
+
 <p align="center">
   <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.2-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
 </p>
 
-أداة نصية مدعومة بالذكاء الاصطناعي: **ترجمة**، و**إعادة كتابة**، و**تحويل** باستخدام مطالبات مخصصة — باستخدام موفري الذكاء الاصطناعي الخاصين بك (OpenRouter، وOpenAI، وAnthropic، وGoogle Gemini، وDeepSeek، وGroq، وMistral، وxAI، وCerebras، وNVIDIA، وAlibaba Cloud، وapikey.fun، ونقاط نهاية متوافقة مع OpenAI، وخوادم محلية متوافقة مع OpenAI مثل Ollama، وLM Studio، أو llama.cpp). تطبيق سطح مكتب (Windows / Linux) أو تطبيق ويب مستضاف ذاتيًا (Docker). لا يوجد حساب سحابي لـ Transrewrt.
+أداة نصية مدعومة بالذكاء الاصطناعي لـ **الترجمة** و**إعادة الكتابة** و**التحويل** باستخدام مطالبات مخصصة. استخدم مزودي الذكاء الاصطناعي الخاصين بك (OpenRouter، OpenAI، Anthropic، Google Gemini، DeepSeek، Groq، Mistral، xAI، Cerebras، NVIDIA، Alibaba Cloud، apikey.fun، نقاط نهاية متوافقة مع OpenAI، والخوادم المحلية مثل Ollama، LM Studio، أو llama.cpp). يعمل كتطبيق سطح مكتب (Windows / Linux) أو تطبيق ويب مستضاف ذاتيًا (Docker). لا يوجد حساب Transrewrt سحابي.
 
-| | |
+## الميزات
+
+| القدرة | الوصف |
 | --- | --- |
-| **ترجمة** | عشرات اللغات، الكشف التلقائي، المسارد، التحسين باستخدام إعادة الصياغة |
+| **الترجمة** | عشرات اللغات، الكشف التلقائي، المسارد، التحسين باستخدام إعادة الصياغة |
 | **إعادة كتابة** | الوضوح، النبرة، الطول، الإملاء والقواعد — نفس اللغة |
 | **تحويل** | مطالبات الذكاء الاصطناعي المخصصة التي تنشئها وتعدلها وتعيد استخدامها |
 | **نشر** | سطح مكتب Electron أو ويب Docker (amd64 و arm64) |
@@ -85,11 +89,10 @@ chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage
 
 [Apache License 2.0](../LICENSE)
 
-أسماء المنتجات وأيقوناتها مملوكة لأصحابها وتُستخدم لأغراض التعريف فقط. هذا البرنامج ليس تابعًا لتلك العلامات التجارية أو معتمدًا منها.
+أسماء المنتجات والرموز تنتمي إلى أصحابها المعنيين وتستخدم لأغراض التعريف فقط. هذا البرنامج ليس تابعًا لتلك العلامات التجارية أو معتمدًا منها.
 
 <small>
 
-> **ملاحظة حول ترجمات واجهة المستخدم والوثائق:** تم ترجمة جميع لغات الواجهة والوثائق باستثناء اللغة الإنجليزية الأصلية باستخدام نماذج الذكاء الاصطناعي باستخدام [ai-i18n-tools](https://wsj-br.github.io/ai-i18n-tools/)؛
-> قد تكون الصياغة غير دقيقة أو تحتوي على أخطاء.
+> **ملاحظة حول ترجمات واجهة المستخدم والوثائق:** تم ترجمة جميع لغات الواجهة والوثائق باستثناء الإنجليزية (المملكة المتحدة) باستخدام الذكاء الاصطناعي باستخدام [ai-i18n-tools](https://wsj-br.github.io/ai-i18n-tools/)؛ قد تكون الصياغة غير دقيقة أو تحتوي على أخطاء.
 
 </small>

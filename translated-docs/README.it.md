@@ -2,17 +2,21 @@
   <img src="../images/transrewrt_banner.png" alt="Transrewrt Banner"  />
 </p>
 
+<h1 align="center">Transrewrt</h1>
+
 <p align="center">
   <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.2-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
 </p>
 
-Strumento di testo basato sull'IA: **Traduci**, **Riscrittura** e **Trasforma** con prompt personalizzati, utilizzando i tuoi provider di IA (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, endpoint compatibili con OpenAI e server locali compatibili con OpenAI come Ollama, LM Studio o llama.cpp). App desktop (Windows/Linux) o app web self-hosted (Docker). Nessun account cloud Transrewrt.
+Strumento di testo basato sull'IA per **tradurre**, **riscrivere** e **trasformare** con prompt personalizzati. Utilizza i tuoi provider di IA (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, endpoint compatibili con OpenAI e server locali come Ollama, LM Studio o llama.cpp). Esegui come app desktop (Windows / Linux) o come app web self-hosted (Docker). Nessun account cloud Transrewrt.
 
-| | |
+## Caratteristiche
+
+| Funzionalità | Descrizione |
 | --- | --- |
-| **Traduci** | Decine di lingue, rilevamento automatico, glossari, perfezionamento con Rephrase |
+| **Traduci** | Decine di lingue, rilevamento automatico, glossari, perfezionamento con Riformula |
 | **Riscrittura** | Chiarezza, tono, lunghezza, ortografia e grammatica — stessa lingua |
 | **Trasforma** | Prompt AI personalizzati che crei, modifichi e riutilizzi |
 | **Distribuisci** | Desktop Electron o web Docker (amd64 e arm64) |
@@ -85,10 +89,10 @@ Diritti d'autore © 2026 Waldemar Scudeller Jr.
 
 [Apache License 2.0](../LICENSE)
 
-I nomi e le icone dei prodotti appartengono ai rispettivi proprietari e sono utilizzati solo a scopo identificativo. Questo software non è affiliato o approvato da tali marchi.
+I nomi e le icone dei prodotti appartengono ai rispettivi proprietari e vengono utilizzati solo a scopo identificativo. Questo software non è affiliato o approvato da tali marchi.
 
 <small>
 
-> **Nota sulle traduzioni dell'interfaccia utente e della documentazione:** Tutte le lingue dell'interfaccia e della documentazione, ad eccezione dell'inglese originale, sono state tradotte utilizzando modelli di intelligenza artificiale tramite [ai-i18n-tools](https://wsj-br.github.io/ai-i18n-tools/); la formulazione potrebbe essere imprecisa o contenere errori.
+> **Nota sulle traduzioni dell'interfaccia utente e della documentazione:** Tutte le lingue dell'interfaccia e della documentazione, ad eccezione dell'inglese (Regno Unito), sono state tradotte con l'IA utilizzando [ai-i18n-tools](https://wsj-br.github.io/ai-i18n-tools/); la formulazione potrebbe essere imprecisa o contenere errori.
 
 </small>

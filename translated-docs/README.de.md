@@ -2,15 +2,19 @@
   <img src="../images/transrewrt_banner.png" alt="Transrewrt Banner"  />
 </p>
 
+<h1 align="center">Transrewrt</h1>
+
 <p align="center">
   <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.2-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
 </p>
 
-KI-gestütztes Textwerkzeug: **Übersetzen**, **Umschreiben** und **Transformieren** mit benutzerdefinierten Prompts – unter Verwendung Ihrer eigenen KI-Anbieter (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, OpenAI-kompatible Endpunkte und lokale OpenAI-kompatible Server wie Ollama, LM Studio oder llama.cpp). Desktop-App (Windows / Linux) oder selbst gehostete Web-App (Docker). Kein Transrewrt Cloud-Konto.
+KI-gestütztes Textwerkzeug zum **Übersetzen**, **Umschreiben** und **Transformieren** mit benutzerdefinierten Prompts. Verwenden Sie Ihre eigenen KI-Anbieter (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, OpenAI-kompatible Endpunkte und lokale Server wie Ollama, LM Studio oder llama.cpp). Läuft als Desktop-App (Windows / Linux) oder als selbst gehostete Web-App (Docker). Kein Transrewrt-Cloud-Konto.
 
-| | |
+## Funktionen
+
+| Fähigkeit | Beschreibung |
 | --- | --- |
 | **Übersetzen** | Dutzende von Sprachen, automatische Erkennung, Glossare, Verfeinerung mit Umformulieren |
 | **Umschreiben** | Klarheit, Ton, Länge, Rechtschreibung & Grammatik – gleiche Sprache |
@@ -85,12 +89,10 @@ Copyright © 2026 Waldemar Scudeller Jr.
 
 [Apache License 2.0](../LICENSE)
 
-Produktnamen und Icons gehören ihren jeweiligen Eigentümern und werden nur zur Identifizierung verwendet. Diese Software ist nicht mit diesen Marken verbunden oder wird von ihnen unterstützt.
+Produktnamen und -symbole gehören ihren jeweiligen Inhabern und werden nur zur Identifizierung verwendet. Diese Software ist nicht mit diesen Marken verbunden oder wird von ihnen unterstützt.
 
 <small>
 
-> **Hinweis zu UI- und Dokumentationsübersetzungen:** Alle Interface- und Dokumentationssprachen außer dem 
-> ursprünglichen Englisch wurden mithilfe von KI-Modellen unter Verwendung von [ai-i18n-tools](https://wsj-br.github.io/ai-i18n-tools/) übersetzt;
-> die Formulierungen können ungenau sein oder Fehler enthalten.
+> **Hinweis zu UI- und Dokumentationsübersetzungen:** Alle Oberflächen- und Dokumentationssprachen außer Englisch (UK) wurden mit KI unter Verwendung von [ai-i18n-tools](https://wsj-br.github.io/ai-i18n-tools/) übersetzt; die Formulierung kann ungenau sein oder Fehler enthalten.
 
 </small>

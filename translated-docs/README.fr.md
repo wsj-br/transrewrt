@@ -2,17 +2,21 @@
   <img src="../images/transrewrt_banner.png" alt="Transrewrt Banner"  />
 </p>
 
+<h1 align="center">Transrewrt</h1>
+
 <p align="center">
   <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.2-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
 </p>
 
-Outil de texte alimenté par l'IA : **traduisez**, **réécrivez** et **transformez** avec des invites personnalisées — en utilisant vos propres fournisseurs d'IA (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, points de terminaison compatibles OpenAI, et serveurs locaux compatibles OpenAI tels que Ollama, LM Studio ou llama.cpp). Application de bureau (Windows / Linux) ou application web auto-hébergée (Docker). Pas de compte cloud Transrewrt.
+Outil textuel basé sur l'IA pour la **traduction**, la **réécriture** et la **transformation** avec des invites personnalisées. Utilisez vos propres fournisseurs d'IA (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, points de terminaison compatibles OpenAI et serveurs locaux tels qu'Ollama, LM Studio ou llama.cpp). Exécutez-le en tant qu'application de bureau (Windows / Linux) ou application web auto-hébergée (Docker). Pas de compte cloud Transrewrt.
 
-| | |
+## Fonctionnalités
+
+| Capacité | Description |
 | --- | --- |
-| **Traduire** | Des dizaines de langues, détection automatique, glossaires, affiner avec la reformulation |
+| **Traduire** | Des dizaines de langues, détection automatique, glossaires, affiner avec Reformuler |
 | **Réécriture** | Clarté, ton, longueur, orthographe et grammaire — même langue |
 | **Transformation** | Invites IA personnalisées que vous créez, modifiez et réutilisez |
 | **Déployer** | Application de bureau Electron ou web Docker (amd64 & arm64) |
@@ -85,10 +89,10 @@ Droit d'auteur © 2026 Waldemar Scudeller Jr.
 
 [Apache License 2.0](../LICENSE)
 
-Les noms de produits et les icônes appartiennent à leurs propriétaires respectifs et sont utilisés à des fins d'identification uniquement. Ce logiciel n'est pas affilié à ces marques ni approuvé par celles-ci.
+Les noms et icônes de produits appartiennent à leurs propriétaires respectifs et sont utilisés à des fins d'identification uniquement. Ce logiciel n'est pas affilié à ces marques et n'est pas approuvé par elles.
 
 <small>
 
-> **Remarque sur les traductions de l'interface utilisateur et de la documentation :** Toutes les langues de l'interface et de la documentation, à l'exception de l'anglais d'origine, ont été traduites à l'aide de modèles d'IA utilisant [ai-i18n-tools](https://wsj-br.github.io/ai-i18n-tools/) ; la formulation peut être imprécise ou contenir des erreurs.
+> **Remarque sur les traductions de l'interface utilisateur et de la documentation :** Toutes les langues de l'interface et de la documentation, à l'exception de l'anglais (Royaume-Uni), ont été traduites avec l'IA à l'aide de [ai-i18n-tools](https://wsj-br.github.io/ai-i18n-tools/) ; la formulation peut être imprécise ou contenir des erreurs.
 
 </small>

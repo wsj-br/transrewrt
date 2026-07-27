@@ -2,17 +2,21 @@
   <img src="../images/transrewrt_banner.png" alt="Transrewrt Banner"  />
 </p>
 
+<h1 align="center">Transrewrt</h1>
+
 <p align="center">
   <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.2-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
 </p>
 
-Narzędzie tekstowe oparte na sztucznej inteligencji: **tłumacz**, **przerabiaj** i **transformuj** za pomocą niestandardowych promptów — korzystając z własnych dostawców AI (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, punktów końcowych zgodnych z OpenAI oraz lokalnych serwerów zgodnych z OpenAI, takich jak Ollama, LM Studio lub llama.cpp). Aplikacja desktopowa (Windows / Linux) lub samodzielnie hostowana aplikacja internetowa (Docker). Brak konta Transrewrt w chmurze.
+Narzędzie tekstowe oparte na sztucznej inteligencji do **tłumaczenia**, **przepisywania** i **transformacji** z niestandardowymi podpowiedziami. Korzystaj z własnych dostawców AI (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, punktów końcowych zgodnych z OpenAI oraz lokalnych serwerów, takich jak Ollama, LM Studio lub llama.cpp). Uruchom jako aplikację desktopową (Windows / Linux) lub samodzielnie hostowaną aplikację internetową (Docker). Brak konta Transrewrt w chmurze.
 
-| | |
+## Funkcje
+
+| Możliwość | Opis |
 | --- | --- |
-| **Tłumacz** | Dziesiątki języków, automatyczne wykrywanie, słowniki, udoskonalanie za pomocą funkcji Przeróbka |
+| **Tłumacz** | Dziesiątki języków, automatyczne wykrywanie, słowniki, dopracowywanie za pomocą funkcji Parafrazuj |
 | **Przeróbka** | Klarowność, ton, długość, pisownia i gramatyka — ten sam język |
 | **Transformacja** | Niestandardowe podpowiedzi AI, które tworzysz, edytujesz i ponownie wykorzystujesz |
 | **Wdrażanie** | Aplikacja desktopowa Electron lub aplikacja internetowa Docker (amd64 i arm64) |
@@ -85,12 +89,10 @@ Prawa autorskie © 2026 Waldemar Scudeller Jr.
 
 [Apache License 2.0](../LICENSE)
 
-Nazwy produktów i ikony należą do ich odpowiednich właścicieli i są używane wyłącznie do celów identyfikacyjnych. To oprogramowanie nie jest powiązane z tymi markami ani przez nie wspierane.
+Nazwy produktów i ikony należą do ich właścicieli i są używane wyłącznie w celach identyfikacyjnych. To oprogramowanie nie jest powiązane z tymi markami ani przez nie wspierane.
 
 <small>
 
-> **Uwaga dotycząca tłumaczeń interfejsu i dokumentacji:** Wszystkie języki interfejsu i dokumentacji, 
-> poza oryginalnym angielskim, zostały przetłumaczone przy użyciu modeli AI z wykorzystaniem [ai-i18n-tools](https://wsj-br.github.io/ai-i18n-tools/);
-> sformułowania mogą być nieprecyzyjne lub zawierać błędy.
+> **Uwaga dotycząca tłumaczeń interfejsu użytkownika i dokumentacji:** Wszystkie języki interfejsu i dokumentacji, z wyjątkiem angielskiego (Wielka Brytania), zostały przetłumaczone za pomocą sztucznej inteligencji przy użyciu [ai-i18n-tools](https://wsj-br.github.io/ai-i18n-tools/); sformułowania mogą być niedokładne lub zawierać błędy.
 
 </small>

@@ -2,15 +2,19 @@
   <img src="../images/transrewrt_banner.png" alt="Transrewrt Banner"  />
 </p>
 
+<h1 align="center">Transrewrt</h1>
+
 <p align="center">
   <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.2-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
 </p>
 
-AI 기반 텍스트 도구: 사용자 정의 프롬프트로 **번역**, **다시 쓰기**, **변환** — 자체 AI 제공자(OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, OpenAI 호환 엔드포인트 및 Ollama, LM Studio, llama.cpp와 같은 로컬 OpenAI 호환 서버) 사용. 데스크톱 앱(Windows / Linux) 또는 자체 호스팅 웹 앱(Docker). Transrewrt 클라우드 계정 불필요.
+사용자 정의 프롬프트로 **번역**, **다시 쓰기**, **변환**을 수행하는 AI 기반 텍스트 도구입니다. 자체 AI 제공자(OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, OpenAI 호환 엔드포인트, Ollama, LM Studio, llama.cpp 등 로컬 서버)를 사용하세요. 데스크톱 앱(Windows / Linux) 또는 자체 호스팅 웹 앱(Docker)으로 실행할 수 있습니다. Transrewrt 클라우드 계정이 필요 없습니다.
 
-| | |
+## 기능
+
+| 기능 | 설명 |
 | --- | --- |
 | **번역** | 수십 개 언어, 자동 감지, 용어집, Rephrase로 다듬기 |
 | **다시 쓰기** | 명확성, 어조, 길이, 맞춤법 및 문법 — 동일 언어 |
@@ -85,12 +89,10 @@ chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage
 
 [Apache License 2.0](../LICENSE)
 
-제품 이름과 아이콘은 각 소유자의 자산이며 식별 목적으로만 사용됩니다. 이 소프트웨어는 해당 브랜드와 제휴 관계가 없으며 인증받지 않았습니다.
+제품명과 아이콘은 해당 소유자의 재산이며 식별 목적으로만 사용됩니다. 이 소프트웨어는 해당 브랜드와 제휴 관계가 없으며 해당 브랜드의 보증을 받지 않습니다.
 
 <small>
 
-> **UI 및 문서 번역에 대한 참고:** 원본 영어를 제외한 모든 인터페이스 및 문서 
-> 언어는 [ai-i18n-tools](https://wsj-br.github.io/ai-i18n-tools/)를 사용하는 AI 모델을 통해 번역되었습니다.
-> 표현이 부정확하거나 오류가 포함되어 있을 수 있습니다.
+> **UI 및 문서 번역 참고:** 영국 영어를 제외한 모든 인터페이스 및 문서 언어는 [ai-i18n-tools](https://wsj-br.github.io/ai-i18n-tools/)를 사용하여 AI로 번역되었습니다. 표현이 부정확하거나 오류가 포함되어 있을 수 있습니다.
 
 </small>

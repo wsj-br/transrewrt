@@ -2,17 +2,21 @@
   <img src="../images/transrewrt_banner.png" alt="Transrewrt Banner"  />
 </p>
 
+<h1 align="center">Transrewrt</h1>
+
 <p align="center">
   <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.2-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
 </p>
 
-AI-संचालित टेक्स्ट टूल: अपने स्वयं के AI प्रदाताओं (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, OpenAI-संगत एंडपॉइंट्स, और स्थानीय OpenAI-संगत सर्वर जैसे Ollama, LM Studio, या llama.cpp) का उपयोग करके कस्टम प्रॉम्प्ट के साथ **अनुवाद करें**, **पुनर्लेखन करें**, और **रूपांतरण करें**। डेस्कटॉप ऐप (Windows / Linux) या स्व-होस्टेड वेब ऐप (Docker)। कोई Transrewrt क्लाउड खाता नहीं।
+कस्टम प्रॉम्प्ट के साथ **अनुवाद**, **पुनर्लेखन** और **रूपांतरण** के लिए AI-संचालित टेक्स्ट टूल। अपने स्वयं के AI प्रदाताओं (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, OpenAI-संगत एंडपॉइंट्स, और Ollama, LM Studio, या llama.cpp जैसे स्थानीय सर्वर) का उपयोग करें। डेस्कटॉप ऐप (Windows / Linux) या स्व-होस्टेड वेब ऐप (Docker) के रूप में चलाएँ। कोई Transrewrt क्लाउड खाता नहीं।
 
-| | |
+## विशेषताएँ
+
+| क्षमता | विवरण |
 | --- | --- |
-| **अनुवाद करें** | दर्जनों भाषाएँ, स्वतः-पहचान, शब्दावलियाँ, रीफ़्रेज़ के साथ परिष्कृत करें |
+| **अनुवाद करें** | दर्जनों भाषाएँ, स्वतः-पहचान, शब्दावली, रीफ्रेज़ के साथ परिष्कृत करें |
 | **पुनर्लेखन करें** | स्पष्टता, टोन, लंबाई, वर्तनी और व्याकरण — एक ही भाषा |
 | **रूपांतरण करें** | आपके द्वारा बनाए गए, संपादित किए गए और पुन: उपयोग किए जाने वाले कस्टम AI प्रॉम्प्ट |
 | **तैनात करें** | इलेक्ट्रॉन डेस्कटॉप या डॉकर वेब (amd64 और arm64) |
@@ -85,10 +89,10 @@ chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage
 
 [Apache License 2.0](../LICENSE)
 
-उत्पाद के नाम और आइकन उनके संबंधित स्वामियों के हैं और उनका उपयोग केवल पहचान के लिए किया जाता है। यह सॉफ़्टवेयर उन ब्रांडों से संबद्ध या उनके द्वारा समर्थित नहीं है।
+उत्पाद नाम और आइकन संबंधित स्वामियों के हैं और पहचान के उद्देश्य से उपयोग किए जाते हैं। यह सॉफ़्टवेयर उन ब्रांडों से संबद्ध या उनके द्वारा समर्थित नहीं है।
 
 <small>
 
-> **यूआई और दस्तावेज़ अनुवाद पर ध्यान दें:** मूल अंग्रेज़ी को छोड़कर सभी इंटरफ़ेस और दस्तावेज़ भाषाओं का अनुवाद [ai-i18n-tools](https://wsj-br.github.io/ai-i18n-tools/) का उपयोग करके एआई मॉडल द्वारा किया गया था; शब्दांकन गलत या त्रुटियों वाला हो सकता है।
+> **UI और दस्तावेज़ अनुवादों पर ध्यान दें:** अंग्रेज़ी (यूके) को छोड़कर सभी इंटरफ़ेस और दस्तावेज़ भाषाओं का अनुवाद AI का उपयोग करके [ai-i18n-tools](https://wsj-br.github.io/ai-i18n-tools/) से किया गया था; शब्दांकन गलत या त्रुटिपूर्ण हो सकता है।
 
 </small>

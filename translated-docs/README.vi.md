@@ -2,15 +2,19 @@
   <img src="../images/transrewrt_banner.png" alt="Transrewrt Banner"  />
 </p>
 
+<h1 align="center">Transrewrt</h1>
+
 <p align="center">
   <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.2-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
 </p>
 
-Công cụ văn bản được hỗ trợ bởi AI: **dịch**, **chỉnh sửa lại** và **chuyển đổi** bằng các lời nhắc tùy chỉnh — sử dụng các nhà cung cấp AI của riêng bạn (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, các điểm cuối tương thích với OpenAI và các máy chủ tương thích với OpenAI cục bộ như Ollama, LM Studio hoặc llama.cpp). Ứng dụng máy tính để bàn (Windows / Linux) hoặc ứng dụng web tự lưu trữ (Docker). Không cần tài khoản đám mây Transrewrt.
+Công cụ văn bản hỗ trợ AI để **dịch**, **viết lại** và **chuyển đổi** với các lời nhắc tùy chỉnh. Sử dụng các nhà cung cấp AI của riêng bạn (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, các điểm cuối tương thích với OpenAI và các máy chủ cục bộ như Ollama, LM Studio hoặc llama.cpp). Chạy dưới dạng ứng dụng máy tính để bàn (Windows / Linux) hoặc ứng dụng web tự lưu trữ (Docker). Không có tài khoản đám mây Transrewrt.
 
-| | |
+## Tính năng
+
+| Khả năng | Mô tả |
 | --- | --- |
 | **Dịch** | Hàng chục ngôn ngữ, tự động phát hiện, bảng thuật ngữ, tinh chỉnh bằng cách Diễn giải lại |
 | **Viết lại** | Rõ ràng, giọng điệu, độ dài, chính tả & ngữ pháp — cùng ngôn ngữ |
@@ -85,11 +89,10 @@ Bản quyền © 2026 Waldemar Scudeller Jr.
 
 [Apache License 2.0](../LICENSE)
 
-Tên sản phẩm và biểu tượng thuộc về chủ sở hữu tương ứng và chỉ được sử dụng để nhận dạng. Phần mềm này không liên kết hoặc được xác nhận bởi các thương hiệu đó.
+Tên sản phẩm và biểu tượng thuộc về chủ sở hữu tương ứng và chỉ được sử dụng cho mục đích nhận dạng. Phần mềm này không liên kết hoặc được xác nhận bởi các thương hiệu đó.
 
 <small>
 
-> **Lưu ý về bản dịch giao diện người dùng và tài liệu:** Tất cả các ngôn ngữ giao diện và tài liệu, ngoại trừ tiếng Anh gốc, đều được dịch bằng các mô hình AI sử dụng [ai-i18n-tools](https://wsj-br.github.io/ai-i18n-tools/); 
-> cách diễn đạt có thể không chính xác hoặc chứa lỗi.
+> **Lưu ý về bản dịch giao diện người dùng và tài liệu:** Tất cả các ngôn ngữ giao diện và tài liệu ngoại trừ tiếng Anh (Anh) đều được dịch bằng AI sử dụng [ai-i18n-tools](https://wsj-br.github.io/ai-i18n-tools/); cách diễn đạt có thể không chính xác hoặc chứa lỗi.
 
 </small>

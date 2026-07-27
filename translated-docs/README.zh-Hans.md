@@ -2,17 +2,21 @@
   <img src="../images/transrewrt_banner.png" alt="Transrewrt Banner"  />
 </p>
 
+<h1 align="center">Transrewrt</h1>
+
 <p align="center">
   <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.2-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
 </p>
 
-AI 驱动的文本工具：**翻译**、**改写**以及使用自定义提示词进行**转换** —— 使用您自己的 AI 提供商（OpenRouter、OpenAI、Anthropic、Google Gemini、DeepSeek、Groq、Mistral、xAI、Cerebras、NVIDIA、阿里云、apikey.fun、OpenAI 兼容端点，以及本地 OpenAI 兼容服务器，如 Ollama、LM Studio 或 llama.cpp）。桌面应用（Windows / Linux）或自托管 Web 应用（Docker）。无需 Transrewrt 云账号。
+AI 驱动的文本工具，支持使用自定义提示词进行**翻译**、**改写**和**转换**。使用您自己的 AI 提供商（OpenRouter、OpenAI、Anthropic、Google Gemini、DeepSeek、Groq、Mistral、xAI、Cerebras、NVIDIA、阿里云、apikey.fun、兼容 OpenAI 的端点，以及本地服务器如 Ollama、LM Studio 或 llama.cpp）。可作为桌面应用（Windows / Linux）或自托管 Web 应用（Docker）运行。无需 Transrewrt 云账号。
 
-| | |
+## 功能
+
+| 功能 | 描述 |
 | --- | --- |
-| **翻译** | 支持数十种语言、自动检测、词汇表，使用 Rephrase 进行润色 |
+| **翻译** | 支持数十种语言、自动检测、术语表，使用 Rephrase 进行润色 |
 | **改写** | 清晰度、语气、长度、拼写和语法 —— 同一语言 |
 | **转换** | 你创建、编辑和重用的自定义 AI 提示词 |
 | **部署** | Electron 桌面版或 Docker Web 版（amd64 和 arm64） |
@@ -85,11 +89,10 @@ chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage
 
 [Apache License 2.0](../LICENSE)
 
-产品名称和图标归其各自所有者所有，仅用于识别。本软件不隶属于这些品牌，也未获得其认可。
+产品名称和图标属于其各自所有者，仅用于识别目的。本软件不隶属于这些品牌，也未获得其认可。
 
 <small>
 
-> **关于界面和文档翻译的说明：** 除原始英文外，全部界面和文档语言均使用 AI 模型通过 [ai-i18n-tools](https://wsj-br.github.io/ai-i18n-tools/) 翻译；
-> 措辞可能不够准确或包含错误。
+> **关于界面和文档翻译的说明：** 除英国英语外，所有界面和文档语言均使用 [ai-i18n-tools](https://wsj-br.github.io/ai-i18n-tools/) 通过 AI 翻译；措辞可能不够准确或包含错误。
 
 </small>

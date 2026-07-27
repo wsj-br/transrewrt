@@ -2,17 +2,21 @@
   <img src="../images/transrewrt_banner.png" alt="Transrewrt Banner"  />
 </p>
 
+<h1 align="center">Transrewrt</h1>
+
 <p align="center">
   <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.2-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
 </p>
 
-เครื่องมือข้อความที่ขับเคลื่อนด้วย AI: **แปล**, **เขียนใหม่** และ **แปลง** ด้วยพร้อมต์ที่กำหนดเอง — โดยใช้ผู้ให้บริการ AI ของคุณเอง (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, ปลายทางที่เข้ากันได้กับ OpenAI และเซิร์ฟเวอร์ที่เข้ากันได้กับ OpenAI ในเครื่อง เช่น Ollama, LM Studio หรือ llama.cpp) แอปเดสก์ท็อป (Windows / Linux) หรือเว็บแอปที่โฮสต์เอง (Docker) ไม่มีบัญชีคลาวด์ Transrewrt
+เครื่องมือข้อความที่ขับเคลื่อนด้วย AI สำหรับการ**แปล** การ**เขียนใหม่** และการ**แปลง** ด้วยพรอมต์ที่กำหนดเอง ใช้ผู้ให้บริการ AI ของคุณเอง (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, ปลายทางที่เข้ากันได้กับ OpenAI และเซิร์ฟเวอร์ในเครื่อง เช่น Ollama, LM Studio หรือ llama.cpp) เรียกใช้เป็นแอปเดสก์ท็อป (Windows / Linux) หรือเว็บแอปที่โฮสต์เอง (Docker) ไม่มีบัญชีคลาวด์ Transrewrt
 
-| | |
+## คุณสมบัติ
+
+| ความสามารถ | คำอธิบาย |
 | --- | --- |
-| **แปล** | หลายสิบภาษา, ตรวจจับอัตโนมัติ, อภิธานศัพท์, ปรับปรุงด้วยการแก้ไขใหม่ |
+| **แปล** | หลายสิบภาษา, ตรวจจับอัตโนมัติ, อภิธานศัพท์, ปรับปรุงด้วยการปรับสำนวน |
 | **การแก้ไขใหม่** | ความชัดเจน, โทนเสียง, ความยาว, การสะกดและไวยากรณ์ — ภาษาเดียวกัน |
 | **การแปลง** | พร้อมต์ AI ที่กำหนดเองที่คุณสร้าง, แก้ไข และนำกลับมาใช้ใหม่ |
 | **ปรับใช้** | เดสก์ท็อป Electron หรือเว็บ Docker (amd64 & arm64) |
@@ -85,11 +89,10 @@ chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage
 
 [Apache License 2.0](../LICENSE)
 
-ชื่อผลิตภัณฑ์และไอคอนเป็นของเจ้าของที่เกี่ยวข้อง และใช้เพื่อการระบุตัวตนเท่านั้น ซอฟต์แวร์นี้ไม่มีส่วนเกี่ยวข้องหรือรับรองโดยแบรนด์เหล่านั้น
+ชื่อผลิตภัณฑ์และไอคอนเป็นของเจ้าของแต่ละรายและใช้เพื่อวัตถุประสงค์ในการระบุเท่านั้น ซอฟต์แวร์นี้ไม่มีส่วนเกี่ยวข้องหรือรับรองโดยแบรนด์เหล่านั้น
 
 <small>
 
-> **หมายเหตุเกี่ยวกับการแปล UI และเอกสาร:** ภาษาของอินเทอร์เฟซและเอกสารทั้งหมด ยกเว้นภาษาอังกฤษต้นฉบับ ได้รับการแปลโดยใช้โมเดล AI โดยใช้ [ai-i18n-tools](https://wsj-br.github.io/ai-i18n-tools/); 
-> การใช้ถ้อยคำอาจไม่แม่นยำหรือมีข้อผิดพลาด
+> **หมายเหตุเกี่ยวกับการแปล UI และเอกสาร:** ภาษาอินเทอร์เฟซและเอกสารทั้งหมด ยกเว้นภาษาอังกฤษ (สหราชอาณาจักร) ได้รับการแปลด้วย AI โดยใช้ [ai-i18n-tools](https://wsj-br.github.io/ai-i18n-tools/); การใช้คำอาจไม่แม่นยำหรือมีข้อผิดพลาด
 
 </small>

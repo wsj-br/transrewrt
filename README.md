@@ -1,6 +1,8 @@
 <p align="center">
-  <img src="images/transrewrt_banner.png" alt="Transrewrt Banner"  />
+  <img src="images/transrewrt_banner.png" alt="Transrewrt Banner" />
 </p>
+
+<h1 align="center">Transrewrt</h1>
 
 <p align="center">
   <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.2-blue" alt="Version"></a>
@@ -8,9 +10,11 @@
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
 </p>
 
-AI-powered text tool: **translate**, **rewrite**, and **transform** with custom prompts — using your own AI providers (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, OpenAI-compatible endpoints, and local OpenAI-compatible servers such as Ollama, LM Studio, or llama.cpp). Desktop app (Windows / Linux) or self-hosted web app (Docker). No Transrewrt cloud account.
+AI-powered text tool for **translate**, **rewrite**, and **transform** with custom prompts. Use your own AI providers (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, OpenAI-compatible endpoints, and local servers such as Ollama, LM Studio, or llama.cpp). Run as a desktop app (Windows / Linux) or a self-hosted web app (Docker). No Transrewrt cloud account.
 
-| | |
+## Features
+
+| Capability | Description |
 | --- | --- |
 | **Translate** | Dozens of languages, auto-detect, glossaries, refine with Rephrase |
 | **Rewrite** | Clarity, tone, length, spelling & grammar — same language |
@@ -85,12 +89,10 @@ Copyright © 2026 Waldemar Scudeller Jr.
 
 [Apache License 2.0](LICENSE)
 
-Product names and icons belong to their respective owners and are used for identification only. This software is not affiliated with or endorsed by those brands.
+Product names and icons belong to their respective owners and are used for identification purposes only. This software is not affiliated with or endorsed by those brands.
 
 <small>
 
-> **Note on UI and documentation translations:** All interface and documentation languages except the 
-> original English were translated using AI models using [ai-i18n-tools](https://wsj-br.github.io/ai-i18n-tools/);
-> the wording may be imprecise or contain errors.
+> **Note on UI and documentation translations:** All interface and documentation languages except English (UK) were translated with AI using [ai-i18n-tools](https://wsj-br.github.io/ai-i18n-tools/); the wording may be imprecise or contain errors.
 
 </small>

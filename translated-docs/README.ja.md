@@ -2,17 +2,21 @@
   <img src="../images/transrewrt_banner.png" alt="Transrewrt Banner"  />
 </p>
 
+<h1 align="center">Transrewrt</h1>
+
 <p align="center">
   <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.2-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
 </p>
 
-AI搭載のテキストツール：カスタムプロンプトを使用して**翻訳**、**書き換え**、および**変換**を行います — 独自のAIプロバイダ（OpenRouter、OpenAI、Anthropic、Google Gemini、DeepSeek、Groq、Mistral、xAI、Cerebras、NVIDIA、Alibaba Cloud、apikey.fun、OpenAI互換エンドポイント、およびOllama、LM Studio、llama.cppなどのローカルOpenAI互換サーバー）を使用します。デスクトップアプリ（Windows / Linux）またはセルフホスト型Webアプリ（Docker）。Transrewrtクラウドアカウントは不要です。
+AIを活用したテキストツールで、カスタムプロンプトによる**翻訳**、**書き換え**、**変換**が可能です。独自のAIプロバイダー（OpenRouter、OpenAI、Anthropic、Google Gemini、DeepSeek、Groq、Mistral、xAI、Cerebras、NVIDIA、Alibaba Cloud、apikey.fun、OpenAI互換エンドポイント、およびOllama、LM Studio、llama.cppなどのローカルサーバー）を使用できます。デスクトップアプリ（Windows / Linux）またはセルフホスト型Webアプリ（Docker）として実行できます。Transrewrtクラウドアカウントは不要です。
 
-| | |
+## 機能
+
+| 機能 | 説明 |
 | --- | --- |
-| **翻訳** | 数十言語、自動検出、用語集、言い換えでリファイン |
+| **翻訳** | 数十の言語、自動検出、用語集、Rephraseで推敲 |
 | **書き換え** | 明確さ、トーン、長さ、スペルと文法 — 同一言語 |
 | **変換** | 作成、編集、再利用可能なカスタムAIプロンプト |
 | **デプロイ** | ElectronデスクトップまたはDocker Web (amd64 & arm64) |
@@ -85,12 +89,10 @@ Copyright © 2026 Waldemar Scudeller Jr.
 
 [Apache License 2.0](../LICENSE)
 
-製品名およびアイコンはそれぞれの所有者に帰属し、識別目的のみに使用されます。本ソフトウェアはこれらのブランドと提携しているわけではなく、また推奨されているわけでもありません。
+製品名とアイコンは、それぞれの所有者に帰属し、識別目的でのみ使用されています。本ソフトウェアはこれらのブランドと提携関係になく、推奨も受けていません。
 
 <small>
 
-> **UIおよびドキュメント翻訳に関する注意:** 原語である英語を除く 
-> すべてのインターフェイスおよびドキュメント言語は、[ai-i18n-tools](https://wsj-br.github.io/ai-i18n-tools/)を用いたAIモデルを使用して翻訳されており、
-> 表現が不正確であったり、エラーが含まれている場合があります。
+> **UIおよびドキュメント翻訳に関する注意:** 英語（UK）を除くすべてのインターフェースおよびドキュメント言語は、[ai-i18n-tools](https://wsj-br.github.io/ai-i18n-tools/)を使用してAIで翻訳されました。表現が不正確であったり、エラーが含まれる場合があります。
 
 </small>
