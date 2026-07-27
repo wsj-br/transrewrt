@@ -4,16 +4,11 @@
 
 Transrewrt 1.6.2 tightens Easy/Advanced model picking, improves presets AI Suggest, and polishes everyday workspace UX. Packaging and CI now use frozen lockfiles end-to-end, with a PR lint workflow and a `glob` override fix so release installs no longer fail on outdated lockfiles.
 
-## Downloads
 
-Published builds are attached to the GitHub **Releases** page for this tag:
 
-- **Windows**: Installer (x64)
-- **Linux**: AppImage (x64 and arm64)
-- **Docker**: `ghcr.io/wsj-br/transrewrt:1.6.2` (and `latest` when tagged accordingly); multi-arch images as published on GHCR.
-- **Website / docs**: https://wsj-br.github.io/transrewrt/ (also redeployable with `pnpm website:publish`)
+## Changes
 
-Exact filenames and checksums appear on the release page.
+For a complete, line-by-line list of changes (Added / Changed / Fixed), see [CHANGELOG.md](https://github.com/wsj-br/transrewrt/blob/main/dev/CHANGELOG.md) — section **[1.6.2] - 2026-07-25**.
 
 <details>
 <summary><strong>Highlights</strong></summary>
@@ -56,10 +51,6 @@ Exact filenames and checksums appear on the release page.
 
 </details>
 
-## Detailed changelog
-
-For a complete, line-by-line list of changes (Added / Changed / Fixed), see [CHANGELOG.md](https://github.com/wsj-br/transrewrt/blob/main/dev/CHANGELOG.md) — section **[1.6.2] - 2026-07-25**.
-
 <details>
 <summary><strong>Documentation</strong></summary>
 
@@ -70,9 +61,6 @@ For a complete, line-by-line list of changes (Added / Changed / Fixed), see [CHA
 
 </details>
 
-## Disclaimer
-
-Product names and icons belong to their respective owners and are used for identification purposes only. This software is not affiliated with or endorsed by any of the mentioned brands.
 
 ## License
 
@@ -80,6 +68,25 @@ Copyright © 2026 Waldemar Scudeller Jr.
 
 Transrewrt is released under the **Apache License 2.0**. See [LICENSE](https://github.com/wsj-br/transrewrt/blob/main/LICENSE).
 
+<details    >
+<summary><strong>Disclaimer</strong></summary>
+
+Product names and icons belong to their respective owners and are used for identification purposes only. This software is not affiliated with or endorsed by any of the mentioned brands. 
+
+See [NOTICES](https://github.com/wsj-br/transrewrt/blob/main/NOTICES) for more details on third-party dependencies and data sources.
+
+</details>
+
+## Downloads 
+
+- **Windows**: Download the `.exe` installer (64-bit) from the Assets section below.
+- **Linux**: Download the `.AppImage` for either x64 or arm64 from the Assets section below.
+- **Docker**: Pull using `ghcr.io/wsj-br/transrewrt:1.6.2` (or `latest` for the newest release). Both x64 and arm64 are supported.
+
+See [Assets](https://github.com/wsj-br/transrewrt/releases/tag/1.6.2) for exact filenames and checksums.
+
+
 ---
 
 *Thank you for using Transrewrt. Feedback and issue reports on the project repository are welcome.*
+
