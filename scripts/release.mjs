@@ -8,6 +8,9 @@
  * the tag is recreated at the current HEAD, then pushed — so you can fix a
  * mistaken tag or re-run the release after new commits.
  *
+ * After the clean-tree check, requires the GitHub Actions "CI" workflow for
+ * HEAD to have finished successfully (blocks while in progress or on failure).
+ *
  * Usage:
  *   node scripts/release.mjs
  *   node scripts/release.mjs --dry-run
@@ -34,6 +37,7 @@ Options:
   --verify-clean=true  Require clean git working tree (default).
   --verify-clean=false Skip clean-tree check.
 
+Requires a successful GitHub Actions CI run for HEAD (after the clean-tree check).
 If tag v<version> or a GitHub release for it already exists, they are removed
 and the tag is recreated at HEAD, then pushed to origin.`);
 }
@@ -201,14 +205,79 @@ if (verifyClean) {
   }
 }
 
+/**
+ * Require a completed successful GitHub Actions "CI" run for HEAD before
+ * tagging. Blocks while a run is still queued/in progress, and refuses a
+ * failed/cancelled conclusion.
+ */
+function assertCiSucceededForHead(headSha) {
+  const shortSha = headSha.slice(0, 7);
+  const listed = run(
+    "gh",
+    [
+      "run",
+      "list",
+      "--workflow",
+      "CI",
+      "--commit",
+      headSha,
+      "--limit",
+      "5",
+      "--json",
+      "databaseId,status,conclusion,url,displayTitle",
+    ],
+    { quiet: true, inherit: false },
+  );
+
+  if (!listed.ok) {
+    fail("Failed to query GitHub Actions CI runs. Check `gh auth status` and network.");
+  }
+
+  let runs;
+  try {
+    runs = JSON.parse(listed.stdout || "[]");
+  } catch {
+    fail("Failed to parse GitHub Actions CI run list.");
+  }
+
+  if (!Array.isArray(runs) || runs.length === 0) {
+    fail(
+      `No CI workflow run found for HEAD (${shortSha}). Push to origin (CI runs on main/PRs), wait for it to start, then retry.`,
+    );
+  }
+
+  const incomplete = runs.find((r) => r.status !== "completed");
+  if (incomplete) {
+    const where = incomplete.url || "see the Actions tab";
+    fail(
+      `CI workflow is still running for HEAD (${shortSha}). Wait until it finishes successfully, then retry.\n  ${where}`,
+    );
+  }
+
+  // gh run list returns newest first
+  const latest = runs[0];
+  if (latest.conclusion !== "success") {
+    const where = latest.url || "see the Actions tab";
+    fail(
+      `CI workflow did not succeed for HEAD (${shortSha}) (conclusion: ${latest.conclusion ?? "unknown"}). Fix CI, then retry.\n  ${where}`,
+    );
+  }
+
+  console.log(`CI succeeded for HEAD (${shortSha}): ${latest.url}`);
+}
+
 if (!run("git", ["remote", "get-url", "origin"], { quiet: true }).ok) {
   fail("Remote 'origin' not configured.");
 }
 
+const headCommit = run("git", ["rev-parse", "HEAD"], { quiet: true, inherit: false }).stdout.trim();
+if (!headCommit) {
+  fail("Could not resolve HEAD commit.");
+}
+assertCiSucceededForHead(headCommit);
+
 console.log("Syncing dependencies...");
 runPnpm(["install", "--no-frozen-lockfile"]);
-
-const headCommit = run("git", ["rev-parse", "HEAD"], { quiet: true, inherit: false }).stdout.trim();
 
 function remoteTagExists() {
   const result = run("git", ["ls-remote", "origin", `refs/tags/${tag}`], {

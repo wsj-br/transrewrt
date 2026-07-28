@@ -11,6 +11,8 @@ Use conventional types (Added, Changed, Fixed, etc.) and short descriptions.
 
 ## Unreleased
 
+- **Changed**: `release:github` refuses to proceed until the GitHub Actions `CI` workflow for HEAD has finished successfully (blocks while in progress or on failure).
+
 ## [1.6.2] - 2026-07-25
 
 - **Fixed**: Align `glob` pnpm override with the direct dependency (`^13.0.6`) so `pnpm install --frozen-lockfile` (release CI) no longer fails with `ERR_PNPM_OUTDATED_LOCKFILE`.

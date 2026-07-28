@@ -141,7 +141,14 @@ Setup, build, test, and deploy instructions for the Transrewrt application (Elec
    winget install Docker.DockerDesktop
    ```
 
-8. (optional) Register the `ai-i18n-tools` shell command: already included in `Register-DotEnvHook.ps1`. It walks ancestor directories for a `node_modules/.bin` shim (consumer installs), falls back to `bin/ai-i18n-tools.mjs` inside the ai-i18n-tools source repo, then to a global install on `PATH`.
+8. **GitHub CLI** (for `pnpm run release:github` / `pnpm website:publish`): Install [GitHub CLI](https://cli.github.com/) (`gh`), then authenticate:
+
+   ```powershell
+   winget install GitHub.cli --accept-package-agreements --accept-source-agreements
+   gh auth login
+   ```
+
+9. (optional) Register the `ai-i18n-tools` shell command: already included in `Register-DotEnvHook.ps1`. It walks ancestor directories for a `node_modules/.bin` shim (consumer installs), falls back to `bin/ai-i18n-tools.mjs` inside the ai-i18n-tools source repo, then to a global install on `PATH`.
 
   ```powershell
   ai-i18n-tools --help
@@ -218,6 +225,15 @@ Setup, build, test, and deploy instructions for the Transrewrt application (Elec
    ```
 
    Log out and back in after `usermod`.
+
+9. **GitHub CLI** (for `pnpm run release:github` / `pnpm website:publish`): Install [GitHub CLI](https://cli.github.com/) (`gh`), then authenticate:
+
+   ```bash
+   sudo apt install gh
+   gh auth login
+   ```
+
+   If `gh` is not in your distro’s repos, use the install instructions at [cli.github.com](https://cli.github.com/).
 
 ### Git symlinks (required on Windows)
 
@@ -569,6 +585,7 @@ After `main` contains the release commit(s), check out `main` locally at the com
 - Remote **`origin`** configured (e.g. `git@github.com:wsj-br/transrewrt.git`).
 - **`release-notes/RELEASE_NOTES_<version>.md`** present for the current `package.json` version.
 - Working tree clean (default), or pass `--verify-clean=false` to the script.
+- GitHub Actions **CI** workflow for **HEAD** completed successfully (the script blocks while a run is still in progress, and aborts if CI failed or has not run for that commit).
 
 **Steps**
 
