@@ -11,6 +11,7 @@ Use conventional types (Added, Changed, Fixed, etc.) and short descriptions.
 
 ## Unreleased
 
+- **Changed**: Folded `nvm_resolve_lts_node_version` into `scripts/upgrade-tools.sh` (aligned with PowerShell); removed `scripts/nvm-lts-resolve-version.sh`.
 - **Changed**: `release:github` refuses to proceed until the GitHub Actions `CI` workflow for HEAD has finished successfully (blocks while in progress or on failure).
 
 ## [1.6.2] - 2026-07-25
