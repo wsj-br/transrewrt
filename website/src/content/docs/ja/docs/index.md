@@ -11,7 +11,7 @@ description: Transrewrtの概要と、インストール、ガイド、設定ド
 - **リライト** — 文法の修正、明確さの向上、トーンや長さの変更
 - **トランスフォーム** — 任意のテキストに対してカスタムAIプロンプトを実行
 
-多くのAIプロバイダーをサポートしています（OpenRouter、OpenAI、Anthropic、Google Gemini、DeepSeek、Groq、Mistral、xAI、Cerebras、NVIDIA、Alibaba Cloud、apikey.fun、OpenAI互換エンドポイント、Ollama、LM Studio、llama.cppなどのローカルOpenAI互換サーバーなど）。**デスクトップアプリ**（Windows / Linux）または**セルフホスト型Webアプリ**（Docker）として実行できます。
+多くのAIプロバイダー（OpenRouter、OpenAI、Anthropic、Google Gemini、DeepSeek、Groq、Mistral、xAI、Cerebras、NVIDIA、Alibaba Cloud、apikey.fun、OpenAI互換エンドポイント、およびOllama、LM Studio、llama.cppなどのローカルOpenAI互換サーバー）をサポートしています。**デスクトップアプリ**（Windows / Linux）または**Docker Webアプリ**として実行できます。
 
 あなたのキー、あなたのモデル、あなたのホスト — Transrewrtのクラウドアカウントはありません。
 

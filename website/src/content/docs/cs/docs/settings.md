@@ -11,15 +11,15 @@ Otevřete **Nastavení** z postranního panelu a přizpůsobte si chování apli
 
 | Karta | Desktop | Web (administrátor) | Web (uživatel) | Poznámky |
 | --- | :---: | :---: | :---: | --- |
-| Obecná nastavení | ano | ano | ano | Zahrnuje **Zkušenosti s AI** (Snadné / Pokročilé) |
-| Modely | ano | ano | ano | Pouze když je **Zkušenosti s AI** **Pokročilé** |
-| Jazyky | ano | ano | ano | |
-| Sledování nákladů | ano | ano | — | |
-| Transformace | ano | ano | ano | Hromadný import/export promptů |
-| Slovník | ano | ano | ano | Páry termínů pro překlad |
-| Uživatelé | — | ano | — | |
-| Konfigurace API | ano | ano | — | |
-| O aplikaci | ano | ano | ano | |
+| Obecná nastavení | ✓ | ✓ | ✓ | Zahrnuje **AI prostředí** (jednoduché / pokročilé) |
+| Modely | ✓ | ✓ | ✓ | Pouze když je **AI prostředí** **pokročilé** |
+| Jazyky | ✓ | ✓ | ✓ | |
+| Sledování nákladů | ✓ | ✓ | — | |
+| Transformace | ✓ | ✓ | ✓ | Hromadný import/export výzev |
+| Slovník | ✓ | ✓ | ✓ | Páry termínů pro překlad |
+| Uživatelé | — | ✓ | — | |
+| Konfigurace API | ✓ | ✓ | — | |
+| O aplikaci | ✓ | ✓ | ✓ | |
 
 V režimu **Snadné** vyberte AI pomocí předvoleb na panelu nástrojů a **Poskytovatele** v Obecných nastaveních; karta **Modely** je skrytá.
 

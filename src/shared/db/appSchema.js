@@ -328,8 +328,17 @@ const sql = {
   /** Glossary terms — Electron uses user_id IS NULL, web uses user_id = ? */
   GLOSSARY_GET_ALL: "SELECT * FROM glossary_terms WHERE user_id IS NULL ORDER BY source_language, target_language, source_text ASC",
   GLOSSARY_GET_ALL_FOR_USER: "SELECT * FROM glossary_terms WHERE user_id = ? ORDER BY source_language, target_language, source_text ASC",
-  GLOSSARY_GET_BY_LANG_PAIR: "SELECT * FROM glossary_terms WHERE source_language = ? AND target_language = ? AND user_id IS NULL ORDER BY source_text ASC",
-  GLOSSARY_GET_BY_LANG_PAIR_FOR_USER: "SELECT * FROM glossary_terms WHERE source_language = ? AND target_language = ? AND user_id = ? ORDER BY source_text ASC",
+  /** Include exact pair plus "All Languages" wildcards on either side. */
+  GLOSSARY_GET_BY_LANG_PAIR: `SELECT * FROM glossary_terms
+    WHERE (source_language = ? OR source_language = 'All Languages')
+      AND (target_language = ? OR target_language = 'All Languages')
+      AND user_id IS NULL
+    ORDER BY source_text ASC`,
+  GLOSSARY_GET_BY_LANG_PAIR_FOR_USER: `SELECT * FROM glossary_terms
+    WHERE (source_language = ? OR source_language = 'All Languages')
+      AND (target_language = ? OR target_language = 'All Languages')
+      AND user_id = ?
+    ORDER BY source_text ASC`,
   GLOSSARY_INSERT: `INSERT INTO glossary_terms (source_language, target_language, source_text, target_text, created_at, updated_at, user_id) VALUES (?, ?, ?, ?, ?, ?, ?)`,
   GLOSSARY_UPDATE: `UPDATE glossary_terms SET source_language = ?, target_language = ?, source_text = ?, target_text = ?, updated_at = ? WHERE id = ? AND user_id IS NULL`,
   GLOSSARY_UPDATE_FOR_USER: `UPDATE glossary_terms SET source_language = ?, target_language = ?, source_text = ?, target_text = ?, updated_at = ? WHERE id = ? AND user_id = ?`,

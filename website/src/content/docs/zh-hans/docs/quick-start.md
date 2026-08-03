@@ -1,13 +1,13 @@
 ---
 title: 快速开始
-description: 在 Windows 或 Linux 上安装 Transrewrt，或运行自托管的 Docker Web 应用。
+description: 在 Windows 或 Linux 上安装 Transrewrt，或运行 Docker Web 应用。
 ---
 
 
 
 选择适合你的方式。所有方式均免费且开源（Apache 2.0）。
 
-## Docker（自托管 Web）
+## Docker（Web 应用）
 
 ```bash
 docker pull ghcr.io/wsj-br/transrewrt:latest

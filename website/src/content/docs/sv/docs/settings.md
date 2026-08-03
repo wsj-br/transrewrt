@@ -11,15 +11,15 @@ description: >-
 
 | Flik | Skrivbord | Webb (admin) | Webb (användare) | Anteckningar |
 | --- | :---: | :---: | :---: | --- |
-| Allmänna inställningar | ja | ja | ja | Inkluderar **AI-upplevelse** (Enkel / Avancerad) |
-| Modeller | ja | ja | ja | Endast när **AI-upplevelse** är **Avancerad** |
-| Språk | ja | ja | ja | |
-| Kostnadsspårning | ja | ja | — | |
-| Transformera | ja | ja | ja | Massimport/export av prompter |
-| Ordlista | ja | ja | ja | Termpar för översättning |
-| Användare | — | ja | — | |
-| API-konfiguration | ja | ja | — | |
-| Om | ja | ja | ja | |
+| Allmänna inställningar | ✓ | ✓ | ✓ | Inkluderar **AI-upplevelse** (Enkel / Avancerad) |
+| Modeller | ✓ | ✓ | ✓ | Endast när **AI-upplevelsen** är **Avancerad** |
+| Språk | ✓ | ✓ | ✓ | |
+| Kostnadsspårning | ✓ | ✓ | — | |
+| Transformera | ✓ | ✓ | ✓ | Massimport/export av prompter |
+| Ordlista | ✓ | ✓ | ✓ | Termpar för översättning |
+| Användare | — | ✓ | — | |
+| API-konfiguration | ✓ | ✓ | — | |
+| Om | ✓ | ✓ | ✓ | |
 
 I **Enkelt** läge väljer du AI via förinställningar i verktygsfältet och **Leverantör** i Allmänna inställningar; fliken **Modeller** är dold.
 

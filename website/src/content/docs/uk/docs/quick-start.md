@@ -1,15 +1,13 @@
 ---
 title: Швидкий старт
-description: >-
-  Встановіть Transrewrt на Windows або Linux, або запустіть самостійно
-  розміщений веб-додаток Docker.
+description: Встановіть Transrewrt на Windows або Linux, або запустіть веб-додаток Docker.
 ---
 
 
 
 Оберіть шлях, який вам підходить. Усі вони безкоштовні та з відкритим вихідним кодом (Apache 2.0).
 
-## Docker (самостійно розміщений веб-додаток)
+## Docker (веб-додаток)
 
 ```bash
 docker pull ghcr.io/wsj-br/transrewrt:latest

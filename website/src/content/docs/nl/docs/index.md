@@ -13,7 +13,7 @@ description: >-
 - **Herschrijven** — grammatica corrigeren, duidelijkheid verbeteren, toon of lengte wijzigen
 - **Transformeren** — uw eigen aangepaste AI-prompts uitvoeren op elke tekst
 
-Het ondersteunt veel AI-providers (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, OpenAI-compatibele eindpunten en lokale OpenAI-compatibele servers zoals Ollama, LM Studio of llama.cpp). Voer het uit als een **desktop-app** (Windows / Linux) of een **zelf-gehoste web-app** (Docker).
+Het ondersteunt veel AI-providers (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, OpenAI-compatibele eindpunten en lokale OpenAI-compatibele servers zoals Ollama, LM Studio of llama.cpp). Voer het uit als een **desktop-app** (Windows / Linux) of een **Docker-web-app**.
 
 Uw sleutels, uw modellen, uw host — er is geen Transrewrt cloudaccount.
 

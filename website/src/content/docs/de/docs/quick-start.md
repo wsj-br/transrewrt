@@ -2,14 +2,14 @@
 title: Schnellstart
 description: >-
   Installieren Sie Transrewrt unter Windows oder Linux, oder führen Sie die
-  selbst gehostete Docker-Web-App aus.
+  Docker-Web-App aus.
 ---
 
 
 
 Wählen Sie den für Sie passenden Weg. Alle sind kostenlos und Open Source (Apache 2.0).
 
-## Docker (selbst gehostete Web-App)
+## Docker (Web-App)
 
 ```bash
 docker pull ghcr.io/wsj-br/transrewrt:latest

@@ -1,15 +1,13 @@
 ---
 title: เริ่มต้นใช้งานด่วน
-description: >-
-  ติดตั้ง Transrewrt บน Windows หรือ Linux หรือเรียกใช้เว็บแอป Docker
-  ที่โฮสต์ด้วยตนเอง
+description: ติดตั้ง Transrewrt บน Windows หรือ Linux หรือเรียกใช้เว็บแอป Docker
 ---
 
 
 
 เลือกเส้นทางที่เหมาะกับคุณ ทั้งหมดนี้ฟรีและเป็นโอเพนซอร์ส (Apache 2.0)
 
-## Docker (เว็บที่โฮสต์ด้วยตนเอง)
+## Docker (เว็บแอป)
 
 ```bash
 docker pull ghcr.io/wsj-br/transrewrt:latest

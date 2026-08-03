@@ -9,17 +9,17 @@ description: >-
 
 Otvorte **Nastavenia** z bočného panela, aby ste si prispôsobili správanie aplikácie.
 
-| Karta | Desktop | Web (správca) | Web (používateľ) | Poznámky |
+| Karta | Počítač | Web (správca) | Web (používateľ) | Poznámky |
 | --- | :---: | :---: | :---: | --- |
-| Všeobecné nastavenia | áno | áno | áno | Zahŕňa **AI skúsenosti** (Jednoduché / Pokročilé) |
-| Modely | áno | áno | áno | Len keď sú **AI skúsenosti** **Pokročilé** |
-| Jazyky | áno | áno | áno | |
-| Sledovanie nákladov | áno | áno | — | |
-| Transformácia | áno | áno | áno | Hromadný import/export výziev |
-| Glosár | áno | áno | áno | Páry výrazov pre preklad |
-| Používatelia | — | áno | — | |
-| Konfigurácia API | áno | áno | — | |
-| O aplikácii | áno | áno | áno | |
+| Všeobecné nastavenia | ✓ | ✓ | ✓ | Zahŕňa **skúsenosti s AI** (jednoduché / pokročilé) |
+| Modely | ✓ | ✓ | ✓ | Len ak sú **skúsenosti s AI** **pokročilé** |
+| Jazyky | ✓ | ✓ | ✓ | |
+| Sledovanie nákladov | ✓ | ✓ | — | |
+| Transformovať | ✓ | ✓ | ✓ | Hromadný import/export výziev |
+| Glosár | ✓ | ✓ | ✓ | Páry výrazov pre preklad |
+| Používatelia | — | ✓ | — | |
+| Konfigurácia API | ✓ | ✓ | — | |
+| O aplikácii | ✓ | ✓ | ✓ | |
 
 V režime **Jednoduché** vyberte AI pomocou predvolieb na paneli nástrojov a **Poskytovateľa** vo Všeobecných nastaveniach; karta **Modely** je skrytá.
 

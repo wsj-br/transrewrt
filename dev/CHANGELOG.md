@@ -11,6 +11,21 @@ Use conventional types (Added, Changed, Fixed, etc.) and short descriptions.
 
 ## Unreleased
 
+- **Fixed**: Docs site Starlight UI (TOC “On this page”, etc.) for Simplified/Traditional Chinese by mapping `lang` to `zh-CN`/`zh-TW`.
+- **Fixed**: Docs sidebar page links use each locale’s translated frontmatter `title` instead of hardcoded English labels.
+- **Added**: Docs sidebar group headings (`Get started`, `Guides`, …) localize via `docs-sidebar-groups.json` and `pnpm i18n:sync`.
+- **Changed**: Replaced “self-host” / “self-hosted” wording with Docker / web-app phrasing in README, docs, and marketing copy for clearer translations.
+- **Changed**: Header UI language selector shows each language’s native `label` only (trigger and list), sorted by `englishName`; list items show `englishName` as the hover tooltip.
+- **Changed**: Ignore local `.pnpm-store/` in git (pnpm content-addressable store belongs outside the repo).
+- **Changed**: Translate “Add to Glossary” control is icon-only (label remains as tooltip / aria-label).
+- **Added**: Glossary source/target language selectors include All Languages; those terms apply to every language pair (specific pair matches still win on conflicts).
+- **Fixed**: Translate page Glossary link opens Settings on the Glossary tab (Electron and web).
+- **Added**: Provider icons for `meta`, `pareto-code`, `perceptron`, `sakana`, and `thinkingmachines`; OpenRouter pseudo-providers `auto`, `auto-beta`, `bodybuilder`, `free`, and `fusion` reuse `openrouter.ico`.
+- **Added**: `pnpm run check-provider-icons` refreshes `presets-editor-provider-catalogs.json` (shared catalog helper + 2h TTL) and lists catalog providers missing a `ProviderIcon` mapping.
+- **Changed**: `check-provider-icons` is a plain Node `.js` script (like other `scripts/`); it also checks built-in `ENGINE_IDS` (e.g. `apifun`) outside the Easy-mode catalog cache.
+- **Fixed**: Unknown-provider `ProviderIcon` fallback uses a Lucide bot glyph instead of the 🔑 emoji (avoids crossed-box rendering with the app font stack).
+- **Added**: Provider icon for `apifun` (apikey.fun) via `apikey.ico`.
+- **Changed**: Custom OpenAI-compatible provider icon uses Lucide `PlugZap` (same pattern as Local LLM’s hard-drive glyph).
 - **Changed**: Folded `nvm_resolve_lts_node_version` into `scripts/upgrade-tools.sh` (aligned with PowerShell); removed `scripts/nvm-lts-resolve-version.sh`.
 - **Changed**: `release:github` refuses to proceed until the GitHub Actions `CI` workflow for HEAD has finished successfully (blocks while in progress or on failure).
 

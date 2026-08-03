@@ -13,7 +13,7 @@ description: >-
 - **Rescriere** — corectarea gramaticii, îmbunătățirea clarității, schimbarea tonului sau a lungimii
 - **Transformare** — rularea propriilor prompturi AI personalizate pe orice text
 
-Suportă mulți furnizori de AI (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, endpoint-uri compatibile OpenAI și servere locale compatibile OpenAI, cum ar fi Ollama, LM Studio sau llama.cpp). Rulează-l ca o **aplicație desktop** (Windows / Linux) sau o **aplicație web auto-găzduită** (Docker).
+Suportă mulți furnizori de AI (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, endpoint-uri compatibile cu OpenAI și servere locale compatibile cu OpenAI, cum ar fi Ollama, LM Studio sau llama.cpp). Rulează ca o **aplicație desktop** (Windows / Linux) sau o **aplicație web Docker**.
 
 Cheile tale, modelele tale, gazda ta — nu există un cont Transrewrt în cloud.
 

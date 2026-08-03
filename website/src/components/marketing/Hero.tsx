@@ -42,7 +42,7 @@ export default function Hero() {
             style={{ animationDelay: '80ms' }}
           >
             {t(
-              'An open-source AI-powered text tool for translating between languages, rewriting in different styles, and transforming text with custom prompts — using multiple AI providers. Runs as a desktop app or a self-hosted web app.',
+              'An open-source AI-powered text tool for translating between languages, rewriting in different styles, and transforming text with custom prompts — using multiple AI providers. Runs as a desktop app or a Docker web app.',
             )}
           </p>
 

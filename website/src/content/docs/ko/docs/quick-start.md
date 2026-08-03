@@ -1,13 +1,13 @@
 ---
 title: 빠른 시작
-description: Windows 또는 Linux에 Transrewrt를 설치하거나, 자체 호스팅 Docker 웹 앱을 실행하세요.
+description: Windows 또는 Linux에 Transrewrt를 설치하거나 Docker 웹 앱을 실행하세요.
 ---
 
 
 
 본인에게 맞는 방법을 선택하세요. 모두 무료이며 오픈 소스(Apache 2.0)입니다.
 
-## Docker(자체 호스팅 웹)
+## Docker (웹 앱)
 
 ```bash
 docker pull ghcr.io/wsj-br/transrewrt:latest

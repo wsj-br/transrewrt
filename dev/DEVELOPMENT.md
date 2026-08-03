@@ -11,6 +11,7 @@ Setup, build, test, and deploy instructions for the Transrewrt application (Elec
 - [Prerequisites](#prerequisites)
   - [Windows 11](#windows-11)
   - [Linux (Debian-based: Ubuntu, Debian, Zorin, Mint)](#linux-debian-based-ubuntu-debian-zorin-mint)
+  - [WSL (Ubuntu on Windows)](#wsl-ubuntu-on-windows)
   - [Git symlinks (required on Windows)](#git-symlinks-required-on-windows)
 - [Setup](#setup)
 - [Development Workflow](#development-workflow)
@@ -171,7 +172,15 @@ Setup, build, test, and deploy instructions for the Transrewrt application (Elec
    npm install -g pnpm npm-check-updates doctoc
    ```
 
-3. **Electron runtime dependencies** (to run `pnpm dev` / `electron .` on Linux; use `libnotify4`, not `libnotify-dev`):
+3. **Build tools for native modules** (`better-sqlite3`, `argon2`): Required for compilation. Without them, `pnpm install` fails with `not found: make` (or a missing `g++` / compiler error). Install `build-essential` (provides `make`, `gcc`, `g++`) and Python 3:
+
+   ```bash
+   sudo apt install build-essential python3
+   ```
+
+   Minimal or fresh WSL images often omit these. See [node-gyp on Unix](https://github.com/nodejs/node-gyp#on-unix).
+
+4. **Electron runtime dependencies** (to run `pnpm dev` / `electron .` on Linux; use `libnotify4`, not `libnotify-dev`):
 
    ```bash
    sudo apt install libgtk-3-0 libnotify4 libnss3 libxss1 libasound2 libxtst6 xauth
@@ -179,7 +188,7 @@ Setup, build, test, and deploy instructions for the Transrewrt application (Elec
 
    Minimal images may also need packages such as `libatk1.0-0`, `libatk-bridge2.0-0`, `libgbm1`, `libdrm2` if the linker reports a missing library.
 
-4. **Chromium** (for `pnpm take-screenshots`):
+5. **Chromium** (for `pnpm take-screenshots`):
 
    ```bash
    sudo apt install chromium
@@ -193,7 +202,7 @@ Setup, build, test, and deploy instructions for the Transrewrt application (Elec
 
    (or `/usr/bin/chromium-browser`) when running `pnpm take-screenshots`.
 
-5. **Noto fonts** (for localized UI screenshots):
+6. **Noto fonts** (for localized UI screenshots):
 
    ```bash
    sudo apt install fonts-noto-cjk fonts-noto-core
@@ -201,7 +210,7 @@ Setup, build, test, and deploy instructions for the Transrewrt application (Elec
 
    Ensures Korean, Telugu, Thai and other scripts render correctly in the screenshot when Google Fonts are unavailable.
 
-6. **ImageMagick** (optional; for `./scripts/trim-ico-sizes.sh` when adding provider icons):
+7. **ImageMagick** (optional; for `./scripts/trim-ico-sizes.sh` when adding provider icons):
 
    ```bash
    sudo apt install imagemagick
@@ -209,7 +218,7 @@ Setup, build, test, and deploy instructions for the Transrewrt application (Elec
 
    See [Provider icons (`trim-ico-sizes`)](#provider-icons-trim-ico-sizes).
 
-7. **direnv**:
+8. **direnv**:
 
    ```bash
    sudo apt install direnv
@@ -217,7 +226,7 @@ Setup, build, test, and deploy instructions for the Transrewrt application (Elec
 
    Shell hook and `direnv allow` are described under [Prerequisites](#prerequisites).
 
-8. **Docker**:
+9. **Docker**:
 
    ```bash
    sudo apt install docker.io docker-compose
@@ -226,7 +235,7 @@ Setup, build, test, and deploy instructions for the Transrewrt application (Elec
 
    Log out and back in after `usermod`.
 
-9. **GitHub CLI** (for `pnpm run release:github` / `pnpm website:publish`): Install [GitHub CLI](https://cli.github.com/) (`gh`), then authenticate:
+10. **GitHub CLI** (for `pnpm run release:github` / `pnpm website:publish`): Install [GitHub CLI](https://cli.github.com/) (`gh`), then authenticate:
 
    ```bash
    sudo apt install gh
@@ -234,6 +243,29 @@ Setup, build, test, and deploy instructions for the Transrewrt application (Elec
    ```
 
    If `gh` is not in your distro’s repos, use the install instructions at [cli.github.com](https://cli.github.com/).
+
+### WSL (Ubuntu on Windows)
+
+Follow the [Linux](#linux-debian-based-ubuntu-debian-zorin-mint) steps above inside your WSL distro (Node, pnpm, build tools, and so on). Fresh WSL images often omit `build-essential`; install it before `pnpm install`.
+
+**Open URLs/files on the Windows host** (Cursor/VS Code integrated terminal, CLIs that call `xdg-open` / `$BROWSER`):
+
+```bash
+sudo apt install xdg-utils wslu
+```
+
+Then set `BROWSER` so tools open via `wslview` on Windows instead of relying on WSLg desktop handlers (or a missing `$BROWSER` injection from the IDE):
+
+```bash
+export BROWSER=wslview
+```
+
+Persist that in your shell profile (for example `~/.bashrc` or a snippet under `~/.bashrc.d/`). Verify in a new terminal:
+
+```bash
+echo "$BROWSER"          # expect: wslview
+xdg-open https://example.com
+```
 
 ### Git symlinks (required on Windows)
 
@@ -774,7 +806,7 @@ See [Upgrading Node and dependencies (nvm)](#upgrading-node-and-dependencies-nvm
 
 ## Troubleshooting
 
-- **Native module build failed (better-sqlite3 / argon2) on Windows:** Install build tools (Python + Visual Studio C++ workload) as in [Prerequisites](#prerequisites). Restart the terminal and run `pnpm install` again.
+- **Native module build failed (better-sqlite3 / argon2):** Install build tools as in [Prerequisites](#prerequisites) — on Windows, Python + Visual Studio C++ workload; on Linux, `build-essential` and `python3` (`sudo apt install build-essential python3`). Restart the terminal and run `pnpm install` again. A typical Linux failure is `gyp ERR! not found: make`.
 - **NODE_MODULE_VERSION mismatch in Electron:** Run `pnpm postinstall` so native addons are rebuilt for Electron's Node. Ensure build tools are installed.
 - **NODE_MODULE_VERSION mismatch when running `pnpm dev:web` or `pnpm start:server`:** The server runs with system Node; native addons were built for Electron's Node. Use **Node 24** in the same terminal (e.g. `nvm use 24` then `pnpm dev:web`). See [troubleshooting-node-version.md](troubleshooting-node-version.md).
 - **Security vulnerabilities found by `pnpm audit`:** Check if the vulnerable package is a transitive dependency. If so, add it under `overrides` in [pnpm-workspace.yaml](../pnpm-workspace.yaml) (pnpm 11 ignores top-level `overrides` in `package.json`) with a patched version range, then run `pnpm install`. For example:

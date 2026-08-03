@@ -13,7 +13,7 @@ description: >-
 - **Επανεγγραφή** — διόρθωση γραμματικής, βελτίωση σαφήνειας, αλλαγή τόνου ή μήκους
 - **Μετασχηματισμός** — εκτελέστε τις δικές σας προσαρμοσμένες προτροπές AI σε οποιοδήποτε κείμενο
 
-Υποστηρίζει πολλούς παρόχους AI (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, συμβατά τελικά σημεία OpenAI και τοπικούς συμβατούς διακομιστές OpenAI όπως Ollama, LM Studio ή llama.cpp). Εκτελέστε το ως **εφαρμογή επιφάνειας εργασίας** (Windows / Linux) ή ως **αυτο-φιλοξενούμενη εφαρμογή web** (Docker).
+Υποστηρίζει πολλούς παρόχους τεχνητής νοημοσύνης (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, τελικά σημεία συμβατά με το OpenAI και τοπικούς διακομιστές συμβατούς με το OpenAI, όπως Ollama, LM Studio ή llama.cpp). Εκτελέστε το ως **εφαρμογή υπολογιστή** (Windows / Linux) ή ως **εφαρμογή ιστού Docker**.
 
 Τα κλειδιά σας, τα μοντέλα σας, ο οικοδεσπότης σας — δεν υπάρχει λογαριασμός cloud Transrewrt.
 

@@ -45,6 +45,17 @@ export function toStarlightLocaleKey(code) {
   return String(code).trim().toLowerCase();
 }
 
+/**
+ * Starlight built-in UI dictionaries use `zh-CN` / `zh-TW` (not `zh-Hans` /
+ * `zh-Hant`). Route folders stay lowercase BCP-47 (`zh-hans`); only `lang`
+ * is remapped so TOC chrome and other UI strings resolve.
+ */
+export function toStarlightUiLang(code) {
+  if (code === 'zh-Hans') return 'zh-CN';
+  if (code === 'zh-Hant') return 'zh-TW';
+  return code;
+}
+
 const RTL = new Set(['ar', 'fa']);
 
 const LABELS = {
@@ -87,7 +98,7 @@ export const starlightLocales = {
       toStarlightLocaleKey(code),
       {
         label: LABELS[code] ?? code,
-        lang: code,
+        lang: toStarlightUiLang(code),
         ...(RTL.has(code) ? { dir: 'rtl' } : {}),
       },
     ]),

@@ -9,17 +9,17 @@ description: >-
 
 Abra **Configurações** na barra lateral para personalizar o comportamento do aplicativo.
 
-| Guia | Desktop | Web (administrador) | Web (usuário) | Notas |
+| Guia | Desktop | Web (administrador) | Web (usuário) | Observações |
 | --- | :---: | :---: | :---: | --- |
-| Configurações Gerais | sim | sim | sim | Inclui **experiência de IA** (Fácil / Avançado) |
-| Modelos | sim | sim | sim | Somente quando a **experiência de IA** é **Avançada** |
-| Idiomas | sim | sim | sim | |
-| Rastreamento de Custos | sim | sim | — | |
-| Transformar | sim | sim | sim | Importação/exportação em massa de prompts |
-| Glossário | sim | sim | sim | Pares de termos para tradução |
-| Usuários | — | sim | — | |
-| Configuração da API | sim | sim | — | |
-| Sobre | sim | sim | sim | |
+| Configurações Gerais | ✓ | ✓ | ✓ | Inclui **experiência de IA** (Fácil / Avançada) |
+| Modelos | ✓ | ✓ | ✓ | Somente quando a **experiência de IA** for **Avançada** |
+| Idiomas | ✓ | ✓ | ✓ | |
+| Rastreamento de Custos | ✓ | ✓ | — | |
+| Transformar | ✓ | ✓ | ✓ | Importação/exportação em massa de prompts |
+| Glossário | ✓ | ✓ | ✓ | Pares de termos para tradução |
+| Usuários | — | ✓ | — | |
+| Configuração da API | ✓ | ✓ | — | |
+| Sobre | ✓ | ✓ | ✓ | |
 
 No modo **Fácil**, escolha a IA por meio de predefinições na barra de ferramentas e **Provedor** em Configurações Gerais; a guia **Modelos** fica oculta.
 

@@ -1,11 +1,12 @@
 import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
-import { Languages, Sparkles } from "lucide-react";
+import { Globe2, Languages, Sparkles } from "lucide-react";
 import PropTypes from "prop-types";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { cn } from "@/lib/utils";
 import { useContentLanguageLists } from "../hooks/useContentLanguageLists";
 import { findUILanguageEntry } from "../utils/misc/languageConstants";
+import { GLOSSARY_ALL_LANGUAGES } from "../utils/misc/glossaryUtils";
 
 const AUTO_TARGET = "auto";
 
@@ -14,8 +15,15 @@ function optionSlug(value: string) {
 }
 
 function optionValueToRaw(optionValue: string, t: (key: string) => string) {
-  if (optionValue === AUTO_TARGET || optionValue === "Detect Language") return optionValue;
+  if (
+    optionValue === AUTO_TARGET ||
+    optionValue === "Detect Language" ||
+    optionValue === GLOSSARY_ALL_LANGUAGES
+  ) {
+    return optionValue;
+  }
   if (optionValue === t("Detect Language")) return "Detect Language";
+  if (optionValue === t("All Languages")) return GLOSSARY_ALL_LANGUAGES;
   return optionValue;
 }
 
@@ -25,6 +33,8 @@ interface LanguageSelectorProps {
   onChange: (value: string) => void;
   detectLanguage?: boolean;
   allowNone?: boolean;
+  /** Prepend "All Languages" wildcard (glossary source/target). */
+  allowAllLanguages?: boolean;
   targetListSameAsSource?: boolean;
   iconColor?: string;
   dataTestId?: string;
@@ -46,6 +56,7 @@ const LanguageSelector = ({
   onChange,
   detectLanguage = false,
   allowNone = false,
+  allowAllLanguages = false,
   targetListSameAsSource = false,
   iconColor,
   dataTestId,
@@ -90,21 +101,33 @@ const LanguageSelector = ({
       if (allowNone) options = [AUTO_TARGET, ...options];
     }
 
+    if (allowAllLanguages) {
+      options = [GLOSSARY_ALL_LANGUAGES, "---", ...options.filter((o) => o !== GLOSSARY_ALL_LANGUAGES)];
+    }
+
     return options;
-  }, [topLanguages, allLanguages, detectLanguage, allowNone, targetListSameAsSource]);
+  }, [topLanguages, allLanguages, detectLanguage, allowNone, allowAllLanguages, targetListSameAsSource]);
 
   const isDetectLanguage = value === "Detect Language";
+  const isAllLanguages = value === GLOSSARY_ALL_LANGUAGES;
   const isAutoTarget = allowNone && (value === AUTO_TARGET || value === "" || value == null);
 
   const selectedOptionValue =
-    value === "" || value == null ? AUTO_TARGET : isDetectLanguage ? "Detect Language" : value;
+    value === "" || value == null
+      ? AUTO_TARGET
+      : isDetectLanguage
+        ? "Detect Language"
+        : isAllLanguages
+          ? GLOSSARY_ALL_LANGUAGES
+          : value;
 
   const displayValue = useMemo(() => {
     if (isAutoTarget) return t("No target language");
     if (isDetectLanguage) return t("Detect Language");
+    if (isAllLanguages) return t("All Languages");
     const entry = findUILanguageEntry(value);
     return entry ? t(entry.englishName) : value;
-  }, [value, isAutoTarget, isDetectLanguage, t]);
+  }, [value, isAutoTarget, isDetectLanguage, isAllLanguages, t]);
 
   return (
     <div className="flex items-center gap-2" data-testid={dataTestId}>
@@ -131,7 +154,7 @@ const LanguageSelector = ({
             hugSelectWidth
               ? "h-9 w-fit max-w-[min(92vw,28rem)] shrink-0 min-w-0"
               : "min-w-[160px]",
-            (isDetectLanguage || isAutoTarget) && "text-emerald-500 font-medium",
+            (isDetectLanguage || isAllLanguages || isAutoTarget) && "text-emerald-500 font-medium",
           )}
           aria-label={label}
         >
@@ -139,6 +162,11 @@ const LanguageSelector = ({
             {isDetectLanguage ? (
               <span className="flex items-center gap-1.5 text-emerald-500">
                 <Sparkles className="h-3.5 w-3.5" />
+                {displayValue}
+              </span>
+            ) : isAllLanguages ? (
+              <span className="flex items-center gap-1.5 text-emerald-500">
+                <Globe2 className="h-3.5 w-3.5" />
                 {displayValue}
               </span>
             ) : (
@@ -166,6 +194,22 @@ const LanguageSelector = ({
                   className="my-1 h-px bg-border -mx-1"
                   role="separator"
                 />
+              );
+            }
+
+            if (lang === GLOSSARY_ALL_LANGUAGES) {
+              return (
+                <SelectItem
+                  key="all-languages"
+                  value={GLOSSARY_ALL_LANGUAGES}
+                  className="text-emerald-600 font-medium"
+                  data-testid={dataTestId ? `${dataTestId}-option-all-languages` : undefined}
+                >
+                  <span className="flex items-center gap-1.5">
+                    <Globe2 className="h-3.5 w-3.5" />
+                    {t("All Languages")}
+                  </span>
+                </SelectItem>
               );
             }
 
@@ -213,6 +257,7 @@ LanguageSelector.propTypes = {
   onChange: PropTypes.func.isRequired,
   detectLanguage: PropTypes.bool,
   allowNone: PropTypes.bool,
+  allowAllLanguages: PropTypes.bool,
   targetListSameAsSource: PropTypes.bool,
   iconColor: PropTypes.string,
   dataTestId: PropTypes.string,

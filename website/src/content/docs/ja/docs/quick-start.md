@@ -1,13 +1,13 @@
 ---
 title: クイックスタート
-description: WindowsまたはLinuxにTransrewrtをインストールするか、セルフホスト型のDocker Webアプリを実行します。
+description: WindowsまたはLinuxにTransrewrtをインストールするか、Docker Webアプリを実行します。
 ---
 
 
 
 ご自身に合った方法を選んでください。いずれも無料でオープンソース（Apache 2.0）です。
 
-## Docker（セルフホスト型Web）
+## Docker (Webアプリ)
 
 ```bash
 docker pull ghcr.io/wsj-br/transrewrt:latest

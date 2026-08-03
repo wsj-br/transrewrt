@@ -11,7 +11,7 @@ description: ما هو Transrewrt وكيفية العثور على التثبي�
 - **إعادة الكتابة** — إصلاح القواعد النحوية، وتحسين الوضوح، وتغيير النبرة أو الطول
 - **التحويل** — تشغيل مطالبات الذكاء الاصطناعي المخصصة الخاصة بك على أي نص
 
-وهو يدعم العديد من موفري الذكاء الاصطناعي (OpenRouter، وOpenAI، وAnthropic، وGoogle Gemini، وDeepSeek، وGroq، وMistral، وxAI، وCerebras، وNVIDIA، وAlibaba Cloud، وapikey.fun، ونقاط نهاية متوافقة مع OpenAI، وخوادم محلية متوافقة مع OpenAI مثل Ollama، وLM Studio، أو llama.cpp). قم بتشغيله كتطبيق **سطح مكتب** (Windows / Linux) أو **تطبيق ويب مستضاف ذاتيًا** (Docker).
+وهو يدعم العديد من موفري الذكاء الاصطناعي (OpenRouter، وOpenAI، وAnthropic، وGoogle Gemini، وDeepSeek، وGroq، وMistral، وxAI، وCerebras، وNVIDIA، وAlibaba Cloud، وapikey.fun، ونقاط نهاية متوافقة مع OpenAI، وخوادم محلية متوافقة مع OpenAI مثل Ollama، وLM Studio، أو llama.cpp). يمكنك تشغيله كتطبيق **سطح مكتب** (Windows / Linux) أو **تطبيق ويب Docker**.
 
 مفاتيحك، نماذجك، مضيفك — لا يوجد حساب سحابي لـ Transrewrt.
 

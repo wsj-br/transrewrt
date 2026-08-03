@@ -17,6 +17,7 @@ const {
   prepareGetAllCallsSql,
 } = require("../shared/db/appSchema.js");
 const { isHistoryDisabledByEnv } = require("../shared/historyEnv.js");
+const { preferSpecificGlossaryTerms } = require("../shared/glossary.js");
 
 let db = null;
 let userDataPath = null;
@@ -504,7 +505,8 @@ function registerAppDbHandlers(ipcMain, getUserDataPath) {
     try {
       const d = getDb();
       if (!d) return [];
-      return d.prepare(sql.GLOSSARY_GET_BY_LANG_PAIR).all(sourceLang, targetLang);
+      const rows = d.prepare(sql.GLOSSARY_GET_BY_LANG_PAIR).all(sourceLang, targetLang);
+      return preferSpecificGlossaryTerms(rows, sourceLang, targetLang);
     } catch (err) {
       console.error("[appDb] glossary:getByLangPair error:", err);
       return [];

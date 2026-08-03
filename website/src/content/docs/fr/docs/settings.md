@@ -9,17 +9,17 @@ description: >-
 
 Ouvrez les **Paramètres** depuis la barre latérale pour personnaliser le comportement de l'application.
 
-| Onglet | Bureau | Web (admin) | Web (utilisateur) | Notes |
+| Onglet | Ordinateur de bureau | Web (administrateur) | Web (utilisateur) | Remarques |
 | --- | :---: | :---: | :---: | --- |
-| Paramètres généraux | oui | oui | oui | Inclut l'**expérience IA** (Facile / Avancée) |
-| Modèles | oui | oui | oui | Uniquement lorsque l'**expérience IA** est **Avancée** |
-| Langues | oui | oui | oui | |
-| Suivi des coûts | oui | oui | — | |
-| Transformer | oui | oui | oui | Importation/exportation en masse d'invites |
-| Glossaire | oui | oui | oui | Paires de termes pour la traduction |
-| Utilisateurs | — | oui | — | |
-| Configuration API | oui | oui | — | |
-| À propos | oui | oui | oui | |
+| Paramètres généraux | ✓ | ✓ | ✓ | Inclut l'**expérience IA** (Facile / Avancée) |
+| Modèles | ✓ | ✓ | ✓ | Uniquement lorsque l'**expérience IA** est **Avancée** |
+| Langues | ✓ | ✓ | ✓ | |
+| Suivi des coûts | ✓ | ✓ | — | |
+| Transformer | ✓ | ✓ | ✓ | Importation/exportation en bloc des invites |
+| Glossaire | ✓ | ✓ | ✓ | Paires de termes pour la traduction |
+| Utilisateurs | — | ✓ | — | |
+| Configuration de l'API | ✓ | ✓ | — | |
+| À propos | ✓ | ✓ | ✓ | |
 
 En mode **Facile**, choisissez l'IA via les préréglages dans la barre d'outils et le **Fournisseur** dans les Paramètres généraux ; l'onglet **Modèles** est masqué.
 

@@ -38,7 +38,7 @@ Technical architecture, folder structure, tech stack, and design decisions for t
 **Transrewrt** is an AI-powered text tool that provides **translation**, **rewrite** (style transformation), and **transform** (transform prompts) using **multiple LLM backends** (OpenRouter, native vendor APIs, Local LLM, etc.). By default the app uses **Easy** mode: curated **presets** (**Free (OpenRouter)**, **Standard**, **Advanced**, **Technical**) mapped to models per **provider**, without picking raw model IDs. **Advanced** mode exposes the classic per-model toolbar and **Settings → Models** list. When **execution history** is enabled, past runs (input/output text and metadata) are stored in the app database and browsable from the **History** sidebar view. The same codebase runs as:
 
 - **Desktop**: Electron app (Windows, Linux).
-- **Web**: Self-hosted web app served from a Docker container (or local Express server).
+- **Web**: Docker web app served from a container (or local Express server).
 
 Both modes share the same React renderer; **where settings and secrets live**, **how config is loaded**, and **where LLM requests run** differ by runtime.
 

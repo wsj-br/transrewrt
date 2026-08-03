@@ -1,15 +1,13 @@
 ---
 title: Snabbstart
-description: >-
-  Installera Transrewrt på Windows eller Linux, eller kör den självvärdade
-  Docker-webbappen.
+description: Installera Transrewrt på Windows eller Linux, eller kör Docker-webbappen.
 ---
 
 
 
 Välj den väg som passar dig. Alla är gratis och öppen källkod (Apache 2.0).
 
-## Docker (självvärdad webb)
+## Docker (webbapp)
 
 ```bash
 docker pull ghcr.io/wsj-br/transrewrt:latest

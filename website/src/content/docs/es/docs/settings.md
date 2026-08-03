@@ -11,15 +11,15 @@ Abre **Configuración** desde la barra lateral para personalizar el comportamien
 
 | Pestaña | Escritorio | Web (administrador) | Web (usuario) | Notas |
 | --- | :---: | :---: | :---: | --- |
-| Configuración general | sí | sí | sí | Incluye **Experiencia de IA** (Fácil / Avanzada) |
-| Modelos | sí | sí | sí | Solo cuando la **Experiencia de IA** es **Avanzada** |
-| Idiomas | sí | sí | sí | |
-| Seguimiento de costos | sí | sí | — | |
-| Transformar | sí | sí | sí | Importación/exportación masiva de prompts |
-| Glosario | sí | sí | sí | Pares de términos para traducción |
-| Usuarios | — | sí | — | |
-| Configuración de API | sí | sí | — | |
-| Acerca de | sí | sí | sí | |
+| Configuración general | ✓ | ✓ | ✓ | Incluye **experiencia de IA** (Fácil / Avanzada) |
+| Modelos | ✓ | ✓ | ✓ | Solo cuando la **experiencia de IA** es **Avanzada** |
+| Idiomas | ✓ | ✓ | ✓ | |
+| Seguimiento de costos | ✓ | ✓ | — | |
+| Transformar | ✓ | ✓ | ✓ | Importación/exportación masiva de prompts |
+| Glosario | ✓ | ✓ | ✓ | Pares de términos para traducción |
+| Usuarios | — | ✓ | — | |
+| Configuración de API | ✓ | ✓ | — | |
+| Acerca de | ✓ | ✓ | ✓ | |
 
 En el modo **Fácil**, elige la IA a través de los preajustes en la barra de herramientas y el **Proveedor** en la Configuración general; la pestaña **Modelos** está oculta.
 

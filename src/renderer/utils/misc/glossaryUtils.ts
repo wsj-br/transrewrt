@@ -1,5 +1,9 @@
 import * as XLSX from "xlsx-js-style";
 import { escapeCsvCell } from "./exportUtils";
+import { ALL_LANGUAGES as SHARED_ALL_LANGUAGES } from "../../../shared/glossary.js";
+
+/** Canonical stored value for glossary language wildcards (English source locale). */
+export const GLOSSARY_ALL_LANGUAGES: string = SHARED_ALL_LANGUAGES;
 
 export interface GlossaryTerm {
   id: number;
@@ -10,6 +14,13 @@ export interface GlossaryTerm {
   created_at?: string;
   updated_at?: string;
   user_id?: string | null;
+}
+
+/** True when filter is empty, exact match, or the term uses the All Languages wildcard. */
+export function glossaryLanguageMatchesFilter(termLang: string, filterLang: string): boolean {
+  if (!filterLang) return true;
+  if (filterLang === GLOSSARY_ALL_LANGUAGES) return termLang === GLOSSARY_ALL_LANGUAGES;
+  return termLang === filterLang || termLang === GLOSSARY_ALL_LANGUAGES;
 }
 
 export const GLOSSARY_CSV_HEADERS = [

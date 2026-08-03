@@ -77,14 +77,13 @@ export function getTranslatePanels({ common, input, output, options }) {
         {useGlossary && (
           <Button
             variant="outline"
-            size="sm"
-            className="h-8 shrink-0 gap-1.5"
+            size="icon"
+            className="h-8 w-8 shrink-0"
             onClick={onOpenGlossaryModal}
             title={t("Add to Glossary")}
             aria-label={t("Add to Glossary")}
           >
             <BookPlus className="h-3.5 w-3.5" />
-            <span className="hidden sm:inline">{t("Add to Glossary")}</span>
           </Button>
         )}
       </div>

@@ -11,7 +11,7 @@ description: Transrewrt là gì và cách tìm tài liệu cài đặt, hướng
 - **Viết lại** — sửa ngữ pháp, cải thiện độ rõ ràng, thay đổi giọng điệu hoặc độ dài
 - **Chuyển đổi** — chạy các lời nhắc AI tùy chỉnh của riêng bạn trên bất kỳ văn bản nào
 
-Nó hỗ trợ nhiều nhà cung cấp AI (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, các điểm cuối tương thích với OpenAI và các máy chủ tương thích với OpenAI cục bộ như Ollama, LM Studio hoặc llama.cpp). Chạy nó dưới dạng **ứng dụng máy tính để bàn** (Windows / Linux) hoặc **ứng dụng web tự lưu trữ** (Docker).
+Nó hỗ trợ nhiều nhà cung cấp AI (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, các điểm cuối tương thích với OpenAI và các máy chủ tương thích với OpenAI cục bộ như Ollama, LM Studio hoặc llama.cpp). Chạy nó dưới dạng **ứng dụng máy tính để bàn** (Windows / Linux) hoặc **ứng dụng web Docker**.
 
 Khóa của bạn, mô hình của bạn, máy chủ của bạn — không có tài khoản đám mây Transrewrt.
 

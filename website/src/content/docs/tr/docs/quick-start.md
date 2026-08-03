@@ -1,15 +1,15 @@
 ---
 title: Hızlı başlangıç
 description: >-
-  Transrewrt'ü Windows veya Linux'a yükleyin ya da kendi barındırdığınız Docker
-  web uygulamasını çalıştırın.
+  Transrewrt'ü Windows veya Linux'a yükleyin veya Docker web uygulamasını
+  çalıştırın.
 ---
 
 
 
 Size uygun yolu seçin. Hepsi ücretsiz ve açık kaynaklıdır (Apache 2.0).
 
-## Docker (kendi kendine barındırılan web)
+## Docker (web uygulaması)
 
 ```bash
 docker pull ghcr.io/wsj-br/transrewrt:latest

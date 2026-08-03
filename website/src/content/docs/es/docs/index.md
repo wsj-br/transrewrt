@@ -13,7 +13,7 @@ description: >-
 - **Reescribir** — corregir la gramática, mejorar la claridad, cambiar el tono o la longitud
 - **Transformar** — ejecutar sus propias indicaciones de IA personalizadas en cualquier texto
 
-Es compatible con muchos proveedores de IA (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, puntos finales compatibles con OpenAI y servidores locales compatibles con OpenAI como Ollama, LM Studio o llama.cpp). Ejecútelo como una **aplicación de escritorio** (Windows / Linux) o una **aplicación web autoalojada** (Docker).
+Es compatible con muchos proveedores de IA (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, puntos de conexión compatibles con OpenAI y servidores locales compatibles con OpenAI como Ollama, LM Studio o llama.cpp). Ejecútalo como una **aplicación de escritorio** (Windows/Linux) o una **aplicación web de Docker**.
 
 Sus claves, sus modelos, su host: no hay una cuenta en la nube de Transrewrt.
 

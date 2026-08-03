@@ -11,7 +11,7 @@ description: Transrewrt چیست و چگونه می‌توان راهنماها�
 - **بازنویسی** — رفع گرامر، بهبود وضوح، تغییر لحن یا طول
 - **تبدیل** — اجرای درخواست‌های سفارشی هوش مصنوعی خود بر روی هر متنی
 
-این ابزار از بسیاری از ارائه‌دهندگان هوش مصنوعی (OpenRouter، OpenAI، Anthropic، Google Gemini، DeepSeek، Groq، Mistral، xAI، Cerebras، NVIDIA، Alibaba Cloud، apikey.fun، نقاط پایانی سازگار با OpenAI، و سرورهای محلی سازگار با OpenAI مانند Ollama، LM Studio، یا llama.cpp) پشتیبانی می‌کند. آن را به عنوان یک **برنامه دسکتاپ** (ویندوز / لینوکس) یا یک **برنامه وب خودمیزبان** (داکر) اجرا کنید.
+این از بسیاری از ارائه‌دهندگان هوش مصنوعی پشتیبانی می‌کند (OpenRouter، OpenAI، Anthropic، Google Gemini، DeepSeek، Groq، Mistral، xAI، Cerebras، NVIDIA، Alibaba Cloud، apikey.fun، نقاط پایانی سازگار با OpenAI، و سرورهای محلی سازگار با OpenAI مانند Ollama، LM Studio، یا llama.cpp). آن را به عنوان یک **برنامه دسکتاپ** (ویندوز / لینوکس) یا یک **برنامه وب Docker** اجرا کنید.
 
 کلیدهای شما، مدل‌های شما، میزبان شما — هیچ حساب ابری Transrewrt وجود ندارد.
 

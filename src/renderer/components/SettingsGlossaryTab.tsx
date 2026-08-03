@@ -8,6 +8,8 @@ import { Label } from "@/components/ui/label";
 import { triggerDownload } from "../utils/misc/exportUtils";
 import {
   type GlossaryTerm,
+  GLOSSARY_ALL_LANGUAGES,
+  glossaryLanguageMatchesFilter,
   parseCsvToTerms,
   parseXlsxToTerms,
   termsToCsv,
@@ -17,6 +19,7 @@ import {
 } from "../utils/misc/glossaryUtils";
 import { glossaryApi } from "../services/apiService";
 import LanguageSelector from "./LanguageSelector";
+import { findUILanguageEntry } from "../utils/misc/languageConstants";
 import {
   settingsSection,
   settingsTabContent,
@@ -40,6 +43,15 @@ function SettingsGlossaryTab() {
   const [newRow, setNewRow] = useState({ source_language: "", target_language: "", source_text: "", target_text: "" });
   const [saving, setSaving] = useState(false);
 
+  const formatLang = useCallback(
+    (lang: string) => {
+      if (lang === GLOSSARY_ALL_LANGUAGES) return t("All Languages");
+      const entry = findUILanguageEntry(lang);
+      return entry ? t(entry.englishName) : lang;
+    },
+    [t],
+  );
+
   const load = useCallback(async () => {
     setLoading(true);
     try {
@@ -55,8 +67,8 @@ function SettingsGlossaryTab() {
   useEffect(() => { load(); }, [load]);
 
   const filtered = terms.filter((term) => {
-    if (filterSrc && term.source_language !== filterSrc) return false;
-    if (filterTgt && term.target_language !== filterTgt) return false;
+    if (!glossaryLanguageMatchesFilter(term.source_language, filterSrc)) return false;
+    if (!glossaryLanguageMatchesFilter(term.target_language, filterTgt)) return false;
     if (filterText) {
       const q = filterText.toLowerCase();
       if (!term.source_text.toLowerCase().includes(q) && !term.target_text.toLowerCase().includes(q)) return false;
@@ -184,6 +196,7 @@ function SettingsGlossaryTab() {
               onChange={setFilterSrc}
               targetListSameAsSource
               detectLanguage={false}
+              allowAllLanguages
             />
           </div>
           <div className="flex flex-col gap-1 min-w-[160px]">
@@ -195,6 +208,7 @@ function SettingsGlossaryTab() {
               onChange={setFilterTgt}
               targetListSameAsSource
               detectLanguage={false}
+              allowAllLanguages
             />
           </div>
           <div className="flex flex-col gap-1 flex-1 min-w-[180px]">
@@ -245,9 +259,9 @@ function SettingsGlossaryTab() {
               )}
               {!loading && filtered.map((term) => (
                 <tr key={term.id} className={tbl.tr}>
-                  <td className={cn(tbl.td, "w-[1%] whitespace-nowrap")}>{term.source_language}</td>
+                  <td className={cn(tbl.td, "w-[1%] whitespace-nowrap")}>{formatLang(term.source_language)}</td>
                   <td className={tbl.td}>{term.source_text}</td>
-                  <td className={cn(tbl.td, "w-[1%] whitespace-nowrap")}>{term.target_language}</td>
+                  <td className={cn(tbl.td, "w-[1%] whitespace-nowrap")}>{formatLang(term.target_language)}</td>
                   <td className={tbl.td}>{term.target_text}</td>
                   <td className={tbl.td}>
                     <Button
@@ -275,6 +289,7 @@ function SettingsGlossaryTab() {
                     onChange={(v) => setNewRow((p) => ({ ...p, source_language: v }))}
                     targetListSameAsSource
                     detectLanguage={false}
+                    allowAllLanguages
                   />
                 </td>
                 <td className={tbl.td}>
@@ -295,6 +310,7 @@ function SettingsGlossaryTab() {
                     onChange={(v) => setNewRow((p) => ({ ...p, target_language: v }))}
                     targetListSameAsSource
                     detectLanguage={false}
+                    allowAllLanguages
                   />
                 </td>
                 <td className={tbl.td}>

@@ -9,7 +9,7 @@ description: What Transrewrt is and how to find install, guides, and settings do
 - **Rewrite** — fix grammar, improve clarity, change tone or length
 - **Transform** — run your own custom AI prompts on any text
 
-It supports many AI providers (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, OpenAI-compatible endpoints, and local OpenAI-compatible servers such as Ollama, LM Studio, or llama.cpp). Run it as a **desktop app** (Windows / Linux) or a **self-hosted web app** (Docker).
+It supports many AI providers (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, OpenAI-compatible endpoints, and local OpenAI-compatible servers such as Ollama, LM Studio, or llama.cpp). Run it as a **desktop app** (Windows / Linux) or a **Docker web app**.
 
 Your keys, your models, your host — there is no Transrewrt cloud account.
 

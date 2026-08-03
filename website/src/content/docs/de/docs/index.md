@@ -13,7 +13,7 @@ description: >-
 - **Umschreiben** — Grammatik korrigieren, Klarheit verbessern, Ton oder Länge ändern
 - **Transformieren** — eigene benutzerdefinierte KI-Prompts auf beliebigen Text anwenden
 
-Es unterstützt viele KI-Anbieter (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, OpenAI-kompatible Endpunkte und lokale OpenAI-kompatible Server wie Ollama, LM Studio oder llama.cpp). Führen Sie es als **Desktop-App** (Windows / Linux) oder als **selbst gehostete Web-App** (Docker) aus.
+Es unterstützt viele KI-Anbieter (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, OpenAI-kompatible Endpunkte und lokale OpenAI-kompatible Server wie Ollama, LM Studio oder llama.cpp). Führen Sie es als **Desktop-App** (Windows / Linux) oder als **Docker-Web-App** aus.
 
 Ihre Schlüssel, Ihre Modelle, Ihr Host – es gibt kein Transrewrt-Cloud-Konto.
 

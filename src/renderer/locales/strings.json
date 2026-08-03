@@ -1863,7 +1863,7 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 545
+        "line": 552
       }
     ]
   },
@@ -1956,15 +1956,15 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 552
+        "line": 559
       },
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 606
+        "line": 613
       },
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 612
+        "line": 619
       },
       {
         "file": "src/renderer/components/DashboardTabAllCalls.tsx",
@@ -2081,7 +2081,7 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 560
+        "line": 567
       },
       {
         "file": "src/renderer/components/DashboardTabByModel.tsx",
@@ -2190,11 +2190,11 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 564
+        "line": 571
       },
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 612
+        "line": 619
       },
       {
         "file": "src/renderer/utils/misc/formatUtils.ts",
@@ -2291,7 +2291,7 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 572
+        "line": 579
       },
       {
         "file": "src/renderer/components/DashboardTabAllCalls.tsx",
@@ -2396,7 +2396,7 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 614
+        "line": 621
       },
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
@@ -2497,7 +2497,7 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 806
+        "line": 810
       },
       {
         "file": "src/renderer/components/DashboardTabAllCalls.tsx",
@@ -2537,11 +2537,11 @@
       },
       {
         "file": "src/renderer/components/SettingsGlossaryTab.tsx",
-        "line": 141
+        "line": 153
       },
       {
         "file": "src/renderer/components/SettingsGlossaryTab.tsx",
-        "line": 235
+        "line": 249
       },
       {
         "file": "src/renderer/components/SettingsTransformPromptsTab.tsx",
@@ -2650,7 +2650,7 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 826
+        "line": 830
       },
       {
         "file": "src/renderer/components/SettingsTransformPromptsTab.tsx",
@@ -2755,7 +2755,7 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 827
+        "line": 831
       },
       {
         "file": "src/renderer/components/SettingsTransformPromptsTab.tsx",
@@ -2852,7 +2852,7 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 828
+        "line": 832
       },
       {
         "file": "src/renderer/components/SettingsTransformPromptsTab.tsx",
@@ -2949,7 +2949,7 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 830
+        "line": 834
       },
       {
         "file": "src/renderer/components/SelectFromPresetsModal.tsx",
@@ -3050,15 +3050,15 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 831
+        "line": 835
       },
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 931
+        "line": 935
       },
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 1013
+        "line": 1018
       },
       {
         "file": "src/renderer/components/ChangePasswordModal.tsx",
@@ -3215,11 +3215,11 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 928
+        "line": 932
       },
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 1010
+        "line": 1015
       },
       {
         "file": "src/renderer/components/SettingsTransformPromptsTab.tsx",
@@ -3316,11 +3316,11 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 929
+        "line": 933
       },
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 1011
+        "line": 1016
       }
     ]
   },
@@ -3413,11 +3413,11 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 929
+        "line": 933
       },
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 1011
+        "line": 1016
       }
     ]
   },
@@ -3510,11 +3510,11 @@
     "locations": [
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 930
+        "line": 934
       },
       {
         "file": "src/renderer/components/App.tsx",
-        "line": 1012
+        "line": 1017
       },
       {
         "file": "src/renderer/components/DashboardPage.tsx",
@@ -11477,7 +11477,7 @@
       },
       {
         "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
-        "line": 255
+        "line": 254
       }
     ]
   },
@@ -11683,7 +11683,7 @@
       },
       {
         "file": "src/renderer/components/GlossaryAddModal.tsx",
-        "line": 145
+        "line": 147
       },
       {
         "file": "src/renderer/components/SelectFromPresetsModal.tsx",
@@ -12165,10 +12165,6 @@
       {
         "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
         "line": 84
-      },
-      {
-        "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
-        "line": 87
       }
     ]
   },
@@ -12269,19 +12265,19 @@
       },
       {
         "file": "src/renderer/components/SettingsGlossaryTab.tsx",
-        "line": 179
+        "line": 191
       },
       {
         "file": "src/renderer/components/SettingsGlossaryTab.tsx",
-        "line": 181
+        "line": 193
       },
       {
         "file": "src/renderer/components/SettingsGlossaryTab.tsx",
-        "line": 224
+        "line": 238
       },
       {
         "file": "src/renderer/components/SettingsGlossaryTab.tsx",
-        "line": 270
+        "line": 284
       }
     ]
   },
@@ -12374,27 +12370,27 @@
     "locations": [
       {
         "file": "src/renderer/components/GlossaryAddModal.tsx",
-        "line": 101
+        "line": 102
       },
       {
         "file": "src/renderer/components/GlossaryAddModal.tsx",
-        "line": 103
+        "line": 104
       },
       {
         "file": "src/renderer/components/SettingsGlossaryTab.tsx",
-        "line": 190
+        "line": 203
       },
       {
         "file": "src/renderer/components/SettingsGlossaryTab.tsx",
-        "line": 192
+        "line": 205
       },
       {
         "file": "src/renderer/components/SettingsGlossaryTab.tsx",
-        "line": 226
+        "line": 240
       },
       {
         "file": "src/renderer/components/SettingsGlossaryTab.tsx",
-        "line": 290
+        "line": 305
       }
     ]
   },
@@ -12487,11 +12483,11 @@
     "locations": [
       {
         "file": "src/renderer/components/GlossaryAddModal.tsx",
-        "line": 113
+        "line": 115
       },
       {
         "file": "src/renderer/components/SettingsGlossaryTab.tsx",
-        "line": 225
+        "line": 239
       }
     ]
   },
@@ -12584,7 +12580,7 @@
     "locations": [
       {
         "file": "src/renderer/components/GlossaryAddModal.tsx",
-        "line": 118
+        "line": 120
       }
     ]
   },
@@ -12677,11 +12673,11 @@
     "locations": [
       {
         "file": "src/renderer/components/GlossaryAddModal.tsx",
-        "line": 122
+        "line": 124
       },
       {
         "file": "src/renderer/components/SettingsGlossaryTab.tsx",
-        "line": 227
+        "line": 241
       }
     ]
   },
@@ -12774,7 +12770,7 @@
     "locations": [
       {
         "file": "src/renderer/components/GlossaryAddModal.tsx",
-        "line": 127
+        "line": 129
       }
     ]
   },
@@ -12867,7 +12863,7 @@
     "locations": [
       {
         "file": "src/renderer/components/GlossaryAddModal.tsx",
-        "line": 141
+        "line": 143
       }
     ]
   },
@@ -12960,7 +12956,7 @@
     "locations": [
       {
         "file": "src/renderer/components/GlossaryAddModal.tsx",
-        "line": 148
+        "line": 150
       }
     ]
   },
@@ -13053,7 +13049,7 @@
     "locations": [
       {
         "file": "src/renderer/components/GlossaryAddModal.tsx",
-        "line": 148
+        "line": 150
       },
       {
         "file": "src/renderer/components/SettingsApiTab.tsx",
@@ -13283,7 +13279,7 @@
       },
       {
         "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
-        "line": 93
+        "line": 92
       }
     ]
   },
@@ -13400,7 +13396,7 @@
       },
       {
         "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
-        "line": 170
+        "line": 169
       }
     ]
   },
@@ -13776,17 +13772,92 @@
     "locations": [
       {
         "file": "src/renderer/components/LanguageSelector.tsx",
-        "line": 18
+        "line": 25
       },
       {
         "file": "src/renderer/components/LanguageSelector.tsx",
-        "line": 104
+        "line": 126
       },
       {
         "file": "src/renderer/components/LanguageSelector.tsx",
-        "line": 182
+        "line": 226
       }
     ]
+  },
+  "53ded23a": {
+    "source": "All Languages",
+    "translated": {
+      "el": "Όλες οι γλώσσες",
+      "nl": "Alle talen",
+      "fr": "Toutes les langues",
+      "zh-Hant": "所有語言",
+      "cs": "Všechny jazyky",
+      "de": "Alle Sprachen",
+      "ar": "كل اللغات",
+      "zh-Hans": "所有语言",
+      "ja": "すべての言語",
+      "hu": "Összes nyelv",
+      "it": "Tutte le lingue",
+      "hi": "सभी भाषाएँ",
+      "fa": "همه زبان‌ها",
+      "ko": "모든 언어",
+      "pl": "Wszystkie języki",
+      "pt-BR": "Todos os Idiomas",
+      "tr": "Tüm Diller",
+      "sk": "Všetky jazyky",
+      "uk": "Усі мови",
+      "ru": "Все языки",
+      "ro": "Toate limbile",
+      "sv": "Alla språk",
+      "th": "ทุกภาษา",
+      "es": "Todos los idiomas",
+      "vi": "Tất cả ngôn ngữ"
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/LanguageSelector.tsx",
+        "line": 26
+      },
+      {
+        "file": "src/renderer/components/LanguageSelector.tsx",
+        "line": 127
+      },
+      {
+        "file": "src/renderer/components/LanguageSelector.tsx",
+        "line": 210
+      },
+      {
+        "file": "src/renderer/components/SettingsGlossaryTab.tsx",
+        "line": 48
+      }
+    ],
+    "models": {
+      "el": "~anthropic/claude-sonnet-latest",
+      "nl": "~anthropic/claude-sonnet-latest",
+      "fr": "~anthropic/claude-sonnet-latest",
+      "zh-Hant": "z-ai/glm-5.2",
+      "cs": "~anthropic/claude-sonnet-latest",
+      "de": "~anthropic/claude-sonnet-latest",
+      "ar": "~anthropic/claude-sonnet-latest",
+      "zh-Hans": "z-ai/glm-5.2",
+      "ja": "z-ai/glm-5.2",
+      "hu": "~anthropic/claude-sonnet-latest",
+      "it": "~anthropic/claude-sonnet-latest",
+      "hi": "~anthropic/claude-sonnet-latest",
+      "fa": "~anthropic/claude-sonnet-latest",
+      "ko": "z-ai/glm-5.2",
+      "pl": "~anthropic/claude-sonnet-latest",
+      "pt-BR": "~anthropic/claude-sonnet-latest",
+      "tr": "~anthropic/claude-sonnet-latest",
+      "sk": "~anthropic/claude-sonnet-latest",
+      "uk": "~anthropic/claude-sonnet-latest",
+      "ru": "~anthropic/claude-sonnet-latest",
+      "ro": "~anthropic/claude-sonnet-latest",
+      "sv": "~anthropic/claude-sonnet-latest",
+      "th": "~anthropic/claude-sonnet-latest",
+      "es": "~anthropic/claude-sonnet-latest",
+      "vi": "~anthropic/claude-sonnet-latest"
+    }
   },
   "ca81ae05": {
     "source": "No target language",
@@ -13877,11 +13948,11 @@
     "locations": [
       {
         "file": "src/renderer/components/LanguageSelector.tsx",
-        "line": 103
+        "line": 125
       },
       {
         "file": "src/renderer/components/LanguageSelector.tsx",
-        "line": 156
+        "line": 184
       }
     ]
   },
@@ -15372,11 +15443,11 @@
       },
       {
         "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
-        "line": 255
+        "line": 254
       },
       {
         "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
-        "line": 256
+        "line": 255
       }
     ]
   },
@@ -27947,7 +28018,7 @@
       },
       {
         "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
-        "line": 120
+        "line": 119
       }
     ]
   },
@@ -28056,7 +28127,7 @@
       },
       {
         "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
-        "line": 214
+        "line": 213
       }
     ]
   },
@@ -30292,7 +30363,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGlossaryTab.tsx",
-        "line": 105
+        "line": 117
       }
     ]
   },
@@ -30385,7 +30456,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGlossaryTab.tsx",
-        "line": 107
+        "line": 119
       }
     ]
   },
@@ -30478,7 +30549,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGlossaryTab.tsx",
-        "line": 110
+        "line": 122
       },
       {
         "file": "src/renderer/components/SettingsTransformPromptsTab.tsx",
@@ -30579,7 +30650,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGlossaryTab.tsx",
-        "line": 139
+        "line": 151
       }
     ]
   },
@@ -30672,7 +30743,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGlossaryTab.tsx",
-        "line": 141
+        "line": 153
       }
     ]
   },
@@ -30765,7 +30836,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGlossaryTab.tsx",
-        "line": 150
+        "line": 162
       }
     ]
   },
@@ -30858,7 +30929,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGlossaryTab.tsx",
-        "line": 154
+        "line": 166
       }
     ]
   },
@@ -30951,7 +31022,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGlossaryTab.tsx",
-        "line": 158
+        "line": 170
       }
     ]
   },
@@ -31044,7 +31115,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGlossaryTab.tsx",
-        "line": 163
+        "line": 175
       }
     ]
   },
@@ -31137,7 +31208,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGlossaryTab.tsx",
-        "line": 167
+        "line": 179
       }
     ]
   },
@@ -31230,7 +31301,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGlossaryTab.tsx",
-        "line": 201
+        "line": 215
       }
     ]
   },
@@ -31323,7 +31394,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGlossaryTab.tsx",
-        "line": 207
+        "line": 221
       }
     ]
   },
@@ -31416,7 +31487,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGlossaryTab.tsx",
-        "line": 214
+        "line": 228
       }
     ]
   },
@@ -31509,7 +31580,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGlossaryTab.tsx",
-        "line": 242
+        "line": 256
       }
     ]
   },
@@ -31602,7 +31673,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGlossaryTab.tsx",
-        "line": 242
+        "line": 256
       }
     ]
   },
@@ -31695,7 +31766,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGlossaryTab.tsx",
-        "line": 258
+        "line": 272
       }
     ]
   },
@@ -31788,7 +31859,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGlossaryTab.tsx",
-        "line": 284
+        "line": 299
       }
     ]
   },
@@ -31881,7 +31952,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGlossaryTab.tsx",
-        "line": 304
+        "line": 320
       }
     ]
   },
@@ -31974,7 +32045,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsGlossaryTab.tsx",
-        "line": 315
+        "line": 331
       }
     ]
   },
@@ -35249,11 +35320,11 @@
       },
       {
         "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
-        "line": 110
+        "line": 109
       },
       {
         "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
-        "line": 206
+        "line": 205
       }
     ]
   },
@@ -44958,11 +45029,11 @@
       },
       {
         "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
-        "line": 225
+        "line": 224
       },
       {
         "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
-        "line": 226
+        "line": 225
       }
     ]
   },
@@ -45455,11 +45526,11 @@
       },
       {
         "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
-        "line": 127
+        "line": 126
       },
       {
         "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
-        "line": 128
+        "line": 127
       }
     ]
   },
@@ -51673,7 +51744,7 @@
       },
       {
         "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
-        "line": 96
+        "line": 95
       }
     ]
   },
@@ -51778,7 +51849,7 @@
       },
       {
         "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
-        "line": 117
+        "line": 116
       }
     ]
   },
@@ -51883,7 +51954,7 @@
       },
       {
         "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
-        "line": 173
+        "line": 172
       }
     ]
   },
@@ -51988,7 +52059,7 @@
       },
       {
         "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
-        "line": 211
+        "line": 210
       }
     ]
   },
@@ -52186,7 +52257,7 @@
       },
       {
         "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
-        "line": 245
+        "line": 244
       }
     ]
   },
@@ -52287,7 +52358,7 @@
       },
       {
         "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
-        "line": 255
+        "line": 254
       }
     ]
   },
@@ -52667,7 +52738,7 @@
       },
       {
         "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
-        "line": 141
+        "line": 140
       }
     ]
   },
@@ -52764,7 +52835,7 @@
       },
       {
         "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
-        "line": 159
+        "line": 158
       }
     ]
   },
@@ -52861,7 +52932,7 @@
       },
       {
         "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
-        "line": 160
+        "line": 159
       }
     ]
   },
@@ -52954,7 +53025,7 @@
     "locations": [
       {
         "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
-        "line": 113
+        "line": 112
       }
     ]
   },
@@ -53047,7 +53118,7 @@
     "locations": [
       {
         "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
-        "line": 203
+        "line": 202
       }
     ]
   },

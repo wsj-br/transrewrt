@@ -1,15 +1,15 @@
 ---
 title: Γρήγορη εκκίνηση
 description: >-
-  Εγκαταστήστε το Transrewrt σε Windows ή Linux, ή εκτελέστε την
-  αυτο-φιλοξενούμενη εφαρμογή web Docker.
+  Εγκαταστήστε το Transrewrt σε Windows ή Linux ή εκτελέστε την εφαρμογή web
+  Docker.
 ---
 
 
 
 Επιλέξτε τη διαδρομή που σας ταιριάζει. Όλες είναι δωρεάν και ανοιχτού κώδικα (Apache 2.0).
 
-## Docker (αυτο-φιλοξενούμενο web)
+## Docker (εφαρμογή web)
 
 ```bash
 docker pull ghcr.io/wsj-br/transrewrt:latest

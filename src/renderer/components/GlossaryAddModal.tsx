@@ -95,6 +95,7 @@ function GlossaryAddModal({
                 onChange={setSrcLang}
                 targetListSameAsSource={true}
                 detectLanguage={false}
+                allowAllLanguages
               />
             </div>
             <div className="flex flex-col gap-1.5">
@@ -106,6 +107,7 @@ function GlossaryAddModal({
                 onChange={setTgtLang}
                 targetListSameAsSource={true}
                 detectLanguage={false}
+                allowAllLanguages
               />
             </div>
           </div>

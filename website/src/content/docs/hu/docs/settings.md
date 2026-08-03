@@ -11,15 +11,15 @@ Nyissa meg a **Beállítások** menüt az oldalsávon, hogy testre szabhassa az 
 
 | Lap | Asztali | Web (admin) | Web (felhasználó) | Megjegyzések |
 | --- | :---: | :---: | :---: | --- |
-| Általános beállítások | igen | igen | igen | Tartalmazza az **AI élményt** (Egyszerű / Haladó) |
-| Modellek | igen | igen | igen | Csak akkor, ha az **AI élmény** **Haladó** |
-| Nyelvek | igen | igen | igen | |
-| Költségkövetés | igen | igen | — | |
-| Átalakítás | igen | igen | igen | Promptok tömeges importálása/exportálása |
-| Szószedet | igen | igen | igen | Fordítási kifejezéspárok |
-| Felhasználók | — | igen | — | |
-| API konfiguráció | igen | igen | — | |
-| Névjegy | igen | igen | igen | |
+| Általános beállítások | ✓ | ✓ | ✓ | Tartalmazza az **AI élményt** (Egyszerű / Haladó) |
+| Modellek | ✓ | ✓ | ✓ | Csak akkor, ha az **AI élmény** **Haladó** |
+| Nyelvek | ✓ | ✓ | ✓ | |
+| Költségkövetés | ✓ | ✓ | — | |
+| Átalakítás | ✓ | ✓ | ✓ | Promptok tömeges importálása/exportálása |
+| Szószedet | ✓ | ✓ | ✓ | Fordítási kifejezéspárok |
+| Felhasználók | — | ✓ | — | |
+| API konfiguráció | ✓ | ✓ | — | |
+| Névjegy | ✓ | ✓ | ✓ | |
 
 **Egyszerű** módban válassza ki az AI-t az eszköztárban lévő előbeállítások és az Általános beállításokban lévő **Szolgáltató** segítségével; a **Modellek** lap rejtve van.
 

@@ -9,17 +9,17 @@ description: >-
 
 Apri le **Impostazioni** dalla barra laterale per personalizzare il comportamento dell'app.
 
-| Scheda | Desktop | Web (amministratore) | Web (utente) | Note |
+| Tab | Desktop | Web (admin) | Web (user) | Note |
 | --- | :---: | :---: | :---: | --- |
-| Impostazioni generali | sì | sì | sì | Include **Esperienza AI** (Facile / Avanzata) |
-| Modelli | sì | sì | sì | Solo quando l'**Esperienza AI** è **Avanzata** |
-| Lingue | sì | sì | sì | |
-| Monitoraggio costi | sì | sì | — | |
-| Trasformazione | sì | sì | sì | Importazione/esportazione in blocco di prompt |
-| Glossario | sì | sì | sì | Coppie di termini per la traduzione |
-| Utenti | — | sì | — | |
-| Configurazione API | sì | sì | — | |
-| Informazioni | sì | sì | sì | |
+| Impostazioni generali | ✓ | ✓ | ✓ | Include **esperienza AI** (Facile / Avanzata) |
+| Modelli | ✓ | ✓ | ✓ | Solo quando l'**esperienza AI** è **Avanzata** |
+| Lingue | ✓ | ✓ | ✓ | |
+| Monitoraggio costi | ✓ | ✓ | — | |
+| Trasforma | ✓ | ✓ | ✓ | Importazione/esportazione in blocco di prompt |
+| Glossario | ✓ | ✓ | ✓ | Coppie di termini per la traduzione |
+| Utenti | — | ✓ | — | |
+| Configurazione API | ✓ | ✓ | — | |
+| Informazioni | ✓ | ✓ | ✓ | |
 
 In modalità **Facile**, scegli l'IA tramite i preset nella barra degli strumenti e il **Provider** nelle Impostazioni generali; la scheda **Modelli** è nascosta.
 

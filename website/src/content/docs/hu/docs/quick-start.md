@@ -1,15 +1,15 @@
 ---
 title: Gyorsindítás
 description: >-
-  Telepítse a Transrewrt-t Windowsra vagy Linuxra, vagy futtassa az önálló
-  Docker webes alkalmazást.
+  Telepítse a Transrewrt alkalmazást Windowsra vagy Linuxra, vagy futtassa a
+  Docker webalkalmazást.
 ---
 
 
 
 Válassza ki az Önnek megfelelő utat. Mindegyik ingyenes és nyílt forráskódú (Apache 2.0).
 
-## Docker (önálló web)
+## Docker (webalkalmazás)
 
 ```bash
 docker pull ghcr.io/wsj-br/transrewrt:latest

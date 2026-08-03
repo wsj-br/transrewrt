@@ -193,7 +193,7 @@ const SCREENSHOT_HISTORY_MODEL_ID = "openrouter/qwen/qwen3-235b-a22b";
 const TRANSLATE_SCREENSHOT_SAMPLE_INPUT = "this is a test";
 /** Canonical translate sample for History screenshots (list is ordered by timestamp DESC). */
 const HISTORY_SAMPLE_INPUT =
-  "AI-powered text tool: translate between languages, rewrite in different styles, and transform with custom prompts - using multiple AI providers (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, and local OpenAI-compatible servers). Runs as a desktop app (Electron) or a self-hosted web app (Docker).";
+  "AI-powered text tool: translate between languages, rewrite in different styles, and transform with custom prompts - using multiple AI providers (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, and local OpenAI-compatible servers). Runs as a desktop app (Electron) or a Docker web app.";
 const HISTORY_SAMPLE_OUTPUT =
   "Ferramenta de texto com IA: traduza entre idiomas, reescreva em diferentes estilos e transforme com prompts personalizados - usando múltiplos provedores de IA (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI e servidores locais compatíveis com OpenAI). Funciona como um aplicativo desktop (Electron) ou como um aplicativo web autohospedado (Docker).";
 

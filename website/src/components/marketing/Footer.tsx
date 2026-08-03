@@ -21,7 +21,7 @@ export default function Footer() {
             </div>
             <p className="mt-4 max-w-sm text-sm leading-relaxed text-neutral-400">
               {t(
-                'Open-source AI-powered text tool for translating, rewriting, and transforming text — desktop or self-hosted with Docker. Your keys, your models, your host.',
+                'Open-source AI-powered text tool for translating, rewriting, and transforming text — desktop or Docker. Your keys, your models, your host.',
               )}
             </p>
             <p className="mt-4 font-mono text-xs text-neutral-500">{DOCKER_IMAGE}</p>
@@ -53,8 +53,8 @@ export default function Footer() {
                 </a>
               </li>
               <li>
-                <a href="#self-host" className="text-neutral-300 hover:text-white">
-                  {t('Self-host')}
+                <a href="#docker" className="text-neutral-300 hover:text-white">
+                  {t('Docker')}
                 </a>
               </li>
             </ul>

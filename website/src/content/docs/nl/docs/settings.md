@@ -11,15 +11,15 @@ Open **Instellingen** vanuit de zijbalk om aan te passen hoe de app zich gedraag
 
 | Tabblad | Desktop | Web (beheerder) | Web (gebruiker) | Opmerkingen |
 | --- | :---: | :---: | :---: | --- |
-| Algemene instellingen | ja | ja | ja | Inclusief **AI-ervaring** (Eenvoudig / Geavanceerd) |
-| Modellen | ja | ja | ja | Alleen wanneer **AI-ervaring** **Geavanceerd** is |
-| Talen | ja | ja | ja | |
-| Kosten bijhouden | ja | ja | — | |
-| Transformeren | ja | ja | ja | Bulkimport/export van prompts |
-| Woordenlijst | ja | ja | ja | Termparen voor vertaling |
-| Gebruikers | — | ja | — | |
-| API-configuratie | ja | ja | — | |
-| Over | ja | ja | ja | |
+| Algemene instellingen | ✓ | ✓ | ✓ | Inclusief **AI-ervaring** (Eenvoudig / Geavanceerd) |
+| Modellen | ✓ | ✓ | ✓ | Alleen wanneer **AI-ervaring** **Geavanceerd** is |
+| Talen | ✓ | ✓ | ✓ | |
+| Kosten bijhouden | ✓ | ✓ | — | |
+| Transformeren | ✓ | ✓ | ✓ | Bulk import/export van prompts |
+| Woordenlijst | ✓ | ✓ | ✓ | Termparen voor vertaling |
+| Gebruikers | — | ✓ | — | |
+| API-configuratie | ✓ | ✓ | — | |
+| Over | ✓ | ✓ | ✓ | |
 
 In de modus **Eenvoudig** kiest u AI via voorinstellingen in de werkbalk en **Provider** in Algemene instellingen; het tabblad **Modellen** is verborgen.
 

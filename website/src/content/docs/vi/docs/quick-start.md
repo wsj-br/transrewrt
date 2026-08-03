@@ -1,15 +1,13 @@
 ---
 title: Bắt đầu nhanh
-description: >-
-  Cài đặt Transrewrt trên Windows hoặc Linux, hoặc chạy ứng dụng web Docker tự
-  lưu trữ.
+description: Cài đặt Transrewrt trên Windows hoặc Linux, hoặc chạy ứng dụng web Docker.
 ---
 
 
 
 Chọn đường dẫn phù hợp với bạn. Tất cả đều miễn phí và mã nguồn mở (Apache 2.0).
 
-## Docker (web tự lưu trữ)
+## Docker (ứng dụng web)
 
 ```bash
 docker pull ghcr.io/wsj-br/transrewrt:latest

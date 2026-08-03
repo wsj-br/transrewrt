@@ -9,17 +9,17 @@ description: >-
 
 Mở **Cài đặt** từ thanh bên để tùy chỉnh cách ứng dụng hoạt động.
 
-| Tab | Máy tính để bàn | Web (quản trị viên) | Web (người dùng) | Ghi chú |
+| Tab | Desktop | Web (admin) | Web (user) | Ghi chú |
 | --- | :---: | :---: | :---: | --- |
-| Cài đặt chung | có | có | có | Bao gồm **Trải nghiệm AI** (Dễ / Nâng cao) |
-| Mô hình | có | có | có | Chỉ khi **Trải nghiệm AI** là **Nâng cao** |
-| Ngôn ngữ | có | có | có | |
-| Theo dõi chi phí | có | có | — | |
-| Chuyển đổi | có | có | có | Nhập/xuất hàng loạt lời nhắc |
-| Thuật ngữ | có | có | có | Cặp thuật ngữ để dịch |
-| Người dùng | — | có | — | |
-| Cấu hình API | có | có | — | |
-| Giới thiệu | có | có | có | |
+| Cài đặt chung | ✓ | ✓ | ✓ | Bao gồm **trải nghiệm AI** (Dễ / Nâng cao) |
+| Mô hình | ✓ | ✓ | ✓ | Chỉ khi **trải nghiệm AI** là **Nâng cao** |
+| Ngôn ngữ | ✓ | ✓ | ✓ | |
+| Theo dõi chi phí | ✓ | ✓ | — | |
+| Chuyển đổi | ✓ | ✓ | ✓ | Nhập/xuất hàng loạt lời nhắc |
+| Thuật ngữ | ✓ | ✓ | ✓ | Các cặp thuật ngữ để dịch |
+| Người dùng | — | ✓ | — | |
+| Cấu hình API | ✓ | ✓ | — | |
+| Giới thiệu | ✓ | ✓ | ✓ | |
 
 Ở chế độ **Dễ**, chọn AI thông qua các cài đặt trước trên thanh công cụ và **Nhà cung cấp** trong Cài đặt chung; tab **Mô hình** bị ẩn.
 

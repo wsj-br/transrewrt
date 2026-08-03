@@ -1,9 +1,14 @@
 import PropTypes from 'prop-types';
-import { HardDrive } from 'lucide-react';
+import { Bot, HardDrive, PlugZap } from 'lucide-react';
 import iconData from '../assets/icons_with_files.json';
 
 // Normalize string: lowercase, remove all non-alphanumeric
 const normalize = (s) => s.toLowerCase().replace(/[^a-z0-9]/g, '');
+
+function engineFromProvider(provider) {
+  const raw = String(provider || "").trim();
+  return raw.includes("/") ? raw.split("/")[0] : raw;
+}
 
 // Build map: normalized provider_id -> icon filename (with .ico)
 const providerIdToFile = {};
@@ -66,9 +71,11 @@ function getIconUrl(provider) {
 }
 
 function isLocalProvider(provider) {
-  const raw = String(provider || "").trim();
-  const engine = raw.includes("/") ? raw.split("/")[0] : raw;
-  return normalize(engine) === "local";
+  return normalize(engineFromProvider(provider)) === "local";
+}
+
+function isCustomProvider(provider) {
+  return normalize(engineFromProvider(provider)) === "custom";
 }
 
 export function preloadProviderIcons() {
@@ -91,6 +98,17 @@ const ProviderIcon = ({ provider, size = 16 }) => {
     );
   }
 
+  if (isCustomProvider(provider)) {
+    return (
+      <PlugZap
+        size={size}
+        aria-hidden
+        className="shrink-0 text-muted-foreground"
+        strokeWidth={2}
+      />
+    );
+  }
+
   const src = getIconUrl(provider);
 
   if (src) {
@@ -105,9 +123,13 @@ const ProviderIcon = ({ provider, size = 16 }) => {
     );
   }
 
-  // Fallback for unknown providers (e.g. custom OpenAI-compatible)
-  const fontSize = size === 20 ? '20px' : '16px';
-  return <span style={{ fontSize, lineHeight: 1 }} title={provider}>🔑</span>;
+  // Fallback for unknown providers — Lucide glyph, not emoji
+  // (emoji often renders as a crossed box with the app font stack).
+  return (
+    <span title={provider} className="inline-flex shrink-0">
+      <Bot size={size} aria-hidden className="text-muted-foreground" strokeWidth={2} />
+    </span>
+  );
 };
 
 ProviderIcon.propTypes = {

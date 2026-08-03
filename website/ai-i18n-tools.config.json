@@ -10,7 +10,8 @@
   "languagesManifestPath": "src/i18n/ui-languages.json",
   "features": {
     "translateUIStrings": true,
-    "translateDocs": true
+    "translateDocs": true,
+    "translateJson": true
   },
   "ui": {
     "sourceRoots": [
@@ -19,6 +20,15 @@
     "stringsJson": "src/i18n/strings.json",
     "flatOutputDir": "src/i18n/locales/"
   },
+  "json": [
+    {
+      "description": "Starlight docs sidebar group headings",
+      "contentPaths": [
+        "src/i18n/docs-sidebar-groups.json"
+      ],
+      "outputPathTemplate": "src/i18n/docs-sidebar-groups/{locale}.json"
+    }
+  ],
   "docs": [
     {
       "description": "Website Starlight onboarding",

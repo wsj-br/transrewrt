@@ -13,7 +13,7 @@ description: >-
 - **Yeniden Yazma** — dilbilgisini düzeltme, netliği artırma, tonu veya uzunluğu değiştirme
 - **Dönüştürme** — kendi özel yapay zeka istemlerinizi herhangi bir metin üzerinde çalıştırma
 
-Birçok yapay zeka sağlayıcısını destekler (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, OpenAI uyumlu uç noktalar ve Ollama, LM Studio veya llama.cpp gibi yerel OpenAI uyumlu sunucular). Bir **masaüstü uygulaması** (Windows / Linux) veya **kendi kendine barındırılan bir web uygulaması** (Docker) olarak çalıştırın.
+Birçok yapay zeka sağlayıcısını destekler (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, OpenAI uyumlu uç noktalar ve Ollama, LM Studio veya llama.cpp gibi yerel OpenAI uyumlu sunucular). Bir **masaüstü uygulaması** (Windows / Linux) veya bir **Docker web uygulaması** olarak çalıştırın.
 
 Anahtarlarınız, modelleriniz, ana bilgisayarınız — Transrewrt bulut hesabı yoktur.
 

@@ -11,7 +11,7 @@ description: Čo je Transrewrt a ako nájsť inštaláciu, príručky a dokument
 - **Prepísanie** — oprava gramatiky, zlepšenie zrozumiteľnosti, zmena tónu alebo dĺžky
 - **Transformácia** — spustenie vlastných AI výziev na akomkoľvek texte
 
-Podporuje mnoho poskytovateľov AI (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, koncové body kompatibilné s OpenAI a lokálne servery kompatibilné s OpenAI, ako sú Ollama, LM Studio alebo llama.cpp). Spustite ho ako **desktopovú aplikáciu** (Windows / Linux) alebo **samo-hostovanú webovú aplikáciu** (Docker).
+Podporuje mnoho poskytovateľov AI (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, koncové body kompatibilné s OpenAI a lokálne servery kompatibilné s OpenAI, ako sú Ollama, LM Studio alebo llama.cpp). Spustite ho ako **desktopovú aplikáciu** (Windows / Linux) alebo **webovú aplikáciu Docker**.
 
 Vaše kľúče, vaše modely, váš hostiteľ – neexistuje žiadny cloudový účet Transrewrt.
 

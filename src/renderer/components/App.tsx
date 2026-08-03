@@ -94,6 +94,13 @@ const App = () => {
     if (isWeb) setSetting("web_view", "settings");
   }, [updateSettings, setSetting]);
 
+  const openSettingsGlossary = useCallback(() => {
+    updateSettings({ settings_active_tab: "glossary" });
+    setOpenSettingsToTab("glossary");
+    setCurrentView("settings");
+    if (isWeb) setSetting("web_view", "settings");
+  }, [updateSettings, setSetting]);
+
   const handleRemoveModel = useCallback(
     async (modelId: string) => {
       const result = await removeModelFromList(modelId);
@@ -663,10 +670,7 @@ const App = () => {
       setGlossaryPrefillTgtText(outputSel);
       setGlossaryModalOpen(true);
     },
-    onOpenGlossarySettings: () => {
-      setOpenSettingsToTab("glossary");
-      setCurrentView("settings");
-    },
+    onOpenGlossarySettings: openSettingsGlossary,
   };
 
   const { leftPanel, rightPanel, workspaceTopBar = null, actionBar = null } =
@@ -945,8 +949,7 @@ const App = () => {
           prefillTargetText={glossaryPrefillTgtText}
           onOpenSettings={() => {
             setGlossaryModalOpen(false);
-            setOpenSettingsToTab("glossary");
-            setCurrentView("settings");
+            openSettingsGlossary();
           }}
         />
         <WordAlternativesPopover {...translateWordAltPopoverProps} />
@@ -1001,6 +1004,8 @@ const App = () => {
           rightPanel={rightPanel}
           workspaceTopBar={workspaceTopBar}
           actionBar={actionBar}
+          openSettingsToTab={openSettingsToTab}
+          onOpenSettingsToTabConsumed={() => setOpenSettingsToTab(null)}
           layoutMode={layoutMode}
           onLayoutChange={handleLayoutChange}
         />
@@ -1026,8 +1031,7 @@ const App = () => {
         prefillTargetText={glossaryPrefillTgtText}
         onOpenSettings={() => {
           setGlossaryModalOpen(false);
-          setOpenSettingsToTab("glossary");
-          setCurrentView("settings");
+          openSettingsGlossary();
         }}
       />
       <WordAlternativesPopover {...translateWordAltPopoverProps} />

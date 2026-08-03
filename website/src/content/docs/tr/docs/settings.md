@@ -11,15 +11,15 @@ Uygulamanın nasıl davrandığını özelleştirmek için kenar çubuğundan **
 
 | Sekme | Masaüstü | Web (yönetici) | Web (kullanıcı) | Notlar |
 | --- | :---: | :---: | :---: | --- |
-| Genel Ayarlar | evet | evet | evet | **Yapay zeka deneyimi** (Kolay / Gelişmiş) içerir |
-| Modeller | evet | evet | evet | Yalnızca **Yapay zeka deneyimi** **Gelişmiş** olduğunda |
-| Diller | evet | evet | evet | |
-| Maliyet Takibi | evet | evet | — | |
-| Dönüştürme | evet | evet | evet | İstemlerin toplu içe/dışa aktarımı |
-| Sözlük | evet | evet | evet | Çeviri için terim çiftleri |
-| Kullanıcılar | — | evet | — | |
-| API Yapılandırması | evet | evet | — | |
-| Hakkında | evet | evet | evet | |
+| Genel Ayarlar | ✓ | ✓ | ✓ | **Yapay zeka deneyimi** (Kolay / Gelişmiş) içerir |
+| Modeller | ✓ | ✓ | ✓ | Yalnızca **Yapay zeka deneyimi** **Gelişmiş** olduğunda |
+| Diller | ✓ | ✓ | ✓ | |
+| Maliyet Takibi | ✓ | ✓ | — | |
+| Dönüştür | ✓ | ✓ | ✓ | İstemlerin toplu içe/dışa aktarımı |
+| Sözlük | ✓ | ✓ | ✓ | Çeviri için terim çiftleri |
+| Kullanıcılar | — | ✓ | — | |
+| API Yapılandırması | ✓ | ✓ | — | |
+| Hakkında | ✓ | ✓ | ✓ | |
 
 **Kolay** modda, araç çubuğundaki ön ayarlar aracılığıyla yapay zekayı ve Genel Ayarlar'da **Sağlayıcı**'yı seçin; **Modeller** sekmesi gizlidir.
 

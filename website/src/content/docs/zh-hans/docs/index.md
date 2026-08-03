@@ -11,7 +11,7 @@ description: Transrewrt 是什么，以及如何查找安装、指南和设置�
 - **Rewrite** — 修复语法、提高清晰度、改变语气或长度
 - **Transform** — 对任何文本运行您自己的自定义 AI 提示词
 
-它支持许多 AI 提供商（OpenRouter、OpenAI、Anthropic、Google Gemini、DeepSeek、Groq、Mistral、xAI、Cerebras、NVIDIA、Alibaba Cloud、apikey.fun、OpenAI 兼容端点，以及本地 OpenAI 兼容服务器，如 Ollama、LM Studio 或 llama.cpp）。将其作为**桌面应用**（Windows / Linux）或**自托管 Web 应用**（Docker）运行。
+它支持众多 AI 提供商（OpenRouter、OpenAI、Anthropic、Google Gemini、DeepSeek、Groq、Mistral、xAI、Cerebras、NVIDIA、Alibaba Cloud、apikey.fun、OpenAI 兼容端点，以及 Ollama、LM Studio 或 llama.cpp 等本地 OpenAI 兼容服务器）。可作为 **桌面应用**（Windows / Linux）或 **Docker Web 应用**运行。
 
 您的密钥，您的模型，您的主机——没有 Transrewrt 云账户。
 

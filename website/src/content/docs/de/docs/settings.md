@@ -11,15 +11,15 @@ description: >-
 
 | Registerkarte | Desktop | Web (Admin) | Web (Benutzer) | Hinweise |
 | --- | :---: | :---: | :---: | --- |
-| Allgemeine Einstellungen | ja | ja | ja | Beinhaltet **KI-Erfahrung** (Einfach / Erweitert) |
-| Modelle | ja | ja | ja | Nur wenn **KI-Erfahrung** **Erweitert** ist |
-| Sprachen | ja | ja | ja | |
-| Kostenverfolgung | ja | ja | — | |
-| Transformieren | ja | ja | ja | Massenimport/-export von Prompts |
-| Glossar | ja | ja | ja | Begriffspaare für die Übersetzung |
-| Benutzer | — | ja | — | |
-| API-Konfiguration | ja | ja | — | |
-| Über | ja | ja | ja | |
+| Allgemeine Einstellungen | ✓ | ✓ | ✓ | Beinhaltet **KI-Erfahrung** (Einfach / Erweitert) |
+| Modelle | ✓ | ✓ | ✓ | Nur wenn **KI-Erfahrung** **Erweitert** ist |
+| Sprachen | ✓ | ✓ | ✓ | |
+| Kostenverfolgung | ✓ | ✓ | — | |
+| Transformieren | ✓ | ✓ | ✓ | Massenimport/-export von Prompts |
+| Glossar | ✓ | ✓ | ✓ | Begriffspaare für die Übersetzung |
+| Benutzer | — | ✓ | — | |
+| API-Konfiguration | ✓ | ✓ | — | |
+| Über | ✓ | ✓ | ✓ | |
 
 Im Modus **Einfach** wählen Sie die KI über Voreinstellungen in der Symbolleiste und den **Anbieter** in den Allgemeinen Einstellungen aus; die Registerkarte **Modelle** ist ausgeblendet.
 

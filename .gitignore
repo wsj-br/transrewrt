@@ -8,6 +8,7 @@ __pycache__/
 env/
 venv/
 node_modules
+.pnpm-store/
 dist
 dist-main
 *.tsbuildinfo
@@ -60,3 +61,4 @@ website/.astro/
 # website i18n cache: ignore backups/logs; keep cache.db tracked
 website/.translation-cache/**
 !website/.translation-cache/cache.db
+node_modules

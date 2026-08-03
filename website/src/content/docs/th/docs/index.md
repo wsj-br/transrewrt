@@ -11,7 +11,7 @@ description: Transrewrt คืออะไร และจะหาคู่ม�
 - **เขียนใหม่** — แก้ไขไวยากรณ์ ปรับปรุงความชัดเจน เปลี่ยนโทนเสียงหรือความยาว
 - **แปลง** — เรียกใช้พร้อมต์ AI ที่กำหนดเองของคุณเองกับข้อความใดๆ
 
-รองรับผู้ให้บริการ AI หลายราย (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, ปลายทางที่เข้ากันได้กับ OpenAI และเซิร์ฟเวอร์ที่เข้ากันได้กับ OpenAI ในเครื่อง เช่น Ollama, LM Studio หรือ llama.cpp) เรียกใช้เป็น **แอปเดสก์ท็อป** (Windows / Linux) หรือ **เว็บแอปที่โฮสต์เอง** (Docker)
+รองรับผู้ให้บริการ AI หลายราย (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, ปลายทางที่เข้ากันได้กับ OpenAI และเซิร์ฟเวอร์ที่เข้ากันได้กับ OpenAI ในเครื่อง เช่น Ollama, LM Studio หรือ llama.cpp) เรียกใช้เป็น **แอปพลิเคชันเดสก์ท็อป** (Windows / Linux) หรือ **เว็บแอปพลิเคชัน Docker**
 
 คีย์ของคุณ โมเดลของคุณ โฮสต์ของคุณ — ไม่มีบัญชีคลาวด์ Transrewrt
 

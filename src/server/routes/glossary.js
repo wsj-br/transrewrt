@@ -5,6 +5,7 @@
 
 const express = require("express");
 const { sql } = require("../../shared/db/appSchema.js");
+const { preferSpecificGlossaryTerms } = require("../../shared/glossary.js");
 
 /**
  * @param {function} getDb
@@ -37,7 +38,7 @@ module.exports = function createGlossaryRouter(getDb, setSessionRefreshCookie, l
       const { source, target } = req.query;
       if (!source || !target) return res.status(400).json({ error: "source and target query params required" });
       const rows = db.prepare(sql.GLOSSARY_GET_BY_LANG_PAIR_FOR_USER).all(source, target, userId);
-      res.json(rows);
+      res.json(preferSpecificGlossaryTerms(rows, source, target));
     } catch (err) {
       log.error("[API] GET /api/glossary/by-lang-pair - Error: " + err.message, { stack: err.stack });
       res.status(500).json({ error: err.message });

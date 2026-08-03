@@ -1,15 +1,13 @@
 ---
 title: بدء سريع
-description: >-
-  ثبّت Transrewrt على Windows أو Linux، أو شغّل تطبيق الويب Docker المستضاف
-  ذاتيًا.
+description: ثبّت Transrewrt على Windows أو Linux، أو شغّل تطبيق الويب Docker.
 ---
 
 
 
 اختر المسار الذي يناسبك. جميعها مجانية ومفتوحة المصدر (Apache 2.0).
 
-## Docker (ويب مستضاف ذاتيًا)
+## Docker (تطبيق الويب)
 
 ```bash
 docker pull ghcr.io/wsj-br/transrewrt:latest

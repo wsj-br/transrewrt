@@ -2,14 +2,14 @@
 title: Rychlý start
 description: >-
   Nainstalujte Transrewrt na Windows nebo Linux, nebo spusťte webovou aplikaci
-  Docker s vlastním hostováním.
+  Docker.
 ---
 
 
 
 Vyberte si cestu, která vám vyhovuje. Všechny jsou zdarma a s otevřeným zdrojovým kódem (Apache 2.0).
 
-## Docker (web s vlastním hostováním)
+## Docker (webová aplikace)
 
 ```bash
 docker pull ghcr.io/wsj-br/transrewrt:latest

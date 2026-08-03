@@ -54,6 +54,12 @@
     "iconFile": "anthropic.ico"
   },
   {
+    "provider_id": "apifun",
+    "name": "apikey.fun",
+    "url": "https://apikey.fun",
+    "iconFile": "apikey.ico"
+  },
+  {
     "provider_id": "arcee-ai",
     "name": "Arcee AI",
     "url": "https://www.arcee.ai",
@@ -64,6 +70,18 @@
     "name": "AtlasCloud",
     "url": "https://atlascloud.ai",
     "iconFile": "atlascloud.ico"
+  },
+  {
+    "provider_id": "auto",
+    "name": "OpenRouter Auto",
+    "url": "https://openrouter.ai",
+    "iconFile": "openrouter.ico"
+  },
+  {
+    "provider_id": "auto-beta",
+    "name": "OpenRouter Auto (Beta)",
+    "url": "https://openrouter.ai",
+    "iconFile": "openrouter.ico"
   },
   {
     "provider_id": "azure",
@@ -88,6 +106,12 @@
     "name": "Black Forest Labs",
     "url": "https://blackforestlabs.ai",
     "iconFile": "black_forest_labs.ico"
+  },
+  {
+    "provider_id": "bodybuilder",
+    "name": "OpenRouter Bodybuilder",
+    "url": "https://openrouter.ai",
+    "iconFile": "openrouter.ico"
   },
   {
     "provider_id": "bytedance",
@@ -192,10 +216,22 @@
     "iconFile": "fireworks.ico"
   },
   {
+    "provider_id": "free",
+    "name": "OpenRouter Free",
+    "url": "https://openrouter.ai",
+    "iconFile": "openrouter.ico"
+  },
+  {
     "provider_id": "friendli",
     "name": "Friendli",
     "url": "https://friendli.ai",
     "iconFile": "friendli.ico"
+  },
+  {
+    "provider_id": "fusion",
+    "name": "OpenRouter Fusion",
+    "url": "https://openrouter.ai",
+    "iconFile": "openrouter.ico"
   },
   {
     "provider_id": "gmicloud",
@@ -282,6 +318,12 @@
     "iconFile": "liquid.ico"
   },
   {
+    "provider_id": "local",
+    "name": "Local LLM",
+    "url": "",
+    "iconFile": ""
+  },
+  {
     "provider_id": "mancer",
     "name": "Mancer",
     "url": "https://mancer.tech",
@@ -292,6 +334,12 @@
     "name": "Meituan",
     "url": "https://www.meituan.com",
     "iconFile": "meituan.ico"
+  },
+  {
+    "provider_id": "meta",
+    "name": "Meta",
+    "url": "https://ai.meta.com",
+    "iconFile": "metaai.ico"
   },
   {
     "provider_id": "meta-llama",
@@ -378,12 +426,6 @@
     "iconFile": "nvidia.ico"
   },
   {
-    "provider_id": "local",
-    "name": "Local LLM",
-    "url": "",
-    "iconFile": ""
-  },
-  {
     "provider_id": "openai",
     "name": "OpenAI",
     "url": "https://openai.com",
@@ -412,6 +454,18 @@
     "name": "Parasail",
     "url": "",
     "iconFile": "parasail.ico"
+  },
+  {
+    "provider_id": "pareto-code",
+    "name": "Pareto Code",
+    "url": "",
+    "iconFile": "pareto-code.ico"
+  },
+  {
+    "provider_id": "perceptron",
+    "name": "Perceptron",
+    "url": "",
+    "iconFile": "perceptron.ico"
   },
   {
     "provider_id": "perplexity",
@@ -468,6 +522,12 @@
     "iconFile": "relace.ico"
   },
   {
+    "provider_id": "sakana",
+    "name": "Sakana AI",
+    "url": "https://sakana.ai",
+    "iconFile": "sakana.ico"
+  },
+  {
     "provider_id": "sambanova",
     "name": "SambaNova",
     "url": "https://sambanova.ai",
@@ -520,6 +580,12 @@
     "name": "TheDrummer",
     "url": "https://huggingface.co/thedrummer",
     "iconFile": "thedrummer.ico"
+  },
+  {
+    "provider_id": "thinkingmachines",
+    "name": "Thinking Machines",
+    "url": "https://thinkingmachines.ai",
+    "iconFile": "thinkingmachines.ico"
   },
   {
     "provider_id": "tngtech",

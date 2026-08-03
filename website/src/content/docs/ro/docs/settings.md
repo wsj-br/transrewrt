@@ -11,15 +11,15 @@ Deschideți **Setări** din bara laterală pentru a personaliza comportamentul a
 
 | Fila | Desktop | Web (admin) | Web (utilizator) | Note |
 | --- | :---: | :---: | :---: | --- |
-| Setări generale | da | da | da | Include **Experiența AI** (Ușor / Avansat) |
-| Modele | da | da | da | Doar când **Experiența AI** este **Avansată** |
-| Limbi | da | da | da | |
-| Urmărirea costurilor | da | da | — | |
-| Transformare | da | da | da | Import/export în masă de prompturi |
-| Glosar | da | da | da | Perechi de termeni pentru traducere |
-| Utilizatori | — | da | — | |
-| Configurare API | da | da | — | |
-| Despre | da | da | da | |
+| Setări generale | ✓ | ✓ | ✓ | Include **experiența AI** (Ușor / Avansat) |
+| Modele | ✓ | ✓ | ✓ | Numai când **experiența AI** este **Avansată** |
+| Limbi | ✓ | ✓ | ✓ | |
+| Urmărirea costurilor | ✓ | ✓ | — | |
+| Transformare | ✓ | ✓ | ✓ | Import/export în masă de prompturi |
+| Glosar | ✓ | ✓ | ✓ | Perechi de termeni pentru traducere |
+| Utilizatori | — | ✓ | — | |
+| Configurare API | ✓ | ✓ | — | |
+| Despre | ✓ | ✓ | ✓ | |
 
 În modul **Ușor**, alegeți AI prin presetări în bara de instrumente și **Furnizor** în Setări generale; fila **Modele** este ascunsă.
 

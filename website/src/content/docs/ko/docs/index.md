@@ -11,7 +11,7 @@ description: Transrewrt가 무엇인지와 설치 가이드, 설정 문서를 �
 - **재작성(Rewrite)** — 문법 수정, 명확성 향상, 어조 또는 길이 변경
 - **변환(Transform)** — 모든 텍스트에 사용자 정의 AI 프롬프트 실행
 
-다양한 AI 제공자를 지원합니다(OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, OpenAI 호환 엔드포인트, Ollama, LM Studio, llama.cpp 같은 로컬 OpenAI 호환 서버 포함). **데스크톱 앱**(Windows / Linux) 또는 **자체 호스팅 웹 앱**(Docker)으로 실행할 수 있습니다.
+다양한 AI 제공자(OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, OpenAI 호환 엔드포인트 및 Ollama, LM Studio, llama.cpp와 같은 로컬 OpenAI 호환 서버)를 지원합니다. **데스크톱 앱**(Windows / Linux) 또는 **Docker 웹 앱**으로 실행할 수 있습니다.
 
 사용자의 키, 사용자의 모델, 사용자의 호스트 — Transrewrt 클라우드 계정이 없습니다.
 

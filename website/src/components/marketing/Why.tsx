@@ -37,7 +37,7 @@ export default function Why() {
     },
     {
       icon: MonitorSmartphone,
-      title: t('Desktop & self-hosted web'),
+      title: t('Desktop & Docker web app'),
       desc: t(
         'Install on Windows or Linux (including Linux arm64), or run the Docker web app with multi-user support, admin roles, and a persistent data volume on /app/data.',
       ),
@@ -46,7 +46,7 @@ export default function Why() {
       icon: ShieldCheck,
       title: t('Open source, no lock-in'),
       desc: t(
-        'Apache 2.0 licensed and free to self-host. You pay only your own AI providers when using paid models — there is no Transrewrt cloud account and no pricing tier.',
+        'Apache 2.0 licensed and free to deploy with Docker. You pay only your own AI providers when using paid models — there is no Transrewrt cloud account and no pricing tier.',
       ),
     },
   ];

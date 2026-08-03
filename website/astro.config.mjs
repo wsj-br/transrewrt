@@ -2,6 +2,7 @@ import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
 import react from '@astrojs/react';
 import tailwindcss from '@tailwindcss/vite';
+import { docsSidebar } from './src/i18n/docs-sidebar.mjs';
 import { starlightLocales } from './src/i18n/locales.mjs';
 import { starlightBaseUrlsIntegration } from './src/integrations/starlight-base-urls.mjs';
 
@@ -30,35 +31,9 @@ export default defineConfig({
       ],
       defaultLocale: 'root',
       locales: starlightLocales,
-      sidebar: [
-        {
-          label: 'Get started',
-          items: [
-            { label: 'Overview', slug: 'docs' },
-            { label: 'Quick start', slug: 'docs/quick-start' },
-            { label: 'API key', slug: 'docs/api-key' },
-            { label: 'Configuration', slug: 'docs/configuration' },
-          ],
-        },
-        {
-          label: 'Guides',
-          items: [
-            { label: 'Translate text', slug: 'docs/translate' },
-            { label: 'Rewrite text', slug: 'docs/rewrite' },
-            { label: 'Transform with prompts', slug: 'docs/transform' },
-            { label: 'Use the Dashboard', slug: 'docs/dashboard' },
-            { label: 'Browse History', slug: 'docs/history' },
-          ],
-        },
-        {
-          label: 'Reference',
-          items: [{ label: 'Settings', slug: 'docs/settings' }],
-        },
-        {
-          label: 'Troubleshooting',
-          items: [{ label: 'Common issues', slug: 'docs/common-issues' }],
-        },
-      ],
+      // Leaf items omit `label` (translated frontmatter `title`). Group
+      // headings come from `docs-sidebar-groups.json` + locale copies via sync.
+      sidebar: docsSidebar,
       customCss: ['./src/styles/starlight.css'],
     }),
     // After Starlight: inject Sätteri hast plugin for absolute /docs and /images URLs.

@@ -1,15 +1,13 @@
 ---
 title: Pornire rapidă
-description: >-
-  Instalați Transrewrt pe Windows sau Linux, sau rulați aplicația web Docker
-  auto-găzduită.
+description: Instalați Transrewrt pe Windows sau Linux sau rulați aplicația web Docker.
 ---
 
 
 
 Alegeți calea care vi se potrivește. Toate sunt gratuite și open source (Apache 2.0).
 
-## Docker (web auto-găzduit)
+## Docker (aplicație web)
 
 ```bash
 docker pull ghcr.io/wsj-br/transrewrt:latest

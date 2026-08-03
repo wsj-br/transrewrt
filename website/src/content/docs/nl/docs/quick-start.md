@@ -1,15 +1,13 @@
 ---
 title: Snelstart
-description: >-
-  Installeer Transrewrt op Windows of Linux, of draai de zelf-gehoste Docker
-  web-app.
+description: Installeer Transrewrt op Windows of Linux, of voer de Docker-web-app uit.
 ---
 
 
 
 Kies het pad dat bij u past. Alle zijn gratis en open source (Apache 2.0).
 
-## Docker (zelf-gehoste web)
+## Docker (web-app)
 
 ```bash
 docker pull ghcr.io/wsj-br/transrewrt:latest

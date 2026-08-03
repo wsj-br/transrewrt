@@ -16,7 +16,7 @@ export default function Nav() {
     { label: t('Why Transrewrt'), href: '#why' },
     { label: t('Providers'), href: '#providers' },
     { label: t('Get started'), href: '#get-started' },
-    { label: t('Self-host'), href: '#self-host' },
+    { label: t('Docker'), href: '#docker' },
     { label: t('Docs'), href: links.docs },
     { label: t('Open source'), href: '#open-source' },
   ];

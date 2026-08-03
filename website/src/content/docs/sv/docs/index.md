@@ -13,7 +13,7 @@ description: >-
 - **Skriv om** — fixa grammatik, förbättra tydlighet, ändra ton eller längd
 - **Transformera** — kör dina egna anpassade AI-prompter på valfri text
 
-Det stöder många AI-leverantörer (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, OpenAI-kompatibla slutpunkter och lokala OpenAI-kompatibla servrar som Ollama, LM Studio eller llama.cpp). Kör det som en **skrivbordsapp** (Windows / Linux) eller en **självhostad webbapp** (Docker).
+Den stöder många AI-leverantörer (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, OpenAI-kompatibla slutpunkter och lokala OpenAI-kompatibla servrar som Ollama, LM Studio eller llama.cpp). Kör den som en **skrivbordsapp** (Windows/Linux) eller en **Docker-webbapp**.
 
 Dina nycklar, dina modeller, din värd — det finns inget Transrewrt-molnkonto.
 

@@ -13,7 +13,7 @@ description: >-
 - **Przepisywania** — poprawiania gramatyki, zwiększania przejrzystości, zmiany tonu lub długości
 - **Transformacji** — uruchamiania własnych, niestandardowych promptów AI na dowolnym tekście
 
-Obsługuje wielu dostawców AI (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, punkty końcowe zgodne z OpenAI oraz lokalne serwery zgodne z OpenAI, takie jak Ollama, LM Studio lub llama.cpp). Uruchom go jako **aplikację desktopową** (Windows / Linux) lub **samodzielną aplikację internetową** (Docker).
+Obsługuje wielu dostawców AI (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, punkty końcowe zgodne z OpenAI oraz lokalne serwery zgodne z OpenAI, takie jak Ollama, LM Studio lub llama.cpp). Uruchom go jako **aplikację desktopową** (Windows / Linux) lub **aplikację webową Docker**.
 
 Twoje klucze, Twoje modele, Twój host — nie ma konta Transrewrt w chmurze.
 

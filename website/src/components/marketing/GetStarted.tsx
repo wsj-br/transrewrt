@@ -72,7 +72,7 @@ export default function GetStarted() {
     },
     {
       icon: Download,
-      title: t('Docker / self-hosted web'),
+      title: t('Docker / web app'),
       desc: t(
         'Pull the image and run with your provider keys as env vars. Open localhost:5000 and change the default admin password before exposing.',
       ),
@@ -97,7 +97,7 @@ export default function GetStarted() {
           </h2>
           <p className="mt-4 text-lg text-neutral-400">
             {t(
-              'Pick the path that fits you — desktop app or self-hosted web. All paths are free and open source.',
+              'Pick the path that fits you — desktop app or Docker web app. All paths are free and open source.',
             )}
           </p>
         </div>

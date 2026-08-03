@@ -9,17 +9,17 @@ description: >-
 
 Otwórz **Ustawienia** z paska bocznego, aby dostosować zachowanie aplikacji.
 
-| Zakładka | Komputer | Sieć (administrator) | Sieć (użytkownik) | Uwagi |
+| Karta | Komputer stacjonarny | Sieć (administrator) | Sieć (użytkownik) | Uwagi |
 | --- | :---: | :---: | :---: | --- |
-| Ustawienia ogólne | tak | tak | tak | Zawiera **Doświadczenie AI** (Łatwe / Zaawansowane) |
-| Modele | tak | tak | tak | Tylko gdy **Doświadczenie AI** jest **Zaawansowane** |
-| Języki | tak | tak | tak | |
-| Śledzenie kosztów | tak | tak | — | |
-| Transformacja | tak | tak | tak | Masowy import/eksport podpowiedzi |
-| Słownik | tak | tak | tak | Pary terminów do tłumaczenia |
-| Użytkownicy | — | tak | — | |
-| Konfiguracja API | tak | tak | — | |
-| O programie | tak | tak | tak | |
+| Ustawienia ogólne | ✓ | ✓ | ✓ | Obejmuje **doświadczenie AI** (łatwe / zaawansowane) |
+| Modele | ✓ | ✓ | ✓ | Tylko gdy **doświadczenie AI** jest **zaawansowane** |
+| Języki | ✓ | ✓ | ✓ | |
+| Śledzenie kosztów | ✓ | ✓ | — | |
+| Transformacja | ✓ | ✓ | ✓ | Masowy import/eksport promptów |
+| Słownik | ✓ | ✓ | ✓ | Pary terminów do tłumaczenia |
+| Użytkownicy | — | ✓ | — | |
+| Konfiguracja API | ✓ | ✓ | — | |
+| Informacje | ✓ | ✓ | ✓ | |
 
 W trybie **Łatwym** wybierz AI za pomocą ustawień wstępnych na pasku narzędzi i **Dostawcę** w Ustawieniach ogólnych; zakładka **Modele** jest ukryta.
 

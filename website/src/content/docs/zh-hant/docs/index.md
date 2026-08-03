@@ -11,7 +11,7 @@ description: Transrewrt 的用途說明，以及如何找到安裝指南、設�
 - **改寫** — 修正文法、改善清晰度、改變語氣或長度
 - **轉換** — 在任何文字上執行自訂的 AI 提示詞
 
-支援多種 AI 供應商（OpenRouter、OpenAI、Anthropic、Google Gemini、DeepSeek、Groq、Mistral、xAI、Cerebras、NVIDIA、阿里巴巴雲、apikey.fun、OpenAI 相容端點，以及本機 OpenAI 相容伺服器如 Ollama、LM Studio 或 llama.cpp）。可作為 **桌面應用程式**（Windows / Linux）或 **自架網頁應用程式**（Docker）執行。
+它支援多種 AI 供應商（OpenRouter、OpenAI、Anthropic、Google Gemini、DeepSeek、Groq、Mistral、xAI、Cerebras、NVIDIA、Alibaba Cloud、apikey.fun、OpenAI 相容端點，以及本機 OpenAI 相容伺服器，例如 Ollama、LM Studio 或 llama.cpp）。可作為 **desktop app**（Windows / Linux）或 **Docker web app** 執行。
 
 您的金鑰、您的模型、您的主機 — Transrewrt 沒有雲端帳戶。
 

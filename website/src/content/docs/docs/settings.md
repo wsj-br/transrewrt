@@ -7,15 +7,15 @@ Open **Settings** from the sidebar to customise how the app behaves.
 
 | Tab | Desktop | Web (admin) | Web (user) | Notes |
 | --- | :---: | :---: | :---: | --- |
-| General Settings | yes | yes | yes | Includes **AI experience** (Easy / Advanced) |
-| Models | yes | yes | yes | Only when **AI experience** is **Advanced** |
-| Languages | yes | yes | yes | |
-| Cost Tracking | yes | yes | — | |
-| Transform | yes | yes | yes | Bulk import/export of prompts |
-| Glossary | yes | yes | yes | Term pairs for translation |
-| Users | — | yes | — | |
-| API Config | yes | yes | — | |
-| About | yes | yes | yes | |
+| General Settings | ✓ | ✓ | ✓ | Includes **AI experience** (Easy / Advanced) |
+| Models | ✓ | ✓ | ✓ | Only when **AI experience** is **Advanced** |
+| Languages | ✓ | ✓ | ✓ | |
+| Cost Tracking | ✓ | ✓ | — | |
+| Transform | ✓ | ✓ | ✓ | Bulk import/export of prompts |
+| Glossary | ✓ | ✓ | ✓ | Term pairs for translation |
+| Users | — | ✓ | — | |
+| API Config | ✓ | ✓ | — | |
+| About | ✓ | ✓ | ✓ | |
 
 In **Easy** mode, pick AI via presets in the toolbar and **Provider** in General Settings; the **Models** tab is hidden.
 

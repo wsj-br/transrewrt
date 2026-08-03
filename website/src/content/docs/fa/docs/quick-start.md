@@ -1,15 +1,13 @@
 ---
 title: شروع سریع
-description: >-
-  Transrewrt را روی ویندوز یا لینوکس نصب کنید، یا برنامه وب Docker خودمیزبان را
-  اجرا کنید.
+description: Transrewrt را روی ویندوز یا لینوکس نصب کنید، یا برنامه وب Docker را اجرا کنید.
 ---
 
 
 
 مسیری را انتخاب کنید که برای شما مناسب است. همه رایگان و متن‌باز هستند (Apache 2.0).
 
-## Docker (وب خودمیزبان)
+## Docker (برنامه وب)
 
 ```bash
 docker pull ghcr.io/wsj-br/transrewrt:latest

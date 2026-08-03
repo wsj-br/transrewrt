@@ -1,15 +1,13 @@
 ---
 title: Avvio rapido
-description: >-
-  Installa Transrewrt su Windows o Linux, oppure esegui l'applicazione web
-  Docker self-hosted.
+description: Installa Transrewrt su Windows o Linux, oppure esegui l'app web Docker.
 ---
 
 
 
 Scegli il percorso più adatto a te. Tutti sono gratuiti e open source (Apache 2.0).
 
-## Docker (web self-hosted)
+## Docker (app web)
 
 ```bash
 docker pull ghcr.io/wsj-br/transrewrt:latest
