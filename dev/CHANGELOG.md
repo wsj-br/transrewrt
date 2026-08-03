@@ -11,6 +11,8 @@ Use conventional types (Added, Changed, Fixed, etc.) and short descriptions.
 
 ## Unreleased
 
+## [1.6.3] - 2026-08-04
+
 - **Fixed**: Docs site Starlight UI (TOC “On this page”, etc.) for Simplified/Traditional Chinese by mapping `lang` to `zh-CN`/`zh-TW`.
 - **Fixed**: Docs sidebar page links use each locale’s translated frontmatter `title` instead of hardcoded English labels.
 - **Added**: Docs sidebar group headings (`Get started`, `Guides`, …) localize via `docs-sidebar-groups.json` and `pnpm i18n:sync`.
