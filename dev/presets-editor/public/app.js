@@ -1616,7 +1616,7 @@
     const reader = res.body && res.body.getReader ? res.body.getReader() : null;
     if (!reader) {
       const t = await res.text();
-      var j = {};
+      var j;
       try {
         j = JSON.parse(t);
       } catch {

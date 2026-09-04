@@ -97,7 +97,7 @@ In web mode, provider API keys are stored only in server config or environment; 
 | Layer | Technology |
 |-------|------------|
 | **Frontend** | React 19, Tailwind v4 + shadcn/Radix primitives, react-i18next (key-as-default, locales in `src/renderer/locales/`), Webpack 5, Babel, TypeScript. Build target `web` for both Electron and browser. **AppRoot** applies `dir` for RTL via `useDirection` (see `i18n.ts`). |
-| **Desktop** | Electron 43 (Node 24). Main: [src/main/main.js](../src/main/main.js). Preload: [src/main/preload.js](../src/main/preload.js). LLM IPC: [src/main/ipc/llmIpc.js](../src/main/ipc/llmIpc.js). Custom `app://` protocol for production renderer. |
+| **Desktop** | Electron 44 (Node 24). Main: [src/main/main.js](../src/main/main.js). Preload: [src/main/preload.js](../src/main/preload.js). LLM IPC: [src/main/ipc/llmIpc.js](../src/main/ipc/llmIpc.js). Custom `app://` protocol for production renderer. |
 | **Web server** | Express 5 ([src/server/index.js](../src/server/index.js)). Static `dist/`, session auth (cookie + SQLite `sessions`, Argon2 passwords), `/api/config`, `/api/llm/*` (streaming), `/api/calls/*`, `/api/glossary/*`, users and custom prompts routes. SQLite (**better-sqlite3**): `users`, `user_preferences`, `sessions`, `api_calls`, `action_content`, `custom_prompts`, `glossary_terms`, etc. (`transrewrt.db` under the data directory). |
 | **LLM integration** | Shared [src/shared/llm/index.js](../src/shared/llm/index.js) uses the **Vercel AI SDK** (`ai` + `@ai-sdk/openai-compatible`) for chat streaming and provider-catalog listing. See [LLM integration and provider support](#llm-integration-and-provider-support). |
 
@@ -301,7 +301,7 @@ Native Node addons:
 
 **ABI alignment**:
 
-- **Electron**: `pnpm install` runs `electron-rebuild` (see [scripts/electron-rebuild.js](../scripts/electron-rebuild.js)) so addons match Electron’s Node (Electron 43 / Node 24).
+- **Electron**: `pnpm install` runs `electron-rebuild` (see [scripts/electron-rebuild.js](../scripts/electron-rebuild.js)) so addons match Electron’s Node (Electron 44 / Node 24).
 - **Standalone server** (`pnpm dev:web`, `pnpm serve`): Use **Node 24**; [scripts/node-rebuild.js](../scripts/node-rebuild.js) rebuilds for system Node when starting web dev.
 
 [.nvmrc](../.nvmrc) and [package.json](../package.json) `engines` require Node 24 to match Electron tooling.

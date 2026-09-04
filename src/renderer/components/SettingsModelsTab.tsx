@@ -153,7 +153,7 @@ const SettingsModelsTab = ({
     return ids.slice().sort((idA, idB) => {
       const a = getModel(idA);
       const b = getModel(idB);
-      let cmp = 0;
+      let cmp;
       if (sortType === 'cost') {
         cmp = getCost(a) - getCost(b);
       } else if (sortType === 'provider') {

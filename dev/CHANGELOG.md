@@ -11,6 +11,9 @@ Use conventional types (Added, Changed, Fixed, etc.) and short descriptions.
 
 ## Unreleased
 
+- **Changed**: Upgraded app and website dependencies to latest, including Electron 44, ESLint 10, TypeScript 7, and Starlight 0.42.
+- **Changed**: Disabled Next.js and Astro CLI telemetry in build/start scripts, Docker, and website CI.
+
 ## [1.6.3] - 2026-08-04
 
 - **Fixed**: Docs site Starlight UI (TOC “On this page”, etc.) for Simplified/Traditional Chinese by mapping `lang` to `zh-CN`/`zh-TW`.

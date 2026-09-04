@@ -21,7 +21,7 @@ async function apiFetch(input: RequestInfo | URL, init: ApiFetchInit = {}): Prom
     return await fetch(input, { ...rest, signal: controller.signal });
   } catch (err) {
     if (err instanceof Error && err.name === "AbortError") {
-      throw new Error(`Request timed out after ${Math.round(timeoutMs / 1000)}s`);
+      throw new Error(`Request timed out after ${Math.round(timeoutMs / 1000)}s`, { cause: err });
     }
     throw err;
   } finally {

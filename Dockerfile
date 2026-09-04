@@ -4,6 +4,10 @@ FROM node:24-alpine AS builder
 # Set the working directory to /app
 WORKDIR /app
 
+# Disable Next.js / Astro CLI telemetry during image build
+ENV NEXT_TELEMETRY_DISABLED=1
+ENV ASTRO_TELEMETRY_DISABLED=1
+
 # Build deps for native modules (argon2, better-sqlite3) – removed after install
 RUN apk add --no-cache python3 make g++
 
@@ -80,6 +84,8 @@ ENV NODE_ENV=production
 ENV TZ=Europe/London
 ENV PORT=5000
 ENV LOG_TO_CONSOLE=1
+ENV NEXT_TELEMETRY_DISABLED=1
+ENV ASTRO_TELEMETRY_DISABLED=1
 ENV PATH="/app:/app/scripts:${PATH}"
 
 # Labels

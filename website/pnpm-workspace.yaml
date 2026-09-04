@@ -10,8 +10,11 @@ onlyBuiltDependencies:
 
 # Fresh publishes still within pnpm 11's default minimumReleaseAge window.
 minimumReleaseAgeExclude:
-  - ai-i18n-tools@1.8.3
+  - ai-i18n-tools@1.8.3 || 1.8.4
   - electron-to-chromium@1.5.396
   - postcss@8.5.23
   - remark-smartypants@3.0.3
   - sax@1.6.1
+  - '@ai-sdk/gateway@4.0.74'
+  - ai@7.0.92
+  - lucide-react@1.41.0

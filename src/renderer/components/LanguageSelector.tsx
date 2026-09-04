@@ -70,7 +70,7 @@ const LanguageSelector = ({
   const { topLanguages, allLanguages } = useContentLanguageLists();
 
   const languageOptions = useMemo(() => {
-    let options: string[] = [];
+    let options: string[];
 
     if (targetListSameAsSource) {
       const selectedSet = new Set(topLanguages);

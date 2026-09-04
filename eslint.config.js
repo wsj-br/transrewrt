@@ -50,7 +50,7 @@ module.exports = tseslint.config(
         ...browserGlobals,
       },
     },
-    settings: { react: { version: "detect" } },
+    settings: { react: { version: "19.2.8" } },
     rules: {
       ...reactRules,
       "no-unused-vars": [
@@ -86,7 +86,7 @@ module.exports = tseslint.config(
       react,
       "react-hooks": reactHooks,
     },
-    settings: { react: { version: "detect" } },
+    settings: { react: { version: "19.2.8" } },
     rules: {
       ...reactRules,
       ...reactHooks.configs.flat["recommended-latest"].rules,

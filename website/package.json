@@ -4,11 +4,11 @@
   "version": "1.6.3",
   "type": "module",
   "scripts": {
-    "dev": "astro dev",
+    "dev": "node --env-file=./telemetry.env ./node_modules/astro/bin/astro.mjs dev",
     "prebuild": "pnpm install --frozen-lockfile",
-    "build": "astro build",
-    "preview": "astro preview",
-    "astro": "astro",
+    "build": "node --env-file=./telemetry.env ./node_modules/astro/bin/astro.mjs build",
+    "preview": "node --env-file=./telemetry.env ./node_modules/astro/bin/astro.mjs preview",
+    "astro": "node --env-file=./telemetry.env ./node_modules/astro/bin/astro.mjs",
     "i18n:sync": "ai-i18n-tools sync",
     "i18n:status": "ai-i18n-tools status",
     "publish:pages": "node scripts/publish-pages.mjs",
@@ -17,22 +17,22 @@
   "engines": {
     "node": ">=22.0.0"
   },
-  "packageManager": "pnpm@11.17.0",
+  "packageManager": "pnpm@11.25.0",
   "dependencies": {
-    "@astrojs/react": "^6.0.2",
-    "@astrojs/starlight": "^0.41.6",
+    "@astrojs/react": "^6.0.5",
+    "@astrojs/starlight": "^0.42.0",
     "@astrojs/starlight-tailwind": "^5.0.0",
     "@tailwindcss/vite": "^4.3.3",
-    "astro": "^7.1.6",
-    "lucide-react": "^1.28.0",
+    "astro": "^7.3.1",
+    "lucide-react": "^1.41.0",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
     "tailwindcss": "^4.3.3"
   },
   "devDependencies": {
     "@types/react": "^19.2.18",
-    "@types/react-dom": "^19.2.4",
-    "ai-i18n-tools": "^1.8.3",
+    "@types/react-dom": "^19.2.7",
+    "ai-i18n-tools": "^1.8.4",
     "typescript": "^7.0.2"
   }
 }

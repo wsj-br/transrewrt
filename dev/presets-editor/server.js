@@ -1121,7 +1121,7 @@ async function runSuggestModelsJobs({
         emit({ type: "job", status: "running", presetId: preset.id });
         emit({ type: "log", message: `Processing preset “${preset.id}”…` });
 
-        let shortlistResult = null;
+        let shortlistResult;
         /** @type {Record<string, object>} */
         let timingPicksByEngine = {};
         try {
@@ -1888,7 +1888,7 @@ function logTranslateBenchmarkRowComplete(ctx, row) {
   const { index, total, preset_id, slot, engine } = ctx || {};
   const enginePart = engine ? ` ${engine}` : "";
   const slotPart = slot ? ` ${slot}` : "";
-  let suffix = "";
+  let suffix;
   if (row && row.ok) {
     const parts = [];
     if (row.duration_fmt) parts.push(row.duration_fmt);

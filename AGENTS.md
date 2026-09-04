@@ -11,7 +11,7 @@ Transrewrt is an AI-powered text translation, rewriting, and transformation tool
 ### Language & Module Boundaries
 - **Frontend / Renderer** ([src/renderer/](file:///home/wsj/src/transrewrt/src/renderer)): Built with React 19 and **TypeScript** (`.ts`, `.tsx`). Uses ES Modules (`import`/`export`).
 - **Backend / Server** ([src/server/](file:///home/wsj/src/transrewrt/src/server)): Built with Express 5 and **JavaScript** (`.js`). Uses **CommonJS** (`require`).
-- **Electron Main / Preload** ([src/main/](file:///home/wsj/src/transrewrt/src/main)): Built with Electron 43 and **JavaScript** (`.js`). Uses **CommonJS** (`require`).
+- **Electron Main / Preload** ([src/main/](file:///home/wsj/src/transrewrt/src/main)): Built with Electron 44 and **JavaScript** (`.js`). Uses **CommonJS** (`require`).
 - **Shared Code** ([src/shared/](file:///home/wsj/src/transrewrt/src/shared)): Node-compatible utility files in **JavaScript** (`.js`) using **CommonJS** (`require`).
 
 ### Styling & UI Components
