@@ -1,6 +1,6 @@
 {
-  "version": "1.6.27",
-  "updated_at": "2026-07-23T23:44:56.565Z",
+  "version": "1.6.28",
+  "updated_at": "2026-09-05T23:06:12.181Z",
   "translation_model": "openrouter/~anthropic/claude-sonnet-latest",
   "translation_model_fallback": "openrouter/~anthropic/claude-haiku-latest",
   "suggestion_model": "openrouter/~anthropic/claude-sonnet-latest",
@@ -12,7 +12,7 @@
       "description": "Zero-cost option that routes to available free models. No charges; output quality and model availability may vary.",
       "prompt_hint": "Be concise and direct. Do not add explanations, commentary, or alternatives unless explicitly requested.",
       "model_ids": {
-        "openrouter": "openrouter/poolside/laguna-m.1:free"
+        "openrouter": "openrouter/poolside/laguna-s-2.1:free"
       },
       "fallback_ids": {
         "openrouter": "openrouter/openrouter/free"
