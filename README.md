@@ -89,6 +89,9 @@ Copyright © 2026 Waldemar Scudeller Jr.
 
 [Apache License 2.0](LICENSE)
 
+<br/>
+
+
 Product names and icons belong to their respective owners and are used for identification purposes only. This software is not affiliated with or endorsed by those brands.
 
 <small>
