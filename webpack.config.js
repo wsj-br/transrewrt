@@ -5,6 +5,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const ReactRefreshWebpackPlugin = require("@pmmmwh/react-refresh-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
+const TerserPlugin = require("terser-webpack-plugin");
 const pkg = require("./package.json");
 
 module.exports = (env, argv) => {
@@ -153,6 +154,17 @@ module.exports = (env, argv) => {
         },
       },
     },
+    minimizer: [
+      new TerserPlugin({
+        terserOptions: {
+          compress: {
+            drop_console: true,
+            drop_debugger: true,
+          },
+          mangle: true,
+        },
+      }),
+    ],
   },
   ignoreWarnings: [
     /export .* was not found in '@fluentui\/react-icons'/,

@@ -22,7 +22,6 @@
     }
   },
   "glossary": {
-    "uiGlossary": "src/renderer/locales/strings.json",
     "userGlossary": "glossary-user.csv"
   },
   "docs": [

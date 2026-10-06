@@ -10,7 +10,7 @@
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
 </p>
 
-Textový nástroj poháňaný AI na **prekladanie**, **prepisovanie** a **transformáciu** s vlastnými výzvami. Používajte vlastných poskytovateľov AI (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, koncové body kompatibilné s OpenAI a lokálne servery ako Ollama, LM Studio alebo llama.cpp). Spustite ako desktopovú aplikáciu (Windows / Linux) alebo samoobslužnú webovú aplikáciu (Docker). Žiadny cloudový účet Transrewrt.
+Nástroj na text poháňaný AI na **prekladanie**, **prepisovanie** a **transformovanie** s vlastnými výzvami. Používajte vlastných poskytovateľov AI (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, koncové body kompatibilné s OpenAI a lokálne servery ako Ollama, LM Studio alebo llama.cpp). Spustite ako desktopovú aplikáciu (Windows / Linux) alebo webovú aplikáciu Docker. Žiadny cloudový účet Transrewrt.
 
 ## Funkcie
 
@@ -88,6 +88,8 @@ Licencie závislostí tretích strán a tieto oznámenia o zdrojoch údajov sú 
 Autorské práva © 2026 Waldemar Scudeller Jr.
 
 [Apache License 2.0](../LICENSE)
+
+<br/>
 
 Názvy produktov a ikony patria ich príslušným vlastníkom a používajú sa len na identifikačné účely. Tento softvér nie je pridružený ani schválený týmito značkami.
 

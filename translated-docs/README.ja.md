@@ -10,7 +10,7 @@
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
 </p>
 
-AIを活用したテキストツールで、カスタムプロンプトによる**翻訳**、**書き換え**、**変換**が可能です。独自のAIプロバイダー（OpenRouter、OpenAI、Anthropic、Google Gemini、DeepSeek、Groq、Mistral、xAI、Cerebras、NVIDIA、Alibaba Cloud、apikey.fun、OpenAI互換エンドポイント、およびOllama、LM Studio、llama.cppなどのローカルサーバー）を使用できます。デスクトップアプリ（Windows / Linux）またはセルフホスト型Webアプリ（Docker）として実行できます。Transrewrtクラウドアカウントは不要です。
+カスタムプロンプトを使用して**translate**、**rewrite**、および**transform**を行うAI搭載のテキストツール。独自のAIプロバイダーを使用してください（OpenRouter、OpenAI、Anthropic、Google Gemini、DeepSeek、Groq、Mistral、xAI、Cerebras、NVIDIA、Alibaba Cloud、apikey.fun、OpenAI互換エンドポイント、およびOllama、LM Studio、llama.cppなどのローカルサーバー）。デスクトップアプリ（Windows / Linux）またはDockerウェブアプリとして実行できます。いいえ、Transrewrtクラウドアカウントは不要です。
 
 ## 機能
 
@@ -88,6 +88,8 @@ chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage
 Copyright © 2026 Waldemar Scudeller Jr.
 
 [Apache License 2.0](../LICENSE)
+
+<br/>
 
 製品名とアイコンは、それぞれの所有者に帰属し、識別目的でのみ使用されています。本ソフトウェアはこれらのブランドと提携関係になく、推奨も受けていません。
 

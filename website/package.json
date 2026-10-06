@@ -11,6 +11,9 @@
     "astro": "node --env-file=./telemetry.env ./node_modules/astro/bin/astro.mjs",
     "i18n:sync": "ai-i18n-tools sync",
     "i18n:status": "ai-i18n-tools status",
+    "i18n:translate": "ai-i18n-tools sync",
+    "i18n:translate:ui": "ai-i18n-tools translate-ui",
+    "i18n:locales": "ai-i18n-tools generate-ui-languages",
     "publish:pages": "node scripts/publish-pages.mjs",
     "publish:pages:dry": "node scripts/publish-pages.mjs --dry-run"
   },

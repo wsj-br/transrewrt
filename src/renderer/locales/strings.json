@@ -13158,11 +13158,11 @@
     "locations": [
       {
         "file": "src/renderer/components/HeaderLanguageSelector.tsx",
-        "line": 41
+        "line": 47
       },
       {
         "file": "src/renderer/components/HeaderLanguageSelector.tsx",
-        "line": 42
+        "line": 48
       },
       {
         "file": "src/renderer/components/LoginPage.tsx",
@@ -13813,24 +13813,6 @@
       "es": "Todos los idiomas",
       "vi": "Tất cả ngôn ngữ"
     },
-    "locations": [
-      {
-        "file": "src/renderer/components/LanguageSelector.tsx",
-        "line": 26
-      },
-      {
-        "file": "src/renderer/components/LanguageSelector.tsx",
-        "line": 127
-      },
-      {
-        "file": "src/renderer/components/LanguageSelector.tsx",
-        "line": 210
-      },
-      {
-        "file": "src/renderer/components/SettingsGlossaryTab.tsx",
-        "line": 48
-      }
-    ],
     "models": {
       "el": "~anthropic/claude-sonnet-latest",
       "nl": "~anthropic/claude-sonnet-latest",
@@ -13857,7 +13839,25 @@
       "th": "~anthropic/claude-sonnet-latest",
       "es": "~anthropic/claude-sonnet-latest",
       "vi": "~anthropic/claude-sonnet-latest"
-    }
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/LanguageSelector.tsx",
+        "line": 26
+      },
+      {
+        "file": "src/renderer/components/LanguageSelector.tsx",
+        "line": 127
+      },
+      {
+        "file": "src/renderer/components/LanguageSelector.tsx",
+        "line": 210
+      },
+      {
+        "file": "src/renderer/components/SettingsGlossaryTab.tsx",
+        "line": 48
+      }
+    ]
   },
   "ca81ae05": {
     "source": "No target language",

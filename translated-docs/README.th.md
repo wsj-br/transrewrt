@@ -10,7 +10,7 @@
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
 </p>
 
-เครื่องมือข้อความที่ขับเคลื่อนด้วย AI สำหรับการ**แปล** การ**เขียนใหม่** และการ**แปลง** ด้วยพรอมต์ที่กำหนดเอง ใช้ผู้ให้บริการ AI ของคุณเอง (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, ปลายทางที่เข้ากันได้กับ OpenAI และเซิร์ฟเวอร์ในเครื่อง เช่น Ollama, LM Studio หรือ llama.cpp) เรียกใช้เป็นแอปเดสก์ท็อป (Windows / Linux) หรือเว็บแอปที่โฮสต์เอง (Docker) ไม่มีบัญชีคลาวด์ Transrewrt
+เครื่องมือข้อความที่ขับเคลื่อนด้วย AI สำหรับการ**แปล** การ**แก้ไขใหม่** และการ**แปลง** พร้อมพรอมต์ที่กำหนดเอง ใช้ผู้ให้บริการ AI ของคุณเอง (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, ปลายทางที่เข้ากันได้กับ OpenAI และเซิร์ฟเวอร์ในเครื่อง เช่น Ollama, LM Studio หรือ llama.cpp) ทำงานเป็นแอปเดสก์ท็อป (Windows / Linux) หรือเว็บแอป Docker ไม่มีบัญชีคลาวด์ Transrewrt
 
 ## คุณสมบัติ
 
@@ -88,6 +88,8 @@ chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage
 ลิขสิทธิ์ © 2026 วัลเดอมาร์ สกูเดลเลอร์ จูเนียร์
 
 [Apache License 2.0](../LICENSE)
+
+<br/>
 
 ชื่อผลิตภัณฑ์และไอคอนเป็นของเจ้าของแต่ละรายและใช้เพื่อวัตถุประสงค์ในการระบุเท่านั้น ซอฟต์แวร์นี้ไม่มีส่วนเกี่ยวข้องหรือรับรองโดยแบรนด์เหล่านั้น
 

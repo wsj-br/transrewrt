@@ -12,7 +12,7 @@ Setup, build, test, and deploy instructions for the Transrewrt application (Elec
   - [Windows 11](#windows-11)
   - [Linux (Debian-based: Ubuntu, Debian, Zorin, Mint)](#linux-debian-based-ubuntu-debian-zorin-mint)
   - [WSL (Ubuntu on Windows)](#wsl-ubuntu-on-windows)
-  - [Git symlinks (required on Windows)](#git-symlinks-required-on-windows)
+  - [Website screenshots](#website-screenshots)
 - [Setup](#setup)
 - [Development Workflow](#development-workflow)
   - [Presets catalog editor (development)](#presets-catalog-editor-development)
@@ -101,7 +101,7 @@ Setup, build, test, and deploy instructions for the Transrewrt application (Elec
 
   - If Build Tools is installed but the check returns `False`, re-run the Option A winget command (with `--force`) to add the missing workload. See [node-gyp on Windows](https://github.com/nodejs/node-gyp#on-windows).
 
-4. **Developer Mode** and **Git symlinks**: Turn on Developer Mode (Settings → System → Developer Mode **On**) so Git and pnpm can create symlinks. Also set `core.symlinks true` **before** cloning — see [Git symlinks (required on Windows)](#git-symlinks-required-on-windows). Without this, website screenshot images stay broken locally.
+4. **Developer Mode**: Turn on Developer Mode (Settings → System → Developer Mode **On**) so pnpm can create symlinks under `node_modules`. Without it, `pnpm install` may copy packages instead of linking them, or fail on symlink creation. Website screenshots are ordinary files — see [Website screenshots](#website-screenshots).
 
    ```powershell
    pnpm install
@@ -267,31 +267,14 @@ echo "$BROWSER"          # expect: wslview
 xdg-open https://example.com
 ```
 
-### Git symlinks (required on Windows)
+### Website screenshots
 
-This repository tracks `[website/public/images/screenshots](../website/public/images/screenshots)` as a **git symlink** to `[images/screenshots/](../images/screenshots/)` (so the Astro site can serve docs/marketing screenshots from `public/` without duplicating the PNG tree). New clones must enable Git symlink support **before** checkout, or restore the link afterward.
+Screenshot PNGs are committed as two ordinary directories (not a git symlink):
 
-On a new machine (especially Windows):
+- [images/screenshots/](../images/screenshots/) — README images and the output of `pnpm take-screenshots`
+- [website/public/images/screenshots/](../website/public/images/screenshots/) — the copy Astro serves at `/images/screenshots/…`
 
-1. Enable OS symlink creation — turn on [Developer Mode](https://learn.microsoft.com/windows/apps/get-started/enable-your-device-for-development), or use an elevated shell. Without this, Git cannot create symlinks even when `core.symlinks` is true.
-2. Tell Git to materialize symlinks (global once per machine, or local to this repo):
-
-```bash
-git config --global core.symlinks true
-# or, inside the clone only:
-git config --local core.symlinks true
-```
-
-3. Clone (or re-checkout the path if the repo already exists):
-
-```bash
-git clone git@github.com:wsj-br/transrewrt.git
-cd transrewrt
-# If you cloned earlier with core.symlinks=false:
-git checkout -- website/public/images/screenshots
-```
-
-If the path is a plain text file whose only content is `../../../images/screenshots`, the symlink was not created. After enabling the settings above, re-run the `git checkout --` command. Until the real symlink is restored, `pnpm website:build` / `pnpm website:dev` will not include the screenshot PNGs under `/images/screenshots/…`, so docs and marketing pages show broken images.
+`pnpm take-screenshots` writes only the first tree. After a capture, copy new or updated files into `website/public/images/screenshots/` before `pnpm website:build` or `pnpm website:dev`, or the site keeps the previous PNGs.
 
 ---
 
@@ -303,16 +286,14 @@ cd transrewrt
 pnpm install
 ```
 
-On Windows, enable [Git symlinks](#git-symlinks-required-on-windows) before cloning (or re-checkout `website/public/images/screenshots` afterward).
-
 The **postinstall** script runs `electron-rebuild` so native addons match Electron's Node. Use Node 24 in the same environment where you run the server (see [Troubleshooting](#troubleshooting)).
 
 ---
 
 ## Development Workflow
 
-- **Electron**: `pnpm dev` - Webpack watch runs on port 4030 and Electron launches automatically. Edit React code for hot reload. (`pnpm dev` chains `watch`, `electron`, `electron-rebuild`, and `write-build-timestamp`; you normally do not run those scripts directly.)
-- **Web (HMR)**: `pnpm dev:web` - Webpack serves the app on port 5500 and the API server runs on 4030; `/api` is proxied to the server. Open [http://localhost:5500](http://localhost:5500) in a browser. (`watch:web` is used internally; run `dev:web`, not `watch:web`, for day-to-day work.)
+- **Electron**: `pnpm dev` - Webpack watch runs on port 4030 and Electron launches automatically. Edit React code for hot reload. (`pnpm dev` runs `scripts/electron-rebuild.js`, `scripts/write-build-timestamp.js`, then `watch` and `electron` together. You normally do not run those scripts directly.)
+- **Web (HMR)**: `pnpm dev:web` - Webpack serves the app on port 5500 and the API server runs on 4030; `/api` is proxied to the server. Open [http://localhost:5500](http://localhost:5500) in a browser. (`dev:web` runs `scripts/node-rebuild.js` so native addons match system Node, then `watch:web` and `start:server`. Run `dev:web`, not `watch:web`, for day-to-day work.)
 
 To run Electron with a production build (no dev server):
 
@@ -333,16 +314,17 @@ Maintainers edit the Easy-mode catalog with a small local tool (not packaged in 
 pnpm run presets-editor
 ```
 
-Opens [http://127.0.0.1:8765/](http://127.0.0.1:8765/) by default (or the port in the terminal). Full behaviour, env vars (`OPENROUTER_API_KEY`, `SKILLS_EDITOR_PORT`, `SKILLS_EDITOR_NO_OPEN`, …), and API notes: **[dev/presets-editor/README.md](presets-editor/README.md)**.
+Opens [http://127.0.0.1:8765/](http://127.0.0.1:8765/) by default (or the port in the terminal). Full behaviour, env vars (`OPENROUTER_API_KEY`, `PRESETS_EDITOR_PORT`, `PRESETS_EDITOR_HOST`, `PRESETS_EDITOR_NO_OPEN`, …), and API notes: [dev/presets-editor/README.md](presets-editor/README.md).
 
 | Topic | Detail |
 |-------|--------|
 | **Canonical file** | [easy-mode-config/presets.json](../easy-mode-config/presets.json) — always loaded/saved first; each save bumps patch `version` and `updated_at` |
-| **Local web mirror** | `data/presets.json` (override with `SKILLS_EDITOR_DATA_SKILLS_PATH`) |
+| **Local web mirror** | `data/presets.json` (override with `PRESETS_EDITOR_DATA_PRESETS_PATH`) |
 | **Electron dev** | May read `presets.json` next to your `config.json` instead of `data/` — see README in presets-editor |
-| **Keys** | LLM keys from `process.env` only (editor does **not** read `.env`); export vars or use direnv before starting |
+| **Keys** | LLM keys from `process.env` only (editor does not read `.env`); export vars or use direnv before starting |
 | **Catalog cache** | `presets-editor-provider-catalogs.json` at repo root (gitignored, 2 h TTL) |
-| **Server log** | `presets-editor.log` at repo root (previous run rotated to `presets-editor-<timestamp>.log` on startup); both removed by [clean-workspace](#cleaning-the-workspace) scripts |
+| **OpenRouter cache** | `presets-editor-openrouter-cache.json` at repo root (gitignored, 6 h TTL for models, pricing, and endpoint performance) |
+| **Server log** | `presets-editor.log` at repo root (previous run rotated to `presets-editor-<timestamp>.log` on startup); logs and both caches are removed by [clean-workspace](#cleaning-the-workspace) scripts |
 
 Architecture and runtime sync (6 h GitHub pull, Easy-only Electron sync, `POST /api/presets/sync` on web): **[SYSTEM-OVERVIEW.md](SYSTEM-OVERVIEW.md#easy-mode-and-presets-catalog)**.
 
@@ -352,12 +334,14 @@ Cron-friendly CLI that validates model ids in [easy-mode-config/presets.json](..
 
 **Local development** (from the repository root):
 
+The `presets-check` npm script already passes `--local` (monorepo `easy-mode-config/presets.json`, no git).
+
 ```bash
-# Preview against local presets.json (no git, no writes)
-pnpm run presets-check -- --local --dry-run
+# Preview (no file write)
+pnpm run presets-check -- --dry-run
 
 # Apply locally (updates easy-mode-config/presets.json only; no git push)
-pnpm run presets-check -- --local
+pnpm run presets-check
 ```
 
 Copy [dev/presets-check/config.example.json](presets-check/config.example.json) to `dev/presets-check/config.json` and set `ntfy.topic` for notifications.
@@ -373,18 +357,18 @@ Configure `config.json` (set `ntfy.topic`) and create `/opt/transrewrt-presets-c
 ```bash
 # /opt/transrewrt-presets-check/.env
 GITHUB_TOKEN=ghp_…
-SKILL_CHECK_NTFY_TOPIC=your-topic
+PRESET_CHECK_NTFY_TOPIC=your-topic
 OPENROUTER_API_KEY=sk-or-…
 # … other provider keys as needed
 ```
 
-If `"useSsh": true` in `config.json`, git uses SSH instead of `GITHUB_TOKEN`; ensure the cron user can use the deploy key (see [presets-check/README.md](presets-check/README.md)).
+If `github.useSsh` is `true` in `config.json`, git uses SSH instead of `GITHUB_TOKEN`; ensure the cron user can use the deploy key (see [presets-check/README.md](presets-check/README.md)).
 
 Test before scheduling:
 
 ```bash
 cd /opt/transrewrt-presets-check
-SKILL_CHECK_DRY_RUN=1 ./run.sh
+PRESET_CHECK_DRY_RUN=1 ./run.sh
 ```
 
 Add a crontab entry (daily at 06:00 in this example):
@@ -416,6 +400,7 @@ Use these scripts for a full local reset: dev logs and caches first, then build 
 
 - All `*.log` files anywhere in the repository, except under `node_modules`, `.git`, `dist`, `release`, and `documentation/node_modules`. Examples: `presets-editor.log`, `presets-editor-*.log`, `data/server.log`, `dev/presets-check/presets-check.log`, screenshot logs under `dev/`.
 - `presets-editor-provider-catalogs.json` (repo root)
+- `presets-editor-openrouter-cache.json` (repo root)
 - `dev/presets-check/provider-catalogs-cache.json`
 - `dev/presets-check/presets-check.log` (also matched by the `*.log` sweep)
 
@@ -466,33 +451,34 @@ Before doctor upgrades, the dependency script checks whether the latest React ES
 
 ### UI translations and documentation (ai-i18n-tools)
 
-The UI uses **react-i18next** with a key-as-default pattern (English in source is the key; no `en-GB.json`). Per-locale JSON files live in `src/renderer/locales/`. **Extract, UI translation, and markdown documentation translation** share one config file: **`[ai-i18n-tools.config.json](../ai-i18n-tools.config.json)`** (`sourceLocale`, `targetLocales`, `openrouter`, `ui`, `glossary`, `cacheDir`, `documentations`).
+The UI uses react-i18next with a key-as-default pattern (English in source is the key; no `en-GB.json`). Per-locale JSON files live in `src/renderer/locales/`. Extract, UI translation, and markdown documentation translation share [ai-i18n-tools.config.json](../ai-i18n-tools.config.json): `sourceLocale`, `targetLocales`, `provider`, `providers.openrouter` (`translationModels`, `uiModels`, `localeModels`), `features`, `ui`, `glossary`, and `docs`.
 
-| Command                                         | Purpose                                                                                                                                                                                    |
-|-------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `pnpm run i18n:extract`                         | Scan source for `t("…")` (and configured roots) → `src/renderer/locales/strings.json` (preserves existing translations)                                                                    |
-| `pnpm run i18n:translate:ui`                    | Translate missing UI strings via OpenRouter; set `OPENROUTER_API_KEY`. Writes flat `{locale}.json` files. See `pnpm exec ai-i18n-tools translate-ui --help` for `--force`, `--model`, etc. |
-| `pnpm run i18n:translate:docs`                  | Translate configured markdown docs → `translated-docs/` (see `documentations` in config). **Requires `OPENROUTER_API_KEY`.**                                                               |
-| `pnpm run i18n:translate:svg`                   | Not currently configured — prints an informational message. To enable SVG translation: set `features.translateSVG` and add an `svg` block in `ai-i18n-tools.config.json`.                 |
-| `pnpm run i18n:translate`                       | Runs `translate-ui`, then `translate-docs`                                                                                                                                                 |
-| `pnpm run i18n:sync`                            | `ai-i18n-tools sync`: extract (if enabled), then translate UI, optional SVG, then docs — skip parts with `--no-ui`, `--no-svg`, `--no-docs` (see CLI `--help`)                             |
-| `pnpm run i18n:status`                          | UI string and doc translation coverage                                                                                                                                                     |
-| `pnpm run i18n:cleanup`                         | Remove stale i18n pipeline artifacts (see `ai-i18n-tools cleanup --help`)                                                                                                                    |
-| `pnpm run clean-temp`                           | Find and remove `*.log` and `cache.db.backup*.sqlite` under a tree (`ai-i18n-tools clean-temp`; use `--force` to skip prompt)                                                              |
-| `pnpm run i18n:editor`                          | Open the string editor when configured                                                                                                                                                     |
-| `pnpm run i18n:locales`                         | Regenerate `[src/renderer/locales/ui-languages.json](../src/renderer/locales/ui-languages.json)` from config (includes `direction` per locale); alias for `ai-i18n-tools generate-ui-languages` |
+Root `package.json` only wraps two commands. Everything else is the `ai-i18n-tools` CLI (`pnpm exec ai-i18n-tools …`).
 
-**OpenRouter model ids** (default and fallback order) live under `openrouter.translationModels` in `ai-i18n-tools.config.json` — **not** app `config.json`. The same list is consumed by `[scripts/generate-test-data.js](../scripts/generate-test-data.js)`. Override for a single run where supported (e.g. `pnpm run i18n:translate:ui -- --model <id>`).
+| Command | Purpose |
+|---------|---------|
+| `pnpm run i18n:sync` | `ai-i18n-tools sync`: enabled pipelines in order (UI, then docs). Skip parts with `--no-ui`, `--no-svg`, `--no-docs`, `--no-json` |
+| `pnpm run i18n:status` | UI string and doc translation coverage |
+| `pnpm exec ai-i18n-tools extract` | Scan `ui.sourceRoots` for `t("…")` → `src/renderer/locales/strings.json` (preserves existing translations). Also runs automatically before UI translation |
+| `pnpm exec ai-i18n-tools translate-ui` | Translate missing UI strings via OpenRouter (`OPENROUTER_API_KEY`). Writes flat `{locale}.json` files. See `translate-ui --help` for `--force`, `--model`, and similar flags |
+| `pnpm exec ai-i18n-tools translate-docs` | Translate the `docs` array → `translated-docs/`. Requires `OPENROUTER_API_KEY` |
+| `pnpm exec ai-i18n-tools cleanup` | Remove stale i18n pipeline artifacts (`cleanup --help`) |
+| `pnpm exec ai-i18n-tools clean-temp` | Find and remove `*.log` and `cache.db.backup*.sqlite` under a tree (`--force` to skip the prompt) |
+| `pnpm exec ai-i18n-tools dashboard` | Open the ai-i18n-tools dashboard |
 
-**Add a new UI language:** (1) Add the locale to `targetLocales` in `ai-i18n-tools.config.json`, (2) run `pnpm run i18n:locales` (or `pnpm exec ai-i18n-tools generate-ui-languages`) and review `ui-languages.json`, (3) run `pnpm run i18n:extract` then `pnpm run i18n:translate:ui` (or `i18n:sync`). Document and layout direction use `direction` in `ui-languages.json` via `applyDirection` in `[src/renderer/i18n.ts](../src/renderer/i18n.ts)` — see [i18n.md](i18n.md).
+SVG translation is not configured: there is no `features.translateSVG` flag and no `svg` block. The app config also has no `languagesManifestPath`, so `generate-ui-languages` is not wired for the renderer. The committed manifest is [src/renderer/locales/ui-languages.json](../src/renderer/locales/ui-languages.json). The website config does set `languagesManifestPath`; regenerate that manifest with `pnpm run website:i18n:locales`.
 
-**Documentation translation:** The `docs` array in `ai-i18n-tools.config.json` lists content paths (e.g. `README.md`), `outputDir` (e.g. `translated-docs/`), and post-processing (screenshot paths, language-list block). Outputs are typically `basename.<locale>.md`. Caching uses `cacheDir` (default `.translation-cache`); it is **not** compatible with a legacy custom cache under `translated-docs/.cache` — archive or remove old caches when migrating.
+OpenRouter model ids (default and fallback order) live under `providers.openrouter.translationModels` in `ai-i18n-tools.config.json`, not in app `config.json`. [scripts/generate-test-data.js](../scripts/generate-test-data.js) reads that same list. Override for a single UI run with `pnpm exec ai-i18n-tools translate-ui -- --model <id>`.
 
-Screenshots follow Pattern B (per-locale folder): `images/screenshots/<locale>/<name>.png`. The `take-screenshots.js` script writes PNG files for all locales; `translate-docs` rewrites the locale segment via `postProcessing.regexAdjustments`. See the [ai-i18n-tools locale assets guide](https://github.com/wsj-br/ai-i18n-tools/blob/main/docs/locale-assets.md) for full documentation of this pattern.
+**Add a new UI language:** (1) Add the locale to `targetLocales` in `ai-i18n-tools.config.json` (and in `website/ai-i18n-tools.config.json` if the site should follow), (2) review `src/renderer/locales/ui-languages.json` and, for the site, run `pnpm run website:i18n:locales`, (3) run `pnpm exec ai-i18n-tools extract` then `pnpm exec ai-i18n-tools translate-ui` (or `pnpm run i18n:sync`). Document and layout direction use `direction` in `ui-languages.json` via `applyDirection` in [src/renderer/i18n.ts](../src/renderer/i18n.ts). Patterns (`SOURCE_LOCALE`, `t(key, vars)`): [ai-i18n-tools-context.md](ai-i18n-tools-context.md).
 
-**Glossaries:** Optional `[glossary-user.csv](../glossary-user.csv)` is referenced from config. UI string catalog `[src/renderer/locales/strings.json](../src/renderer/locales/strings.json)` aligns doc terminology with the app when both use the same pipeline.
+**Documentation translation:** The `docs` array lists content paths (for example `README.md`), `outputDir` (`translated-docs/`), and post-processing (screenshot paths, language-list block). Outputs are typically `basename.<locale>.md`. The config does not set `cacheDir`; the tool default is `.translation-cache`. That cache is not compatible with a legacy custom cache under `translated-docs/.cache` — archive or remove old caches when migrating.
 
-For all CLI flags, run `pnpm exec ai-i18n-tools --help` and `pnpm exec ai-i18n-tools translate-docs --help` / `translate-ui --help`. Full patterns (`SOURCE_LOCALE`, `t(key, vars)`): **[i18n.md](i18n.md)**.
+Screenshots follow Pattern B (per-locale folder): `images/screenshots/<locale>/<name>.png`. The `take-screenshots.js` script writes PNG files for all locales; `translate-docs` rewrites the locale segment via `docsOutput.postProcessing.regexAdjustments`. See the [ai-i18n-tools locale assets guide](https://github.com/wsj-br/ai-i18n-tools/blob/main/docs/locale-assets.md).
+
+**Glossaries:** Optional [glossary-user.csv](../glossary-user.csv) is `glossary.userGlossary`. The UI catalog [src/renderer/locales/strings.json](../src/renderer/locales/strings.json) is a doc-hint source by default (`ui.uiGlossary`, default `true`). Do not set `glossary.uiGlossary` — that key is rejected.
+
+For all CLI flags, run `pnpm exec ai-i18n-tools --help` and `pnpm exec ai-i18n-tools translate-docs --help` / `translate-ui --help`.
 
 ### Third-party notices (`3p-notices`)
 
@@ -502,7 +488,6 @@ Regenerate the **production** dependency license bundle for releases and complia
 | Command               | Purpose                                        |
 |-----------------------|------------------------------------------------|
 | `pnpm run 3p-notices` | Writes [NOTICES](../NOTICES) at the repo root. |
-| `pnpm notices:write`  | Alias for `3p-notices`.                        |
 
 
 
@@ -530,7 +515,7 @@ Commit the updated `.ico` files (and remove any accidental `*.ico.old` backups b
 
 ## Test
 
-There is no automated test suite (`pnpm test` exits with an error placeholder). Testing is done by running the app.
+`pnpm test` runs the Node test runner on [src/shared/llm/stripPromptWrapperTags.test.js](../src/shared/llm/stripPromptWrapperTags.test.js). There is no broader unit or integration suite; day-to-day checks are still done by running the app.
 
 ### Dev mode (recommended for day-to-day testing)
 
@@ -542,7 +527,7 @@ There is no automated test suite (`pnpm test` exits with an error placeholder). 
 - **Electron:** `pnpm build-renderer && pnpm start`
 - **Web:** `pnpm serve` then open [http://localhost:5000](http://localhost:5000)
 
-Optional: `pnpm generate-test-data` to generate test data for the cost dashboard. For **Transform** mode, use “Load sample prompts” in the UI to import prompts from `src/config-defaults/transform-prompts.json`, or manage prompts in **Settings → Transform prompts**. The **History** sidebar view lists execution history when **Keep execution history** is enabled (**Settings → General**); web mode loads rows via `/api/calls/history` ([src/server/routes/calls.js](../src/server/routes/calls.js)).
+Optional: `pnpm generate-test-data -- --web` or `pnpm generate-test-data -- --app` to seed the cost dashboard (`--web` and `--app` choose the database; exactly one is required). For **Transform** mode, use “Load sample prompts” in the UI to import prompts from `src/config-defaults/transform-prompts.json`, or manage prompts in **Settings → Transform prompts**. The **History** sidebar view lists execution history when **Keep execution history** is enabled (**Settings → General**); web mode loads rows via `/api/calls/history` ([src/server/routes/calls.js](../src/server/routes/calls.js)).
 
 **Easy mode:** Default `mode` is `"easy"` ([config_default.json](../src/config-defaults/config_default.json)). Test skill selection in the toolbar and **Settings → General** (Provider, catalog version/refresh). Switch to **Advanced** in the same panel to exercise **Settings → Models**. Edit the catalog with `pnpm run presets-editor` (see [Presets catalog editor](#presets-catalog-editor-development)).
 
@@ -560,14 +545,13 @@ Publishing the release creates tag **`vX.Y.Z`** at **HEAD**, pushes it to **`ori
 
 ### Pre-release checks
 
-Before cutting a release, run checks that mirror what CI exercises before packaging:
+Before cutting a release:
 
-1. **`pnpm lint`** (ESLint + `pnpm typecheck`)
-2. **`pnpm build`** then **`pnpm run build:main`**
+1. `pnpm lint` (ESLint + `pnpm typecheck`). This is what [.github/workflows/ci.yml](../.github/workflows/ci.yml) runs on pull requests and pushes to `main` (`pnpm install --frozen-lockfile`, then `pnpm lint`). CI stops after lint.
+2. `pnpm build` then `pnpm run build:main`. The release workflow runs these as part of packaging.
+3. `pnpm test` (the `stripPromptWrapperTags` Node tests).
 
-Fix any failures. Optionally run **`pnpm package`** locally for a full Electron packaging smoke test (slow; CI runs this on Windows and Linux).
-
-There is no automated unit/integration test script in `package.json` (`pnpm test` is a stub).
+Fix any failures. Optionally run `pnpm package` locally for a full Electron packaging smoke test (slow; the release workflow runs this on Windows and Linux).
 
 ---
 
@@ -580,11 +564,11 @@ Copy **[release-new-version-prompt.md](release-new-version-prompt.md)** into a C
 1. **Release notes**: Add **`release-notes/RELEASE_NOTES_<version>.md`** for the exact version in [package.json](../package.json) (for example `release-notes/RELEASE_NOTES_1.3.3.md` when the version is `1.3.3`). Match the style of prior files under [release-notes/](../release-notes/) (older releases may use the legacy name `RELEASE-NOTES-v<version>.md`; new releases should use the `RELEASE_NOTES_<version>.md` name expected by [scripts/release.mjs](../scripts/release.mjs)).
 2. **Changelog**: In [CHANGELOG.md](CHANGELOG.md), move the bullet points from under `## Unreleased` into a new section titled `## [X.Y.Z] - YYYY-MM-DD`, following the Keep a Changelog format. Leave a blank `## Unreleased` heading for the next release cycle.
 3. **Version**: Update the `"version": "X.Y.Z"` field in [package.json](../package.json) (use proper Semantic Versioning).
-4. **Security audit**: Run `pnpm audit` to ensure no known vulnerabilities exist. If vulnerabilities are found, add overrides to `pnpm.overrides` in [pnpm-workspace.yaml](../pnpm-workspace.yaml) (pnpm 11) and run `pnpm install` until clean.
+4. **Security audit**: Run `pnpm audit` to ensure no known vulnerabilities exist. If vulnerabilities are found, add overrides under `overrides` in [pnpm-workspace.yaml](../pnpm-workspace.yaml) (pnpm ignores a top-level `overrides` block in `package.json`) and run `pnpm install` until clean.
 5. **Sync references**: Run `pnpm run update-version` to sync the README badge, `website/package.json`, the marketing `VERSION` constant, and any other files updated by [scripts/update-version.js](../scripts/update-version.js) so they match the new `package.json` version.
 6. **Update i18n UI string translations**: Run `pnpm run i18n:sync` to ensure that all strings in the UI are translated.
 7. **Update documentation table of contents**: Run `doctoc *.md dev/*.md` to update all tables of contents.
-8. **Update document translations**: Run `pnpm run i18n:translate:docs` to ensure the latest documentation changes are translated.
+8. **Update document translations**: Run `pnpm exec ai-i18n-tools translate-docs` to ensure the latest documentation changes are translated.
 9. **Third-party notices**: Run `pnpm run 3p-notices` if production dependencies changed; commit [NOTICES](../NOTICES) when appropriate.
 10. **Commit and push**: Commit your changes to the changelog, release notes, `package.json`, and any files changed by `update-version` (e.g., `chore: release vX.Y.Z`). Then push your version branch to the remote using your preferred Git client or desktop tool.
 
@@ -709,9 +693,9 @@ All npm scripts defined in [package.json](../package.json) are listed below (gro
 | `pnpm install`                       | Installs dependencies (runs `postinstall` / Electron native rebuild).                                                                                       |
 | `pnpm run postinstall`               | Rebuild native addons for Electron (`scripts/electron-rebuild.js`); also runs automatically after `pnpm install`.                                           |
 | `pnpm dev`                           | Electron development: runs Webpack on **:4030**, enables hot reload, and performs native rebuild for Electron.                                              |
-| `pnpm dev:web`                       | Web development: runs Webpack on **:5500**, and API server on **:4030** (proxied as `/api`).                                                                |
+| `pnpm dev:web`                       | Web development: `scripts/node-rebuild.js`, then Webpack on **:5500** and API server on **:4030** (proxied as `/api`).                                      |
 | `pnpm run presets-editor`         | Dev-only Easy-mode catalog editor on **:8765** (see [presets-editor/README.md](presets-editor/README.md)).                                                    |
-| `pnpm run presets-check`               | Validate/replace Easy-mode model ids (see [Skill-check cron](#skill-check-cron-development); pass `-- --local`, `--dry-run`, etc.)                          |
+| `pnpm run presets-check`               | Validate/replace Easy-mode model ids against the local catalog (`--local` is already in the script; add `-- --dry-run` to preview). See [Skill-check cron](#skill-check-cron-development) |
 | `pnpm run presets-check:install`       | Install isolated presets-check runtime for cron (e.g. `-- --target /opt/transrewrt-presets-check`)                                                              |
 | `pnpm build` / `pnpm build-renderer` | Creates a production Webpack build in the `dist/` directory.                                                                                                |
 | `pnpm run build:main`                | Webpack build of Electron main/preload → `dist-main/` (included in `package` / `package-arm64`).                                                            |
@@ -719,7 +703,7 @@ All npm scripts defined in [package.json](../package.json) are listed below (gro
 | `pnpm start-x11`                     | Runs Electron on Linux with X11 flags (use if Wayland causes issues).                                                                                       |
 | `pnpm serve`                         | Runs `build-renderer` then `start:server` (web smoke test on **:5000**).                                                                                    |
 | `pnpm start:server`                  | Runs the web server only (serves `dist/`; use when the build already exists).                                                                               |
-| `pnpm start:server:rebuild`          | Runs `postinstall` (Electron rebuild) then `start:server`; use if native addons were last built for Electron but you need to run the server on system Node. |
+| `pnpm start:server:rebuild`          | Runs `postinstall` (rebuild native addons for Electron) then `start:server`. For system Node, run `node scripts/node-rebuild.js` or `pnpm dev:web` instead. |
 | `pnpm package`                       | Creates a production build and runs `electron-builder` to generate installers in `release/`.                                                                |
 | `pnpm package-arm64`                 | Same as above, but creates the Linux **arm64** AppImage only (`build/electron-builder.linux-arm64.cjs`) in `release/`.                                      |
 
@@ -730,41 +714,49 @@ All npm scripts defined in [package.json](../package.json) are listed below (gro
 | `pnpm lint`     | Run ESLint, then `pnpm typecheck`                                       |
 | `pnpm lint:fix` | ESLint with `--fix` (does not run typecheck)                            |
 | `pnpm typecheck`| TypeScript check (`tsc --noEmit`) for the React renderer                |
-| `pnpm test`     | Placeholder only (no automated test suite yet; exits with an error)     |
+| `pnpm test`     | Node tests in `src/shared/llm/stripPromptWrapperTags.test.js`            |
 
 ### UI translations and docs (ai-i18n-tools)
 
 See also [UI translations and documentation (ai-i18n-tools)](#ui-translations-and-documentation-ai-i18n-tools) under **Build**.
 
-| Command                        | Purpose                                                                                                |
-|--------------------------------|--------------------------------------------------------------------------------------------------------|
-| `pnpm run i18n:extract`        | Scan renderer → `src/renderer/locales/strings.json`                                                    |
-| `pnpm run i18n:translate:ui`   | Fill missing UI locales via OpenRouter (`OPENROUTER_API_KEY`); see `ai-i18n-tools translate-ui --help` |
-| `pnpm run i18n:translate:svg`  | Not currently configured — prints informational message (SVG translation requires `features.translateSVG` + `svg` block in config) |
-| `pnpm run i18n:translate:docs` | Translate README per `docs` in config                                                                   |
-| `pnpm run i18n:translate`      | `translate-ui`, then `translate-docs`                                                                |
-| `pnpm run i18n:sync`           | Full pipeline: extract + translate UI (+ SVG/docs per config); see `ai-i18n-tools sync --help`         |
-| `pnpm run i18n:status`         | Coverage report                                                                                        |
-| `pnpm run i18n:locales`        | Regenerate `src/renderer/locales/ui-languages.json` from config                                        |
-| `pnpm run i18n:cleanup`        | Remove stale i18n pipeline artifacts (`ai-i18n-tools cleanup --help`)                                  |
-| `pnpm run clean-temp`          | Remove `*.log` and `cache.db.backup*.sqlite` under a tree (`ai-i18n-tools clean-temp`; `--force` to skip prompt) |
-| `pnpm run i18n:dashboard` / `i18n:editor` | Open the ai-i18n-tools dashboard / string editor when configured                            |
+| Command | Purpose |
+|---------|---------|
+| `pnpm run i18n:sync` | Full app pipeline (`ai-i18n-tools sync`) |
+| `pnpm run i18n:status` | Coverage report |
+| `pnpm exec ai-i18n-tools extract` | Scan renderer → `src/renderer/locales/strings.json` |
+| `pnpm exec ai-i18n-tools translate-ui` | Fill missing UI locales via OpenRouter (`OPENROUTER_API_KEY`) |
+| `pnpm exec ai-i18n-tools translate-docs` | Translate README per `docs` in the app config |
+| `pnpm exec ai-i18n-tools cleanup` | Remove stale i18n pipeline artifacts |
+| `pnpm exec ai-i18n-tools clean-temp` | Remove `*.log` and `cache.db.backup*.sqlite` under a tree (`--force` to skip the prompt) |
+| `pnpm exec ai-i18n-tools dashboard` | Open the ai-i18n-tools dashboard |
+| `pnpm run website:i18n:sync` | Full website pipeline (`pnpm --dir website i18n:sync`) |
+| `pnpm run website:i18n:status` | Website coverage report |
+| `pnpm run website:i18n:translate` | Same as website `i18n:sync` (UI, JSON, and docs) |
+| `pnpm run website:i18n:translate:ui` | Website UI strings only |
+| `pnpm run website:i18n:locales` | Regenerate `website/src/i18n/ui-languages.json` (`generate-ui-languages`) |
 
-Models and fallbacks: `openrouter.translationModels` in `[ai-i18n-tools.config.json](../ai-i18n-tools.config.json)` — not app `config.json`.
+Models and fallbacks: `providers.openrouter.translationModels` in [ai-i18n-tools.config.json](../ai-i18n-tools.config.json) — not app `config.json`. SVG translation is not configured.
 
 ### Data, assets, and docs scripts
 
 | Command                        | Purpose                                                                                                                                  |
 |--------------------------------|------------------------------------------------------------------------------------------------------------------------------------------|
-| `pnpm generate-test-data`      | Seed SQLite with sample API/history rows (for cost dashboard/dev purposes)                                                               |
-| `pnpm take-screenshots`        | Use Puppeteer to capture UI screenshots (app must be reachable; see script/env vars)                                                     |
+| `pnpm generate-test-data -- --web` or `-- --app` | Seed SQLite with sample API/history rows (exactly one of `--web` or `--app`) |
+| `pnpm take-screenshots`        | Use Puppeteer to capture UI screenshots into `images/screenshots/` (copy into `website/public/images/screenshots/` for the site) |
 | `pnpm generate-banner`         | Write `images/transrewrt_banner.svg` and `.png`                                                                                          |
 | `./scripts/trim-ico-sizes.sh`  | Normalize provider `.ico` files under `src/renderer/assets/` to 16×16 + 32×32 only (ImageMagick; see [Provider icons](#provider-icons-trim-ico-sizes)) |
 | `pnpm reset-web-password`      | In web multi-user mode, set a password in SQLite (`[username] <password>`; default is `admin`; uses `CONFIG_PATH` or `data/config.json`) |
 | `pnpm check-api-key`           | Show the masked OpenRouter key and limit info (`OPENROUTER_API_KEY` or `node scripts/check-api-key.js --key …`)                          |
 | `pnpm check-custom-provider`   | Probe a custom OpenAI-compatible provider URL/key (see `scripts/check-custom-provider.js`)                                               |
+| `pnpm check-provider-icons`    | Refresh the presets-editor catalog cache and list providers missing a `ProviderIcon` mapping (`-- --force`, `--json`) |
 | `pnpm update-version`          | Propagate the root `package.json` version into the README badge, `website/package.json`, and marketing `VERSION` (run after manually bumping the version) |
+| `pnpm website:dev`             | Astro dev server for `website/` |
+| `pnpm website:build`           | Production build of `website/` |
+| `pnpm website:preview`         | Preview the built site |
 | `pnpm website:publish`         | Dispatch GitHub Actions to build/deploy `website/` to GitHub Pages (no app release; see [website/README.md](../website/README.md)) |
+| `pnpm website:publish:dry`     | Print the Pages deploy dispatch without running it |
+| `pnpm prepackage`              | `pnpm install --frozen-lockfile` (pnpm runs this automatically before `pnpm package`) |
 | `pnpm run 3p-notices`          | Regenerate [NOTICES](../NOTICES) from production dependencies (see [Third-party notices](#third-party-notices-3p-notices))               |
 
 ### Docker and deploy
@@ -794,7 +786,7 @@ See [Upgrading Node and dependencies (nvm)](#upgrading-node-and-dependencies-nvm
 
 | Command / script                           | Purpose                                                                                                                                                                                                                                                                                  |
 |--------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `./scripts/clean-workspace.sh`             | Remove repo `*.log` files, presets-editor/presets-check dev caches, build artifacts (incl. lockfile), then prune pnpm store and Docker caches ([Cleaning the workspace](#cleaning-the-workspace))                                                                                         |
+| `./scripts/clean-workspace.sh`             | Remove repo `*.log` files, presets-editor/presets-check dev caches (including `presets-editor-openrouter-cache.json`), build artifacts (incl. lockfile), then prune pnpm store and Docker caches ([Cleaning the workspace](#cleaning-the-workspace)) |
 | `.\scripts\clean-workspace.ps1`          | Same as Bash on Windows; optional `-RemovePrerequisites` ([Cleaning the workspace](#cleaning-the-workspace))                                                                                                                                                                              |
 | `source ./scripts/upgrade-tools.sh`        | **Bash.** Refresh nvm (git checkout latest tag if `~/.nvm` is a clone), `nvm install --lts` / `nvm use`, then global package manager / `npm-check-updates` / `doctoc`. Must be **sourced** (not `./…`; or `CI=1` / `UPGRADE_ALLOW_EXEC=1`).                                              |
 | `. .\scripts\upgrade-tools.ps1`            | **PowerShell.** Same flow via nvm-windows (`nvm install lts` / `nvm use`) and [upgrade-common.ps1](../scripts/upgrade-common.ps1). **Dot-source** (`. …`) so `nvm use` applies to this session.                                                                                           |
@@ -808,8 +800,8 @@ See [Upgrading Node and dependencies (nvm)](#upgrading-node-and-dependencies-nvm
 
 - **Native module build failed (better-sqlite3 / argon2):** Install build tools as in [Prerequisites](#prerequisites) — on Windows, Python + Visual Studio C++ workload; on Linux, `build-essential` and `python3` (`sudo apt install build-essential python3`). Restart the terminal and run `pnpm install` again. A typical Linux failure is `gyp ERR! not found: make`.
 - **NODE_MODULE_VERSION mismatch in Electron:** Run `pnpm postinstall` so native addons are rebuilt for Electron's Node. Ensure build tools are installed.
-- **NODE_MODULE_VERSION mismatch when running `pnpm dev:web` or `pnpm start:server`:** The server runs with system Node; native addons were built for Electron's Node. Use **Node 24** in the same terminal (e.g. `nvm use 24` then `pnpm dev:web`). See [troubleshooting-node-version.md](troubleshooting-node-version.md).
-- **Security vulnerabilities found by `pnpm audit`:** Check if the vulnerable package is a transitive dependency. If so, add it under `overrides` in [pnpm-workspace.yaml](../pnpm-workspace.yaml) (pnpm 11 ignores top-level `overrides` in `package.json`) with a patched version range, then run `pnpm install`. For example:
+- **NODE_MODULE_VERSION mismatch when running the web server:** The server uses system Node. `pnpm dev:web` runs `scripts/node-rebuild.js` first. `pnpm start:server` and `pnpm serve` do not. If addons were last built for Electron, run `node scripts/node-rebuild.js`, then start the server again. Use Node 24 in that terminal (`nvm use` from the repo root). `pnpm start:server:rebuild` runs Electron’s rebuild (`postinstall`) and does not switch the addon back to system Node.
+- **Security vulnerabilities found by `pnpm audit`:** Check if the vulnerable package is a transitive dependency. If so, add it under `overrides` in [pnpm-workspace.yaml](../pnpm-workspace.yaml) (pnpm ignores a top-level `overrides` block in `package.json`) with a patched version range, then run `pnpm install`. For example:
 
   ```yaml
   overrides:
@@ -817,10 +809,9 @@ See [Upgrading Node and dependencies (nvm)](#upgrading-node-and-dependencies-nvm
   ```
 
   After adding the override, verify with `pnpm audit` - it should report no vulnerabilities.
-- **Symlink errors / broken website screenshots on Windows:** Enable Developer Mode and `core.symlinks true`, then restore the `website/public/images/screenshots` symlink — see [Git symlinks (required on Windows)](#git-symlinks-required-on-windows).
+- **pnpm symlink errors on Windows:** Turn on Developer Mode so pnpm can create symlinks under `node_modules`, then run `pnpm install` again.
+- **Website screenshots missing or stale:** `pnpm take-screenshots` writes [images/screenshots/](../images/screenshots/) only. Copy updated PNGs into [website/public/images/screenshots/](../website/public/images/screenshots/) — see [Website screenshots](#website-screenshots).
 - **Node not found (nvm):** Restart the IDE/terminal so it picks up nvm's PATH, or add the nvm Node path to your user PATH.
-
-For more detail (including Node version alignment and Windows-specific issues), see [troubleshooting-node-version.md](troubleshooting-node-version.md).
 
 ---
 
@@ -828,7 +819,7 @@ For more detail (including Node version alignment and Windows-specific issues), 
 
 - **[SYSTEM-OVERVIEW.md](SYSTEM-OVERVIEW.md)** — Product and **runtime architecture** (Electron IPC `llm:`* vs web `/api/llm/stream` SSE), **Vercel AI SDK** LLM layer and supported providers (including **Local LLM** full OpenAI-compatible base URL), **Easy mode / presets catalog** (sync, `model_ids`, providers), **Translate/Rewrite rephrase** (shared controls, version history, word alternatives), **config/state** (desktop `config.json` + encryption; web global config vs `user_preferences` / `transrewrt.db`), **security** (sanitized IPC, Argon2, cookies), settings UI summary, native modules.
 - **[presets-editor/README.md](presets-editor/README.md)** — Development catalog editor (`pnpm run presets-editor`), env vars, mirror paths, AI Suggestion / translate-missing APIs.
-- **[i18n.md](i18n.md)** — UI strings: extract/translate workflow, key-as-default, RTL, native `t(key, vars)` interpolation.
+- [ai-i18n-tools-context.md](ai-i18n-tools-context.md) — UI strings: extract/translate workflow, key-as-default, RTL, native `t(key, vars)` interpolation, and the current `ai-i18n-tools` config shape.
 - **[https://wsj-br.github.io/transrewrt/docs/](https://wsj-br.github.io/transrewrt/docs/)** — End-user docs (install, guides, settings, troubleshooting).
 - **[release-new-version-prompt.md](release-new-version-prompt.md)** — Cursor prompt to draft `release-notes/RELEASE_NOTES_<version>.md` and update the changelog before a release.
 
@@ -858,7 +849,7 @@ For more detail (including Node version alignment and Windows-specific issues), 
 | [src/renderer/components/SettingsPanel.tsx](../src/renderer/components/SettingsPanel.tsx)   | Settings tabs; **Models** only in Advanced mode; General includes AI experience / Provider                    |
 | [easy-mode-config/presets.json](../easy-mode-config/presets.json)                             | Canonical Easy-mode presets catalog (shipped as `config/presets.json` in Electron builds)                       |
 | [src/shared/presetsCatalog.js](../src/shared/presetsCatalog.js)                               | Remote URL, version/`updated_at` merge rules, 6 h sync throttle (Electron + web)                              |
-| [src/main/ipc/presetsIpc.js](../src/main/ipc/presetsIpc.js)                                   | Electron `skills:read` / `skills:sync`                                                                        |
+| [src/main/ipc/presetsIpc.js](../src/main/ipc/presetsIpc.js)                                   | Electron `presets:read`, `presets:syncState`, `presets:updateFromRemote`                                      |
 | [src/server/routes/presets.js](../src/server/routes/presets.js)                               | Web `GET /api/presets`, `POST /api/presets/sync`, periodic server sync                                          |
 | [src/renderer/utils/presets/presetsManager.ts](../src/renderer/utils/presets/presetsManager.ts) | Renderer load/resolve skills for Easy mode                                                                 |
 | [dev/presets-editor/README.md](presets-editor/README.md)                                      | Dev catalog editor (`pnpm run presets-editor`)                                                             |
@@ -866,8 +857,8 @@ For more detail (including Node version alignment and Windows-specific issues), 
 | [docker-compose.yml](../docker-compose.yml)                                                 | Compose for local web run                                                                                     |
 | [src/config-defaults/transform-prompts.json](../src/config-defaults/transform-prompts.json) | Sample transform prompts (used by "Load sample prompts")                                                      |
 | [src/renderer/i18n.ts](../src/renderer/i18n.ts)                                             | i18n init, RTL handling, dynamic locale loaders                                                               |
-| [src/renderer/locales/strings.json](../src/renderer/locales/strings.json)                   | Extracted UI strings and translation state (from i18n:extract)                                                |
-| [ai-i18n-tools.config.json](../ai-i18n-tools.config.json)                                   | **ai-i18n-tools**: locales, OpenRouter models, UI extract paths, glossaries, doc `documentations`, `cacheDir` |
+| [src/renderer/locales/strings.json](../src/renderer/locales/strings.json)                   | Extracted UI strings and translation state (`ai-i18n-tools extract`)                                          |
+| [ai-i18n-tools.config.json](../ai-i18n-tools.config.json)                                   | ai-i18n-tools: locales, `providers.openrouter` models, UI extract paths, glossaries, `docs` |
 | [NOTICES](../NOTICES)                                                                       | Generated production third-party notices (do not hand-edit; run `pnpm run 3p-notices`)                        |
 | [scripts/write-third-party-notices.mjs](../scripts/write-third-party-notices.mjs)           | Resolves prod deps via `pnpm licenses list` and writes `NOTICES`                                              |
 | [scripts/write-third-party-notices.json](../scripts/write-third-party-notices.json)         | SPDX license templates + optional per-package overrides for `3p-notices`                                      |
@@ -877,5 +868,5 @@ For more detail (including Node version alignment and Windows-specific issues), 
 | [website/scripts/publish-pages.mjs](../website/scripts/publish-pages.mjs)                   | Dispatch GitHub Pages deploy for `website/` (`pnpm website:publish` / `website:publish:dry`) |
 
 
-Deploy and command tables above are **operational**; **system design** (LLM stack, security, data model) is in **[SYSTEM-OVERVIEW.md](SYSTEM-OVERVIEW.md) and [Related documentation](#related-documentation).
+Deploy and command tables above are operational. System design (LLM stack, security, data model) is in [SYSTEM-OVERVIEW.md](SYSTEM-OVERVIEW.md) and [Related documentation](#related-documentation).
 

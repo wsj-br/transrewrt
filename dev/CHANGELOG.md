@@ -11,6 +11,10 @@ Use conventional types (Added, Changed, Fixed, etc.) and short descriptions.
 
 ## Unreleased
 
+- **Changed**: Dropped `glossary.uiGlossary` from `ai-i18n-tools.config.json`; `src/renderer/locales/strings.json` is the UI catalog and is included in doc glossary hints by default.
+- **Fixed**: `generate-test-data` reads OpenRouter model ids from `providers.openrouter.translationModels` in `ai-i18n-tools.config.json`.
+- **Fixed**: Website `i18n:translate`, `i18n:translate:ui`, and `i18n:locales` scripts so the root `website:i18n:*` wrappers resolve.
+- **Changed**: Workspace clean scripts also remove `presets-editor-openrouter-cache.json`.
 - **Changed**: Upgraded app and website dependencies to latest, including Electron 44, ESLint 10, TypeScript 7, and Starlight 0.42.
 - **Changed**: Disabled Next.js and Astro CLI telemetry in build/start scripts, Docker, and website CI.
 

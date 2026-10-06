@@ -10,7 +10,7 @@
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
 </p>
 
-कस्टम प्रॉम्प्ट के साथ **अनुवाद**, **पुनर्लेखन** और **रूपांतरण** के लिए AI-संचालित टेक्स्ट टूल। अपने स्वयं के AI प्रदाताओं (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, OpenAI-संगत एंडपॉइंट्स, और Ollama, LM Studio, या llama.cpp जैसे स्थानीय सर्वर) का उपयोग करें। डेस्कटॉप ऐप (Windows / Linux) या स्व-होस्टेड वेब ऐप (Docker) के रूप में चलाएँ। कोई Transrewrt क्लाउड खाता नहीं।
+कस्टम प्रॉम्प्ट के साथ **अनुवाद**, **पुनर्लेखन**, और **रूपांतरण** के लिए AI-संचालित टेक्स्ट टूल। अपने स्वयं के AI प्रदाताओं (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, OpenAI-संगत एंडपॉइंट्स, और Ollama, LM Studio, या llama.cpp जैसे स्थानीय सर्वर) का उपयोग करें। डेस्कटॉप ऐप (Windows / Linux) या Docker वेब ऐप के रूप में चलाएँ। कोई Transrewrt क्लाउड खाता नहीं।
 
 ## विशेषताएँ
 
@@ -88,6 +88,8 @@ chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage
 कॉपीराइट © 2026 वाल्डेमार स्कुडेलर जूनियर।
 
 [Apache License 2.0](../LICENSE)
+
+<br/>
 
 उत्पाद नाम और आइकन संबंधित स्वामियों के हैं और पहचान के उद्देश्य से उपयोग किए जाते हैं। यह सॉफ़्टवेयर उन ब्रांडों से संबद्ध या उनके द्वारा समर्थित नहीं है।
 

@@ -10,7 +10,7 @@
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
 </p>
 
-Ferramenta de texto com IA para **traduzir**, **reescrever** e **transformar** com prompts personalizados. Use seus próprios provedores de IA (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, endpoints compatíveis com OpenAI e servidores locais como Ollama, LM Studio ou llama.cpp). Execute como um aplicativo de desktop (Windows / Linux) ou um aplicativo web auto-hospedado (Docker). Sem conta Transrewrt na nuvem.
+Ferramenta de texto com IA para **traduzir**, **reescrever** e **transformar** com prompts personalizados. Use seus próprios provedores de IA (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, endpoints compatíveis com OpenAI e servidores locais como Ollama, LM Studio ou llama.cpp). Execute como um aplicativo de desktop (Windows / Linux) ou um aplicativo web Docker. Não é necessária uma conta Transrewrt na nuvem.
 
 ## Recursos
 
@@ -88,6 +88,8 @@ As licenças de dependência de terceiros e estes avisos de fonte de dados estã
 Direitos autorais © 2026 Waldemar Scudeller Jr.
 
 [Apache License 2.0](../LICENSE)
+
+<br/>
 
 Os nomes e ícones dos produtos pertencem a seus respectivos proprietários e são usados apenas para fins de identificação. Este software não é afiliado ou endossado por essas marcas.
 

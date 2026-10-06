@@ -10,7 +10,7 @@
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
 </p>
 
-Công cụ văn bản hỗ trợ AI để **dịch**, **viết lại** và **chuyển đổi** với các lời nhắc tùy chỉnh. Sử dụng các nhà cung cấp AI của riêng bạn (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, các điểm cuối tương thích với OpenAI và các máy chủ cục bộ như Ollama, LM Studio hoặc llama.cpp). Chạy dưới dạng ứng dụng máy tính để bàn (Windows / Linux) hoặc ứng dụng web tự lưu trữ (Docker). Không có tài khoản đám mây Transrewrt.
+Công cụ văn bản được hỗ trợ bởi AI để **dịch**, **chỉnh sửa lại** và **chuyển đổi** với các lời nhắc tùy chỉnh. Sử dụng các nhà cung cấp AI của riêng bạn (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, các điểm cuối tương thích với OpenAI và các máy chủ cục bộ như Ollama, LM Studio hoặc llama.cpp). Chạy dưới dạng ứng dụng máy tính để bàn (Windows / Linux) hoặc ứng dụng web Docker. Không cần tài khoản đám mây Transrewrt.
 
 ## Tính năng
 
@@ -88,6 +88,8 @@ Giấy phép phụ thuộc của bên thứ ba và các thông báo nguồn dữ
 Bản quyền © 2026 Waldemar Scudeller Jr.
 
 [Apache License 2.0](../LICENSE)
+
+<br/>
 
 Tên sản phẩm và biểu tượng thuộc về chủ sở hữu tương ứng và chỉ được sử dụng cho mục đích nhận dạng. Phần mềm này không liên kết hoặc được xác nhận bởi các thương hiệu đó.
 

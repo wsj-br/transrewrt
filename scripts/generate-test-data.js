@@ -32,9 +32,12 @@ function loadTranslationModels() {
     console.error("Could not parse ai-i18n-tools.config.json:", e.message);
     process.exit(1);
   }
-  const models = cfg.openrouter?.translationModels;
+  const models =
+    cfg.providers?.openrouter?.translationModels ?? cfg.openrouter?.translationModels;
   if (!Array.isArray(models) || models.length === 0) {
-    console.error("ai-i18n-tools.config.json: openrouter.translationModels must be a non-empty array");
+    console.error(
+      "ai-i18n-tools.config.json: providers.openrouter.translationModels must be a non-empty array"
+    );
     process.exit(1);
   }
   return models;
@@ -151,7 +154,7 @@ Options:
   -h, --help             Show this help and exit
 
 Reads languages from data/config.json (or CONFIG_PATH for --app). Models from
-ai-i18n-tools.config.json (openrouter.translationModels; same as i18n translate).
+ai-i18n-tools.config.json (providers.openrouter.translationModels).
 Transform prompt names from src/config-defaults/transform-prompts.json.
 When the DB has a users table, entries get a random username from it.
 Drops action_content, clears api_calls, recreates action_content (FK), then inserts rows.`);

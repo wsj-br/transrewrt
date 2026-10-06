@@ -10,7 +10,7 @@
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
 </p>
 
-Instrument de text bazat pe inteligență artificială pentru **traducere**, **rescriere** și **transformare** cu prompturi personalizate. Utilizați proprii furnizori de inteligență artificială (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, puncte finale compatibile cu OpenAI și servere locale precum Ollama, LM Studio sau llama.cpp). Rulați ca aplicație desktop (Windows / Linux) sau ca aplicație web auto-găzduită (Docker). Fără cont Transrewrt cloud.
+Instrument de text bazat pe inteligență artificială pentru **traducere**, **reescriere** și **transformare** cu solicitări personalizate. Utilizați proprii furnizori de inteligență artificială (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, puncte finale compatibile cu OpenAI și servere locale precum Ollama, LM Studio sau llama.cpp). Rulați ca aplicație desktop (Windows / Linux) sau aplicație web Docker. Nu este necesar un cont Transrewrt cloud.
 
 ## Caracteristici
 
@@ -88,6 +88,8 @@ Licențele dependențelor terțe și aceste notificări privind sursa de date su
 Drepturi de autor © 2026 Waldemar Scudeller Jr.
 
 [Apache License 2.0](../LICENSE)
+
+<br/>
 
 Numele și pictogramele produselor aparțin proprietarilor respectivi și sunt utilizate doar în scopuri de identificare. Acest software nu este afiliat sau aprobat de aceste mărci.
 

@@ -10,7 +10,7 @@
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
 </p>
 
-AI-aangedreven teksttool voor **vertalen**, **herschrijven** en **transformeren** met aangepaste prompts. Gebruik uw eigen AI-providers (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, OpenAI-compatibele endpoints en lokale servers zoals Ollama, LM Studio of llama.cpp). Draait als een desktop-app (Windows / Linux) of een zelf-gehoste web-app (Docker). Geen Transrewrt cloudaccount.
+AI-aangedreven teksttool voor **vertalen**, **herschrijven** en **transformeren** met aangepaste prompts. Gebruik uw eigen AI-providers (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, OpenAI-compatibele endpoints en lokale servers zoals Ollama, LM Studio of llama.cpp). Draai als desktop-app (Windows / Linux) of als Docker-web-app. Geen Transrewrt-cloudaccount.
 
 ## Functies
 
@@ -88,6 +88,8 @@ Licenties van afhankelijkheden van derden en deze kennisgevingen van gegevensbro
 Copyright © 2026 Waldemar Scudeller Jr.
 
 [Apache License 2.0](../LICENSE)
+
+<br/>
 
 Productnamen en -iconen behoren tot hun respectieve eigenaren en worden alleen gebruikt voor identificatiedoeleinden. Deze software is niet gelieerd aan of goedgekeurd door die merken.
 

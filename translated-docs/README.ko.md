@@ -10,7 +10,7 @@
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
 </p>
 
-사용자 정의 프롬프트로 **번역**, **다시 쓰기**, **변환**을 수행하는 AI 기반 텍스트 도구입니다. 자체 AI 제공자(OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, OpenAI 호환 엔드포인트, Ollama, LM Studio, llama.cpp 등 로컬 서버)를 사용하세요. 데스크톱 앱(Windows / Linux) 또는 자체 호스팅 웹 앱(Docker)으로 실행할 수 있습니다. Transrewrt 클라우드 계정이 필요 없습니다.
+사용자 지정 프롬프트로 **번역**, **다시 쓰기**, **변환**을 수행할 수 있는 AI 기반 텍스트 도구입니다. 자체 AI 제공업체(OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, OpenAI 호환 엔드포인트 및 Ollama, LM Studio, llama.cpp와 같은 로컬 서버)를 사용하세요. 데스크톱 앱(Windows / Linux) 또는 Docker 웹 앱으로 실행하세요. Transrewrt 클라우드 계정 없음.
 
 ## 기능
 
@@ -88,6 +88,8 @@ chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage
 저작권 © 2026 월더마르 스쿠델러 주니어.
 
 [Apache License 2.0](../LICENSE)
+
+<br/>
 
 제품명과 아이콘은 해당 소유자의 재산이며 식별 목적으로만 사용됩니다. 이 소프트웨어는 해당 브랜드와 제휴 관계가 없으며 해당 브랜드의 보증을 받지 않습니다.
 

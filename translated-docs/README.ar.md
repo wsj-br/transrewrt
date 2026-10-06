@@ -10,7 +10,7 @@
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
 </p>
 
-أداة نصية مدعومة بالذكاء الاصطناعي لـ **الترجمة** و**إعادة الكتابة** و**التحويل** باستخدام مطالبات مخصصة. استخدم مزودي الذكاء الاصطناعي الخاصين بك (OpenRouter، OpenAI، Anthropic، Google Gemini، DeepSeek، Groq، Mistral، xAI، Cerebras، NVIDIA، Alibaba Cloud، apikey.fun، نقاط نهاية متوافقة مع OpenAI، والخوادم المحلية مثل Ollama، LM Studio، أو llama.cpp). يعمل كتطبيق سطح مكتب (Windows / Linux) أو تطبيق ويب مستضاف ذاتيًا (Docker). لا يوجد حساب Transrewrt سحابي.
+أداة نصية مدعومة بالذكاء الاصطناعي لـ **الترجمة** و**إعادة الكتابة** و**التحويل** باستخدام مطالبات مخصصة. استخدم موفري الذكاء الاصطناعي الخاصين بك (OpenRouter وOpenAI وAnthropic وGoogle Gemini وDeepSeek وGroq وMistral وxAI وCerebras وNVIDIA وAlibaba Cloud وapikey.fun ونقاط نهاية متوافقة مع OpenAI والخوادم المحلية مثل Ollama أو LM Studio أو llama.cpp). يعمل كتطبيق سطح مكتب (Windows / Linux) أو تطبيق ويب Docker. لا يوجد حساب سحابي لـ Transrewrt.
 
 ## الميزات
 
@@ -88,6 +88,8 @@ chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage
 حقوق النشر © 2026 والديمار سكوديلر جونيور.
 
 [Apache License 2.0](../LICENSE)
+
+<br/>
 
 أسماء المنتجات والرموز تنتمي إلى أصحابها المعنيين وتستخدم لأغراض التعريف فقط. هذا البرنامج ليس تابعًا لتلك العلامات التجارية أو معتمدًا منها.
 

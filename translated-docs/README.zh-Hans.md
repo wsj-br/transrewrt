@@ -10,7 +10,7 @@
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
 </p>
 
-AI 驱动的文本工具，支持使用自定义提示词进行**翻译**、**改写**和**转换**。使用您自己的 AI 提供商（OpenRouter、OpenAI、Anthropic、Google Gemini、DeepSeek、Groq、Mistral、xAI、Cerebras、NVIDIA、阿里云、apikey.fun、兼容 OpenAI 的端点，以及本地服务器如 Ollama、LM Studio 或 llama.cpp）。可作为桌面应用（Windows / Linux）或自托管 Web 应用（Docker）运行。无需 Transrewrt 云账号。
+AI 驱动的文本工具，用于通过自定义提示词进行**翻译**、**重写**和**转换**。使用您自己的 AI 提供商（OpenRouter、OpenAI、Anthropic、Google Gemini、DeepSeek、Groq、Mistral、xAI、Cerebras、NVIDIA、阿里云、apikey.fun、OpenAI 兼容端点，以及本地服务器如 Ollama、LM Studio 或 llama.cpp）。可作为桌面应用（Windows / Linux）或 Docker Web 应用运行。无需 Transrewrt 云账号。
 
 ## 功能
 
@@ -88,6 +88,8 @@ chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage
 版权所有 © 2026 Waldemar Scudeller Jr.
 
 [Apache License 2.0](../LICENSE)
+
+<br/>
 
 产品名称和图标属于其各自所有者，仅用于识别目的。本软件不隶属于这些品牌，也未获得其认可。
 

@@ -10,7 +10,7 @@
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
 </p>
 
-Özel istemlerle **çeviri**, **yeniden yazma** ve **dönüştürme** için yapay zeka destekli metin aracı. Kendi yapay zeka sağlayıcılarınızı kullanın (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, OpenAI uyumlu uç noktalar ve Ollama, LM Studio veya llama.cpp gibi yerel sunucular). Bir masaüstü uygulaması (Windows / Linux) veya kendi kendine barındırılan bir web uygulaması (Docker) olarak çalıştırın. Transrewrt bulut hesabı yok.
+Özel istemlerle **çevirme**, **yeniden yazma** ve **dönüştürme** için yapay zeka destekli metin aracı. Kendi yapay zeka sağlayıcılarınızı kullanın (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, OpenAI uyumlu uç noktalar ve Ollama, LM Studio veya llama.cpp gibi yerel sunucular). Bir masaüstü uygulaması (Windows / Linux) veya bir Docker web uygulaması olarak çalıştırın. Transrewrt bulut hesabı yok.
 
 ## Özellikler
 
@@ -88,6 +88,8 @@ Tüm ürün belgeleri (kurulum, API anahtarları, kılavuzlar, ayarlar, sorun gi
 Telif Hakkı © 2026 Waldemar Scudeller Jr.
 
 [Apache License 2.0](../LICENSE)
+
+<br/>
 
 Ürün adları ve simgeleri, ilgili sahiplerine aittir ve yalnızca tanımlama amaçlı kullanılır. Bu yazılım, bu markalarla bağlantılı değildir veya onlar tarafından desteklenmemektedir.
 

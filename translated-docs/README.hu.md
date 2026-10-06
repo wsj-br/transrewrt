@@ -10,7 +10,7 @@
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
 </p>
 
-AI-alapú szöveges eszköz **fordításhoz**, **átíráshoz** és **átalakításhoz** egyéni promptokkal. Használja saját AI-szolgáltatóit (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, OpenAI-kompatibilis végpontok és helyi szerverek, mint például az Ollama, LM Studio vagy llama.cpp). Futtatható asztali alkalmazásként (Windows / Linux) vagy saját üzemeltetésű webalkalmazásként (Docker). Nincs Transrewrt felhőfiók.
+AI-alapú szöveges eszköz **fordításhoz**, **átíráshoz** és **átalakításhoz** egyéni promptokkal. Használja saját AI-szolgáltatóit (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, OpenAI-kompatibilis végpontok, és helyi szerverek, mint például az Ollama, LM Studio vagy llama.cpp). Futtatható asztali alkalmazásként (Windows / Linux) vagy Docker webalkalmazásként. Nincs Transrewrt felhőfiók.
 
 ## Funkciók
 
@@ -88,6 +88,8 @@ A harmadik féltől származó függőségek licencei és ezek az adatforrás-é
 Szerzői jog © 2026 Waldemar Scudeller Jr.
 
 [Apache License 2.0](../LICENSE)
+
+<br/>
 
 A terméknevek és ikonok a megfelelő tulajdonosok tulajdonát képezik, és csak azonosítási célokra használják őket. Ez a szoftver nem áll kapcsolatban ezekkel a márkákkal, és nem is támogatja őket.
 

@@ -10,7 +10,7 @@
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
 </p>
 
-Інструмент для роботи з текстом на основі ШІ для **перекладу**, **перезапису** та **трансформації** за допомогою власних підказок. Використовуйте власних постачальників ШІ (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, кінцеві точки, сумісні з OpenAI, та локальні сервери, такі як Ollama, LM Studio або llama.cpp). Запускайте як настільну програму (Windows / Linux) або як самостійний веб-додаток (Docker). Без хмарного облікового запису Transrewrt.
+Текстовий інструмент на основі ШІ для **перекладу**, **перезапису** та **трансформації** за допомогою власних підказок. Використовуйте власних постачальників ШІ (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, сумісні з OpenAI кінцеві точки та локальні сервери, такі як Ollama, LM Studio або llama.cpp). Запускайте як настільну програму (Windows / Linux) або веб-додаток Docker. Без хмарного облікового запису Transrewrt.
 
 ## Можливості
 
@@ -88,6 +88,8 @@ chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage
 Авторське право © 2026 Вальдемар Скуделлер молодший.
 
 [Apache License 2.0](../LICENSE)
+
+<br/>
 
 Назви продуктів та іконки належать їхнім відповідним власникам і використовуються лише для ідентифікації. Це програмне забезпечення не пов’язане з цими брендами та не підтримується ними.
 

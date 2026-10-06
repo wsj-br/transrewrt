@@ -91,3 +91,17 @@ For more development scripts and troubleshooting, see [dev/DEVELOPMENT.md](file:
 - Do **not** write changelog entries for documentation-only changes.
 - Use **Keep a Changelog** type headings: `Added`, `Changed`, `Deprecated`, `Removed`, `Fixed`, or `Security`.
 - Use a single, short line per change. Avoid duplicating full git commit messages.
+
+## 9. Web Search Guidance
+
+When encountering errors that could be related to:
+- External packages or dependencies
+- Package upgrades or version conflicts
+- Hard-to-fix issues or mysterious behaviors
+- Outdated documentation or API changes
+
+Agents should use the `websearch` tool to look up current information and solutions online before attempting to resolve them. This includes checking:
+- Official package documentation and changelogs
+- GitHub issues for related projects
+- Stack Overflow and technical forums
+- Recent news or announcements about the affected tools or libraries

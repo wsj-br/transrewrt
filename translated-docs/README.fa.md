@@ -10,7 +10,7 @@
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
 </p>
 
-ابزار متنی مبتنی بر هوش مصنوعی برای **ترجمه**، **بازنویسی**، و **تبدیل** با پرامپت‌های سفارشی. از ارائه‌دهندگان هوش مصنوعی خود (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, نقاط پایانی سازگار با OpenAI، و سرورهای محلی مانند Ollama, LM Studio, یا llama.cpp) استفاده کنید. به عنوان یک برنامه دسکتاپ (ویندوز / لینوکس) یا یک برنامه وب خودمیزبان (Docker) اجرا کنید. بدون حساب ابری Transrewrt.
+ابزار متنی مبتنی بر هوش مصنوعی برای **ترجمه**، **بازنویسی** و **تبدیل** با اعلان‌های سفارشی. از ارائه‌دهندگان هوش مصنوعی خود (OpenRouter، OpenAI، Anthropic، Google Gemini، DeepSeek، Groq، Mistral، xAI، Cerebras، NVIDIA، Alibaba Cloud، apikey.fun، نقاط پایانی سازگار با OpenAI و سرورهای محلی مانند Ollama، LM Studio یا llama.cpp) استفاده کنید. به عنوان یک برنامه دسکتاپ (ویندوز / لینوکس) یا یک برنامه وب Docker اجرا می‌شود. بدون حساب ابری Transrewrt.
 
 ## ویژگی‌ها
 
@@ -88,6 +88,8 @@ chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage
 حق تألیف © 2026 والدمر اسکودلر جونیور.
 
 [Apache License 2.0](../LICENSE)
+
+<br/>
 
 نام‌ها و آیکون‌های محصول متعلق به صاحبان آن‌ها هستند و فقط برای شناسایی استفاده می‌شوند. این نرم‌افزار وابسته به این برندها نیست و توسط آن‌ها تأیید نشده است.
 

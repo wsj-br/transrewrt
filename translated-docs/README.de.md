@@ -10,7 +10,7 @@
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
 </p>
 
-KI-gestütztes Textwerkzeug zum **Übersetzen**, **Umschreiben** und **Transformieren** mit benutzerdefinierten Prompts. Verwenden Sie Ihre eigenen KI-Anbieter (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, OpenAI-kompatible Endpunkte und lokale Server wie Ollama, LM Studio oder llama.cpp). Läuft als Desktop-App (Windows / Linux) oder als selbst gehostete Web-App (Docker). Kein Transrewrt-Cloud-Konto.
+KI-gestütztes Textwerkzeug zum **Übersetzen**, **Umschreiben** und **Transformieren** mit benutzerdefinierten Prompts. Verwenden Sie Ihre eigenen KI-Anbieter (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, OpenAI-kompatible Endpunkte und lokale Server wie Ollama, LM Studio oder llama.cpp). Läuft als Desktop-App (Windows / Linux) oder als Docker-Web-App. Kein Transrewrt-Cloud-Konto.
 
 ## Funktionen
 
@@ -88,6 +88,8 @@ Lizenzen von Drittanbieter-Abhängigkeiten und diese Hinweise zu Datenquellen si
 Copyright © 2026 Waldemar Scudeller Jr.
 
 [Apache License 2.0](../LICENSE)
+
+<br/>
 
 Produktnamen und -symbole gehören ihren jeweiligen Inhabern und werden nur zur Identifizierung verwendet. Diese Software ist nicht mit diesen Marken verbunden oder wird von ihnen unterstützt.
 

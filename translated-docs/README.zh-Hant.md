@@ -10,7 +10,7 @@
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
 </p>
 
-AI 驅動的文字工具，用於透過自訂提示詞進行**翻譯**、**重寫**與**轉換**。使用您自己的 AI 供應商（OpenRouter、OpenAI、Anthropic、Google Gemini、DeepSeek、Groq、Mistral、xAI、Cerebras、NVIDIA、Alibaba Cloud、apikey.fun、OpenAI 相容端點，以及本地伺服器如 Ollama、LM Studio 或 llama.cpp）。可作為桌面應用程式（Windows / Linux）或自架網頁應用程式（Docker）執行。無需 Transrewrt 雲端帳號。
+AI 驅動的文字工具，透過自訂提示詞進行**翻譯**、**重寫**與**轉換**。使用您自己的 AI 供應商（OpenRouter、OpenAI、Anthropic、Google Gemini、DeepSeek、Groq、Mistral、xAI、Cerebras、NVIDIA、Alibaba Cloud、apikey.fun、OpenAI 相容端點，以及本地伺服器如 Ollama、LM Studio 或 llama.cpp）。以桌面應用程式（Windows / Linux）或 Docker 網頁應用程式執行。無需 Transrewrt 雲端帳號。
 
 ## 功能
 
@@ -88,6 +88,8 @@ chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage
 Copyright © 2026 Waldemar Scudeller Jr.
 
 [Apache License 2.0](../LICENSE)
+
+<br/>
 
 產品名稱和圖示屬於其各自擁有者，僅用於識別目的。本軟體不隸屬於這些品牌，亦未獲其背書。
 

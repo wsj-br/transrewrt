@@ -10,7 +10,7 @@
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
 </p>
 
-Εργαλείο κειμένου με τεχνητή νοημοσύνη για **μετάφραση**, **επαναγραφή** και **μετασχηματισμό** με προσαρμοσμένες προτροπές. Χρησιμοποιήστε τους δικούς σας παρόχους τεχνητής νοημοσύνης (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, τελικά σημεία συμβατά με το OpenAI και τοπικούς διακομιστές όπως Ollama, LM Studio ή llama.cpp). Εκτελέστε ως εφαρμογή επιφάνειας εργασίας (Windows / Linux) ή ως αυτο-φιλοξενούμενη εφαρμογή ιστού (Docker). Χωρίς λογαριασμό Transrewrt cloud.
+Εργαλείο κειμένου με τεχνητή νοημοσύνη για **μετάφραση**, **επαναγραφή** και **μετασχηματισμό** με προσαρμοσμένες προτροπές. Χρησιμοποιήστε τους δικούς σας παρόχους τεχνητής νοημοσύνης (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, τελικά σημεία συμβατά με OpenAI και τοπικούς διακομιστές όπως Ollama, LM Studio ή llama.cpp). Εκτελέστε ως εφαρμογή επιφάνειας εργασίας (Windows / Linux) ή ως εφαρμογή web Docker. Χωρίς λογαριασμό cloud Transrewrt.
 
 ## Χαρακτηριστικά
 
@@ -88,6 +88,8 @@ chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage
 Πνευματικά δικαιώματα © 2026 Waldemar Scudeller Jr.
 
 [Apache License 2.0](../LICENSE)
+
+<br/>
 
 Τα ονόματα και τα εικονίδια των προϊόντων ανήκουν στους αντίστοιχους ιδιοκτήτες τους και χρησιμοποιούνται μόνο για σκοπούς αναγνώρισης. Αυτό το λογισμικό δεν είναι συνδεδεμένο ή εγκεκριμένο από αυτές τις μάρκες.
 

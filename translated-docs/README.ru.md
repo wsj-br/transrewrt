@@ -10,7 +10,7 @@
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
 </p>
 
-Текстовый инструмент на базе ИИ для **перевода**, **перезаписи** и **преобразования** с помощью пользовательских запросов. Используйте своих собственных поставщиков ИИ (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, конечные точки, совместимые с OpenAI, и локальные серверы, такие как Ollama, LM Studio или llama.cpp). Запускается как настольное приложение (Windows / Linux) или как веб-приложение с самостоятельным размещением (Docker). Без облачной учетной записи Transrewrt.
+Инструмент для работы с текстом на базе ИИ для **перевода**, **перезаписи** и **преобразования** с помощью пользовательских запросов. Используйте своих собственных поставщиков ИИ (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, конечные точки, совместимые с OpenAI, и локальные серверы, такие как Ollama, LM Studio или llama.cpp). Запускайте как настольное приложение (Windows / Linux) или веб-приложение Docker. Без облачной учетной записи Transrewrt.
 
 ## Возможности
 
@@ -88,6 +88,8 @@ chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage
 Авторское право © 2026 Уолдемар Скуделлер мл.
 
 [Apache License 2.0](../LICENSE)
+
+<br/>
 
 Названия продуктов и значки принадлежат их соответствующим владельцам и используются только в целях идентификации. Это программное обеспечение не связано с этими брендами и не одобрено ими.
 

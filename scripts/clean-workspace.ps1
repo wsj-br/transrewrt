@@ -76,7 +76,8 @@ foreach ($logFile in $logFiles) {
 $devCaches = @(
     'dev/presets-check/provider-catalogs-cache.json',
     'dev/presets-check/presets-check.log',
-    'presets-editor-provider-catalogs.json'
+    'presets-editor-provider-catalogs.json',
+    'presets-editor-openrouter-cache.json'
 )
 foreach ($cache in $devCaches) {
     $full = Join-Path $ProjectRoot ($cache -replace '/', [IO.Path]::DirectorySeparatorChar)

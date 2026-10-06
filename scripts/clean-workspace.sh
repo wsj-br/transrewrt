@@ -47,7 +47,8 @@ done < <(find "$ROOT_DIR" \
 for cache in \
     "dev/presets-check/provider-catalogs-cache.json" \
     "dev/presets-check/presets-check.log" \
-    "presets-editor-provider-catalogs.json"
+    "presets-editor-provider-catalogs.json" \
+    "presets-editor-openrouter-cache.json"
 do
     if [ -f "$ROOT_DIR/$cache" ]; then
         if rm -f "$ROOT_DIR/$cache"; then

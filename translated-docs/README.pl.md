@@ -10,7 +10,7 @@
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
 </p>
 
-Narzędzie tekstowe oparte na sztucznej inteligencji do **tłumaczenia**, **przepisywania** i **transformacji** z niestandardowymi podpowiedziami. Korzystaj z własnych dostawców AI (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, punktów końcowych zgodnych z OpenAI oraz lokalnych serwerów, takich jak Ollama, LM Studio lub llama.cpp). Uruchom jako aplikację desktopową (Windows / Linux) lub samodzielnie hostowaną aplikację internetową (Docker). Brak konta Transrewrt w chmurze.
+Narzędzie tekstowe oparte na sztucznej inteligencji do **tłumaczenia**, **przerabiania** i **transformacji** z niestandardowymi promptami. Używaj własnych dostawców AI (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, punktów końcowych zgodnych z OpenAI oraz serwerów lokalnych, takich jak Ollama, LM Studio lub llama.cpp). Uruchom jako aplikację desktopową (Windows / Linux) lub aplikację internetową Docker. Brak konta Transrewrt w chmurze.
 
 ## Funkcje
 
@@ -88,6 +88,8 @@ Licencje zależności stron trzecich i te informacje o źródłach danych są wy
 Prawa autorskie © 2026 Waldemar Scudeller Jr.
 
 [Apache License 2.0](../LICENSE)
+
+<br/>
 
 Nazwy produktów i ikony należą do ich właścicieli i są używane wyłącznie w celach identyfikacyjnych. To oprogramowanie nie jest powiązane z tymi markami ani przez nie wspierane.
 
