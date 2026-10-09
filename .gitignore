@@ -21,6 +21,7 @@ build_timestamp
 *.exe
 .specstory
 .cache
+*.key
 
 
 # i18n docs translate cache (cacheDir default `.translation-cache/`)
