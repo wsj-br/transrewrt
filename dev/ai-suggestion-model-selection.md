@@ -39,7 +39,7 @@ The current design is **hybrid**:
                              ▼
 ┌─────────────────────────────────────────────────────────────────┐
 │  Prefetch provider catalogs (disk cache, 2h TTL)                 │
-│  Warm benchmark scores cache (languagebench + Arena Elo + models.dev)│
+│  Warm benchmark scores cache (languagebench + Arena Score + models.dev)│
 └────────────────────────────┬────────────────────────────────────┘
                              │ for each selected preset (concurrency 2)
                              ▼
@@ -66,13 +66,13 @@ Cancel mid-run aborts the HTTP stream; the server stops further live-timing and 
 | Source | Role | Access | Cache |
 |--------|------|--------|--------|
 | **Provider catalogs** | Allowed model ids + per-token pricing when available | Provider APIs (keys in env) | `presets-editor-provider-catalogs.json` (2h) |
-| **languagebench** ([fair-forward](https://huggingface.co/spaces/fair-forward/languagebench)) | Translation quality: mean **ChrF** over `translation_from` / `translation_to` for UI-related languages | Public Hugging Face Space JSON (no key) | Inside `presets-editor-benchmark-cache.json` (7d) |
-| **Arena AI / LMArena Elo** ([arena.ai](https://arena.ai/leaderboard), community JSON snapshot) | Capability / intelligence axis (human-preference Elo) | Public GitHub snapshot (no key) | Same 7d benchmark cache |
+| **languagebench** ([fair-forward Space](https://huggingface.co/spaces/fair-forward/languagebench), CC-BY-SA-4.0) | Translation quality: mean **ChrF** over `translation_from` / `translation_to` for UI-related languages | Public Space JSON `results/results.json` and `results/models.json` (no key). Do **not** switch to `fair-forward/evals-for-every-language-results` / `-models`: those dataset cards are empty and publish no licence. | Inside `presets-editor-benchmark-cache.json` (7d, gitignored and dockerignored) |
+| **Arena Score** ([lmarena-ai/leaderboard-dataset](https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset), CC-BY-4.0) | Capability / intelligence axis (Bradley-Terry Arena Score; not Elo) | Official Hugging Face parquet: subset `text`, split `latest`, category `overall` (no key). Do not download `text/full` (~1M rows). | Same 7d benchmark cache |
 | **models.dev** ([models.dev](https://models.dev/)) | Pricing fallback for unpriced catalog SKUs | Public `api.json` (no key) | Same 7d benchmark cache |
 | **OpenRouter endpoint performance** | Speed axis: per-model throughput / latency | OpenRouter disk cache (see README) | `presets-editor-openrouter-cache.json` (6h) |
 | **Live translate timing** | Real end-to-end duration via the app’s `streamCompletion` path | Same provider keys as the app | `presets-editor-timing-cache.json` (2h) |
 
-Attribution / licence: languagebench is CC-BY-SA-4.0; Arena AI leaderboard data is CC-BY-4.0 (carry attribution if surfaced); models.dev is MIT. Each is recorded in the cache payload `sources` block.
+Attribution / licence: languagebench is CC-BY-SA-4.0; Arena leaderboard data is CC-BY-4.0; models.dev is MIT. Each is recorded in the cache payload `sources` block. Scores are used only on the maintainer's machine to shortlist model IDs; no dataset content is redistributed with Transrewrt.
 
 The capability axis was previously sourced from Artificial Analysis. That source was removed because its Data Platform terms restrict use to internal purposes and bar structured/machine-readable reuse and "model/provider selection guidance" — which is what this pipeline does. If a source is unavailable (fetch error), shortlists still build from the remaining sources (languagebench + catalog pricing, etc.). If the whole benchmark cache fetch fails, suggestion falls back to the older catalog-only LLM behaviour (with a log warning).
 
@@ -85,8 +85,8 @@ Each preset is mapped to a profile from its id / name / description keywords (`r
 | Profile | Typical presets | What we optimise for | Shortlist size | Live timing |
 |---------|-----------------|----------------------|----------------|-------------|
 | **standard** | `standard`, “fast”, “lightweight”, “cost-efficient” | Price + speed, quality above a floor | 4 | Yes (top 4 timed; 2 fastest become primary/fallback) |
-| **advanced** | `advanced`, “quality”, “best”, “high-accuracy” | ChrF + Arena Elo | 5 | No |
-| **technical** | `technical`, code/docs oriented | Arena Elo first, then ChrF | 5 | No |
+| **advanced** | `advanced`, “quality”, “best”, “high-accuracy” | ChrF + Arena Score | 5 | No |
+| **technical** | `technical`, code/docs oriented | Arena Score first, then ChrF | 5 | No |
 | **free** | free / zero-cost wording | Zero-price catalog entries | 5 | No |
 
 ### Weights (summary)
@@ -107,7 +107,7 @@ Mean ChrF is restricted to BCP-47 codes that correspond to the app’s UI locale
 
 Benchmark sources and provider catalogs do not share one id scheme. The scorer:
 
-1. Normalises strings (strip engine prefix, dots↔dashes, date suffixes, effort/reasoning suffixes, `x-ai`→`xai`, …).
+1. Normalises strings (strip engine prefix, dots↔dashes, date suffixes, Arena effort tags such as `(High)` / `-high` / `-max`, `x-ai`→`xai`, …).
 2. Builds a match index from every **chat-compatible** catalog model (`isTransrewrtWorkflowModel`).
 3. Maps languagebench / Arena ids onto catalog ids; a small curated alias table covers awkward leftovers (e.g. DeepSeek date suffixes, some Grok / Haiku variants).
 
@@ -168,7 +168,7 @@ Expected JSON shape (per provider):
 |------|-----|----------|
 | `presets-editor-provider-catalogs.json` | 2h | Per-engine model lists + pricing |
 | `presets-editor-openrouter-cache.json` | 6h | OpenRouter models / endpoint performance (picker & Performance page) |
-| `presets-editor-benchmark-cache.json` | 7d | languagebench results + models + Arena Elo snapshot + models.dev pricing |
+| `presets-editor-benchmark-cache.json` | 7d | languagebench results + models + Arena Score (`text`/`latest`/`overall`) + models.dev pricing. Gitignored and dockerignored — do not ship. |
 | `presets-editor-timing-cache.json` | 2h | Per `(engine, model_id, sample fingerprint)` live-timing rows |
 
 Delete a cache file (or wait for TTL) to force a refresh. Benchmark warm-up and timing hits/misses are logged on the AI Suggestion run page.
@@ -182,7 +182,7 @@ Delete a cache file (or wait for TTL) to force a refresh. Benchmark warm-up and 
 | `OPENROUTER_API_KEY` | Yes (suggestion models + web search) |
 | Per-provider keys (`OPENAI_API_KEY`, `ANTHROPIC_API_KEY`, `GOOGLE_API_KEY`, …) | Needed for that provider’s **live timing**; shortlists still build without them |
 
-Benchmark data sources (languagebench, Arena Elo, models.dev) are fetched keyless — no extra API key is required for AI Suggest scoring.
+Benchmark data sources (languagebench, Arena Score, models.dev) are fetched keyless — no extra API key is required for AI Suggest scoring.
 
 The presets-editor process reads **only** `process.env` (source `.env` in the shell before `pnpm run presets-editor`).
 
@@ -209,10 +209,12 @@ AI Suggestion does **not** change presets until you save from the review step.
 
 **Limits**
 
-- languagebench / Arena coverage is incomplete; many catalog models have null ChrF or Arena Elo and rely on price/speed heuristics.
+- languagebench / Arena coverage is incomplete; many catalog models have null ChrF or Arena Score and rely on price/speed heuristics.
 - Live timing uses one Portuguese→English sample; it is a latency proxy, not a full quality eval.
 - WMT human evals and commercial scoreboards are **not** ingested (no stable machine-readable feed for this pipeline).
 - Shortlist size and weights are constants in `benchmark-scores.js`—tune there if product priorities change.
+
+**Do not publish score-based rankings.** If a ChrF / Arena Score table is ever published in docs or on the website, license that table CC BY-SA 4.0 (languagebench share-alike) and attribute both languagebench and Arena. The shipped catalog (`easy-mode-config/presets.json`) must stay model-ID-only.
 
 ---
 
@@ -221,6 +223,7 @@ AI Suggestion does **not** change presets until you save from the review step.
 | Path | Role |
 |------|------|
 | [`dev/presets-editor/benchmark-scores.js`](presets-editor/benchmark-scores.js) | Fetch/cache benchmarks, profile scoring, shortlists, shortlist enforcement |
+| [`dev/presets-editor/fetchArenaLeaderboard.mjs`](presets-editor/fetchArenaLeaderboard.mjs) | Official Arena parquet fetch (`text` / `latest` / `overall`) |
 | [`dev/presets-editor/timingCache.js`](presets-editor/timingCache.js) | 2h live-timing disk cache |
 | [`dev/presets-editor/translatePresetsBenchmark.js`](presets-editor/translatePresetsBenchmark.js) | Translate sample + candidate timing |
 | [`dev/presets-editor/server.js`](presets-editor/server.js) | Suggest API, prompts, job orchestration, cancel, NDJSON stream |

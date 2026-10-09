@@ -2,36 +2,25 @@ Third-party notices for Transrewrt.
 
 ---
 
-languagebench (fair-forward/languagebench)
+languagebench — AI model evaluations for every language
 CC-BY-SA-4.0
-languagebench evaluation results are used by the Transrewrt presets editor
-for AI Suggestion model shortlisting (translation quality / ChrF).
-
+Creators: Fair Forward (GIZ); D. Pomerenke, J. Nothnagel, S. Ostermann
+License: CC BY-SA 4.0 — https://creativecommons.org/licenses/by-sa/4.0/
 Source: https://huggingface.co/spaces/fair-forward/languagebench
-License: https://creativecommons.org/licenses/by-sa/4.0/legalcode
 Paper: https://arxiv.org/abs/2507.08538
-
-This work is licensed under the Creative Commons Attribution-ShareAlike 4.0
-International License. To view a copy of this license, visit
-https://creativecommons.org/licenses/by-sa/4.0/ or send a letter to Creative
-Commons, PO Box 1866, Mountain View, CA 94042, USA.
+Use: translation scores (ChrF) are used on the maintainer's machine to
+shortlist model IDs. No dataset content is redistributed with Transrewrt.
+Provided as is, without warranties.
 
 ---
 
-Arena AI (LMArena) leaderboard data
+Arena (formerly LMArena / LMSYS Chatbot Arena) leaderboard data
 CC-BY-4.0
-Model capability rankings (Arena Elo) from the Arena AI (formerly LMSYS
-Chatbot Arena) text leaderboard are used by the Transrewrt presets editor for
-AI Suggestion model shortlisting.
-
-Source: https://arena.ai/leaderboard
-Data snapshots: https://github.com/oolong-tea-2026/arena-ai-leaderboards
-License: https://creativecommons.org/licenses/by/4.0/legalcode
-
-This data is licensed under the Creative Commons Attribution 4.0
-International License. To view a copy of this license, visit
-https://creativecommons.org/licenses/by/4.0/ or send a letter to Creative
-Commons, PO Box 1866, Mountain View, CA 94042, USA.
+License: CC BY 4.0 — https://creativecommons.org/licenses/by/4.0/
+Source: https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset
+Use: Arena Scores are used on the maintainer's machine to shortlist model
+IDs. No dataset content is redistributed with Transrewrt. No endorsement
+by Arena is implied. Provided as is, without warranties.
 
 ---
 

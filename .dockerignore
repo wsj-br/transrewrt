@@ -42,6 +42,11 @@ env
 *.deb
 *.rpm
 
+# Maintainer-only presets editor caches at repo root (languagebench rows are BY-SA;
+# must not enter the Docker build context / image layers).
+presets-editor-benchmark-cache.json
+presets-editor-*.json
+
 # Development and documentation
 .specstory
 .cursorindexingignore

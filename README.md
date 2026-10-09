@@ -76,10 +76,11 @@ Open an issue on [GitHub](https://github.com/wsj-br/transrewrt/issues). Include 
 
 ## Acknowledgments
 
-Easy-mode preset suggestions in the presets editor use public evaluation data from:
+Easy-mode preset suggestions in the presets editor use public evaluation data
+on the maintainer's machine only. No dataset content is redistributed with Transrewrt:
 
-- [languagebench](https://huggingface.co/spaces/fair-forward/languagebench) (CC BY-SA 4.0)
-- [Arena AI](https://arena.ai/leaderboard) (CC BY 4.0)
+- [languagebench](https://huggingface.co/spaces/fair-forward/languagebench) (CC BY-SA 4.0) — translation ChrF
+- [Arena](https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset) (CC BY 4.0) — Arena Score
 - [models.dev](https://models.dev/) (MIT)
 
 Third-party dependency licenses and these data-source notices are listed in [NOTICES](NOTICES).

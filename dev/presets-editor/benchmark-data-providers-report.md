@@ -2,7 +2,7 @@
 
 Report on the data sources behind the deterministic shortlist in the presets editor's **AI Suggest** flow, the licensing problem with Artificial Analysis, and candidate providers that could replace or back it up.
 
-> **Status:** The plan below is now implemented. Artificial Analysis is retired; the capability axis uses Arena AI Elo, speed uses OpenRouter endpoint performance, price falls back to models.dev, and translation quality stays on languagebench. See [`benchmark-scores.js`](benchmark-scores.js) and [`../ai-suggestion-model-selection.md`](../ai-suggestion-model-selection.md) for the live behaviour. This document is retained as the supporting analysis.
+> **Status:** The plan below is now implemented. Artificial Analysis is retired; the capability axis uses Arena Score from the official Hugging Face dataset [`lmarena-ai/leaderboard-dataset`](https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset) (`text` / `latest` / `overall`), speed uses OpenRouter endpoint performance, price falls back to models.dev, and translation quality stays on languagebench. See [`benchmark-scores.js`](benchmark-scores.js) and [`../ai-suggestion-model-selection.md`](../ai-suggestion-model-selection.md) for the live behaviour. This document is retained as the supporting analysis.
 
 Related code: [`benchmark-scores.js`](benchmark-scores.js). Pipeline description: [`../ai-suggestion-model-selection.md`](../ai-suggestion-model-selection.md). Editor overview: [`README.md`](README.md).
 

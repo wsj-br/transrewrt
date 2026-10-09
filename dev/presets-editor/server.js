@@ -652,7 +652,7 @@ const TRANSREWRT_SUGGEST_CONTEXT = `Context:
 const SUGGEST_CATALOG_CAP = 200;
 
 const SUGGEST_SYSTEM = `You are an expert at matching LLM capabilities to product "presets" in Transrewrt (Easy mode presets).
-The user message includes a deterministic "Benchmark evidence" shortlist built from languagebench translation ChrF, Arena AI Elo capability, OpenRouter endpoint speed, and catalog/models.dev pricing. Prefer that evidence over web search.
+The user message includes a deterministic "Benchmark evidence" shortlist built from languagebench translation ChrF, Arena Score capability, OpenRouter endpoint speed, and catalog/models.dev pricing. Prefer that evidence over web search.
 Use web search only for tie-breaking or checking whether a shortlisted model was recently deprecated — never to invent model ids.
 Once you have gathered enough information, your ENTIRE response MUST be ONLY the raw JSON object — no preamble, no explanation, no markdown, no commentary.
 The response must start with { and end with }. Any text outside the JSON object will cause a parse failure.
@@ -664,8 +664,8 @@ Selection guidelines:
 - For fast/quick/lightweight / "standard" presets: prefer the lowest-latency, best quality-per-dollar models for BOTH the primary and fallback. If the shortlist is already ordered by live timing, keep that order (first = primary, second = fallback).
 - Only suggest models that work with chat-style text generation (multi-turn messages in, assistant text out). Never pick completion-only, embedding, moderation, rerank, TTS, STT, or image-only models — they will fail at runtime with errors like "not a chat model" / "use v1/completions".
 - Prefer mainstream chat/instruct models. When unsure, pick the top shortlist entry for that provider.
-- For presets named or described as "advanced", "quality", or "best": prefer high ChrF / high Arena Elo shortlist entries; avoid the most expensive tier unless clearly superior on the scores shown.
-- For domain-specific presets (technical, legal, …): prefer shortlist entries with high Arena Elo / coding-oriented scores.`;
+- For presets named or described as "advanced", "quality", or "best": prefer high ChrF / high Arena Score shortlist entries; avoid the most expensive tier unless clearly superior on the scores shown.
+- For domain-specific presets (technical, legal, …): prefer shortlist entries with high Arena Score / coding-oriented scores.`;
 
 const SUGGEST_USER_PRESET_HEADER = "Preset to configure:";
 
@@ -682,7 +682,7 @@ const SUGGEST_USER_CATALOG_RULES = [
   "Only choose ids from the shortlist / catalogs below: they are already filtered to chat-compatible models for Transrewrt's translate/rewrite/transform workflow.",
   "Never suggest completion-only, embedding, audio, image, or rerank models (even if web search mentions them).",
   "Skip providers with an empty models array (shown: 0).",
-  "Cite the numeric scores (ChrF, Arena Elo, price, speed, or live duration) in the reason fields when available.",
+  "Cite the numeric scores (ChrF, Arena Score, price, speed, or live duration) in the reason fields when available.",
 ]
   .map((line) => `- ${line}`)
   .join("\n");
@@ -1098,7 +1098,7 @@ async function runSuggestModelsJobs({
 
   // Prefetch benchmark cache once so concurrent preset jobs share it.
   try {
-    emit({ type: "log", message: "Loading benchmark scores cache (languagebench + Arena Elo + models.dev)…" });
+    emit({ type: "log", message: "Loading benchmark scores cache (languagebench + Arena Score + models.dev)…" });
     const probe = await buildBenchmarkShortlists({
       root: ROOT,
       preset: presets[0] || { id: "standard", name: "Standard", description: "" },
@@ -2440,7 +2440,7 @@ server.on("listening", () => {
     `[presets-editor] OpenRouter models/pricing/performance cache: ${OPENROUTER_DISK_CACHE_PATH} (TTL ${OPENROUTER_DISK_TTL_MS / 3600000}h)`,
   );
   console.log(
-    `[presets-editor] Benchmark scores cache: ${BENCHMARK_SCORES_CACHE_PATH} (TTL 7d; languagebench + Arena Elo + models.dev)`,
+    `[presets-editor] Benchmark scores cache: ${BENCHMARK_SCORES_CACHE_PATH} (TTL 7d; languagebench + Arena Score + models.dev)`,
   );
   console.log(
     `[presets-editor] Live-timing cache: ${TIMING_CACHE_PATH} (TTL ${TIMING_CACHE_TTL_MS / 3600000}h)`,

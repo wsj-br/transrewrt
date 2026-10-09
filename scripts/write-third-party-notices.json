@@ -616,14 +616,14 @@
   "packageOverrides": {},
   "additionalNotices": [
     {
-      "name": "languagebench (fair-forward/languagebench)",
+      "name": "languagebench — AI model evaluations for every language",
       "licenses": "CC-BY-SA-4.0",
-      "licenseText": "languagebench evaluation results are used by the Transrewrt presets editor\nfor AI Suggestion model shortlisting (translation quality / ChrF).\n\nSource: https://huggingface.co/spaces/fair-forward/languagebench\nLicense: https://creativecommons.org/licenses/by-sa/4.0/legalcode\nPaper: https://arxiv.org/abs/2507.08538\n\nThis work is licensed under the Creative Commons Attribution-ShareAlike 4.0\nInternational License. To view a copy of this license, visit\nhttps://creativecommons.org/licenses/by-sa/4.0/ or send a letter to Creative\nCommons, PO Box 1866, Mountain View, CA 94042, USA."
+      "licenseText": "Creators: Fair Forward (GIZ); D. Pomerenke, J. Nothnagel, S. Ostermann\nLicense: CC BY-SA 4.0 — https://creativecommons.org/licenses/by-sa/4.0/\nSource: https://huggingface.co/spaces/fair-forward/languagebench\nPaper: https://arxiv.org/abs/2507.08538\nUse: translation scores (ChrF) are used on the maintainer's machine to\nshortlist model IDs. No dataset content is redistributed with Transrewrt.\nProvided as is, without warranties."
     },
     {
-      "name": "Arena AI (LMArena) leaderboard data",
+      "name": "Arena (formerly LMArena / LMSYS Chatbot Arena) leaderboard data",
       "licenses": "CC-BY-4.0",
-      "licenseText": "Model capability rankings (Arena Elo) from the Arena AI (formerly LMSYS\nChatbot Arena) text leaderboard are used by the Transrewrt presets editor for\nAI Suggestion model shortlisting.\n\nSource: https://arena.ai/leaderboard\nData snapshots: https://github.com/oolong-tea-2026/arena-ai-leaderboards\nLicense: https://creativecommons.org/licenses/by/4.0/legalcode\n\nThis data is licensed under the Creative Commons Attribution 4.0\nInternational License. To view a copy of this license, visit\nhttps://creativecommons.org/licenses/by/4.0/ or send a letter to Creative\nCommons, PO Box 1866, Mountain View, CA 94042, USA."
+      "licenseText": "License: CC BY 4.0 — https://creativecommons.org/licenses/by/4.0/\nSource: https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset\nUse: Arena Scores are used on the maintainer's machine to shortlist model\nIDs. No dataset content is redistributed with Transrewrt. No endorsement\nby Arena is implied. Provided as is, without warranties."
     },
     {
       "name": "models.dev",

@@ -5,8 +5,8 @@
  * restrict use to internal purposes and bar structured/machine-readable reuse
  * and "model/provider selection guidance", which is exactly this feature):
  *
- *  - languagebench (fair-forward, keyless)  → translation quality (ChrF)
- *  - Arena AI / LMArena Elo snapshots       → capability / intelligence axis
+ *  - languagebench (fair-forward Space JSON, keyless) → translation quality (ChrF)
+ *  - Arena / LMArena official HF dataset (text/latest, overall) → capability
  *  - OpenRouter endpoint performance        → speed (throughput, latency)
  *  - models.dev (MIT)                       → pricing fallback
  *  - provider-catalog pricing               → primary pricing
@@ -14,26 +14,25 @@
  * Attribution / licence per source is recorded in the cache payload `sources`.
  *
  * Attribution: https://huggingface.co/spaces/fair-forward/languagebench (CC-BY-SA-4.0)
- * Attribution: https://arena.ai/leaderboard (CC-BY-4.0 leaderboard data)
+ * Attribution: https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset (CC-BY-4.0)
  * Attribution: https://models.dev/ (MIT)
  */
 
 const fs = require("fs");
 const path = require("path");
 const { isTransrewrtWorkflowModel } = require("../../src/shared/presetsProviderCatalog.js");
+const arenaLeaderboardModule = import("./fetchArenaLeaderboard.mjs");
 
 const BENCHMARK_CACHE_TTL_MS = 7 * 24 * 60 * 60 * 1000;
+/** Bump when the on-disk cache shape or Arena source changes (invalidates old mirrors). */
+const BENCHMARK_CACHE_VERSION = 2;
 
 const LANGUAGEBENCH_RESULTS_URL =
   "https://huggingface.co/spaces/fair-forward/languagebench/resolve/main/results/results.json";
 const LANGUAGEBENCH_MODELS_URL =
   "https://huggingface.co/spaces/fair-forward/languagebench/resolve/main/results/models.json";
 
-// Arena AI / LMArena text leaderboard snapshots (community JSON mirror of arena.ai).
-// `latest.json` → { date, path }; then `data/{path}/text.json` → { meta, models }.
-const ARENA_SNAPSHOT_BASE =
-  "https://raw.githubusercontent.com/oolong-tea-2026/arena-ai-leaderboards/main/data";
-const ARENA_LATEST_URL = `${ARENA_SNAPSHOT_BASE}/latest.json`;
+const ARENA_DATASET_URL = "https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset";
 const ARENA_LEADERBOARD = "text";
 
 // models.dev open model registry (MIT) — pricing fallback for unpriced catalog SKUs.
@@ -142,6 +141,7 @@ function readDiskCache(cachePath) {
   try {
     if (!fs.existsSync(cachePath)) return null;
     const parsed = JSON.parse(fs.readFileSync(cachePath, "utf8"));
+    if (parsed?.cacheVersion !== BENCHMARK_CACHE_VERSION) return null;
     const lastUpdated = parseLastUpdated(parsed?.lastUpdated);
     if (!lastUpdated) return null;
     if (!parsed.languagebench || !Array.isArray(parsed.languagebench.results)) return null;
@@ -175,26 +175,13 @@ async function fetchJson(url, { headers = {}, timeoutMs = 120000 } = {}) {
 }
 
 /**
- * Fetch the Arena AI text leaderboard snapshot (licence: CC-BY-4.0 — arena.ai data).
- * Resolves `latest.json` to the current dated snapshot, then loads the text board.
- * @returns {Promise<{ models: object[], fetched: boolean, error: string|null, leaderboard: string, snapshotDate: string|null }>}
+ * Fetch the official Arena text/latest overall snapshot (CC-BY-4.0).
+ * @returns {Promise<{ models: object[], fetched: boolean, error: string|null, leaderboard: string, snapshotDate: string|null, parquetPath?: string|null }>}
  */
 async function fetchArenaTextSnapshot() {
   try {
-    const latest = await fetchJson(ARENA_LATEST_URL, { timeoutMs: 30000 });
-    const seg = String(latest?.path || latest?.date || "").trim();
-    if (!seg) throw new Error("arena snapshot latest.json has no path/date");
-    const snap = await fetchJson(`${ARENA_SNAPSHOT_BASE}/${seg}/${ARENA_LEADERBOARD}.json`, {
-      timeoutMs: 30000,
-    });
-    const models = Array.isArray(snap?.models) ? snap.models : [];
-    return {
-      models,
-      fetched: Boolean(models.length),
-      error: models.length ? null : "arena snapshot returned no models",
-      leaderboard: ARENA_LEADERBOARD,
-      snapshotDate: seg,
-    };
+    const { fetchArenaTextLatestOverall } = await arenaLeaderboardModule;
+    return await fetchArenaTextLatestOverall();
   } catch (e) {
     return {
       models: [],
@@ -202,6 +189,7 @@ async function fetchArenaTextSnapshot() {
       error: e.message || String(e),
       leaderboard: ARENA_LEADERBOARD,
       snapshotDate: null,
+      parquetPath: null,
     };
   }
 }
@@ -313,7 +301,8 @@ function normalizeMatchKey(raw) {
   // x-ai → xai for cross-source matching
   s = s.replace(/^x-ai\//, "xai/");
   s = s.replace(/~/g, "");
-  // drop common AA/LB suffixes that don't appear in catalog ids
+  // drop Arena display-name effort tags and common catalog suffixes
+  s = s.replace(/\s*\((?:x?high|max|low|medium|minimal|adaptive)\)\s*$/i, "");
   s = s
     .replace(/-(non-)?reasoning(-high|-low|-medium|-max|-minimal|-adaptive)?$/g, "")
     .replace(/-(high|low|medium|max|minimal|xhigh|preview|instant)(-\d{2}-\d{2})?$/g, "")
@@ -363,8 +352,15 @@ function keysForBenchmarkId(benchId) {
   return [...keys];
 }
 
+function stripArenaEffortTag(name) {
+  return String(name || "")
+    .replace(/\s*\((?:x?high|max|low|medium|minimal|adaptive)\)\s*$/i, "")
+    .trim();
+}
+
 /**
- * Normalised match keys for one Arena AI leaderboard row (`{ model, vendor }`).
+ * Normalised match keys for one Arena leaderboard row (`{ model, vendor }`).
+ * Display names like "Claude Opus 5.5 (High)" are keyed with and without the effort tag.
  * @param {object} row
  * @returns {string[]}
  */
@@ -375,9 +371,12 @@ function keysForArenaModel(row) {
     if (k) keys.add(k);
   };
   const model = String(row?.model || "");
+  const stripped = stripArenaEffortTag(model);
   const vendor = String(row?.vendor || "").toLowerCase();
   add(model);
+  add(stripped);
   if (vendor && model) add(`${vendor}/${model}`);
+  if (vendor && stripped) add(`${vendor}/${stripped}`);
   return [...keys];
 }
 
@@ -558,7 +557,7 @@ function enrichCatalogModels({
 
       let chrf = null;
       let lbCost = null;
-      let arenaElo = null;
+      let arenaScore = null;
       let tokensPerSec = null;
       let ttftSec = null;
       let mdPriceIn = null;
@@ -584,12 +583,12 @@ function enrichCatalogModels({
 
       const catKeys = keysForCatalogModel(engine, model);
       for (const key of catKeys) {
-        // Capability / intelligence: Arena AI Elo (highest match wins).
+        // Capability / intelligence: Arena Score (highest match wins).
         const arena = arenaByKeys.get(key);
         if (arena) {
-          const elo = Number(arena.score);
-          if (Number.isFinite(elo) && (arenaElo == null || elo > arenaElo)) {
-            arenaElo = elo;
+          const rating = Number(arena.score);
+          if (Number.isFinite(rating) && (arenaScore == null || rating > arenaScore)) {
+            arenaScore = rating;
             matchedArenaId = arena.model;
           }
         }
@@ -640,7 +639,7 @@ function enrichCatalogModels({
         catalogId,
         name: model.name || catalogId,
         chrf,
-        arena_elo: arenaElo,
+        arena_score: arenaScore,
         tokens_per_sec: tokensPerSec,
         ttft_sec: ttftSec,
         price_in: Number.isFinite(priceIn) ? priceIn : null,
@@ -649,7 +648,7 @@ function enrichCatalogModels({
         zero_price: catalogIsZeroPrice(model),
         matched_lb_id: matchedLbId,
         matched_arena_id: matchedArenaId,
-        has_any_score: chrf != null || arenaElo != null || tokensPerSec != null,
+        has_any_score: chrf != null || arenaScore != null || tokensPerSec != null,
       });
     }
   }
@@ -664,7 +663,7 @@ function scoreEnrichedList(list, profileName) {
   }
 
   const chrfVals = candidates.map((m) => m.chrf).filter((v) => v != null);
-  const intelVals = candidates.map((m) => m.arena_elo).filter((v) => v != null);
+  const intelVals = candidates.map((m) => m.arena_score).filter((v) => v != null);
   const priceVals = candidates
     .map((m) => m.blended_price)
     .filter((v) => v != null && v >= 0);
@@ -694,7 +693,7 @@ function scoreEnrichedList(list, profileName) {
           ? 0.35
           : 0.5;
     const intelN =
-      m.arena_elo != null && maxIntel > 0 ? clamp01(m.arena_elo / maxIntel) : 0.45;
+      m.arena_score != null && maxIntel > 0 ? clamp01(m.arena_score / maxIntel) : 0.45;
     let priceN = 0.5;
     if (m.blended_price != null && maxPrice > 0) {
       // lower price → higher score
@@ -743,7 +742,7 @@ function slimShortlistEntry(row) {
     name: row.name,
     score: Math.round(row.score * 1000) / 1000,
     chrf: row.chrf != null ? Math.round(row.chrf * 1000) / 1000 : null,
-    arena_elo: row.arena_elo != null ? Math.round(row.arena_elo) : null,
+    arena_score: row.arena_score != null ? Math.round(row.arena_score) : null,
     blended_price_per_1m: row.blended_price != null ? Math.round(row.blended_price * 1000) / 1000 : null,
     price_in: row.price_in != null ? Math.round(row.price_in * 1000) / 1000 : null,
     price_out: row.price_out != null ? Math.round(row.price_out * 1000) / 1000 : null,
@@ -786,15 +785,17 @@ async function ensureBenchmarkCache(opts) {
     if (!Array.isArray(lbResults)) throw new Error("languagebench results.json is not an array");
     if (!Array.isArray(lbModels)) throw new Error("languagebench models.json is not an array");
 
-    log("[benchmark-scores] Fetching Arena AI Elo + models.dev pricing…");
+    log("[benchmark-scores] Fetching Arena Score + models.dev pricing…");
     const [arena, modelsDev] = await Promise.all([
       fetchArenaTextSnapshot(),
       fetchModelsDevPricing(),
     ]);
     if (arena.fetched) {
-      log(`[benchmark-scores] Arena AI snapshot ${arena.snapshotDate}: ${arena.models.length} models`);
+      log(
+        `[benchmark-scores] Arena text/overall ${arena.snapshotDate || "undated"}: ${arena.models.length} models`,
+      );
     } else {
-      log(`[benchmark-scores] Arena AI fetch failed (continuing without Elo): ${arena.error}`);
+      log(`[benchmark-scores] Arena fetch failed (continuing without Arena Score): ${arena.error}`);
     }
     if (modelsDev.fetched) {
       log(`[benchmark-scores] models.dev pricing: ${Object.keys(modelsDev.pricing).length} keys`);
@@ -804,6 +805,7 @@ async function ensureBenchmarkCache(opts) {
 
     const bcp47 = collectTargetBcp47(opts.uiLanguagesPath);
     const payload = {
+      cacheVersion: BENCHMARK_CACHE_VERSION,
       lastUpdated: new Date().toISOString(),
       sources: {
         languagebench: {
@@ -813,10 +815,12 @@ async function ensureBenchmarkCache(opts) {
           license: "CC-BY-SA-4.0",
         },
         arena: {
-          url: `${ARENA_SNAPSHOT_BASE}/${arena.snapshotDate || ""}/${ARENA_LEADERBOARD}.json`,
-          leaderboard: arena.leaderboard,
+          url: ARENA_DATASET_URL,
+          parquetPath: arena.parquetPath || null,
+          leaderboard: arena.leaderboard || ARENA_LEADERBOARD,
+          category: "overall",
           snapshotDate: arena.snapshotDate,
-          attribution: "https://arena.ai/leaderboard",
+          attribution: ARENA_DATASET_URL,
           license: "CC-BY-4.0",
           fetched: arena.fetched,
           error: arena.error,
@@ -913,16 +917,16 @@ async function buildBenchmarkShortlists(opts) {
     if (m?.id) lbModelsById.set(m.id, m);
   }
 
-  // Capability / intelligence: Arena AI Elo (highest per normalised key wins).
+  // Capability / intelligence: Arena Score (highest per normalised key wins).
   /** @type {Map<string, object>} */
   const arenaByKeys = new Map();
   for (const row of cache.arena?.models || []) {
-    const elo = Number(row?.score);
-    if (!Number.isFinite(elo)) continue;
+    const rating = Number(row?.score);
+    if (!Number.isFinite(rating)) continue;
     for (const key of keysForArenaModel(row)) {
       const prev = arenaByKeys.get(key);
-      const prevElo = Number(prev?.score);
-      if (!prev || !Number.isFinite(prevElo) || elo > prevElo) arenaByKeys.set(key, row);
+      const prevScore = Number(prev?.score);
+      if (!prev || !Number.isFinite(prevScore) || rating > prevScore) arenaByKeys.set(key, row);
     }
   }
 
@@ -976,7 +980,7 @@ function formatShortlistEvidenceBlock(shortlistResult) {
     "Benchmark evidence (deterministic shortlist — prefer these over the full catalog):",
     `Profile: ${shortlistResult.profile}`,
     `Cache: ${shortlistResult.cacheLastUpdated || "unknown"}`,
-    "Sources: languagebench ChrF (translation) + Arena AI Elo (capability) + OpenRouter endpoint speed + models.dev/catalog pricing.",
+    "Sources: languagebench ChrF (translation) + Arena Score (capability) + OpenRouter endpoint speed + models.dev/catalog pricing.",
     "When a provider has a shortlist below, model_id and fallback_model_id MUST be chosen from that shortlist.",
     JSON.stringify(shortlistResult.shortlists),
   ];
@@ -1054,7 +1058,7 @@ function formatScoreReason(entry, prefix) {
   if (!entry) return prefix || "";
   const bits = [];
   if (entry.chrf != null) bits.push(`ChrF ${entry.chrf}`);
-  if (entry.arena_elo != null) bits.push(`Arena Elo ${entry.arena_elo}`);
+  if (entry.arena_score != null) bits.push(`Arena Score ${entry.arena_score}`);
   if (entry.blended_price_per_1m != null) bits.push(`~$${entry.blended_price_per_1m}/1M blended`);
   if (entry.tokens_per_sec != null) bits.push(`${entry.tokens_per_sec} tok/s`);
   if (entry.ttft_sec != null) bits.push(`TTFT ${entry.ttft_sec}s`);
@@ -1067,7 +1071,7 @@ function appendScoreAnnotation(reason, entry) {
   const ann = formatScoreReason(entry, "").trim();
   if (!ann) return base;
   if (!base) return ann.replace(/^\[/, "Scores [");
-  if (base.includes("ChrF") || base.includes("Arena Elo")) return base;
+  if (base.includes("ChrF") || base.includes("Arena Score")) return base;
   return `${base} ${ann}`.slice(0, 500);
 }
 
@@ -1128,6 +1132,7 @@ function suggestionsFromTimingPicks(enginePicks) {
 
 module.exports = {
   BENCHMARK_CACHE_TTL_MS,
+  BENCHMARK_CACHE_VERSION,
   defaultBenchmarkCachePath,
   ensureBenchmarkCache,
   buildBenchmarkShortlists,

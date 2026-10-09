@@ -11,10 +11,14 @@ Use conventional types (Added, Changed, Fixed, etc.) and short descriptions.
 
 ## Unreleased
 
+- **Changed**: Easy-mode AI Suggest fetches Arena Score from Hugging Face `lmarena-ai/leaderboard-dataset` (`text` / `latest` / `overall`) instead of the `oolong-tea-2026` GitHub mirror.
+- **Changed**: README acknowledgments and `NOTICES` state that languagebench and Arena scores are used only on the maintainer's machine and are not redistributed.
+- **Changed**: Docker build context ignores `presets-editor-*.json` caches so languagebench rows cannot enter the image.
+- **Changed**: Presets-editor UI, prompts, and shortlist field `arena_score` say “Arena Score” instead of “Elo”.
 - **Fixed**: Provider model lists collapse alias / same-name / duplicate-id rows (not only Mistral) and skip non-chat SKUs when the API reports that.
 - **Changed**: Non-OpenRouter call cost estimation and model-list pricing now use models.dev (bundled snapshot + 24h refresh) instead of OpenRouter catalog matching.
 - **Added**: xAI per-call cost uses billed `cost_in_usd_ticks` when the API returns it.
-- **Changed**: Easy-mode AI Suggest benchmark shortlist no longer uses Artificial Analysis (restrictive licence); capability now from Arena AI Elo, speed from OpenRouter endpoint performance, and price fallback from models.dev, alongside languagebench ChrF.
+- **Changed**: Easy-mode AI Suggest benchmark shortlist no longer uses Artificial Analysis (restrictive licence); capability now from Arena Score, speed from OpenRouter endpoint performance, and price fallback from models.dev, alongside languagebench ChrF.
 - **Changed**: Third-party notices and README acknowledgments drop Artificial Analysis and add Arena AI (CC-BY-4.0) and models.dev (MIT) data sources.
 - **Changed**: Dropped `glossary.uiGlossary` from `ai-i18n-tools.config.json`; `src/renderer/locales/strings.json` is the UI catalog and is included in doc glossary hints by default.
 - **Fixed**: `generate-test-data` reads OpenRouter model ids from `providers.openrouter.translationModels` in `ai-i18n-tools.config.json`.
