@@ -743,6 +743,7 @@ Models and fallbacks: `providers.openrouter.translationModels` in [ai-i18n-tools
 | Command                        | Purpose                                                                                                                                  |
 |--------------------------------|------------------------------------------------------------------------------------------------------------------------------------------|
 | `pnpm generate-test-data -- --web` or `-- --app` | Seed SQLite with sample API/history rows (exactly one of `--web` or `--app`) |
+| `pnpm pricing:update` | Refresh `src/shared/llm/modelsDevPricing.snapshot.json` from [models.dev](https://models.dev/) (`api.json`) |
 | `pnpm take-screenshots`        | Use Puppeteer to capture UI screenshots into `images/screenshots/` (copy into `website/public/images/screenshots/` for the site) |
 | `pnpm generate-banner`         | Write `images/transrewrt_banner.svg` and `.png`                                                                                          |
 | `./scripts/trim-ico-sizes.sh`  | Normalize provider `.ico` files under `src/renderer/assets/` to 16×16 + 32×32 only (ImageMagick; see [Provider icons](#provider-icons-trim-ico-sizes)) |

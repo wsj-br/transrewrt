@@ -81,7 +81,7 @@ Add with **Add**; remove with **X**. The OpenRouter free model is optional — s
 - **API Key Usage** — OpenRouter details when available
 - **Delete cost data** — all data or entries older than a date
 
-OpenRouter shows actual billed cost when applicable; other providers use estimates from OpenRouter pricing. Estimates are not invoices.
+OpenRouter and xAI show actual billed cost when the API returns it; other providers use estimates from [models.dev](https://models.dev/) pricing. Estimates are not invoices.
 
 :::caution
 Cost data deletion cannot be undone. Export via History or Dashboard → All Calls first if you need a backup. Related input/output history for those API calls is removed too.

@@ -24,7 +24,7 @@ module.exports = {
     splitChunks: false,
   },
   resolve: {
-    extensions: [".js"],
+    extensions: [".js", ".json"],
   },
   ignoreWarnings: [
     { module: /node_modules\/ws\/lib/ },

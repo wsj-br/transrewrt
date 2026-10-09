@@ -46,7 +46,7 @@ If KPIs are still zero after **All**, check [History](/docs/history/) or Dashboa
 
 ## Cost shows "not available" or seems wrong
 
-OpenRouter shows actual spend when applicable. For other providers, cost is estimated from OpenRouter pricing; if no price matches, cost shows as **not available** and is not added to the total.
+OpenRouter and xAI show actual spend when the API returns it. For other providers, cost is estimated from [models.dev](https://models.dev/) pricing; if no price matches, cost shows as **not available** and is not added to the total.
 
 ## Total cost does not match my provider bill
 

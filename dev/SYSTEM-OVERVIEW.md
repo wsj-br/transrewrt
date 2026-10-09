@@ -105,7 +105,7 @@ In web mode, provider API keys are stored only in server config or environment; 
 
 ## LLM integration and provider support
 
-The Node-side LLM stack uses the **[Vercel AI SDK](https://sdk.vercel.ai/)** (`streamText` from `ai`) with **`@ai-sdk/openai-compatible`** so every engine is reached over its OpenAI-compatible HTTP endpoint (pre-configured base URLs in [src/shared/llm/index.js](../src/shared/llm/index.js)). That module also owns **namespaced model ids**, **pricing cache**, and **OpenRouter** usage/cost handling (generation-id where applicable). The same module is required from **Electron main** ([llmIpc.js](../src/main/ipc/llmIpc.js)) and the **Express server** ([apiLlm.js](../src/server/routes/apiLlm.js)).
+The Node-side LLM stack uses the **[Vercel AI SDK](https://sdk.vercel.ai/)** (`streamText` from `ai`) with **`@ai-sdk/openai-compatible`** so every engine is reached over its OpenAI-compatible HTTP endpoint (pre-configured base URLs in [src/shared/llm/index.js](../src/shared/llm/index.js)). That module also owns **namespaced model ids**, **models.dev pricing** (bundled snapshot + 24h refresh), **OpenRouter** billed `usage.cost` (generation-id where applicable), and **xAI** billed `cost_in_usd_ticks`. The same module is required from **Electron main** ([llmIpc.js](../src/main/ipc/llmIpc.js)) and the **Express server** ([apiLlm.js](../src/server/routes/apiLlm.js)).
 
 **Supported engines** (each maps to a config key and optional env var - see `CONFIG_KEY_BY_ENGINE` / `ENV_KEY_BY_ENGINE` in `shared/llm/index.js`):
 
@@ -120,7 +120,7 @@ The Node-side LLM stack uses the **[Vercel AI SDK](https://sdk.vercel.ai/)** (`s
 
 **Model ids** must be **namespaced** (`engine/innerModelId`). Unknown engines are rejected at resolve time. **mergeKeys()** builds the credential map from **saved config plus `process.env`**, with **config winning** over env for the same logical key, so Docker/Electron can override env with UI-saved keys.
 
-**Pricing / “free” UI**: OpenRouter’s public model list can populate a **pricing cache** (TTL in code) for cost estimates; direct engines use cached or list pricing when available - see `modelPricingUtils` and CHANGELOG entries on “Cost not available” / free models.
+**Pricing / “free” UI**: OpenRouter and xAI use billed per-request cost when the API returns it. Other engines estimate from **models.dev** rates (`src/shared/llm/modelsDevPricing.js`, bundled snapshot + 24h refresh). Direct engines mark list prices as estimated - see `modelPricingUtils` and CHANGELOG entries on “Cost not available” / free models.
 
 **Temperature**: Chat completions omit `temperature` for GPT-5 / o-series and Claude 4.6+ models that reject non-default values, and retry once without it if a provider still rejects temperature at runtime.
 

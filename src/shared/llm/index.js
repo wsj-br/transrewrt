@@ -14,6 +14,11 @@ const {
   normalizeOpenRouterKeyErrorMessage,
 } = require("../apiErrorMessage.js");
 const { stripRedundantModelsPathSegment } = require("../presetModelIdUtils.js");
+const modelsDevPricing = require("./modelsDevPricing");
+const {
+  isChatCatalogModel,
+  collapseAliasedModelRows,
+} = require("./collapseAliasedModels");
 
 const OPENROUTER_BASE = "https://openrouter.ai/api/v1";
 
@@ -26,6 +31,9 @@ const ANTHROPIC_VERSION = "2023-06-01";
 
 /** Provider id used for OpenRouter-specific behaviour (routing field, exact cost, attribution). */
 const OPENROUTER_PROVIDER_KEY = "openrouter";
+
+/** Provider id used to surface xAI billed `cost_in_usd_ticks` through AI SDK metadata. */
+const XAI_PROVIDER_KEY = "xai";
 
 /** @type {string[]} ordered provider engine ids (canonical model id prefix). */
 const ENGINE_IDS = [
@@ -120,31 +128,6 @@ const ENV_KEY_BY_ENGINE = {
 
 /** In-memory catalog: engine -> Array<{ id, name, pricing? }> (from last getAllModels). */
 const catalogByEngine = {};
-
-/** OpenRouter list-models pricing: id -> { prompt, completion } as dollars per token. */
-let pricingCache = {
-  fetchedAt: 0,
-  keyFp: "",
-  byId: /** @type {Record<string, { prompt: number; completion: number }>} */ ({}),
-  /** lower-case OpenRouter model id -> canonical id key in byId (for case-insensitive match). */
-  byIdLower: /** @type {Record<string, string>} */ ({}),
-};
-
-/**
- * When several OpenRouter rows share the same trailing slug (e.g. `a/foo` and `b/foo`), prefer this vendor.
- * Used only for tie-breaking; primary match is by suffix after the last `/`.
- */
-const OPENROUTER_TIEBREAK_VENDOR_BY_ENGINE = {
-  google: "google",
-  openai: "openai",
-  anthropic: "anthropic",
-  deepseek: "deepseek",
-  groq: "groq",
-  mistralai: "mistralai",
-  xai: "x-ai",
-};
-
-const PRICING_TTL_MS = 24 * 60 * 60 * 1000;
 
 const FREE_INNER_ID = "openrouter/free";
 
@@ -540,141 +523,27 @@ async function isLocalLlmReachable(baseURL) {
   }
 }
 
-function keyFingerprint(openrouterKey) {
-  const k = (openrouterKey || "").trim();
-  if (!k) return "";
-  return `${k.length}:${k.slice(0, 6)}`;
-}
-
 /**
- * Refresh OpenRouter /models pricing map (24h TTL). The public endpoint returns pricing without auth;
- * if an API key is set, it is sent so the cache can match any key-specific behaviour. Previously we
- * skipped refresh when no key was configured, which left the cache empty and broke native-provider estimates.
- * @param {string} openrouterApiKey - optional; empty still fetches public catalog
+ * Estimate USD cost from models.dev input/output rates (per 1M tokens).
+ * @param {string} engine
+ * @param {string} innerModelId
+ * @param {{ prompt_tokens?: number, completion_tokens?: number }} usage
+ * @returns {number}
  */
-async function refreshOpenRouterPricingIfNeeded(openrouterApiKey) {
-  const key = (openrouterApiKey || "").trim();
-  const cacheMode = key ? `key:${keyFingerprint(key)}` : "public";
-  const now = Date.now();
-  if (
-    pricingCache.keyFp === cacheMode &&
-    now - pricingCache.fetchedAt < PRICING_TTL_MS &&
-    Object.keys(pricingCache.byId).length > 0
-  ) {
-    return;
-  }
-  try {
-    const headers = {
-      "HTTP-Referer": ATTRIBUTION_REFERER,
-      "X-Title": ATTRIBUTION_TITLE,
-    };
-    if (key) {
-      headers.Authorization = `Bearer ${key}`;
-    }
-    const res = await fetch(`${OPENROUTER_BASE}/models`, {
-      headers,
-    });
-    if (!res.ok) return;
-    const json = await res.json();
-    const rows = json.data || [];
-    const byId = {};
-    const byIdLower = {};
-    for (const row of rows) {
-      if (!row?.id) continue;
-      const p = parseFloat(row.pricing?.prompt);
-      const c = parseFloat(row.pricing?.completion);
-      byId[row.id] = {
-        prompt: Number.isFinite(p) ? p : 0,
-        completion: Number.isFinite(c) ? c : 0,
-      };
-      byIdLower[row.id.toLowerCase()] = row.id;
-    }
-    pricingCache = { fetchedAt: now, keyFp: cacheMode, byId, byIdLower };
-  } catch {
-    /* ignore */
-  }
-}
-
-/**
- * Normalize a model id segment so minor formatting differences still match the OpenRouter
- * catalog (e.g. `Qwen3 14B` vs `Qwen 3 14B`, hyphen vs space). Case-insensitive; strips
- * whitespace, hyphens, and underscores; keeps "." so `2.5` does not merge with `25`.
- * @param {string} s
- * @returns {string}
- */
-function normalizePricingSlugForMatch(s) {
-  return String(s || "")
-    .trim()
-    .toLowerCase()
-    .replace(/\s+/g, "")
-    .replace(/[-_]/g, "");
-}
-
-/**
- * Find OpenRouter /models pricing row by matching the trailing segment of each OpenRouter id
- * (e.g. `gemini-2.5-flash` matches `google/gemini-2.5-flash`). Case-insensitive on both sides.
- * If no exact suffix match, falls back to {@link normalizePricingSlugForMatch} on the suffix.
- * @param {string} engine - engine id (tie-break only when several vendors share one slug)
- * @param {string} innerModelId - model id from that provider's catalog
- * @returns {{ prompt: number, completion: number } | null}
- */
-function lookupOpenRouterPricingRow(engine, innerModelId) {
-  const id = String(innerModelId || "").trim();
-  const byId = pricingCache.byId;
-  if (!id || !byId || typeof byId !== "object") return null;
-
-  const direct = byId[id];
-  if (direct) return direct;
-
-  const lowerMap = pricingCache.byIdLower || {};
-  const canon = lowerMap[id.toLowerCase()];
-  if (canon && byId[canon]) return byId[canon];
-
-  const idLow = id.toLowerCase();
-  /** @type {string[]} */
-  let matches = [];
-  for (const k of Object.keys(byId)) {
-    const slash = k.lastIndexOf("/");
-    const suf = slash >= 0 ? k.slice(slash + 1) : k;
-    if (suf.toLowerCase() === idLow) {
-      matches.push(k);
-    }
-  }
-  if (matches.length === 0) {
-    const idNorm = normalizePricingSlugForMatch(id);
-    if (idNorm) {
-      for (const k of Object.keys(byId)) {
-        const slash = k.lastIndexOf("/");
-        const suf = slash >= 0 ? k.slice(slash + 1) : k;
-        if (normalizePricingSlugForMatch(suf) === idNorm) {
-          matches.push(k);
-        }
-      }
-    }
-  }
-  if (matches.length === 0) return null;
-  if (matches.length === 1) return byId[matches[0]];
-  const vendor = OPENROUTER_TIEBREAK_VENDOR_BY_ENGINE[engine];
-  if (vendor) {
-    const pfx = `${vendor}/`.toLowerCase();
-    const pref = matches.filter((k) => k.toLowerCase().startsWith(pfx));
-    if (pref.length === 1) return byId[pref[0]];
-  }
-  matches.sort();
-  return byId[matches[0]];
+function estimateCostDollars(engine, innerModelId, usage) {
+  return modelsDevPricing.estimateCostDollars(engine, innerModelId, usage);
 }
 
 /**
  * @param {string} engine
  * @param {string} innerModelId
- * @param {{ prompt_tokens?: number, completion_tokens?: number }} usage
+ * @param {{ prompt_tokens?: number, completion_tokens?: number }} accumulated
  */
-function estimateCostDollars(engine, innerModelId, usage) {
-  const row = lookupOpenRouterPricingRow(engine, innerModelId);
-  if (!row) return 0;
-  const pt = usage?.prompt_tokens ?? 0;
-  const ct = usage?.completion_tokens ?? 0;
-  return pt * row.prompt + ct * row.completion;
+async function estimateUsageFromModelsDev(engine, innerModelId, accumulated) {
+  await modelsDevPricing.refreshModelsDevPricingIfNeeded();
+  const pricingRow = modelsDevPricing.lookupProviderModelRow(engine, innerModelId);
+  const cost = estimateCostDollars(engine, innerModelId, accumulated);
+  return normalizeUsage(accumulated, cost, pricingRow != null);
 }
 
 /**
@@ -723,23 +592,58 @@ async function fetchModelsForEngine(engine, keysMap) {
     : Array.isArray(json.models)
       ? json.models
       : [];
-  return rows
-    .filter((row) => row && (row.id || row.name))
-    .map((row) => {
-      const rawId = String(row.id || row.name);
-      const id = stripRedundantModelsPathSegment(rawId);
-      /** @type {{ id: string, name: string, pricing?: { prompt: number, completion: number } }} */
-      const out = { id, name: row.name || id };
-      if (engine === "openrouter" && row.pricing != null) {
-        const p = parseFloat(row.pricing.prompt);
-        const c = parseFloat(row.pricing.completion);
-        out.pricing = {
-          prompt: Number.isFinite(p) ? p : 0,
-          completion: Number.isFinite(c) ? c : 0,
+  const prepared = collapseAliasedModelRows(
+    rows
+      .filter((row) => row && (row.id || row.name) && isChatCatalogModel(row))
+      .map((row) => {
+        const rawId = String(row.id || row.name);
+        const id = stripRedundantModelsPathSegment(rawId);
+        const aliases = Array.isArray(row.aliases)
+          ? row.aliases
+              .map((a) => stripRedundantModelsPathSegment(String(a || "")))
+              .filter(Boolean)
+          : [];
+        return {
+          id,
+          name: row.name ? String(row.name) : id,
+          aliases,
+          rawPricing: engine === "openrouter" ? row.pricing : undefined,
         };
-      }
-      return out;
-    });
+      }),
+  );
+  return prepared.map((row) => {
+    /** @type {{ id: string, name: string, aliases?: string[], pricing?: { prompt: number, completion: number } }} */
+    const out = { id: row.id, name: row.name || row.id };
+    if (Array.isArray(row.aliases) && row.aliases.length > 0) {
+      out.aliases = row.aliases;
+    }
+    if (engine === "openrouter" && row.rawPricing != null) {
+      const p = parseFloat(row.rawPricing.prompt);
+      const c = parseFloat(row.rawPricing.completion);
+      out.pricing = {
+        prompt: Number.isFinite(p) ? p : 0,
+        completion: Number.isFinite(c) ? c : 0,
+      };
+    }
+    return out;
+  });
+}
+
+/**
+ * @param {string} engine
+ * @param {string} innerModelId
+ * @param {string[]} [aliases]
+ * @returns {{ input: number, output: number } | null}
+ */
+function lookupEstimatedPricingRow(engine, innerModelId, aliases) {
+  const direct = modelsDevPricing.lookupProviderModelRow(engine, innerModelId);
+  if (direct) return direct;
+  if (!Array.isArray(aliases)) return null;
+  for (const alias of aliases) {
+    const row = modelsDevPricing.lookupProviderModelRow(engine, alias);
+    if (row) return row;
+  }
+  return null;
 }
 
 /**
@@ -748,7 +652,7 @@ async function fetchModelsForEngine(engine, keysMap) {
  */
 async function getAllModels(keysMap) {
   const orKey = (keysMap.openrouter_api_key || "").trim();
-  await refreshOpenRouterPricingIfNeeded(orKey);
+  await modelsDevPricing.refreshModelsDevPricingIfNeeded();
 
   const normalized = [];
 
@@ -790,11 +694,11 @@ async function getAllModels(keysMap) {
         prompt = m.pricing.prompt;
         completion = m.pricing.completion;
         pricingKnown = true;
-      } else if (engine !== "openrouter" && orKey) {
-        const est = lookupOpenRouterPricingRow(engine, m.id);
+      } else if (engine !== "openrouter") {
+        const est = lookupEstimatedPricingRow(engine, m.id, m.aliases);
         if (est) {
-          prompt = est.prompt;
-          completion = est.completion;
+          prompt = est.input / 1e6;
+          completion = est.output / 1e6;
           pricingKnown = true;
           pricingEstimated = true;
         }
@@ -887,7 +791,7 @@ async function fetchOpenRouterGenerationUsage(openrouterApiKey, generationId) {
 /**
  * @param {object} u
  * @param {number} cost
- * @param {boolean} [costKnown] - if false, UI should not treat $0 as "free" (no OpenRouter price match).
+ * @param {boolean} [costKnown] - if false, UI should not treat $0 as "free" (no pricing match).
  */
 function normalizeUsage(u, cost, costKnown) {
   const prompt_tokens = u?.prompt_tokens ?? 0;
@@ -935,6 +839,37 @@ const openRouterMetadataExtractor = {
 };
 
 /**
+ * xAI returns `usage.cost_in_usd_ticks` (1 USD = 1e10 ticks) on chat responses.
+ * Surface converted USD through `providerMetadata.xai.cost`.
+ * @type {import('@ai-sdk/openai-compatible').MetadataExtractor}
+ */
+const xaiMetadataExtractor = {
+  extractMetadata: ({ parsedBody }) => {
+    const body = parsedBody || {};
+    const ticks = body?.usage?.cost_in_usd_ticks ?? body?.cost_in_usd_ticks;
+    const cost = modelsDevPricing.costUsdFromXaiTicks(ticks);
+    return Promise.resolve(
+      typeof cost === "number" ? { [XAI_PROVIDER_KEY]: { cost } } : undefined,
+    );
+  },
+  createStreamExtractor: () => {
+    let cost;
+    return {
+      processChunk(chunk) {
+        const ticks = chunk?.usage?.cost_in_usd_ticks ?? chunk?.cost_in_usd_ticks;
+        const c = modelsDevPricing.costUsdFromXaiTicks(ticks);
+        if (typeof c === "number") cost = c;
+      },
+      buildMetadata() {
+        return typeof cost === "number"
+          ? { [XAI_PROVIDER_KEY]: { cost } }
+          : undefined;
+      },
+    };
+  },
+};
+
+/**
  * Build an OpenAI-compatible provider for the engine, applying OpenRouter routing/attribution/cost.
  * @param {string} engine
  * @param {Record<string, string>} keysMap
@@ -970,6 +905,8 @@ function buildSdkProvider(engine, keysMap) {
       provider: OPENROUTER_PROVIDER,
     });
     settings.metadataExtractor = openRouterMetadataExtractor;
+  } else if (engine === "xai") {
+    settings.metadataExtractor = xaiMetadataExtractor;
   }
   return createOpenAICompatible(settings);
 }
@@ -1071,8 +1008,8 @@ function silenceStreamResultSideEffects(result) {
 /**
  * Stream chat completions for any engine through the OpenAI-compatible AI SDK transport.
  * Emits text via `onText` and synthesized OpenAI-style SSE lines via `onSseLine`, then a final
- * usage line + `[DONE]`. Cost is exact for OpenRouter (provider metadata / generation lookup) and
- * estimated from the OpenRouter pricing catalog for other engines.
+ * usage line + `[DONE]`. Cost is exact for OpenRouter (`usage.cost`) and xAI
+ * (`cost_in_usd_ticks`); other engines are estimated from models.dev pricing.
  *
  * If the provider rejects `temperature`, the call is retried once without that parameter
  * (model default), so translate/benchmark flows keep working on gpt-5-mini / Claude Opus 4.7+.
@@ -1217,11 +1154,15 @@ async function streamCompletion(canonicalModelId, messages, opts, handlers = {})
       }
     }
     usage = normalizeUsage(accumulated, cost ?? 0, true);
+  } else if (engine === "xai") {
+    const metaCost = providerMetadata?.[XAI_PROVIDER_KEY]?.cost;
+    if (typeof metaCost === "number" && Number.isFinite(metaCost)) {
+      usage = normalizeUsage(accumulated, metaCost, true);
+    } else {
+      usage = await estimateUsageFromModelsDev(engine, innerModelId, accumulated);
+    }
   } else {
-    await refreshOpenRouterPricingIfNeeded((keysMap.openrouter_api_key || "").trim());
-    const pricingRow = lookupOpenRouterPricingRow(engine, innerModelId);
-    const cost = estimateCostDollars(engine, innerModelId, accumulated);
-    usage = normalizeUsage(accumulated, cost, pricingRow != null);
+    usage = await estimateUsageFromModelsDev(engine, innerModelId, accumulated);
   }
 
   if (onSseLine) {
@@ -1259,7 +1200,6 @@ module.exports = {
   streamCompletion,
   fetchOpenRouterGenerationUsage,
   catalogByEngine,
-  refreshOpenRouterPricingIfNeeded,
   estimateCostDollars,
   OPENROUTER_BASE,
 };

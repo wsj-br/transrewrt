@@ -85,6 +85,6 @@ The server speaks plain HTTP. If you expose it beyond localhost or a trusted net
 
 ## Cost display
 
-OpenRouter returns exact billed cost when applicable. Other providers use **estimated** cost from OpenRouter’s public model pricing when an OpenRouter key is available. Estimates are not invoices.
+OpenRouter and xAI return exact billed cost when the API includes it. Other providers use **estimated** cost from [models.dev](https://models.dev/) public model pricing. Estimates are not invoices.
 
 For Settings UI (fonts, models, history, backups), see [Settings](/docs/settings/).

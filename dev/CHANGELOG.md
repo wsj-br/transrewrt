@@ -11,6 +11,9 @@ Use conventional types (Added, Changed, Fixed, etc.) and short descriptions.
 
 ## Unreleased
 
+- **Fixed**: Provider model lists collapse alias / same-name / duplicate-id rows (not only Mistral) and skip non-chat SKUs when the API reports that.
+- **Changed**: Non-OpenRouter call cost estimation and model-list pricing now use models.dev (bundled snapshot + 24h refresh) instead of OpenRouter catalog matching.
+- **Added**: xAI per-call cost uses billed `cost_in_usd_ticks` when the API returns it.
 - **Changed**: Dropped `glossary.uiGlossary` from `ai-i18n-tools.config.json`; `src/renderer/locales/strings.json` is the UI catalog and is included in doc glossary hints by default.
 - **Fixed**: `generate-test-data` reads OpenRouter model ids from `providers.openrouter.translationModels` in `ai-i18n-tools.config.json`.
 - **Fixed**: Website `i18n:translate`, `i18n:translate:ui`, and `i18n:locales` scripts so the root `website:i18n:*` wrappers resolve.
