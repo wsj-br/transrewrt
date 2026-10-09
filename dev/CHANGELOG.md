@@ -11,6 +11,8 @@ Use conventional types (Added, Changed, Fixed, etc.) and short descriptions.
 
 ## Unreleased
 
+- **Changed**: Easy-mode AI Suggest benchmark shortlist no longer uses Artificial Analysis (restrictive licence); capability now from Arena AI Elo, speed from OpenRouter endpoint performance, and price fallback from models.dev, alongside languagebench ChrF.
+- **Changed**: Third-party notices and README acknowledgments drop Artificial Analysis and add Arena AI (CC-BY-4.0) and models.dev (MIT) data sources.
 - **Changed**: Dropped `glossary.uiGlossary` from `ai-i18n-tools.config.json`; `src/renderer/locales/strings.json` is the UI catalog and is included in doc glossary hints by default.
 - **Fixed**: `generate-test-data` reads OpenRouter model ids from `providers.openrouter.translationModels` in `ai-i18n-tools.config.json`.
 - **Fixed**: Website `i18n:translate`, `i18n:translate:ui`, and `i18n:locales` scripts so the root `website:i18n:*` wrappers resolve.

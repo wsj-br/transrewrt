@@ -39,7 +39,7 @@ The current design is **hybrid**:
                              ▼
 ┌─────────────────────────────────────────────────────────────────┐
 │  Prefetch provider catalogs (disk cache, 2h TTL)                 │
-│  Warm benchmark scores cache (languagebench + Artificial Analysis)│
+│  Warm benchmark scores cache (languagebench + Arena Elo + models.dev)│
 └────────────────────────────┬────────────────────────────────────┘
                              │ for each selected preset (concurrency 2)
                              ▼
@@ -67,12 +67,14 @@ Cancel mid-run aborts the HTTP stream; the server stops further live-timing and 
 |--------|------|--------|--------|
 | **Provider catalogs** | Allowed model ids + per-token pricing when available | Provider APIs (keys in env) | `presets-editor-provider-catalogs.json` (2h) |
 | **languagebench** ([fair-forward](https://huggingface.co/spaces/fair-forward/languagebench)) | Translation quality: mean **ChrF** over `translation_from` / `translation_to` for UI-related languages | Public Hugging Face Space JSON (no key) | Inside `presets-editor-benchmark-cache.json` (7d) |
-| **Artificial Analysis** ([Data API](https://artificialanalysis.ai/api-reference)) | Intelligence index, tokens/s, time-to-first-token, fallback pricing | `ARTIFICIAL_INTELLIGENCE_API_KEY` | Same 7d benchmark cache |
+| **Arena AI / LMArena Elo** ([arena.ai](https://arena.ai/leaderboard), community JSON snapshot) | Capability / intelligence axis (human-preference Elo) | Public GitHub snapshot (no key) | Same 7d benchmark cache |
+| **models.dev** ([models.dev](https://models.dev/)) | Pricing fallback for unpriced catalog SKUs | Public `api.json` (no key) | Same 7d benchmark cache |
+| **OpenRouter endpoint performance** | Speed axis: per-model throughput / latency | OpenRouter disk cache (see README) | `presets-editor-openrouter-cache.json` (6h) |
 | **Live translate timing** | Real end-to-end duration via the app’s `streamCompletion` path | Same provider keys as the app | `presets-editor-timing-cache.json` (2h) |
 
-Attribution: languagebench is CC-BY-SA-4.0; Artificial Analysis requires attribution when using their free API data.
+Attribution / licence: languagebench is CC-BY-SA-4.0; Arena AI leaderboard data is CC-BY-4.0 (carry attribution if surfaced); models.dev is MIT. Each is recorded in the cache payload `sources` block.
 
-If Artificial Analysis is unavailable (missing key or fetch error), shortlists still build from languagebench + catalog pricing. If the whole benchmark cache fetch fails, suggestion falls back to the older catalog-only LLM behaviour (with a log warning).
+The capability axis was previously sourced from Artificial Analysis. That source was removed because its Data Platform terms restrict use to internal purposes and bar structured/machine-readable reuse and "model/provider selection guidance" — which is what this pipeline does. If a source is unavailable (fetch error), shortlists still build from the remaining sources (languagebench + catalog pricing, etc.). If the whole benchmark cache fetch fails, suggestion falls back to the older catalog-only LLM behaviour (with a log warning).
 
 ---
 
@@ -83,8 +85,8 @@ Each preset is mapped to a profile from its id / name / description keywords (`r
 | Profile | Typical presets | What we optimise for | Shortlist size | Live timing |
 |---------|-----------------|----------------------|----------------|-------------|
 | **standard** | `standard`, “fast”, “lightweight”, “cost-efficient” | Price + speed, quality above a floor | 4 | Yes (top 4 timed; 2 fastest become primary/fallback) |
-| **advanced** | `advanced`, “quality”, “best”, “high-accuracy” | ChrF + AA intelligence | 5 | No |
-| **technical** | `technical`, code/docs oriented | AA intelligence first, then ChrF | 5 | No |
+| **advanced** | `advanced`, “quality”, “best”, “high-accuracy” | ChrF + Arena Elo | 5 | No |
+| **technical** | `technical`, code/docs oriented | Arena Elo first, then ChrF | 5 | No |
 | **free** | free / zero-cost wording | Zero-price catalog entries | 5 | No |
 
 ### Weights (summary)
@@ -93,7 +95,7 @@ Each preset is mapped to a profile from its id / name / description keywords (`r
 - **advanced**: quality 0.45, intelligence 0.35, price 0.15, speed 0.05.
 - **technical**: quality 0.25, intelligence 0.50, price 0.15, speed 0.10.
 
-Metrics are normalised within the provider’s candidate pool, then combined with those weights. Catalog blended price prefers real non-zero provider pricing; if the catalog reports `$0` for an unpriced SKU, Artificial Analysis / languagebench cost is used instead.
+Metrics are normalised within the provider’s candidate pool, then combined with those weights. Catalog blended price prefers real non-zero provider pricing; if the catalog reports `$0` for an unpriced SKU, models.dev / languagebench cost is used instead.
 
 ### Languages used for ChrF
 
@@ -105,9 +107,9 @@ Mean ChrF is restricted to BCP-47 codes that correspond to the app’s UI locale
 
 Benchmark sources and provider catalogs do not share one id scheme. The scorer:
 
-1. Normalises strings (strip engine prefix, dots↔dashes, date suffixes, AA effort suffixes, `x-ai`→`xai`, …).
+1. Normalises strings (strip engine prefix, dots↔dashes, date suffixes, effort/reasoning suffixes, `x-ai`→`xai`, …).
 2. Builds a match index from every **chat-compatible** catalog model (`isTransrewrtWorkflowModel`).
-3. Maps languagebench / AA ids onto catalog ids; a small curated alias table covers awkward leftovers (e.g. DeepSeek date suffixes, some Grok / Haiku variants).
+3. Maps languagebench / Arena ids onto catalog ids; a small curated alias table covers awkward leftovers (e.g. DeepSeek date suffixes, some Grok / Haiku variants).
 
 Only models that exist in that provider’s catalog shortlist are suggested. Embedding, moderation, TTS/STT (including Groq Orpheus), image/video specialty, prompt-guard, multi-agent, and similar non-chat SKUs are excluded so they never enter the shortlist or live-timing queue.
 
@@ -166,7 +168,7 @@ Expected JSON shape (per provider):
 |------|-----|----------|
 | `presets-editor-provider-catalogs.json` | 2h | Per-engine model lists + pricing |
 | `presets-editor-openrouter-cache.json` | 6h | OpenRouter models / endpoint performance (picker & Performance page) |
-| `presets-editor-benchmark-cache.json` | 7d | languagebench results + models + Artificial Analysis snapshot |
+| `presets-editor-benchmark-cache.json` | 7d | languagebench results + models + Arena Elo snapshot + models.dev pricing |
 | `presets-editor-timing-cache.json` | 2h | Per `(engine, model_id, sample fingerprint)` live-timing rows |
 
 Delete a cache file (or wait for TTL) to force a refresh. Benchmark warm-up and timing hits/misses are logged on the AI Suggestion run page.
@@ -178,8 +180,9 @@ Delete a cache file (or wait for TTL) to force a refresh. Benchmark warm-up and 
 | Variable | Required for AI Suggestion |
 |----------|----------------------------|
 | `OPENROUTER_API_KEY` | Yes (suggestion models + web search) |
-| `ARTIFICIAL_INTELLIGENCE_API_KEY` | Recommended (AA intelligence/speed); optional |
 | Per-provider keys (`OPENAI_API_KEY`, `ANTHROPIC_API_KEY`, `GOOGLE_API_KEY`, …) | Needed for that provider’s **live timing**; shortlists still build without them |
+
+Benchmark data sources (languagebench, Arena Elo, models.dev) are fetched keyless — no extra API key is required for AI Suggest scoring.
 
 The presets-editor process reads **only** `process.env` (source `.env` in the shell before `pnpm run presets-editor`).
 
@@ -201,12 +204,12 @@ AI Suggestion does **not** change presets until you save from the review step.
 **Strengths**
 
 - Quality-per-dollar is explicit (e.g. a Flash-class model can outrank a Pro-class model on the standard profile).
-- Standard presets optimise for **felt** latency via live translate timing, not only AA tok/s.
+- Standard presets optimise for **felt** latency via live translate timing, not only OpenRouter tok/s.
 - Catalog id enforcement avoids invented slugs.
 
 **Limits**
 
-- languagebench / AA coverage is incomplete; many catalog models have null ChrF or intelligence and rely on price/speed heuristics.
+- languagebench / Arena coverage is incomplete; many catalog models have null ChrF or Arena Elo and rely on price/speed heuristics.
 - Live timing uses one Portuguese→English sample; it is a latency proxy, not a full quality eval.
 - WMT human evals and commercial scoreboards are **not** ingested (no stable machine-readable feed for this pipeline).
 - Shortlist size and weights are constants in `benchmark-scores.js`—tune there if product priorities change.
@@ -232,5 +235,5 @@ AI Suggestion does **not** change presets until you save from the review step.
 
 - Prefer **standard** live timing when changing default Easy models: cache makes a second pass cheap within two hours.
 - After adding a new Easy preset type, extend `PROFILE_BY_PRESET` / keyword heuristics and weights in `benchmark-scores.js`.
-- If a good model never appears, check: catalog membership, workflow filter, id aliasing, and whether languagebench/AA expose a matchable id.
+- If a good model never appears, check: catalog membership, workflow filter, id aliasing, and whether languagebench/Arena expose a matchable id.
 - Cost of a full run: OpenRouter suggestion calls (± web search) plus, on cache miss, up to ~4 translate calls × number of keyed providers for each standard preset.

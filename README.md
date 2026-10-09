@@ -79,7 +79,8 @@ Open an issue on [GitHub](https://github.com/wsj-br/transrewrt/issues). Include 
 Easy-mode preset suggestions in the presets editor use public evaluation data from:
 
 - [languagebench](https://huggingface.co/spaces/fair-forward/languagebench) (CC BY-SA 4.0)
-- [Artificial Analysis](https://artificialanalysis.ai/) (attribution required for API data)
+- [Arena AI](https://arena.ai/leaderboard) (CC BY 4.0)
+- [models.dev](https://models.dev/) (MIT)
 
 Third-party dependency licenses and these data-source notices are listed in [NOTICES](NOTICES).
 
