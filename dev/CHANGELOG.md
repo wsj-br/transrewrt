@@ -11,7 +11,7 @@ Use conventional types (Added, Changed, Fixed, etc.) and short descriptions.
 
 ## Unreleased
 
-## [1.6.4] - 2026-10-10
+## [1.6.4] - 2026-10-11
 
 - **Fixed**: `pnpm release:github` recognises pnpm 12's native `npm_execpath` binary instead of launching it with `node`.
 - **Changed**: Marketing homepage lists unsigned macOS DMGs (Apple Silicon and Intel) alongside Windows, Linux, and Docker.
