@@ -20,7 +20,8 @@
 
 const fs = require("fs");
 const path = require("path");
-const { isTransrewrtWorkflowModel } = require("../../src/shared/presetsProviderCatalog.js");
+const { sharedRequire } = require("./paths.js");
+const { isTransrewrtWorkflowModel } = sharedRequire("presetsProviderCatalog.js");
 const arenaLeaderboardModule = import("./fetchArenaLeaderboard.mjs");
 
 const BENCHMARK_CACHE_TTL_MS = 7 * 24 * 60 * 60 * 1000;
@@ -751,6 +752,37 @@ function slimShortlistEntry(row) {
   };
 }
 
+/** Full ranked row for deterministic replacement (not sent to the suggestion LLM). */
+function slimRankedEntry(row) {
+  return {
+    ...slimShortlistEntry(row),
+    below_floor: Boolean(row.belowFloor),
+    zero_price: Boolean(row.zero_price),
+  };
+}
+
+/**
+ * Cheapest models.dev blended $/1M for a catalog or benchmark id.
+ * @param {Record<string, { input?: number|null, output?: number|null }>|null|undefined} pricingByKey
+ * @param {string} modelId
+ * @returns {number|null}
+ */
+function blendedPriceFromModelsDev(pricingByKey, modelId) {
+  const table = pricingByKey && typeof pricingByKey === "object" ? pricingByKey : {};
+  let best = null;
+  for (const key of keysForBenchmarkId(modelId)) {
+    const md = table[key];
+    if (!md) continue;
+    const input = Number(md.input);
+    const output = Number(md.output);
+    if (!Number.isFinite(input) && !Number.isFinite(output)) continue;
+    const blended =
+      (3 * (Number.isFinite(input) ? input : 0) + (Number.isFinite(output) ? output : 0)) / 4;
+    if (best == null || blended < best) best = blended;
+  }
+  return best;
+}
+
 /**
  * Fetch (or load cached) benchmark datasets.
  * @param {{ root: string, cachePath?: string, force?: boolean, log?: (msg: string) => void, uiLanguagesPath?: string }} opts
@@ -884,10 +916,12 @@ async function ensureBenchmarkCache(opts) {
  *   openRouterPerformance?: Record<string, object|null>,
  *   log?: (msg: string) => void,
  *   forceRefresh?: boolean,
+ *   profile?: string,
  * }} opts
  */
 async function buildBenchmarkShortlists(opts) {
-  const profile = resolveProfile(opts.preset);
+  const profile =
+    opts.profile && PROFILE_CONFIG[opts.profile] ? opts.profile : resolveProfile(opts.preset);
   const cfg = PROFILE_CONFIG[profile] || PROFILE_CONFIG.standard;
 
   let cache;
@@ -905,6 +939,8 @@ async function buildBenchmarkShortlists(opts) {
       error: e.message || String(e),
       profile,
       shortlists: {},
+      rankedByEngine: {},
+      modelsDevPricing: {},
       cacheLastUpdated: null,
     };
   }
@@ -949,8 +985,11 @@ async function buildBenchmarkShortlists(opts) {
 
   /** @type {Record<string, object[]>} */
   const shortlists = {};
+  /** @type {Record<string, object[]>} */
+  const rankedByEngine = {};
   for (const [engine, list] of Object.entries(enriched)) {
     const scored = scoreEnrichedList(list, profile);
+    rankedByEngine[engine] = scored.map(slimRankedEntry);
     const top = scored.slice(0, cfg.shortlistSize).map(slimShortlistEntry);
     if (top.length) shortlists[engine] = top;
   }
@@ -960,6 +999,8 @@ async function buildBenchmarkShortlists(opts) {
     profile,
     timingCandidates: cfg.timingCandidates,
     shortlists,
+    rankedByEngine,
+    modelsDevPricing: cache.modelsDev?.pricing || {},
     cacheLastUpdated: cache.lastUpdated || null,
     targetBcp47: bcp47,
     sources: cache.sources || null,
@@ -1136,6 +1177,7 @@ module.exports = {
   defaultBenchmarkCachePath,
   ensureBenchmarkCache,
   buildBenchmarkShortlists,
+  blendedPriceFromModelsDev,
   formatShortlistEvidenceBlock,
   enforceShortlistOnSuggestions,
   applyLiveTimingToShortlist,

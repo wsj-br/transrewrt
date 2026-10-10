@@ -1,11 +1,13 @@
 /**
- * Dev presets-editor: translate benchmark per Easy-mode preset (per-provider main + fallback).
+ * Translate benchmark per Easy-mode preset (per-provider main + fallback).
  * Same prompts and streamCompletion path as the main app translate flow.
+ * Shared by the presets editor and presets-check.
  */
 
-const { mergeKeys, streamCompletion, engineConfigured, ENV_KEY_BY_ENGINE } = require("../../src/shared/llm");
-const { streamTextChunkToString } = require("../../src/shared/llm/streamDeltaContent");
-const prompts = require("../../src/config-defaults/prompts.json");
+const { sharedRequire, promptsJsonPath } = require("./paths.js");
+const { mergeKeys, streamCompletion, engineConfigured, ENV_KEY_BY_ENGINE } = sharedRequire("llm/index.js");
+const { streamTextChunkToString } = sharedRequire("llm/streamDeltaContent.js");
+const prompts = require(promptsJsonPath());
 const {
   defaultTimingCachePath,
   getCachedTiming,

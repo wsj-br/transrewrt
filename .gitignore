@@ -50,7 +50,10 @@ presets-editor-*.log
 # dev presets-check (local config + log)
 dev/presets-check/config.json
 dev/presets-check/presets-check.log
+dev/presets-check/presets-check.lock
 dev/presets-check/provider-catalogs-cache.json
+dev/presets-check/catalog-sanity.json
+dev/presets-check/presets-editor-timing-cache.json
 
 
 

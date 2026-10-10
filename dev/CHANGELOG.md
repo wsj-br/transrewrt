@@ -11,6 +11,8 @@ Use conventional types (Added, Changed, Fixed, etc.) and short descriptions.
 
 ## Unreleased
 
+- **Changed**: presets-check replaces unavailable Easy-mode models from the shared benchmark shortlist (languagebench ChrF, Arena Score, price, and speed) without calling an LLM, and falls back to guarded fuzzy matching.
+- **Fixed**: presets-check skips suspect provider catalogs, caps how many ids one run can replace, checks top-level translation and suggestion models, and hardens git push, locking, log growth, and failure notifications.
 - **Changed**: Easy-mode AI Suggest fetches Arena Score from Hugging Face `lmarena-ai/leaderboard-dataset` (`text` / `latest` / `overall`) instead of the `oolong-tea-2026` GitHub mirror.
 - **Changed**: README acknowledgments and `NOTICES` state that languagebench and Arena scores are used only on the maintainer's machine and are not redistributed.
 - **Changed**: Docker build context ignores `presets-editor-*.json` caches so languagebench rows cannot enter the image.

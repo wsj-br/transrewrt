@@ -2,9 +2,9 @@
 
 Report on the data sources behind the deterministic shortlist in the presets editor's **AI Suggest** flow, the licensing problem with Artificial Analysis, and candidate providers that could replace or back it up.
 
-> **Status:** The plan below is now implemented. Artificial Analysis is retired; the capability axis uses Arena Score from the official Hugging Face dataset [`lmarena-ai/leaderboard-dataset`](https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset) (`text` / `latest` / `overall`), speed uses OpenRouter endpoint performance, price falls back to models.dev, and translation quality stays on languagebench. See [`benchmark-scores.js`](benchmark-scores.js) and [`../ai-suggestion-model-selection.md`](../ai-suggestion-model-selection.md) for the live behaviour. This document is retained as the supporting analysis.
+> **Status:** The plan below is now implemented. Artificial Analysis is retired; the capability axis uses Arena Score from the official Hugging Face dataset [`lmarena-ai/leaderboard-dataset`](https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset) (`text` / `latest` / `overall`), speed uses OpenRouter endpoint performance, price falls back to models.dev, and translation quality stays on languagebench. See [`benchmark-scores.js`](../presets-shared/benchmark-scores.js) and [`../ai-suggestion-model-selection.md`](../ai-suggestion-model-selection.md) for the live behaviour. This document is retained as the supporting analysis.
 
-Related code: [`benchmark-scores.js`](benchmark-scores.js). Pipeline description: [`../ai-suggestion-model-selection.md`](../ai-suggestion-model-selection.md). Editor overview: [`README.md`](README.md).
+Related code: [`benchmark-scores.js`](../presets-shared/benchmark-scores.js). Pipeline description: [`../ai-suggestion-model-selection.md`](../ai-suggestion-model-selection.md). Editor overview: [`README.md`](README.md).
 
 ---
 
@@ -22,7 +22,7 @@ Related code: [`benchmark-scores.js`](benchmark-scores.js). Pipeline description
 Two more data paths already exist in the project and are **not** Artificial Analysis:
 
 - **OpenRouter endpoint performance** ([`openRouterDiskCache.js`](openRouterDiskCache.js)) — per-model P90 latency/throughput, 6h TTL, feeds the picker and Performance page.
-- **Live translate timing** ([`timingCache.js`](timingCache.js), [`translatePresetsBenchmark.js`](translatePresetsBenchmark.js)) — real end-to-end duration on a PT→EN sample, 2h TTL.
+- **Live translate timing** ([`timingCache.js`](../presets-shared/timingCache.js), [`translatePresetsBenchmark.js`](../presets-shared/translatePresetsBenchmark.js)) — real end-to-end duration on a PT→EN sample, 2h TTL.
 
 So the only axes that **depend** on Artificial Analysis are the **intelligence index** and the **speed** median. Price has fallbacks, quality comes from languagebench. Those two axes are what any replacement must cover.
 

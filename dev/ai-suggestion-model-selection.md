@@ -24,6 +24,8 @@ The current design is **hybrid**:
 
 `free-router` is never included in AI Suggestion.
 
+The same deterministic shortlist is shared with the cron checker in [`presets-check/README.md`](presets-check/README.md). When a preset model id disappears from a provider catalog, that job picks a same-family successor from the scored list, then a shortlist rank, then a guarded fuzzy match. Top-level translation and suggestion models are replaced only by a same-family successor.
+
 ---
 
 ## High-level flow
@@ -222,10 +224,10 @@ AI Suggestion does **not** change presets until you save from the review step.
 
 | Path | Role |
 |------|------|
-| [`dev/presets-editor/benchmark-scores.js`](presets-editor/benchmark-scores.js) | Fetch/cache benchmarks, profile scoring, shortlists, shortlist enforcement |
-| [`dev/presets-editor/fetchArenaLeaderboard.mjs`](presets-editor/fetchArenaLeaderboard.mjs) | Official Arena parquet fetch (`text` / `latest` / `overall`) |
-| [`dev/presets-editor/timingCache.js`](presets-editor/timingCache.js) | 2h live-timing disk cache |
-| [`dev/presets-editor/translatePresetsBenchmark.js`](presets-editor/translatePresetsBenchmark.js) | Translate sample + candidate timing |
+| [`dev/presets-shared/benchmark-scores.js`](presets-shared/benchmark-scores.js) | Fetch/cache benchmarks, profile scoring, shortlists, shortlist enforcement. Shared with presets-check. |
+| [`dev/presets-shared/fetchArenaLeaderboard.mjs`](presets-shared/fetchArenaLeaderboard.mjs) | Official Arena parquet fetch (`text` / `latest` / `overall`) |
+| [`dev/presets-shared/timingCache.js`](presets-shared/timingCache.js) | 2h live-timing disk cache |
+| [`dev/presets-shared/translatePresetsBenchmark.js`](presets-shared/translatePresetsBenchmark.js) | Translate sample + candidate timing |
 | [`dev/presets-editor/server.js`](presets-editor/server.js) | Suggest API, prompts, job orchestration, cancel, NDJSON stream |
 | [`dev/presets-editor/public/app.js`](presets-editor/public/app.js) | Setup / run / review UI |
 | [`src/shared/presetsProviderCatalog.js`](../src/shared/presetsProviderCatalog.js) | Chat-compatible model filter (`isTransrewrtWorkflowModel`) |

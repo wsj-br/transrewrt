@@ -35,4 +35,18 @@ function localRequire(moduleName) {
   return require(path.join(__dirname, moduleName));
 }
 
-module.exports = { getRuntimeRoot, getMonorepoRoot, sharedRequire, localRequire };
+function presetsSharedRequire(moduleName) {
+  const runtime = getRuntimeRoot();
+  if (runtime) {
+    return require(path.join(runtime, "lib", "presets-shared", moduleName));
+  }
+  return require(path.join(__dirname, "..", "presets-shared", moduleName));
+}
+
+module.exports = {
+  getRuntimeRoot,
+  getMonorepoRoot,
+  sharedRequire,
+  localRequire,
+  presetsSharedRequire,
+};

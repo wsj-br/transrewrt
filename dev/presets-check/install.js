@@ -24,6 +24,19 @@ const PRESET_CHECK_SCRIPTS = [
   "log.js",
   "ntfy.js",
   "paths.js",
+  "selectReplacement.js",
+  "catalogSanity.js",
+  "circuitBreaker.js",
+  "lock.js",
+  "modelRefs.js",
+];
+
+const PRESETS_SHARED_FILES = [
+  "paths.js",
+  "benchmark-scores.js",
+  "fetchArenaLeaderboard.mjs",
+  "timingCache.js",
+  "translatePresetsBenchmark.js",
 ];
 
 const SHARED_FILES = [
@@ -34,10 +47,14 @@ const SHARED_FILES = [
   "openRouterProviderRouting.js",
   "llm/index.js",
   "llm/estimateMaxTokens.js",
+  "llm/modelsDevPricing.js",
+  "llm/modelsDevPricing.snapshot.json",
+  "llm/collapseAliasedModels.js",
+  "llm/streamDeltaContent.js",
 ];
 
-/** Runtime deps mirrored from the monorepo (Vercel AI SDK stack). */
-const RUNTIME_DEP_NAMES = ["ai", "@ai-sdk/openai-compatible"];
+/** Runtime deps mirrored from the monorepo (Vercel AI SDK stack + Arena parquet reader). */
+const RUNTIME_DEP_NAMES = ["ai", "@ai-sdk/openai-compatible", "hyparquet"];
 
 function parseInstallArgs(argv) {
   const out = { target: null, force: false, help: false };
@@ -192,7 +209,12 @@ function main() {
     fs.rmSync(libDir, { recursive: true, force: true });
   }
   copyDirFiles(__dirname, libDir, PRESET_CHECK_SCRIPTS);
+  copyDirFiles(path.join(MONOREPO_ROOT, "dev", "presets-shared"), path.join(libDir, "presets-shared"), PRESETS_SHARED_FILES);
   copyDirFiles(path.join(MONOREPO_ROOT, "src", "shared"), sharedDir, SHARED_FILES);
+  copyFile(
+    path.join(MONOREPO_ROOT, "src", "config-defaults", "prompts.json"),
+    path.join(libDir, "config-defaults", "prompts.json"),
+  );
 
   const configPath = path.join(target, "config.json");
   if (!fs.existsSync(configPath)) {

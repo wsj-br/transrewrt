@@ -149,7 +149,7 @@ const {
   BENCHMARK_TARGET_LANG,
   defaultTimingCachePath,
   TIMING_CACHE_TTL_MS,
-} = require("./translatePresetsBenchmark.js");
+} = require("../presets-shared/translatePresetsBenchmark.js");
 const {
   defaultBenchmarkCachePath,
   buildBenchmarkShortlists,
@@ -158,7 +158,7 @@ const {
   applyLiveTimingToShortlist,
   suggestionsFromTimingPicks,
   resolveProfile,
-} = require("./benchmark-scores.js");
+} = require("../presets-shared/benchmark-scores.js");
 const {
   parsePresetsJson,
   bumpPatchVersion,

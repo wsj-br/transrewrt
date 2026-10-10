@@ -16,7 +16,7 @@
     "start:server": "cross-env NEXT_TELEMETRY_DISABLED=1 ASTRO_TELEMETRY_DISABLED=1 node scripts/check-node-version.js",
     "start:server:rebuild": "pnpm run postinstall && pnpm run start:server",
     "serve": "pnpm run build-renderer && pnpm run start:server",
-    "test": "node --test src/shared/llm/*.test.js",
+    "test": "node --test src/shared/llm/*.test.js dev/presets-check/*.test.js",
     "pricing:update": "node scripts/update-models-dev-pricing.mjs",
     "lint": "eslint . && pnpm run typecheck",
     "lint:fix": "eslint . --fix",

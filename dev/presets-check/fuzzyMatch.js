@@ -110,11 +110,39 @@ function scoreCandidate(unavailableId, engine, candidateId) {
   return { score: baseRatio + bonus, baseRatio };
 }
 
-function isBetterCandidate(a, b) {
-  if (!b) return true;
-  if (a.score !== b.score) return a.score > b.score;
-  if (a.baseRatio !== b.baseRatio) return a.baseRatio > b.baseRatio;
-  return false;
+/**
+ * Rank catalog ids by string similarity. Ties keep catalog order.
+ * @param {string} engine
+ * @param {string} unavailableId
+ * @param {Array<{ id: string, displayId?: string, name?: string }>} catalogModels
+ * @param {{ minScore?: number, limit?: number }} [opts]
+ * @returns {{ candidates: Array<{ id: string, score: number, baseRatio: number }>, bestScore: number }}
+ */
+function rankFuzzyCandidates(engine, unavailableId, catalogModels, opts = {}) {
+  const minScore = typeof opts.minScore === "number" ? opts.minScore : 0.55;
+  const limit = typeof opts.limit === "number" ? opts.limit : 8;
+  const list = Array.isArray(catalogModels) ? catalogModels : [];
+  const canonicalUnavailable = String(unavailableId || "").trim();
+
+  /** @type {Array<{ id: string, score: number, baseRatio: number }>} */
+  const ranked = [];
+  for (const m of list) {
+    if (!m || typeof m.id !== "string") continue;
+    if (m.id === canonicalUnavailable) continue;
+    if (!isTransrewrtWorkflowModel(m)) continue;
+    const { score, baseRatio } = scoreCandidate(canonicalUnavailable, engine, m.id);
+    ranked.push({ id: m.id, score, baseRatio });
+  }
+  ranked.sort((a, b) => {
+    if (a.score !== b.score) return b.score - a.score;
+    if (a.baseRatio !== b.baseRatio) return b.baseRatio - a.baseRatio;
+    return 0;
+  });
+  const bestScore = ranked.length ? ranked[0].score : 0;
+  return {
+    candidates: ranked.filter((row) => row.score >= minScore).slice(0, limit),
+    bestScore,
+  };
 }
 
 /**
@@ -125,37 +153,16 @@ function isBetterCandidate(a, b) {
  * @returns {{ replacement: string | null, score: number, bestScore: number }}
  */
 function findFuzzyReplacement(engine, unavailableId, catalogModels, opts = {}) {
-  const minScore = typeof opts.minScore === "number" ? opts.minScore : 0.55;
-  const list = Array.isArray(catalogModels) ? catalogModels : [];
-  const canonicalUnavailable = String(unavailableId || "").trim();
-
-  let best = null;
-  /** @type {{ score: number, baseRatio: number, id: string } | null} */
-  let bestRank = null;
-  let bestScore = 0;
-
-  for (const m of list) {
-    if (!m || typeof m.id !== "string") continue;
-    if (m.id === canonicalUnavailable) continue;
-    if (!isTransrewrtWorkflowModel(m)) continue;
-
-    const { score, baseRatio } = scoreCandidate(canonicalUnavailable, engine, m.id);
-    const rank = { score, baseRatio, id: m.id };
-    if (isBetterCandidate(rank, bestRank)) {
-      bestRank = rank;
-      bestScore = score;
-      best = m.id;
-    }
-  }
-
-  if (best && bestScore >= minScore) {
-    return { replacement: best, score: bestScore, bestScore };
+  const { candidates, bestScore } = rankFuzzyCandidates(engine, unavailableId, catalogModels, opts);
+  if (candidates.length) {
+    return { replacement: candidates[0].id, score: candidates[0].score, bestScore };
   }
   return { replacement: null, score: 0, bestScore };
 }
 
 module.exports = {
   findFuzzyReplacement,
+  rankFuzzyCandidates,
   normalizeForCompare,
   modelFamilyKey,
   levenshteinRatio,

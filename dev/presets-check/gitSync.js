@@ -6,12 +6,19 @@ const { spawnSync } = require("child_process");
 const path = require("path");
 
 function git(cwd, args, opts = {}) {
+  const timeout = typeof opts.timeout === "number" ? opts.timeout : 120000;
   const r = spawnSync("git", args, {
     cwd,
     encoding: "utf8",
+    timeout,
     stdio: opts.capture !== false ? "pipe" : "inherit",
   });
-  if (r.error) throw r.error;
+  if (r.error) {
+    if (r.error.code === "ETIMEDOUT") {
+      throw new Error(`git ${args.join(" ")} timed out after ${timeout}ms`);
+    }
+    throw r.error;
+  }
   if (r.status !== 0 && !opts.allowFail) {
     const msg = (r.stderr || r.stdout || "").trim();
     throw new Error(`git ${args.join(" ")} failed (${r.status}): ${msg.slice(0, 500)}`);
@@ -65,6 +72,14 @@ function hasPresetsFileChanges(repoDir, presetsFile) {
  * Commit and push only presets.json.
  * @returns {{ commit: string, pushed: boolean }}
  */
+function stagedNames(repoDir, timeout) {
+  const staged = git(repoDir, ["diff", "--cached", "--name-only"], { timeout });
+  return String(staged.stdout || "")
+    .split("\n")
+    .map((line) => line.trim())
+    .filter(Boolean);
+}
+
 function commitAndPushPresetsFile(repoDir, opts = {}) {
   const branch = opts.branch || opts.github?.branch || "main";
   const presetsFile = opts.presetsFile || "easy-mode-config/presets.json";
@@ -72,24 +87,46 @@ function commitAndPushPresetsFile(repoDir, opts = {}) {
   const lines = Array.isArray(opts.changeLines) ? opts.changeLines : [];
   const body = lines.length ? `\n\n${lines.map((l) => `- ${l}`).join("\n")}` : "";
   const message = `${prefix} [presets-check]${body}`;
+  const timeout = typeof opts.gitTimeoutMs === "number" ? opts.gitTimeoutMs : 120000;
 
   if (opts.github) configureGitRemote(repoDir, opts.github);
 
-  git(repoDir, ["add", "--", presetsFile]);
-  git(repoDir, ["commit", "-m", message]);
+  if (!hasPresetsFileChanges(repoDir, presetsFile)) {
+    return { commit: null, pushed: false, skipped: true };
+  }
 
-  git(repoDir, ["fetch", "origin", branch]);
-  const rebase = git(repoDir, ["pull", "--rebase", "origin", branch], { allowFail: true });
+  git(repoDir, ["add", "--", presetsFile], { timeout });
+  const names = stagedNames(repoDir, timeout);
+  if (names.length !== 1 || names[0] !== presetsFile) {
+    git(repoDir, ["reset", "HEAD", "--", presetsFile], { timeout, allowFail: true });
+    throw new Error(
+      `Refusing to commit unexpected staged files: ${names.join(", ") || "(none)"}`,
+    );
+  }
+  git(repoDir, ["commit", "-m", message], { timeout });
+
+  git(repoDir, ["fetch", "origin", branch], { timeout });
+  const rebase = git(repoDir, ["pull", "--rebase", "origin", branch], { timeout, allowFail: true });
   if (rebase.status !== 0) {
+    git(repoDir, ["rebase", "--abort"], { timeout, allowFail: true });
     const msg = (rebase.stderr || rebase.stdout || "").trim();
     throw new Error(`git pull --rebase before push failed: ${msg.slice(0, 500)}`);
   }
 
-  const head = git(repoDir, ["rev-parse", "--short", "HEAD"]);
+  const push = git(repoDir, ["push", "origin", `HEAD:${branch}`], { timeout, allowFail: true });
+  if (push.status !== 0) {
+    const msg = (push.stderr || push.stdout || "").trim();
+    const race = /non-fast-forward|fetch first|rejected/i.test(msg);
+    if (race && typeof opts.writeFile === "function" && opts.fileContents && !opts._retried) {
+      git(repoDir, ["reset", "--hard", `origin/${branch}`], { timeout });
+      opts.writeFile(opts.fileContents);
+      return commitAndPushPresetsFile(repoDir, { ...opts, _retried: true });
+    }
+    throw new Error(`git push failed (${push.status}): ${msg.slice(0, 500)}`);
+  }
+
+  const head = git(repoDir, ["rev-parse", "--short", "HEAD"], { timeout });
   const commit = (head.stdout || "").trim();
-
-  git(repoDir, ["push", "origin", `HEAD:${branch}`]);
-
   return { commit, pushed: true };
 }
 

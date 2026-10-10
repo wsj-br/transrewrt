@@ -85,14 +85,25 @@ A `fetch first` / `non-fast-forward` rejection means **SSH worked** but the clon
 
 1. **Fetch** latest `main` into the isolated clone (`git fetch` + `reset --hard origin/main`)
 2. **Refresh** provider catalogs (OpenRouter is public; other engines need API keys)
-3. **Check** all `model_ids` and `fallback_ids` per preset
-4. **Replace** unavailable ids with the best fuzzy match (same engine, min score 0.55 by default)
-5. **Write** updated `presets.json`, bump patch `version` and `updated_at`
-6. **Commit + push** only `easy-mode-config/presets.json` (never `git add -A`)
-7. **Log** JSON-lines to `presets-check.log`
-8. **Notify** via NTFY for each replacement and each unresolved failure
+3. **Sanity-check** each catalog against the last good model count (`catalog-sanity.json`). A configured engine with an empty list, or a list under half the last good count, is **suspect**: that engine is skipped and the run alerts. Delete `catalog-sanity.json` to reset the baseline after a real catalog shrink.
+4. **Check** preset `model_ids` and `fallback_ids`, plus top-level `translation_model`, `translation_model_fallback`, `suggestion_model`, and `suggestion_model_fallback`
+5. **Replace** unavailable preset ids with no LLM call, in this order:
+   - same-family successor on the benchmark scored list (above the profile quality floor)
+   - benchmark shortlist rank for that preset’s profile (languagebench ChrF, Arena Score, catalog/models.dev price, optional OpenRouter speed)
+   - guarded fuzzy match (minimum score 0.55) when the shortlist is missing or empty
+6. **Keep** a free preset (`free-router`) on zero-price ids, keep primary and fallback distinct, and reject a candidate whose blended price is more than `maxPriceRatio` times the old model’s price when that price is known
+7. **Smoke-test** each chosen replacement with one tiny translate when that provider’s API key is set (`verifyReplacements`, including dry-run). A failure tries the next candidate. `--no-verify` skips this.
+8. **Stop** without writing if a run would change more than `maxReplacementsPerRun` ids (default 6) or more than `maxReplacementsPerEngine` on one provider (default 3)
+9. **Write** updated `presets.json`, bump patch `version` (major.minor aligned with the app version) and `updated_at`, then re-read the file before commit
+10. **Commit + push** only `easy-mode-config/presets.json` (never `git add -A`), with a git timeout, rebase abort on failure, and one retry if the push is rejected
+11. **Log** JSON-lines to `presets-check.log` (trimmed around 2 MB)
+12. **Notify** once via NTFY with the run summary. Fatal errors notify too. Set `ntfy.heartbeat` to also notify when every id is fine.
 
-Engines without a loaded catalog (missing API key) are **skipped**, not treated as unavailable.
+Top-level translation and suggestion models are replaced only by a same-family successor (OpenRouter `~…-latest` aliases match the family stem). They are never swapped for an unrelated shortlist id.
+
+Engines without a loaded catalog (missing API key) are **skipped**, not treated as unavailable. A pid lock (`presets-check.lock`) makes a second overlapping run exit without doing work.
+
+Benchmark and timing caches in the installed runtime sit in the runtime root, outside the git clone. A local run reuses the presets editor’s benchmark cache at the repo root. Scoring code lives in `dev/presets-shared/` and is shared with the presets editor. See [AI Suggestion model selection](../ai-suggestion-model-selection.md).
 
 ## CLI options
 
@@ -102,6 +113,11 @@ Engines without a loaded catalog (missing API key) are **skipped**, not treated 
 | `--dry-run`       | Check and notify only; no file write or git push      |
 | `--local`         | Use monorepo `easy-mode-config/presets.json`; skip git |
 | `--config <path>` | Config JSON path                                      |
+| `--explain`       | Print candidates, scores, and the chosen source       |
+| `--preset <id>`   | Check one preset (repeatable). Skips top-level fields |
+| `--engine <id>`   | Check one provider (repeatable)                       |
+| `--no-benchmark`  | Guarded fuzzy match only; do not load benchmark data  |
+| `--no-verify`     | Do not smoke-test replacement ids                     |
 
 
 ## Environment
@@ -115,7 +131,21 @@ Engines without a loaded catalog (missing API key) are **skipped**, not treated 
 | `PRESET_CHECK_NTFY_SERVER` | Default `https://ntfy.sh`                                                 |
 | `PRESET_CHECK_NTFY_TOKEN`  | Optional NTFY auth                                                        |
 | `GITHUB_TOKEN`            | PAT for git push (HTTPS mode only; not used when `github.useSsh` is true) |
-| `OPENROUTER_API_KEY`, …   | Same as main app / presets editor                                          |
+| `OPENROUTER_API_KEY`, …   | Same as main app / presets editor. Needed to smoke-test that provider. Benchmark sources themselves are keyless. |
+
+### Config keys
+
+| Key | Default | Purpose |
+| --- | ------- | ------- |
+| `minMatchScore` | `0.55` | Minimum fuzzy score |
+| `maxPriceRatio` | `3` | Reject a replacement costing more than this times the old model, when the old price is known |
+| `maxReplacementsPerRun` | `6` | Circuit breaker for the whole run |
+| `maxReplacementsPerEngine` | `3` | Circuit breaker for one provider |
+| `catalogShrinkRatio` | `0.5` | Suspect a catalog smaller than this fraction of the last good count |
+| `verifyReplacements` | `true` | Smoke-test replacements when an API key is set |
+| `openRouterSpeed` | `false` | Use `presets-editor-openrouter-cache.json` for the speed axis when that file already exists |
+| `gitTimeoutMs` | `120000` | Timeout for each git command |
+| `ntfy.heartbeat` | `false` | Notify when every checked id is available |
 
 
 ## Exit codes

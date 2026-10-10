@@ -12,6 +12,13 @@ const DEFAULT_CONFIG = {
   catalogCachePath: "provider-catalogs-cache.json",
   logPath: "presets-check.log",
   minMatchScore: 0.55,
+  maxPriceRatio: 3,
+  maxReplacementsPerRun: 6,
+  maxReplacementsPerEngine: 3,
+  catalogShrinkRatio: 0.5,
+  verifyReplacements: true,
+  openRouterSpeed: false,
+  gitTimeoutMs: 120000,
   github: {
     owner: "wsj-br",
     repo: "transrewrt",
@@ -25,6 +32,7 @@ const DEFAULT_CONFIG = {
     topic: "",
     authToken: null,
     priority: "default",
+    heartbeat: false,
   },
 };
 
