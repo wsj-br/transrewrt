@@ -30,6 +30,7 @@
     "build:main": "cross-env NEXT_TELEMETRY_DISABLED=1 ASTRO_TELEMETRY_DISABLED=1 node node_modules/webpack/bin/webpack.js --config webpack.main.config.js",
     "package": "pnpm run build && pnpm run build:main && node scripts/write-build-timestamp.js && node scripts/electron-rebuild.js && electron-builder",
     "package-arm64": "pnpm run build && pnpm run build:main && node scripts/write-build-timestamp.js && node scripts/electron-rebuild.js && pnpm exec electron-builder --linux AppImage --arm64 --publish never --config build/electron-builder.linux-arm64.cjs",
+    "package-mac": "pnpm run build && pnpm run build:main && node scripts/write-build-timestamp.js && node scripts/electron-rebuild.js && pnpm exec electron-builder --mac dmg --publish never",
     "generate-test-data": "node scripts/generate-test-data.js",
     "i18n:sync": "ai-i18n-tools sync",
     "i18n:status": "ai-i18n-tools status",
@@ -74,7 +75,7 @@
   "engines": {
     "node": ">=24.0.0"
   },
-  "packageManager": "pnpm@12.10.1",
+  "packageManager": "pnpm@12.11.2",
   "build": {
     "appId": "br.com.wsj.transrewrt",
     "productName": "Transrewrt",
@@ -143,6 +144,22 @@
         }
       ],
       "artifactName": "${productName}-${version}-${arch}.${ext}"
+    },
+    "mac": {
+      "category": "public.app-category.productivity",
+      "icon": "transrewrt_logo_512x512.png",
+      "identity": null,
+      "hardenedRuntime": false,
+      "artifactName": "${productName}-${version}-${arch}.${ext}",
+      "target": [
+        {
+          "target": "dmg"
+        }
+      ]
+    },
+    "dmg": {
+      "title": "${productName} ${version}",
+      "icon": "transrewrt_logo_512x512.png"
     },
     "nsis": {
       "include": "build/installer.nsh",

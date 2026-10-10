@@ -495,7 +495,7 @@ const createWindow = () => {
   mainWindow.setMenuBarVisibility(false);
 
   mainWindow.webContents.on("before-input-event", (event, input) => {
-    if (input.control && input.shift && input.key.toLowerCase() === "i") {
+    if ((input.control || input.meta) && input.shift && input.key.toLowerCase() === "i") {
       mainWindow.webContents.toggleDevTools();
     } else if (input.key === "F12") {
       mainWindow.webContents.toggleDevTools();
@@ -545,7 +545,7 @@ const createSettingsWindow = () => {
   settingsWindow.setMinimumSize(780, 300);
 
   settingsWindow.webContents.on("before-input-event", (event, input) => {
-    if (input.control && input.shift && input.key.toLowerCase() === "i") {
+    if ((input.control || input.meta) && input.shift && input.key.toLowerCase() === "i") {
       settingsWindow.webContents.toggleDevTools();
     } else if (input.key === "F12") {
       settingsWindow.webContents.toggleDevTools();

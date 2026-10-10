@@ -155,9 +155,19 @@ _upgrade_tools() {
   npm install -g npm@latest
 
   # Ensure the package manager, npm-check-updates and doctoc are installed and current.
+  # npm 12 skips install scripts unless the package is named in --allow-scripts.
+  # pnpm 12's script replaces its Node.js placeholder with the native binary.
   upgrade_log "📦  Upgrading ${PKG_MGR}, npm-check-updates and doctoc..."
   if [ "$PKG_MGR" = "npm" ]; then
     npm install -g npm-check-updates doctoc
+  elif [ "$PKG_MGR" = "pnpm" ]; then
+    local npm_major
+    npm_major=$(npm --version 2>/dev/null | cut -d. -f1)
+    if [ "${npm_major:-0}" -ge 12 ] 2>/dev/null; then
+      npm install -g --allow-scripts=pnpm pnpm npm-check-updates doctoc
+    else
+      npm install -g pnpm npm-check-updates doctoc
+    fi
   else
     npm install -g "$PKG_MGR" npm-check-updates doctoc
   fi

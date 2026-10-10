@@ -9,6 +9,7 @@ description: Config file locations, Docker environment variables, privacy mode, 
 | --- | --- |
 | Electron (Windows) | `%APPDATA%\transrewrt\` |
 | Electron (Linux) | `~/.config/transrewrt/` |
+| Electron (macOS) | `~/Library/Application Support/transrewrt/` |
 | Web / Docker | `/app/data/` (use a volume to persist) |
 
 The data folder holds everything worth backing up:

@@ -1,7 +1,8 @@
 # Build and publish all deliverables: Windows NSIS, Linux AppImage (x64 + arm64),
-# multi-arch Docker (GHCR), and the marketing/docs site to GitHub Pages.
+# unsigned macOS DMG (arm64 + x64), multi-arch Docker (GHCR), and the marketing/docs site to GitHub Pages.
 # Trigger: GitHub Release published or manual workflow_dispatch (with optional 'tag_as_latest').
-# Uses native runners (no QEMU): amd64 on ubuntu-latest, arm64 on ubuntu-24.04-arm.
+# Uses native runners (no QEMU): amd64 on ubuntu-latest, arm64 on ubuntu-24.04-arm,
+# Apple Silicon on macos-latest, Intel on macos-15-intel.
 
 name: Release
 
@@ -149,6 +150,52 @@ jobs:
           name: Transrewrt-AppImage-${{ needs.prepare.outputs.version }}-${{ matrix.electron_arch }}
           path: release/*.AppImage
 
+  build-macos:
+    name: macOS (DMG, ${{ matrix.electron_arch }})
+    needs: prepare
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - electron_arch: arm64
+            runner: macos-latest
+          - electron_arch: x64
+            runner: macos-15-intel
+    runs-on: ${{ matrix.runner }}
+    env:
+      CSC_IDENTITY_AUTO_DISCOVERY: "false"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v6
+
+      - name: Setup Node
+        uses: actions/setup-node@v7
+        with:
+          node-version: "24"
+          cache: "pnpm"
+
+      - name: Install dependencies
+        run: pnpm install
+
+      # Host arch matches the runner (arm64 on macos-latest, x64 on macos-15-intel),
+      # so electron-rebuild compiles better-sqlite3 for that arch. No universal binary.
+      - name: Build and package (macOS, ${{ matrix.electron_arch }})
+        run: |
+          pnpm run build
+          pnpm run build:main
+          node scripts/write-build-timestamp.js
+          node scripts/electron-rebuild.js
+          pnpm exec electron-builder --mac dmg --${{ matrix.electron_arch }} --publish never
+
+      - name: Upload DMG
+        uses: actions/upload-artifact@v7
+        with:
+          name: Transrewrt-dmg-${{ needs.prepare.outputs.version }}-${{ matrix.electron_arch }}
+          path: release/*.dmg
+
   build-docker:
     name: Docker (${{ matrix.platform }})
     needs: prepare
@@ -261,7 +308,7 @@ jobs:
   publish-release-assets:
     name: Publish GitHub Release assets
     runs-on: ubuntu-latest
-    needs: [prepare, build-windows, build-linux]
+    needs: [prepare, build-windows, build-linux, build-macos]
     if: github.event_name == 'release'
     permissions:
       contents: write
@@ -282,6 +329,7 @@ jobs:
           files: |
             release-assets/**/*.exe
             release-assets/**/*.AppImage
+            release-assets/**/*.dmg
 
   # Marketing site + docs → https://wsj-br.github.io/transrewrt/
   # Dispatch website-pages on main (not workflow_call): release runs are tied to the

@@ -169,9 +169,22 @@ function Invoke-UpgradeTools {
         Write-UpgradeLog '📦  Upgrading npm to the latest version...'
         npm install -g npm@latest
 
+        # npm 12 skips install scripts unless the package is named in --allow-scripts.
+        # pnpm 12's script replaces its Node.js placeholder with the native binary.
         Write-UpgradeLog "📦  Upgrading ${pkgMgr}, npm-check-updates and doctoc..."
         if ($pkgMgr -eq 'npm') {
             npm install -g npm-check-updates doctoc
+        }
+        elseif ($pkgMgr -eq 'pnpm') {
+            $npmMajor = 0
+            $npmVer = npm --version 2>$null
+            if ($npmVer -match '^(\d+)') { $npmMajor = [int]$Matches[1] }
+            if ($npmMajor -ge 12) {
+                npm install -g --allow-scripts=pnpm pnpm npm-check-updates doctoc
+            }
+            else {
+                npm install -g pnpm npm-check-updates doctoc
+            }
         }
         else {
             npm install -g $pkgMgr npm-check-updates doctoc

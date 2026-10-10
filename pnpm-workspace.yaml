@@ -92,7 +92,9 @@ overrides:
   qs: '>=6.14.2'
   minimatch: '>=10.2.1'
   lodash: '>=4.18.0'
-  '@xmldom/xmldom': '>=0.8.13'
+  # plist@3.1.0 (electron-builder macOS Info.plist) calls parseFromString without a mimeType.
+  # @xmldom/xmldom 0.9 requires one and breaks `electron-builder --mac`. Stay on patched 0.8.x.
+  '@xmldom/xmldom': '>=0.8.13 <0.9.0'
   uuid: '>=14.0.0'
   postcss: '>=8.5.10'
   js-yaml: ^4.2.0

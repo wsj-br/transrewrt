@@ -7,10 +7,10 @@
 <p align="center">
   <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.3-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
-  <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
+  <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20macOS%20%7C%20Docker-lightgrey" alt="Platform">
 </p>
 
-AI-powered text tool for **translate**, **rewrite**, and **transform** with custom prompts. Use your own AI providers (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, OpenAI-compatible endpoints, and local servers such as Ollama, LM Studio, or llama.cpp). Run as a desktop app (Windows / Linux) or a Docker web app. No Transrewrt cloud account.
+AI-powered text tool for **translate**, **rewrite**, and **transform** with custom prompts. Use your own AI providers (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, OpenAI-compatible endpoints, and local servers such as Ollama, LM Studio, or llama.cpp). Run as a desktop app (Windows / Linux / macOS) or a Docker web app. No Transrewrt cloud account.
 
 ## Features
 
@@ -52,6 +52,14 @@ Replace `PROVIDER_API_KEY` with your provider variable (for example `OPENROUTER_
 chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage
 ```
 
+**macOS** — Download the `.dmg` for your Mac from [Releases](https://github.com/wsj-br/transrewrt/releases): `arm64` for Apple Silicon, `x64` for Intel. Open the disk image and drag Transrewrt to Applications.
+
+The build is unsigned, so Gatekeeper blocks the first launch. Right-click `Transrewrt.app` and choose **Open**, then confirm **Open**. Or clear the quarantine attribute:
+
+```bash
+xattr -dr com.apple.quarantine /Applications/Transrewrt.app
+```
+
 Platform details (Compose, SmartScreen, apt libs, GPU flags, timezone): [Quick start docs](https://wsj-br.github.io/transrewrt/docs/quick-start/).
 
 ## Documentation
@@ -72,7 +80,7 @@ Full product docs (install, API keys, guides, settings, troubleshooting):
 
 ## Support
 
-Open an issue on [GitHub](https://github.com/wsj-br/transrewrt/issues). Include your platform (Windows / Linux / Docker) and app version (About dialog or Releases page).
+Open an issue on [GitHub](https://github.com/wsj-br/transrewrt/issues). Include your platform (Windows / Linux / macOS / Docker) and app version (About dialog or Releases page).
 
 ## Acknowledgments
 

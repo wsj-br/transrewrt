@@ -11,6 +11,10 @@ Use conventional types (Added, Changed, Fixed, etc.) and short descriptions.
 
 ## Unreleased
 
+- **Added**: Unsigned macOS DMG builds for Apple Silicon (`arm64`) and Intel (`x64`), attached to GitHub Releases.
+- **Fixed**: Packaged Electron default config and presets load from the app content root, so macOS finds them under `Contents/config`.
+- **Fixed**: Cap `@xmldom/xmldom` below 0.9 so electron-builder can parse `Info.plist` when building the macOS app.
+- **Fixed**: `upgrade-tools` allows pnpm's install script under npm 12 so the native binary replaces the Node.js placeholder.
 - **Changed**: presets-check replaces unavailable Easy-mode models from the shared benchmark shortlist (languagebench ChrF, Arena Score, price, and speed) without calling an LLM, and falls back to guarded fuzzy matching.
 - **Fixed**: presets-check skips suspect provider catalogs, caps how many ids one run can replace, checks top-level translation and suggestion models, and hardens git push, locking, log growth, and failure notifications.
 - **Changed**: Easy-mode AI Suggest fetches Arena Score from Hugging Face `lmarena-ai/leaderboard-dataset` (`text` / `latest` / `overall`) instead of the `oolong-tea-2026` GitHub mirror.

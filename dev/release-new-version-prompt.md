@@ -1,4 +1,4 @@
-Create a new release notes file `release-notes/RELEASE_NOTES_<x.y.z>.md` for **Transrewrt** using the instructions below. This file is used by [`scripts/release.mjs`](https://github.com/wsj-br/transrewrt/blob/main/scripts/release.mjs) (`pnpm run release:github`) and supports the [GitHub release](https://github.com/wsj-br/transrewrt/releases) process (publish triggers [.github/workflows/release.yml](https://github.com/wsj-br/transrewrt/blob/main/.github/workflows/release.yml): Windows installer, Linux AppImages, Docker on GHCR, and GitHub Pages for `website/`).
+Create a new release notes file `release-notes/RELEASE_NOTES_<x.y.z>.md` for **Transrewrt** using the instructions below. This file is used by [`scripts/release.mjs`](https://github.com/wsj-br/transrewrt/blob/main/scripts/release.mjs) (`pnpm run release:github`) and supports the [GitHub release](https://github.com/wsj-br/transrewrt/releases) process (publish triggers [.github/workflows/release.yml](https://github.com/wsj-br/transrewrt/blob/main/.github/workflows/release.yml): Windows installer, Linux AppImages, unsigned macOS DMGs, Docker on GHCR, and GitHub Pages for `website/`).
 
 **Before you start:** run checks that mirror what CI runs before packaging:
 
@@ -7,7 +7,7 @@ Create a new release notes file `release-notes/RELEASE_NOTES_<x.y.z>.md` for **T
 3. `pnpm lint`
 4. `pnpm build` then `pnpm build:main`
 
-Fix any failures. Optionally run `pnpm package` on your machine for a full Electron packaging smoke test (slow; CI runs this on Windows/Linux).
+Fix any failures. Optionally run `pnpm package` on your machine for a full Electron packaging smoke test (slow; CI runs this on Windows, Linux, and macOS). On a Mac, `pnpm package-mac` builds the unsigned DMG for the host architecture.
 
 There is no automated unit/integration test script in `package.json` (`pnpm test` is a stub); do not assume a test suite unless one was added.
 
@@ -31,7 +31,7 @@ There is no automated unit/integration test script in `package.json` (`pnpm test
      - Smaller releases may omit empty `<details>` blocks (e.g. no separate Improvements) but keep the same overall shape.
    - `## License` — Transrewrt is under **Apache License 2.0**; copyright line and link to [`LICENSE`](https://github.com/wsj-br/transrewrt/blob/main/LICENSE) as in prior release notes.
      - Under License, include a collapsible **Disclaimer** `<details>` with the same product-names disclaimer as in [`release-notes/RELEASE_NOTES_1.6.2.md`](https://github.com/wsj-br/transrewrt/blob/main/release-notes/RELEASE_NOTES_1.6.2.md), plus a link to [`NOTICES`](https://github.com/wsj-br/transrewrt/blob/main/NOTICES).
-   - `## Downloads` — User-facing download guidance matching [`RELEASE_NOTES_1.6.2.md`](https://github.com/wsj-br/transrewrt/blob/main/release-notes/RELEASE_NOTES_1.6.2.md): Windows `.exe` installer (64-bit), Linux `.AppImage` (x64 or arm64), Docker pull `ghcr.io/wsj-br/transrewrt:<version>` (or `latest`), noting x64 and arm64. End with a link to that release’s Assets: `https://github.com/wsj-br/transrewrt/releases/tag/<version>`.
+   - `## Downloads` — User-facing download guidance matching [`RELEASE_NOTES_1.6.2.md`](https://github.com/wsj-br/transrewrt/blob/main/release-notes/RELEASE_NOTES_1.6.2.md): Windows `.exe` installer (64-bit), Linux `.AppImage` (x64 or arm64), unsigned macOS `.dmg` (Apple Silicon `arm64` or Intel `x64`, with the Gatekeeper workaround: right-click the app and choose Open, or `xattr -dr com.apple.quarantine /Applications/Transrewrt.app`), Docker pull `ghcr.io/wsj-br/transrewrt:<version>` (or `latest`), noting x64 and arm64. End with a link to that release’s Assets: `https://github.com/wsj-br/transrewrt/releases/tag/<version>`.
    - Closing thank-you line after a horizontal rule, matching prior tone.
    - Do **not** paste the raw `[Unreleased]` changelog verbatim as the only content; synthesize Highlights / Improvements / Fixes first.
 6. **Update `dev/CHANGELOG.md`**:
@@ -107,6 +107,7 @@ See [NOTICES](https://github.com/wsj-br/transrewrt/blob/main/NOTICES) for more d
 
 - **Windows**: Download the `.exe` installer (64-bit) from the Assets section below.
 - **Linux**: Download the `.AppImage` for either x64 or arm64 from the Assets section below.
+- **macOS**: Download the unsigned `.dmg` for Apple Silicon (`arm64`) or Intel (`x64`) from the Assets section below. On first launch, right-click the app and choose Open, or run `xattr -dr com.apple.quarantine /Applications/Transrewrt.app`.
 - **Docker**: Pull using `ghcr.io/wsj-br/transrewrt:x.y.z` (or `latest` for the newest release). Both x64 and arm64 are supported.
 
 See [Assets](https://github.com/wsj-br/transrewrt/releases/tag/x.y.z) for exact filenames and checksums.

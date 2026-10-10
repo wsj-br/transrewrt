@@ -67,13 +67,17 @@ const getConfigFilePath = () => {
 const getDefaultConfigPath = () =>
   path.join(path.dirname(getConfigFilePath()), "../src/config-defaults/config_default.json");
 
+/**
+ * Directory that holds electron-builder extraFiles in a packaged app.
+ * Windows and Linux: the install directory (sibling of the executable).
+ * macOS: Transrewrt.app/Contents — execPath is Contents/MacOS/Transrewrt,
+ * while resourcesPath is Contents/Resources.
+ */
+const getPackagedContentRoot = () => path.dirname(process.resourcesPath);
+
 const getDefaultConfigPathForLoad = () => {
   if (typeof app !== "undefined" && app.isPackaged) {
-    return path.join(
-      path.dirname(process.execPath),
-      "config",
-      "config_default.json",
-    );
+    return path.join(getPackagedContentRoot(), "config", "config_default.json");
   }
   return path.join(__dirname, "../config-defaults/config_default.json");
 };
@@ -87,7 +91,7 @@ const getPresetsFilePath = () => path.join(getConfigDir(), "presets.json");
 
 const getDefaultPresetsPathForLoad = () => {
   if (typeof app !== "undefined" && app.isPackaged) {
-    return path.join(path.dirname(process.execPath), "config", "presets.json");
+    return path.join(getPackagedContentRoot(), "config", "presets.json");
   }
   return path.join(__dirname, "../../easy-mode-config/presets.json");
 };

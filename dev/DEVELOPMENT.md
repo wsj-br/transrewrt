@@ -11,6 +11,7 @@ Setup, build, test, and deploy instructions for the Transrewrt application (Elec
 - [Prerequisites](#prerequisites)
   - [Windows 11](#windows-11)
   - [Linux (Debian-based: Ubuntu, Debian, Zorin, Mint)](#linux-debian-based-ubuntu-debian-zorin-mint)
+  - [macOS](#macos)
   - [WSL (Ubuntu on Windows)](#wsl-ubuntu-on-windows)
   - [Website screenshots](#website-screenshots)
 - [Setup](#setup)
@@ -55,7 +56,7 @@ Setup, build, test, and deploy instructions for the Transrewrt application (Elec
 ## Prerequisites
 
 - **Node.js 24** (LTS). The project uses Electron 44, which bundles Node 24. Use [.nvmrc](../.nvmrc) and `engines` in [package.json](../package.json). Run `nvm use` from the project root if using nvm.
-- **pnpm** (package manager). Install globally: `npm install -g pnpm`.
+- **pnpm** (package manager). Install globally: `npm install -g --allow-scripts=pnpm pnpm`. npm 12 skips install scripts unless the package is named; pnpm 12 needs that script to replace its Node.js placeholder with the native binary. On npm older than 12, omit `--allow-scripts=pnpm`.
 - **Git**.
 - **direnv** (recommended): Loads environment variables when you enter the project directory. The repo’s [.envrc](../.envrc) sources `.env` and `.env.local` if present (copy [.env.example](../.env.example) to `.env` and adjust). **Install:** macOS `brew install direnv`; Debian/Ubuntu `sudo apt install direnv`; other systems see [direnv installation](https://direnv.net/docs/installation.html). **Use:** Add a shell hook - Bash: `eval "$(direnv hook bash)"` in `~/.bashrc`; Zsh: `eval "$(direnv hook zsh)"` in `~/.zshrc`; Fish: `direnv hook fish | source` in `~/.config/fish/config.fish`. Open a new shell (or `source` the file), `cd` into the repo, then run `direnv allow` once to approve `.envrc`. On Windows, use WSL or Git Bash with the same hook pattern, or use the PowerShell helpers in [scripts/Load-DotEnv.ps1](../scripts/Load-DotEnv.ps1) instead.
 - **Chromium** (for `pnpm take-screenshots`). The screenshot script uses Puppeteer; on Linux (e.g. Raspberry Pi) the bundled Puppeteer binary may be x64, so install Chromium and set `PUPPETEER_EXECUTABLE_PATH` if needed. On Debian-based systems, install **Noto fonts** so localized UI screenshots render Korean/Telugu/Thai correctly: `fonts-noto-cjk`, `fonts-noto-core` (see [Linux](#linux-debian-based-ubuntu-debian-zorin-mint) below).
@@ -71,10 +72,10 @@ Setup, build, test, and deploy instructions for the Transrewrt application (Elec
   nvm use 24
   ```
 
-2. **pnpm**: Install pnpm, npm-check-updates and doctoc globally:
+2. **pnpm**: Install pnpm, npm-check-updates and doctoc globally. `--allow-scripts=pnpm` is required on npm 12 or newer so pnpm's install script can install the native binary. On older npm, omit that flag.
 
   ```powershell
-  npm install -g pnpm npm-check-updates doctoc
+  npm install -g --allow-scripts=pnpm pnpm npm-check-updates doctoc
   ```
 
 3. **Build tools for native modules** (`better-sqlite3`, `argon2`): Required for compilation. Use an **elevated** PowerShell (Admin). The base Build Tools product is not enough — node-gyp needs the **MSVC C++ toolset** (`Microsoft.VisualStudio.Workload.VCTools`). Without it, `pnpm install` fails with `missing any VC++ toolset`.
@@ -166,10 +167,10 @@ Setup, build, test, and deploy instructions for the Transrewrt application (Elec
    nvm use 24
    ```
 
-2. **pnpm**: Install pnpm, npm-check-updates and doctoc globally:
+2. **pnpm**: Install pnpm, npm-check-updates and doctoc globally. `--allow-scripts=pnpm` is required on npm 12 or newer so pnpm's install script can install the native binary. On older npm, omit that flag.
 
    ```bash
-   npm install -g pnpm npm-check-updates doctoc
+   npm install -g --allow-scripts=pnpm pnpm npm-check-updates doctoc
    ```
 
 3. **Build tools for native modules** (`better-sqlite3`, `argon2`): Required for compilation. Without them, `pnpm install` fails with `not found: make` (or a missing `g++` / compiler error). Install `build-essential` (provides `make`, `gcc`, `g++`) and Python 3:
@@ -243,6 +244,32 @@ Setup, build, test, and deploy instructions for the Transrewrt application (Elec
    ```
 
    If `gh` is not in your distro’s repos, use the install instructions at [cli.github.com](https://cli.github.com/).
+
+### macOS
+
+1. **Xcode Command Line Tools** (compiles `better-sqlite3` for Electron):
+
+   ```bash
+   xcode-select --install
+   ```
+
+2. **Node 24**: Install [nvm](https://github.com/nvm-sh/nvm), then run:
+
+   ```bash
+   curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.4/install.sh | bash
+   nvm install 24
+   nvm use 24
+   ```
+
+3. **pnpm**:
+
+   ```bash
+   npm install -g --allow-scripts=pnpm pnpm
+   ```
+
+`pnpm dev` runs the Electron app. `pnpm package-mac` builds an unsigned `.dmg` for the host architecture (Apple Silicon or Intel) into `release/`. A universal binary is not built, because `better-sqlite3` is compiled for one arch. Gatekeeper blocks the unsigned app on first launch: right-click it and choose **Open**, or run `xattr -dr com.apple.quarantine /Applications/Transrewrt.app`.
+
+electron-builder spawns `pnpm` directly. On macOS that fails with `spawn ENOEXEC` if `pnpm` is still the shebang-less Node placeholder (its install script was skipped). Reinstall with the `--allow-scripts=pnpm` command above so the native binary replaces the placeholder.
 
 ### WSL (Ubuntu on Windows)
 
@@ -443,9 +470,10 @@ Before doctor upgrades, the dependency script checks whether the latest React ES
 | Target                              | Command                               | Output                                                                                                             |
 |-------------------------------------|---------------------------------------|--------------------------------------------------------------------------------------------------------------------|
 | **Renderer**                        | `pnpm build-renderer` or `pnpm build` | `dist/` (production assets)                                                                                        |
-| **Electron main/preload**           | `pnpm run build:main`                 | `dist-main/` (webpack bundle; `package` / `package-arm64` run this before electron-builder)                        |
+| **Electron main/preload**           | `pnpm run build:main`                 | `dist-main/` (webpack bundle; `package` / `package-arm64` / `package-mac` run this before electron-builder)        |
 | **Electron installer**              | `pnpm package`                        | `release/` (e.g. NSIS `.exe` on Windows; targets depend on platform)                                               |
 | **Electron (Linux arm64 AppImage)** | `pnpm package-arm64`                  | `release/` - Linux **arm64** AppImage only (`build/electron-builder.linux-arm64.cjs`)                              |
+| **Electron (macOS DMG)**            | `pnpm package-mac`                    | `release/` - unsigned `.dmg` for the host arch (`Transrewrt-<version>-<arch>.dmg`)                                 |
 | **Docker image**                    | `docker build -t transrewrt-web .`    | Multi-stage build (Node 24 Alpine); run with `docker run -p 5000:5000 -v transrewrt-data:/app/data transrewrt-web` |
 
 
@@ -535,7 +563,7 @@ Optional: `pnpm generate-test-data -- --web` or `pnpm generate-test-data -- --ap
 
 ## Releasing (CI builds and GitHub Release)
 
-Official web (Docker container), desktop and AppImage binaries are built by `[.github/workflows/release.yml](../.github/workflows/release.yml)` when a **GitHub Release is published** (and Docker images are pushed to GHCR).
+Official web (Docker container), desktop, AppImage, and unsigned macOS DMG binaries are built by `[.github/workflows/release.yml](../.github/workflows/release.yml)` when a **GitHub Release is published** (and Docker images are pushed to GHCR).
 
 Use a version branch for new features or patch lines (for example `v1.1.x`). Do release prep there, merge into `main` through the GitHub website, then publish a GitHub Release (prefer **`pnpm run release:github`**) so CI attaches installers to the release.
 
@@ -551,7 +579,7 @@ Before cutting a release:
 2. `pnpm build` then `pnpm run build:main`. The release workflow runs these as part of packaging.
 3. `pnpm test` (the `stripPromptWrapperTags` Node tests).
 
-Fix any failures. Optionally run `pnpm package` locally for a full Electron packaging smoke test (slow; the release workflow runs this on Windows and Linux).
+Fix any failures. Optionally run `pnpm package` locally for a full Electron packaging smoke test (slow; the release workflow runs this on Windows, Linux, and macOS). On a Mac, `pnpm package-mac` builds the unsigned DMG. To validate DMGs without a release, run the **macOS DMG** workflow (`workflow_dispatch` on [.github/workflows/macos-dmg.yml](../.github/workflows/macos-dmg.yml)).
 
 ---
 
@@ -628,7 +656,7 @@ After `main` contains the release commit(s), check out `main` locally at the com
 
 The script creates an annotated tag **`v<version>`** at **HEAD**, pushes it to **`origin`**, and runs `gh release create` with title **`v<version>`** and body from **`release-notes/RELEASE_NOTES_<version>.md`**. If that tag or a GitHub release for it already exists, the script deletes them and recreates the tag at the current **HEAD** so you can fix a mistaken tag or add follow-up commits before releasing again.
 
-That GitHub release triggers `[.github/workflows/release.yml](../.github/workflows/release.yml)`, which builds Windows and Linux installers, pushes the Docker image to GHCR, and deploys `website/` to GitHub Pages (`https://wsj-br.github.io/transrewrt/`). Check the **Actions** tab on https://github.com/wsj-br/transrewrt for progress. To redeploy the site without an app release, run `pnpm website:publish` (see [website/README.md](../website/README.md)).
+That GitHub release triggers `[.github/workflows/release.yml](../.github/workflows/release.yml)`, which builds Windows and Linux installers and unsigned macOS DMGs, pushes the Docker image to GHCR, and deploys `website/` to GitHub Pages (`https://wsj-br.github.io/transrewrt/`). Check the **Actions** tab on https://github.com/wsj-br/transrewrt for progress. To redeploy the site without an app release, run `pnpm website:publish` (see [website/README.md](../website/README.md)).
 
 **Manual alternative:** you can still create a release from the GitHub **Releases** UI (**Draft a new release** → tag `vX.Y.Z` targeting `main` → paste notes → **Publish release**). Prefer the script so the tag, title, and notes stay aligned with `package.json` and `release-notes/RELEASE_NOTES_<version>.md`.
 
@@ -636,8 +664,16 @@ That GitHub release triggers `[.github/workflows/release.yml](../.github/workflo
 
 ### Release artifacts and manual workflow run
 
-- **Artifacts**: CI also uploads **workflow artifacts** (same naming pattern). The **container image** is `ghcr.io/wsj-br/transrewrt:X.Y.Z` (and `:latest` when this release is the newest tag or when using manual workflow options as documented in the workflow file).
-- **Manual workflow run**: From the **Actions** tab you can run the Release workflow without publishing a release (**workflow_dispatch**); it builds installers and Docker images but does **not** attach files to a GitHub Release. Use the `tag_as_latest` input if you need the Docker `latest` tag on that manual run.
+- **Artifacts**: CI also uploads **workflow artifacts** (same naming pattern). Release assets:
+
+  | Platform | Artifact | Runner |
+  | --- | --- | --- |
+  | Windows | `Transrewrt Setup X.Y.Z.exe` | `windows-latest` |
+  | Linux | `Transrewrt-X.Y.Z-x64.AppImage`, `Transrewrt-X.Y.Z-arm64.AppImage` | `ubuntu-latest`, `ubuntu-24.04-arm` |
+  | macOS (unsigned) | `Transrewrt-X.Y.Z-arm64.dmg` (Apple Silicon), `Transrewrt-X.Y.Z-x64.dmg` (Intel) | `macos-latest`, `macos-15-intel` |
+
+  The **container image** is `ghcr.io/wsj-br/transrewrt:X.Y.Z` (and `:latest` when this release is the newest tag or when using manual workflow options as documented in the workflow file).
+- **Manual workflow run**: From the **Actions** tab you can run the Release workflow without publishing a release (**workflow_dispatch**); it builds installers, DMGs, and Docker images but does **not** attach files to a GitHub Release. Use the `tag_as_latest` input if you need the Docker `latest` tag on that manual run. The **macOS DMG** workflow builds only the two DMGs.
 
 ---
 
@@ -653,6 +689,7 @@ That GitHub release triggers `[.github/workflows/release.yml](../.github/workflo
 | **Test (Linux)**        | `pnpm build-renderer` then `pnpm start-x11` | Use X11 if Wayland fails                                                                        |
 | **Build**               | `pnpm package`                              | Production build + electron-builder → installers in `release/`                                  |
 | **Build (Linux arm64)** | `pnpm package-arm64`                        | Same pipeline, Linux **arm64** AppImage → `release/` (`build/electron-builder.linux-arm64.cjs`) |
+| **Build (macOS)**       | `pnpm package-mac`                          | Unsigned `.dmg` for the host arch → `release/`                                                  |
 
 
 ### Web (browser, local server)
@@ -698,7 +735,7 @@ All npm scripts defined in [package.json](../package.json) are listed below (gro
 | `pnpm run presets-check`               | Validate/replace Easy-mode model ids against the local catalog (`--local` is already in the script; add `-- --dry-run` to preview). See [Skill-check cron](#skill-check-cron-development) |
 | `pnpm run presets-check:install`       | Install isolated presets-check runtime for cron (e.g. `-- --target /opt/transrewrt-presets-check`)                                                              |
 | `pnpm build` / `pnpm build-renderer` | Creates a production Webpack build in the `dist/` directory.                                                                                                |
-| `pnpm run build:main`                | Webpack build of Electron main/preload → `dist-main/` (included in `package` / `package-arm64`).                                                            |
+| `pnpm run build:main`                | Webpack build of Electron main/preload → `dist-main/` (included in `package` / `package-arm64` / `package-mac`).                                            |
 | `pnpm start`                         | Runs Electron using the current `dist/` (run `build-renderer` first if needed).                                                                             |
 | `pnpm start-x11`                     | Runs Electron on Linux with X11 flags (use if Wayland causes issues).                                                                                       |
 | `pnpm serve`                         | Runs `build-renderer` then `start:server` (web smoke test on **:5000**).                                                                                    |
@@ -706,6 +743,7 @@ All npm scripts defined in [package.json](../package.json) are listed below (gro
 | `pnpm start:server:rebuild`          | Runs `postinstall` (rebuild native addons for Electron) then `start:server`. For system Node, run `node scripts/node-rebuild.js` or `pnpm dev:web` instead. |
 | `pnpm package`                       | Creates a production build and runs `electron-builder` to generate installers in `release/`.                                                                |
 | `pnpm package-arm64`                 | Same as above, but creates the Linux **arm64** AppImage only (`build/electron-builder.linux-arm64.cjs`) in `release/`.                                      |
+| `pnpm package-mac`                   | Creates an unsigned macOS `.dmg` for the host architecture in `release/` (`Transrewrt-<version>-<arch>.dmg`).                                               |
 
 ### Code quality
 
