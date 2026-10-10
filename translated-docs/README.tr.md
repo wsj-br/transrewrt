@@ -5,12 +5,12 @@
 <h1 align="center">Transrewrt</h1>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.3-blue" alt="Version"></a>
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.4-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
-  <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
+  <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20macOS%20%7C%20Docker-lightgrey" alt="Platform">
 </p>
 
-Özel istemlerle **çevirme**, **yeniden yazma** ve **dönüştürme** için yapay zeka destekli metin aracı. Kendi yapay zeka sağlayıcılarınızı kullanın (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, OpenAI uyumlu uç noktalar ve Ollama, LM Studio veya llama.cpp gibi yerel sunucular). Bir masaüstü uygulaması (Windows / Linux) veya bir Docker web uygulaması olarak çalıştırın. Transrewrt bulut hesabı yok.
+Özel istemlerle **çeviri**, **yeniden yazma** ve **dönüştürme** için yapay zeka destekli metin aracı. Kendi yapay zeka sağlayıcılarınızı kullanın (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, OpenAI uyumlu uç noktalar ve Ollama, LM Studio veya llama.cpp gibi yerel sunucular). Bir masaüstü uygulaması (Windows / Linux / macOS) veya bir Docker web uygulaması olarak çalıştırın. Transrewrt bulut hesabı yok.
 
 ## Özellikler
 
@@ -52,6 +52,14 @@ docker run -d \
 chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage
 ```
 
+**macOS** — Mac'iniz için `.dmg` uygulamasını [Sürümler](https://github.com/wsj-br/transrewrt/releases) sayfasından indirin: Apple Silicon için `arm64`, Intel için `x64`. Disk görüntüsünü açın ve Transrewrt'i Uygulamalar'a sürükleyin.
+
+Derleme imzasız olduğundan, Gatekeeper ilk başlatmayı engeller. `Transrewrt.app` üzerine sağ tıklayın ve **Aç**'ı seçin, ardından **Aç**'ı onaylayın. Veya karantina özniteliğini temizleyin:
+
+```bash
+xattr -dr com.apple.quarantine /Applications/Transrewrt.app
+```
+
 Platform ayrıntıları (Compose, SmartScreen, apt kitaplıkları, GPU bayrakları, saat dilimi): [Hızlı başlangıç belgeleri](https://wsj-br.github.io/transrewrt/docs/quick-start/).
 
 ## Belgeler
@@ -72,14 +80,15 @@ Tüm ürün belgeleri (kurulum, API anahtarları, kılavuzlar, ayarlar, sorun gi
 
 ## Destek
 
-[GitHub](https://github.com/wsj-br/transrewrt/issues) üzerinde bir sorun açın. Platformunuzu (Windows / Linux / Docker) ve uygulama sürümünüzü (Hakkında iletişim kutusu veya Sürümler sayfası) ekleyin.
+[GitHub](https://github.com/wsj-br/transrewrt/issues) üzerinde bir sorun açın. Platformunuzu (Windows / Linux / macOS / Docker) ve uygulama sürümünü (Hakkında iletişim kutusu veya Sürümler sayfası) ekleyin.
 
 ## Teşekkürler
 
-Ön ayarlar düzenleyicisindeki Kolay mod ön ayar önerileri, aşağıdaki kaynaklardan alınan genel değerlendirme verilerini kullanır:
+Ön ayarlar düzenleyicisindeki Kolay mod ön ayar önerileri, yalnızca sürdürücünün makinesindeki genel değerlendirme verilerini kullanır. Transrewrt ile hiçbir veri kümesi içeriği yeniden dağıtılmaz:
 
-- [languagebench](https://huggingface.co/spaces/fair-forward/languagebench) (CC BY-SA 4.0)
-- [Artificial Analysis](https://artificialanalysis.ai/) (API verileri için atıf gereklidir)
+- [languagebench](https://huggingface.co/spaces/fair-forward/languagebench) (CC BY-SA 4.0) — çeviri ChrF
+- [Arena](https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset) (CC BY 4.0) — Arena Puanı
+- [models.dev](https://models.dev/) (MIT)
 
 Üçüncü taraf bağımlılık lisansları ve bu veri kaynağı bildirimleri [BİLDİRİMLER](../NOTICES) bölümünde listelenmiştir.
 

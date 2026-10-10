@@ -13,6 +13,7 @@ description: >-
 | --- | --- |
 | Electron (Windows) | `%APPDATA%\transrewrt\` |
 | Electron (Linux) | `~/.config/transrewrt/` |
+| Electron (macOS) | `~/Library/Application Support/transrewrt/` |
 | Web / Docker | `/app/data/` (gebruik een volume voor persistentie) |
 
 De gegevensmap bevat alles wat de moeite waard is om een back-up van te maken:
@@ -89,6 +90,6 @@ De server spreekt gewone HTTP. Als u deze buiten localhost of een vertrouwd netw
 
 ## Kostenweergave
 
-OpenRouter retourneert de exacte gefactureerde kosten indien van toepassing. Andere providers gebruiken **geschatte** kosten van de openbare modelprijzen van OpenRouter wanneer een OpenRouter-sleutel beschikbaar is. Schattingen zijn geen facturen.
+OpenRouter en xAI retourneren de exacte gefactureerde kosten wanneer de API deze bevat. Andere Providers gebruiken **geschatte** kosten van de openbare modelprijzen van [models.dev](https://models.dev/). Schattingen zijn geen facturen.
 
 Voor de gebruikersinterface van Instellingen (lettertypen, modellen, geschiedenis, back-ups), zie [Instellingen](/docs/settings/).

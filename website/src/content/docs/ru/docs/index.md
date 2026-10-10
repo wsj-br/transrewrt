@@ -13,7 +13,7 @@ description: >-
 - **Переписывания** — исправление грамматики, улучшение ясности, изменение тона или длины
 - **Трансформации** — запуск собственных пользовательских запросов ИИ на любом тексте
 
-Он поддерживает множество поставщиков ИИ (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, совместимые с OpenAI конечные точки и локальные совместимые с OpenAI серверы, такие как Ollama, LM Studio или llama.cpp). Запустите его как **настольное приложение** (Windows / Linux) или **веб-приложение Docker**.
+Он поддерживает множество провайдеров ИИ (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, совместимые с OpenAI конечные точки и локальные совместимые с OpenAI серверы, такие как Ollama, LM Studio или llama.cpp). Запустите его как **настольное приложение** (Windows / Linux / macOS) или **веб-приложение Docker**.
 
 Ваши ключи, ваши модели, ваш хост — облачной учетной записи Transrewrt нет.
 

@@ -1,7 +1,7 @@
 ---
 title: Rýchly štart
 description: >-
-  Nainštalujte Transrewrt v systéme Windows alebo Linux, prípadne spustite
+  Nainštalujte Transrewrt v systéme Windows, Linux alebo macOS, alebo spustite
   webovú aplikáciu Docker.
 ---
 
@@ -64,14 +64,30 @@ Ak Chromium tlačí chyby GPU / EGL, ale aplikácia funguje, môžete vypnúť h
 TRANSREWRT_DISABLE_GPU=1 ./Transrewrt-x.y.z-arm64.AppImage
 ```
 
+## macOS
+
+Stiahnite si `.dmg` pre váš Mac z [Vydania](https://github.com/wsj-br/transrewrt/releases):
+
+- **Apple Silicon** — `Transrewrt-x.y.z-arm64.dmg`
+- **Intel** — `Transrewrt-x.y.z-x64.dmg`
+
+Otvorte obraz disku a presuňte Transrewrt do priečinka Aplikácie. Zadajte kľúče API v časti **Nastavenia → Konfigurácia API**.
+
 :::note
-Systém macOS momentálne nie je podporovaný. Transrewrt je k dispozícii pre Windows, Linux a Docker.
+Verzia pre macOS nie je podpísaná (bez notárstva Apple). Gatekeeper blokuje prvé spustenie. Kliknite pravým tlačidlom myši na `Transrewrt.app` a vyberte **Otvoriť**, potom potvrďte **Otvoriť**.
 :::
+
+Alebo vymažte atribút karantény:
+
+```bash
+xattr -dr com.apple.quarantine /Applications/Transrewrt.app
+```
 
 ## Aktualizácia
 
-- **Windows** — stiahnite si novší súbor `Transrewrt Setup x.y.z.exe` z [vydaní](https://github.com/wsj-br/transrewrt/releases) a spustite ho. Nastavenia a dáta sa zachovajú.
-- **Linux** — stiahnite si novší súbor `.AppImage` a nahraďte starý súbor. Nastavenia a dáta sa zachovajú.
+- **Windows** — stiahnite si novší `Transrewrt Setup x.y.z.exe` z [Vydania](https://github.com/wsj-br/transrewrt/releases) a spustite ho. Nastavenia a dáta sa zachovajú.
+- **Linux** — stiahnite si novší `.AppImage` a nahraďte starý súbor. Nastavenia a dáta sa zachovajú.
+- **macOS** — stiahnite si novší `.dmg`, otvorte ho a presuňte Transrewrt do priečinka Aplikácie, čím nahradíte existujúcu aplikáciu. Nastavenia a dáta sa zachovajú.
 - **Docker** — stiahnite nový obraz a znova vytvorte kontajner. Dáta pretrvávajú vo zväzku `/app/data`:
 
 ```bash

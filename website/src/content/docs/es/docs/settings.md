@@ -33,12 +33,12 @@ En la versión web, cada usuario tiene su propia configuración (experiencia de 
 
 **Experiencia de IA**
 
-- **Fácil** (predeterminado): elige un **Proveedor**. Los proveedores de la nube utilizan preajustes de la barra de herramientas. **LLM local** enumera los modelos locales instalados. **Actualizar catálogo de preajustes** obtiene la lista más reciente de preajustes del repositorio del proyecto.
-  - **Gratis (OpenRouter)** — opción de costo cero enrutada a modelos gratuitos disponibles; la calidad y disponibilidad pueden variar
+- **Fácil** (predeterminado): elija un **Proveedor**. Los proveedores de la nube utilizan ajustes preestablecidos de la barra de herramientas. **LLM local** enumera los modelos locales instalados en su lugar. **Actualizar catálogo de ajustes preestablecidos** obtiene la lista de ajustes preestablecidos más reciente del repositorio del proyecto.
+  - **Gratis (OpenRouter)** — opción sin costo enrutada a modelos gratuitos disponibles; la calidad y la disponibilidad pueden variar
   - **Estándar** — ligero y rentable; ideal para textos cortos, borradores rápidos y uso de gran volumen
   - **Avanzado** — modelo de alta precisión para contenido complejo o matizado, con un costo más alto
-  - **Técnico** — ajustado para código, API, documentos de desarrollador y contenido estructurado; conserva el formato y la terminología
-- **Avanzado**: elige modelos en la barra de herramientas; gestiona la lista en [Modelos](#models).
+  - **Técnico** — ajustado para código, API, documentación de desarrollador y contenido estructurado; conserva el formato y la terminología
+- **Avanzado**: elija modelos en la barra de herramientas; administre la lista en [Modelos](#models).
 
 También puedes cambiar entre Fácil ↔ Avanzado desde el menú de preajustes/modelos de la barra de herramientas (**Cambiar a modo Fácil/Avanzado**, encima de Abrir configuración).
 
@@ -85,7 +85,7 @@ Añada con **Añadir**; elimine con **X**. El modelo gratuito de OpenRouter es o
 - **Uso de la clave API** — detalles de OpenRouter cuando estén disponibles
 - **Eliminar datos de costos** — todos los datos o entradas anteriores a una fecha
 
-OpenRouter muestra el costo facturado real cuando corresponde; otros proveedores usan estimaciones de los precios de OpenRouter. Las estimaciones no son facturas.
+OpenRouter y xAI muestran el costo facturado real cuando la API lo devuelve; otros proveedores utilizan estimaciones de los precios de [models.dev](https://models.dev/). Las estimaciones no son facturas.
 
 :::caution
 La eliminación de datos de costos no se puede deshacer. Exporte primero a través de Historial o Panel de control → Todas las llamadas si necesita una copia de seguridad. El historial de entrada/salida relacionado con esas llamadas API también se elimina.

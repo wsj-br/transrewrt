@@ -1,7 +1,7 @@
 ---
 title: Gyorsindítás
 description: >-
-  Telepítse a Transrewrt alkalmazást Windowsra vagy Linuxra, vagy futtassa a
+  Telepítse a Transrewrt-t Windowsra, Linuxra vagy macOS-re, vagy futtassa a
   Docker webalkalmazást.
 ---
 
@@ -64,15 +64,31 @@ Ha a Chromium GPU / EGL hibákat ír ki, de az alkalmazás működik, letilthatj
 TRANSREWRT_DISABLE_GPU=1 ./Transrewrt-x.y.z-arm64.AppImage
 ```
 
+## macOS
+
+Töltse le a `.dmg` fájlt Macjére a [Kiadások](https://github.com/wsj-br/transrewrt/releases) oldalról:
+
+- **Apple Silicon** — `Transrewrt-x.y.z-arm64.dmg`
+- **Intel** — `Transrewrt-x.y.z-x64.dmg`
+
+Nyissa meg a lemezképet, és húzza a Transrewrt-t az Alkalmazások mappába. Adja meg az API kulcsokat a **Beállítások → API konfiguráció** menüpontban.
+
 :::note
-A macOS jelenleg nem támogatott. A Transrewrt elérhető Windows, Linux és Docker rendszerekre.
+A macOS build nincs aláírva (nincs Apple hitelesítés). A Gatekeeper blokkolja az első indítást. Kattintson a jobb gombbal a `Transrewrt.app` fájlra, válassza az **Megnyitás** lehetőséget, majd erősítse meg az **Megnyitás** parancsot.
 :::
+
+Vagy törölje a karantén attribútumot:
+
+```bash
+xattr -dr com.apple.quarantine /Applications/Transrewrt.app
+```
 
 ## Frissítés
 
-- **Windows** – töltse le az újabb `Transrewrt Setup x.y.z.exe` fájlt a [Kiadások](https://github.com/wsj-br/transrewrt/releases) oldalról, és futtassa. A beállítások és az adatok megmaradnak.
-- **Linux** – töltse le az újabb `.AppImage` fájlt, és cserélje le a régi fájlt. A beállítások és az adatok megmaradnak.
-- **Docker** – húzza le az új képet, és hozza létre újra a tárolót. Az adatok megmaradnak a `/app/data` kötetben:
+- **Windows** — töltse le az újabb `Transrewrt Setup x.y.z.exe` fájlt a [Kiadások](https://github.com/wsj-br/transrewrt/releases) oldalról, és futtassa. A beállítások és az adatok megmaradnak.
+- **Linux** — töltse le az újabb `.AppImage` fájlt, és cserélje le a régi fájlt. A beállítások és az adatok megmaradnak.
+- **macOS** — töltse le az újabb `.dmg` fájlt, nyissa meg, és húzza a Transrewrt-t az Alkalmazások mappába, felülírva a meglévő alkalmazást. A beállítások és az adatok megmaradnak.
+- **Docker** — húzza le az új képet, és hozza létre újra a tárolót. Az adatok megmaradnak a `/app/data` kötetben:
 
 ```bash
 docker pull ghcr.io/wsj-br/transrewrt:latest

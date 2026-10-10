@@ -13,6 +13,7 @@ description: >-
 | --- | --- |
 | Electron (Windows) | `%APPDATA%\transrewrt\` |
 | Electron (Linux) | `~/.config/transrewrt/` |
+| Electron (macOS) | `~/Library/Application Support/transrewrt/` |
 | Web / Docker | `/app/data/` (use um volume para persistir) |
 
 A pasta de dados contém tudo o que vale a pena fazer backup:
@@ -89,6 +90,6 @@ O servidor usa HTTP simples. Se você o expuser além do localhost ou de uma red
 
 ## Exibição de custo
 
-O OpenRouter retorna o custo exato cobrado quando aplicável. Outros provedores usam o custo **estimado** do preço do modelo público do OpenRouter quando uma chave do OpenRouter está disponível. Estimativas não são faturas.
+OpenRouter e xAI retornam o custo exato faturado quando a API o inclui. Outros Provedores usam o custo **estimado** dos preços públicos dos modelos de [models.dev](https://models.dev/). As estimativas não são faturas.
 
 Para a interface do usuário de Configurações (fontes, modelos, histórico, backups), consulte [Configurações](/docs/settings/).

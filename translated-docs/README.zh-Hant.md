@@ -5,12 +5,12 @@
 <h1 align="center">Transrewrt</h1>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.3-blue" alt="Version"></a>
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.4-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
-  <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
+  <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20macOS%20%7C%20Docker-lightgrey" alt="Platform">
 </p>
 
-AI 驅動的文字工具，透過自訂提示詞進行**翻譯**、**重寫**與**轉換**。使用您自己的 AI 供應商（OpenRouter、OpenAI、Anthropic、Google Gemini、DeepSeek、Groq、Mistral、xAI、Cerebras、NVIDIA、Alibaba Cloud、apikey.fun、OpenAI 相容端點，以及本地伺服器如 Ollama、LM Studio 或 llama.cpp）。以桌面應用程式（Windows / Linux）或 Docker 網頁應用程式執行。無需 Transrewrt 雲端帳號。
+AI 驅動的文字工具，支援 **翻譯**、**改寫**與 **轉換**，可使用自訂提示詞。使用您自己的 AI 供應商（OpenRouter、OpenAI、Anthropic、Google Gemini、DeepSeek、Groq、Mistral、xAI、Cerebras、NVIDIA、Alibaba Cloud、apikey.fun、OpenAI 相容端點，以及本機伺服器如 Ollama、LM Studio 或 llama.cpp）。可作為桌面應用程式（Windows / Linux / macOS）或 Docker 網頁應用程式執行。無需 Transrewrt 雲端帳號。
 
 ## 功能
 
@@ -52,6 +52,14 @@ docker run -d \
 chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage
 ```
 
+**macOS** — 從 [Releases](https://github.com/wsj-br/transrewrt/releases) 下載適用於您 Mac 的 `.dmg`：`arm64` 適用於 Apple Silicon，`x64` 適用於 Intel。打開磁碟映像檔並將 Transrewrt 拖曳至「應用程式」。
+
+此建置未經簽署，因此 Gatekeeper 會封鎖首次啟動。右鍵點擊 `Transrewrt.app` 並選擇 **打開**，然後確認 **打開**。或者清除隔離屬性：
+
+```bash
+xattr -dr com.apple.quarantine /Applications/Transrewrt.app
+```
+
 平台詳情（Compose、SmartScreen、apt 函式庫、GPU 旗標、時區）：[快速開始文件](https://wsj-br.github.io/transrewrt/docs/quick-start/)。
 
 ## 文件
@@ -72,14 +80,16 @@ chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage
 
 ## 支援
 
-在 [GitHub](https://github.com/wsj-br/transrewrt/issues) 上回報問題。請附上您的平台（Windows / Linux / Docker）與應用程式版本（關於對話框或 Releases 頁面）。
+在 [GitHub](https://github.com/wsj-br/transrewrt/issues) 上提交 issue。請附上您的平台（Windows / Linux / macOS / Docker）與應用程式版本（關於對話框或 Releases 頁面）。
 
 ## 鳴謝
 
-簡易模式預設建議在預設編輯器中使用公開評估資料，來源為：
+預設編輯器中的簡易模式預設建議僅使用維護者機器上的公開評測資料。
+Transrewrt 不會重新散布任何資料集內容：
 
-- [languagebench](https://huggingface.co/spaces/fair-forward/languagebench)（CC BY-SA 4.0）
-- [Artificial Analysis](https://artificialanalysis.ai/)（API 資料需註明出處）
+- [languagebench](https://huggingface.co/spaces/fair-forward/languagebench)（CC BY-SA 4.0）— 翻譯 ChrF
+- [Arena](https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset)（CC BY 4.0）— Arena Score
+- [models.dev](https://models.dev/)（MIT）
 
 第三方依賴授權條款與這些資料來源聲明列於 [NOTICES](../NOTICES)。
 

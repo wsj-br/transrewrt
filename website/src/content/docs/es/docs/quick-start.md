@@ -1,6 +1,8 @@
 ---
 title: Inicio rápido
-description: Instale Transrewrt en Windows o Linux, o ejecute la aplicación web de Docker.
+description: >-
+  Instale Transrewrt en Windows, Linux o macOS, o ejecute la aplicación web de
+  Docker.
 ---
 
 
@@ -62,14 +64,30 @@ Si Chromium imprime errores de GPU/EGL pero la aplicación funciona, puede desha
 TRANSREWRT_DISABLE_GPU=1 ./Transrewrt-x.y.z-arm64.AppImage
 ```
 
+## macOS
+
+Descargue el `.dmg` para su Mac desde [Versiones](https://github.com/wsj-br/transrewrt/releases):
+
+- **Apple Silicon** — `Transrewrt-x.y.z-arm64.dmg`
+- **Intel** — `Transrewrt-x.y.z-x64.dmg`
+
+Abra la imagen de disco y arrastre Transrewrt a Aplicaciones. Introduzca las claves API en **Ajustes → Configuración de API**.
+
 :::note
-macOS no es compatible actualmente. Transrewrt está disponible para Windows, Linux y Docker.
+La compilación de macOS no está firmada (sin certificación de Apple). Gatekeeper bloquea el primer inicio. Haga clic con el botón derecho en `Transrewrt.app` y elija **Abrir**, luego confirme **Abrir**.
 :::
+
+O borre el atributo de cuarentena:
+
+```bash
+xattr -dr com.apple.quarantine /Applications/Transrewrt.app
+```
 
 ## Actualización
 
-- **Windows** — descargue el `Transrewrt Setup x.y.z.exe` más reciente de [Versiones](https://github.com/wsj-br/transrewrt/releases) y ejecútelo. La configuración y los datos se conservan.
-- **Linux** — descargue el `.AppImage` más reciente y reemplace el archivo antiguo. La configuración y los datos se conservan.
+- **Windows** — descargue el `Transrewrt Setup x.y.z.exe` más reciente de [Versiones](https://github.com/wsj-br/transrewrt/releases) y ejecútelo. Se conservan la configuración y los datos.
+- **Linux** — descargue el `.AppImage` más reciente y reemplace el archivo antiguo. Se conservan la configuración y los datos.
+- **macOS** — descargue el `.dmg` más reciente, ábralo y arrastre Transrewrt a Aplicaciones, reemplazando la aplicación existente. Se conservan la configuración y los datos.
 - **Docker** — extraiga la nueva imagen y vuelva a crear el contenedor. Los datos persisten en el volumen `/app/data`:
 
 ```bash

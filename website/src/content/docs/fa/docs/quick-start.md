@@ -1,6 +1,8 @@
 ---
 title: شروع سریع
-description: Transrewrt را روی ویندوز یا لینوکس نصب کنید، یا برنامه وب Docker را اجرا کنید.
+description: >-
+  Transrewrt را روی ویندوز، لینوکس یا macOS نصب کنید، یا برنامه وب Docker را
+  اجرا کنید.
 ---
 
 
@@ -62,15 +64,31 @@ chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage
 TRANSREWRT_DISABLE_GPU=1 ./Transrewrt-x.y.z-arm64.AppImage
 ```
 
+## macOS
+
+`.dmg` را برای مک خود از [نسخه‌ها](https://github.com/wsj-br/transrewrt/releases) دانلود کنید:
+
+- **Apple Silicon** — `Transrewrt-x.y.z-arm64.dmg`
+- **Intel** — `Transrewrt-x.y.z-x64.dmg`
+
+تصویر دیسک را باز کنید و Transrewrt را به Applications بکشید. کلیدهای API را در **Settings → API Config** وارد کنید.
+
 :::note
-macOS در حال حاضر پشتیبانی نمی‌شود. Transrewrt برای ویندوز، لینوکس و Docker در دسترس است.
+نسخه macOS امضا نشده است (بدون تأییدیه Apple). Gatekeeper اولین راه‌اندازی را مسدود می‌کند. روی `Transrewrt.app` راست کلیک کرده و **Open** را انتخاب کنید، سپس **Open** را تأیید کنید.
 :::
+
+یا ویژگی قرنطینه را پاک کنید:
+
+```bash
+xattr -dr com.apple.quarantine /Applications/Transrewrt.app
+```
 
 ## به‌روزرسانی
 
-- **ویندوز** — `Transrewrt Setup x.y.z.exe` جدیدتر را از [انتشارات](https://github.com/wsj-br/transrewrt/releases) دانلود کرده و آن را اجرا کنید. تنظیمات و داده‌ها حفظ می‌شوند.
-- **لینوکس** — `.AppImage` جدیدتر را دانلود کرده و فایل قدیمی را جایگزین کنید. تنظیمات و داده‌ها حفظ می‌شوند.
-- **Docker** — ایمیج جدید را pull کرده و کانتینر را دوباره ایجاد کنید. داده‌ها در حجم `/app/data` باقی می‌مانند:
+- **Windows** — `Transrewrt Setup x.y.z.exe` جدیدتر را از [نسخه‌ها](https://github.com/wsj-br/transrewrt/releases) دانلود کرده و آن را اجرا کنید. تنظیمات و داده‌ها حفظ می‌شوند.
+- **Linux** — `.AppImage` جدیدتر را دانلود کرده و فایل قدیمی را جایگزین کنید. تنظیمات و داده‌ها حفظ می‌شوند.
+- **macOS** — `.dmg` جدیدتر را دانلود کنید، آن را باز کنید و Transrewrt را به Applications بکشید و برنامه موجود را جایگزین کنید. تنظیمات و داده‌ها حفظ می‌شوند.
+- **Docker** — تصویر جدید را pull کرده و کانتینر را دوباره ایجاد کنید. داده‌ها در حجم `/app/data` باقی می‌مانند:
 
 ```bash
 docker pull ghcr.io/wsj-br/transrewrt:latest

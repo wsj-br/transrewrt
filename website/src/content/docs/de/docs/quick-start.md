@@ -1,8 +1,8 @@
 ---
 title: Schnellstart
 description: >-
-  Installieren Sie Transrewrt unter Windows oder Linux, oder führen Sie die
-  Docker-Web-App aus.
+  Installieren Sie Transrewrt unter Windows, Linux oder macOS, oder führen Sie
+  die Docker-Web-App aus.
 ---
 
 
@@ -64,15 +64,30 @@ Wenn Chromium GPU-/EGL-Fehler ausgibt, die App aber funktioniert, können Sie di
 TRANSREWRT_DISABLE_GPU=1 ./Transrewrt-x.y.z-arm64.AppImage
 ```
 
-:::note
-macOS wird derzeit nicht unterstützt. Transrewrt ist für Windows, Linux und Docker verfügbar.
+## macOS
+
+Laden Sie das `.dmg` für Ihren Mac von den [Releases](https://github.com/wsj-br/transrewrt/releases) herunter:
+
+- **Apple Silicon** — `Transrewrt-x.y.z-arm64.dmg`
+- **Intel** — `Transrewrt-x.y.z-x64.dmg`
+
+Öffnen Sie das Disk-Image und ziehen Sie Transrewrt in den Ordner „Programme“. Geben Sie API-Schlüssel unter **Einstellungen → API-Konfiguration** ein.
+
+:::noteDer macOS-Build ist nicht signiert (keine Apple-Notarisierung). Gatekeeper blockiert den ersten Start. Klicken Sie mit der rechten Maustaste auf `Transrewrt.app` und wählen Sie **Öffnen**, dann bestätigen Sie **Öffnen**.
 :::
+
+Oder löschen Sie das Quarantäne-Attribut:
+
+```bash
+xattr -dr com.apple.quarantine /Applications/Transrewrt.app
+```
 
 ## Aktualisieren
 
-- **Windows** – laden Sie die neuere `Transrewrt Setup x.y.z.exe` von [Releases](https://github.com/wsj-br/transrewrt/releases) herunter und führen Sie sie aus. Einstellungen und Daten bleiben erhalten.
-- **Linux** – laden Sie die neuere `.AppImage` herunter und ersetzen Sie die alte Datei. Einstellungen und Daten bleiben erhalten.
-- **Docker** – ziehen Sie das neue Image und erstellen Sie den Container neu. Daten bleiben im `/app/data`-Volume erhalten:
+- **Windows** — Laden Sie das neuere `Transrewrt Setup x.y.z.exe` von den [Releases](https://github.com/wsj-br/transrewrt/releases) herunter und führen Sie es aus. Einstellungen und Daten bleiben erhalten.
+- **Linux** — Laden Sie das neuere `.AppImage` herunter und ersetzen Sie die alte Datei. Einstellungen und Daten bleiben erhalten.
+- **macOS** — Laden Sie das neuere `.dmg` herunter, öffnen Sie es und ziehen Sie Transrewrt in den Ordner „Programme“, wobei Sie die vorhandene App ersetzen. Einstellungen und Daten bleiben erhalten.
+- **Docker** — Ziehen Sie das neue Image und erstellen Sie den Container neu. Daten bleiben im `/app/data`-Volume erhalten:
 
 ```bash
 docker pull ghcr.io/wsj-br/transrewrt:latest

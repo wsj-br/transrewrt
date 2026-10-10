@@ -1,6 +1,8 @@
 ---
 title: Быстрый старт
-description: Установите Transrewrt в Windows или Linux или запустите веб-приложение Docker.
+description: >-
+  Установите Transrewrt на Windows, Linux или macOS, либо запустите
+  веб-приложение Docker.
 ---
 
 
@@ -62,14 +64,29 @@ chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage
 TRANSREWRT_DISABLE_GPU=1 ./Transrewrt-x.y.z-arm64.AppImage
 ```
 
-:::note
-macOS в настоящее время не поддерживается. Transrewrt доступен для Windows, Linux и Docker.
+## macOS
+
+Скачайте `.dmg` для вашего Mac из [Релизов](https://github.com/wsj-br/transrewrt/releases):
+
+- **Apple Silicon** — `Transrewrt-x.y.z-arm64.dmg`
+- **Intel** — `Transrewrt-x.y.z-x64.dmg`
+
+Откройте образ диска и перетащите Transrewrt в Приложения. Введите ключи API в **Настройки → Конфигурация API**.
+
+:::noteСборка для macOS не подписана (нет нотариального заверения Apple). Gatekeeper блокирует первый запуск. Щелкните правой кнопкой мыши `Transrewrt.app` и выберите **Открыть**, затем подтвердите **Открыть**.
 :::
+
+Или очистите атрибут карантина:
+
+```bash
+xattr -dr com.apple.quarantine /Applications/Transrewrt.app
+```
 
 ## Обновление
 
-- **Windows** — загрузите более новую версию `Transrewrt Setup x.y.z.exe` из [Релизов](https://github.com/wsj-br/transrewrt/releases) и запустите ее. Настройки и данные сохраняются.
-- **Linux** — загрузите более новую версию `.AppImage` и замените старый файл. Настройки и данные сохраняются.
+- **Windows** — скачайте более новую версию `Transrewrt Setup x.y.z.exe` из [Релизов](https://github.com/wsj-br/transrewrt/releases) и запустите ее. Настройки и данные сохраняются.
+- **Linux** — скачайте более новую версию `.AppImage` и замените старый файл. Настройки и данные сохраняются.
+- **macOS** — скачайте более новую версию `.dmg`, откройте ее и перетащите Transrewrt в Приложения, заменив существующее приложение. Настройки и данные сохраняются.
 - **Docker** — извлеките новый образ и пересоздайте контейнер. Данные сохраняются в томе `/app/data`:
 
 ```bash

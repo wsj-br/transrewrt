@@ -48,7 +48,7 @@ Nếu các KPI vẫn bằng không sau khi **Tất cả**, hãy kiểm tra [Lị
 
 ## Chi phí hiển thị "không có sẵn" hoặc có vẻ sai
 
-OpenRouter hiển thị chi phí thực tế khi áp dụng. Đối với các nhà cung cấp khác, chi phí được ước tính từ giá của OpenRouter; nếu không có giá nào khớp, chi phí hiển thị là **không có sẵn** và không được thêm vào tổng.
+OpenRouter và xAI hiển thị chi phí thực tế khi API trả về. Đối với các Nhà cung cấp khác, chi phí được ước tính từ giá của [models.dev](https://models.dev/); nếu không có giá nào khớp, chi phí sẽ hiển thị là **không có sẵn** và không được thêm vào tổng số.
 
 ## Tổng chi phí không khớp với hóa đơn của nhà cung cấp
 

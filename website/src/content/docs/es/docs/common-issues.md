@@ -48,7 +48,7 @@ Si los KPI siguen siendo cero después de **Todo**, consulte [Historial](/docs/h
 
 ## El costo muestra "no disponible" o parece incorrecto
 
-OpenRouter muestra el gasto real cuando corresponde. Para otros proveedores, el costo se estima a partir de los precios de OpenRouter; si no hay coincidencia de precio, el costo se muestra como **no disponible** y no se agrega al total.
+OpenRouter y xAI muestran el gasto real cuando la API lo devuelve. Para otros Proveedores, el coste se estima a partir de los precios de [models.dev](https://models.dev/); si no hay ningún precio que coincida, el coste se muestra como **no disponible** y no se añade al total.
 
 ## El costo total no coincide con la factura de mi proveedor
 

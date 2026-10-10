@@ -1,6 +1,8 @@
 ---
 title: Snelstart
-description: Installeer Transrewrt op Windows of Linux, of voer de Docker-web-app uit.
+description: >-
+  Installeer Transrewrt op Windows, Linux of macOS, of voer de Docker-web-app
+  uit.
 ---
 
 
@@ -62,14 +64,30 @@ Als Chromium GPU / EGL-fouten afdrukt, maar de app werkt, kunt u hardwareversnel
 TRANSREWRT_DISABLE_GPU=1 ./Transrewrt-x.y.z-arm64.AppImage
 ```
 
+## macOS
+
+Download de `.dmg` voor je Mac van [Releases](https://github.com/wsj-br/transrewrt/releases):
+
+- **Apple Silicon** — `Transrewrt-x.y.z-arm64.dmg`
+- **Intel** — `Transrewrt-x.y.z-x64.dmg`
+
+Open de schijfkopie en sleep Transrewrt naar Programma's. Voer API-sleutels in bij **Instellingen → API-configuratie**.
+
 :::note
-macOS wordt momenteel niet ondersteund. Transrewrt is beschikbaar voor Windows, Linux en Docker.
+De macOS-build is niet ondertekend (geen Apple-notarisatie). Gatekeeper blokkeert de eerste lancering. Klik met de rechtermuisknop op `Transrewrt.app` en kies **Openen**, bevestig vervolgens **Openen**.
 :::
+
+Of wis het quarantaine-attribuut:
+
+```bash
+xattr -dr com.apple.quarantine /Applications/Transrewrt.app
+```
 
 ## Bijwerken
 
 - **Windows** — download de nieuwere `Transrewrt Setup x.y.z.exe` van [Releases](https://github.com/wsj-br/transrewrt/releases) en voer deze uit. Instellingen en gegevens blijven behouden.
 - **Linux** — download de nieuwere `.AppImage` en vervang het oude bestand. Instellingen en gegevens blijven behouden.
+- **macOS** — download de nieuwere `.dmg`, open deze en sleep Transrewrt naar Programma's, ter vervanging van de bestaande app. Instellingen en gegevens blijven behouden.
 - **Docker** — haal de nieuwe image op en maak de container opnieuw aan. Gegevens blijven behouden in het `/app/data`-volume:
 
 ```bash

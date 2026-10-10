@@ -48,7 +48,7 @@ Jeśli wskaźniki KPI nadal wynoszą zero po wybraniu opcji **Wszystkie**, spraw
 
 ## Koszt pokazuje „niedostępny” lub wydaje się błędny
 
-OpenRouter pokazuje rzeczywiste wydatki, jeśli ma to zastosowanie. W przypadku innych dostawców koszt jest szacowany na podstawie cennika OpenRouter; jeśli żadna cena nie pasuje, koszt jest wyświetlany jako **niedostępny** i nie jest dodawany do sumy.
+OpenRouter i xAI pokazują rzeczywiste wydatki, gdy API je zwraca. W przypadku innych dostawców koszt jest szacowany na podstawie cen [models.dev](https://models.dev/); jeśli żadna cena nie pasuje, koszt jest wyświetlany jako **niedostępny** i nie jest dodawany do sumy.
 
 ## Całkowity koszt nie zgadza się z rachunkiem od mojego dostawcy
 

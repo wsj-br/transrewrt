@@ -33,11 +33,11 @@ In der Webversion hat jeder Benutzer seine eigene Konfiguration (KI-Erfahrung, A
 
 **KI-Erfahrung**
 
-- **Einfach** (Standard): Wählen Sie einen **Anbieter**. Cloud-Anbieter verwenden Voreinstellungen in der Symbolleiste. **Lokales LLM** listet stattdessen installierte lokale Modelle auf. **Voreinstellungskatalog aktualisieren** ruft die neueste Voreinstellungsliste aus dem Projekt-Repository ab.
+- **Einfach** (Standard): Wählen Sie einen **Anbieter**. Cloud-Anbieter verwenden Voreinstellungen der Symbolleiste. **Lokales LLM** listet stattdessen installierte lokale Modelle auf. **Voreinstellungskatalog aktualisieren** ruft die neueste Voreinstellungsliste aus dem Projekt-Repository ab.
   - **Kostenlos (OpenRouter)** – kostenlose Option, die an verfügbare kostenlose Modelle weitergeleitet wird; Qualität und Verfügbarkeit können variieren
-  - **Standard** – leicht und kostengünstig; am besten für kurze Texte, schnelle Entwürfe und den Einsatz in großen Mengen
+  - **Standard** – leicht und kostengünstig; am besten für kurze Texte, schnelle Entwürfe und den Einsatz in großen Mengen geeignet
   - **Erweitert** – hochpräzises Modell für komplexe oder nuancierte Inhalte, zu höheren Kosten
-  - **Technisch** – optimiert für Code, APIs, Entwicklerdokumentation und strukturierte Inhalte; bewahrt Formatierung und Terminologie
+  - **Technisch** – abgestimmt auf Code, APIs, Entwickler-Dokumentation und strukturierte Inhalte; bewahrt Formatierung und Terminologie
 - **Erweitert**: Wählen Sie Modelle in der Symbolleiste aus; verwalten Sie die Liste unter [Modelle](#models).
 
 Sie können auch zwischen Einfach ↔ Erweitert über das Voreinstellungs-/Modellmenü der Symbolleiste wechseln (**In den einfachen/erweiterten Modus wechseln**, über „Einstellungen öffnen“).
@@ -85,7 +85,7 @@ Hinzufügen mit **Hinzufügen**; Entfernen mit **X**. Das kostenlose OpenRouter-
 - **API-Schlüsselnutzung** – OpenRouter-Details, falls verfügbar
 - **Kostendaten löschen** – alle Daten oder Einträge, die älter als ein bestimmtes Datum sind
 
-OpenRouter zeigt die tatsächlich abgerechneten Kosten an, sofern zutreffend; andere Anbieter verwenden Schätzungen basierend auf der OpenRouter-Preisgestaltung. Schätzungen sind keine Rechnungen.
+OpenRouter und xAI zeigen die tatsächlich abgerechneten Kosten an, wenn die API diese zurückgibt; andere Anbieter verwenden Schätzungen aus der Preisgestaltung von [models.dev](https://models.dev/). Schätzungen sind keine Rechnungen.
 
 :::caution
 Das Löschen von Kostendaten kann nicht rückgängig gemacht werden. Exportieren Sie zuerst über Verlauf oder Dashboard → Alle Anrufe, wenn Sie eine Sicherung benötigen. Der zugehörige Eingabe-/Ausgabeverlauf für diese API-Aufrufe wird ebenfalls entfernt.

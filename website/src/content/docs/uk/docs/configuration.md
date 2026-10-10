@@ -13,6 +13,7 @@ description: >-
 | --- | --- |
 | Electron (Windows) | `%APPDATA%\transrewrt\` |
 | Electron (Linux) | `~/.config/transrewrt/` |
+| Electron (macOS) | `~/Library/Application Support/transrewrt/` |
 | Web / Docker | `/app/data/` (використовуйте том для збереження) |
 
 Папка даних містить усе, що варто резервувати:
@@ -89,6 +90,6 @@ docker exec <container> reset-web-password '<username>' '<new-password>'
 
 ## Відображення вартості
 
-OpenRouter повертає точну вартість рахунку, якщо це можливо. Інші провайдери використовують **орієнтовну** вартість з публічних цін моделі OpenRouter, якщо доступний ключ OpenRouter. Оцінки не є рахунками-фактурами.
+OpenRouter та xAI повертають точну виставлену вартість, якщо API її включає. Інші постачальники використовують **орієнтовну** вартість із публічних цін на моделі [models.dev](https://models.dev/). Оцінки не є рахунками-фактурами.
 
 Щодо інтерфейсу користувача налаштувань (шрифти, моделі, історія, резервні копії), дивіться [Налаштування](/docs/settings/).

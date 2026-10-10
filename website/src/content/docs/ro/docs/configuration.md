@@ -13,6 +13,7 @@ description: >-
 | --- | --- |
 | Electron (Windows) | `%APPDATA%\transrewrt\` |
 | Electron (Linux) | `~/.config/transrewrt/` |
+| Electron (macOS) | `~/Library/Application Support/transrewrt/` |
 | Web / Docker | `/app/data/` (utilizați un volum pentru persistență) |
 
 Folderul de date conține tot ce merită să fie salvat:
@@ -89,6 +90,6 @@ Serverul utilizează HTTP simplu. Dacă îl expuneți dincolo de localhost sau o
 
 ## Afișarea costului
 
-OpenRouter returnează costul facturat exact, atunci când este cazul. Alți furnizori utilizează costul **estimat** din prețurile publice ale modelelor OpenRouter atunci când este disponibilă o cheie OpenRouter. Estimările nu sunt facturi.
+OpenRouter și xAI returnează costul facturat exact atunci când API-ul îl include. Alți Furnizori utilizează costul **estimat** din prețurile publice ale modelelor [models.dev](https://models.dev/). Estimările nu sunt facturi.
 
 Pentru interfața de utilizator a Setărilor (fonturi, modele, istoric, backup-uri), consultați [Setări](/docs/settings/).

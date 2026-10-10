@@ -13,6 +13,7 @@ description: >-
 | --- | --- |
 | Electron (Windows) | `%APPDATA%\transrewrt\` |
 | Electron (Linux) | `~/.config/transrewrt/` |
+| Electron (macOS) | `~/Library/Application Support/transrewrt/` |
 | Web / Docker | `/app/data/` (kötet használata az állandósághoz) |
 
 Az adatmappa mindent tartalmaz, amit érdemes biztonsági másolatot készíteni róla:
@@ -89,6 +90,6 @@ A szerver egyszerű HTTP-n kommunikál. Ha a localhoston vagy egy megbízható h
 
 ## Költségmegjelenítés
 
-Az OpenRouter a pontos számlázott költséget adja vissza, ha alkalmazható. Más szolgáltatók az OpenRouter nyilvános modellárazásából származó **becsült** költséget használják, ha OpenRouter kulcs elérhető. A becslések nem számlák.
+Az OpenRouter és az xAI a pontos számlázott költséget adják vissza, ha az API tartalmazza. Más Szolgáltatók a [models.dev](https://models.dev/) nyilvános modellárai alapján **becsült** költséget használnak. A becslések nem számlák.
 
 A Beállítások felhasználói felületéhez (betűtípusok, modellek, előzmények, biztonsági mentések) lásd: [Beállítások](/docs/settings/).

@@ -5,12 +5,12 @@
 <h1 align="center">Transrewrt</h1>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.3-blue" alt="Version"></a>
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.4-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
-  <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
+  <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20macOS%20%7C%20Docker-lightgrey" alt="Platform">
 </p>
 
-Công cụ văn bản được hỗ trợ bởi AI để **dịch**, **chỉnh sửa lại** và **chuyển đổi** với các lời nhắc tùy chỉnh. Sử dụng các nhà cung cấp AI của riêng bạn (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, các điểm cuối tương thích với OpenAI và các máy chủ cục bộ như Ollama, LM Studio hoặc llama.cpp). Chạy dưới dạng ứng dụng máy tính để bàn (Windows / Linux) hoặc ứng dụng web Docker. Không cần tài khoản đám mây Transrewrt.
+Công cụ văn bản được hỗ trợ bởi AI để **dịch**, **viết lại** và **chuyển đổi** với các lời nhắc tùy chỉnh. Sử dụng các nhà cung cấp AI của riêng bạn (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, các điểm cuối tương thích với OpenAI và các máy chủ cục bộ như Ollama, LM Studio hoặc llama.cpp). Chạy dưới dạng ứng dụng máy tính để bàn (Windows / Linux / macOS) hoặc ứng dụng web Docker. Không cần tài khoản đám mây Transrewrt.
 
 ## Tính năng
 
@@ -52,6 +52,14 @@ Thay thế `PROVIDER_API_KEY` bằng biến nhà cung cấp của bạn (ví d�
 chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage
 ```
 
+**macOS** — Tải xuống `.dmg` cho máy Mac của bạn từ [Bản phát hành](https://github.com/wsj-br/transrewrt/releases): `arm64` cho Apple Silicon, `x64` cho Intel. Mở ảnh đĩa và kéo Transrewrt vào Ứng dụng.
+
+Bản dựng không được ký, vì vậy Gatekeeper chặn lần khởi chạy đầu tiên. Nhấp chuột phải vào `Transrewrt.app` và chọn **Mở**, sau đó xác nhận **Mở**. Hoặc xóa thuộc tính kiểm dịch:
+
+```bash
+xattr -dr com.apple.quarantine /Applications/Transrewrt.app
+```
+
 Chi tiết nền tảng (Compose, SmartScreen, apt libs, cờ GPU, múi giờ): [Tài liệu bắt đầu nhanh](https://wsj-br.github.io/transrewrt/docs/quick-start/).
 
 ## Tài liệu
@@ -72,14 +80,15 @@ Tài liệu sản phẩm đầy đủ (cài đặt, khóa API, hướng dẫn, c
 
 ## Hỗ trợ
 
-Mở một vấn đề trên [GitHub](https://github.com/wsj-br/transrewrt/issues). Bao gồm nền tảng của bạn (Windows / Linux / Docker) và phiên bản ứng dụng (hộp thoại Giới thiệu hoặc trang Bản phát hành).
+Mở một vấn đề trên [GitHub](https://github.com/wsj-br/transrewrt/issues). Bao gồm nền tảng của bạn (Windows / Linux / macOS / Docker) và phiên bản ứng dụng (hộp thoại Giới thiệu hoặc trang Bản phát hành).
 
 ## Lời cảm ơn
 
-Các đề xuất cài đặt trước ở chế độ Dễ dàng trong trình chỉnh sửa cài đặt trước sử dụng dữ liệu đánh giá công khai từ:
+Các đề xuất cài đặt trước chế độ Dễ dàng trong trình chỉnh sửa cài đặt trước chỉ sử dụng dữ liệu đánh giá công khai trên máy của người bảo trì. Không có nội dung tập dữ liệu nào được phân phối lại với Transrewrt:
 
-- [languagebench](https://huggingface.co/spaces/fair-forward/languagebench) (CC BY-SA 4.0)
-- [Artificial Analysis](https://artificialanalysis.ai/) (yêu cầu ghi công đối với dữ liệu API)
+- [languagebench](https://huggingface.co/spaces/fair-forward/languagebench) (CC BY-SA 4.0) — dịch ChrF
+- [Arena](https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset) (CC BY 4.0) — Điểm Arena
+- [models.dev](https://models.dev/) (MIT)
 
 Giấy phép phụ thuộc của bên thứ ba và các thông báo nguồn dữ liệu này được liệt kê trong [THÔNG BÁO](../NOTICES).
 

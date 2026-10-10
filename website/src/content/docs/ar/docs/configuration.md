@@ -11,6 +11,7 @@ description: مواقع ملفات التهيئة، ومتغيرات بيئة Do
 | --- | --- |
 | Electron (Windows) | `%APPDATA%\transrewrt\` |
 | Electron (Linux) | `~/.config/transrewrt/` |
+| Electron (macOS) | `~/Library/Application Support/transrewrt/` |
 | الويب / Docker | `/app/data/` (استخدم وحدة تخزين للاستمرارية) |
 
 يحتوي مجلد البيانات على كل ما يستحق النسخ الاحتياطي:
@@ -87,6 +88,6 @@ docker exec <container> reset-web-password '<username>' '<new-password>'
 
 ## عرض التكلفة
 
-يعرض OpenRouter التكلفة الفعلية المحاسبة عند الاقتضاء. يستخدم مقدمو الخدمة الآخرون التكلفة **المقدرة** من تسعير نموذج OpenRouter العام عندما يكون مفتاح OpenRouter متاحًا. التقديرات ليست فواتير.
+يُرجع OpenRouter وxAI التكلفة الفعلية التي تم تحصيلها عندما تتضمنها واجهة برمجة التطبيقات. يستخدم المزودون الآخرون التكلفة **التقديرية** من تسعير النموذج العام [models.dev](https://models.dev/). التقديرات ليست فواتير.
 
 لواجهة مستخدم الإعدادات (الخطوط، النماذج، السجل، النسخ الاحتياطية)، راجع [الإعدادات](/docs/settings/).

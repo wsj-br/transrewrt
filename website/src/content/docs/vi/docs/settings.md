@@ -33,8 +33,8 @@ Trong phiên bản web, mỗi người dùng có cấu hình riêng (trải nghi
 
 **Trải nghiệm AI**
 
-- **Dễ** (mặc định): chọn một **Nhà cung cấp**. Các nhà cung cấp đám mây sử dụng các cài đặt trước trên thanh công cụ. **LLM cục bộ** liệt kê các mô hình cục bộ đã cài đặt thay thế. **Làm mới danh mục cài đặt trước** tìm nạp danh sách cài đặt trước mới nhất từ kho lưu trữ dự án.
-  - **Miễn phí (OpenRouter)** — tùy chọn không tốn phí được định tuyến đến các mô hình miễn phí có sẵn; chất lượng và tính khả dụng có thể thay đổi
+- **Dễ dàng** (mặc định): chọn một **Nhà cung cấp**. Các nhà cung cấp đám mây sử dụng các cài đặt trước trên thanh công cụ. **LLM cục bộ** liệt kê các mô hình cục bộ đã cài đặt. **Làm mới danh mục cài đặt trước** tìm nạp danh sách cài đặt trước mới nhất từ kho lưu trữ dự án.
+  - **Miễn phí (OpenRouter)** — tùy chọn miễn phí được định tuyến đến các mô hình miễn phí có sẵn; chất lượng và tính khả dụng có thể khác nhau
   - **Tiêu chuẩn** — nhẹ và tiết kiệm chi phí; tốt nhất cho các văn bản ngắn, bản nháp nhanh và sử dụng với số lượng lớn
   - **Nâng cao** — mô hình có độ chính xác cao cho nội dung phức tạp hoặc sắc thái, với chi phí cao hơn
   - **Kỹ thuật** — được điều chỉnh cho mã, API, tài liệu dành cho nhà phát triển và nội dung có cấu trúc; giữ nguyên định dạng và thuật ngữ
@@ -85,7 +85,7 @@ Thêm bằng **Thêm**; xóa bằng **X**. Mô hình miễn phí OpenRouter là 
 - **Mức sử dụng khóa API** — chi tiết OpenRouter khi có sẵn
 - **Xóa dữ liệu chi phí** — tất cả dữ liệu hoặc các mục cũ hơn một ngày
 
-OpenRouter hiển thị chi phí thực tế đã thanh toán khi áp dụng; các nhà cung cấp khác sử dụng ước tính từ giá của OpenRouter. Ước tính không phải là hóa đơn.
+OpenRouter và xAI hiển thị chi phí thực tế được lập hóa đơn khi API trả về; các nhà cung cấp khác sử dụng ước tính từ giá của [models.dev](https://models.dev/). Ước tính không phải là hóa đơn.
 
 :::caution
 Việc xóa dữ liệu chi phí không thể hoàn tác. Xuất qua Lịch sử hoặc Bảng điều khiển → Tất cả cuộc gọi trước nếu bạn cần sao lưu. Lịch sử đầu vào/đầu ra liên quan cho các cuộc gọi API đó cũng bị xóa.

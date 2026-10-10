@@ -13,6 +13,7 @@ description: >-
 | --- | --- |
 | Electron (Windows) | `%APPDATA%\transrewrt\` |
 | Electron (Linux) | `~/.config/transrewrt/` |
+| Electron (macOS) | `~/Library/Application Support/transrewrt/` |
 | เว็บ / Docker | `/app/data/` (ใช้โวลุ่มเพื่อคงอยู่) |
 
 โฟลเดอร์ข้อมูลเก็บทุกสิ่งที่ควรสำรองข้อมูล:
@@ -89,6 +90,6 @@ docker exec <container> reset-web-password '<username>' '<new-password>'
 
 ## การแสดงต้นทุน
 
-OpenRouter จะคืนค่าใช้จ่ายที่เรียกเก็บจริงเมื่อมีผลบังคับใช้ ผู้ให้บริการรายอื่นใช้ต้นทุนที่ **ประมาณการ** จากราคาโมเดลสาธารณะของ OpenRouter เมื่อมีคีย์ OpenRouter ให้ใช้งาน การประมาณการไม่ใช่ใบแจ้งหนี้
+OpenRouter และ xAI จะคืนค่าใช้จ่ายที่เรียกเก็บจริงเมื่อ API มีข้อมูลดังกล่าว ผู้ให้บริการรายอื่นใช้ค่าใช้จ่ายที่ **ประมาณการ** จากราคาโมเดลสาธารณะของ [models.dev](https://models.dev/) การประมาณการไม่ใช่ใบแจ้งหนี้
 
 สำหรับ UI การตั้งค่า (ฟอนต์, โมเดล, ประวัติ, การสำรองข้อมูล) โปรดดู [การตั้งค่า](/docs/settings/)

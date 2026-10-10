@@ -33,12 +33,12 @@ Web sürümünde, her kullanıcının kendi yapılandırması (yapay zeka deneyi
 
 **Yapay zeka deneyimi**
 
-- **Kolay** (varsayılan): bir **Sağlayıcı** seçin. Bulut sağlayıcıları araç çubuğu ön ayarlarını kullanır. **Yerel LLM** bunun yerine yüklü yerel modelleri listeler. **Ön ayar kataloğunu yenile** projenin deposundan en son ön ayar listesini getirir.
+- **Kolay** (varsayılan): Bir **Sağlayıcı** seçin. Bulut sağlayıcıları araç çubuğu ön ayarlarını kullanır. **Yerel LLM**, bunun yerine yüklü yerel modelleri listeler. **Ön ayar kataloğunu yenile**, projenin deposundan en son ön ayar listesini getirir.
   - **Ücretsiz (OpenRouter)** — mevcut ücretsiz modellere yönlendirilen sıfır maliyetli seçenek; kalite ve kullanılabilirlik değişebilir
   - **Standart** — hafif ve uygun maliyetli; kısa metinler, hızlı taslaklar ve yüksek hacimli kullanım için en iyisi
-  - **Gelişmiş** — karmaşık veya nüanslı içerik için yüksek doğruluklu model, daha yüksek maliyetle
-  - **Teknik** — kod, API'ler, geliştirici belgeleri ve yapılandırılmış içerik için ayarlanmıştır; biçimlendirmeyi ve terminolojiyi korur
-- **Gelişmiş**: araç çubuğunda modelleri seçin; listeyi [Modeller](#models) altında yönetin.
+  - **Gelişmiş** — karmaşık veya incelikli içerik için yüksek doğruluklu model, daha yüksek maliyetle
+  - **Teknik** — kod, API'ler, geliştirici Belgeler ve yapılandırılmış içerik için ayarlanmıştır; biçimlendirmeyi ve terminolojiyi korur
+- **Gelişmiş**: araç çubuğundan modelleri seçin; listeyi [Modeller](#models) altında yönetin.
 
 Araç çubuğu ön ayar/model menüsünden de Kolay ↔ Gelişmiş arasında geçiş yapabilirsiniz (**Kolay/Gelişmiş moda geç**, Ayarları Aç'ın üstünde).
 
@@ -85,7 +85,7 @@ Yalnızca **Gelişmiş** modda kullanılabilir.
 - **API Anahtarı Kullanımı** — mevcut olduğunda OpenRouter ayrıntıları
 - **Maliyet verilerini sil** — tüm veriler veya belirli bir tarihten eski girişler
 
-OpenRouter, uygun olduğunda gerçek faturalandırılmış maliyeti gösterir; diğer sağlayıcılar OpenRouter fiyatlandırmasından tahminler kullanır. Tahminler fatura değildir.
+OpenRouter ve xAI, API döndürdüğünde gerçek faturalandırılan maliyeti gösterir; diğer sağlayıcılar [models.dev](https://models.dev/) fiyatlandırmasından tahminleri kullanır. Tahminler fatura değildir.
 
 :::caution
 Maliyet verilerinin silinmesi geri alınamaz. Bir yedeğe ihtiyacınız varsa önce Geçmiş veya Kontrol Paneli → Tüm Çağrılar aracılığıyla dışa aktarın. Bu API çağrıları için ilgili girdi/çıktı geçmişi de kaldırılır.

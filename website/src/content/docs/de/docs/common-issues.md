@@ -48,7 +48,7 @@ Wenn die KPIs nach **Alle** immer noch null sind, überprüfen Sie [Verlauf](/do
 
 ## Kosten werden als „nicht verfügbar“ angezeigt oder scheinen falsch zu sein
 
-OpenRouter zeigt den tatsächlichen Verbrauch an, sofern zutreffend. Für andere Anbieter werden die Kosten anhand der OpenRouter-Preise geschätzt; wenn kein Preis übereinstimmt, werden die Kosten als **nicht verfügbar** angezeigt und nicht zur Gesamtsumme addiert.
+OpenRouter und xAI zeigen die tatsächlichen Ausgaben an, wenn die API diese zurückgibt. Für andere Anbieter werden die Kosten anhand der Preise von [models.dev](https://models.dev/) geschätzt; wenn kein Preis übereinstimmt, werden die Kosten als **nicht verfügbar** angezeigt und nicht zur Gesamtsumme addiert.
 
 ## Gesamtkosten stimmen nicht mit meiner Anbieterrechnung überein
 

@@ -1,6 +1,8 @@
 ---
 title: Snabbstart
-description: Installera Transrewrt på Windows eller Linux, eller kör Docker-webbappen.
+description: >-
+  Installera Transrewrt på Windows, Linux eller macOS, eller kör webbappen i
+  Docker.
 ---
 
 
@@ -62,15 +64,31 @@ Om Chromium skriver ut GPU-/EGL-fel men appen fungerar, kan du inaktivera hårdv
 TRANSREWRT_DISABLE_GPU=1 ./Transrewrt-x.y.z-arm64.AppImage
 ```
 
+## macOS
+
+Ladda ned `.dmg` för din Mac från [Utgåvor](https://github.com/wsj-br/transrewrt/releases):
+
+- **Apple Silicon** — `Transrewrt-x.y.z-arm64.dmg`
+- **Intel** — `Transrewrt-x.y.z-x64.dmg`
+
+Öppna diskavbildningen och dra Transrewrt till Program. Ange API-nycklar i **Inställningar → API-konfiguration**.
+
 :::note
-macOS stöds för närvarande inte. Transrewrt är tillgängligt för Windows, Linux och Docker.
+macOS-versionen är osignerad (ingen Apple-notarisering). Gatekeeper blockerar den första starten. Högerklicka på `Transrewrt.app` och välj **Öppna**, bekräfta sedan **Öppna**.
 :::
+
+Eller rensa karantänattributet:
+
+```bash
+xattr -dr com.apple.quarantine /Applications/Transrewrt.app
+```
 
 ## Uppdatering
 
-- **Windows** — ladda ner den nyare `Transrewrt Setup x.y.z.exe` från [Releases](https://github.com/wsj-br/transrewrt/releases) och kör den. Inställningar och data behålls.
-- **Linux** — ladda ner den nyare `.AppImage` och ersätt den gamla filen. Inställningar och data behålls.
-- **Docker** — dra den nya avbildningen och återskapa containern. Data kvarstår i `/app/data`-volymen:
+- **Windows** — ladda ned den nyare `Transrewrt Setup x.y.z.exe` från [Utgåvor](https://github.com/wsj-br/transrewrt/releases) och kör den. Inställningar och data behålls.
+- **Linux** — ladda ned den nyare `.AppImage` och ersätt den gamla filen. Inställningar och data behålls.
+- **macOS** — ladda ned den nyare `.dmg`, öppna den och dra Transrewrt till Program, ersätt den befintliga appen. Inställningar och data behålls.
+- **Docker** — hämta den nya avbildningen och återskapa containern. Data finns kvar i volymen `/app/data`:
 
 ```bash
 docker pull ghcr.io/wsj-br/transrewrt:latest

@@ -48,7 +48,7 @@ Dacă indicatorii cheie de performanță sunt încă zero după **Toate**, verif
 
 ## Costul afișează „indisponibil” sau pare greșit
 
-OpenRouter afișează cheltuielile reale, acolo unde este cazul. Pentru alți furnizori, costul este estimat pe baza prețurilor OpenRouter; dacă nu se potrivește niciun preț, costul este afișat ca **indisponibil** și nu este adăugat la total.
+OpenRouter și xAI afișează cheltuielile reale atunci când API-ul le returnează. Pentru alți Furnizori, costul este estimat din prețurile [models.dev](https://models.dev/); dacă nu se potrivește niciun preț, costul este afișat ca **indisponibil** și nu este adăugat la total.
 
 ## Costul total nu se potrivește cu factura furnizorului meu
 

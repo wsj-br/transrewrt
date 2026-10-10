@@ -13,6 +13,7 @@ description: >-
 | --- | --- |
 | Electron (Windows) | `%APPDATA%\transrewrt\` |
 | Electron (Linux) | `~/.config/transrewrt/` |
+| Electron (macOS) | `~/Library/Application Support/transrewrt/` |
 | Web / Docker | `/app/data/` (utiliser un volume pour la persistance) |
 
 Le dossier de données contient tout ce qui mérite d'être sauvegardé :
@@ -89,6 +90,6 @@ Le serveur utilise le protocole HTTP en clair. Si vous l’exposez au-delà de l
 
 ## Affichage des coûts
 
-OpenRouter renvoie le coût facturé exact le cas échéant. Les autres fournisseurs utilisent le coût **estimé** à partir des tarifs des modèles publics d’OpenRouter lorsqu’une clé OpenRouter est disponible. Les estimations ne sont pas des factures.
+OpenRouter et xAI renvoient le coût facturé exact lorsque l'API l'inclut. Les autres Fournisseurs utilisent un coût **estimé** basé sur les prix publics des modèles de [models.dev](https://models.dev/). Les estimations ne sont pas des factures.
 
 Pour l’interface utilisateur des paramètres (polices, modèles, historique, sauvegardes), consultez [Paramètres](/docs/settings/).

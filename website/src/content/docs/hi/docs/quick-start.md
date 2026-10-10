@@ -1,6 +1,6 @@
 ---
 title: त्वरित शुरुआत
-description: विंडोज या लिनक्स पर ट्रांसरिवर्ट इंस्टॉल करें, या डॉकर वेब ऐप चलाएं।
+description: Windows, Linux, या macOS पर Transrewrt इंस्टॉल करें, या Docker वेब ऐप चलाएँ।
 ---
 
 
@@ -62,15 +62,31 @@ chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage
 TRANSREWRT_DISABLE_GPU=1 ./Transrewrt-x.y.z-arm64.AppImage
 ```
 
+## macOS
+
+[रिलीज़](https://github.com/wsj-br/transrewrt/releases) से अपने Mac के लिए `.dmg` डाउनलोड करें:
+
+- **Apple Silicon** — `Transrewrt-x.y.z-arm64.dmg`
+- **Intel** — `Transrewrt-x.y.z-x64.dmg`
+
+डिस्क इमेज खोलें और Transrewrt को एप्लिकेशन में खींचें। **सेटिंग्स → API कॉन्फ़िग** में API कुंजियाँ दर्ज करें।
+
 :::note
-macOS वर्तमान में समर्थित नहीं है। ट्रांसरेवर्ट विंडोज, लिनक्स और डॉकर के लिए उपलब्ध है।
+macOS बिल्ड अहस्ताक्षरित है (कोई Apple नोटराइज़ेशन नहीं)। गेटकीपर पहले लॉन्च को ब्लॉक करता है। `Transrewrt.app` पर राइट-क्लिक करें और **खोलें** चुनें, फिर **खोलें** की पुष्टि करें।
 :::
+
+या क्वारंटाइन विशेषता साफ़ करें:
+
+```bash
+xattr -dr com.apple.quarantine /Applications/Transrewrt.app
+```
 
 ## अपडेट करना
 
-- **विंडोज** — [रिलीज़](https://github.com/wsj-br/transrewrt/releases) से नया `Transrewrt Setup x.y.z.exe` डाउनलोड करें और इसे चलाएँ। सेटिंग्स और डेटा रखे जाते हैं।
-- **लिनक्स** — नया `.AppImage` डाउनलोड करें और पुरानी फ़ाइल को बदलें। सेटिंग्स और डेटा रखे जाते हैं।
-- **डॉकर** — नई इमेज खींचें और कंटेनर को फिर से बनाएँ। डेटा `/app/data` वॉल्यूम में बना रहता है:
+- **Windows** — [रिलीज़](https://github.com/wsj-br/transrewrt/releases) से नया `Transrewrt Setup x.y.z.exe` डाउनलोड करें और उसे चलाएँ। सेटिंग्स और डेटा रखे जाते हैं।
+- **Linux** — नया `.AppImage` डाउनलोड करें और पुरानी फ़ाइल को बदलें। सेटिंग्स और डेटा रखे जाते हैं।
+- **macOS** — नया `.dmg` डाउनलोड करें, उसे खोलें, और Transrewrt को एप्लिकेशन में खींचें, मौजूदा ऐप को बदलें। सेटिंग्स और डेटा रखे जाते हैं।
+- **Docker** — नई इमेज खींचें और कंटेनर को फिर से बनाएँ। डेटा `/app/data` वॉल्यूम में बना रहता है:
 
 ```bash
 docker pull ghcr.io/wsj-br/transrewrt:latest

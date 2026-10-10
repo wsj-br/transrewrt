@@ -5,12 +5,12 @@
 <h1 align="center">Transrewrt</h1>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.3-blue" alt="Version"></a>
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.4-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
-  <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
+  <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20macOS%20%7C%20Docker-lightgrey" alt="Platform">
 </p>
 
-AI 驱动的文本工具，用于通过自定义提示词进行**翻译**、**重写**和**转换**。使用您自己的 AI 提供商（OpenRouter、OpenAI、Anthropic、Google Gemini、DeepSeek、Groq、Mistral、xAI、Cerebras、NVIDIA、阿里云、apikey.fun、OpenAI 兼容端点，以及本地服务器如 Ollama、LM Studio 或 llama.cpp）。可作为桌面应用（Windows / Linux）或 Docker Web 应用运行。无需 Transrewrt 云账号。
+AI 驱动的文本工具，支持通过自定义提示词进行**翻译**、**重写**和**转换**。使用你自己的 AI 提供商（OpenRouter、OpenAI、Anthropic、Google Gemini、DeepSeek、Groq、Mistral、xAI、Cerebras、NVIDIA、阿里云、apikey.fun、OpenAI 兼容端点，以及本地服务器如 Ollama、LM Studio 或 llama.cpp）。可作为桌面应用（Windows / Linux / macOS）或 Docker 网页应用运行。无需 Transrewrt 云账号。
 
 ## 功能
 
@@ -52,6 +52,14 @@ docker run -d \
 chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage
 ```
 
+**macOS** — 从[发布页面](https://github.com/wsj-br/transrewrt/releases)下载适用于你 Mac 的 `.dmg`：Apple Silicon 用 `arm64`，Intel 用 `x64`。打开磁盘映像并将 Transrewrt 拖到应用程序文件夹。
+
+该构建未签名，因此 Gatekeeper 会阻止首次启动。右键点击 `Transrewrt.app` 并选择**打开**，然后确认**打开**。或者清除隔离属性：
+
+```bash
+xattr -dr com.apple.quarantine /Applications/Transrewrt.app
+```
+
 平台详情（Compose、SmartScreen、apt 库、GPU 标志、时区）：[快速开始文档](https://wsj-br.github.io/transrewrt/docs/quick-start/)。
 
 ## 文档
@@ -72,14 +80,15 @@ chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage
 
 ## 支持
 
-在 [GitHub](https://github.com/wsj-br/transrewrt/issues) 上提交 issue。请附上你的平台（Windows / Linux / Docker）和应用版本（关于对话框或 Releases 页面）。
+在 [GitHub](https://github.com/wsj-br/transrewrt/issues) 上提交 issue。请附上你的平台（Windows / Linux / macOS / Docker）和应用版本（关于对话框或发布页面）。
 
 ## 致谢
 
-预设编辑器中的简易模式预设建议使用了来自以下来源的公开评估数据：
+预设编辑器中的简易模式预设建议仅使用维护者机器上的公开评估数据。Transrewrt 不会重新分发任何数据集内容：
 
-- [languagebench](https://huggingface.co/spaces/fair-forward/languagebench) (CC BY-SA 4.0)
-- [Artificial Analysis](https://artificialanalysis.ai/) (API 数据需要注明出处)
+- [languagebench](https://huggingface.co/spaces/fair-forward/languagebench)（CC BY-SA 4.0）— 翻译 ChrF
+- [Arena](https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset)（CC BY 4.0）— Arena 分数
+- [models.dev](https://models.dev/)（MIT）
 
 第三方依赖许可证及这些数据来源声明列于 [NOTICES](../NOTICES) 中。
 

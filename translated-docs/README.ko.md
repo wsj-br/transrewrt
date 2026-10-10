@@ -5,12 +5,12 @@
 <h1 align="center">Transrewrt</h1>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.3-blue" alt="Version"></a>
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.4-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
-  <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
+  <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20macOS%20%7C%20Docker-lightgrey" alt="Platform">
 </p>
 
-사용자 지정 프롬프트로 **번역**, **다시 쓰기**, **변환**을 수행할 수 있는 AI 기반 텍스트 도구입니다. 자체 AI 제공업체(OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, OpenAI 호환 엔드포인트 및 Ollama, LM Studio, llama.cpp와 같은 로컬 서버)를 사용하세요. 데스크톱 앱(Windows / Linux) 또는 Docker 웹 앱으로 실행하세요. Transrewrt 클라우드 계정 없음.
+AI 기반 텍스트 도구로 **번역**, **다시 쓰기**, **변환**을 사용자 정의 프롬프트로 수행할 수 있습니다. 자체 AI 제공자(OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, OpenAI 호환 엔드포인트, Ollama, LM Studio, llama.cpp 등 로컬 서버)를 사용하세요. 데스크톱 앱(Windows / Linux / macOS) 또는 Docker 웹 앱으로 실행할 수 있습니다. Transrewrt 클라우드 계정이 필요하지 않습니다.
 
 ## 기능
 
@@ -52,6 +52,14 @@ docker run -d \
 chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage
 ```
 
+**macOS** — [Releases](https://github.com/wsj-br/transrewrt/releases)에서 Mac용 `.dmg`을(를) 다운로드하세요: Apple Silicon용 `arm64`, Intel용 `x64`. 디스크 이미지를 열고 Transrewrt를 응용 프로그램 폴더로 드래그하세요.
+
+빌드에 서명이 없으므로 Gatekeeper가 첫 실행을 차단합니다. `Transrewrt.app`을(를) 오른쪽 클릭하고 **열기**를 선택한 다음 **열기**를 확인하세요. 또는 격리 속성을 제거하세요:
+
+```bash
+xattr -dr com.apple.quarantine /Applications/Transrewrt.app
+```
+
 플랫폼 세부 정보(Compose, SmartScreen, apt 라이브러리, GPU 플래그, 시간대): [빠른 시작 문서](https://wsj-br.github.io/transrewrt/docs/quick-start/).
 
 ## 문서
@@ -72,14 +80,16 @@ chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage
 
 ## 지원
 
-[GitHub](https://github.com/wsj-br/transrewrt/issues)에 이슈를 열어주세요. 플랫폼(Windows / Linux / Docker)과 앱 버전(정보 대화상자 또는 Releases 페이지)을 포함해 주세요.
+[GitHub](https://github.com/wsj-br/transrewrt/issues)에서 이슈를 등록하세요. 사용 중인 플랫폼(Windows / Linux / macOS / Docker)과 앱 버전(정보 대화상자 또는 Releases 페이지)을 포함해 주세요.
 
 ## 감사의 말
 
-사전 설정 편집기의 쉬움 모드 사전 설정 제안은 다음의 공개 평가 데이터를 사용합니다:
+사전 설정 편집기의 간편 모드 사전 설정 제안은 관리자의 머신에서만 공개 평가 데이터를
+사용합니다. 데이터셋 콘텐츠는 Transrewrt와 함께 재배포되지 않습니다:
 
-- [languagebench](https://huggingface.co/spaces/fair-forward/languagebench) (CC BY-SA 4.0)
-- [Artificial Analysis](https://artificialanalysis.ai/) (API 데이터에 대한 출처 표시 필요)
+- [languagebench](https://huggingface.co/spaces/fair-forward/languagebench) (CC BY-SA 4.0) — 번역 ChrF
+- [Arena](https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset) (CC BY 4.0) — Arena 점수
+- [models.dev](https://models.dev/) (MIT)
 
 서드파티 종속성 라이선스 및 이러한 데이터 소스 공지는 [NOTICES](../NOTICES)에 나열되어 있습니다.
 

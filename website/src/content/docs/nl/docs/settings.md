@@ -33,8 +33,8 @@ In de webversie heeft elke gebruiker zijn eigen configuratie (AI-ervaring, provi
 
 **AI-ervaring**
 
-- **Eenvoudig** (standaard): kies een **Provider**. Cloudproviders gebruiken voorinstellingen in de werkbalk. **Lokale LLM** toont in plaats daarvan geïnstalleerde lokale modellen. **Catalogus met voorinstellingen vernieuwen** haalt de nieuwste lijst met voorinstellingen op uit de projectrepository.
-  - **Gratis (OpenRouter)** — kosteloze optie die wordt doorgestuurd naar beschikbare gratis modellen; kwaliteit en beschikbaarheid kunnen variëren
+- **Eenvoudig** (standaard): kies een **Provider**. Cloudproviders gebruiken voorinstellingen voor de werkbalk. **Lokale LLM** toont in plaats daarvan geïnstalleerde lokale modellen. **Catalogus met voorinstellingen vernieuwen** haalt de nieuwste lijst met voorinstellingen op uit de projectrepository.
+  - **Gratis (OpenRouter)** — gratis optie die wordt doorgestuurd naar beschikbare gratis modellen; kwaliteit en beschikbaarheid kunnen variëren
   - **Standaard** — lichtgewicht en kostenefficiënt; het beste voor korte teksten, snelle concepten en veelvuldig gebruik
   - **Geavanceerd** — zeer nauwkeurig model voor complexe of genuanceerde inhoud, tegen hogere kosten
   - **Technisch** — afgestemd op code, API's, ontwikkelaarsdocumentatie en gestructureerde inhoud; behoudt opmaak en terminologie
@@ -85,7 +85,7 @@ Toevoegen met **Toevoegen**; verwijderen met **X**. Het gratis OpenRouter-model 
 - **API-sleutelgebruik** — OpenRouter-details indien beschikbaar
 - **Kosten gegevens verwijderen** — alle gegevens of vermeldingen ouder dan een bepaalde datum
 
-OpenRouter toont de werkelijk gefactureerde kosten wanneer van toepassing; andere providers gebruiken schattingen van OpenRouter-prijzen. Schattingen zijn geen facturen.
+OpenRouter en xAI tonen de werkelijk gefactureerde kosten wanneer de API deze retourneert; andere providers gebruiken schattingen van de prijzen van [models.dev](https://models.dev/). Schattingen zijn geen facturen.
 
 :::caution
 Het verwijderen van kostengegevens kan niet ongedaan worden gemaakt. Exporteer eerst via Geschiedenis of Dashboard → Alle oproepen als u een back-up nodig heeft. Gerelateerde invoer-/uitvoergeschiedenis voor die API-aanroepen wordt ook verwijderd.

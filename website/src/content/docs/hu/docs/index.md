@@ -13,7 +13,7 @@ A **Transrewrt** egy nyílt forráskódú, mesterséges intelligencia alapú sz�
 - **Átírás** – nyelvtani hibák javítása, egyértelműség javítása, hangnem vagy hosszúság megváltoztatása
 - **Átalakítás** – saját egyéni mesterséges intelligencia promptok futtatása bármilyen szövegen
 
-Számos AI-szolgáltatót támogat (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, OpenAI-kompatibilis végpontok, és helyi OpenAI-kompatibilis szerverek, mint például az Ollama, LM Studio vagy llama.cpp). Futtassa **asztali alkalmazásként** (Windows / Linux) vagy **Docker webalkalmazásként**.
+Számos AI-szolgáltatót támogat (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, OpenAI-kompatibilis végpontok, és helyi OpenAI-kompatibilis szerverek, mint például az Ollama, LM Studio vagy llama.cpp). Futtatható **asztali alkalmazásként** (Windows / Linux / macOS) vagy **Docker webalkalmazásként**.
 
 Az Ön kulcsai, az Ön modelljei, az Ön hosztja – nincs Transrewrt felhőfiók.
 

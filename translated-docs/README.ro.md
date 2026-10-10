@@ -5,12 +5,12 @@
 <h1 align="center">Transrewrt</h1>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.3-blue" alt="Version"></a>
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.4-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
-  <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
+  <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20macOS%20%7C%20Docker-lightgrey" alt="Platform">
 </p>
 
-Instrument de text bazat pe inteligență artificială pentru **traducere**, **reescriere** și **transformare** cu solicitări personalizate. Utilizați proprii furnizori de inteligență artificială (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, puncte finale compatibile cu OpenAI și servere locale precum Ollama, LM Studio sau llama.cpp). Rulați ca aplicație desktop (Windows / Linux) sau aplicație web Docker. Nu este necesar un cont Transrewrt cloud.
+Instrument de text bazat pe inteligență artificială pentru **traducere**, **rescriere** și **transformare** cu prompturi personalizate. Utilizați proprii furnizori de inteligență artificială (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, puncte finale compatibile cu OpenAI și servere locale precum Ollama, LM Studio sau llama.cpp). Rulați ca aplicație desktop (Windows / Linux / macOS) sau ca aplicație web Docker. Fără cont Transrewrt cloud.
 
 ## Caracteristici
 
@@ -52,6 +52,14 @@ docker run -d \
 chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage
 ```
 
+**macOS** — Descărcați `.dmg` pentru Mac-ul dvs. de la [Lansări](https://github.com/wsj-br/transrewrt/releases): `arm64` pentru Apple Silicon, `x64` pentru Intel. Deschideți imaginea discului și trageți Transrewrt în Aplicații.
+
+Compilarea nu este semnată, așa că Gatekeeper blochează prima lansare. Faceți clic dreapta pe `Transrewrt.app` și alegeți **Deschideți**, apoi confirmați **Deschideți**. Sau ștergeți atributul de carantină:
+
+```bash
+xattr -dr com.apple.quarantine /Applications/Transrewrt.app
+```
+
 Detalii platformă (Compose, SmartScreen, biblioteci apt, flag-uri GPU, fus orar): [Documentație de pornire rapidă](https://wsj-br.github.io/transrewrt/docs/quick-start/).
 
 ## Documentație
@@ -72,14 +80,16 @@ Documentație completă a produsului (instalare, chei API, ghiduri, setări, dep
 
 ## Suport
 
-Deschideți o problemă pe [GitHub](https://github.com/wsj-br/transrewrt/issues). Includeți platforma dvs. (Windows / Linux / Docker) și versiunea aplicației (dialogul Despre sau pagina Lansări).
+Deschideți o problemă pe [GitHub](https://github.com/wsj-br/transrewrt/issues). Includeți platforma dvs. (Windows / Linux / macOS / Docker) și versiunea aplicației (dialogul Despre sau pagina Lansări).
 
 ## Mulțumiri
 
-Sugestiile de presetări în modul Ușor din editorul de presetări utilizează date de evaluare publice de la:
+Sugestiile de presetări în modul ușor din editorul de presetări utilizează date de evaluare publice
+numai pe mașina de întreținere. Niciun conținut al setului de date nu este redistribuit cu Transrewrt:
 
-- [languagebench](https://huggingface.co/spaces/fair-forward/languagebench) (CC BY-SA 4.0)
-- [Artificial Analysis](https://artificialanalysis.ai/) (atribuire necesară pentru datele API)
+- [languagebench](https://huggingface.co/spaces/fair-forward/languagebench) (CC BY-SA 4.0) — traducere ChrF
+- [Arena](https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset) (CC BY 4.0) — Scor Arena
+- [models.dev](https://models.dev/) (MIT)
 
 Licențele dependențelor terțe și aceste notificări privind sursa de date sunt enumerate în [NOTICES](../NOTICES).
 

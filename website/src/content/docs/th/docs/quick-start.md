@@ -1,6 +1,6 @@
 ---
 title: เริ่มต้นใช้งานด่วน
-description: ติดตั้ง Transrewrt บน Windows หรือ Linux หรือเรียกใช้เว็บแอป Docker
+description: ติดตั้ง Transrewrt บน Windows, Linux หรือ macOS หรือเรียกใช้เว็บแอป Docker
 ---
 
 
@@ -62,14 +62,30 @@ chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage
 TRANSREWRT_DISABLE_GPU=1 ./Transrewrt-x.y.z-arm64.AppImage
 ```
 
+## macOS
+
+ดาวน์โหลด `.dmg` สำหรับ Mac ของคุณจาก [รุ่นที่เผยแพร่](https://github.com/wsj-br/transrewrt/releases):
+
+- **Apple Silicon** — `Transrewrt-x.y.z-arm64.dmg`
+- **Intel** — `Transrewrt-x.y.z-x64.dmg`
+
+เปิดอิมเมจดิสก์แล้วลาก Transrewrt ไปยังแอปพลิเคชัน ป้อนคีย์ API ใน **การตั้งค่า → การกำหนดค่า API**
+
 :::note
-macOS ไม่รองรับในขณะนี้ Transrewrt มีให้สำหรับ Windows, Linux และ Docker
+บิลด์ macOS ไม่ได้ลงชื่อ (ไม่มีการรับรองจาก Apple) Gatekeeper จะบล็อกการเปิดตัวครั้งแรก คลิกขวาที่ `Transrewrt.app` แล้วเลือก **เปิด** จากนั้นยืนยัน **เปิด**
 :::
+
+หรือล้างแอตทริบิวต์กักกัน:
+
+```bash
+xattr -dr com.apple.quarantine /Applications/Transrewrt.app
+```
 
 ## การอัปเดต
 
-- **Windows** — ดาวน์โหลด `Transrewrt Setup x.y.z.exe` ที่ใหม่กว่าจาก [Releases](https://github.com/wsj-br/transrewrt/releases) และเรียกใช้ การตั้งค่าและข้อมูลจะถูกเก็บไว้
-- **Linux** — ดาวน์โหลด `.AppImage` ที่ใหม่กว่าและแทนที่ไฟล์เก่า การตั้งค่าและข้อมูลจะถูกเก็บไว้
+- **Windows** — ดาวน์โหลด `Transrewrt Setup x.y.z.exe` เวอร์ชันใหม่กว่าจาก [รุ่นที่เผยแพร่](https://github.com/wsj-br/transrewrt/releases) แล้วเรียกใช้ การตั้งค่าและข้อมูลจะถูกเก็บไว้
+- **Linux** — ดาวน์โหลด `.AppImage` เวอร์ชันใหม่กว่าแล้วแทนที่ไฟล์เก่า การตั้งค่าและข้อมูลจะถูกเก็บไว้
+- **macOS** — ดาวน์โหลด `.dmg` เวอร์ชันใหม่กว่า เปิด แล้วลาก Transrewrt ไปยังแอปพลิเคชัน เพื่อแทนที่แอปที่มีอยู่ การตั้งค่าและข้อมูลจะถูกเก็บไว้
 - **Docker** — ดึงอิมเมจใหม่และสร้างคอนเทนเนอร์ใหม่ ข้อมูลยังคงอยู่ในวอลุ่ม `/app/data`:
 
 ```bash

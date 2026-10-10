@@ -1,4 +1,67 @@
 {
+  "61807813": {
+    "source": "Four ways to run Transrewrt",
+    "translated": {
+      "zh-Hans": "运行 Transrewrt 的四种方式",
+      "zh-Hant": "執行 Transrewrt 的四種方式",
+      "fr": "Quatre façons d'exécuter Transrewrt",
+      "nl": "Vier manieren om Transrewrt te gebruiken",
+      "de": "Vier Möglichkeiten, Transrewrt auszuführen",
+      "el": "Τέσσερις τρόποι για να εκτελέσετε το Transrewrt",
+      "cs": "Čtyři způsoby, jak spustit Transrewrt",
+      "ar": "أربع طرق لتشغيل Transrewrt",
+      "ja": "Transrewrtを実行する4つの方法",
+      "ko": "Transrewrt 실행을 위한 네 가지 방법",
+      "it": "Quattro modi per eseguire Transrewrt",
+      "pt-BR": "Quatro formas de executar o Transrewrt",
+      "hi": "Transrewrt चलाने के चार तरीके",
+      "pl": "Cztery sposoby uruchomienia Transrewrt",
+      "fa": "چهار روش برای اجرای Transrewrt",
+      "hu": "Négy módszer a Transrewrt futtatására",
+      "ru": "Четыре способа запустить Transrewrt",
+      "es": "Cuatro formas de ejecutar Transrewrt",
+      "uk": "Чотири способи запустити Transrewrt",
+      "ro": "Patru moduri de a rula Transrewrt",
+      "tr": "Transrewrt'i çalıştırmanın dört yolu",
+      "th": "สี่วิธีในการใช้งาน Transrewrt",
+      "sk": "Štyri spôsoby, ako spustiť Transrewrt",
+      "sv": "Fyra sätt att köra Transrewrt",
+      "vi": "Bốn cách để chạy Transrewrt"
+    },
+    "models": {
+      "zh-Hans": "z-ai/glm-5.2",
+      "zh-Hant": "z-ai/glm-5.2",
+      "fr": "~anthropic/claude-sonnet-latest",
+      "nl": "~anthropic/claude-sonnet-latest",
+      "de": "~anthropic/claude-sonnet-latest",
+      "el": "~anthropic/claude-sonnet-latest",
+      "cs": "~anthropic/claude-sonnet-latest",
+      "ar": "~anthropic/claude-sonnet-latest",
+      "ja": "z-ai/glm-5.2",
+      "ko": "z-ai/glm-5.2",
+      "it": "~anthropic/claude-sonnet-latest",
+      "pt-BR": "~anthropic/claude-sonnet-latest",
+      "hi": "~anthropic/claude-sonnet-latest",
+      "pl": "~anthropic/claude-sonnet-latest",
+      "fa": "~anthropic/claude-sonnet-latest",
+      "hu": "~anthropic/claude-sonnet-latest",
+      "ru": "~anthropic/claude-sonnet-latest",
+      "es": "~anthropic/claude-sonnet-latest",
+      "uk": "~anthropic/claude-sonnet-latest",
+      "ro": "~anthropic/claude-sonnet-latest",
+      "tr": "~anthropic/claude-sonnet-latest",
+      "th": "~anthropic/claude-sonnet-latest",
+      "sk": "~anthropic/claude-sonnet-latest",
+      "sv": "~anthropic/claude-sonnet-latest",
+      "vi": "~anthropic/claude-sonnet-latest"
+    },
+    "locations": [
+      {
+        "file": "src/components/marketing/GetStarted.tsx",
+        "line": 106
+      }
+    ]
+  },
   "65377780": {
     "source": "Select language",
     "translated": {
@@ -456,7 +519,7 @@
       },
       {
         "file": "src/components/marketing/GetStarted.tsx",
-        "line": 93
+        "line": 103
       },
       {
         "file": "src/components/marketing/Hero.tsx",
@@ -1634,6 +1697,195 @@
       }
     ]
   },
+  "7a9ff6e9": {
+    "source": "macOS disk image",
+    "translated": {
+      "zh-Hans": "macOS 磁盘映像",
+      "zh-Hant": "macOS 磁碟映像檔",
+      "fr": "Image disque macOS",
+      "nl": "macOS-schijfkopie",
+      "de": "macOS-Disk-Image",
+      "el": "Εικόνα δίσκου macOS",
+      "cs": "Obraz disku pro macOS",
+      "ar": "صورة قرص macOS",
+      "ja": "macOSディスクイメージ",
+      "ko": "macOS 디스크 이미지",
+      "it": "Immagine disco macOS",
+      "pt-BR": "Imagem de disco do macOS",
+      "hi": "macOS डिस्क इमेज",
+      "pl": "Obraz dysku macOS",
+      "fa": "تصویر دیسک macOS",
+      "hu": "macOS lemezkép",
+      "ru": "Образ диска macOS",
+      "es": "Imagen de disco de macOS",
+      "uk": "Образ диска macOS",
+      "ro": "Imagine de disc macOS",
+      "tr": "macOS disk görüntüsü",
+      "th": "ไฟล์อิมเมจดิสก์ macOS",
+      "sk": "Obraz disku macOS",
+      "sv": "macOS-diskavbild",
+      "vi": "Ảnh đĩa macOS"
+    },
+    "models": {
+      "zh-Hans": "z-ai/glm-5.2",
+      "zh-Hant": "z-ai/glm-5.2",
+      "fr": "~anthropic/claude-sonnet-latest",
+      "nl": "~anthropic/claude-sonnet-latest",
+      "de": "~anthropic/claude-sonnet-latest",
+      "el": "~anthropic/claude-sonnet-latest",
+      "cs": "~anthropic/claude-sonnet-latest",
+      "ar": "~anthropic/claude-sonnet-latest",
+      "ja": "z-ai/glm-5.2",
+      "ko": "z-ai/glm-5.2",
+      "it": "~anthropic/claude-sonnet-latest",
+      "pt-BR": "~anthropic/claude-sonnet-latest",
+      "hi": "~anthropic/claude-sonnet-latest",
+      "pl": "~anthropic/claude-sonnet-latest",
+      "fa": "~anthropic/claude-sonnet-latest",
+      "hu": "~anthropic/claude-sonnet-latest",
+      "ru": "~anthropic/claude-sonnet-latest",
+      "es": "~anthropic/claude-sonnet-latest",
+      "uk": "~anthropic/claude-sonnet-latest",
+      "ro": "~anthropic/claude-sonnet-latest",
+      "tr": "~anthropic/claude-sonnet-latest",
+      "th": "~anthropic/claude-sonnet-latest",
+      "sk": "~anthropic/claude-sonnet-latest",
+      "sv": "~anthropic/claude-sonnet-latest",
+      "vi": "~anthropic/claude-sonnet-latest"
+    },
+    "locations": [
+      {
+        "file": "src/components/marketing/GetStarted.tsx",
+        "line": 75
+      }
+    ]
+  },
+  "2132673e": {
+    "source": "Download the unsigned .dmg for Apple Silicon (arm64) or Intel (x64) from Releases. Drag Transrewrt to Applications. On first launch, right-click the app and choose Open.",
+    "translated": {
+      "zh-Hans": "从 Releases 下载适用于 Apple Silicon (arm64) 或 Intel (x64) 的未签名 .dmg。将 Transrewrt 拖至“应用程序”。首次启动时，右键点击应用并选择“打开”。",
+      "zh-Hant": "從 Releases 下載適用於 Apple Silicon (arm64) 或 Intel (x64) 的未簽署 .dmg。將 Transrewrt 拖曳至「應用程式」。首次啟動時，請右鍵點擊應用程式並選擇「打開」。",
+      "fr": "Téléchargez le fichier .dmg non signé pour Apple Silicon (arm64) ou Intel (x64) depuis Releases. Faites glisser Transrewrt dans Applications. Au premier lancement, faites un clic droit sur l'app et choisissez Ouvrir.",
+      "nl": "Download de niet-ondertekende .dmg voor Apple Silicon (arm64) of Intel (x64) via Releases. Sleep Transrewrt naar Programma's. Klik bij de eerste start met de rechtermuisknop op de app en kies Open.",
+      "de": "Laden Sie die nicht signierte .dmg-Datei für Apple Silicon (arm64) oder Intel (x64) von Releases herunter. Ziehen Sie Transrewrt in den Ordner „Programme“. Klicken Sie beim ersten Start mit der rechten Maustaste auf die App und wählen Sie „Öffnen“.",
+      "el": "Κατεβάστε το μη υπογεγραμμένο .dmg για Apple Silicon (arm64) ή Intel (x64) από τις Εκδόσεις. Σύρετε το Transrewrt στις Εφαρμογές. Κατά την πρώτη εκκίνηση, κάντε δεξί κλικ στην εφαρμογή και επιλέξτε Άνοιγμα.",
+      "cs": "Stáhněte si nepodepsaný soubor .dmg pro Apple Silicon (arm64) nebo Intel (x64) ze stránky Releases. Přetáhněte Transrewrt do složky Aplikace. Při prvním spuštění klikněte na aplikaci pravým tlačítkem a zvolte Otevřít.",
+      "ar": "نزّل ملف ‎.dmg غير الموقّع لمعالجات Apple Silicon ‏(arm64) أو Intel ‏(x64) من صفحة الإصدارات. اسحب Transrewrt إلى مجلد التطبيقات. عند التشغيل لأول مرة، انقر بزر الماوس الأيمن على التطبيق واختر فتح.",
+      "ja": "リリースからApple Silicon (arm64)またはIntel (x64)用の未署名.dmgをダウンロードします。Transrewrtをアプリケーションにドラッグします。初回起動時は、アプリを右クリックして「開く」を選択してください。",
+      "ko": "Releases에서 Apple Silicon (arm64) 또는 Intel (x64)용 미서명 .dmg를 다운로드하세요. Transrewrt를 응용 프로그램으로 드래그하세요. 처음 실행 시 앱을 마우스 오른쪽 버튼으로 클릭하고 열기를 선택하세요.",
+      "it": "Scarica il file .dmg non firmato per Apple Silicon (arm64) o Intel (x64) da Releases. Trascina Transrewrt nella cartella Applicazioni. Al primo avvio, fai clic con il tasto destro sull'app e scegli Apri.",
+      "pt-BR": "Baixe o .dmg não assinado para Apple Silicon (arm64) ou Intel (x64) em Releases. Arraste o Transrewrt para Aplicativos. Na primeira inicialização, clique com o botão direito no app e escolha Abrir.",
+      "hi": "Releases से Apple Silicon (arm64) या Intel (x64) के लिए अनसाइन्ड .dmg डाउनलोड करें। Transrewrt को Applications में खींचकर छोड़ें। पहली बार खोलते समय ऐप पर राइट-क्लिक करें और Open चुनें।",
+      "pl": "Pobierz niepodpisany plik .dmg dla Apple Silicon (arm64) lub Intel (x64) z sekcji Releases. Przeciągnij Transrewrt do folderu Programy. Przy pierwszym uruchomieniu kliknij aplikację prawym przyciskiem myszy i wybierz Otwórz.",
+      "fa": "فایل .dmg بدون امضا را برای Apple Silicon (arm64) یا Intel (x64) از بخش Releases دانلود کنید. Transrewrt را به پوشه Applications بکشید. در اولین اجرا، روی برنامه راست‌کلیک کنید و «Open» را انتخاب کنید.",
+      "hu": "Töltse le az aláíratlan .dmg fájlt Apple Silicon (arm64) vagy Intel (x64) rendszerhez a Kiadások oldalról. Húzza a Transrewrt alkalmazást az Alkalmazások mappába. Az első indításkor kattintson jobb gombbal az alkalmazásra, és válassza a Megnyitás lehetőséget.",
+      "ru": "Скачайте неподписанный файл .dmg для Apple Silicon (arm64) или Intel (x64) в разделе «Релизы». Перетащите Transrewrt в папку «Программы». При первом запуске щёлкните приложение правой кнопкой мыши и выберите «Открыть».",
+      "es": "Descarga el .dmg sin firmar para Apple Silicon (arm64) o Intel (x64) desde Releases. Arrastra Transrewrt a Aplicaciones. En el primer inicio, haz clic derecho en la app y elige Abrir.",
+      "uk": "Завантажте непідписаний файл .dmg для Apple Silicon (arm64) або Intel (x64) зі сторінки Releases. Перетягніть Transrewrt у папку «Програми». Під час першого запуску клацніть програму правою кнопкою миші та виберіть «Відкрити».",
+      "ro": "Descărcați fișierul .dmg nesemnat pentru Apple Silicon (arm64) sau Intel (x64) din Releases. Trageți Transrewrt în Applications. La prima lansare, faceți clic dreapta pe aplicație și alegeți Deschide.",
+      "tr": "Apple Silicon (arm64) veya Intel (x64) için imzasız .dmg dosyasını Sürümler bölümünden indirin. Transrewrt'i Uygulamalar klasörüne sürükleyin. İlk açılışta uygulamaya sağ tıklayın ve Aç'ı seçin.",
+      "th": "ดาวน์โหลดไฟล์ .dmg ที่ไม่ได้ลงชื่อสำหรับ Apple Silicon (arm64) หรือ Intel (x64) จากหน้า Releases ลาก Transrewrt ไปไว้ในโฟลเดอร์ Applications เมื่อเปิดครั้งแรก ให้คลิกขวาที่แอปแล้วเลือก เปิด",
+      "sk": "Stiahnite si nepodpísaný súbor .dmg pre Apple Silicon (arm64) alebo Intel (x64) zo sekcie Releases. Presuňte Transrewrt do priečinka Aplikácie. Pri prvom spustení kliknite na aplikáciu pravým tlačidlom myši a vyberte Otvoriť.",
+      "sv": "Ladda ned den osignerade .dmg-filen för Apple Silicon (arm64) eller Intel (x64) från Releases. Dra Transrewrt till Program. Vid första start högerklickar du på appen och väljer Öppna.",
+      "vi": "Tải xuống tệp .dmg chưa ký cho Apple Silicon (arm64) hoặc Intel (x64) từ mục Releases. Kéo Transrewrt vào thư mục Applications. Khi khởi chạy lần đầu, nhấp chuột phải vào ứng dụng và chọn Mở."
+    },
+    "models": {
+      "zh-Hans": "z-ai/glm-5.2",
+      "zh-Hant": "z-ai/glm-5.2",
+      "fr": "~anthropic/claude-sonnet-latest",
+      "nl": "~anthropic/claude-sonnet-latest",
+      "de": "~anthropic/claude-sonnet-latest",
+      "el": "~anthropic/claude-sonnet-latest",
+      "cs": "~anthropic/claude-sonnet-latest",
+      "ar": "~anthropic/claude-sonnet-latest",
+      "ja": "z-ai/glm-5.2",
+      "ko": "z-ai/glm-5.2",
+      "it": "~anthropic/claude-sonnet-latest",
+      "pt-BR": "~anthropic/claude-sonnet-latest",
+      "hi": "~anthropic/claude-sonnet-latest",
+      "pl": "~anthropic/claude-sonnet-latest",
+      "fa": "~anthropic/claude-sonnet-latest",
+      "hu": "~anthropic/claude-sonnet-latest",
+      "ru": "~anthropic/claude-sonnet-latest",
+      "es": "~anthropic/claude-sonnet-latest",
+      "uk": "~anthropic/claude-sonnet-latest",
+      "ro": "~anthropic/claude-sonnet-latest",
+      "tr": "~anthropic/claude-sonnet-latest",
+      "th": "~anthropic/claude-sonnet-latest",
+      "sk": "~anthropic/claude-sonnet-latest",
+      "sv": "~anthropic/claude-sonnet-latest",
+      "vi": "~anthropic/claude-sonnet-latest"
+    },
+    "locations": [
+      {
+        "file": "src/components/marketing/GetStarted.tsx",
+        "line": 76
+      }
+    ]
+  },
+  "be3f6403": {
+    "source": "Download for macOS",
+    "translated": {
+      "zh-Hans": "下载 macOS 版",
+      "zh-Hant": "下載 macOS 版",
+      "fr": "Télécharger pour macOS",
+      "nl": "Downloaden voor macOS",
+      "de": "Für macOS herunterladen",
+      "el": "Λήψη για macOS",
+      "cs": "Stáhnout pro macOS",
+      "ar": "تنزيل لنظام macOS",
+      "ja": "macOS版をダウンロード",
+      "ko": "macOS용 다운로드",
+      "it": "Scarica per macOS",
+      "pt-BR": "Baixar para macOS",
+      "hi": "macOS के लिए डाउनलोड करें",
+      "pl": "Pobierz dla macOS",
+      "fa": "دانلود برای macOS",
+      "hu": "Letöltés macOS-hez",
+      "ru": "Скачать для macOS",
+      "es": "Descargar para macOS",
+      "uk": "Завантажити для macOS",
+      "ro": "Descarcă pentru macOS",
+      "tr": "macOS için indir",
+      "th": "ดาวน์โหลดสำหรับ macOS",
+      "sk": "Stiahnuť pre macOS",
+      "sv": "Ladda ned för macOS",
+      "vi": "Tải xuống cho macOS"
+    },
+    "models": {
+      "zh-Hans": "z-ai/glm-5.2",
+      "zh-Hant": "z-ai/glm-5.2",
+      "fr": "~anthropic/claude-sonnet-latest",
+      "nl": "~anthropic/claude-sonnet-latest",
+      "de": "~anthropic/claude-sonnet-latest",
+      "el": "~anthropic/claude-sonnet-latest",
+      "cs": "~anthropic/claude-sonnet-latest",
+      "ar": "~anthropic/claude-sonnet-latest",
+      "ja": "z-ai/glm-5.2",
+      "ko": "z-ai/glm-5.2",
+      "it": "~anthropic/claude-sonnet-latest",
+      "pt-BR": "~anthropic/claude-sonnet-latest",
+      "hi": "~anthropic/claude-sonnet-latest",
+      "pl": "~anthropic/claude-sonnet-latest",
+      "fa": "~anthropic/claude-sonnet-latest",
+      "hu": "~anthropic/claude-sonnet-latest",
+      "ru": "~anthropic/claude-sonnet-latest",
+      "es": "~anthropic/claude-sonnet-latest",
+      "uk": "~anthropic/claude-sonnet-latest",
+      "ro": "~anthropic/claude-sonnet-latest",
+      "tr": "~anthropic/claude-sonnet-latest",
+      "th": "~anthropic/claude-sonnet-latest",
+      "sk": "~anthropic/claude-sonnet-latest",
+      "sv": "~anthropic/claude-sonnet-latest",
+      "vi": "~anthropic/claude-sonnet-latest"
+    },
+    "locations": [
+      {
+        "file": "src/components/marketing/GetStarted.tsx",
+        "line": 79
+      }
+    ]
+  },
   "916556c2": {
     "source": "Docker / web app",
     "translated": {
@@ -1693,7 +1945,7 @@
     "locations": [
       {
         "file": "src/components/marketing/GetStarted.tsx",
-        "line": 75
+        "line": 85
       }
     ]
   },
@@ -1756,7 +2008,7 @@
     "locations": [
       {
         "file": "src/components/marketing/GetStarted.tsx",
-        "line": 76
+        "line": 86
       }
     ]
   },
@@ -1819,101 +2071,38 @@
     "locations": [
       {
         "file": "src/components/marketing/GetStarted.tsx",
-        "line": 79
+        "line": 89
       }
     ]
   },
-  "ba5b8228": {
-    "source": "Three ways to run Transrewrt",
+  "cd6076b5": {
+    "source": "Pick the path that fits you — Windows, Linux, macOS, or the Docker web app. All paths are free and open source.",
     "translated": {
-      "zh-Hans": "运行 Transrewrt 的三种方式",
-      "pt-BR": "Três formas de usar o Transrewrt",
-      "zh-Hant": "執行 Transrewrt 的三種方式",
-      "fr": "Trois façons d'utiliser Transrewrt",
-      "nl": "Drie manieren om Transrewrt te draaien",
-      "cs": "Tři způsoby spuštění Transrewrt",
-      "ar": "ثلاث طرق لتشغيل Transrewrt",
-      "hi": "Transrewrt चलाने के तीन तरीके",
-      "it": "Tre modi per usare Transrewrt",
-      "de": "Drei Möglichkeiten, Transrewrt auszuführen",
-      "pl": "Trzy sposoby uruchomienia Transrewrt",
-      "ko": "Transrewrt를 실행하는 세 가지 방법",
-      "ja": "Transrewrtの3つの実行方法",
-      "fa": "سه روش برای اجرای Transrewrt",
-      "hu": "Háromféleképpen futtathatod a Transrewrtet",
-      "el": "Τρεις τρόποι εκτέλεσης του Transrewrt",
-      "es": "Tres formas de ejecutar Transrewrt",
-      "ru": "Три способа запустить Transrewrt",
-      "sv": "Tre sätt att köra Transrewrt",
-      "ro": "Trei moduri de a rula Transrewrt",
-      "tr": "Transrewrt'i çalıştırmanın üç yolu",
-      "uk": "Три способи запустити Transrewrt",
-      "sk": "Tri spôsoby spustenia Transrewrt",
-      "th": "สามวิธีในการใช้งาน Transrewrt",
-      "vi": "Ba cách chạy Transrewrt"
-    },
-    "models": {
-      "zh-Hans": "z-ai/glm-5.2",
-      "pt-BR": "~anthropic/claude-sonnet-latest",
-      "zh-Hant": "z-ai/glm-5.2",
-      "fr": "~anthropic/claude-sonnet-latest",
-      "nl": "~anthropic/claude-sonnet-latest",
-      "cs": "~anthropic/claude-sonnet-latest",
-      "ar": "~anthropic/claude-sonnet-latest",
-      "hi": "~anthropic/claude-sonnet-latest",
-      "it": "~anthropic/claude-sonnet-latest",
-      "de": "~anthropic/claude-sonnet-latest",
-      "pl": "~anthropic/claude-sonnet-latest",
-      "ko": "z-ai/glm-5.2",
-      "ja": "z-ai/glm-5.2",
-      "fa": "~anthropic/claude-sonnet-latest",
-      "hu": "~anthropic/claude-sonnet-latest",
-      "el": "~anthropic/claude-sonnet-latest",
-      "es": "~anthropic/claude-sonnet-latest",
-      "ru": "~anthropic/claude-sonnet-latest",
-      "sv": "~anthropic/claude-sonnet-latest",
-      "ro": "~anthropic/claude-sonnet-latest",
-      "tr": "~anthropic/claude-sonnet-latest",
-      "uk": "~anthropic/claude-sonnet-latest",
-      "sk": "~anthropic/claude-sonnet-latest",
-      "th": "~anthropic/claude-sonnet-latest",
-      "vi": "~anthropic/claude-sonnet-latest"
-    },
-    "locations": [
-      {
-        "file": "src/components/marketing/GetStarted.tsx",
-        "line": 96
-      }
-    ]
-  },
-  "a71fbef2": {
-    "source": "Pick the path that fits you — desktop app or Docker web app. All paths are free and open source.",
-    "translated": {
-      "zh-Hans": "选择适合你的方式 — 桌面应用或 Docker 网页应用。所有方式均免费且开源。",
-      "zh-Hant": "選擇適合你的方式 — 桌面應用程式或 Docker 網頁應用程式。所有方式皆為免費且開源。",
-      "fr": "Choisissez la solution qui vous convient — application de bureau ou application web Docker. Toutes les options sont gratuites et open source.",
-      "nl": "Kies het pad dat bij je past — desktopapp of Docker-webapp. Alle opties zijn gratis en open source.",
-      "de": "Wähle den Weg, der zu dir passt — Desktop-App oder Docker-Web-App. Alle Wege sind kostenlos und Open Source.",
-      "cs": "Vyberte si variantu, která vám vyhovuje — desktopová aplikace nebo webová aplikace v Dockeru. Všechny varianty jsou zdarma a open source.",
-      "ar": "اختر ما يناسبك — تطبيق سطح مكتب أو تطبيق ويب عبر Docker. جميع الخيارات مجانية ومفتوحة المصدر.",
-      "el": "Επιλέξτε τη διαδρομή που σας ταιριάζει — εφαρμογή desktop ή εφαρμογή web με Docker. Όλες οι επιλογές είναι δωρεάν και ανοιχτού κώδικα.",
-      "pt-BR": "Escolha o caminho ideal para você — aplicativo desktop ou aplicativo web Docker. Todas as opções são gratuitas e open source.",
-      "ja": "あなたに合った方法を選択 — デスクトップアプリまたはDocker Webアプリ。すべての方法が無料でオープンソースです。",
-      "it": "Scegli il percorso più adatto a te — app desktop o app web Docker. Tutti i percorsi sono gratuiti e open source.",
-      "pl": "Wybierz rozwiązanie dopasowane do Ciebie — aplikację desktopową lub aplikację webową w Dockerze. Wszystkie opcje są darmowe i open source.",
-      "ko": "본인에게 맞는 방식을 선택하세요 — 데스크톱 앱 또는 Docker 웹 앱. 모든 방식은 무료이며 오픈 소스입니다.",
-      "hu": "Válaszd ki a neked megfelelő megoldást – asztali alkalmazás vagy Docker webalkalmazás. Minden lehetőség ingyenes és nyílt forráskódú.",
-      "hi": "अपने लिए सही विकल्प चुनें — डेस्कटॉप ऐप या Docker वेब ऐप। सभी विकल्प मुफ़्त और ओपन सोर्स हैं।",
-      "fa": "مسیری را انتخاب کنید که با شما سازگار است — اپ دسکتاپ یا وب‌اپ Docker. همه مسیرها رایگان و متن‌باز هستند.",
-      "ru": "Выберите подходящий вариант — настольное приложение или веб-приложение Docker. Все варианты бесплатны и с открытым исходным кодом.",
-      "sv": "Välj det alternativ som passar dig – skrivbordsapp eller Docker-webbapp. Alla alternativ är gratis och öppen källkod.",
-      "ro": "Alege calea potrivită pentru tine — aplicație desktop sau aplicație web Docker. Toate variantele sunt gratuite și open source.",
-      "es": "Elige la opción que mejor se adapte a ti: app de escritorio o app web con Docker. Todas las opciones son gratuitas y de código abierto.",
-      "tr": "Sana uygun yolu seç — masaüstü uygulaması veya Docker web uygulaması. Tüm seçenekler ücretsiz ve açık kaynaklıdır.",
-      "uk": "Оберіть варіант, що вам підходить — застосунок для комп’ютера або веб-застосунок Docker. Усі варіанти безкоштовні та з відкритим кодом.",
-      "sk": "Vyberte si cestu, ktorá vám vyhovuje — desktopová aplikácia alebo webová aplikácia Docker. Všetky sú bezplatné a open source.",
-      "th": "เลือกวิธีที่เหมาะกับคุณ — แอปเดสก์ท็อปหรือเว็บแอป Docker ทุกวิธีฟรีและเป็นโอเพนซอร์ส",
-      "vi": "Chọn phương án phù hợp với bạn — ứng dụng desktop hoặc ứng dụng web Docker. Tất cả đều miễn phí và mã nguồn mở."
+      "zh-Hans": "选择适合您的途径 — Windows、Linux、macOS 或 Docker 网页应用。所有途径均免费且开源。",
+      "zh-Hant": "選擇適合您的方式 — Windows、Linux、macOS 或 Docker 網頁應用程式。所有方式均為免費且開源。",
+      "fr": "Choisissez la solution qui vous convient : Windows, Linux, macOS ou l'application web Docker. Toutes les solutions sont gratuites et open source.",
+      "nl": "Kies de optie die bij je past: Windows, Linux, macOS of de Docker-webapp. Alle opties zijn gratis en open source.",
+      "de": "Wählen Sie die passende Variante – Windows, Linux, macOS oder die Docker-Web-App. Alle Varianten sind kostenlos und Open Source.",
+      "el": "Επιλέξτε τον τρόπο που σας ταιριάζει — Windows, Linux, macOS ή την εφαρμογή ιστού Docker. Όλοι οι τρόποι είναι δωρεάν και ανοιχτού κώδικα.",
+      "cs": "Vyberte si variantu, která vám vyhovuje – Windows, Linux, macOS nebo webovou aplikaci v Dockeru. Všechny varianty jsou zdarma a open source.",
+      "ar": "اختر الطريقة التي تناسبك — Windows أو Linux أو macOS أو تطبيق الويب عبر Docker. جميع الطرق مجانية ومفتوحة المصدر.",
+      "ja": "あなたに合った方法を選択してください — Windows、Linux、macOS、またはDockerウェブアプリ。すべて無料でオープンソースです。",
+      "ko": "본인에게 맞는 경로를 선택하세요 — Windows, Linux, macOS 또는 Docker 웹 앱. 모든 경로는 무료이며 오픈 소스입니다.",
+      "it": "Scegli l'opzione più adatta a te: Windows, Linux, macOS o l'app web Docker. Tutte le opzioni sono gratuite e open source.",
+      "pt-BR": "Escolha a opção ideal para você — Windows, Linux, macOS ou o app web Docker. Todas as opções são gratuitas e de código aberto.",
+      "hi": "अपने लिए उपयुक्त विकल्प चुनें — Windows, Linux, macOS या Docker वेब ऐप। सभी विकल्प निःशुल्क और ओपन सोर्स हैं।",
+      "pl": "Wybierz odpowiednią opcję — Windows, Linux, macOS lub aplikację internetową Docker. Wszystkie opcje są bezpłatne i mają otwarty kod źródłowy.",
+      "fa": "مسیر مناسب خود را انتخاب کنید — Windows، Linux، macOS یا برنامه وب Docker. همه مسیرها رایگان و متن‌باز هستند.",
+      "hu": "Válassza ki az Önnek megfelelő módot – Windows, Linux, macOS vagy a Docker webalkalmazás. Minden mód ingyenes és nyílt forráskódú.",
+      "ru": "Выберите подходящий вариант: Windows, Linux, macOS или веб-приложение в Docker. Все варианты бесплатны и имеют открытый исходный код.",
+      "es": "Elige la opción que más te convenga: Windows, Linux, macOS o la aplicación web de Docker. Todas son gratuitas y de código abierto.",
+      "uk": "Оберіть зручний варіант: Windows, Linux, macOS або веб-застосунок Docker. Усі варіанти безкоштовні та з відкритим кодом.",
+      "ro": "Alegeți varianta potrivită pentru dvs. — Windows, Linux, macOS sau aplicația web Docker. Toate variantele sunt gratuite și open source.",
+      "tr": "Size uygun yolu seçin: Windows, Linux, macOS veya Docker web uygulaması. Tüm yollar ücretsiz ve açık kaynaklıdır.",
+      "th": "เลือกวิธีที่เหมาะกับคุณ ไม่ว่าจะเป็น Windows, Linux, macOS หรือเว็บแอป Docker ทุกวิธีใช้งานได้ฟรีและเป็นโอเพนซอร์ส",
+      "sk": "Vyberte si možnosť, ktorá vám vyhovuje — Windows, Linux, macOS alebo webová aplikácia v Dockeri. Všetky možnosti sú bezplatné a s otvoreným zdrojovým kódom.",
+      "sv": "Välj det alternativ som passar dig – Windows, Linux, macOS eller webbappen i Docker. Alla alternativ är kostnadsfria och har öppen källkod.",
+      "vi": "Chọn cách phù hợp với bạn — Windows, Linux, macOS hoặc ứng dụng web Docker. Tất cả đều miễn phí và mã nguồn mở."
     },
     "models": {
       "zh-Hans": "z-ai/glm-5.2",
@@ -1921,31 +2110,31 @@
       "fr": "~anthropic/claude-sonnet-latest",
       "nl": "~anthropic/claude-sonnet-latest",
       "de": "~anthropic/claude-sonnet-latest",
+      "el": "~anthropic/claude-sonnet-latest",
       "cs": "~anthropic/claude-sonnet-latest",
       "ar": "~anthropic/claude-sonnet-latest",
-      "el": "~anthropic/claude-sonnet-latest",
-      "pt-BR": "~anthropic/claude-sonnet-latest",
       "ja": "z-ai/glm-5.2",
-      "it": "~anthropic/claude-sonnet-latest",
-      "pl": "~anthropic/claude-sonnet-latest",
       "ko": "z-ai/glm-5.2",
-      "hu": "~anthropic/claude-sonnet-latest",
+      "it": "~anthropic/claude-sonnet-latest",
+      "pt-BR": "~anthropic/claude-sonnet-latest",
       "hi": "~anthropic/claude-sonnet-latest",
+      "pl": "~anthropic/claude-sonnet-latest",
       "fa": "~anthropic/claude-sonnet-latest",
+      "hu": "~anthropic/claude-sonnet-latest",
       "ru": "~anthropic/claude-sonnet-latest",
-      "sv": "~anthropic/claude-sonnet-latest",
-      "ro": "~anthropic/claude-sonnet-latest",
       "es": "~anthropic/claude-sonnet-latest",
-      "tr": "~anthropic/claude-sonnet-latest",
       "uk": "~anthropic/claude-sonnet-latest",
-      "sk": "~anthropic/claude-sonnet-latest",
+      "ro": "~anthropic/claude-sonnet-latest",
+      "tr": "~anthropic/claude-sonnet-latest",
       "th": "~anthropic/claude-sonnet-latest",
+      "sk": "~anthropic/claude-sonnet-latest",
+      "sv": "~anthropic/claude-sonnet-latest",
       "vi": "~anthropic/claude-sonnet-latest"
     },
     "locations": [
       {
         "file": "src/components/marketing/GetStarted.tsx",
-        "line": 99
+        "line": 109
       }
     ]
   },
@@ -2008,7 +2197,7 @@
     "locations": [
       {
         "file": "src/components/marketing/GetStarted.tsx",
-        "line": 147
+        "line": 157
       }
     ]
   },
@@ -2071,7 +2260,7 @@
     "locations": [
       {
         "file": "src/components/marketing/GetStarted.tsx",
-        "line": 151
+        "line": 161
       }
     ]
   },
@@ -2134,7 +2323,7 @@
     "locations": [
       {
         "file": "src/components/marketing/GetStarted.tsx",
-        "line": 155
+        "line": 165
       }
     ]
   },
@@ -2650,60 +2839,60 @@
       }
     ]
   },
-  "7c8d463b": {
-    "source": "Windows · Linux · Docker",
+  "ae72c04f": {
+    "source": "Windows · Linux · macOS · Docker",
     "translated": {
-      "zh-Hans": "Windows · Linux · Docker",
-      "pt-BR": "Windows · Linux · Docker",
-      "zh-Hant": "Windows · Linux · Docker",
-      "fr": "Windows · Linux · Docker",
-      "nl": "Windows · Linux · Docker",
-      "cs": "Windows · Linux · Docker",
-      "ar": "Windows · Linux · Docker",
-      "hi": "Windows · Linux · Docker",
-      "it": "Windows · Linux · Docker",
-      "de": "Windows · Linux · Docker",
-      "pl": "Windows · Linux · Docker",
-      "ko": "Windows · Linux · Docker",
-      "ja": "Windows · Linux · Docker",
-      "fa": "ویندوز · لینوکس · Docker",
-      "hu": "Windows · Linux · Docker",
-      "el": "Windows · Linux · Docker",
-      "es": "Windows · Linux · Docker",
-      "ru": "Windows · Linux · Docker",
-      "sv": "Windows · Linux · Docker",
-      "ro": "Windows · Linux · Docker",
-      "tr": "Windows · Linux · Docker",
-      "uk": "Windows · Linux · Docker",
-      "sk": "Windows · Linux · Docker",
-      "th": "Windows · Linux · Docker",
-      "vi": "Windows · Linux · Docker"
+      "zh-Hans": "Windows · Linux · macOS · Docker",
+      "zh-Hant": "Windows · Linux · macOS · Docker",
+      "fr": "Windows · Linux · macOS · Docker",
+      "nl": "Windows · Linux · macOS · Docker",
+      "de": "Windows · Linux · macOS · Docker",
+      "el": "Windows · Linux · macOS · Docker",
+      "cs": "Windows · Linux · macOS · Docker",
+      "ar": "Windows · Linux · macOS · Docker",
+      "ja": "Windows · Linux · macOS · Docker",
+      "ko": "Windows · Linux · macOS · Docker",
+      "it": "Windows · Linux · macOS · Docker",
+      "pt-BR": "Windows · Linux · macOS · Docker",
+      "hi": "Windows · Linux · macOS · Docker",
+      "pl": "Windows · Linux · macOS · Docker",
+      "fa": "Windows · Linux · macOS · Docker",
+      "hu": "Windows · Linux · macOS · Docker",
+      "ru": "Windows · Linux · macOS · Docker",
+      "es": "Windows · Linux · macOS · Docker",
+      "uk": "Windows · Linux · macOS · Docker",
+      "ro": "Windows · Linux · macOS · Docker",
+      "tr": "Windows · Linux · macOS · Docker",
+      "th": "Windows · Linux · macOS · Docker",
+      "sk": "Windows · Linux · macOS · Docker",
+      "sv": "Windows · Linux · macOS · Docker",
+      "vi": "Windows · Linux · macOS · Docker"
     },
     "models": {
       "zh-Hans": "z-ai/glm-5.2",
-      "pt-BR": "~anthropic/claude-sonnet-latest",
       "zh-Hant": "z-ai/glm-5.2",
       "fr": "~anthropic/claude-sonnet-latest",
       "nl": "~anthropic/claude-sonnet-latest",
+      "de": "~anthropic/claude-sonnet-latest",
+      "el": "~anthropic/claude-sonnet-latest",
       "cs": "~anthropic/claude-sonnet-latest",
       "ar": "~anthropic/claude-sonnet-latest",
-      "hi": "~anthropic/claude-sonnet-latest",
-      "it": "~anthropic/claude-sonnet-latest",
-      "de": "~anthropic/claude-sonnet-latest",
-      "pl": "~anthropic/claude-sonnet-latest",
-      "ko": "z-ai/glm-5.2",
       "ja": "z-ai/glm-5.2",
+      "ko": "z-ai/glm-5.2",
+      "it": "~anthropic/claude-sonnet-latest",
+      "pt-BR": "~anthropic/claude-sonnet-latest",
+      "hi": "~anthropic/claude-sonnet-latest",
+      "pl": "~anthropic/claude-sonnet-latest",
       "fa": "~anthropic/claude-sonnet-latest",
       "hu": "~anthropic/claude-sonnet-latest",
-      "el": "~anthropic/claude-sonnet-latest",
-      "es": "~anthropic/claude-sonnet-latest",
       "ru": "~anthropic/claude-sonnet-latest",
-      "sv": "~anthropic/claude-sonnet-latest",
+      "es": "~anthropic/claude-sonnet-latest",
+      "uk": "~anthropic/claude-sonnet-latest",
       "ro": "~anthropic/claude-sonnet-latest",
       "tr": "~anthropic/claude-sonnet-latest",
-      "uk": "~anthropic/claude-sonnet-latest",
-      "sk": "~anthropic/claude-sonnet-latest",
       "th": "~anthropic/claude-sonnet-latest",
+      "sk": "~anthropic/claude-sonnet-latest",
+      "sv": "~anthropic/claude-sonnet-latest",
       "vi": "~anthropic/claude-sonnet-latest"
     },
     "locations": [
@@ -6946,60 +7135,60 @@
       }
     ]
   },
-  "3afaf62a": {
-    "source": "Install on Windows or Linux (including Linux arm64), or run the Docker web app with multi-user support, admin roles, and a persistent data volume on /app/data.",
+  "2613c39d": {
+    "source": "Install on Windows, Linux (x64 or arm64), or macOS (unsigned DMG for Apple Silicon and Intel), or run the Docker web app with multi-user support, admin roles, and a persistent data volume on /app/data.",
     "translated": {
-      "zh-Hans": "安装在 Windows 或 Linux（包括 Linux arm64）上，或运行具有多用户支持、管理员角色以及 /app/data 持久数据卷的 Docker Web 应用。",
-      "pt-BR": "Instale no Windows ou Linux (incluindo Linux arm64), ou execute o app web em Docker com suporte a múltiplos usuários, funções de administrador e um volume de dados persistente em /app/data.",
-      "zh-Hant": "安裝於 Windows 或 Linux（包含 Linux arm64），或執行具備多使用者支援、管理員角色，以及持久化資料卷於 /app/data 的 Docker 網頁應用程式。",
-      "fr": "Installez sur Windows ou Linux (y compris Linux arm64), ou exécutez l'application web Docker avec prise en charge multi-utilisateur, rôles administrateur et volume de données persistant sur /app/data.",
-      "nl": "Installeer op Windows of Linux (inclusief Linux arm64), of draai de Docker-webapp met ondersteuning voor meerdere gebruikers, beheerdersrollen en een permanent datavolume op /app/data.",
-      "ar": "ثبّته على Windows أو Linux (بما في ذلك Linux arm64)، أو شغّل تطبيق الويب عبر Docker مع دعم تعدد المستخدمين، وأدوار المشرفين، ووحدة تخزين بيانات دائمة على /app/data.",
-      "hi": "Windows या Linux (Linux arm64 सहित) पर इंस्टॉल करें, या मल्टी-यूज़र सपोर्ट, एडमिन रोल्स, और /app/data पर पर्सिस्टेंट डेटा वॉल्यूम के साथ Docker वेब ऐप चलाएँ।",
-      "cs": "Nainstalujte na Windows nebo Linux (včetně Linux arm64), nebo spusťte webovou aplikaci v Dockeru s podporou více uživatelů, rolemi správce a trvalým datovým svazkem na /app/data.",
-      "it": "Installa su Windows o Linux (incluso Linux arm64), oppure esegui l'app web Docker con supporto multiutente, ruoli amministrativi e un volume dati persistente su /app/data.",
-      "ko": "Windows 또는 Linux(Linux arm64 포함)에 설치하거나, 다중 사용자 지원, 관리자 역할 및 /app/data의 영구 데이터 볼륨을 제공하는 Docker 웹 앱을 실행하세요.",
-      "ja": "WindowsまたはLinux（Linux arm64を含む）にインストールするか、マルチユーザーサポート、管理者ロール、/app/dataの永続データボリュームを備えたDocker Webアプリを実行できます。",
-      "pl": "Zainstaluj na Windows lub Linux (w tym Linux arm64), lub uruchom aplikację webową w Dockerze z obsługą wielu użytkowników, rolami administratora i trwałym wolumenem danych w /app/data.",
-      "de": "Installieren Sie unter Windows oder Linux (einschließlich Linux arm64), oder führen Sie die Docker-Web-App mit Mehrbenutzerunterstützung, Admin-Rollen und einem persistenten Datenvolume unter /app/data aus.",
-      "hu": "Telepítsd Windowsra vagy Linuxra (beleértve a Linux arm64-et is), vagy futtasd a Docker webalkalmazást több felhasználós támogatással, admin szerepkörökkel és tartós adattérfogattal a /app/data útvonalon.",
-      "fa": "روی ویندوز یا لینوکس (شامل Linux arm64) نصب کنید، یا برنامه وب Docker را با پشتیبانی چندکاربره، نقش‌های مدیریتی و یک حجم داده پایدار در /app/data اجرا کنید.",
-      "el": "Εγκατάσταση σε Windows ή Linux (συμπεριλαμβανομένου του Linux arm64) ή εκτέλεση της εφαρμογής web Docker με υποστήριξη πολλαπλών χρηστών, ρόλους διαχειριστή και έναν μόνιμο όγκο δεδομένων στο /app/data.",
-      "es": "Instálalo en Windows o Linux (incluido Linux arm64), o ejecuta la aplicación web con Docker con soporte multiusuario, roles de administrador y un volumen de datos persistente en /app/data.",
-      "sv": "Installera på Windows eller Linux (inklusive Linux arm64), eller kör Docker-webbappen med stöd för flera användare, admin­roller och en beständig datavolym på /app/data.",
-      "ro": "Instalează pe Windows sau Linux (inclusiv Linux arm64), sau rulează aplicația web Docker cu suport multi-utilizator, roluri de administrator și un volum de date persistent la /app/data.",
-      "tr": "Windows veya Linux'a (Linux arm64 dahil) kurun ya da çoklu kullanıcı desteği, yönetici rolleri ve /app/data üzerinde kalıcı veri birimiyle Docker web uygulamasını çalıştırın.",
-      "ru": "Устанавливайте на Windows или Linux (включая Linux arm64), либо запускайте веб-приложение в Docker с поддержкой нескольких пользователей, ролями администратора и постоянным томом данных в /app/data.",
-      "uk": "Встановіть на Windows або Linux (у тому числі Linux arm64), або запустіть веб-додаток у Docker із підтримкою кількох користувачів, ролями адміністратора та постійним томом даних у /app/data.",
-      "sk": "Nainštalujte na Windows alebo Linux (vrátane Linux arm64), alebo spustite webovú aplikáciu v Docker s podporou viacerých používateľov, správcovskými rolami a trvalým dátovým zväzkom na /app/data.",
-      "th": "ติดตั้งบน Windows หรือ Linux (รวมถึง Linux arm64) หรือรันเว็บแอป Docker พร้อมรองรับผู้ใช้หลายคน บทบาทผู้ดูแลระบบ และวอลุ่มข้อมูลถาวรบน /app/data",
-      "vi": "Cài đặt trên Windows hoặc Linux (bao gồm Linux arm64), hoặc chạy ứng dụng web Docker với hỗ trợ nhiều người dùng, vai trò quản trị, và ổ dữ liệu bền vững tại /app/data."
+      "zh-Hans": "在 Windows、Linux (x64 或 arm64) 或 macOS（适用于 Apple Silicon 和 Intel 的未签名 DMG）上安装，或运行支持多用户、管理员角色及在 /app/data 上具有持久数据卷的 Docker 网页应用。",
+      "zh-Hant": "安裝於 Windows、Linux (x64 或 arm64) 或 macOS (適用於 Apple Silicon 與 Intel 的未簽署 DMG)，或執行具備多使用者支援、管理員角色及 /app/data 持久資料卷的 Docker 網頁應用程式。",
+      "fr": "Installez-le sur Windows, Linux (x64 ou arm64) ou macOS (DMG non signé pour Apple Silicon et Intel), ou exécutez l'application web Docker avec prise en charge multi-utilisateur, rôles d'administration et volume de données persistant sur /app/data.",
+      "nl": "Installeer op Windows, Linux (x64 of arm64) of macOS (niet-ondertekende DMG voor Apple Silicon en Intel), of gebruik de Docker-webapp met ondersteuning voor meerdere gebruikers, beheerdersrollen en een permanent gegevensvolume op /app/data.",
+      "de": "Installieren Sie die App unter Windows, Linux (x64 oder arm64) oder macOS (nicht signierte DMG für Apple Silicon und Intel) oder führen Sie die Docker-Web-App mit Mehrbenutzerunterstützung, Administratorrollen und einem persistenten Datenvolume unter /app/data aus.",
+      "el": "Εγκαταστήστε σε Windows, Linux (x64 ή arm64) ή macOS (μη υπογεγραμμένο DMG για Apple Silicon και Intel), ή εκτελέστε την εφαρμογή ιστού Docker με υποστήριξη πολλών χρηστών, ρόλους διαχειριστή και μόνιμο τόμο δεδομένων στο /app/data.",
+      "cs": "Nainstalujte na Windows, Linux (x64 nebo arm64) či macOS (nepodepsaný DMG pro Apple Silicon a Intel), nebo spusťte webovou aplikaci v Dockeru s podporou více uživatelů, rolemi správců a trvalým datovým svazkem v /app/data.",
+      "ar": "ثبّته على Windows أو Linux ‏(x64 أو arm64) أو macOS ‏(ملف DMG غير موقّع لمعالجات Apple Silicon وIntel)، أو شغّل تطبيق الويب عبر Docker مع دعم تعدد المستخدمين وأدوار المسؤولين ومجلد بيانات دائم على المسار /app/data.",
+      "ja": "Windows、Linux (x64またはarm64)、またはmacOS (Apple SiliconおよびIntel用の未署名DMG) にインストールするか、複数ユーザーサポート、管理者ロール、/app/dataの永続データボリュームを備えたDockerウェブアプリを実行してください。",
+      "ko": "Windows, Linux (x64 또는 arm64) 또는 macOS (Apple Silicon 및 Intel용 미서명 DMG)에 설치하거나, 다중 사용자 지원, 관리자 역할 및 /app/data의 영구 데이터 볼륨을 갖춘 Docker 웹 앱을 실행하세요.",
+      "it": "Installa su Windows, Linux (x64 o arm64) o macOS (DMG non firmato per Apple Silicon e Intel), oppure esegui l'app web Docker con supporto multiutente, ruoli di amministrazione e un volume dati persistente su /app/data.",
+      "pt-BR": "Instale no Windows, Linux (x64 ou arm64) ou macOS (DMG não assinado para Apple Silicon e Intel), ou execute o app web Docker com suporte a vários usuários, funções de administrador e um volume de dados persistente em /app/data.",
+      "hi": "Windows, Linux (x64 या arm64) या macOS (Apple Silicon और Intel के लिए अनसाइन्ड DMG) पर इंस्टॉल करें, या मल्टी-यूज़र सपोर्ट, एडमिन भूमिकाओं और /app/data पर स्थायी डेटा वॉल्यूम वाला Docker वेब ऐप चलाएँ।",
+      "pl": "Zainstaluj na Windows, Linux (x64 lub arm64) albo macOS (niepodpisany plik DMG dla Apple Silicon i Intel) lub uruchom aplikację internetową Docker z obsługą wielu użytkowników, rolami administratora i trwałym wolumenem danych w /app/data.",
+      "fa": "آن را روی Windows، Linux (نسخه x64 یا arm64) یا macOS (فایل DMG بدون امضا برای Apple Silicon و Intel) نصب کنید، یا برنامه وب Docker را با پشتیبانی از چندکاربره، نقش‌های مدیر و یک حجم داده پایدار در /app/data اجرا کنید.",
+      "hu": "Telepítse Windowsra, Linuxra (x64 vagy arm64) vagy macOS-re (aláíratlan DMG Apple Silicon és Intel rendszerhez), vagy futtassa a Docker webalkalmazást többfelhasználós támogatással, rendszergazdai szerepkörökkel és tartós adattárolóval a /app/data helyen.",
+      "ru": "Установите на Windows, Linux (x64 или arm64) или macOS (неподписанный DMG для Apple Silicon и Intel) либо запустите веб-приложение в Docker с поддержкой нескольких пользователей, ролями администраторов и постоянным томом данных в /app/data.",
+      "es": "Instala en Windows, Linux (x64 o arm64) o macOS (DMG sin firmar para Apple Silicon e Intel), o ejecuta la aplicación web de Docker con compatibilidad multiusuario, roles de administrador y un volumen de datos persistente en /app/data.",
+      "uk": "Установіть на Windows, Linux (x64 або arm64) чи macOS (непідписаний DMG для Apple Silicon та Intel) або запустіть веб-застосунок Docker із підтримкою кількох користувачів, ролями адміністратора та постійним томом даних у /app/data.",
+      "ro": "Instalați pe Windows, Linux (x64 sau arm64) sau macOS (DMG nesemnat pentru Apple Silicon și Intel) sau rulați aplicația web Docker cu suport multiutilizator, roluri de administrator și un volum de date persistent în /app/data.",
+      "tr": "Windows, Linux (x64 veya arm64) ya da macOS (Apple Silicon ve Intel için imzasız DMG) üzerine kurun veya çok kullanıcı desteği, yönetici rolleri ve /app/data üzerinde kalıcı veri birimi sunan Docker web uygulamasını çalıştırın.",
+      "th": "ติดตั้งบน Windows, Linux (x64 หรือ arm64) หรือ macOS (ไฟล์ DMG ที่ไม่ได้ลงชื่อสำหรับ Apple Silicon และ Intel) หรือเรียกใช้เว็บแอป Docker ที่รองรับผู้ใช้หลายคน บทบาทผู้ดูแลระบบ และวอลุ่มข้อมูลถาวรที่ /app/data",
+      "sk": "Nainštalujte na Windows, Linux (x64 alebo arm64) alebo macOS (nepodpísaný DMG pre Apple Silicon a Intel), prípadne spustite webovú aplikáciu v Dockeri s podporou viacerých používateľov, rolami správcu a trvalým dátovým zväzkom v /app/data.",
+      "sv": "Installera på Windows, Linux (x64 eller arm64) eller macOS (osignerad DMG för Apple Silicon och Intel), eller kör webbappen i Docker med stöd för flera användare, administratörsroller och en beständig datavolym på /app/data.",
+      "vi": "Cài đặt trên Windows, Linux (x64 hoặc arm64) hoặc macOS (DMG chưa ký cho Apple Silicon và Intel), hoặc chạy ứng dụng web Docker với hỗ trợ nhiều người dùng, vai trò quản trị viên và ổ dữ liệu lưu trữ lâu dài tại /app/data."
     },
     "models": {
       "zh-Hans": "z-ai/glm-5.2",
-      "pt-BR": "~anthropic/claude-sonnet-latest",
       "zh-Hant": "z-ai/glm-5.2",
       "fr": "~anthropic/claude-sonnet-latest",
       "nl": "~anthropic/claude-sonnet-latest",
-      "ar": "~anthropic/claude-sonnet-latest",
-      "hi": "~anthropic/claude-sonnet-latest",
-      "cs": "~anthropic/claude-sonnet-latest",
-      "it": "~anthropic/claude-sonnet-latest",
-      "ko": "z-ai/glm-5.2",
-      "ja": "z-ai/glm-5.2",
-      "pl": "~anthropic/claude-sonnet-latest",
       "de": "~anthropic/claude-sonnet-latest",
-      "hu": "~anthropic/claude-sonnet-latest",
+      "el": "~anthropic/claude-sonnet-latest",
+      "cs": "~anthropic/claude-sonnet-latest",
+      "ar": "~anthropic/claude-sonnet-latest",
+      "ja": "z-ai/glm-5.2",
+      "ko": "z-ai/glm-5.2",
+      "it": "~anthropic/claude-sonnet-latest",
+      "pt-BR": "~anthropic/claude-sonnet-latest",
+      "hi": "~anthropic/claude-sonnet-latest",
+      "pl": "~anthropic/claude-sonnet-latest",
       "fa": "~anthropic/claude-sonnet-latest",
-      "el": "z-ai/glm-5.2",
+      "hu": "~anthropic/claude-sonnet-latest",
+      "ru": "~anthropic/claude-sonnet-latest",
       "es": "~anthropic/claude-sonnet-latest",
-      "sv": "~anthropic/claude-sonnet-latest",
+      "uk": "~anthropic/claude-sonnet-latest",
       "ro": "~anthropic/claude-sonnet-latest",
       "tr": "~anthropic/claude-sonnet-latest",
-      "ru": "~anthropic/claude-sonnet-latest",
-      "uk": "~anthropic/claude-sonnet-latest",
+      "th": "~anthropic/claude-sonnet-latest",
       "sk": "~anthropic/claude-sonnet-latest",
-      "th": "z-ai/glm-5.2",
+      "sv": "~anthropic/claude-sonnet-latest",
       "vi": "~anthropic/claude-sonnet-latest"
     },
     "locations": [

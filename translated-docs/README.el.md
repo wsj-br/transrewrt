@@ -5,12 +5,12 @@
 <h1 align="center">Transrewrt</h1>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.3-blue" alt="Version"></a>
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.4-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
-  <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
+  <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20macOS%20%7C%20Docker-lightgrey" alt="Platform">
 </p>
 
-Εργαλείο κειμένου με τεχνητή νοημοσύνη για **μετάφραση**, **επαναγραφή** και **μετασχηματισμό** με προσαρμοσμένες προτροπές. Χρησιμοποιήστε τους δικούς σας παρόχους τεχνητής νοημοσύνης (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, τελικά σημεία συμβατά με OpenAI και τοπικούς διακομιστές όπως Ollama, LM Studio ή llama.cpp). Εκτελέστε ως εφαρμογή επιφάνειας εργασίας (Windows / Linux) ή ως εφαρμογή web Docker. Χωρίς λογαριασμό cloud Transrewrt.
+Εργαλείο κειμένου με τεχνητή νοημοσύνη για **μετάφραση**, **επαναγραφή** και **μετασχηματισμό** με προσαρμοσμένες προτροπές. Χρησιμοποιήστε τους δικούς σας παρόχους τεχνητής νοημοσύνης (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, τελικά σημεία συμβατά με OpenAI και τοπικούς διακομιστές όπως Ollama, LM Studio ή llama.cpp). Εκτελέστε ως εφαρμογή επιφάνειας εργασίας (Windows / Linux / macOS) ή ως εφαρμογή ιστού Docker. Χωρίς λογαριασμό cloud Transrewrt.
 
 ## Χαρακτηριστικά
 
@@ -52,6 +52,14 @@ docker run -d \
 chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage
 ```
 
+**macOS** — Κατεβάστε το `.dmg` για το Mac σας από τις [Εκδόσεις](https://github.com/wsj-br/transrewrt/releases): `arm64` για Apple Silicon, `x64` για Intel. Ανοίξτε την εικόνα δίσκου και σύρετε το Transrewrt στις Εφαρμογές.
+
+Η έκδοση είναι χωρίς υπογραφή, οπότε το Gatekeeper μπλοκάρει την πρώτη εκκίνηση. Κάντε δεξί κλικ στο `Transrewrt.app` και επιλέξτε **Άνοιγμα**, μετά επιβεβαιώστε **Άνοιγμα**. Ή καθαρίστε το χαρακτηριστικό καραντίνας:
+
+```bash
+xattr -dr com.apple.quarantine /Applications/Transrewrt.app
+```
+
 Λεπτομέρειες πλατφόρμας (Compose, SmartScreen, apt libs, GPU flags, ζώνη ώρας): [Έγγραφα γρήγορης εκκίνησης](https://wsj-br.github.io/transrewrt/docs/quick-start/).
 
 ## Τεκμηρίωση
@@ -72,14 +80,16 @@ chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage
 
 ## Υποστήριξη
 
-Ανοίξτε ένα ζήτημα στο [GitHub](https://github.com/wsj-br/transrewrt/issues). Συμπεριλάβετε την πλατφόρμα σας (Windows / Linux / Docker) και την έκδοση της εφαρμογής (διάλογος Σχετικά ή σελίδα Εκδόσεων).
+Ανοίξτε ένα ζήτημα στο [GitHub](https://github.com/wsj-br/transrewrt/issues). Συμπεριλάβετε την πλατφόρμα σας (Windows / Linux / macOS / Docker) και την έκδοση της εφαρμογής (διάλογος Σχετικά ή σελίδα Εκδόσεων).
 
 ## Ευχαριστίες
 
-Οι προτάσεις προεπιλογών λειτουργίας "Εύκολο" στον επεξεργαστή προεπιλογών χρησιμοποιούν δημόσια δεδομένα αξιολόγησης από:
+Οι προτάσεις προεπιλογών λειτουργίας Easy-mode στον επεξεργαστή προεπιλογών χρησιμοποιούν δημόσια δεδομένα αξιολόγησης
+μόνο στον υπολογιστή του συντηρητή. Κανένα περιεχόμενο συνόλου δεδομένων δεν αναδιανέμεται με το Transrewrt:
 
-- [languagebench](https://huggingface.co/spaces/fair-forward/languagebench) (CC BY-SA 4.0)
-- [Artificial Analysis](https://artificialanalysis.ai/) (απαιτείται αναφορά πηγής για δεδομένα API)
+- [languagebench](https://huggingface.co/spaces/fair-forward/languagebench) (CC BY-SA 4.0) — μετάφραση ChrF
+- [Arena](https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset) (CC BY 4.0) — Βαθμολογία Arena
+- [models.dev](https://models.dev/) (MIT)
 
 Οι άδειες εξαρτήσεων τρίτων και αυτές οι ειδοποιήσεις πηγής δεδομένων παρατίθενται στο [NOTICES](../NOTICES).
 

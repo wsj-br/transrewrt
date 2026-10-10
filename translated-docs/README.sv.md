@@ -5,12 +5,12 @@
 <h1 align="center">Transrewrt</h1>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.3-blue" alt="Version"></a>
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.4-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
-  <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
+  <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20macOS%20%7C%20Docker-lightgrey" alt="Platform">
 </p>
 
-AI-drivet textverktyg för att **översätta**, **skriva om** och **transformera** med anpassade prompter. Använd dina egna AI-leverantörer (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, OpenAI-kompatibla slutpunkter och lokala servrar som Ollama, LM Studio eller llama.cpp). Kör som en skrivbordsapp (Windows/Linux) eller en Docker-webbapp. Inget Transrewrt-molnkonto.
+AI-drivet textverktyg för **översättning**, **omskrivning** och **transformering** med anpassade prompter. Använd dina egna AI-leverantörer (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, OpenAI-kompatibla slutpunkter och lokala servrar som Ollama, LM Studio eller llama.cpp). Kör som en skrivbordsapp (Windows / Linux / macOS) eller en Docker-webbapp. Inget Transrewrt-molnkonto.
 
 ## Funktioner
 
@@ -52,6 +52,14 @@ Ersätt `PROVIDER_API_KEY` med din leverantörsvariabel (till exempel `OPENROUTE
 chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage
 ```
 
+**macOS** — Ladda ner `.dmg` för din Mac från [Releases](https://github.com/wsj-br/transrewrt/releases): `arm64` för Apple Silicon, `x64` för Intel. Öppna diskavbildningen och dra Transrewrt till Program.
+
+Byggversionen är osignerad, så Gatekeeper blockerar den första starten. Högerklicka på `Transrewrt.app` och välj **Öppna**, bekräfta sedan **Öppna**. Eller rensa karantänattributet:
+
+```bash
+xattr -dr com.apple.quarantine /Applications/Transrewrt.app
+```
+
 Plattformsinformation (Compose, SmartScreen, apt-bibliotek, GPU-flaggor, tidszon): [Snabbstartsguider](https://wsj-br.github.io/transrewrt/docs/quick-start/).
 
 ## Dokumentation
@@ -72,14 +80,16 @@ Fullständig produktdokumentation (installation, API-nycklar, guider, inställni
 
 ## Support
 
-Öppna ett ärende på [GitHub](https://github.com/wsj-br/transrewrt/issues). Inkludera din plattform (Windows / Linux / Docker) och appversion (Om-dialogruta eller Releases-sida).
+Öppna ett ärende på [GitHub](https://github.com/wsj-br/transrewrt/issues). Inkludera din plattform (Windows / Linux / macOS / Docker) och appversion (Om-dialogruta eller Releases-sida).
 
 ## Tack
 
-Förslag på förinställningar i Enkel-läge i förinställningsredigeraren använder offentliga utvärderingsdata från:
+Förinställda förslag i Enkel-läge i förinställningsredigeraren använder endast offentliga utvärderingsdata
+på underhållarens maskin. Inget datasetinnehåll distribueras med Transrewrt:
 
-- [languagebench](https://huggingface.co/spaces/fair-forward/languagebench) (CC BY-SA 4.0)
-- [Artificial Analysis](https://artificialanalysis.ai/) (erkännande krävs för API-data)
+- [languagebench](https://huggingface.co/spaces/fair-forward/languagebench) (CC BY-SA 4.0) — översättning ChrF
+- [Arena](https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset) (CC BY 4.0) — Arena Score
+- [models.dev](https://models.dev/) (MIT)
 
 Licenser för tredjepartsberoenden och dessa meddelanden om datakällor listas i [NOTICES](../NOTICES).
 

@@ -1,6 +1,8 @@
 ---
 title: Avvio rapido
-description: Installa Transrewrt su Windows o Linux, oppure esegui l'app web Docker.
+description: >-
+  Installa Transrewrt su Windows, Linux o macOS, oppure esegui l'applicazione
+  web Docker.
 ---
 
 
@@ -62,15 +64,31 @@ Se Chromium stampa errori GPU / EGL ma l'app funziona, puoi disabilitare l'accel
 TRANSREWRT_DISABLE_GPU=1 ./Transrewrt-x.y.z-arm64.AppImage
 ```
 
+## macOS
+
+Scarica il `.dmg` per il tuo Mac da [Releases](https://github.com/wsj-br/transrewrt/releases):
+
+- **Apple Silicon** — `Transrewrt-x.y.z-arm64.dmg`
+- **Intel** — `Transrewrt-x.y.z-x64.dmg`
+
+Apri l'immagine disco e trascina Transrewrt in Applicazioni. Inserisci le chiavi API in **Impostazioni → Configurazione API**.
+
 :::note
-macOS non è attualmente supportato. Transrewrt è disponibile per Windows, Linux e Docker.
+La build per macOS non è firmata (nessuna notarizzazione Apple). Gatekeeper blocca il primo avvio. Fai clic destro su `Transrewrt.app` e scegli **Apri**, quindi conferma **Apri**.
 :::
+
+Oppure cancella l'attributo di quarantena:
+
+```bash
+xattr -dr com.apple.quarantine /Applications/Transrewrt.app
+```
 
 ## Aggiornamento
 
-- **Windows** — scarica il nuovo `Transrewrt Setup x.y.z.exe` da [Releases](https://github.com/wsj-br/transrewrt/releases) ed eseguilo. Le impostazioni e i dati vengono mantenuti.
-- **Linux** — scarica il nuovo `.AppImage` e sostituisci il vecchio file. Le impostazioni e i dati vengono mantenuti.
-- **Docker** — esegui il pull della nuova immagine e ricrea il container. I dati persistono nel volume `/app/data`:
+- **Windows** — scarica il `Transrewrt Setup x.y.z.exe` più recente da [Releases](https://github.com/wsj-br/transrewrt/releases) ed eseguilo. Le impostazioni e i dati vengono mantenuti.
+- **Linux** — scarica il `.AppImage` più recente e sostituisci il vecchio file. Le impostazioni e i dati vengono mantenuti.
+- **macOS** — scarica il `.dmg` più recente, aprilo e trascina Transrewrt in Applicazioni, sostituendo l'app esistente. Le impostazioni e i dati vengono mantenuti.
+- **Docker** — esegui il pull della nuova immagine e ricrea il contenitore. I dati persistono nel volume `/app/data`:
 
 ```bash
 docker pull ghcr.io/wsj-br/transrewrt:latest

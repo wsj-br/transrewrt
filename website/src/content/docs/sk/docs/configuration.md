@@ -13,6 +13,7 @@ description: >-
 | --- | --- |
 | Electron (Windows) | `%APPDATA%\transrewrt\` |
 | Electron (Linux) | `~/.config/transrewrt/` |
+| Electron (macOS) | `~/Library/Application Support/transrewrt/` |
 | Web / Docker | `/app/data/` (na trvalé uloženie použite zväzok) |
 
 Priečinok s dátami obsahuje všetko, čo stojí za zálohovanie:
@@ -89,6 +90,6 @@ Server komunikuje prostredníctvom nešifrovaného HTTP. Ak ho vystavíte mimo l
 
 ## Zobrazenie nákladov
 
-OpenRouter vracia presné fakturované náklady, ak sú k dispozícii. Ostatní poskytovatelia používajú **odhadované** náklady z verejných cien modelov OpenRouter, ak je k dispozícii kľúč OpenRouter. Odhady nie sú faktúry.
+OpenRouter a xAI vracajú presné účtované náklady, ak ich API zahŕňa. Ostatní Poskytovatelia používajú **odhadované** náklady z verejných cien modelov [models.dev](https://models.dev/). Odhady nie sú faktúry.
 
 Pre používateľské rozhranie nastavení (písma, modely, história, zálohy) pozrite [Nastavenia](/docs/settings/).

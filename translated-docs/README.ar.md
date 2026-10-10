@@ -5,12 +5,12 @@
 <h1 align="center">Transrewrt</h1>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.3-blue" alt="Version"></a>
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.4-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
-  <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
+  <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20macOS%20%7C%20Docker-lightgrey" alt="Platform">
 </p>
 
-أداة نصية مدعومة بالذكاء الاصطناعي لـ **الترجمة** و**إعادة الكتابة** و**التحويل** باستخدام مطالبات مخصصة. استخدم موفري الذكاء الاصطناعي الخاصين بك (OpenRouter وOpenAI وAnthropic وGoogle Gemini وDeepSeek وGroq وMistral وxAI وCerebras وNVIDIA وAlibaba Cloud وapikey.fun ونقاط نهاية متوافقة مع OpenAI والخوادم المحلية مثل Ollama أو LM Studio أو llama.cpp). يعمل كتطبيق سطح مكتب (Windows / Linux) أو تطبيق ويب Docker. لا يوجد حساب سحابي لـ Transrewrt.
+أداة نصوص مدعومة بالذكاء الاصطناعي لـ **الترجمة** و**إعادة الكتابة** و**التحويل** باستخدام مطالبات مخصصة. استخدم مزودي الذكاء الاصطناعي الخاصين بك (OpenRouter، OpenAI، Anthropic، Google Gemini، DeepSeek، Groq، Mistral، xAI، Cerebras، NVIDIA، Alibaba Cloud، apikey.fun، نقاط نهاية متوافقة مع OpenAI، وخوادم محلية مثل Ollama، LM Studio، أو llama.cpp). يعمل كتطبيق سطح مكتب (Windows / Linux / macOS) أو تطبيق ويب Docker. لا يوجد حساب سحابي لـ Transrewrt.
 
 ## الميزات
 
@@ -52,6 +52,14 @@ docker run -d \
 chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage
 ```
 
+**macOS** — قم بتنزيل `.dmg` لجهاز Mac الخاص بك من [الإصدارات](https://github.com/wsj-br/transrewrt/releases): `arm64` لـ Apple Silicon، `x64` لـ Intel. افتح صورة القرص واسحب Transrewrt إلى التطبيقات.
+
+النسخة غير موقعة، لذا يمنع Gatekeeper الإطلاق الأول. انقر بزر الماوس الأيمن على `Transrewrt.app` واختر **فتح**، ثم قم بتأكيد **فتح**. أو قم بمسح سمة الحجر الصحي:
+
+```bash
+xattr -dr com.apple.quarantine /Applications/Transrewrt.app
+```
+
 تفاصيل المنصة (Compose، SmartScreen، مكتبات apt، علامات GPU، المنطقة الزمنية): [وثائق البدء السريع](https://wsj-br.github.io/transrewrt/docs/quick-start/).
 
 ## الوثائق
@@ -72,14 +80,16 @@ chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage
 
 ## الدعم
 
-افتح مشكلة على [GitHub](https://github.com/wsj-br/transrewrt/issues). قم بتضمين نظامك الأساسي (Windows / Linux / Docker) وإصدار التطبيق (مربع حوار حول أو صفحة الإصدارات).
+افتح مشكلة على [GitHub](https://github.com/wsj-br/transrewrt/issues). قم بتضمين نظامك الأساسي (Windows / Linux / macOS / Docker) وإصدار التطبيق (مربع حوار حول أو صفحة الإصدارات).
 
 ## شكر وتقدير
 
-تستخدم اقتراحات الإعدادات المسبقة للوضع السهل في محرر الإعدادات المسبقة بيانات التقييم العامة من:
+تستخدم اقتراحات الإعدادات المسبقة للوضع السهل في محرر الإعدادات المسبقة بيانات التقييم العامة
+على جهاز المشرف فقط. لا يتم إعادة توزيع أي محتوى من مجموعة البيانات مع Transrewrt:
 
-- [languagebench](https://huggingface.co/spaces/fair-forward/languagebench) (CC BY-SA 4.0)
-- [Artificial Analysis](https://artificialanalysis.ai/) (يتطلب الإسناد لبيانات API)
+- [languagebench](https://huggingface.co/spaces/fair-forward/languagebench) (CC BY-SA 4.0) — ترجمة ChrF
+- [Arena](https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset) (CC BY 4.0) — نقاط Arena
+- [models.dev](https://models.dev/) (MIT)
 
 تراخيص التبعيات الخارجية وإشعارات مصدر البيانات هذه مدرجة في [NOTICES](../NOTICES).
 

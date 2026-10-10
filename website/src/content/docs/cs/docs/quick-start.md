@@ -1,8 +1,8 @@
 ---
 title: Rychlý start
 description: >-
-  Nainstalujte Transrewrt na Windows nebo Linux, nebo spusťte webovou aplikaci
-  Docker.
+  Nainstalujte Transrewrt na Windows, Linux nebo macOS, případně spusťte webovou
+  aplikaci Docker.
 ---
 
 
@@ -64,15 +64,31 @@ Pokud Chromium tiskne chyby GPU / EGL, ale aplikace funguje, můžete zakázat h
 TRANSREWRT_DISABLE_GPU=1 ./Transrewrt-x.y.z-arm64.AppImage
 ```
 
+## macOS
+
+Stáhněte `.dmg` pro váš Mac z [Vydání](https://github.com/wsj-br/transrewrt/releases):
+
+- **Apple Silicon** — `Transrewrt-x.y.z-arm64.dmg`
+- **Intel** — `Transrewrt-x.y.z-x64.dmg`
+
+Otevřete obraz disku a přetáhněte Transrewrt do Aplikací. Zadejte klíče API v **Nastavení → Konfigurace API**.
+
 :::note
-macOS v současné době není podporován. Transrewrt je k dispozici pro Windows, Linux a Docker.
+Sestavení pro macOS není podepsané (bez notářského ověření Apple). Gatekeeper zablokuje první spuštění. Klikněte pravým tlačítkem na `Transrewrt.app` a zvolte **Otevřít**, poté potvrďte **Otevřít**.
 :::
+
+Nebo vymažte atribut karantény:
+
+```bash
+xattr -dr com.apple.quarantine /Applications/Transrewrt.app
+```
 
 ## Aktualizace
 
-- **Windows** – stáhněte si novější `Transrewrt Setup x.y.z.exe` z [Vydání](https://github.com/wsj-br/transrewrt/releases) a spusťte jej. Nastavení a data zůstanou zachována.
-- **Linux** – stáhněte si novější `.AppImage` a nahraďte starý soubor. Nastavení a data zůstanou zachována.
-- **Docker** – stáhněte nový obraz a znovu vytvořte kontejner. Data přetrvávají ve svazku `/app/data`:
+- **Windows** — stáhněte novější `Transrewrt Setup x.y.z.exe` z [Vydání](https://github.com/wsj-br/transrewrt/releases) a spusťte jej. Nastavení a data zůstanou zachována.
+- **Linux** — stáhněte novější `.AppImage` a nahraďte starý soubor. Nastavení a data zůstanou zachována.
+- **macOS** — stáhněte novější `.dmg`, otevřete jej a přetáhněte Transrewrt do Aplikací, čímž nahradíte stávající aplikaci. Nastavení a data zůstanou zachována.
+- **Docker** — stáhněte nový obraz a znovu vytvořte kontejner. Data přetrvávají ve svazku `/app/data`:
 
 ```bash
 docker pull ghcr.io/wsj-br/transrewrt:latest

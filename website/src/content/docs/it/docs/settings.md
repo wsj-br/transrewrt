@@ -33,11 +33,11 @@ Nella versione web, ogni utente ha la propria configurazione (esperienza AI, pro
 
 **Esperienza AI**
 
-- **Facile** (predefinito): scegli un **Provider**. I provider cloud utilizzano i preset della barra degli strumenti. **LLM locale** elenca invece i modelli locali installati. **Aggiorna catalogo preset** recupera l'elenco più recente di preset dal repository del progetto.
-  - **Gratuito (OpenRouter)** — opzione a costo zero instradata ai modelli gratuiti disponibili; la qualità e la disponibilità possono variare
+- **Facile** (predefinito): scegli un **Fornitore**. I fornitori di servizi cloud utilizzano i preset della barra degli strumenti. **LLM locale** elenca invece i modelli locali installati. **Aggiorna catalogo preset** recupera l'elenco più recente di preset dal repository del progetto.
+  - **Gratuito (OpenRouter)** — opzione a costo zero instradata a modelli gratuiti disponibili; la qualità e la disponibilità possono variare
   - **Standard** — leggero ed economico; ideale per testi brevi, bozze rapide e uso ad alto volume
   - **Avanzato** — modello ad alta precisione per contenuti complessi o sfumati, a un costo più elevato
-  - **Tecnico** — ottimizzato per codice, API, documentazione per sviluppatori e contenuti strutturati; preserva la formattazione e la terminologia
+  - **Tecnico** — ottimizzato per codice, API, Documentazione per sviluppatori e contenuti strutturati; mantiene la formattazione e la terminologia
 - **Avanzato**: scegli i modelli nella barra degli strumenti; gestisci l'elenco in [Modelli](#models).
 
 Puoi anche passare da Facile ↔ Avanzato dal menu preset/modello della barra degli strumenti (**Passa alla modalità Facile/Avanzata**, sopra Apri Impostazioni).
@@ -85,7 +85,7 @@ Aggiungi con **Aggiungi**; rimuovi con **X**. Il modello gratuito di OpenRouter 
 - **Utilizzo chiave API** — dettagli OpenRouter quando disponibili
 - **Elimina dati costi** — tutti i dati o le voci più vecchie di una data
 
-OpenRouter mostra il costo effettivo fatturato quando applicabile; altri provider utilizzano stime basate sui prezzi di OpenRouter. Le stime non sono fatture.
+OpenRouter e xAI mostrano il costo effettivo fatturato quando l'API lo restituisce; altri fornitori utilizzano stime basate sui prezzi di [models.dev](https://models.dev/). Le stime non sono fatture.
 
 :::caution
 L'eliminazione dei dati sui costi non può essere annullata. Esporta prima tramite Cronologia o Dashboard → Tutte le chiamate se hai bisogno di un backup. Anche la cronologia di input/output correlata per tali chiamate API viene rimossa.

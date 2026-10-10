@@ -5,12 +5,12 @@
 <h1 align="center">Transrewrt</h1>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.3-blue" alt="Version"></a>
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.4-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
-  <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
+  <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20macOS%20%7C%20Docker-lightgrey" alt="Platform">
 </p>
 
-AI-aangedreven teksttool voor **vertalen**, **herschrijven** en **transformeren** met aangepaste prompts. Gebruik uw eigen AI-providers (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, OpenAI-compatibele endpoints en lokale servers zoals Ollama, LM Studio of llama.cpp). Draai als desktop-app (Windows / Linux) of als Docker-web-app. Geen Transrewrt-cloudaccount.
+AI-aangedreven teksttool voor **vertalen**, **herschrijven** en **transformeren** met aangepaste prompts. Gebruik uw eigen AI-providers (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, OpenAI-compatibele eindpunten en lokale servers zoals Ollama, LM Studio of llama.cpp). Draai als een desktop-app (Windows / Linux / macOS) of een Docker-web-app. Geen Transrewrt-cloudaccount.
 
 ## Functies
 
@@ -52,6 +52,14 @@ Vervang `PROVIDER_API_KEY` door uw provider-variabele (bijvoorbeeld `OPENROUTER_
 chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage
 ```
 
+**macOS** — Download de `.dmg` voor uw Mac van [Releases](https://github.com/wsj-br/transrewrt/releases): `arm64` voor Apple Silicon, `x64` voor Intel. Open de schijfkopie en sleep Transrewrt naar Programma's.
+
+De build is niet ondertekend, dus Gatekeeper blokkeert de eerste lancering. Klik met de rechtermuisknop op `Transrewrt.app` en kies **Openen**, bevestig vervolgens **Openen**. Of wis het quarantaine-attribuut:
+
+```bash
+xattr -dr com.apple.quarantine /Applications/Transrewrt.app
+```
+
 Platformdetails (Compose, SmartScreen, apt libs, GPU flags, tijdzone): [Snelle start documentatie](https://wsj-br.github.io/transrewrt/docs/quick-start/).
 
 ## Documentatie
@@ -72,14 +80,16 @@ Volledige productdocumentatie (installatie, API-sleutels, handleidingen, instell
 
 ## Ondersteuning
 
-Open een issue op [GitHub](https://github.com/wsj-br/transrewrt/issues). Vermeld uw platform (Windows / Linux / Docker) en app-versie (Over-dialoogvenster of Releases-pagina).
+Open een issue op [GitHub](https://github.com/wsj-br/transrewrt/issues). Vermeld uw platform (Windows / Linux / macOS / Docker) en app-versie (Info-dialoogvenster of Releases-pagina).
 
 ## Dankbetuigingen
 
-Suggesties voor voorinstellingen in de eenvoudige modus in de voorinstellingeneditor gebruiken openbare evaluatiegegevens van:
+Suggesties voor Easy-modus voorinstellingen in de voorinstellingeneditor gebruiken alleen openbare evaluatiegegevens
+op de machine van de beheerder. Er wordt geen datasetinhoud opnieuw gedistribueerd met Transrewrt:
 
-- [languagebench](https://huggingface.co/spaces/fair-forward/languagebench) (CC BY-SA 4.0)
-- [Artificial Analysis](https://artificialanalysis.ai/) (attributie vereist voor API-gegevens)
+- [languagebench](https://huggingface.co/spaces/fair-forward/languagebench) (CC BY-SA 4.0) — vertaling ChrF
+- [Arena](https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset) (CC BY 4.0) — Arena Score
+- [models.dev](https://models.dev/) (MIT)
 
 Licenties van afhankelijkheden van derden en deze kennisgevingen van gegevensbronnen staan vermeld in [NOTICES](../NOTICES).
 

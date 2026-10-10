@@ -11,6 +11,7 @@ description: 設定ファイルの場所、Docker環境変数、プライバシ�
 | --- | --- |
 | Electron (Windows) | `%APPDATA%\transrewrt\` |
 | Electron (Linux) | `~/.config/transrewrt/` |
+| Electron (macOS) | `~/Library/Application Support/transrewrt/` |
 | Web / Docker | `/app/data/` (永続化のためにボリュームを使用) |
 
 データフォルダには、バックアップすべきすべてのものが保存されます：
@@ -87,6 +88,6 @@ docker exec <container> reset-web-password '<username>' '<new-password>'
 
 ## コスト表示
 
-OpenRouterは、該当する場合、正確な請求コストを返します。他のプロバイダーは、OpenRouterキーが利用可能な場合、OpenRouterの公開モデル価格に基づく**estimated**コストを使用します。推定値は請求書ではありません。
+OpenRouterとxAIは、APIに含まれている場合、正確な請求額を返します。他のプロバイダは[models.dev](https://models.dev/)の公開モデル価格に基づく**推定**コストを使用します。推定値は請求書ではありません。
 
 設定UI (フォント、モデル、履歴、バックアップ) については、[Settings](/docs/settings/) を参照してください。

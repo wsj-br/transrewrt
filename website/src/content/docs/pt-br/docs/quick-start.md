@@ -1,6 +1,8 @@
 ---
 title: Início rápido
-description: Instale o Transrewrt no Windows ou Linux, ou execute o aplicativo web Docker.
+description: >-
+  Instale o Transrewrt no Windows, Linux ou macOS, ou execute o aplicativo web
+  Docker.
 ---
 
 
@@ -62,14 +64,30 @@ Se o Chromium imprimir erros de GPU / EGL, mas o aplicativo funcionar, você pod
 TRANSREWRT_DISABLE_GPU=1 ./Transrewrt-x.y.z-arm64.AppImage
 ```
 
+## macOS
+
+Baixe o `.dmg` para o seu Mac em [Versões](https://github.com/wsj-br/transrewrt/releases):
+
+- **Apple Silicon** — `Transrewrt-x.y.z-arm64.dmg`
+- **Intel** — `Transrewrt-x.y.z-x64.dmg`
+
+Abra a imagem de disco e arraste o Transrewrt para Aplicativos. Insira as chaves de API em **Configurações → Configuração da API**.
+
 :::note
-O macOS não é atualmente suportado. O Transrewrt está disponível para Windows, Linux e Docker.
+A compilação para macOS não é assinada (sem notarização da Apple). O Gatekeeper bloqueia o primeiro lançamento. Clique com o botão direito em `Transrewrt.app` e escolha **Abrir**, depois confirme **Abrir**.
 :::
+
+Ou limpe o atributo de quarentena:
+
+```bash
+xattr -dr com.apple.quarantine /Applications/Transrewrt.app
+```
 
 ## Atualizando
 
-- **Windows** — baixe o `Transrewrt Setup x.y.z.exe` mais recente em [Lançamentos](https://github.com/wsj-br/transrewrt/releases) e execute-o. As configurações e os dados são mantidos.
+- **Windows** — baixe o `Transrewrt Setup x.y.z.exe` mais recente em [Versões](https://github.com/wsj-br/transrewrt/releases) e execute-o. As configurações e os dados são mantidos.
 - **Linux** — baixe o `.AppImage` mais recente e substitua o arquivo antigo. As configurações e os dados são mantidos.
+- **macOS** — baixe o `.dmg` mais recente, abra-o e arraste o Transrewrt para Aplicativos, substituindo o aplicativo existente. As configurações e os dados são mantidos.
 - **Docker** — puxe a nova imagem e recrie o contêiner. Os dados persistem no volume `/app/data`:
 
 ```bash

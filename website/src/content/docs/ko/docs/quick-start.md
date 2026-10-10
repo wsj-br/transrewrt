@@ -1,6 +1,6 @@
 ---
 title: 빠른 시작
-description: Windows 또는 Linux에 Transrewrt를 설치하거나 Docker 웹 앱을 실행하세요.
+description: Windows, Linux 또는 macOS에 Transrewrt를 설치하거나 Docker 웹 앱을 실행하세요.
 ---
 
 
@@ -62,14 +62,30 @@ Chromium이 GPU / EGL 오류를 출력하지만 앱이 정상 작동한다면, �
 TRANSREWRT_DISABLE_GPU=1 ./Transrewrt-x.y.z-arm64.AppImage
 ```
 
+## macOS
+
+Mac용 `.dmg`을 [Releases](https://github.com/wsj-br/transrewrt/releases)에서 다운로드하세요:
+
+- **Apple Silicon** — `Transrewrt-x.y.z-arm64.dmg`
+- **Intel** — `Transrewrt-x.y.z-x64.dmg`
+
+디스크 이미지를 열고 Transrewrt를 응용 프로그램 폴더로 드래그하세요. **Settings → API Config**에서 API 키를 입력하세요.
+
 :::note
-현재 macOS는 지원되지 않습니다. Transrewrt는 Windows, Linux, Docker에서 사용할 수 있습니다.
+macOS 빌드는 서명되지 않았습니다(Apple 공증 없음). Gatekeeper가 첫 실행을 차단합니다. `Transrewrt.app`을 우클릭하고 **Open**을 선택한 다음, **Open**을 확인하세요.
 :::
+
+또는 격리 속성을 제거하세요:
+
+```bash
+xattr -dr com.apple.quarantine /Applications/Transrewrt.app
+```
 
 ## 업데이트
 
-- **Windows** — [릴리스](https://github.com/wsj-br/transrewrt/releases)에서 최신 `Transrewrt Setup x.y.z.exe`을 다운로드하여 실행하세요. 설정과 데이터는 유지됩니다.
-- **Linux** — 최신 `.AppImage`을 다운로드하고 기존 파일을 교체하세요. 설정과 데이터는 유지됩니다.
+- **Windows** — [Releases](https://github.com/wsj-br/transrewrt/releases)에서 최신 `Transrewrt Setup x.y.z.exe`을 다운로드하여 실행하세요. 설정과 데이터는 유지됩니다.
+- **Linux** — 최신 `.AppImage`을 다운로드하여 기존 파일을 교체하세요. 설정과 데이터는 유지됩니다.
+- **macOS** — 최신 `.dmg`을 다운로드하여 열고, Transrewrt를 응용 프로그램 폴더로 드래그하여 기존 앱을 교체하세요. 설정과 데이터는 유지됩니다.
 - **Docker** — 새 이미지를 풀하고 컨테이너를 재생성하세요. 데이터는 `/app/data` 볼륨에 유지됩니다:
 
 ```bash

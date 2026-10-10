@@ -11,6 +11,7 @@ description: 配置文件位置、Docker 环境变量、隐私模式和 Web 身�
 | --- | --- |
 | Electron (Windows) | `%APPDATA%\transrewrt\` |
 | Electron (Linux) | `~/.config/transrewrt/` |
+| Electron (macOS) | `~/Library/Application Support/transrewrt/` |
 | Web / Docker | `/app/data/`（使用卷进行持久化） |
 
 数据文件夹包含所有值得备份的内容：
@@ -87,6 +88,6 @@ docker exec <container> reset-web-password '<username>' '<new-password>'
 
 ## 费用显示
 
-OpenRouter 在适用时返回确切的计费费用。当有可用的 OpenRouter 密钥时，其他提供商使用来自 OpenRouter 公开模型定价的 **估算** 费用。估算值不是发票。
+当 API 包含时，OpenRouter 和 xAI 会返回确切的计费成本。其他提供商使用来自 [models.dev](https://models.dev/) 公开模型定价的**估算**成本。估算值并非发票。
 
 有关设置 UI（字体、模型、历史记录、备份），请参见 [设置](/docs/settings/)。

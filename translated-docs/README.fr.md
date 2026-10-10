@@ -5,12 +5,12 @@
 <h1 align="center">Transrewrt</h1>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.3-blue" alt="Version"></a>
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.4-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
-  <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
+  <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20macOS%20%7C%20Docker-lightgrey" alt="Platform">
 </p>
 
-Outil textuel basé sur l'IA pour la **traduction**, la **réécriture** et la **transformation** avec des invites personnalisées. Utilisez vos propres fournisseurs d'IA (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, points de terminaison compatibles OpenAI et serveurs locaux tels qu'Ollama, LM Studio ou llama.cpp). Exécutez-le en tant qu'application de bureau (Windows / Linux) ou application web Docker. Pas de compte cloud Transrewrt.
+Outil textuel basé sur l'IA pour la **traduction**, la **réécriture** et la **transformation** avec des invites personnalisées. Utilisez vos propres fournisseurs d'IA (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, points de terminaison compatibles OpenAI et serveurs locaux tels que Ollama, LM Studio ou llama.cpp). Exécutez-le en tant qu'application de bureau (Windows / Linux / macOS) ou application web Docker. Pas de compte cloud Transrewrt.
 
 ## Fonctionnalités
 
@@ -52,6 +52,14 @@ Remplacez `PROVIDER_API_KEY` par la variable de votre fournisseur (par exemple `
 chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage
 ```
 
+**macOS** — Téléchargez le `.dmg` pour votre Mac depuis [Releases](https://github.com/wsj-br/transrewrt/releases) : `arm64` pour Apple Silicon, `x64` pour Intel. Ouvrez l'image disque et faites glisser Transrewrt vers Applications.
+
+La version n'est pas signée, donc Gatekeeper bloque le premier lancement. Faites un clic droit sur `Transrewrt.app` et choisissez **Ouvrir**, puis confirmez **Ouvrir**. Ou effacez l'attribut de quarantaine :
+
+```bash
+xattr -dr com.apple.quarantine /Applications/Transrewrt.app
+```
+
 Détails de la plateforme (Compose, SmartScreen, bibliothèques apt, drapeaux GPU, fuseau horaire) : [Documentation de démarrage rapide](https://wsj-br.github.io/transrewrt/docs/quick-start/).
 
 ## Documentation
@@ -72,14 +80,15 @@ Documentation complète du produit (installation, clés API, guides, paramètres
 
 ## Support
 
-Ouvrez une issue sur [GitHub](https://github.com/wsj-br/transrewrt/issues). Incluez votre plateforme (Windows / Linux / Docker) et la version de l'application (boîte de dialogue À propos ou page Releases).
+Ouvrez un problème sur [GitHub](https://github.com/wsj-br/transrewrt/issues). Incluez votre plateforme (Windows / Linux / macOS / Docker) et la version de l'application (boîte de dialogue À propos ou page Releases).
 
 ## Remerciements
 
-Les suggestions de préréglages en mode Facile dans l'éditeur de préréglages utilisent les données d'évaluation publiques de :
+Les suggestions de préréglages en mode Facile dans l'éditeur de préréglages utilisent uniquement les données d'évaluation publiques sur la machine du mainteneur. Aucun contenu de jeu de données n'est redistribué avec Transrewrt :
 
-- [languagebench](https://huggingface.co/spaces/fair-forward/languagebench) (CC BY-SA 4.0)
-- [Artificial Analysis](https://artificialanalysis.ai/) (attribution requise pour les données d'API)
+- [languagebench](https://huggingface.co/spaces/fair-forward/languagebench) (CC BY-SA 4.0) — traduction ChrF
+- [Arena](https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset) (CC BY 4.0) — Score Arena
+- [models.dev](https://models.dev/) (MIT)
 
 Les licences des dépendances tierces et ces avis de source de données sont répertoriés dans [NOTICES](../NOTICES).
 

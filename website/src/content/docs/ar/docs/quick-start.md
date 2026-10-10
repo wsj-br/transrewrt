@@ -1,6 +1,6 @@
 ---
 title: بدء سريع
-description: ثبّت Transrewrt على Windows أو Linux، أو شغّل تطبيق الويب Docker.
+description: ثبّت Transrewrt على Windows أو Linux أو macOS، أو شغّل تطبيق الويب Docker.
 ---
 
 
@@ -62,15 +62,31 @@ chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage
 TRANSREWRT_DISABLE_GPU=1 ./Transrewrt-x.y.z-arm64.AppImage
 ```
 
+## macOS
+
+نزّل `.dmg` لجهاز Mac الخاص بك من [الإصدارات](https://github.com/wsj-br/transrewrt/releases):
+
+- **Apple Silicon** — `Transrewrt-x.y.z-arm64.dmg`
+- **Intel** — `Transrewrt-x.y.z-x64.dmg`
+
+افتح صورة القرص واسحب Transrewrt إلى التطبيقات. أدخل مفاتيح API في **الإعدادات ← تكوين API**.
+
 :::note
-نظام التشغيل macOS غير مدعوم حاليًا. Transrewrt متاح لأنظمة Windows وLinux وDocker.
+إصدار macOS غير موقّع (لا يوجد توثيق من Apple). يمنع Gatekeeper التشغيل الأول. انقر بزر الماوس الأيمن على `Transrewrt.app` واختر **فتح**، ثم أكد **فتح**.
 :::
+
+أو امسح سمة الحجر الصحي:
+
+```bash
+xattr -dr com.apple.quarantine /Applications/Transrewrt.app
+```
 
 ## التحديث
 
-- **Windows** — قم بتنزيل `Transrewrt Setup x.y.z.exe` الأحدث من [الإصدارات](https://github.com/wsj-br/transrewrt/releases) وقم بتشغيله. يتم الاحتفاظ بالإعدادات والبيانات.
-- **Linux** — قم بتنزيل `.AppImage` الأحدث واستبدل الملف القديم. يتم الاحتفاظ بالإعدادات والبيانات.
-- **Docker** — اسحب الصورة الجديدة وأعد إنشاء الحاوية. تستمر البيانات في وحدة تخزين `/app/data`:
+- **Windows** — نزّل `Transrewrt Setup x.y.z.exe` الأحدث من [الإصدارات](https://github.com/wsj-br/transrewrt/releases) وشغّله. يتم الاحتفاظ بالإعدادات والبيانات.
+- **Linux** — نزّل `.AppImage` الأحدث واستبدل الملف القديم. يتم الاحتفاظ بالإعدادات والبيانات.
+- **macOS** — نزّل `.dmg` الأحدث، وافتحه، واسحب Transrewrt إلى التطبيقات، مستبدلاً التطبيق الحالي. يتم الاحتفاظ بالإعدادات والبيانات.
+- **Docker** — اسحب الصورة الجديدة وأعد إنشاء الحاوية. تستمر البيانات في وحدة التخزين `/app/data`:
 
 ```bash
 docker pull ghcr.io/wsj-br/transrewrt:latest

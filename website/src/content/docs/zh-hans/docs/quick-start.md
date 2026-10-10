@@ -1,6 +1,6 @@
 ---
 title: 快速开始
-description: 在 Windows 或 Linux 上安装 Transrewrt，或运行 Docker Web 应用。
+description: 在 Windows、Linux 或 macOS 上安装 Transrewrt，或运行 Docker 网页应用。
 ---
 
 
@@ -62,15 +62,31 @@ chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage
 TRANSREWRT_DISABLE_GPU=1 ./Transrewrt-x.y.z-arm64.AppImage
 ```
 
+## macOS
+
+从[发布页面](https://github.com/wsj-br/transrewrt/releases)下载适用于您 Mac 的 `.dmg`：
+
+- **Apple Silicon** — `Transrewrt-x.y.z-arm64.dmg`
+- **Intel** — `Transrewrt-x.y.z-x64.dmg`
+
+打开磁盘映像，将 Transrewrt 拖到“应用程序”中。在**设置 → API 配置**中输入 API 密钥。
+
 :::note
-目前不支持 macOS。Transrewrt 可在 Windows、Linux 和 Docker 上使用。
+macOS 构建未签名（未经 Apple 公证）。Gatekeeper 会阻止首次启动。右键点击 `Transrewrt.app` 并选择**打开**，然后确认**打开**。
 :::
+
+或者清除隔离属性：
+
+```bash
+xattr -dr com.apple.quarantine /Applications/Transrewrt.app
+```
 
 ## 更新
 
 - **Windows** — 从[发布页面](https://github.com/wsj-br/transrewrt/releases)下载较新的 `Transrewrt Setup x.y.z.exe` 并运行。设置和数据会保留。
 - **Linux** — 下载较新的 `.AppImage` 并替换旧文件。设置和数据会保留。
-- **Docker** — 拉取新镜像并重新创建容器。数据保存在 `/app/data` 卷中：
+- **macOS** — 下载较新的 `.dmg`，打开它，将 Transrewrt 拖到“应用程序”中，替换现有应用。设置和数据会保留。
+- **Docker** — 拉取新镜像并重新创建容器。数据持久保存在 `/app/data` 卷中：
 
 ```bash
 docker pull ghcr.io/wsj-br/transrewrt:latest

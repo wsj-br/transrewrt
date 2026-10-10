@@ -13,7 +13,7 @@ description: >-
 - **पुनर्लेखन** — व्याकरण ठीक करें, स्पष्टता सुधारें, टोन या लंबाई बदलें
 - **परिवर्तन** — किसी भी टेक्स्ट पर अपनी खुद की कस्टम एआई प्रॉम्प्ट चलाएं
 
-यह कई AI प्रदाताओं (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, OpenAI-संगत एंडपॉइंट्स, और स्थानीय OpenAI-संगत सर्वर जैसे Ollama, LM Studio, या llama.cpp) को सपोर्ट करता है। इसे एक **डेस्कटॉप ऐप** (Windows / Linux) या एक **डॉकर वेब ऐप** के रूप में चलाएँ।
+यह कई AI प्रदाताओं (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, OpenAI-संगत एंडपॉइंट्स, और स्थानीय OpenAI-संगत सर्वर जैसे Ollama, LM Studio, या llama.cpp) का समर्थन करता है। इसे एक **डेस्कटॉप ऐप** (Windows / Linux / macOS) या एक **Docker वेब ऐप** के रूप में चलाएँ।
 
 आपकी कुंजियाँ, आपके मॉडल, आपका होस्ट — कोई ट्रांसरीवर्ट क्लाउड खाता नहीं है।
 

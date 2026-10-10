@@ -33,8 +33,8 @@ I webbversionen har varje användare sin egen konfiguration (AI-upplevelse, leve
 
 **AI-upplevelse**
 
-- **Enkel** (standard): välj en **Leverantör**. Molnleverantörer använder förinställningar i verktygsfältet. **Lokal LLM** listar istället installerade lokala modeller. **Uppdatera förinställningskatalog** hämtar den senaste förinställningslistan från projektets arkiv.
-  - **Gratis (OpenRouter)** — kostnadsfritt alternativ som dirigeras till tillgängliga gratismodeller; kvalitet och tillgänglighet kan variera
+- **Enkel** (standard): välj en **Leverantör**. Molnleverantörer använder förinställningar i verktygsfältet. **Lokal LLM** listar installerade lokala modeller istället. **Uppdatera förinställningskatalog** hämtar den senaste förinställningslistan från projektets databas.
+  - **Gratis (OpenRouter)** — kostnadsfritt alternativ som dirigeras till tillgängliga gratismolnmodeller; kvalitet och tillgänglighet kan variera
   - **Standard** — lättviktig och kostnadseffektiv; bäst för korta texter, snabba utkast och högvolymanvändning
   - **Avancerad** — modell med hög noggrannhet för komplext eller nyanserat innehåll, till en högre kostnad
   - **Teknisk** — anpassad för kod, API:er, utvecklardokumentation och strukturerat innehåll; bevarar formatering och terminologi
@@ -85,7 +85,7 @@ Lägg till med **Lägg till**; ta bort med **X**. Den kostnadsfria OpenRouter-mo
 - **API-nyckelanvändning** — OpenRouter-detaljer när tillgängliga
 - **Ta bort kostnadsdata** — all data eller poster äldre än ett visst datum
 
-OpenRouter visar faktisk fakturerad kostnad när det är tillämpligt; andra leverantörer använder uppskattningar från OpenRouter-prissättning. Uppskattningar är inte fakturor.
+OpenRouter och xAI visar den faktiska debiterade kostnaden när API:et returnerar den; andra leverantörer använder uppskattningar från [models.dev](https://models.dev/)-prissättning. Uppskattningar är inte fakturor.
 
 :::caution
 Borttagning av kostnadsdata kan inte ångras. Exportera via Historik eller Dashboard → Alla samtal först om du behöver en säkerhetskopia. Relaterad indata-/utdatahistorik för dessa API-anrop tas också bort.

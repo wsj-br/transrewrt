@@ -1,6 +1,6 @@
 ---
 title: クイックスタート
-description: WindowsまたはLinuxにTransrewrtをインストールするか、Docker Webアプリを実行します。
+description: Windows、Linux、またはmacOSにTransrewrtをインストールするか、Dockerウェブアプリを実行します。
 ---
 
 
@@ -62,15 +62,31 @@ ChromiumがGPU / EGLエラーを出力してもアプリが動作する場合は
 TRANSREWRT_DISABLE_GPU=1 ./Transrewrt-x.y.z-arm64.AppImage
 ```
 
+## macOS
+
+Mac用の`.dmg`を[リリース](https://github.com/wsj-br/transrewrt/releases)からダウンロードします：
+
+- **Apple Silicon** — `Transrewrt-x.y.z-arm64.dmg`
+- **Intel** — `Transrewrt-x.y.z-x64.dmg`
+
+ディスクイメージを開き、Transrewrtをアプリケーションにドラッグします。**Settings → API Config**でAPIキーを入力します。
+
 :::note
-現在、macOSはサポートされていません。TransrewrtはWindows、Linux、およびDockerで利用できます。
+macOSビルドは署名されていません（Appleの公証なし）。Gatekeeperが初回起動をブロックします。`Transrewrt.app`を右クリックして**Open**を選択し、**Open**で確認します。
 :::
+
+または、隔離属性をクリアします：
+
+```bash
+xattr -dr com.apple.quarantine /Applications/Transrewrt.app
+```
 
 ## アップデート
 
-- **Windows** — [Releases](https://github.com/wsj-br/transrewrt/releases)から新しい`Transrewrt Setup x.y.z.exe`をダウンロードして実行します。設定とデータは保持されます。
+- **Windows** — [リリース](https://github.com/wsj-br/transrewrt/releases)から新しい`Transrewrt Setup x.y.z.exe`をダウンロードして実行します。設定とデータは保持されます。
 - **Linux** — 新しい`.AppImage`をダウンロードし、古いファイルを置き換えます。設定とデータは保持されます。
-- **Docker** — 新しいイメージをプルし、コンテナを再作成します。データは`/app/data`ボリュームに保持されます:
+- **macOS** — 新しい`.dmg`をダウンロードして開き、Transrewrtをアプリケーションにドラッグして既存のアプリを置き換えます。設定とデータは保持されます。
+- **Docker** — 新しいイメージをプルし、コンテナを再作成します。データは`/app/data`ボリュームに保持されます：
 
 ```bash
 docker pull ghcr.io/wsj-br/transrewrt:latest

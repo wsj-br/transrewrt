@@ -48,7 +48,7 @@ Om KPI:er fortfarande är noll efter **Alla**, kontrollera [Historik](/docs/hist
 
 ## Kostnaden visar "inte tillgänglig" eller verkar felaktig
 
-OpenRouter visar faktisk förbrukning när det är tillämpligt. För andra leverantörer uppskattas kostnaden utifrån OpenRouter-prissättning; om inget pris matchar visas kostnaden som **inte tillgänglig** och läggs inte till i totalsumman.
+OpenRouter och xAI visar faktisk kostnad när API:et returnerar den. För andra leverantörer uppskattas kostnaden från [models.dev](https://models.dev/)-prissättning; om inget pris matchar visas kostnaden som **inte tillgänglig** och läggs inte till i totalsumman.
 
 ## Total kostnad matchar inte min leverantörsfaktura
 

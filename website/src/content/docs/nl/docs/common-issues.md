@@ -48,7 +48,7 @@ Als KPI's na **Alles** nog steeds nul zijn, controleer dan [Geschiedenis](/docs/
 
 ## Kosten tonen "niet beschikbaar" of lijken verkeerd
 
-OpenRouter toont de werkelijke uitgaven, indien van toepassing. Voor andere providers wordt de kostprijs geschat op basis van de OpenRouter-prijzen; als er geen prijs overeenkomt, wordt de kostprijs weergegeven als **niet beschikbaar** en wordt deze niet toegevoegd aan het totaal.
+OpenRouter en xAI tonen de werkelijke uitgaven wanneer de API deze retourneert. Voor andere Providers wordt de kostprijs geschat op basis van de prijzen van [models.dev](https://models.dev/); als er geen prijs overeenkomt, wordt de kostprijs weergegeven als **niet beschikbaar** en wordt deze niet opgeteld bij het totaal.
 
 ## Totale kosten komen niet overeen met mijn providerfactuur
 

@@ -48,7 +48,7 @@ Ak sú KPI po **Všetkých** stále nulové, skontrolujte [Históriu](/docs/hist
 
 ## Náklady ukazujú „nie sú k dispozícii“ alebo sa zdajú nesprávne
 
-OpenRouter zobrazuje skutočné výdavky, ak sú relevantné. Pre ostatných poskytovateľov sa náklady odhadujú z cien OpenRouter; ak sa žiadna cena nezhoduje, náklady sa zobrazia ako **nie sú k dispozícii** a nepridajú sa k celkovej sume.
+OpenRouter a xAI zobrazujú skutočné výdavky, keď ich API vráti. Pre ostatných poskytovateľov sa náklady odhadujú z cien [models.dev](https://models.dev/); ak sa žiadna cena nezhoduje, náklady sa zobrazia ako **nie sú k dispozícii** a nepridajú sa k celkovej sume.
 
 ## Celkové náklady sa nezhodujú s mojím účtom od poskytovateľa
 

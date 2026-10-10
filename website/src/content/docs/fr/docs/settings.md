@@ -33,12 +33,12 @@ Dans la version web, chaque utilisateur a sa propre configuration (expérience I
 
 **Expérience IA**
 
-- **Facile** (par défaut) : choisissez un **Fournisseur**. Les fournisseurs cloud utilisent les préréglages de la barre d'outils. **LLM local** liste les modèles locaux installés à la place. **Actualiser le catalogue de préréglages** récupère la dernière liste de préréglages du référentiel du projet.
-  - **Gratuit (OpenRouter)** — option sans coût acheminée vers les modèles gratuits disponibles ; la qualité et la disponibilité peuvent varier
-  - **Standard** — léger et économique ; idéal pour les textes courts, les brouillons rapides et l'utilisation à grand volume
-  - **Avancé** — modèle de haute précision pour le contenu complexe ou nuancé, à un coût plus élevé
-  - **Technique** — optimisé pour le code, les API, la documentation développeur et le contenu structuré ; préserve le formatage et la terminologie
-- **Avancé** : choisissez les modèles dans la barre d'outils ; gérez la liste sous [Modèles](#models).
+- **Facile** (par défaut) : choisissez un **Fournisseur**. Les fournisseurs de cloud utilisent des préréglages de barre d’outils. **LLM local** répertorie les modèles locaux installés. **Actualiser le catalogue de préréglages** récupère la dernière liste de préréglages du référentiel du projet.
+  - **Gratuit (OpenRouter)** — option sans frais acheminée vers les modèles gratuits disponibles ; la qualité et la disponibilité peuvent varier
+  - **Standard** — léger et économique ; idéal pour les textes courts, les brouillons rapides et une utilisation à volume élevé
+  - **Avancé** — modèle de haute précision pour le contenu complexe ou nuancé, à un coût plus élevé
+  - **Technique** — optimisé pour le code, les API, la Documentation des développeurs et le contenu structuré ; préserve le formatage et la terminologie
+- **Avancé** : choisissez des modèles dans la barre d’outils ; gérez la liste sous [Modèles](#models).
 
 Vous pouvez également basculer Facile ↔ Avancé depuis le menu préréglage/modèle de la barre d'outils (**Passer en mode Facile/Avancé**, au-dessus d'Ouvrir les paramètres).
 
@@ -85,7 +85,7 @@ Ajouter avec **Ajouter** ; supprimer avec **X**. Le modèle gratuit OpenRouter e
 - **Utilisation de la clé API** — détails OpenRouter lorsqu'ils sont disponibles
 - **Supprimer les données de coût** — toutes les données ou les entrées antérieures à une date
 
-OpenRouter affiche le coût réel facturé le cas échéant ; les autres fournisseurs utilisent des estimations basées sur les tarifs OpenRouter. Les estimations ne sont pas des factures.
+OpenRouter et xAI affichent le coût réel facturé lorsque l’API le renvoie ; les autres fournisseurs utilisent des estimations basées sur les tarifs de [models.dev](https://models.dev/). Les estimations ne sont pas des factures.
 
 :::caution
 La suppression des données de coût est irréversible. Exportez via Historique ou Tableau de bord → Tous les appels d'abord si vous avez besoin d'une sauvegarde. L'historique d'entrée/sortie lié à ces appels API est également supprimé.

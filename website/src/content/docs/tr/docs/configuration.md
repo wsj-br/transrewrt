@@ -13,6 +13,7 @@ description: >-
 | --- | --- |
 | Electron (Windows) | `%APPDATA%\transrewrt\` |
 | Electron (Linux) | `~/.config/transrewrt/` |
+| Electron (macOS) | `~/Library/Application Support/transrewrt/` |
 | Web / Docker | `/app/data/` (kalıcılık için bir birim kullanın) |
 
 Veri klasörü, yedeklemeye değer her şeyi barındırır:
@@ -89,6 +90,6 @@ Sunucu düz HTTP kullanır. Eğer sunucuyu localhost veya güvenilir bir ağın 
 
 ## Maliyet gösterimi
 
-OpenRouter, uygun olduğunda tam faturalandırılmış maliyeti döndürür. Diğer sağlayıcılar, bir OpenRouter anahtarı mevcut olduğunda OpenRouter'ın genel model fiyatlandırmasından **tahmini** maliyeti kullanır. Tahminler fatura değildir.
+OpenRouter ve xAI, API içeriyorsa tam faturalandırılan maliyeti döndürür. Diğer Sağlayıcılar, [models.dev](https://models.dev/) genel model fiyatlandırmasından **tahmini** maliyeti kullanır. Tahminler fatura değildir.
 
 Ayarlar kullanıcı arayüzü (fontlar, modeller, geçmiş, yedeklemeler) için bkz. [Ayarlar](/docs/settings/).

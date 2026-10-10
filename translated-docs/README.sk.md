@@ -5,12 +5,12 @@
 <h1 align="center">Transrewrt</h1>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.3-blue" alt="Version"></a>
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.4-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
-  <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
+  <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20macOS%20%7C%20Docker-lightgrey" alt="Platform">
 </p>
 
-Nástroj na text poháňaný AI na **prekladanie**, **prepisovanie** a **transformovanie** s vlastnými výzvami. Používajte vlastných poskytovateľov AI (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, koncové body kompatibilné s OpenAI a lokálne servery ako Ollama, LM Studio alebo llama.cpp). Spustite ako desktopovú aplikáciu (Windows / Linux) alebo webovú aplikáciu Docker. Žiadny cloudový účet Transrewrt.
+Textový nástroj poháňaný AI na **prekladanie**, **prepisovanie** a **transformovanie** s vlastnými výzvami. Používajte vlastných poskytovateľov AI (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, koncové body kompatibilné s OpenAI a lokálne servery ako Ollama, LM Studio alebo llama.cpp). Spustite ako desktopovú aplikáciu (Windows / Linux / macOS) alebo webovú aplikáciu Docker. Žiadny cloudový účet Transrewrt.
 
 ## Funkcie
 
@@ -52,6 +52,14 @@ Nahraďte `PROVIDER_API_KEY` premennou vášho poskytovateľa (napríklad `OPENR
 chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage
 ```
 
+**macOS** — Stiahnite si `.dmg` pre váš Mac z [Vydaní](https://github.com/wsj-br/transrewrt/releases): `arm64` pre Apple Silicon, `x64` pre Intel. Otvorte obraz disku a presuňte Transrewrt do Aplikácií.
+
+Zostavenie nie je podpísané, takže Gatekeeper blokuje prvé spustenie. Kliknite pravým tlačidlom myši na `Transrewrt.app` a vyberte **Otvoriť**, potom potvrďte **Otvoriť**. Alebo vymažte atribút karantény:
+
+```bash
+xattr -dr com.apple.quarantine /Applications/Transrewrt.app
+```
+
 Podrobnosti o platforme (Compose, SmartScreen, apt libs, GPU flags, časové pásmo): [Dokumentácia rýchleho štartu](https://wsj-br.github.io/transrewrt/docs/quick-start/).
 
 ## Dokumentácia
@@ -72,14 +80,16 @@ Kompletná dokumentácia produktu (inštalácia, kľúče API, príručky, nasta
 
 ## Podpora
 
-Otvorte problém na [GitHub](https://github.com/wsj-br/transrewrt/issues). Uveďte svoju platformu (Windows / Linux / Docker) a verziu aplikácie (dialógové okno O aplikácii alebo stránka Vydania).
+Otvorte problém na [GitHub](https://github.com/wsj-br/transrewrt/issues). Uveďte svoju platformu (Windows / Linux / macOS / Docker) a verziu aplikácie (dialógové okno O aplikácii alebo stránka Vydania).
 
 ## Poďakovania
 
-Návrhy predvolieb v režime „Jednoduché“ v editore predvolieb používajú verejné hodnotiace údaje z:
+Návrhy predvolieb v režime Jednoduché v editore predvolieb používajú verejné evaluačné údaje
+iba na počítači správcu. Žiadny obsah dátovej sady sa s Transrewrt neprerozdeľuje:
 
-- [languagebench](https://huggingface.co/spaces/fair-forward/languagebench) (CC BY-SA 4.0)
-- [Artificial Analysis](https://artificialanalysis.ai/) (vyžaduje sa uvedenie zdroja pre údaje API)
+- [languagebench](https://huggingface.co/spaces/fair-forward/languagebench) (CC BY-SA 4.0) — preklad ChrF
+- [Arena](https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset) (CC BY 4.0) — Arena Score
+- [models.dev](https://models.dev/) (MIT)
 
 Licencie závislostí tretích strán a tieto oznámenia o zdrojoch údajov sú uvedené v [NOTICES](../NOTICES).
 

@@ -5,12 +5,12 @@
 <h1 align="center">Transrewrt</h1>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.3-blue" alt="Version"></a>
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.4-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
-  <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
+  <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20macOS%20%7C%20Docker-lightgrey" alt="Platform">
 </p>
 
-เครื่องมือข้อความที่ขับเคลื่อนด้วย AI สำหรับการ**แปล** การ**แก้ไขใหม่** และการ**แปลง** พร้อมพรอมต์ที่กำหนดเอง ใช้ผู้ให้บริการ AI ของคุณเอง (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, ปลายทางที่เข้ากันได้กับ OpenAI และเซิร์ฟเวอร์ในเครื่อง เช่น Ollama, LM Studio หรือ llama.cpp) ทำงานเป็นแอปเดสก์ท็อป (Windows / Linux) หรือเว็บแอป Docker ไม่มีบัญชีคลาวด์ Transrewrt
+เครื่องมือข้อความที่ขับเคลื่อนด้วย AI สำหรับการ**แปล**, การ**แก้ไขใหม่**, และการ**แปลง**ด้วยพร้อมท์ที่กำหนดเอง ใช้ผู้ให้บริการ AI ของคุณเอง (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, ปลายทางที่เข้ากันได้กับ OpenAI และเซิร์ฟเวอร์ในเครื่อง เช่น Ollama, LM Studio หรือ llama.cpp) เรียกใช้เป็นแอปเดสก์ท็อป (Windows / Linux / macOS) หรือเว็บแอป Docker ไม่มีบัญชีคลาวด์ Transrewrt
 
 ## คุณสมบัติ
 
@@ -52,6 +52,14 @@ docker run -d \
 chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage
 ```
 
+**macOS** — ดาวน์โหลด `.dmg` สำหรับ Mac ของคุณจาก [Releases](https://github.com/wsj-br/transrewrt/releases): `arm64` สำหรับ Apple Silicon, `x64` สำหรับ Intel เปิดอิมเมจดิสก์แล้วลาก Transrewrt ไปยัง Applications
+
+บิลด์ไม่ได้ลงนาม ดังนั้น Gatekeeper จะบล็อกการเปิดตัวครั้งแรก คลิกขวาที่ `Transrewrt.app` แล้วเลือก **เปิด** จากนั้นยืนยัน **เปิด** หรือล้างแอตทริบิวต์กักกัน:
+
+```bash
+xattr -dr com.apple.quarantine /Applications/Transrewrt.app
+```
+
 รายละเอียดแพลตฟอร์ม (Compose, SmartScreen, apt libs, GPU flags, เขตเวลา): [เอกสารเริ่มต้นอย่างรวดเร็ว](https://wsj-br.github.io/transrewrt/docs/quick-start/)
 
 ## เอกสารประกอบ
@@ -72,14 +80,15 @@ chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage
 
 ## การสนับสนุน
 
-เปิดปัญหาบน [GitHub](https://github.com/wsj-br/transrewrt/issues) ระบุแพลตฟอร์มของคุณ (Windows / Linux / Docker) และเวอร์ชันแอป (กล่องโต้ตอบเกี่ยวกับ หรือหน้า Releases)
+เปิดประเด็นบน [GitHub](https://github.com/wsj-br/transrewrt/issues) ระบุแพลตฟอร์มของคุณ (Windows / Linux / macOS / Docker) และเวอร์ชันแอป (กล่องโต้ตอบเกี่ยวกับ หรือหน้า Releases)
 
 ## กิตติกรรมประกาศ
 
-คำแนะนำค่าตั้งล่วงหน้าโหมดง่ายในตัวแก้ไขค่าตั้งล่วงหน้าใช้ข้อมูลการประเมินสาธารณะจาก:
+คำแนะนำค่าตั้งล่วงหน้าโหมดง่ายในตัวแก้ไขค่าตั้งล่วงหน้าใช้ข้อมูลการประเมินสาธารณะบนเครื่องของผู้ดูแลเท่านั้น ไม่มีเนื้อหาชุดข้อมูลใด ๆ ที่ถูกแจกจ่ายซ้ำกับ Transrewrt:
 
-- [languagebench](https://huggingface.co/spaces/fair-forward/languagebench) (CC BY-SA 4.0)
-- [Artificial Analysis](https://artificialanalysis.ai/) (ต้องระบุแหล่งที่มาสำหรับข้อมูล API)
+- [languagebench](https://huggingface.co/spaces/fair-forward/languagebench) (CC BY-SA 4.0) — การแปล ChrF
+- [Arena](https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset) (CC BY 4.0) — คะแนน Arena
+- [models.dev](https://models.dev/) (MIT)
 
 ใบอนุญาตการพึ่งพาจากบุคคลที่สามและประกาศแหล่งที่มาของข้อมูลเหล่านี้แสดงอยู่ใน [NOTICES](../NOTICES)
 

@@ -48,7 +48,7 @@ description: Transrewrt 的疑難排解與快速提示。
 
 ## 成本顯示「無法取得」或似乎有誤
 
-OpenRouter 會在適用時顯示實際花費。對於其他供應商，成本會根據 OpenRouter 的定價進行估算；若沒有符合的價格，成本會顯示為**not available**且不會計入總額。
+OpenRouter 與 xAI 會在 API 回傳時顯示實際支出。至於其他供應商，成本會根據 [models.dev](https://models.dev/) 的定價進行估算；若無符合的價格，成本會顯示為 **不可用**，且不會計入總額。
 
 ## 總成本與我的供應商帳單不符
 

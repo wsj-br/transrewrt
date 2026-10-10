@@ -33,11 +33,11 @@ Ve webové verzi má každý uživatel svou vlastní konfiguraci (zkušenosti s 
 
 **Zkušenosti s AI**
 
-- **Snadné** (výchozí): vyberte **Poskytovatele**. Cloudoví poskytovatelé používají předvolby na panelu nástrojů. **Lokální LLM** místo toho vypisuje nainstalované lokální modely. **Obnovit katalog předvoleb** načte nejnovější seznam předvoleb z repozitáře projektu.
-  - **Zdarma (OpenRouter)** — bezplatná možnost směrovaná na dostupné bezplatné modely; kvalita a dostupnost se mohou lišit
-  - **Standardní** — lehký a nákladově efektivní; nejlepší pro krátké texty, rychlé návrhy a vysoký objem použití
-  - **Pokročilé** — vysoce přesný model pro komplexní nebo nuancovaný obsah, za vyšší cenu
-  - **Technické** — vyladěno pro kód, API, vývojářskou dokumentaci a strukturovaný obsah; zachovává formátování a terminologii
+- **Snadné** (výchozí): vyberte **Poskytovatele**. Poskytovatelé cloudu používají předvolby panelu nástrojů. **Místní LLM** místo toho vypíše nainstalované místní modely. **Obnovit katalog předvoleb** načte nejnovější seznam předvoleb z repozitáře projektu.
+  - **Zdarma (OpenRouter)** – bezplatná možnost směrovaná na dostupné bezplatné modely; kvalita a dostupnost se mohou lišit
+  - **Standardní** – lehký a nákladově efektivní; nejlepší pro krátké texty, rychlé návrhy a vysoký objem použití
+  - **Pokročilé** – vysoce přesný model pro složitý nebo nuancovaný obsah, za vyšší cenu
+  - **Technické** – vyladěno pro kód, API, dokumentaci pro vývojáře a strukturovaný obsah; zachovává formátování a terminologii
 - **Pokročilé**: vyberte modely na panelu nástrojů; spravujte seznam pod [Modely](#models).
 
 Můžete také přepínat Snadné ↔ Pokročilé z nabídky předvoleb/modelů na panelu nástrojů (**Přepnout do režimu Snadné/Pokročilé**, nad Otevřít nastavení).
@@ -85,7 +85,7 @@ Přidat pomocí **Přidat**; odebrat pomocí **X**. Bezplatný model OpenRouter 
 - **Využití API klíče** — podrobnosti OpenRouter, pokud jsou k dispozici
 - **Smazat data o nákladech** — všechna data nebo záznamy starší než určité datum
 
-OpenRouter zobrazuje skutečné účtované náklady, pokud je to relevantní; ostatní poskytovatelé používají odhady z cen OpenRouter. Odhady nejsou faktury.
+OpenRouter a xAI zobrazují skutečné účtované náklady, když je API vrátí; ostatní poskytovatelé používají odhady z cen [models.dev](https://models.dev/). Odhady nejsou faktury.
 
 :::caution
 Smazání dat o nákladech nelze vrátit zpět. Nejprve exportujte přes Historii nebo Dashboard → Všechna volání, pokud potřebujete zálohu. Související historie vstupu/výstupu pro tato volání API je také odstraněna.

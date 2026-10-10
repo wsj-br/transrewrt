@@ -11,6 +11,7 @@ description: Vị trí tệp cấu hình, biến môi trường Docker, chế đ
 | --- | --- |
 | Electron (Windows) | `%APPDATA%\transrewrt\` |
 | Electron (Linux) | `~/.config/transrewrt/` |
+| Electron (macOS) | `~/Library/Application Support/transrewrt/` |
 | Web / Docker | `/app/data/` (sử dụng một volume để duy trì) |
 
 Thư mục dữ liệu chứa mọi thứ đáng sao lưu:
@@ -87,6 +88,6 @@ Máy chủ sử dụng HTTP thuần túy. Nếu bạn để máy chủ hiển th
 
 ## Hiển thị chi phí
 
-OpenRouter trả về chi phí được lập hóa đơn chính xác khi áp dụng. Các nhà cung cấp khác sử dụng chi phí **ước tính** từ giá mô hình công khai của OpenRouter khi có khóa OpenRouter. Ước tính không phải là hóa đơn.
+OpenRouter và xAI trả về chi phí được lập hóa đơn chính xác khi API bao gồm chi phí đó. Các Nhà cung cấp khác sử dụng chi phí **ước tính** từ định giá mô hình công khai của [models.dev](https://models.dev/). Ước tính không phải là hóa đơn.
 
 Để biết giao diện người dùng Cài đặt (phông chữ, mô hình, lịch sử, sao lưu), hãy xem [Cài đặt](/docs/settings/).

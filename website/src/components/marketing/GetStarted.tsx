@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Check, Copy, Monitor, Terminal, Download } from 'lucide-react';
+import { Check, Copy, Laptop, Monitor, Terminal, Download } from 'lucide-react';
 import { DOCKER_IMAGE } from './data';
 import { useI18n, useT } from './i18n';
 
@@ -71,6 +71,16 @@ export default function GetStarted() {
       accent: 'orange' as const,
     },
     {
+      icon: Laptop,
+      title: t('macOS disk image'),
+      desc: t(
+        'Download the unsigned .dmg for Apple Silicon (arm64) or Intel (x64) from Releases. Drag Transrewrt to Applications. On first launch, right-click the app and choose Open.',
+      ),
+      cta: t('Download for macOS'),
+      href: links.releases,
+      accent: 'green' as const,
+    },
+    {
       icon: Download,
       title: t('Docker / web app'),
       desc: t(
@@ -93,16 +103,16 @@ export default function GetStarted() {
             {t('Get started')}
           </p>
           <h2 className="mt-3 text-3xl font-bold tracking-tight text-balance sm:text-4xl">
-            {t('Three ways to run Transrewrt')}
+            {t('Four ways to run Transrewrt')}
           </h2>
           <p className="mt-4 text-lg text-neutral-400">
             {t(
-              'Pick the path that fits you — desktop app or Docker web app. All paths are free and open source.',
+              'Pick the path that fits you — Windows, Linux, macOS, or the Docker web app. All paths are free and open source.',
             )}
           </p>
         </div>
 
-        <div className="mt-16 grid gap-5 md:grid-cols-3">
+        <div className="mt-16 grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
           {paths.map((p) => {
             const Icon = p.icon;
             const isOrange = p.accent === 'orange';

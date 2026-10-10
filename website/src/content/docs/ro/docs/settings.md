@@ -34,8 +34,8 @@ Deschideți **Setări** din bara laterală pentru a personaliza comportamentul a
 **Experiența AI**
 
 - **Ușor** (implicit): alegeți un **Furnizor**. Furnizorii cloud utilizează presetări din bara de instrumente. **LLM local** listează în schimb modelele locale instalate. **Reîmprospătare catalog presetări** preia cea mai recentă listă de presetări din depozitul proiectului.
-  - **Gratuit (OpenRouter)** — opțiune fără costuri direcționată către modele gratuite disponibile; calitatea și disponibilitatea pot varia
-  - **Standard** — ușor și eficient din punct de vedere al costurilor; cel mai bun pentru texte scurte, schițe rapide și utilizare în volum mare
+  - **Gratuit (OpenRouter)** — opțiune cu cost zero, direcționată către modele gratuite disponibile; calitatea și disponibilitatea pot varia
+  - **Standard** — ușor și rentabil; cel mai bun pentru texte scurte, schițe rapide și utilizare în volum mare
   - **Avansat** — model de înaltă precizie pentru conținut complex sau nuanțat, la un cost mai mare
   - **Tehnic** — optimizat pentru cod, API-uri, documentație pentru dezvoltatori și conținut structurat; păstrează formatarea și terminologia
 - **Avansat**: alegeți modele din bara de instrumente; gestionați lista sub [Modele](#models).
@@ -85,7 +85,7 @@ Adăugați cu **Adaugă**; eliminați cu **X**. Modelul gratuit OpenRouter este 
 - **Utilizarea cheii API** — Detalii OpenRouter când sunt disponibile
 - **Șterge datele de cost** — toate datele sau intrările mai vechi decât o anumită dată
 
-OpenRouter afișează costul real facturat atunci când este cazul; alți furnizori utilizează estimări din prețurile OpenRouter. Estimările nu sunt facturi.
+OpenRouter și xAI afișează costul facturat real atunci când API-ul îl returnează; alți furnizori utilizează estimări din prețurile [models.dev](https://models.dev/). Estimările nu sunt facturi.
 
 :::caution
 Ștergerea datelor de cost nu poate fi anulată. Exportați mai întâi prin Istoric sau Tablou de bord → Toate apelurile dacă aveți nevoie de un backup. Istoricul de intrare/ieșire aferent pentru acele apeluri API este, de asemenea, eliminat.

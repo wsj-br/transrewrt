@@ -5,12 +5,12 @@
 <h1 align="center">Transrewrt</h1>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.3-blue" alt="Version"></a>
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.4-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
-  <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
+  <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20macOS%20%7C%20Docker-lightgrey" alt="Platform">
 </p>
 
-Narzędzie tekstowe oparte na sztucznej inteligencji do **tłumaczenia**, **przerabiania** i **transformacji** z niestandardowymi promptami. Używaj własnych dostawców AI (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, punktów końcowych zgodnych z OpenAI oraz serwerów lokalnych, takich jak Ollama, LM Studio lub llama.cpp). Uruchom jako aplikację desktopową (Windows / Linux) lub aplikację internetową Docker. Brak konta Transrewrt w chmurze.
+Narzędzie tekstowe oparte na sztucznej inteligencji do **tłumaczenia**, **przeróbki** i **transformacji** z niestandardowymi podpowiedziami. Używaj własnych dostawców AI (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, punkty końcowe zgodne z OpenAI oraz serwery lokalne, takie jak Ollama, LM Studio lub llama.cpp). Uruchom jako aplikację desktopową (Windows / Linux / macOS) lub aplikację internetową Docker. Brak konta Transrewrt w chmurze.
 
 ## Funkcje
 
@@ -52,6 +52,14 @@ Zastąp `PROVIDER_API_KEY` zmienną dostawcy (na przykład `OPENROUTER_API_KEY`,
 chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage
 ```
 
+**macOS** — Pobierz `.dmg` dla swojego Maca z [Wydań](https://github.com/wsj-br/transrewrt/releases): `arm64` dla Apple Silicon, `x64` dla Intel. Otwórz obraz dysku i przeciągnij Transrewrt do folderu Aplikacje.
+
+Kompilacja jest niepodpisana, więc Gatekeeper blokuje pierwsze uruchomienie. Kliknij prawym przyciskiem myszy `Transrewrt.app` i wybierz **Otwórz**, a następnie potwierdź **Otwórz**. Lub wyczyść atrybut kwarantanny:
+
+```bash
+xattr -dr com.apple.quarantine /Applications/Transrewrt.app
+```
+
 Szczegóły platformy (Compose, SmartScreen, biblioteki apt, flagi GPU, strefa czasowa): [Dokumentacja szybkiego startu](https://wsj-br.github.io/transrewrt/docs/quick-start/).
 
 ## Dokumentacja
@@ -72,14 +80,16 @@ Pełna dokumentacja produktu (instalacja, klucze API, przewodniki, ustawienia, r
 
 ## Wsparcie
 
-Otwórz zgłoszenie na [GitHub](https://github.com/wsj-br/transrewrt/issues). Podaj swoją platformę (Windows / Linux / Docker) i wersję aplikacji (okno O aplikacji lub strona Wydań).
+Otwórz zgłoszenie na [GitHub](https://github.com/wsj-br/transrewrt/issues). Podaj swoją platformę (Windows / Linux / macOS / Docker) i wersję aplikacji (okno O aplikacji lub strona Wydań).
 
 ## Podziękowania
 
-Sugestie presetów w trybie Łatwym w edytorze presetów korzystają z publicznych danych ewaluacyjnych z:
+Sugestie presetów w trybie łatwym w edytorze presetów wykorzystują publiczne dane ewaluacyjne
+wyłącznie na komputerze konserwatora. Żadna zawartość zestawu danych nie jest redystrybuowana z Transrewrt:
 
-- [languagebench](https://huggingface.co/spaces/fair-forward/languagebench) (CC BY-SA 4.0)
-- [Artificial Analysis](https://artificialanalysis.ai/) (wymagana atrybucja dla danych API)
+- [languagebench](https://huggingface.co/spaces/fair-forward/languagebench) (CC BY-SA 4.0) — tłumaczenie ChrF
+- [Arena](https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset) (CC BY 4.0) — wynik Arena
+- [models.dev](https://models.dev/) (MIT)
 
 Licencje zależności stron trzecich i te informacje o źródłach danych są wymienione w [NOTICES](../NOTICES).
 

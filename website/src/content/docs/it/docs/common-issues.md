@@ -48,7 +48,7 @@ Se gli indicatori chiave di prestazione sono ancora zero dopo **Tutti**, control
 
 ## Il costo mostra "non disponibile" o sembra errato
 
-OpenRouter mostra la spesa effettiva, se applicabile. Per gli altri provider, il costo è stimato in base ai prezzi di OpenRouter; se nessun prezzo corrisponde, il costo viene visualizzato come **non disponibile** e non viene aggiunto al totale.
+OpenRouter e xAI mostrano la spesa effettiva quando l'API la restituisce. Per gli altri Fornitori, il costo è stimato in base ai prezzi di [models.dev](https://models.dev/); se nessun prezzo corrisponde, il costo viene visualizzato come **non disponibile** e non viene aggiunto al totale.
 
 ## Il costo totale non corrisponde alla fattura del mio provider
 

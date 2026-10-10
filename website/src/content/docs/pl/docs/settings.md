@@ -33,12 +33,12 @@ W wersji internetowej każdy użytkownik ma własną konfigurację (doświadczen
 
 **Doświadczenie AI**
 
-- **Łatwe** (domyślne): wybierz **Dostawcę**. Dostawcy chmurowi używają ustawień wstępnych paska narzędzi. **Lokalny LLM** zamiast tego wyświetla listę zainstalowanych modeli lokalnych. **Odśwież katalog ustawień wstępnych** pobiera najnowszą listę ustawień wstępnych z repozytorium projektu.
-  - **Darmowe (OpenRouter)** — opcja bezpłatna, kierowana do dostępnych darmowych modeli; jakość i dostępność mogą się różnić
-  - **Standardowe** — lekkie i ekonomiczne; najlepsze do krótkich tekstów, szybkich szkiców i intensywnego użytkowania
-  - **Zaawansowane** — model o wysokiej dokładności do złożonych lub niuansowych treści, za wyższą cenę
-  - **Techniczne** — dostosowane do kodu, API, dokumentacji deweloperskiej i treści strukturalnych; zachowuje formatowanie i terminologię
-- **Zaawansowane**: wybierz modele na pasku narzędzi; zarządzaj listą w [Modelach](#models).
+- **Łatwy** (domyślny): wybierz **Dostawcę**. Dostawcy chmury używają predefiniowanych ustawień paska narzędzi. **Lokalny LLM** wyświetla listę zainstalowanych modeli lokalnych. **Odśwież katalog predefiniowanych ustawień** pobiera najnowszą listę predefiniowanych ustawień z repozytorium projektu.
+  - **Darmowy (OpenRouter)** — bezkosztowa opcja kierowana do dostępnych darmowych modeli; jakość i dostępność mogą się różnić
+  - **Standardowy** — lekki i ekonomiczny; najlepszy do krótkich tekstów, szybkich szkiców i zastosowań o dużej objętości
+  - **Zaawansowany** — model o wysokiej dokładności do złożonych lub niuansowych treści, za wyższą cenę
+  - **Techniczny** — dostosowany do kodu, interfejsów API, Dokumentacji deweloperskiej i treści strukturalnych; zachowuje formatowanie i terminologię
+- **Zaawansowany**: wybierz modele na pasku narzędzi; zarządzaj listą w [Modelach](#models).
 
 Możesz również przełączać tryb Łatwy ↔ Zaawansowany z menu ustawień wstępnych/modeli na pasku narzędzi (**Przełącz na tryb Łatwy/Zaawansowany**, powyżej Otwórz Ustawienia).
 
@@ -85,7 +85,7 @@ Dodaj za pomocą **Dodaj**; usuń za pomocą **X**. Darmowy model OpenRouter jes
 - **Użycie klucza API** — szczegóły OpenRouter, gdy dostępne
 - **Usuń dane kosztów** — wszystkie dane lub wpisy starsze niż określona data
 
-OpenRouter pokazuje rzeczywisty naliczony koszt, gdy ma to zastosowanie; inni dostawcy używają szacunków z cennika OpenRouter. Szacunki nie są fakturami.
+OpenRouter i xAI pokazują rzeczywisty koszt rozliczeniowy, gdy API go zwraca; inni Dostawcy używają szacunków z cennika [models.dev](https://models.dev/). Szacunki nie są fakturami.
 
 :::caution
 Usunięcia danych kosztów nie można cofnąć. Najpierw wyeksportuj dane za pośrednictwem Historii lub Pulpitu → Wszystkie połączenia, jeśli potrzebujesz kopii zapasowej. Powiązana historia wejść/wyjść dla tych wywołań API również zostanie usunięta.

@@ -1,6 +1,8 @@
 ---
 title: Bắt đầu nhanh
-description: Cài đặt Transrewrt trên Windows hoặc Linux, hoặc chạy ứng dụng web Docker.
+description: >-
+  Cài đặt Transrewrt trên Windows, Linux hoặc macOS, hoặc chạy ứng dụng web
+  Docker.
 ---
 
 
@@ -62,15 +64,31 @@ Nếu Chromium in lỗi GPU / EGL nhưng ứng dụng vẫn hoạt động, bạ
 TRANSREWRT_DISABLE_GPU=1 ./Transrewrt-x.y.z-arm64.AppImage
 ```
 
+## macOS
+
+Tải xuống `.dmg` cho máy Mac của bạn từ [Phiên bản phát hành](https://github.com/wsj-br/transrewrt/releases):
+
+- **Apple Silicon** — `Transrewrt-x.y.z-arm64.dmg`
+- **Intel** — `Transrewrt-x.y.z-x64.dmg`
+
+Mở ảnh đĩa và kéo Transrewrt vào Ứng dụng. Nhập khóa API trong **Cài đặt → Cấu hình API**.
+
 :::note
-macOS hiện không được hỗ trợ. Transrewrt có sẵn cho Windows, Linux và Docker.
+Bản dựng macOS không được ký (không có chứng thực của Apple). Gatekeeper chặn lần khởi chạy đầu tiên. Nhấp chuột phải vào `Transrewrt.app` và chọn **Mở**, sau đó xác nhận **Mở**.
 :::
+
+Hoặc xóa thuộc tính kiểm dịch:
+
+```bash
+xattr -dr com.apple.quarantine /Applications/Transrewrt.app
+```
 
 ## Cập nhật
 
-- **Windows** — tải xuống `Transrewrt Setup x.y.z.exe` mới hơn từ [Bản phát hành](https://github.com/wsj-br/transrewrt/releases) và chạy nó. Cài đặt và dữ liệu được giữ nguyên.
+- **Windows** — tải xuống `Transrewrt Setup x.y.z.exe` mới hơn từ [Phiên bản phát hành](https://github.com/wsj-br/transrewrt/releases) và chạy nó. Cài đặt và dữ liệu được giữ nguyên.
 - **Linux** — tải xuống `.AppImage` mới hơn và thay thế tệp cũ. Cài đặt và dữ liệu được giữ nguyên.
-- **Docker** — kéo hình ảnh mới và tạo lại vùng chứa. Dữ liệu vẫn tồn tại trong ổ đĩa `/app/data`:
+- **macOS** — tải xuống `.dmg` mới hơn, mở nó và kéo Transrewrt vào Ứng dụng, thay thế ứng dụng hiện có. Cài đặt và dữ liệu được giữ nguyên.
+- **Docker** — kéo ảnh mới và tạo lại vùng chứa. Dữ liệu vẫn tồn tại trong ổ đĩa `/app/data`:
 
 ```bash
 docker pull ghcr.io/wsj-br/transrewrt:latest

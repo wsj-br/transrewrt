@@ -39,7 +39,7 @@ export default function Why() {
       icon: MonitorSmartphone,
       title: t('Desktop & Docker web app'),
       desc: t(
-        'Install on Windows or Linux (including Linux arm64), or run the Docker web app with multi-user support, admin roles, and a persistent data volume on /app/data.',
+        'Install on Windows, Linux (x64 or arm64), or macOS (unsigned DMG for Apple Silicon and Intel), or run the Docker web app with multi-user support, admin roles, and a persistent data volume on /app/data.',
       ),
     },
     {

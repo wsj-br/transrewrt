@@ -1,7 +1,7 @@
 {
   "name": "transrewrt-website",
   "private": true,
-  "version": "1.6.3",
+  "version": "1.6.4",
   "type": "module",
   "scripts": {
     "dev": "node --env-file=./telemetry.env ./node_modules/astro/bin/astro.mjs dev",

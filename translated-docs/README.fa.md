@@ -5,12 +5,12 @@
 <h1 align="center">Transrewrt</h1>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.3-blue" alt="Version"></a>
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.4-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
-  <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
+  <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20macOS%20%7C%20Docker-lightgrey" alt="Platform">
 </p>
 
-ابزار متنی مبتنی بر هوش مصنوعی برای **ترجمه**، **بازنویسی** و **تبدیل** با اعلان‌های سفارشی. از ارائه‌دهندگان هوش مصنوعی خود (OpenRouter، OpenAI، Anthropic، Google Gemini، DeepSeek، Groq، Mistral، xAI، Cerebras، NVIDIA، Alibaba Cloud، apikey.fun، نقاط پایانی سازگار با OpenAI و سرورهای محلی مانند Ollama، LM Studio یا llama.cpp) استفاده کنید. به عنوان یک برنامه دسکتاپ (ویندوز / لینوکس) یا یک برنامه وب Docker اجرا می‌شود. بدون حساب ابری Transrewrt.
+ابزار متنی مبتنی بر هوش مصنوعی برای **ترجمه**، **بازنویسی**، و **تبدیل** با پرامپت‌های سفارشی. از ارائه‌دهندگان هوش مصنوعی خود استفاده کنید (OpenRouter، OpenAI، Anthropic، Google Gemini، DeepSeek، Groq، Mistral، xAI، Cerebras، NVIDIA، Alibaba Cloud، apikey.fun، نقاط پایانی سازگار با OpenAI، و سرورهای محلی مانند Ollama، LM Studio، یا llama.cpp). به عنوان یک برنامه دسکتاپ (ویندوز / لینوکس / macOS) یا یک برنامه وب Docker اجرا می‌شود. بدون حساب ابری Transrewrt.
 
 ## ویژگی‌ها
 
@@ -52,6 +52,14 @@ docker run -d \
 chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage
 ```
 
+**macOS** — `.dmg` را برای مک خود از [انتشارها](https://github.com/wsj-br/transrewrt/releases) دانلود کنید: `arm64` برای Apple Silicon، `x64` برای Intel. ایمیج دیسک را باز کرده و Transrewrt را به Applications بکشید.
+
+بیلد امضا نشده است، بنابراین Gatekeeper اولین راه‌اندازی را مسدود می‌کند. روی `Transrewrt.app` راست کلیک کرده و **Open** را انتخاب کنید، سپس **Open** را تأیید کنید. یا ویژگی قرنطینه را پاک کنید:
+
+```bash
+xattr -dr com.apple.quarantine /Applications/Transrewrt.app
+```
+
 جزئیات پلتفرم (Compose، SmartScreen، apt libs، پرچم‌های GPU، منطقه زمانی): [مستندات شروع سریع](https://wsj-br.github.io/transrewrt/docs/quick-start/).
 
 ## مستندات
@@ -72,14 +80,15 @@ chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage
 
 ## پشتیبانی
 
-یک مشکل را در [GitHub](https://github.com/wsj-br/transrewrt/issues) باز کنید. پلتفرم خود (ویندوز / لینوکس / Docker) و نسخه برنامه (گفتگوی درباره یا صفحه انتشارات) را ذکر کنید.
+یک مشکل در [GitHub](https://github.com/wsj-br/transrewrt/issues) باز کنید. پلتفرم خود (ویندوز / لینوکس / macOS / Docker) و نسخه برنامه (گفتگوی درباره یا صفحه انتشارها) را ذکر کنید.
 
 ## تقدیر و تشکر
 
-پیشنهادات پیش‌تنظیم حالت آسان در ویرایشگر پیش‌تنظیم از داده‌های ارزیابی عمومی زیر استفاده می‌کنند:
+پیشنهادات پیش‌تنظیم حالت آسان در ویرایشگر پیش‌تنظیمات فقط از داده‌های ارزیابی عمومی در دستگاه نگه‌دارنده استفاده می‌کنند. هیچ محتوای مجموعه داده‌ای با Transrewrt توزیع مجدد نمی‌شود:
 
-- [languagebench](https://huggingface.co/spaces/fair-forward/languagebench) (CC BY-SA 4.0)
-- [Artificial Analysis](https://artificialanalysis.ai/) (برای داده‌های API نیاز به انتساب است)
+- [languagebench](https://huggingface.co/spaces/fair-forward/languagebench) (CC BY-SA 4.0) — ترجمه ChrF
+- [Arena](https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset) (CC BY 4.0) — امتیاز Arena
+- [models.dev](https://models.dev/) (MIT)
 
 مجوزهای وابستگی شخص ثالث و این اطلاعیه‌های منبع داده در [NOTICES](../NOTICES) فهرست شده‌اند.
 

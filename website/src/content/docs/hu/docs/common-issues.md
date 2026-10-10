@@ -48,7 +48,7 @@ Ha a KPI-k továbbra is nullák az **Összes** után, ellenőrizze az [Előzmén
 
 ## A költség „nem elérhető” vagy hibásnak tűnik
 
-Az OpenRouter a tényleges költést mutatja, ha alkalmazható. Más szolgáltatók esetében a költséget az OpenRouter árazása alapján becsüljük; ha nincs áregyezés, a költség **nem elérhető**-ként jelenik meg, és nem adódik hozzá az összeghez.
+Az OpenRouter és az xAI a tényleges költést mutatja, ha az API visszaadja azt. Más Szolgáltatók esetében a költség a [models.dev](https://models.dev/) árazásából becsült; ha nincs egyező ár, a költség **nem elérhetőként** jelenik meg, és nem adódik hozzá az összeghez.
 
 ## A teljes költség nem egyezik a szolgáltatói számlámmal
 

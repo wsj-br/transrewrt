@@ -1,6 +1,8 @@
 ---
 title: Швидкий старт
-description: Встановіть Transrewrt на Windows або Linux, або запустіть веб-додаток Docker.
+description: >-
+  Встановіть Transrewrt на Windows, Linux або macOS, або запустіть веб-додаток
+  Docker.
 ---
 
 
@@ -62,15 +64,31 @@ chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage
 TRANSREWRT_DISABLE_GPU=1 ./Transrewrt-x.y.z-arm64.AppImage
 ```
 
+## macOS
+
+Завантажте `.dmg` для вашого Mac з [Випусків](https://github.com/wsj-br/transrewrt/releases):
+
+- **Apple Silicon** — `Transrewrt-x.y.z-arm64.dmg`
+- **Intel** — `Transrewrt-x.y.z-x64.dmg`
+
+Відкрийте образ диска та перетягніть Transrewrt до Програм. Введіть ключі API в **Налаштування → Конфігурація API**.
+
 :::note
-macOS наразі не підтримується. Transrewrt доступний для Windows, Linux та Docker.
+Збірка macOS не підписана (без нотаріального засвідчення Apple). Gatekeeper блокує перший запуск. Клацніть правою кнопкою миші на `Transrewrt.app` і виберіть **Відкрити**, потім підтвердьте **Відкрити**.
 :::
+
+Або очистіть атрибут карантину:
+
+```bash
+xattr -dr com.apple.quarantine /Applications/Transrewrt.app
+```
 
 ## Оновлення
 
-- **Windows** — завантажте новіший `Transrewrt Setup x.y.z.exe` з [Релізів](https://github.com/wsj-br/transrewrt/releases) та запустіть його. Налаштування та дані зберігаються.
-- **Linux** — завантажте новіший `.AppImage` та замініть старий файл. Налаштування та дані зберігаються.
-- **Docker** — завантажте новий образ та перестворіть контейнер. Дані зберігаються в томі `/app/data`:
+- **Windows** — завантажте новіший `Transrewrt Setup x.y.z.exe` з [Випусків](https://github.com/wsj-br/transrewrt/releases) і запустіть його. Налаштування та дані зберігаються.
+- **Linux** — завантажте новіший `.AppImage` і замініть старий файл. Налаштування та дані зберігаються.
+- **macOS** — завантажте новіший `.dmg`, відкрийте його та перетягніть Transrewrt до Програм, замінивши існуючий додаток. Налаштування та дані зберігаються.
+- **Docker** — завантажте новий образ і відтворіть контейнер. Дані зберігаються в томі `/app/data`:
 
 ```bash
 docker pull ghcr.io/wsj-br/transrewrt:latest

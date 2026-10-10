@@ -11,6 +11,7 @@ description: 구성 파일 위치, Docker 환경 변수, 개인정보 보호 모
 | --- | --- |
 | Electron (Windows) | `%APPDATA%\transrewrt\` |
 | Electron (Linux) | `~/.config/transrewrt/` |
+| Electron (macOS) | `~/Library/Application Support/transrewrt/` |
 | 웹 / Docker | `/app/data/` (볼륨을 사용하여 유지) |
 
 데이터 폴더에는 백업할 가치가 있는 모든 것이 저장됩니다:
@@ -87,6 +88,6 @@ docker exec <container> reset-web-password '<username>' '<new-password>'
 
 ## 비용 표시
 
-OpenRouter는 해당되는 경우 정확한 청구 비용을 반환합니다. 다른 제공업체는 OpenRouter 키를 사용할 수 있을 때 OpenRouter의 공개 모델 가격 책정에서 **estimated** 비용을 사용합니다. 예상 비용은 청구서가 아닙니다.
+OpenRouter와 xAI는 API에 비용이 포함된 경우 정확한 청구 비용을 반환합니다. 다른 제공자는 [models.dev](https://models.dev/)의 공개 모델 가격을 기준으로 한 **예상** 비용을 사용합니다. 예상 비용은 청구서가 아닙니다.
 
 Settings UI(글꼴, 모델, 기록, 백업)에 대해서는 [Settings](/docs/settings/)를 참조하세요.

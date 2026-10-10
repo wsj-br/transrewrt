@@ -11,6 +11,7 @@ description: 設定檔位置、Docker 環境變數、隱私模式與網頁驗證
 | --- | --- |
 | Electron (Windows) | `%APPDATA%\transrewrt\` |
 | Electron (Linux) | `~/.config/transrewrt/` |
+| Electron (macOS) | `~/Library/Application Support/transrewrt/` |
 | Web / Docker | `/app/data/`（使用磁碟區以保留資料） |
 
 資料夾包含了所有值得備份的內容：
@@ -87,6 +88,6 @@ docker exec <container> reset-web-password '<username>' '<new-password>'
 
 ## 費用顯示
 
-OpenRouter 會在適用時回傳確切的計費金額。其他供應商則在具備 OpenRouter 金鑰時，使用來自 OpenRouter 公開模型定價的**預估**費用。預估值並非發票。
+OpenRouter 和 xAI 在 API 包含時會回傳確切的計費成本。其他供應商使用來自 [models.dev](https://models.dev/) 公開模型定價的**估計**成本。估計值並非發票。
 
 關於設定介面（字型、模型、歷史記錄、備份），請參閱[設定](/docs/settings/)。

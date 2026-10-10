@@ -48,7 +48,7 @@ Bu normaldir eğer:
 
 ## Maliyet "mevcut değil" gösteriyor veya yanlış görünüyor
 
-OpenRouter, uygun olduğunda gerçek harcamayı gösterir. Diğer sağlayıcılar için maliyet OpenRouter fiyatlandırmasından tahmin edilir; hiçbir fiyat eşleşmezse, maliyet **mevcut değil** olarak gösterilir ve toplama eklenmez.
+OpenRouter ve xAI, API döndürdüğünde gerçek harcamayı gösterir. Diğer Sağlayıcılar için maliyet, [models.dev](https://models.dev/) fiyatlandırmasından tahmin edilir; hiçbir fiyat eşleşmezse, maliyet **mevcut değil** olarak gösterilir ve toplama eklenmez.
 
 ## Toplam maliyet sağlayıcı faturamla eşleşmiyor
 

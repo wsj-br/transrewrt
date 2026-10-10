@@ -5,12 +5,12 @@
 <h1 align="center">Transrewrt</h1>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.3-blue" alt="Version"></a>
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.4-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
-  <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
+  <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20macOS%20%7C%20Docker-lightgrey" alt="Platform">
 </p>
 
-कस्टम प्रॉम्प्ट के साथ **अनुवाद**, **पुनर्लेखन**, और **रूपांतरण** के लिए AI-संचालित टेक्स्ट टूल। अपने स्वयं के AI प्रदाताओं (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, OpenAI-संगत एंडपॉइंट्स, और Ollama, LM Studio, या llama.cpp जैसे स्थानीय सर्वर) का उपयोग करें। डेस्कटॉप ऐप (Windows / Linux) या Docker वेब ऐप के रूप में चलाएँ। कोई Transrewrt क्लाउड खाता नहीं।
+कस्टम प्रॉम्प्ट के साथ **अनुवाद**, **पुनर्लेखन** और **रूपांतरण** के लिए AI-संचालित टेक्स्ट टूल। अपने स्वयं के AI प्रदाताओं (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, OpenAI-संगत एंडपॉइंट्स, और Ollama, LM Studio, या llama.cpp जैसे स्थानीय सर्वर) का उपयोग करें। डेस्कटॉप ऐप (Windows / Linux / macOS) या Docker वेब ऐप के रूप में चलाएँ। कोई Transrewrt क्लाउड खाता नहीं।
 
 ## विशेषताएँ
 
@@ -52,6 +52,14 @@ docker run -d \
 chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage
 ```
 
+**macOS** — [रिलीज़](https://github.com/wsj-br/transrewrt/releases) से अपने Mac के लिए `.dmg` डाउनलोड करें: Apple Silicon के लिए `arm64`, Intel के लिए `x64`। डिस्क इमेज खोलें और Transrewrt को एप्लिकेशन में खींचें।
+
+बिल्ड अहस्ताक्षरित है, इसलिए गेटकीपर पहले लॉन्च को ब्लॉक करता है। `Transrewrt.app` पर राइट-क्लिक करें और **खोलें** चुनें, फिर **खोलें** की पुष्टि करें। या क्वारंटाइन विशेषता को साफ़ करें:
+
+```bash
+xattr -dr com.apple.quarantine /Applications/Transrewrt.app
+```
+
 प्लेटफ़ॉर्म विवरण (Compose, SmartScreen, apt libs, GPU फ़्लैग, टाइमज़ोन): [त्वरित शुरुआत दस्तावेज़](https://wsj-br.github.io/transrewrt/docs/quick-start/)।
 
 ## दस्तावेज़
@@ -72,14 +80,15 @@ chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage
 
 ## समर्थन
 
-[GitHub](https://github.com/wsj-br/transrewrt/issues) पर एक समस्या खोलें। अपना प्लेटफ़ॉर्म (Windows / Linux / Docker) और ऐप संस्करण (के बारे में संवाद या रिलीज़ पृष्ठ) शामिल करें।
+[GitHub](https://github.com/wsj-br/transrewrt/issues) पर एक समस्या खोलें। अपना प्लेटफ़ॉर्म (Windows / Linux / macOS / Docker) और ऐप संस्करण (के बारे में संवाद या रिलीज़ पृष्ठ) शामिल करें।
 
 ## अभिस्वीकृतियाँ
 
-प्रीसेट एडिटर में आसान-मोड पूर्व-सेट सुझाव सार्वजनिक मूल्यांकन डेटा का उपयोग करते हैं:
+प्रीसेट संपादक में आसान-मोड प्रीसेट सुझाव केवल अनुरक्षक की मशीन पर सार्वजनिक मूल्यांकन डेटा का उपयोग करते हैं। Transrewrt के साथ कोई डेटासेट सामग्री पुनर्वितरित नहीं की जाती है:
 
-- [languagebench](https://huggingface.co/spaces/fair-forward/languagebench) (CC BY-SA 4.0)
-- [आर्टिफिशियल एनालिसिस](https://artificialanalysis.ai/) (API डेटा के लिए एट्रिब्यूशन आवश्यक है)
+- [languagebench](https://huggingface.co/spaces/fair-forward/languagebench) (CC BY-SA 4.0) — अनुवाद ChrF
+- [Arena](https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset) (CC BY 4.0) — Arena स्कोर
+- [models.dev](https://models.dev/) (MIT)
 
 तृतीय-पक्ष निर्भरता लाइसेंस और ये डेटा-स्रोत नोटिस [NOTICES](../NOTICES) में सूचीबद्ध हैं।
 

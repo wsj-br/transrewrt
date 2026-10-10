@@ -5,12 +5,12 @@
 <h1 align="center">Transrewrt</h1>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.3-blue" alt="Version"></a>
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.4-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
-  <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
+  <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20macOS%20%7C%20Docker-lightgrey" alt="Platform">
 </p>
 
-AI-alapú szöveges eszköz **fordításhoz**, **átíráshoz** és **átalakításhoz** egyéni promptokkal. Használja saját AI-szolgáltatóit (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, OpenAI-kompatibilis végpontok, és helyi szerverek, mint például az Ollama, LM Studio vagy llama.cpp). Futtatható asztali alkalmazásként (Windows / Linux) vagy Docker webalkalmazásként. Nincs Transrewrt felhőfiók.
+AI-alapú szöveges eszköz **fordításhoz**, **átíráshoz** és **átalakításhoz** egyéni promptokkal. Használja saját AI-szolgáltatóit (OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, OpenAI-kompatibilis végpontok és helyi szerverek, mint például Ollama, LM Studio vagy llama.cpp). Futtatható asztali alkalmazásként (Windows / Linux / macOS) vagy Docker webalkalmazásként. Nincs Transrewrt felhőfiók.
 
 ## Funkciók
 
@@ -52,6 +52,14 @@ Cserélje le az `PROVIDER_API_KEY` elemet a szolgáltatói változóra (példáu
 chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage
 ```
 
+**macOS** — Töltse le a `.dmg` fájlt Mac-jére a [Kiadások](https://github.com/wsj-br/transrewrt/releases) oldalról: `arm64` az Apple Siliconhoz, `x64` az Intelhez. Nyissa meg a lemezképet, és húzza a Transrewrt alkalmazást az Alkalmazások mappába.
+
+A build nincs aláírva, ezért a Gatekeeper blokkolja az első indítást. Kattintson jobb gombbal a `Transrewrt.app` fájlra, válassza az **Megnyitás** lehetőséget, majd erősítse meg az **Megnyitás**-t. Vagy törölje a karantén attribútumot:
+
+```bash
+xattr -dr com.apple.quarantine /Applications/Transrewrt.app
+```
+
 Platform részletek (Compose, SmartScreen, apt libs, GPU jelzők, időzóna): [Gyorsindítási dokumentáció](https://wsj-br.github.io/transrewrt/docs/quick-start/).
 
 ## Dokumentáció
@@ -72,14 +80,15 @@ Teljes termékdokumentáció (telepítés, API kulcsok, útmutatók, beállítá
 
 ## Támogatás
 
-Nyisson egy hibajegyet a [GitHub](https://github.com/wsj-br/transrewrt/issues) oldalon. Adja meg platformját (Windows / Linux / Docker) és az alkalmazás verzióját (Névjegy párbeszédpanel vagy Kiadások oldal).
+Nyisson egy hibajegyet a [GitHubon](https://github.com/wsj-br/transrewrt/issues). Adja meg platformját (Windows / Linux / macOS / Docker) és az alkalmazás verzióját (Névjegy párbeszédpanel vagy Kiadások oldal).
 
 ## Köszönetnyilvánítás
 
-Az előbeállítások szerkesztőjében található Egyszerű-mód előbeállítási javaslatok nyilvános értékelési adatokat használnak a következő forrásokból:
+Az egyszerű módú előbeállítási javaslatok az előbeállítás-szerkesztőben csak a karbantartó gépén lévő nyilvános értékelési adatokat használják. A Transrewrt nem terjeszt újra adatkészlet-tartalmat:
 
-- [languagebench](https://huggingface.co/spaces/fair-forward/languagebench) (CC BY-SA 4.0)
-- [Artificial Analysis](https://artificialanalysis.ai/) (az API adatokhoz attribúció szükséges)
+- [languagebench](https://huggingface.co/spaces/fair-forward/languagebench) (CC BY-SA 4.0) — fordítás ChrF
+- [Arena](https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset) (CC BY 4.0) — Arena pontszám
+- [models.dev](https://models.dev/) (MIT)
 
 A harmadik féltől származó függőségek licencei és ezek az adatforrás-értesítések a [NOTICES](../NOTICES) fájlban találhatók.
 

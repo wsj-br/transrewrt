@@ -1,6 +1,6 @@
 ---
 title: 快速開始
-description: 在 Windows 或 Linux 上安裝 Transrewrt，或執行 Docker 網頁應用程式。
+description: 在 Windows、Linux 或 macOS 上安裝 Transrewrt，或執行 Docker 網頁應用程式。
 ---
 
 
@@ -62,14 +62,30 @@ chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage
 TRANSREWRT_DISABLE_GPU=1 ./Transrewrt-x.y.z-arm64.AppImage
 ```
 
+## macOS
+
+從 [Releases](https://github.com/wsj-br/transrewrt/releases) 下載適用於您 Mac 的 `.dmg`：
+
+- **Apple Silicon** — `Transrewrt-x.y.z-arm64.dmg`
+- **Intel** — `Transrewrt-x.y.z-x64.dmg`
+
+打開磁碟映像檔，將 Transrewrt 拖曳至應用程式。在 **Settings → API Config** 中輸入 API 金鑰。
+
 :::note
-目前不支援 macOS。Transrewrt 適用於 Windows、Linux 和 Docker。
+macOS 版本未經簽署（未經 Apple 公證）。Gatekeeper 會封鎖首次啟動。右鍵點擊 `Transrewrt.app` 並選擇 **Open**，然後確認 **Open**。
 :::
+
+或者清除隔離屬性：
+
+```bash
+xattr -dr com.apple.quarantine /Applications/Transrewrt.app
+```
 
 ## 更新
 
-- **Windows** — 從[發行版本](https://github.com/wsj-br/transrewrt/releases)下載較新的 `Transrewrt Setup x.y.z.exe` 並執行。設定與資料會保留。
-- **Linux** — 下載較新的 `.AppImage` 並取代舊檔案。設定與資料會保留。
+- **Windows** — 從 [Releases](https://github.com/wsj-br/transrewrt/releases) 下載較新的 `Transrewrt Setup x.y.z.exe` 並執行。設定和資料會保留。
+- **Linux** — 下載較新的 `.AppImage` 並取代舊檔案。設定和資料會保留。
+- **macOS** — 下載較新的 `.dmg`，打開它，並將 Transrewrt 拖曳至應用程式，取代現有的應用程式。設定和資料會保留。
 - **Docker** — 拉取新映像檔並重新建立容器。資料會保存在 `/app/data` 磁碟區中：
 
 ```bash

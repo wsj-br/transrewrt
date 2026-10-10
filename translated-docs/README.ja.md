@@ -5,12 +5,12 @@
 <h1 align="center">Transrewrt</h1>
 
 <p align="center">
-  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.3-blue" alt="Version"></a>
+  <a href="https://github.com/wsj-br/transrewrt/releases"><img src="https://img.shields.io/badge/version-1.6.4-blue" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License: Apache 2.0"></a>
-  <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20Docker-lightgrey" alt="Platform">
+  <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20macOS%20%7C%20Docker-lightgrey" alt="Platform">
 </p>
 
-カスタムプロンプトを使用して**translate**、**rewrite**、および**transform**を行うAI搭載のテキストツール。独自のAIプロバイダーを使用してください（OpenRouter、OpenAI、Anthropic、Google Gemini、DeepSeek、Groq、Mistral、xAI、Cerebras、NVIDIA、Alibaba Cloud、apikey.fun、OpenAI互換エンドポイント、およびOllama、LM Studio、llama.cppなどのローカルサーバー）。デスクトップアプリ（Windows / Linux）またはDockerウェブアプリとして実行できます。いいえ、Transrewrtクラウドアカウントは不要です。
+カスタムプロンプトによる**翻訳**、**書き換え**、**変換**のためのAI搭載テキストツール。独自のAIプロバイダーを使用できます（OpenRouter、OpenAI、Anthropic、Google Gemini、DeepSeek、Groq、Mistral、xAI、Cerebras、NVIDIA、Alibaba Cloud、apikey.fun、OpenAI互換エンドポイント、およびOllama、LM Studio、llama.cppなどのローカルサーバー）。デスクトップアプリ（Windows / Linux / macOS）またはDockerウェブアプリとして実行できます。Transrewrtクラウドアカウントは不要です。
 
 ## 機能
 
@@ -52,6 +52,14 @@ docker run -d \
 chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage
 ```
 
+**macOS** — [Releases](https://github.com/wsj-br/transrewrt/releases)からMac用の`.dmg`をダウンロードしてください：Apple Silicon用は`arm64`、Intel用は`x64`。ディスクイメージを開き、Transrewrtをアプリケーションにドラッグしてください。
+
+ビルドは署名されていないため、初回起動時にGatekeeperがブロックします。`Transrewrt.app`を右クリックして**開く**を選択し、**開く**を確認してください。または、隔離属性を削除してください：
+
+```bash
+xattr -dr com.apple.quarantine /Applications/Transrewrt.app
+```
+
 プラットフォームの詳細 (Compose、SmartScreen、aptライブラリ、GPUフラグ、タイムゾーン): [クイックスタートドキュメント](https://wsj-br.github.io/transrewrt/docs/quick-start/)。
 
 ## ドキュメント
@@ -72,14 +80,15 @@ chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage
 
 ## サポート
 
-[GitHub](https://github.com/wsj-br/transrewrt/issues)でIssueを開いてください。プラットフォーム (Windows / Linux / Docker) とアプリバージョン (についてダイアログまたはReleasesページ) を記載してください。
+[GitHub](https://github.com/wsj-br/transrewrt/issues)でイシューを開いてください。プラットフォーム（Windows / Linux / macOS / Docker）とアプリのバージョン（バージョン情報ダイアログまたはReleasesページ）を記載してください。
 
 ## 謝辞
 
-簡単モードのプリセットの提案は、プリセットエディターで以下の公開評価データを使用しています:
+プリセットエディターのイージーモードのプリセット提案は、メンテナーのマシン上でのみ公開評価データを使用します。データセットの内容はTransrewrtと共に再配布されません：
 
-- [languagebench](https://huggingface.co/spaces/fair-forward/languagebench) (CC BY-SA 4.0)
-- [Artificial Analysis](https://artificialanalysis.ai/) (APIデータの帰属表示が必要)
+- [languagebench](https://huggingface.co/spaces/fair-forward/languagebench) (CC BY-SA 4.0) — 翻訳ChrF
+- [Arena](https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset) (CC BY 4.0) — Arenaスコア
+- [models.dev](https://models.dev/) (MIT)
 
 サードパーティの依存関係ライセンスおよびこれらのデータソースに関する通知は、[NOTICES](../NOTICES)に記載されています。
 

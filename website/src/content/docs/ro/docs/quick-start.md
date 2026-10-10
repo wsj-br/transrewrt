@@ -1,6 +1,8 @@
 ---
 title: Pornire rapidă
-description: Instalați Transrewrt pe Windows sau Linux sau rulați aplicația web Docker.
+description: >-
+  Instalați Transrewrt pe Windows, Linux sau macOS, sau rulați aplicația web
+  Docker.
 ---
 
 
@@ -62,14 +64,30 @@ Dacă Chromium afișează erori GPU / EGL, dar aplicația funcționează, puteț
 TRANSREWRT_DISABLE_GPU=1 ./Transrewrt-x.y.z-arm64.AppImage
 ```
 
+## macOS
+
+Descărcați `.dmg` pentru Mac-ul dvs. din [Versiuni](https://github.com/wsj-br/transrewrt/releases):
+
+- **Apple Silicon** — `Transrewrt-x.y.z-arm64.dmg`
+- **Intel** — `Transrewrt-x.y.z-x64.dmg`
+
+Deschideți imaginea discului și trageți Transrewrt în Aplicații. Introduceți cheile API în **Setări → Configurare API**.
+
 :::note
-macOS nu este acceptat în prezent. Transrewrt este disponibil pentru Windows, Linux și Docker.
+Versiunea macOS nu este semnată (fără notificare Apple). Gatekeeper blochează prima lansare. Faceți clic dreapta pe `Transrewrt.app` și alegeți **Deschideți**, apoi confirmați **Deschideți**.
 :::
+
+Sau ștergeți atributul de carantină:
+
+```bash
+xattr -dr com.apple.quarantine /Applications/Transrewrt.app
+```
 
 ## Actualizare
 
-- **Windows** — descărcați noul `Transrewrt Setup x.y.z.exe` de la [Lansări](https://github.com/wsj-br/transrewrt/releases) și rulați-l. Setările și datele sunt păstrate.
-- **Linux** — descărcați noul `.AppImage` și înlocuiți fișierul vechi. Setările și datele sunt păstrate.
+- **Windows** — descărcați `Transrewrt Setup x.y.z.exe` mai nou din [Versiuni](https://github.com/wsj-br/transrewrt/releases) și rulați-l. Setările și datele sunt păstrate.
+- **Linux** — descărcați `.AppImage` mai nou și înlocuiți fișierul vechi. Setările și datele sunt păstrate.
+- **macOS** — descărcați `.dmg` mai nou, deschideți-l și trageți Transrewrt în Aplicații, înlocuind aplicația existentă. Setările și datele sunt păstrate.
 - **Docker** — extrageți noua imagine și recreați containerul. Datele persistă în volumul `/app/data`:
 
 ```bash

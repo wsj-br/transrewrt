@@ -1,8 +1,8 @@
 ---
 title: Hızlı başlangıç
 description: >-
-  Transrewrt'ü Windows veya Linux'a yükleyin veya Docker web uygulamasını
-  çalıştırın.
+  Transrewrt'i Windows, Linux veya macOS'a yükleyin ya da Docker web
+  uygulamasını çalıştırın.
 ---
 
 
@@ -64,14 +64,30 @@ Chromium GPU / EGL hataları yazdırıyor ancak uygulama çalışıyorsa, donan�
 TRANSREWRT_DISABLE_GPU=1 ./Transrewrt-x.y.z-arm64.AppImage
 ```
 
+## macOS
+
+Mac'iniz için `.dmg`'i [Sürümler](https://github.com/wsj-br/transrewrt/releases) sayfasından indirin:
+
+- **Apple Silicon** — `Transrewrt-x.y.z-arm64.dmg`
+- **Intel** — `Transrewrt-x.y.z-x64.dmg`
+
+Disk görüntüsünü açın ve Transrewrt'i Uygulamalar'a sürükleyin. API anahtarlarını **Ayarlar → API Yapılandırması** bölümüne girin.
+
 :::note
-macOS şu anda desteklenmemektedir. Transrewrt Windows, Linux ve Docker için mevcuttur.
+macOS derlemesi imzasızdır (Apple noter tasdiki yok). Gatekeeper ilk başlatmayı engeller. `Transrewrt.app`'e sağ tıklayın ve **Aç**'ı seçin, ardından **Aç**'ı onaylayın.
 :::
+
+Veya karantina özniteliğini temizleyin:
+
+```bash
+xattr -dr com.apple.quarantine /Applications/Transrewrt.app
+```
 
 ## Güncelleme
 
-- **Windows** — daha yeni `Transrewrt Setup x.y.z.exe` dosyasını [Sürümler](https://github.com/wsj-br/transrewrt/releases) sayfasından indirin ve çalıştırın. Ayarlar ve veriler korunur.
-- **Linux** — daha yeni `.AppImage` dosyasını indirin ve eski dosyanın yerine koyun. Ayarlar ve veriler korunur.
+- **Windows** — [Sürümler](https://github.com/wsj-br/transrewrt/releases) sayfasından daha yeni `Transrewrt Setup x.y.z.exe`'i indirin ve çalıştırın. Ayarlar ve veriler korunur.
+- **Linux** — daha yeni `.AppImage`'i indirin ve eski dosyayı değiştirin. Ayarlar ve veriler korunur.
+- **macOS** — daha yeni `.dmg`'i indirin, açın ve Transrewrt'i Uygulamalar'a sürükleyerek mevcut uygulamayı değiştirin. Ayarlar ve veriler korunur.
 - **Docker** — yeni görüntüyü çekin ve kapsayıcıyı yeniden oluşturun. Veriler `/app/data` biriminde kalır:
 
 ```bash

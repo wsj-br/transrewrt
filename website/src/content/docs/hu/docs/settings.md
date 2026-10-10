@@ -33,12 +33,12 @@ A webes verzióban minden felhasználónak saját konfigurációja van (AI élm�
 
 **AI élmény**
 
-- **Egyszerű** (alapértelmezett): válasszon egy **Szolgáltatót**. A felhőszolgáltatók az eszköztár előbeállításait használják. A **Helyi LLM** ehelyett a telepített helyi modelleket listázza. Az **Előbeállítások katalógusának frissítése** lekéri a legújabb előbeállítási listát a projekt adattárából.
+- **Egyszerű** (alapértelmezett): válasszon egy **Szolgáltatót**. A felhőszolgáltatók eszköztár-előbeállításokat használnak. A **Helyi LLM** a telepített helyi modelleket listázza. Az **Előbeállítások katalógusának frissítése** lekéri a legújabb előbeállítás-listát a projekt-tárból.
   - **Ingyenes (OpenRouter)** — ingyenes opció, amely elérhető ingyenes modellekhez irányít; a minőség és az elérhetőség változhat
   - **Standard** — könnyű és költséghatékony; a legjobb rövid szövegekhez, gyors vázlatokhoz és nagy volumenű használathoz
   - **Haladó** — nagy pontosságú modell komplex vagy árnyalt tartalomhoz, magasabb költséggel
   - **Technikai** — kódhoz, API-khoz, fejlesztői dokumentációkhoz és strukturált tartalomhoz hangolva; megőrzi a formázást és a terminológiát
-- **Haladó**: válasszon modelleket az eszköztárban; kezelje a listát a [Modellek](#models) alatt.
+- **Haladó**: válasszon modelleket az eszköztáron; kezelje a listát a [Modellek](#models) alatt.
 
 Az Egyszerű ↔ Haladó mód között az eszköztár előbeállítás/modell menüjéből is válthat (**Váltás Egyszerű/Haladó módra**, a Beállítások megnyitása felett).
 
@@ -85,7 +85,7 @@ Hozzáadás a **Hozzáadás** gombbal; eltávolítás az **X** gombbal. Az OpenR
 - **API kulcs használat** — OpenRouter részletek, ha elérhetőek
 - **Költségadatok törlése** — minden adat vagy egy adott dátumnál régebbi bejegyzések
 
-Az OpenRouter a ténylegesen számlázott költséget mutatja, ha alkalmazható; más szolgáltatók az OpenRouter árazásából származó becsléseket használnak. A becslések nem számlák.
+Az OpenRouter és az xAI a tényleges számlázott költséget mutatja, amikor az API visszaadja; más szolgáltatók a [models.dev](https://models.dev/) árazásából származó becsléseket használják. A becslések nem számlák.
 
 :::caution
 A költségadatok törlése nem vonható vissza. Ha szüksége van biztonsági mentésre, először exportálja az előzményekből vagy a műszerfalról → Összes hívásból. Az API-hívásokhoz kapcsolódó bemeneti/kimeneti előzmények is eltávolításra kerülnek.

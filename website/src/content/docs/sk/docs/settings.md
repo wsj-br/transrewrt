@@ -33,11 +33,11 @@ Vo webovej verzii má každý používateľ vlastnú konfiguráciu (AI skúsenos
 
 **AI skúsenosti**
 
-- **Jednoduché** (predvolené): vyberte **Poskytovateľa**. Poskytovatelia cloudu používajú predvoľby panela nástrojov. **Lokálne LLM** namiesto toho uvádza nainštalované lokálne modely. **Obnoviť katalóg predvolieb** načíta najnovší zoznam predvolieb z úložiska projektu.
-  - **Bezplatné (OpenRouter)** — bezplatná možnosť smerovaná na dostupné bezplatné modely; kvalita a dostupnosť sa môžu líšiť
-  - **Štandardné** — ľahké a nákladovo efektívne; najlepšie pre krátke texty, rýchle návrhy a vysokobjemové použitie
+- **Jednoduché** (predvolené): vyberte **poskytovateľa**. Poskytovatelia cloudu používajú predvoľby panela nástrojov. **Lokálny LLM** namiesto toho uvádza nainštalované lokálne modely. **Obnoviť katalóg predvolieb** načíta najnovší zoznam predvolieb z úložiska projektu.
+  - **Bezplatné (OpenRouter)** — bezplatná možnosť smerovaná k dostupným bezplatným modelom; kvalita a dostupnosť sa môžu líšiť
+  - **Štandardné** — ľahké a nákladovo efektívne; najlepšie pre krátke texty, rýchle návrhy a vysoký objem používania
   - **Pokročilé** — vysoko presný model pre komplexný alebo nuansovaný obsah, za vyššiu cenu
-  - **Technické** — vyladené pre kód, API, dokumentáciu pre vývojárov a štruktúrovaný obsah; zachováva formátovanie a terminológiu
+  - **Technické** — vyladené pre kód, API, Dokumentácia pre vývojárov a štruktúrovaný obsah; zachováva formátovanie a terminológiu
 - **Pokročilé**: vyberte modely na paneli nástrojov; spravujte zoznam pod [Modely](#models).
 
 Môžete tiež prepínať Jednoduché ↔ Pokročilé z ponuky predvolieb/modelov panela nástrojov (**Prepnúť do režimu Jednoduché/Pokročilé**, nad Otvoriť nastavenia).
@@ -85,7 +85,7 @@ Pridajte pomocou **Pridať**; odstráňte pomocou **X**. Bezplatný model OpenRo
 - **Používanie kľúča API** — podrobnosti OpenRouter, ak sú k dispozícii
 - **Vymazať údaje o nákladoch** — všetky údaje alebo záznamy staršie ako určitý dátum
 
-OpenRouter zobrazuje skutočné fakturované náklady, ak je to relevantné; ostatní poskytovatelia používajú odhady z cenníka OpenRouter. Odhady nie sú faktúry.
+OpenRouter a xAI zobrazujú skutočné účtované náklady, keď ich API vráti; ostatní poskytovatelia používajú odhady z cien [models.dev](https://models.dev/). Odhady nie sú faktúry.
 
 :::caution
 Vymazanie údajov o nákladoch sa nedá vrátiť späť. Ak potrebujete zálohu, najprv exportujte cez Históriu alebo Panel → Všetky volania. Súvisiaca história vstupov/výstupov pre tieto volania API sa tiež odstráni.

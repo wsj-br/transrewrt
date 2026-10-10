@@ -1,8 +1,8 @@
 ---
 title: Γρήγορη εκκίνηση
 description: >-
-  Εγκαταστήστε το Transrewrt σε Windows ή Linux ή εκτελέστε την εφαρμογή web
-  Docker.
+  Εγκαταστήστε το Transrewrt σε Windows, Linux ή macOS, ή εκτελέστε την εφαρμογή
+  ιστού Docker.
 ---
 
 
@@ -64,14 +64,30 @@ chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage
 TRANSREWRT_DISABLE_GPU=1 ./Transrewrt-x.y.z-arm64.AppImage
 ```
 
+## macOS
+
+Κατεβάστε το `.dmg` για τον Mac σας από τις [Εκδόσεις](https://github.com/wsj-br/transrewrt/releases):
+
+- **Apple Silicon** — `Transrewrt-x.y.z-arm64.dmg`
+- **Intel** — `Transrewrt-x.y.z-x64.dmg`
+
+Ανοίξτε την εικόνα δίσκου και σύρετε το Transrewrt στις Εφαρμογές. Εισαγάγετε τα κλειδιά API στις **Ρυθμίσεις → Διαμόρφωση API**.
+
 :::note
-Το macOS δεν υποστηρίζεται επί του παρόντος. Το Transrewrt είναι διαθέσιμο για Windows, Linux και Docker.
+Η έκδοση macOS δεν είναι υπογεγραμμένη (χωρίς επικύρωση από την Apple). Το Gatekeeper μπλοκάρει την πρώτη εκκίνηση. Κάντε δεξί κλικ στο `Transrewrt.app` και επιλέξτε **Άνοιγμα**, και μετά επιβεβαιώστε το **Άνοιγμα**.
 :::
+
+Ή εκκαθαρίστε το χαρακτηριστικό καραντίνας:
+
+```bash
+xattr -dr com.apple.quarantine /Applications/Transrewrt.app
+```
 
 ## Ενημέρωση
 
 - **Windows** — κατεβάστε το νεότερο `Transrewrt Setup x.y.z.exe` από τις [Εκδόσεις](https://github.com/wsj-br/transrewrt/releases) και εκτελέστε το. Οι ρυθμίσεις και τα δεδομένα διατηρούνται.
 - **Linux** — κατεβάστε το νεότερο `.AppImage` και αντικαταστήστε το παλιό αρχείο. Οι ρυθμίσεις και τα δεδομένα διατηρούνται.
+- **macOS** — κατεβάστε το νεότερο `.dmg`, ανοίξτε το και σύρετε το Transrewrt στις Εφαρμογές, αντικαθιστώντας την υπάρχουσα εφαρμογή. Οι ρυθμίσεις και τα δεδομένα διατηρούνται.
 - **Docker** — τραβήξτε τη νέα εικόνα και δημιουργήστε ξανά το κοντέινερ. Τα δεδομένα παραμένουν στον τόμο `/app/data`:
 
 ```bash
