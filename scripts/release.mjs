@@ -111,27 +111,85 @@ function run(command, args, { quiet = false, inherit = true } = {}) {
 }
 
 /**
- * Run pnpm with the given args. Prefer `node $npm_execpath` (set during pnpm
- * lifecycle scripts); fall back to a single-string shell invocation so bare
- * `pnpm` resolves as `pnpm.cmd` on Windows without DEP0190 (args + shell:true).
+ * pnpm 12's global bin is a native executable. Older installs and Corepack
+ * still point `npm_execpath` at a JavaScript file (`bin/pnpm.mjs` or the
+ * shebang-less placeholder).
+ */
+function isNativeExecutable(filePath) {
+  const ext = path.extname(filePath).toLowerCase();
+  if (ext === ".exe") return true;
+  if (ext === ".js" || ext === ".cjs" || ext === ".mjs" || ext === ".cmd" || ext === ".bat") {
+    return false;
+  }
+
+  let header;
+  try {
+    const fd = fs.openSync(filePath, "r");
+    try {
+      header = Buffer.alloc(4);
+      if (fs.readSync(fd, header, 0, 4, 0) < 4) return false;
+    } finally {
+      fs.closeSync(fd);
+    }
+  } catch {
+    return false;
+  }
+
+  if (header[0] === 0x7f && header[1] === 0x45 && header[2] === 0x4c && header[3] === 0x46) {
+    return true;
+  }
+  if (header[0] === 0x4d && header[1] === 0x5a) return true;
+  const magic = header.readUInt32BE(0);
+  return (
+    magic === 0xfeedface ||
+    magic === 0xfeedfacf ||
+    magic === 0xcafebabe ||
+    magic === 0xcefaedfe ||
+    magic === 0xcffaedfe ||
+    magic === 0xbebafeca
+  );
+}
+
+function shellCommand(file, args) {
+  const quote = (value) => {
+    const text = String(value);
+    if (process.platform === "win32") {
+      if (!/[\s"]/.test(text)) return text;
+      return `"${text.replaceAll('"', '""')}"`;
+    }
+    if (!/[\s'"\\$`!]/.test(text)) return text;
+    return `'${text.replaceAll("'", "'\\''")}'`;
+  };
+  return [quote(file), ...args.map(quote)].join(" ");
+}
+
+/**
+ * Run pnpm with the given args. During a pnpm lifecycle, `npm_execpath` is the
+ * native binary (pnpm 10+) or a Node entry point. Spawn the binary directly;
+ * load JavaScript with `node`. Fall back to one shell string so bare `pnpm`
+ * resolves as `pnpm.cmd` on Windows without DEP0190 (args + shell:true).
  */
 function runPnpm(args, { quiet = false, inherit = true } = {}) {
   const execPath = process.env.npm_execpath;
-  const result = execPath
-    ? spawnSync(process.execPath, [execPath, ...args], {
-        cwd: root,
-        encoding: "utf8",
-        env: process.env,
-        shell: false,
-        stdio: quiet ? "pipe" : inherit ? "inherit" : "pipe",
-      })
-    : spawnSync(`pnpm ${args.join(" ")}`, {
-        cwd: root,
-        encoding: "utf8",
-        env: process.env,
-        shell: true,
-        stdio: quiet ? "pipe" : inherit ? "inherit" : "pipe",
-      });
+  const spawnOpts = {
+    cwd: root,
+    encoding: "utf8",
+    env: process.env,
+    stdio: quiet ? "pipe" : inherit ? "inherit" : "pipe",
+  };
+
+  let result;
+  if (!execPath) {
+    result = spawnSync(shellCommand("pnpm", args), { ...spawnOpts, shell: true });
+  } else if (isNativeExecutable(execPath)) {
+    result = spawnSync(execPath, args, { ...spawnOpts, shell: false });
+  } else {
+    const ext = path.extname(execPath).toLowerCase();
+    result =
+      ext === ".cmd" || ext === ".bat"
+        ? spawnSync(shellCommand(execPath, args), { ...spawnOpts, shell: true })
+        : spawnSync(process.execPath, [execPath, ...args], { ...spawnOpts, shell: false });
+  }
 
   if (result.error) {
     if (quiet) {
