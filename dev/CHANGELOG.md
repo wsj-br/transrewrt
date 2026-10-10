@@ -11,11 +11,10 @@ Use conventional types (Added, Changed, Fixed, etc.) and short descriptions.
 
 ## Unreleased
 
-- **Fixed**: `pnpm release:github` recognises pnpm 12's native `npm_execpath` binary instead of launching it with `node`.
-- **Changed**: Marketing homepage lists unsigned macOS DMGs (Apple Silicon and Intel) alongside Windows, Linux, and Docker.
-
 ## [1.6.4] - 2026-10-10
 
+- **Fixed**: `pnpm release:github` recognises pnpm 12's native `npm_execpath` binary instead of launching it with `node`.
+- **Changed**: Marketing homepage lists unsigned macOS DMGs (Apple Silicon and Intel) alongside Windows, Linux, and Docker.
 - **Added**: Unsigned macOS DMG builds for Apple Silicon (`arm64`) and Intel (`x64`), attached to GitHub Releases.
 - **Fixed**: Packaged Electron default config and presets load from the app content root, so macOS finds them under `Contents/config`.
 - **Fixed**: Cap `@xmldom/xmldom` below 0.9 so electron-builder can parse `Info.plist` when building the macOS app.
