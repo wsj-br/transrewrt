@@ -11,6 +11,9 @@ Use conventional types (Added, Changed, Fixed, etc.) and short descriptions.
 
 ## Unreleased
 
+- **Added**: Dev script `scripts/hy-mt2-translate.js` to try Hy-MT2 translations through a local Ollama server, printing token count, tokens/second, and translation time.
+- **Added**: `scripts/hy-mt2-translate.js` `--cpu` runs that request on the CPU (`num_gpu` 0); other requests set `num_gpu` to 99 so a previous CPU load returns to the GPU.
+
 ## [1.6.4] - 2026-10-11
 
 - **Fixed**: `pnpm release:github` recognises pnpm 12's native `npm_execpath` binary instead of launching it with `node`.

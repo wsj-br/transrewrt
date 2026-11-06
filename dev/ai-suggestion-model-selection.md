@@ -24,7 +24,7 @@ The current design is **hybrid**:
 
 `free-router` is never included in AI Suggestion.
 
-The same deterministic shortlist is shared with the cron checker in [`presets-check/README.md`](presets-check/README.md). When a preset model id disappears from a provider catalog, that job picks a same-family successor from the scored list, then a shortlist rank, then a guarded fuzzy match. Top-level translation and suggestion models are replaced only by a same-family successor.
+The same deterministic shortlist is shared with the cron checker in [`presets-check/README.md`](presets-check/README.md). When a preset model id disappears from a provider catalog, that job picks a same-family successor from the scored list (skipping rows below the profile quality floor), then a shortlist rank, then a guarded fuzzy match (minimum score 0.55) only when no successor or shortlist candidate remains. A candidate whose blended price is more than three times the old model’s known price is rejected. Top-level translation and suggestion models are replaced only by a same-family successor.
 
 ---
 
@@ -82,20 +82,23 @@ The capability axis was previously sourced from Artificial Analysis. That source
 
 ## Scoring profiles
 
-Each preset is mapped to a profile from its id / name / description keywords (`resolveProfile` in `benchmark-scores.js`).
+Each preset is mapped to a profile from its id (`PROFILE_BY_PRESET`), then from id / name / description keywords (`resolveProfile` in `benchmark-scores.js`). Keyword order is free, then technical, then advanced, then standard. A preset that matches none of those falls through to **standard**.
 
 | Profile | Typical presets | What we optimise for | Shortlist size | Live timing |
 |---------|-----------------|----------------------|----------------|-------------|
-| **standard** | `standard`, “fast”, “lightweight”, “cost-efficient” | Price + speed, quality above a floor | 4 | Yes (top 4 timed; 2 fastest become primary/fallback) |
-| **advanced** | `advanced`, “quality”, “best”, “high-accuracy” | ChrF + Arena Score | 5 | No |
-| **technical** | `technical`, code/docs oriented | Arena Score first, then ChrF | 5 | No |
-| **free** | free / zero-cost wording | Zero-price catalog entries | 5 | No |
+| **standard** | `standard`, or “fast”, “quick”, “lightweight”, “cost-efficient”, “high-volume” | Price + speed, quality above a floor | 4 | Yes (top 4 timed; 2 fastest become primary/fallback) |
+| **advanced** | `advanced`, or “quality”, “best”, “high-accuracy”, “nuanced” | ChrF + Arena Score | 5 | No |
+| **technical** | `technical`, or “code”, “developer” | Arena Score first, then ChrF | 5 | No |
+| **free** | `free-router`, or “free”, “zero-cost”, “no charge” | Zero-price catalog entries, then the weights below | 5 | No |
 
 ### Weights (summary)
 
-- **standard**: quality 0.25, intelligence 0.10, price 0.30, speed 0.35; quality floor ≈ 85% of best ChrF in the candidate set (models without ChrF are deprioritised for translate-oriented profiles).
-- **advanced**: quality 0.45, intelligence 0.35, price 0.15, speed 0.05.
-- **technical**: quality 0.25, intelligence 0.50, price 0.15, speed 0.10.
+- **standard**: quality 0.25, intelligence 0.10, price 0.30, speed 0.35; quality floor ≈ 85% of best ChrF in the candidate set. Missing ChrF counts as below the floor.
+- **advanced**: quality 0.45, intelligence 0.35, price 0.15, speed 0.05; quality floor ≈ 70% of best ChrF. Missing ChrF counts as below the floor.
+- **technical**: quality 0.25, intelligence 0.50, price 0.15, speed 0.10; quality floor ≈ 65% of best ChrF. Missing ChrF is neutral.
+- **free**: zero-price catalog entries only, then quality 0.40, intelligence 0.20, price 0.30, speed 0.10; no quality floor.
+
+Models under the floor are ranked after those that clear it.
 
 Metrics are normalised within the provider’s candidate pool, then combined with those weights. Catalog blended price prefers real non-zero provider pricing; if the catalog reports `$0` for an unpriced SKU, models.dev / languagebench cost is used instead.
 
@@ -127,9 +130,9 @@ When the UI option **Live timing for fast/standard presets** is on (default) and
 4. Rank successful runs by duration; **primary = fastest**, **fallback = second fastest**. Failed runs are disqualified (and cached as failures so terms-gated models are not retried every run).
 5. Providers without a key keep the static shortlist order (no live call).
 
-Measured duration and cost appear in the suggestion `reason` / `fallback_reason` strings when live timing wins.
+Measured duration appears in the suggestion `reason` / `fallback_reason` strings when live timing wins, together with the shortlist metrics (ChrF, Arena Score, blended price, tokens per second, time to first token). The measured call cost is not written into those strings.
 
-**Note:** Some models reject a non-default `temperature`. Shared `streamCompletion` omits temperature for known GPT-5 / o-series and Claude 4.6+ families, and retries once without temperature if a provider still rejects it—so timing and app translates stay usable.
+**Note:** Some models reject a non-default `temperature`. Shared `streamCompletion` omits temperature for GPT-5, o1, o3, and o4, and for Claude Opus and Sonnet 4.6 and later, and retries once without temperature if a provider still rejects it—so timing and app translates stay usable.
 
 ---
 

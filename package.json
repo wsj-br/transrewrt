@@ -44,6 +44,7 @@
     "take-screenshots": "node scripts/take-screenshots.js",
     "generate-banner": "node scripts/generate-transrewrt-banner.js",
     "check-api-key": "node scripts/check-api-key.js",
+    "hy-mt2": "node scripts/hy-mt2-translate.js",
     "check-custom-provider": "node scripts/check-custom-provider.js",
     "check-provider-icons": "node scripts/check-provider-icons.js",
     "3p-notices": "node scripts/write-third-party-notices.mjs",
@@ -75,7 +76,7 @@
   "engines": {
     "node": ">=24.0.0"
   },
-  "packageManager": "pnpm@12.11.2",
+  "packageManager": "pnpm@12.14.0",
   "build": {
     "appId": "br.com.wsj.transrewrt",
     "productName": "Transrewrt",
