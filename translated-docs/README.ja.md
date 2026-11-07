@@ -66,7 +66,7 @@ xattr -dr com.apple.quarantine /Applications/Transrewrt.app
 
 完全な製品ドキュメント (インストール、APIキー、ガイド、設定、トラブルシューティング):
 
-**[https://wsj-br.github.io/transrewrt/docs/](https://wsj-br.github.io/transrewrt/docs/)**
+[https://wsj-br.github.io/transrewrt/docs/](https://wsj-br.github.io/transrewrt/docs/)
 
 - [APIキー](https://wsj-br.github.io/transrewrt/docs/api-key/)
 - [設定](https://wsj-br.github.io/transrewrt/docs/configuration/)
@@ -96,7 +96,7 @@ xattr -dr com.apple.quarantine /Applications/Transrewrt.app
 
 Copyright © 2026 Waldemar Scudeller Jr.
 
-[Apache License 2.0](../LICENSE)
+[Apache ライセンス 2.0](../LICENSE)
 
 <br/>
 

@@ -17,6 +17,7 @@ interface ElectronAPI {
   llmStream?: (payload: unknown) => Promise<unknown>;
   llmAbort?: (requestId: string) => Promise<unknown>;
   llmModels?: () => Promise<unknown>;
+  llmModelScores?: (opts?: { refresh?: boolean; models?: unknown[] }) => Promise<unknown>;
   getBuildTimestamp?: () => Promise<unknown>;
   getOsUsername?: () => Promise<unknown>;
   openExternalUrl?: (url: string) => Promise<unknown>;

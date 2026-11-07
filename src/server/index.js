@@ -184,6 +184,7 @@ app.use(
     configFile.readConfig,
     auth.setSessionRefreshCookie,
     log,
+    dataDir,
   ),
 );
 app.use(

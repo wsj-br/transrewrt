@@ -66,7 +66,7 @@ Platform részletek (Compose, SmartScreen, apt libs, GPU jelzők, időzóna): [G
 
 Teljes termékdokumentáció (telepítés, API kulcsok, útmutatók, beállítások, hibaelhárítás):
 
-**[https://wsj-br.github.io/transrewrt/docs/](https://wsj-br.github.io/transrewrt/docs/)**
+[https://wsj-br.github.io/transrewrt/docs/](https://wsj-br.github.io/transrewrt/docs/)
 
 - [API kulcs](https://wsj-br.github.io/transrewrt/docs/api-key/)
 - [Konfiguráció](https://wsj-br.github.io/transrewrt/docs/configuration/)
@@ -96,7 +96,7 @@ A harmadik féltől származó függőségek licencei és ezek az adatforrás-é
 
 Szerzői jog © 2026 Waldemar Scudeller Jr.
 
-[Apache License 2.0](../LICENSE)
+[Apache Licenc 2.0](../LICENSE)
 
 <br/>
 

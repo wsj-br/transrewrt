@@ -66,7 +66,7 @@ Chi tiết nền tảng (Compose, SmartScreen, apt libs, cờ GPU, múi giờ): 
 
 Tài liệu sản phẩm đầy đủ (cài đặt, khóa API, hướng dẫn, cài đặt, khắc phục sự cố):
 
-**[https://wsj-br.github.io/transrewrt/docs/](https://wsj-br.github.io/transrewrt/docs/)**
+[https://wsj-br.github.io/transrewrt/docs/](https://wsj-br.github.io/transrewrt/docs/)
 
 - [Khóa API](https://wsj-br.github.io/transrewrt/docs/api-key/)
 - [Cấu hình](https://wsj-br.github.io/transrewrt/docs/configuration/)
@@ -96,7 +96,7 @@ Giấy phép phụ thuộc của bên thứ ba và các thông báo nguồn dữ
 
 Bản quyền © 2026 Waldemar Scudeller Jr.
 
-[Apache License 2.0](../LICENSE)
+[Giấy phép Apache 2.0](../LICENSE)
 
 <br/>
 

@@ -66,7 +66,7 @@ Platform details (Compose, SmartScreen, apt libs, GPU flags, timezone): [Quick s
 
 Full product docs (install, API keys, guides, settings, troubleshooting):
 
-**[https://wsj-br.github.io/transrewrt/docs/](https://wsj-br.github.io/transrewrt/docs/)**
+[https://wsj-br.github.io/transrewrt/docs/](https://wsj-br.github.io/transrewrt/docs/)
 
 - [API key](https://wsj-br.github.io/transrewrt/docs/api-key/)
 - [Configuration](https://wsj-br.github.io/transrewrt/docs/configuration/)

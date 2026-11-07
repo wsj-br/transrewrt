@@ -1042,6 +1042,50 @@ Respond with ONLY the JSON object. No other text.`;
       return [];
     }
   }
+
+  /**
+   * Quality index, languagebench ChrF, and Arena Score for the model cards.
+   * Missing until the benchmark cache is ready; a failure leaves scores empty.
+   */
+  async getModelScores(opts: { refresh?: boolean; models?: object[] } = {}) {
+    const refresh = opts.refresh === true;
+    const models = Array.isArray(opts.models) ? opts.models : undefined;
+    let payload: {
+      scores?: Record<string, unknown>;
+      sources?: unknown;
+      warnings?: unknown;
+    } = {};
+    if (!this._isWebMode && window.electronAPI?.llmModelScores) {
+      payload = (await window.electronAPI.llmModelScores({
+        refresh,
+        ...(models ? { models } : {}),
+      })) as typeof payload;
+    } else {
+      const response = await fetch(`${BASE_PATH}/api/llm/model-scores`, {
+        method: "POST",
+        credentials: "include",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ refresh, ...(models ? { models } : {}) }),
+      });
+      if (response.status === 401) {
+        sessionExpiredHandler.onSessionExpired();
+        throw Object.assign(new Error("Unauthorized"), { status: 401 });
+      }
+      if (!response.ok) {
+        throw new Error(
+          this.getErrorMessage(response.status, `HTTP error! status: ${response.status}`),
+        );
+      }
+      payload = await response.json();
+    }
+    const scores =
+      payload && payload.scores && typeof payload.scores === "object" ? payload.scores : {};
+    return {
+      scores,
+      sources: payload?.sources ?? null,
+      warnings: Array.isArray(payload?.warnings) ? payload.warnings : [],
+    };
+  }
 }
 
 export default new APIService();

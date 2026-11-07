@@ -8,18 +8,44 @@ const {
   streamCompletion,
 } = require("../../shared/llm");
 const { streamTextChunkToString } = require("../../shared/llm/streamDeltaContent");
+const { getModelScores } = require("../../shared/modelBenchmarks/modelScores");
 
 /**
  * @param {import("electron").IpcMain} ipcMain
  * @param {() => object} getConfigCache
  */
-function registerLlmIpc(ipcMain, getConfigCache) {
+function registerLlmIpc(ipcMain, getConfigCache, getCacheDir) {
   /** @type {Map<string, AbortController>} */
   const abortByRequest = new Map();
+  /** Models from the last successful list, so scoring does not start a second catalog fetch. */
+  let lastListedModels = [];
 
   ipcMain.handle("llm:models", async () => {
     const keysMap = mergeKeys(getConfigCache());
-    return getAllModels(keysMap);
+    const models = await getAllModels(keysMap);
+    lastListedModels = models;
+    return models;
+  });
+
+  ipcMain.handle("llm:modelScores", async (_event, payload) => {
+    try {
+      const refresh = payload && payload.refresh === true;
+      const fromClient = Array.isArray(payload?.models) ? payload.models : [];
+      let models = fromClient.length > 0 ? fromClient : lastListedModels;
+      if (!models.length) {
+        const keysMap = mergeKeys(getConfigCache());
+        models = await getAllModels(keysMap);
+        lastListedModels = models;
+      }
+      return await getModelScores(models, { cacheDir: getCacheDir(), refresh });
+    } catch (err) {
+      console.error("[llm:modelScores]", err);
+      return {
+        scores: {},
+        sources: null,
+        warnings: [err?.message || String(err)],
+      };
+    }
   });
 
   ipcMain.handle("llm:abort", async (_, { requestId }) => {

@@ -66,7 +66,7 @@ xattr -dr com.apple.quarantine /Applications/Transrewrt.app
 
 مستندات کامل محصول (نصب، کلیدهای API، راهنماها، تنظیمات، عیب‌یابی):
 
-**[https://wsj-br.github.io/transrewrt/docs/](https://wsj-br.github.io/transrewrt/docs/)**
+[https://wsj-br.github.io/transrewrt/docs/](https://wsj-br.github.io/transrewrt/docs/)
 
 - [کلید API](https://wsj-br.github.io/transrewrt/docs/api-key/)
 - [پیکربندی](https://wsj-br.github.io/transrewrt/docs/configuration/)
@@ -96,7 +96,7 @@ xattr -dr com.apple.quarantine /Applications/Transrewrt.app
 
 حق تألیف © 2026 والدمر اسکودلر جونیور.
 
-[Apache License 2.0](../LICENSE)
+[مجوز آپاچی 2.0](../LICENSE)
 
 <br/>
 

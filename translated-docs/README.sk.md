@@ -66,7 +66,7 @@ Podrobnosti o platforme (Compose, SmartScreen, apt libs, GPU flags, časové pá
 
 Kompletná dokumentácia produktu (inštalácia, kľúče API, príručky, nastavenia, riešenie problémov):
 
-**[https://wsj-br.github.io/transrewrt/docs/](https://wsj-br.github.io/transrewrt/docs/)**
+[https://wsj-br.github.io/transrewrt/docs/](https://wsj-br.github.io/transrewrt/docs/)
 
 - [Kľúč API](https://wsj-br.github.io/transrewrt/docs/api-key/)
 - [Konfigurácia](https://wsj-br.github.io/transrewrt/docs/configuration/)
@@ -97,7 +97,7 @@ Licencie závislostí tretích strán a tieto oznámenia o zdrojoch údajov sú 
 
 Autorské práva © 2026 Waldemar Scudeller Jr.
 
-[Apache License 2.0](../LICENSE)
+[Licencia Apache 2.0](../LICENSE)
 
 <br/>
 

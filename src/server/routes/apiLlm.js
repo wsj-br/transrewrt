@@ -1,6 +1,6 @@
 /**
- * Authenticated LLM routes: GET /api/llm/models, POST /api/llm/stream (SSE),
- * GET /api/llm/generation (OpenRouter cost lookup).
+ * Authenticated LLM routes: GET /api/llm/models, GET /api/llm/model-scores,
+ * POST /api/llm/stream (SSE), GET /api/llm/generation (OpenRouter cost lookup).
  */
 
 const express = require("express");
@@ -11,16 +11,19 @@ const {
   fetchOpenRouterGenerationUsage,
   resolveEngine,
 } = require("../../shared/llm");
+const { getModelScores } = require("../../shared/modelBenchmarks/modelScores");
 
 /**
  * @param {() => object} readConfig
  * @param {(req: import('express').Request, res: import('express').Response) => void} setSessionRefreshCookie
  * @param {object} log
+ * @param {string} dataDir writable directory for the benchmark score cache
  */
 module.exports = function createApiLlmRouter(
   readConfig,
   setSessionRefreshCookie,
   log,
+  dataDir,
 ) {
   const router = express.Router();
 
@@ -36,6 +39,34 @@ module.exports = function createApiLlmRouter(
       });
       res.status(500).json({ error: err.message || "Failed to list models" });
     }
+  });
+
+  async function respondWithModelScores(req, res, models, refresh) {
+    try {
+      setSessionRefreshCookie(req, res);
+      let list = Array.isArray(models) && models.length > 0 ? models : null;
+      if (!list) {
+        const keysMap = mergeKeys(readConfig());
+        list = await getAllModels(keysMap);
+      }
+      const result = await getModelScores(list, { cacheDir: dataDir, refresh });
+      res.json(result);
+    } catch (err) {
+      log.error("[API] /api/llm/model-scores: " + err.message, {
+        stack: err.stack,
+      });
+      res.status(500).json({ error: err.message || "Failed to score models" });
+    }
+  }
+
+  router.get("/llm/model-scores", (req, res) => {
+    const refresh = req.query.refresh === "1" || req.query.refresh === "true";
+    return respondWithModelScores(req, res, null, refresh);
+  });
+
+  router.post("/llm/model-scores", (req, res) => {
+    const refresh = req.body?.refresh === true || req.query.refresh === "1";
+    return respondWithModelScores(req, res, req.body?.models, refresh);
   });
 
   router.get("/llm/generation", async (req, res) => {

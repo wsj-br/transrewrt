@@ -66,7 +66,7 @@ Détails de la plateforme (Compose, SmartScreen, bibliothèques apt, drapeaux GP
 
 Documentation complète du produit (installation, clés API, guides, paramètres, dépannage) :
 
-**[https://wsj-br.github.io/transrewrt/docs/](https://wsj-br.github.io/transrewrt/docs/)**
+[https://wsj-br.github.io/transrewrt/docs/](https://wsj-br.github.io/transrewrt/docs/)
 
 - [Clé API](https://wsj-br.github.io/transrewrt/docs/api-key/)
 - [Configuration](https://wsj-br.github.io/transrewrt/docs/configuration/)
@@ -96,7 +96,7 @@ Les licences des dépendances tierces et ces avis de source de données sont ré
 
 Droit d'auteur © 2026 Waldemar Scudeller Jr.
 
-[Apache License 2.0](../LICENSE)
+[Licence Apache 2.0](../LICENSE)
 
 <br/>
 

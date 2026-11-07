@@ -66,7 +66,7 @@ xattr -dr com.apple.quarantine /Applications/Transrewrt.app
 
 Повна документація продукту (встановлення, ключі API, посібники, налаштування, усунення несправностей):
 
-**[https://wsj-br.github.io/transrewrt/docs/](https://wsj-br.github.io/transrewrt/docs/)**
+[https://wsj-br.github.io/transrewrt/docs/](https://wsj-br.github.io/transrewrt/docs/)
 
 - [Ключ API](https://wsj-br.github.io/transrewrt/docs/api-key/)
 - [Конфігурація](https://wsj-br.github.io/transrewrt/docs/configuration/)
@@ -97,7 +97,7 @@ xattr -dr com.apple.quarantine /Applications/Transrewrt.app
 
 Авторське право © 2026 Вальдемар Скуделлер молодший.
 
-[Apache License 2.0](../LICENSE)
+[Ліцензія Apache 2.0](../LICENSE)
 
 <br/>
 

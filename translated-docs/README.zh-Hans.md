@@ -66,7 +66,7 @@ xattr -dr com.apple.quarantine /Applications/Transrewrt.app
 
 完整产品文档（安装、API 密钥、指南、设置、故障排除）：
 
-**[https://wsj-br.github.io/transrewrt/docs/](https://wsj-br.github.io/transrewrt/docs/)**
+[https://wsj-br.github.io/transrewrt/docs/](https://wsj-br.github.io/transrewrt/docs/)
 
 - [API 密钥](https://wsj-br.github.io/transrewrt/docs/api-key/)
 - [配置](https://wsj-br.github.io/transrewrt/docs/configuration/)
@@ -96,7 +96,7 @@ xattr -dr com.apple.quarantine /Applications/Transrewrt.app
 
 版权所有 © 2026 Waldemar Scudeller Jr.
 
-[Apache License 2.0](../LICENSE)
+[Apache 许可证 2.0](../LICENSE)
 
 <br/>
 

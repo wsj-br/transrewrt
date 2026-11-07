@@ -66,7 +66,7 @@ Detalii platformă (Compose, SmartScreen, biblioteci apt, flag-uri GPU, fus orar
 
 Documentație completă a produsului (instalare, chei API, ghiduri, setări, depanare):
 
-**[https://wsj-br.github.io/transrewrt/docs/](https://wsj-br.github.io/transrewrt/docs/)**
+[https://wsj-br.github.io/transrewrt/docs/](https://wsj-br.github.io/transrewrt/docs/)
 
 - [Cheie API](https://wsj-br.github.io/transrewrt/docs/api-key/)
 - [Configurare](https://wsj-br.github.io/transrewrt/docs/configuration/)
@@ -97,7 +97,7 @@ Licențele dependențelor terțe și aceste notificări privind sursa de date su
 
 Drepturi de autor © 2026 Waldemar Scudeller Jr.
 
-[Apache License 2.0](../LICENSE)
+[Licență Apache 2.0](../LICENSE)
 
 <br/>
 

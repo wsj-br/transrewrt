@@ -66,7 +66,7 @@ xattr -dr com.apple.quarantine /Applications/Transrewrt.app
 
 وثائق المنتج الكاملة (التثبيت، مفاتيح API، الأدلة، الإعدادات، استكشاف الأخطاء وإصلاحها):
 
-**[https://wsj-br.github.io/transrewrt/docs/](https://wsj-br.github.io/transrewrt/docs/)**
+[https://wsj-br.github.io/transrewrt/docs/](https://wsj-br.github.io/transrewrt/docs/)
 
 - [مفتاح API](https://wsj-br.github.io/transrewrt/docs/api-key/)
 - [التكوين](https://wsj-br.github.io/transrewrt/docs/configuration/)
@@ -97,7 +97,7 @@ xattr -dr com.apple.quarantine /Applications/Transrewrt.app
 
 حقوق النشر © 2026 والديمار سكوديلر جونيور.
 
-[Apache License 2.0](../LICENSE)
+[ترخيص أباتشي 2.0](../LICENSE)
 
 <br/>
 

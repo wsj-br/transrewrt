@@ -66,7 +66,7 @@ xattr -dr com.apple.quarantine /Applications/Transrewrt.app
 
 Πλήρης τεκμηρίωση προϊόντος (εγκατάσταση, κλειδιά API, οδηγοί, ρυθμίσεις, αντιμετώπιση προβλημάτων):
 
-**[https://wsj-br.github.io/transrewrt/docs/](https://wsj-br.github.io/transrewrt/docs/)**
+[https://wsj-br.github.io/transrewrt/docs/](https://wsj-br.github.io/transrewrt/docs/)
 
 - [Κλειδί API](https://wsj-br.github.io/transrewrt/docs/api-key/)
 - [Διαμόρφωση](https://wsj-br.github.io/transrewrt/docs/configuration/)
@@ -97,7 +97,7 @@ xattr -dr com.apple.quarantine /Applications/Transrewrt.app
 
 Πνευματικά δικαιώματα © 2026 Waldemar Scudeller Jr.
 
-[Apache License 2.0](../LICENSE)
+[Άδεια Apache 2.0](../LICENSE)
 
 <br/>
 

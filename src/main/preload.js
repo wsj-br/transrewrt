@@ -61,6 +61,7 @@ const api = {
   llmStream: (payload) => llmStreamWithAccumulation(payload),
   llmAbort: (requestId) => ipcRenderer.invoke('llm:abort', { requestId }),
   llmModels: () => ipcRenderer.invoke('llm:models'),
+  llmModelScores: (opts) => ipcRenderer.invoke('llm:modelScores', opts || {}),
   getBuildTimestamp: () => ipcRenderer.invoke('get-build-timestamp'),
   getOsUsername: () => ipcRenderer.invoke('get-os-username'),
   openExternalUrl: (url) => ipcRenderer.invoke('shell:openExternal', url),

@@ -66,7 +66,7 @@ xattr -dr com.apple.quarantine /Applications/Transrewrt.app
 
 पूर्ण उत्पाद दस्तावेज़ (इंस्टॉल, API कुंजियाँ, गाइड, सेटिंग्स, समस्या निवारण):
 
-**[https://wsj-br.github.io/transrewrt/docs/](https://wsj-br.github.io/transrewrt/docs/)**
+[https://wsj-br.github.io/transrewrt/docs/](https://wsj-br.github.io/transrewrt/docs/)
 
 - [API कुंजी](https://wsj-br.github.io/transrewrt/docs/api-key/)
 - [कॉन्फ़िगरेशन](https://wsj-br.github.io/transrewrt/docs/configuration/)
@@ -96,7 +96,7 @@ xattr -dr com.apple.quarantine /Applications/Transrewrt.app
 
 कॉपीराइट © 2026 वाल्डेमार स्कुडेलर जूनियर।
 
-[Apache License 2.0](../LICENSE)
+[अपाचे लाइसेंस 2.0](../LICENSE)
 
 <br/>
 

@@ -11,6 +11,15 @@ Use conventional types (Added, Changed, Fixed, etc.) and short descriptions.
 
 ## Unreleased
 
+- **Fixed**: Drop the bare `glob` pnpm override (`^13.0.6`) so the direct dependency stays on patched `glob` 14 and `@electron/asar` keeps glob 7 (GHSA-3g3m-2fjr-6pw4).
+- **Added**: Settings > Models cards show a quality index, languagebench ChrF, and Arena Score, using the ai-i18n-tools `suggest-models --quality` weights.
+- **Added**: Settings > Models can sort by index, high to low. Models with no index stay at the bottom.
+- **Changed**: Settings > Models opens sorted by index, high to low.
+- **Changed**: Settings > Models keeps the index chip on the name row. Its tooltip shows the model's place in the list, plus ChrF and Arena as the model value over the list maximum.
+- **Changed**: The Creative Commons icon on Available Models names each score source, links to it, and links to its licence.
+- **Changed**: Local models on Settings > Models show "no cost - local" instead of "Cost not available".
+- **Fixed**: Model-card benchmark scores are calculated from the models already listed, instead of a second catalog fetch that could finish without scores.
+- **Changed**: A dated or batch route such as DeepSeek V4 Flash 0731 (batch) uses the published DeepSeek V4 Flash ChrF and Arena scores. A different size or generation stays unmatched.
 - **Added**: Dev script `scripts/hy-mt2-translate.js` to try Hy-MT2 translations through a local Ollama server, printing token count, tokens/second, and translation time.
 - **Added**: `scripts/hy-mt2-translate.js` `--cpu` runs that request on the CPU (`num_gpu` 0); other requests set `num_gpu` to 99 so a previous CPU load returns to the GPU.
 

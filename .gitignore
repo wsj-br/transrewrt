@@ -22,11 +22,21 @@ build_timestamp
 .specstory
 .cache
 *.key
+*.backup.*
+
+# AI tools
+#.agents/
 
 
-# i18n docs translate cache (cacheDir default `.translation-cache/`)
-.translation-cache/**
+# Cache
+.translation-cache/*
 !.translation-cache/cache.db
+benchmark-scores.json
+
+# Environment
+.env
+.env.local
+.env.*.local
 
 # local data (keep out of repo)
 data/

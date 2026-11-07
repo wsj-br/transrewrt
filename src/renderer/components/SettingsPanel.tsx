@@ -76,8 +76,19 @@ function useIsBelowMd() {
 
 const SettingsPanel = ({ openToTab, onOpenToTabConsumed }) => {
   const { t } = useTranslation();
-  const { settings, allModels, currentUser, setSetting, fetchModels, presetsCatalog, apiKeyStatus } =
-    useAppContext();
+  const {
+    settings,
+    allModels,
+    modelScores,
+    modelScoresLoading,
+    modelScoresError,
+    currentUser,
+    setSetting,
+    fetchModels,
+    fetchModelScores,
+    presetsCatalog,
+    apiKeyStatus,
+  } = useAppContext();
 
   const [localSettings, setLocalSettings] = useState({});
   const [activeTab, setActiveTab] = useState(null); // Restored from settings on mount; no tab selected until then to avoid flash
@@ -87,7 +98,7 @@ const SettingsPanel = ({ openToTab, onOpenToTabConsumed }) => {
   const [filterFree, setFilterFree] = useState(false);
   const [expandedProviders, setExpandedProviders] = useState(new Set());
   const [selectedModelIds, setSelectedModelIds] = useState(new Set());
-  const [sortBy, setSortBy] = useState("provider-asc");
+  const [sortBy, setSortBy] = useState("index-desc");
 
   const [selectedLanguages, setSelectedLanguages] = useState(new Set());
   const [customLanguage, setCustomLanguage] = useState("");
@@ -269,6 +280,11 @@ const SettingsPanel = ({ openToTab, onOpenToTabConsumed }) => {
     }
   }, [allModels.length, fetchModels]);
 
+  useEffect(() => {
+    if (activeTab !== "models" || allModels.length === 0) return;
+    fetchModelScores(false, allModels);
+  }, [activeTab, allModels, fetchModelScores]);
+
   const handleSettingChange = (key, value) => {
     setLocalSettings((prev) => ({ ...prev, [key]: value }));
     setSetting(key, value);
@@ -444,7 +460,7 @@ const SettingsPanel = ({ openToTab, onOpenToTabConsumed }) => {
   }, [filteredModels]);
 
   const sortedModelsData = useMemo(() => {
-    const [sortType, sortDir] = (sortBy || "model-asc").split("-");
+    const [sortType, sortDir] = (sortBy || "index-desc").split("-");
     const ascending = sortDir === "asc";
     const modelSortKey = (m) =>
       String(getModelName(m) ?? m?.id ?? "").trim().toLowerCase();
@@ -461,9 +477,16 @@ const SettingsPanel = ({ openToTab, onOpenToTabConsumed }) => {
       );
       return { type: "grouped", data: sortedGroups };
     }
+    const indexValue = (model) => {
+      const n = modelScores[model.id]?.index;
+      return n != null && Number.isFinite(Number(n)) ? Number(n) : Number.NEGATIVE_INFINITY;
+    };
     const sorted = [...filteredModels].sort((a, b) => {
       let comparison = 0;
-      if (sortType === "cost") {
+      if (sortType === "index") {
+        comparison = indexValue(a) - indexValue(b);
+        if (comparison === 0) comparison = modelSortKey(a).localeCompare(modelSortKey(b));
+      } else if (sortType === "cost") {
         comparison = modelCostSortValue(a) - modelCostSortValue(b);
       } else if (sortType === "model") {
         comparison = modelSortKey(a).localeCompare(modelSortKey(b));
@@ -471,7 +494,7 @@ const SettingsPanel = ({ openToTab, onOpenToTabConsumed }) => {
       return ascending ? comparison : -comparison;
     });
     return { type: "flat", data: sorted };
-  }, [filteredModels, groupedModels, sortBy]);
+  }, [filteredModels, groupedModels, sortBy, modelScores]);
 
   const toggleProvider = (provider) => {
     const newSet = new Set(expandedProviders);
@@ -642,6 +665,9 @@ const SettingsPanel = ({ openToTab, onOpenToTabConsumed }) => {
             onFilterEngineChange={setFilterEngine}
             onFilterFreeChange={setFilterFree}
             onSortByChange={setSortBy}
+            modelScores={modelScores}
+            modelScoresLoading={modelScoresLoading}
+            modelScoresError={modelScoresError}
             onRefreshModels={() => {
               setModelsLoading(true);
               setModelsError(null);

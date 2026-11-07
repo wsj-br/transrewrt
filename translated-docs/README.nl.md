@@ -66,7 +66,7 @@ Platformdetails (Compose, SmartScreen, apt libs, GPU flags, tijdzone): [Snelle s
 
 Volledige productdocumentatie (installatie, API-sleutels, handleidingen, instellingen, probleemoplossing):
 
-**[https://wsj-br.github.io/transrewrt/docs/](https://wsj-br.github.io/transrewrt/docs/)**
+[https://wsj-br.github.io/transrewrt/docs/](https://wsj-br.github.io/transrewrt/docs/)
 
 - [API-sleutel](https://wsj-br.github.io/transrewrt/docs/api-key/)
 - [Configuratie](https://wsj-br.github.io/transrewrt/docs/configuration/)
@@ -97,7 +97,7 @@ Licenties van afhankelijkheden van derden en deze kennisgevingen van gegevensbro
 
 Copyright © 2026 Waldemar Scudeller Jr.
 
-[Apache License 2.0](../LICENSE)
+[Apache Licentie 2.0](../LICENSE)
 
 <br/>
 

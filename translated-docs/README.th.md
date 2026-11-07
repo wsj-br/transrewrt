@@ -66,7 +66,7 @@ xattr -dr com.apple.quarantine /Applications/Transrewrt.app
 
 เอกสารผลิตภัณฑ์ฉบับเต็ม (การติดตั้ง, คีย์ API, คู่มือ, การตั้งค่า, การแก้ไขปัญหา):
 
-**[https://wsj-br.github.io/transrewrt/docs/](https://wsj-br.github.io/transrewrt/docs/)**
+[https://wsj-br.github.io/transrewrt/docs/](https://wsj-br.github.io/transrewrt/docs/)
 
 - [คีย์ API](https://wsj-br.github.io/transrewrt/docs/api-key/)
 - [การกำหนดค่า](https://wsj-br.github.io/transrewrt/docs/configuration/)
@@ -96,7 +96,7 @@ xattr -dr com.apple.quarantine /Applications/Transrewrt.app
 
 ลิขสิทธิ์ © 2026 วัลเดอมาร์ สกูเดลเลอร์ จูเนียร์
 
-[Apache License 2.0](../LICENSE)
+[ใบอนุญาต Apache 2.0](../LICENSE)
 
 <br/>
 

@@ -607,7 +607,7 @@ registerConfigIpc(ipcMain, {
 });
 registerPresetsIpc(ipcMain, () => configCache);
 registerApiIpc(ipcMain, () => configCache);
-registerLlmIpc(ipcMain, () => configCache);
+registerLlmIpc(ipcMain, () => configCache, () => app.getPath("userData"));
 registerWindowIpc(ipcMain, createSettingsWindow);
 
 ipcMain.on("theme:systemPrefersDark", (event) => {

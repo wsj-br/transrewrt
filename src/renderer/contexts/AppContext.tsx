@@ -32,6 +32,9 @@ export const AppProvider = ({ children }) => {
   const [settings, setSettings] = useState(configManager.getAll());
 
   const [allModels, setAllModels] = useState([]);
+  const [modelScores, setModelScores] = useState({});
+  const [modelScoresLoading, setModelScoresLoading] = useState(false);
+  const [modelScoresError, setModelScoresError] = useState("");
   const [availableModels, setAvailableModels] = useState(
     configManager.get("available_models") || [],
   );
@@ -1600,6 +1603,31 @@ export const AppProvider = ({ children }) => {
     setNeedsLogin(true);
   };
 
+  const fetchModelScores = useCallback(async (refresh = false, models = null) => {
+    const list = Array.isArray(models) ? models : [];
+    if (!refresh && list.length === 0) return;
+    setModelScoresLoading(true);
+    setModelScoresError("");
+    try {
+      const data = await apiService.getModelScores({
+        refresh: refresh === true,
+        ...(list.length > 0 ? { models: list } : {}),
+      });
+      setModelScores(data?.scores && typeof data.scores === "object" ? data.scores : {});
+      const warnings = Array.isArray(data?.warnings) ? data.warnings.filter(Boolean) : [];
+      for (const warning of warnings) console.warn("[modelScores]", warning);
+      if (warnings.length > 0 && (!data?.scores || Object.keys(data.scores).length === 0)) {
+        setModelScoresError(String(warnings[0]));
+      }
+    } catch (err) {
+      if (err && err.status === 401) setNeedsLogin(true);
+      console.warn("[modelScores] failed:", err?.message || err);
+      setModelScoresError(err?.message || "Failed to load benchmark scores");
+    } finally {
+      setModelScoresLoading(false);
+    }
+  }, []);
+
   // Fetch models from API (called when Settings opens)
   const fetchModels = async () => {
     try {
@@ -1693,6 +1721,9 @@ export const AppProvider = ({ children }) => {
     settings,
     models: availableModels,
     allModels,
+    modelScores,
+    modelScoresLoading,
+    modelScoresError,
     availableModels,
     topLanguages,
     loading,
@@ -1731,6 +1762,7 @@ export const AppProvider = ({ children }) => {
     rewriteWordAlternatives,
     transform,
     fetchModels,
+    fetchModelScores,
     removeModelFromList,
   };
 

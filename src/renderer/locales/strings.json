@@ -460,7 +460,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 334
+        "line": 354
       }
     ]
   },
@@ -1213,6 +1213,69 @@
       {
         "file": "src/renderer/components/SettingsUsersTab.tsx",
         "line": 404
+      }
+    ]
+  },
+  "97517060": {
+    "source": "Index High to Low",
+    "translated": {
+      "cs": "Index od nejvyššího po nejnižší",
+      "de": "Index absteigend",
+      "ar": "الفهرس من الأعلى إلى الأدنى",
+      "nl": "Index hoog naar laag",
+      "fr": "Indice décroissant",
+      "el": "Ευρετήριο από το υψηλότερο στο χαμηλότερο",
+      "zh-Hant": "索引由高到低",
+      "zh-Hans": "索引从高到低",
+      "hi": "इंडेक्स उच्च से निम्न",
+      "pt-BR": "Índice do maior para o menor",
+      "pl": "Indeks: od najwyższego do najniższego",
+      "hu": "Index szerint csökkenő",
+      "it": "Indice dal più alto al più basso",
+      "fa": "شاخص از زیاد به کم",
+      "ko": "인덱스 내림차순",
+      "ja": "インデックス降順",
+      "th": "ดัชนีจากสูงไปต่ำ",
+      "ro": "Index descrescător",
+      "tr": "Endeks: Yüksekten Düşüğe",
+      "es": "Índice de mayor a menor",
+      "ru": "Индекс от большего к меньшему",
+      "sk": "Index od najvyššieho po najnižší",
+      "uk": "Індекс: від найвищого до найнижчого",
+      "sv": "Index, högt till lågt",
+      "vi": "Chỉ mục từ cao đến thấp"
+    },
+    "models": {
+      "cs": "~anthropic/claude-sonnet-latest",
+      "de": "~anthropic/claude-sonnet-latest",
+      "ar": "~anthropic/claude-sonnet-latest",
+      "nl": "~anthropic/claude-sonnet-latest",
+      "fr": "~anthropic/claude-sonnet-latest",
+      "el": "~anthropic/claude-sonnet-latest",
+      "zh-Hant": "z-ai/glm-5.2",
+      "zh-Hans": "z-ai/glm-5.2",
+      "hi": "~anthropic/claude-sonnet-latest",
+      "pt-BR": "~anthropic/claude-sonnet-latest",
+      "pl": "~anthropic/claude-sonnet-latest",
+      "hu": "~anthropic/claude-sonnet-latest",
+      "it": "~anthropic/claude-sonnet-latest",
+      "fa": "~anthropic/claude-sonnet-latest",
+      "ko": "z-ai/glm-5.2",
+      "ja": "z-ai/glm-5.2",
+      "th": "~anthropic/claude-sonnet-latest",
+      "ro": "~anthropic/claude-sonnet-latest",
+      "tr": "~anthropic/claude-sonnet-latest",
+      "es": "~anthropic/claude-sonnet-latest",
+      "ru": "~anthropic/claude-sonnet-latest",
+      "sk": "~anthropic/claude-sonnet-latest",
+      "uk": "~anthropic/claude-sonnet-latest",
+      "sv": "~anthropic/claude-sonnet-latest",
+      "vi": "~anthropic/claude-sonnet-latest"
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/SettingsModelsTab.tsx",
+        "line": 194
       }
     ]
   },
@@ -2400,7 +2463,7 @@
       },
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 196
+        "line": 215
       },
       {
         "file": "src/renderer/utils/misc/formatUtils.ts",
@@ -3098,7 +3161,7 @@
       },
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 711
+        "line": 737
       },
       {
         "file": "src/renderer/components/SettingsTransformPromptsTab.tsx",
@@ -10184,15 +10247,15 @@
       },
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 401
+        "line": 421
       },
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 456
+        "line": 477
       },
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 556
+        "line": 584
       }
     ]
   },
@@ -11578,7 +11641,7 @@
       },
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 150
+        "line": 161
       },
       {
         "file": "src/renderer/components/Sidebar.tsx",
@@ -13263,7 +13326,7 @@
       },
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 203
+        "line": 222
       },
       {
         "file": "src/renderer/components/workspace/RewriteWorkspace.tsx",
@@ -13376,7 +13439,7 @@
       },
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 203
+        "line": 222
       },
       {
         "file": "src/renderer/components/TransformTestPanel.tsx",
@@ -16289,7 +16352,7 @@
       },
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 568
+        "line": 597
       }
     ]
   },
@@ -16728,7 +16791,7 @@
       },
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 512
+        "line": 540
       }
     ]
   },
@@ -17694,7 +17757,7 @@
       },
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 158
+        "line": 169
       }
     ]
   },
@@ -22510,7 +22573,7 @@
       },
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 148
+        "line": 159
       }
     ]
   },
@@ -26015,7 +26078,7 @@
       },
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 262
+        "line": 282
       }
     ]
   },
@@ -27481,91 +27544,61 @@
       }
     ]
   },
-  "db555ba4": {
-    "source": "Behaviour for",
+  "a2dbffee": {
+    "source": "Behaviour for ",
     "translated": {
-      "pt-BR": "Comportamento para",
-      "ca": "Comportament per a",
-      "ar": "السلوك لـ",
-      "bn": "এর জন্য আচরণ",
-      "zh-CN": "对于行为",
-      "zh-TW": "適用於",
-      "hr": "Ponašanje za",
-      "cs": "Chování pro",
-      "en-US": "Behavior for",
-      "fr": "Comportement pour",
-      "nl": "Gedrag voor",
-      "tl": "Pag-uugali para sa",
-      "de": "Verhalten für",
-      "hu": "Viselkedés a következőhöz:",
-      "hi": "के लिए व्यवहार",
-      "el": "Συμπεριφορά για",
-      "ms": "Tingkah laku untuk",
-      "ko": "동작 대상",
-      "ja": "動作対象",
-      "it": "Comportamento per",
-      "pt": "Comportamento para",
-      "pl": "Zachowanie dla",
-      "pa": "ਇਸ ਲਈ ਵਿਹਾਰ",
-      "fa": "رفتار برای",
-      "es": "Comportamiento para",
-      "ro": "Comportament pentru",
-      "ru": "Поведение для",
-      "sk": "Správanie pre",
-      "sw": "Tabia kwa",
-      "sv": "Beteende för",
-      "th": "พฤติกรรมสำหรับ",
-      "te": "వర్తనం కోసం",
-      "vi": "Hành vi cho",
-      "tr": "Davranış için",
-      "uk": "Поведінка для",
-      "jv": "Tingkah laku kanggo",
-      "zh-Hans": "行为",
-      "zh-Hant": "行為",
-      "pa-PK": "لئی رویہ",
-      "hi-Latn": "Vyavahar iske liye"
+      "ar": "سلوك ",
+      "nl": "Gedrag voor ",
+      "cs": "Chování pro ",
+      "de": "Verhalten für ",
+      "el": "Συμπεριφορά για ",
+      "fr": "Comportement pour ",
+      "zh-Hans": "行为 ",
+      "zh-Hant": "行為：",
+      "hu": "Viselkedés: ",
+      "fa": "رفتار برای ",
+      "pt-BR": "Comportamento para ",
+      "hi": "इसके लिए व्यवहार ",
+      "it": "Comportamento per ",
+      "pl": "Zachowanie dla ",
+      "ja": "動作 ",
+      "ko": "다음에 대한 동작: ",
+      "sk": "Správanie pre ",
+      "sv": "Beteende för ",
+      "tr": "Davranış: ",
+      "uk": "Поведінка для ",
+      "ro": "Comportament pentru ",
+      "ru": "Поведение для ",
+      "th": "พฤติกรรมสำหรับ ",
+      "es": "Comportamiento de ",
+      "vi": "Hành vi cho "
     },
     "models": {
-      "pt-BR": "anthropic/claude-3-haiku",
-      "ca": "anthropic/claude-3-haiku",
-      "ar": "anthropic/claude-3-haiku",
-      "bn": "anthropic/claude-3-haiku",
-      "zh-CN": "anthropic/claude-3-haiku",
-      "zh-TW": "anthropic/claude-3-haiku",
-      "hr": "anthropic/claude-3-haiku",
-      "cs": "anthropic/claude-3-haiku",
-      "en-US": "anthropic/claude-3-haiku",
-      "fr": "anthropic/claude-3-haiku",
-      "nl": "anthropic/claude-3-haiku",
-      "tl": "anthropic/claude-3-haiku",
-      "de": "anthropic/claude-3-haiku",
-      "hu": "anthropic/claude-3-haiku",
-      "hi": "anthropic/claude-3-haiku",
-      "el": "anthropic/claude-3-haiku",
-      "ms": "anthropic/claude-3-haiku",
-      "ko": "anthropic/claude-3-haiku",
-      "ja": "anthropic/claude-3-haiku",
-      "it": "anthropic/claude-3-haiku",
-      "pt": "anthropic/claude-3-haiku",
-      "pl": "anthropic/claude-3-haiku",
-      "pa": "anthropic/claude-3-haiku",
-      "fa": "anthropic/claude-3-haiku",
-      "es": "anthropic/claude-3-haiku",
-      "ro": "anthropic/claude-3-haiku",
-      "ru": "anthropic/claude-3-haiku",
-      "sk": "anthropic/claude-3-haiku",
-      "sw": "anthropic/claude-3-haiku",
-      "sv": "anthropic/claude-3-haiku",
-      "th": "anthropic/claude-3-haiku",
-      "te": "anthropic/claude-3-haiku",
-      "vi": "anthropic/claude-3-haiku",
-      "tr": "anthropic/claude-3-haiku",
-      "uk": "anthropic/claude-3-haiku",
-      "jv": "anthropic/claude-3-haiku",
-      "zh-Hans": "google/gemini-2.5-flash-lite",
-      "zh-Hant": "google/gemini-2.5-flash-lite",
-      "pa-PK": "google/gemini-2.5-flash",
-      "hi-Latn": "google/gemini-2.5-flash"
+      "ar": "~anthropic/claude-sonnet-latest",
+      "nl": "~anthropic/claude-sonnet-latest",
+      "cs": "~anthropic/claude-sonnet-latest",
+      "de": "~anthropic/claude-sonnet-latest",
+      "el": "~anthropic/claude-sonnet-latest",
+      "fr": "~anthropic/claude-sonnet-latest",
+      "zh-Hans": "minimax/minimax-m2.7",
+      "zh-Hant": "minimax/minimax-m2.7",
+      "hu": "~anthropic/claude-sonnet-latest",
+      "fa": "~anthropic/claude-sonnet-latest",
+      "pt-BR": "~anthropic/claude-sonnet-latest",
+      "hi": "~anthropic/claude-sonnet-latest",
+      "it": "~anthropic/claude-sonnet-latest",
+      "pl": "~anthropic/claude-sonnet-latest",
+      "ja": "z-ai/glm-5.2",
+      "ko": "z-ai/glm-5.2",
+      "sk": "~anthropic/claude-sonnet-latest",
+      "sv": "~anthropic/claude-sonnet-latest",
+      "tr": "~anthropic/claude-sonnet-latest",
+      "uk": "~anthropic/claude-sonnet-latest",
+      "ro": "~anthropic/claude-sonnet-latest",
+      "ru": "~anthropic/claude-sonnet-latest",
+      "th": "~anthropic/claude-sonnet-latest",
+      "es": "~anthropic/claude-sonnet-latest",
+      "vi": "~anthropic/claude-sonnet-latest"
     },
     "locations": [
       {
@@ -32603,7 +32636,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 179
+        "line": 195
       }
     ]
   },
@@ -32696,7 +32729,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 180
+        "line": 196
       }
     ]
   },
@@ -32789,7 +32822,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 181
+        "line": 197
       }
     ]
   },
@@ -32882,7 +32915,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 182
+        "line": 198
       }
     ]
   },
@@ -32975,7 +33008,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 183
+        "line": 199
       }
     ]
   },
@@ -33068,7 +33101,70 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 184
+        "line": 200
+      }
+    ]
+  },
+  "d6b88bae": {
+    "source": "no cost - local",
+    "translated": {
+      "de": "kostenlos – lokal",
+      "nl": "gratis - lokaal",
+      "cs": "zdarma – místní",
+      "fr": "gratuit - local",
+      "el": "χωρίς κόστος - τοπικά",
+      "ar": "بدون تكلفة - محلي",
+      "zh-Hans": "免费 - 本地",
+      "zh-Hant": "免費 - 本地",
+      "hu": "ingyenes – helyi",
+      "pt-BR": "sem custo - local",
+      "ko": "무료 - 로컬",
+      "fa": "بدون هزینه - محلی",
+      "it": "nessun costo - locale",
+      "ja": "無料 - ローカル",
+      "pl": "bezpłatnie – lokalnie",
+      "hi": "कोई शुल्क नहीं - स्थानीय",
+      "tr": "ücretsiz - yerel",
+      "ro": "fără cost - local",
+      "ru": "бесплатно — локально",
+      "sk": "bez poplatku – lokálne",
+      "th": "ไม่มีค่าใช้จ่าย - ในเครื่อง",
+      "es": "sin costo - local",
+      "uk": "безкоштовно — локально",
+      "sv": "ingen kostnad – lokalt",
+      "vi": "không mất phí - cục bộ"
+    },
+    "models": {
+      "de": "~anthropic/claude-sonnet-latest",
+      "nl": "~anthropic/claude-sonnet-latest",
+      "cs": "~anthropic/claude-sonnet-latest",
+      "fr": "~anthropic/claude-sonnet-latest",
+      "el": "~anthropic/claude-sonnet-latest",
+      "ar": "~anthropic/claude-sonnet-latest",
+      "zh-Hans": "z-ai/glm-5.2",
+      "zh-Hant": "z-ai/glm-5.2",
+      "hu": "~anthropic/claude-sonnet-latest",
+      "pt-BR": "~anthropic/claude-sonnet-latest",
+      "ko": "z-ai/glm-5.2",
+      "fa": "~anthropic/claude-sonnet-latest",
+      "it": "~anthropic/claude-sonnet-latest",
+      "ja": "z-ai/glm-5.2",
+      "pl": "~anthropic/claude-sonnet-latest",
+      "hi": "~anthropic/claude-sonnet-latest",
+      "tr": "~anthropic/claude-sonnet-latest",
+      "ro": "~anthropic/claude-sonnet-latest",
+      "ru": "~anthropic/claude-sonnet-latest",
+      "sk": "~anthropic/claude-sonnet-latest",
+      "th": "~anthropic/claude-sonnet-latest",
+      "es": "~anthropic/claude-sonnet-latest",
+      "uk": "~anthropic/claude-sonnet-latest",
+      "sv": "~anthropic/claude-sonnet-latest",
+      "vi": "~anthropic/claude-sonnet-latest"
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/SettingsModelsTab.tsx",
+        "line": 213
       }
     ]
   },
@@ -33161,7 +33257,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 200
+        "line": 219
       }
     ]
   },
@@ -33254,7 +33350,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 203
+        "line": 222
       }
     ]
   },
@@ -33347,7 +33443,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 224
+        "line": 243
       }
     ]
   },
@@ -33440,7 +33536,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 236
+        "line": 256
       }
     ]
   },
@@ -33533,7 +33629,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 285
+        "line": 305
       }
     ]
   },
@@ -33626,7 +33722,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 291
+        "line": 311
       }
     ]
   },
@@ -33719,7 +33815,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 294
+        "line": 314
       }
     ]
   },
@@ -33812,7 +33908,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 318
+        "line": 338
       }
     ]
   },
@@ -33905,7 +34001,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 335
+        "line": 355
       }
     ]
   },
@@ -33998,7 +34094,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 340
+        "line": 360
       }
     ]
   },
@@ -34091,7 +34187,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 343
+        "line": 363
       }
     ]
   },
@@ -34184,7 +34280,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 365
+        "line": 385
       }
     ]
   },
@@ -34277,7 +34373,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 365
+        "line": 385
       }
     ]
   },
@@ -34370,7 +34466,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 369
+        "line": 389
       }
     ]
   },
@@ -34463,15 +34559,15 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 411
+        "line": 432
       },
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 466
+        "line": 488
       },
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 633
+        "line": 662
       }
     ]
   },
@@ -34564,11 +34660,137 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 413
+        "line": 434
       },
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 468
+        "line": 490
+      }
+    ]
+  },
+  "f886af65": {
+    "source": "Loading benchmark scores…",
+    "translated": {
+      "fr": "Chargement des scores de référence…",
+      "cs": "Načítání výsledků benchmarku…",
+      "de": "Benchmark-Ergebnisse werden geladen …",
+      "nl": "Benchmarkscores laden…",
+      "el": "Φόρτωση βαθμολογιών δοκιμών απόδοσης…",
+      "ar": "جارٍ تحميل نتائج الاختبار المرجعي…",
+      "zh-Hant": "正在載入基準測試分數…",
+      "zh-Hans": "正在加载基准测试分数…",
+      "hi": "बेंचमार्क स्कोर लोड हो रहे हैं…",
+      "pt-BR": "Carregando pontuações de benchmark…",
+      "fa": "در حال بارگذاری امتیازهای محک…",
+      "hu": "Teljesítménymutatók betöltése…",
+      "ja": "ベンチマークスコアを読み込み中…",
+      "pl": "Wczytywanie wyników testów porównawczych…",
+      "ko": "벤치마크 점수 불러오는 중…",
+      "it": "Caricamento dei punteggi benchmark…",
+      "uk": "Завантаження результатів тестування…",
+      "ro": "Se încarcă scorurile de benchmark…",
+      "sk": "Načítavajú sa výsledky benchmarku…",
+      "tr": "Kıyaslama puanları yükleniyor…",
+      "ru": "Загрузка результатов тестирования…",
+      "th": "กำลังโหลดคะแนนเบนช์มาร์ก…",
+      "es": "Cargando puntuaciones de referencia…",
+      "sv": "Läser in benchmarkresultat…",
+      "vi": "Đang tải điểm chuẩn…"
+    },
+    "models": {
+      "fr": "~anthropic/claude-sonnet-latest",
+      "cs": "~anthropic/claude-sonnet-latest",
+      "de": "~anthropic/claude-sonnet-latest",
+      "nl": "~anthropic/claude-sonnet-latest",
+      "el": "~anthropic/claude-sonnet-latest",
+      "ar": "~anthropic/claude-sonnet-latest",
+      "zh-Hant": "z-ai/glm-5.2",
+      "zh-Hans": "z-ai/glm-5.2",
+      "hi": "~anthropic/claude-sonnet-latest",
+      "pt-BR": "~anthropic/claude-sonnet-latest",
+      "fa": "~anthropic/claude-sonnet-latest",
+      "hu": "~anthropic/claude-sonnet-latest",
+      "ja": "minimax/minimax-m2.7",
+      "pl": "~anthropic/claude-sonnet-latest",
+      "ko": "z-ai/glm-5.2",
+      "it": "~anthropic/claude-sonnet-latest",
+      "uk": "~anthropic/claude-sonnet-latest",
+      "ro": "~anthropic/claude-sonnet-latest",
+      "sk": "~anthropic/claude-sonnet-latest",
+      "tr": "~anthropic/claude-sonnet-latest",
+      "ru": "~anthropic/claude-sonnet-latest",
+      "th": "~anthropic/claude-sonnet-latest",
+      "es": "~anthropic/claude-sonnet-latest",
+      "sv": "~anthropic/claude-sonnet-latest",
+      "vi": "~anthropic/claude-sonnet-latest"
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/SettingsModelsTab.tsx",
+        "line": 502
+      }
+    ]
+  },
+  "a900d0d2": {
+    "source": "Benchmark scores could not be loaded.",
+    "translated": {
+      "fr": "Impossible de charger les scores de référence.",
+      "cs": "Výsledky benchmarku se nepodařilo načíst.",
+      "de": "Die Benchmark-Ergebnisse konnten nicht geladen werden.",
+      "nl": "Benchmarkscores kunnen niet worden geladen.",
+      "el": "Δεν ήταν δυνατή η φόρτωση των βαθμολογιών δοκιμών απόδοσης.",
+      "ar": "تعذر تحميل نتائج الاختبار المرجعي.",
+      "zh-Hant": "無法載入基準測試分數。",
+      "zh-Hans": "无法加载基准测试分数。",
+      "hi": "बेंचमार्क स्कोर लोड नहीं किए जा सके।",
+      "pt-BR": "Não foi possível carregar as pontuações de benchmark.",
+      "fa": "بارگذاری امتیازهای محک امکان‌پذیر نبود.",
+      "hu": "A teljesítménymutatókat nem sikerült betölteni.",
+      "ja": "ベンチマークスコアを読み込めませんでした。",
+      "pl": "Nie udało się wczytać wyników testów porównawczych.",
+      "ko": "벤치마크 점수를 불러올 수 없습니다.",
+      "it": "Impossibile caricare i punteggi benchmark.",
+      "uk": "Не вдалося завантажити результати тестування.",
+      "ro": "Scorurile de benchmark nu au putut fi încărcate.",
+      "sk": "Výsledky benchmarku sa nepodarilo načítať.",
+      "tr": "Kıyaslama puanları yüklenemedi.",
+      "ru": "Не удалось загрузить результаты тестирования.",
+      "th": "ไม่สามารถโหลดคะแนนเบนช์มาร์กได้",
+      "es": "No se pudieron cargar las puntuaciones de referencia.",
+      "sv": "Det gick inte att läsa in benchmarkresultaten.",
+      "vi": "Không thể tải điểm chuẩn."
+    },
+    "models": {
+      "fr": "~anthropic/claude-sonnet-latest",
+      "cs": "~anthropic/claude-sonnet-latest",
+      "de": "~anthropic/claude-sonnet-latest",
+      "nl": "~anthropic/claude-sonnet-latest",
+      "el": "~anthropic/claude-sonnet-latest",
+      "ar": "~anthropic/claude-sonnet-latest",
+      "zh-Hant": "z-ai/glm-5.2",
+      "zh-Hans": "z-ai/glm-5.2",
+      "hi": "~anthropic/claude-sonnet-latest",
+      "pt-BR": "~anthropic/claude-sonnet-latest",
+      "fa": "~anthropic/claude-sonnet-latest",
+      "hu": "~anthropic/claude-sonnet-latest",
+      "ja": "minimax/minimax-m2.7",
+      "pl": "~anthropic/claude-sonnet-latest",
+      "ko": "z-ai/glm-5.2",
+      "it": "~anthropic/claude-sonnet-latest",
+      "uk": "~anthropic/claude-sonnet-latest",
+      "ro": "~anthropic/claude-sonnet-latest",
+      "sk": "~anthropic/claude-sonnet-latest",
+      "tr": "~anthropic/claude-sonnet-latest",
+      "ru": "~anthropic/claude-sonnet-latest",
+      "th": "~anthropic/claude-sonnet-latest",
+      "es": "~anthropic/claude-sonnet-latest",
+      "sv": "~anthropic/claude-sonnet-latest",
+      "vi": "~anthropic/claude-sonnet-latest"
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/SettingsModelsTab.tsx",
+        "line": 505
       }
     ]
   },
@@ -34661,7 +34883,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 498
+        "line": 526
       }
     ]
   },
@@ -34754,11 +34976,11 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 515
+        "line": 543
       },
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 710
+        "line": 736
       }
     ]
   },
@@ -34851,7 +35073,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 597
+        "line": 626
       }
     ]
   },
@@ -34944,7 +35166,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 614
+        "line": 643
       }
     ]
   },
@@ -35037,7 +35259,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 133
+        "line": 144
       }
     ]
   },
@@ -35130,7 +35352,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 141
+        "line": 152
       }
     ]
   },
@@ -35223,7 +35445,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 146
+        "line": 157
       }
     ]
   },
@@ -35316,7 +35538,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 151
+        "line": 162
       },
       {
         "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
@@ -35417,7 +35639,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 153
+        "line": 164
       }
     ]
   },
@@ -35510,7 +35732,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 156
+        "line": 167
       }
     ]
   },
@@ -35603,7 +35825,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 331
+        "line": 347
       }
     ]
   },
@@ -35696,7 +35918,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 332
+        "line": 348
       }
     ]
   },
@@ -35789,7 +36011,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 333
+        "line": 349
       }
     ]
   },
@@ -35882,7 +36104,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 334
+        "line": 350
       }
     ]
   },
@@ -35975,7 +36197,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 335
+        "line": 351
       }
     ]
   },
@@ -36068,7 +36290,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 336
+        "line": 352
       }
     ]
   },
@@ -36161,7 +36383,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 337
+        "line": 353
       }
     ]
   },
@@ -36254,7 +36476,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 338
+        "line": 354
       }
     ]
   },
@@ -36317,7 +36539,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 339
+        "line": 355
       }
     ]
   },
@@ -36410,7 +36632,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 340
+        "line": 356
       }
     ]
   },
@@ -36497,7 +36719,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 341
+        "line": 357
       }
     ]
   },
@@ -36584,7 +36806,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 342
+        "line": 358
       }
     ]
   },
@@ -36671,7 +36893,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 343
+        "line": 359
       }
     ]
   },
@@ -36764,7 +36986,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 346
+        "line": 362
       }
     ]
   },
@@ -36857,7 +37079,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 512
+        "line": 535
       },
       {
         "file": "src/renderer/components/Sidebar.tsx",
@@ -36954,11 +37176,11 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 533
+        "line": 556
       },
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 535
+        "line": 558
       }
     ]
   },
@@ -37051,7 +37273,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 570
+        "line": 593
       }
     ]
   },
@@ -37144,7 +37366,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 610
+        "line": 633
       }
     ]
   },
@@ -37237,7 +37459,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 706
+        "line": 732
       }
     ]
   },
@@ -37300,7 +37522,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 707
+        "line": 733
       }
     ]
   },
@@ -50877,6 +51099,455 @@
       }
     ]
   },
+  "dd740d3f": {
+    "source": "ChrF",
+    "translated": {
+      "nl": "ChrF",
+      "de": "ChrF",
+      "ar": "ChrF",
+      "el": "ChrF",
+      "cs": "ChrF",
+      "zh-Hant": "ChrF",
+      "fr": "ChrF",
+      "zh-Hans": "ChrF",
+      "it": "ChrF",
+      "ja": "ChrF",
+      "hu": "ChrF",
+      "hi": "ChrF",
+      "pt-BR": "ChrF",
+      "fa": "ChrF",
+      "ko": "ChrF",
+      "pl": "ChrF",
+      "ru": "ChrF",
+      "ro": "ChrF",
+      "tr": "ChrF",
+      "sv": "ChrF",
+      "sk": "ChrF",
+      "th": "ChrF",
+      "uk": "ChrF",
+      "es": "ChrF",
+      "vi": "ChrF"
+    },
+    "models": {
+      "nl": "~anthropic/claude-sonnet-latest",
+      "de": "~anthropic/claude-sonnet-latest",
+      "ar": "~anthropic/claude-sonnet-latest",
+      "el": "~anthropic/claude-sonnet-latest",
+      "cs": "~anthropic/claude-sonnet-latest",
+      "zh-Hant": "z-ai/glm-5.2",
+      "fr": "~anthropic/claude-sonnet-latest",
+      "zh-Hans": "z-ai/glm-5.2",
+      "it": "~anthropic/claude-sonnet-latest",
+      "ja": "z-ai/glm-5.2",
+      "hu": "~anthropic/claude-sonnet-latest",
+      "hi": "~anthropic/claude-sonnet-latest",
+      "pt-BR": "~anthropic/claude-sonnet-latest",
+      "fa": "~anthropic/claude-sonnet-latest",
+      "ko": "z-ai/glm-5.2",
+      "pl": "~anthropic/claude-sonnet-latest",
+      "ru": "~anthropic/claude-sonnet-latest",
+      "ro": "~anthropic/claude-sonnet-latest",
+      "tr": "~anthropic/claude-sonnet-latest",
+      "sv": "~anthropic/claude-sonnet-latest",
+      "sk": "~anthropic/claude-sonnet-latest",
+      "th": "~anthropic/claude-sonnet-latest",
+      "uk": "~anthropic/claude-sonnet-latest",
+      "es": "~anthropic/claude-sonnet-latest",
+      "vi": "~anthropic/claude-sonnet-latest"
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/settings/ModelScoreStats.tsx",
+        "line": 95
+      },
+      {
+        "file": "src/renderer/components/settings/ModelScoreStats.tsx",
+        "line": 136
+      }
+    ]
+  },
+  "6fa3f3da": {
+    "source": "Arena",
+    "translated": {
+      "nl": "Arena",
+      "de": "Arena",
+      "ar": "Arena",
+      "el": "Arena",
+      "cs": "Arena",
+      "zh-Hant": "Arena",
+      "fr": "Arena",
+      "zh-Hans": "Arena",
+      "it": "Arena",
+      "ja": "Arena",
+      "hu": "Arena",
+      "hi": "Arena",
+      "pt-BR": "Arena",
+      "fa": "Arena",
+      "ko": "Arena",
+      "pl": "Arena",
+      "ru": "Arena",
+      "ro": "Arena",
+      "tr": "Arena",
+      "sv": "Arena",
+      "sk": "Arena",
+      "th": "Arena",
+      "uk": "Arena",
+      "es": "Arena",
+      "vi": "Arena"
+    },
+    "models": {
+      "nl": "~anthropic/claude-sonnet-latest",
+      "de": "~anthropic/claude-sonnet-latest",
+      "ar": "~anthropic/claude-sonnet-latest",
+      "el": "~anthropic/claude-sonnet-latest",
+      "cs": "~anthropic/claude-sonnet-latest",
+      "zh-Hant": "z-ai/glm-5.2",
+      "fr": "~anthropic/claude-sonnet-latest",
+      "zh-Hans": "z-ai/glm-5.2",
+      "it": "~anthropic/claude-sonnet-latest",
+      "ja": "z-ai/glm-5.2",
+      "hu": "~anthropic/claude-sonnet-latest",
+      "hi": "~anthropic/claude-sonnet-latest",
+      "pt-BR": "~anthropic/claude-sonnet-latest",
+      "fa": "~anthropic/claude-sonnet-latest",
+      "ko": "z-ai/glm-5.2",
+      "pl": "~anthropic/claude-sonnet-latest",
+      "ru": "~anthropic/claude-sonnet-latest",
+      "ro": "~anthropic/claude-sonnet-latest",
+      "tr": "~anthropic/claude-sonnet-latest",
+      "sv": "~anthropic/claude-sonnet-latest",
+      "sk": "~anthropic/claude-sonnet-latest",
+      "th": "~anthropic/claude-sonnet-latest",
+      "uk": "~anthropic/claude-sonnet-latest",
+      "es": "~anthropic/claude-sonnet-latest",
+      "vi": "~anthropic/claude-sonnet-latest"
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/settings/ModelScoreStats.tsx",
+        "line": 98
+      }
+    ]
+  },
+  "88fa71f0": {
+    "source": "Index",
+    "translated": {
+      "nl": "Index",
+      "de": "Index",
+      "ar": "المؤشر",
+      "el": "Δείκτης",
+      "cs": "Index",
+      "zh-Hant": "指數",
+      "fr": "Indice",
+      "zh-Hans": "指数",
+      "it": "Indice",
+      "ja": "インデックス",
+      "hu": "Index",
+      "hi": "सूचकांक",
+      "pt-BR": "Índice",
+      "fa": "شاخص",
+      "ko": "지수",
+      "pl": "Wskaźnik",
+      "ru": "Индекс",
+      "ro": "Indice",
+      "tr": "Endeks",
+      "sv": "Index",
+      "sk": "Index",
+      "th": "ดัชนี",
+      "uk": "Індекс",
+      "es": "Índice",
+      "vi": "Chỉ số"
+    },
+    "models": {
+      "nl": "~anthropic/claude-sonnet-latest",
+      "de": "~anthropic/claude-sonnet-latest",
+      "ar": "~anthropic/claude-sonnet-latest",
+      "el": "~anthropic/claude-sonnet-latest",
+      "cs": "~anthropic/claude-sonnet-latest",
+      "zh-Hant": "z-ai/glm-5.2",
+      "fr": "~anthropic/claude-sonnet-latest",
+      "zh-Hans": "z-ai/glm-5.2",
+      "it": "~anthropic/claude-sonnet-latest",
+      "ja": "z-ai/glm-5.2",
+      "hu": "~anthropic/claude-sonnet-latest",
+      "hi": "~anthropic/claude-sonnet-latest",
+      "pt-BR": "~anthropic/claude-sonnet-latest",
+      "fa": "~anthropic/claude-sonnet-latest",
+      "ko": "z-ai/glm-5.2",
+      "pl": "~anthropic/claude-sonnet-latest",
+      "ru": "~anthropic/claude-sonnet-latest",
+      "ro": "~anthropic/claude-sonnet-latest",
+      "tr": "~anthropic/claude-sonnet-latest",
+      "sv": "~anthropic/claude-sonnet-latest",
+      "sk": "~anthropic/claude-sonnet-latest",
+      "th": "~anthropic/claude-sonnet-latest",
+      "uk": "~anthropic/claude-sonnet-latest",
+      "es": "~anthropic/claude-sonnet-latest",
+      "vi": "~anthropic/claude-sonnet-latest"
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/settings/ModelScoreStats.tsx",
+        "line": 107
+      }
+    ]
+  },
+  "b027480b": {
+    "source": "Index blends languagebench ChrF, Arena Score, and price.",
+    "translated": {
+      "ar": "يجمع Index بين درجة ChrF في languagebench ونتيجة Arena والسعر.",
+      "el": "Ο δείκτης συνδυάζει τα languagebench ChrF, Arena Score και την τιμή.",
+      "fr": "L'indice combine le ChrF de languagebench, le score Arena et le prix.",
+      "de": "Der Index kombiniert languagebench ChrF, Arena Score und Preis.",
+      "nl": "Index combineert languagebench ChrF, Arena Score en prijs.",
+      "cs": "Index kombinuje languagebench ChrF, Arena Score a cenu.",
+      "zh-Hant": "索引結合 languagebench ChrF、Arena Score 與價格。",
+      "zh-Hans": "指数融合了 languagebench ChrF、Arena Score 和价格。",
+      "pl": "Indeks łączy wyniki languagebench ChrF, Arena Score i cenę.",
+      "hu": "Az Index a languagebench ChrF-értékét, az Arena Score-t és az árat ötvözi.",
+      "hi": "इंडेक्स languagebench ChrF, एरीना स्कोर और कीमत को मिलाकर बनाया गया है।",
+      "it": "L'indice combina ChrF di languagebench, Arena Score e prezzo.",
+      "fa": "شاخص، امتیاز ChrF در languagebench، امتیاز Arena و قیمت را ترکیب می‌کند.",
+      "ko": "인덱스는 languagebench ChrF, Arena Score 및 가격을 결합합니다.",
+      "pt-BR": "O índice combina ChrF do languagebench, Arena Score e preço.",
+      "ja": "指数はlanguagebench ChrF、Arena Score、および価格を組み合わせています。",
+      "es": "Index combina ChrF de languagebench, Arena Score y precio.",
+      "ro": "Indexul combină ChrF din languagebench, scorul Arena și prețul.",
+      "tr": "Endeks, languagebench ChrF, Arena Puanı ve fiyatı bir araya getirir.",
+      "sv": "Index kombinerar languagebench ChrF, Arena Score och pris.",
+      "ru": "Индекс объединяет показатели languagebench ChrF, Arena Score и цену.",
+      "th": "ดัชนีนี้รวมคะแนน languagebench ChrF, คะแนน Arena และราคาเข้าด้วยกัน",
+      "sk": "Index kombinuje languagebench ChrF, Arena Score a cenu.",
+      "uk": "Індекс поєднує languagebench ChrF, Arena Score та ціну.",
+      "vi": "Chỉ số này kết hợp ChrF của languagebench, Điểm Arena và giá."
+    },
+    "models": {
+      "ar": "~anthropic/claude-sonnet-latest",
+      "el": "~anthropic/claude-sonnet-latest",
+      "fr": "~anthropic/claude-sonnet-latest",
+      "de": "~anthropic/claude-sonnet-latest",
+      "nl": "~anthropic/claude-sonnet-latest",
+      "cs": "~anthropic/claude-sonnet-latest",
+      "zh-Hant": "z-ai/glm-5.2",
+      "zh-Hans": "z-ai/glm-5.2",
+      "pl": "~anthropic/claude-sonnet-latest",
+      "hu": "~anthropic/claude-sonnet-latest",
+      "hi": "~anthropic/claude-sonnet-latest",
+      "it": "~anthropic/claude-sonnet-latest",
+      "fa": "~anthropic/claude-sonnet-latest",
+      "ko": "z-ai/glm-5.2",
+      "pt-BR": "~anthropic/claude-sonnet-latest",
+      "ja": "z-ai/glm-5.2",
+      "es": "~anthropic/claude-sonnet-latest",
+      "ro": "~anthropic/claude-sonnet-latest",
+      "tr": "~anthropic/claude-sonnet-latest",
+      "sv": "~anthropic/claude-sonnet-latest",
+      "ru": "~anthropic/claude-sonnet-latest",
+      "th": "~anthropic/claude-sonnet-latest",
+      "sk": "~anthropic/claude-sonnet-latest",
+      "uk": "~anthropic/claude-sonnet-latest",
+      "vi": "~anthropic/claude-sonnet-latest"
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/settings/ModelScoreStats.tsx",
+        "line": 127
+      },
+      {
+        "file": "src/renderer/components/settings/ModelScoreStats.tsx",
+        "line": 134
+      }
+    ]
+  },
+  "83cc7ca8": {
+    "source": "Arena Score",
+    "translated": {
+      "zh-Hans": "竞技场得分",
+      "de": "Arena-Wertung",
+      "fr": "Score Arena",
+      "el": "Βαθμολογία Arena",
+      "cs": "Skóre arény",
+      "ar": "نتيجة الساحة",
+      "nl": "Arena-score",
+      "zh-Hant": "競技場分數",
+      "hu": "Aréna pontszám",
+      "it": "Punteggio Arena",
+      "pl": "Wynik Areny",
+      "fa": "امتیاز آرنا",
+      "pt-BR": "Pontuação da Arena",
+      "hi": "एरेना स्कोर",
+      "ko": "아레나 점수",
+      "ja": "アリーナスコア",
+      "ru": "Рейтинг Arena",
+      "tr": "Arena Puanı",
+      "sk": "Skóre arény",
+      "uk": "Рейтинг Arena",
+      "es": "Puntuación de Arena",
+      "ro": "Scor Arena",
+      "sv": "Arenapoäng",
+      "th": "คะแนน Arena",
+      "vi": "Điểm Arena"
+    },
+    "models": {
+      "zh-Hans": "z-ai/glm-5.2",
+      "de": "~anthropic/claude-sonnet-latest",
+      "fr": "~anthropic/claude-sonnet-latest",
+      "el": "~anthropic/claude-sonnet-latest",
+      "cs": "~anthropic/claude-sonnet-latest",
+      "ar": "~anthropic/claude-sonnet-latest",
+      "nl": "~anthropic/claude-sonnet-latest",
+      "zh-Hant": "z-ai/glm-5.2",
+      "hu": "~anthropic/claude-sonnet-latest",
+      "it": "~anthropic/claude-sonnet-latest",
+      "pl": "~anthropic/claude-sonnet-latest",
+      "fa": "~anthropic/claude-sonnet-latest",
+      "pt-BR": "~anthropic/claude-sonnet-latest",
+      "hi": "~anthropic/claude-sonnet-latest",
+      "ko": "z-ai/glm-5.2",
+      "ja": "z-ai/glm-5.2",
+      "ru": "~anthropic/claude-sonnet-latest",
+      "tr": "~anthropic/claude-sonnet-latest",
+      "sk": "~anthropic/claude-sonnet-latest",
+      "uk": "~anthropic/claude-sonnet-latest",
+      "es": "~anthropic/claude-sonnet-latest",
+      "ro": "~anthropic/claude-sonnet-latest",
+      "sv": "~anthropic/claude-sonnet-latest",
+      "th": "~anthropic/claude-sonnet-latest",
+      "vi": "~anthropic/claude-sonnet-latest"
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/settings/ModelScoreStats.tsx",
+        "line": 142
+      }
+    ]
+  },
+  "66096c22": {
+    "source": "Costs",
+    "translated": {
+      "fr": "Coûts",
+      "de": "Kosten",
+      "ar": "التكاليف",
+      "el": "Κόστη",
+      "nl": "Kosten",
+      "cs": "Náklady",
+      "zh-Hant": "成本",
+      "zh-Hans": "成本",
+      "hi": "लागत",
+      "it": "Costi",
+      "fa": "هزینه‌ها",
+      "ja": "費用",
+      "pt-BR": "Custos",
+      "pl": "Koszty",
+      "hu": "Költségek",
+      "ko": "비용",
+      "uk": "Витрати",
+      "ro": "Costuri",
+      "ru": "Расходы",
+      "sk": "Náklady",
+      "sv": "Kostnader",
+      "tr": "Maliyetler",
+      "th": "ต้นทุน",
+      "es": "Costes",
+      "vi": "Chi phí"
+    },
+    "models": {
+      "fr": "~anthropic/claude-sonnet-latest",
+      "de": "~anthropic/claude-sonnet-latest",
+      "ar": "~anthropic/claude-sonnet-latest",
+      "el": "~anthropic/claude-sonnet-latest",
+      "nl": "~anthropic/claude-sonnet-latest",
+      "cs": "~anthropic/claude-sonnet-latest",
+      "zh-Hant": "z-ai/glm-5.2",
+      "zh-Hans": "z-ai/glm-5.2",
+      "hi": "~anthropic/claude-sonnet-latest",
+      "it": "~anthropic/claude-sonnet-latest",
+      "fa": "~anthropic/claude-sonnet-latest",
+      "ja": "z-ai/glm-5.2",
+      "pt-BR": "~anthropic/claude-sonnet-latest",
+      "pl": "~anthropic/claude-sonnet-latest",
+      "hu": "~anthropic/claude-sonnet-latest",
+      "ko": "z-ai/glm-5.2",
+      "uk": "~anthropic/claude-sonnet-latest",
+      "ro": "~anthropic/claude-sonnet-latest",
+      "ru": "~anthropic/claude-sonnet-latest",
+      "sk": "~anthropic/claude-sonnet-latest",
+      "sv": "~anthropic/claude-sonnet-latest",
+      "tr": "~anthropic/claude-sonnet-latest",
+      "th": "~anthropic/claude-sonnet-latest",
+      "es": "~anthropic/claude-sonnet-latest",
+      "vi": "~anthropic/claude-sonnet-latest"
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/settings/ModelScoreStats.tsx",
+        "line": 148
+      }
+    ]
+  },
+  "4c64899a": {
+    "source": "the provider catalog, otherwise",
+    "translated": {
+      "zh-Hans": "提供商目录，否则",
+      "de": "den Anbieterkatalog, andernfalls",
+      "fr": "le catalogue des fournisseurs, sinon",
+      "el": "τον κατάλογο παρόχων, διαφορετικά",
+      "cs": "katalog poskytovatelů, jinak",
+      "ar": "كتالوج المزوّد، وإلا",
+      "nl": "de providercatalogus, anders",
+      "zh-Hant": "供應商目錄，否則",
+      "hu": "a szolgáltatói katalógus, egyébként",
+      "it": "il catalogo dei provider, altrimenti",
+      "pl": "katalog dostawców, w przeciwnym razie",
+      "fa": "فهرست ارائه‌دهندگان، در غیر این صورت",
+      "pt-BR": "o catálogo do provedor, caso contrário",
+      "hi": "प्रोवाइडर कैटलॉग, अन्यथा",
+      "ko": "공급자 카탈로그, 그렇지 않으면",
+      "ja": "プロバイダカタログ、それ以外の場合",
+      "ru": "каталог провайдеров, в противном случае",
+      "tr": "sağlayıcı kataloğu, aksi takdirde",
+      "sk": "katalóg poskytovateľov, inak",
+      "uk": "каталог провайдерів, інакше",
+      "es": "el catálogo de proveedores, de lo contrario",
+      "ro": "catalogul furnizorului, în caz contrar",
+      "sv": "leverantörskatalogen, annars",
+      "th": "แค็ตตาล็อกผู้ให้บริการ มิฉะนั้น",
+      "vi": "danh mục nhà cung cấp, nếu không thì"
+    },
+    "models": {
+      "zh-Hans": "z-ai/glm-5.2",
+      "de": "~anthropic/claude-sonnet-latest",
+      "fr": "~anthropic/claude-sonnet-latest",
+      "el": "~anthropic/claude-sonnet-latest",
+      "cs": "~anthropic/claude-sonnet-latest",
+      "ar": "~anthropic/claude-sonnet-latest",
+      "nl": "~anthropic/claude-sonnet-latest",
+      "zh-Hant": "z-ai/glm-5.2",
+      "hu": "~anthropic/claude-sonnet-latest",
+      "it": "~anthropic/claude-sonnet-latest",
+      "pl": "~anthropic/claude-sonnet-latest",
+      "fa": "~anthropic/claude-sonnet-latest",
+      "pt-BR": "~anthropic/claude-sonnet-latest",
+      "hi": "~anthropic/claude-sonnet-latest",
+      "ko": "z-ai/glm-5.2",
+      "ja": "z-ai/glm-5.2",
+      "ru": "~anthropic/claude-sonnet-latest",
+      "tr": "~anthropic/claude-sonnet-latest",
+      "sk": "~anthropic/claude-sonnet-latest",
+      "uk": "~anthropic/claude-sonnet-latest",
+      "es": "~anthropic/claude-sonnet-latest",
+      "ro": "~anthropic/claude-sonnet-latest",
+      "sv": "~anthropic/claude-sonnet-latest",
+      "th": "~anthropic/claude-sonnet-latest",
+      "vi": "~anthropic/claude-sonnet-latest"
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/settings/ModelScoreStats.tsx",
+        "line": 148
+      }
+    ]
+  },
   "ebd9bec4": {
     "source": "Layout",
     "translated": {
@@ -53862,43 +54533,43 @@
     "locations": [
       {
         "file": "src/renderer/contexts/AppContext.tsx",
-        "line": 563
+        "line": 566
       },
       {
         "file": "src/renderer/contexts/AppContext.tsx",
-        "line": 695
+        "line": 698
       },
       {
         "file": "src/renderer/contexts/AppContext.tsx",
-        "line": 835
+        "line": 838
       },
       {
         "file": "src/renderer/contexts/AppContext.tsx",
-        "line": 926
+        "line": 929
       },
       {
         "file": "src/renderer/contexts/AppContext.tsx",
-        "line": 994
+        "line": 997
       },
       {
         "file": "src/renderer/contexts/AppContext.tsx",
-        "line": 1060
+        "line": 1063
       },
       {
         "file": "src/renderer/contexts/AppContext.tsx",
-        "line": 1172
+        "line": 1175
       },
       {
         "file": "src/renderer/contexts/AppContext.tsx",
-        "line": 1304
+        "line": 1307
       },
       {
         "file": "src/renderer/contexts/AppContext.tsx",
-        "line": 1440
+        "line": 1443
       },
       {
         "file": "src/renderer/contexts/AppContext.tsx",
-        "line": 1559
+        "line": 1562
       }
     ]
   },

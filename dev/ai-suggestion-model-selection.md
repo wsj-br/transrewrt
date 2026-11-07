@@ -74,7 +74,7 @@ Cancel mid-run aborts the HTTP stream; the server stops further live-timing and 
 | **OpenRouter endpoint performance** | Speed axis: per-model throughput / latency | OpenRouter disk cache (see README) | `presets-editor-openrouter-cache.json` (6h) |
 | **Live translate timing** | Real end-to-end duration via the app’s `streamCompletion` path | Same provider keys as the app | `presets-editor-timing-cache.json` (2h) |
 
-Attribution / licence: languagebench is CC-BY-SA-4.0; Arena leaderboard data is CC-BY-4.0; models.dev is MIT. Each is recorded in the cache payload `sources` block. Scores are used only on the maintainer's machine to shortlist model IDs; no dataset content is redistributed with Transrewrt.
+Attribution / licence: languagebench is CC-BY-SA-4.0; Arena leaderboard data is CC-BY-4.0; models.dev is MIT. Each is recorded in the cache payload `sources` block. The presets editor and presets-check use scores only to choose model ids. `easy-mode-config/presets.json` stays model-id-only, and the benchmark cache stays gitignored. Raw languagebench rows are not shipped.
 
 The capability axis was previously sourced from Artificial Analysis. That source was removed because its Data Platform terms restrict use to internal purposes and bar structured/machine-readable reuse and "model/provider selection guidance" — which is what this pipeline does. If a source is unavailable (fetch error), shortlists still build from the remaining sources (languagebench + catalog pricing, etc.). If the whole benchmark cache fetch fails, suggestion falls back to the older catalog-only LLM behaviour (with a log warning).
 
@@ -99,6 +99,18 @@ Each preset is mapped to a profile from its id (`PROFILE_BY_PRESET`), then from 
 - **free**: zero-price catalog entries only, then quality 0.40, intelligence 0.20, price 0.30, speed 0.10; no quality floor.
 
 Models under the floor are ranked after those that clear it.
+
+### In-app model cards
+
+Settings > Models shows an **Index** chip on a model card when a benchmark match exists. That index uses the ai-i18n-tools `suggest-models --quality` weights, with no speed axis:
+
+- ChrF 0.45, Arena 0.35, price 0.20
+- quality floor 0.70 of the best ChrF in that provider's own catalog pool
+- missing ChrF stands in as 0.35 and sorts below the floor; missing Arena stands in as 0.45
+- a zero or missing catalog price is unknown (stand-in 0.50) unless models.dev or languagebench cost fills it
+- Index = round(100 × weighted score, 1 decimal), normalised inside the provider pool, so it is not comparable across providers
+
+The card shows the index. Its tooltip shows the model's place in that provider's list, plus measured ChrF and Arena as the model value over the best value in the same list. A model with neither ChrF nor Arena shows nothing. On the Available Models row, a Creative Commons icon tooltip names each source and its licence: languagebench ChrF ([languagebench](https://huggingface.co/spaces/fair-forward/languagebench), [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)), Arena Score ([LMArena](https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset), [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)), and USD per 1M tokens from the provider catalog or [models.dev](https://models.dev/) ([MIT](https://opensource.org/license/mit)). Implementation: `src/shared/modelBenchmarks/`.
 
 Metrics are normalised within the provider’s candidate pool, then combined with those weights. Catalog blended price prefers real non-zero provider pricing; if the catalog reports `$0` for an unpriced SKU, models.dev / languagebench cost is used instead.
 
@@ -219,7 +231,7 @@ AI Suggestion does **not** change presets until you save from the review step.
 - WMT human evals and commercial scoreboards are **not** ingested (no stable machine-readable feed for this pipeline).
 - Shortlist size and weights are constants in `benchmark-scores.js`—tune there if product priorities change.
 
-**Do not publish score-based rankings.** If a ChrF / Arena Score table is ever published in docs or on the website, license that table CC BY-SA 4.0 (languagebench share-alike) and attribute both languagebench and Arena. The shipped catalog (`easy-mode-config/presets.json`) must stay model-ID-only.
+The Settings > Models cards are the published score display, and that page keeps the attribution line. Do not add a separate ChrF / Arena Score table to docs or the website unless that table is licensed CC BY-SA 4.0 (languagebench share-alike) and attributes both languagebench and Arena. The shipped catalog (`easy-mode-config/presets.json`) must stay model-ID-only.
 
 ---
 
@@ -228,6 +240,7 @@ AI Suggestion does **not** change presets until you save from the review step.
 | Path | Role |
 |------|------|
 | [`dev/presets-shared/benchmark-scores.js`](presets-shared/benchmark-scores.js) | Fetch/cache benchmarks, profile scoring, shortlists, shortlist enforcement. Shared with presets-check. |
+| [`src/shared/modelBenchmarks/`](../src/shared/modelBenchmarks/) | In-app model-card index (ai-i18n-tools `--quality` weights only). |
 | [`dev/presets-shared/fetchArenaLeaderboard.mjs`](presets-shared/fetchArenaLeaderboard.mjs) | Official Arena parquet fetch (`text` / `latest` / `overall`) |
 | [`dev/presets-shared/timingCache.js`](presets-shared/timingCache.js) | 2h live-timing disk cache |
 | [`dev/presets-shared/translatePresetsBenchmark.js`](presets-shared/translatePresetsBenchmark.js) | Translate sample + candidate timing |

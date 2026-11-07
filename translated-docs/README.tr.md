@@ -66,7 +66,7 @@ Platform ayrıntıları (Compose, SmartScreen, apt kitaplıkları, GPU bayraklar
 
 Tüm ürün belgeleri (kurulum, API anahtarları, kılavuzlar, ayarlar, sorun giderme):
 
-**[https://wsj-br.github.io/transrewrt/docs/](https://wsj-br.github.io/transrewrt/docs/)**
+[https://wsj-br.github.io/transrewrt/docs/](https://wsj-br.github.io/transrewrt/docs/)
 
 - [API anahtarı](https://wsj-br.github.io/transrewrt/docs/api-key/)
 - [Yapılandırma](https://wsj-br.github.io/transrewrt/docs/configuration/)
@@ -96,7 +96,7 @@ Tüm ürün belgeleri (kurulum, API anahtarları, kılavuzlar, ayarlar, sorun gi
 
 Telif Hakkı © 2026 Waldemar Scudeller Jr.
 
-[Apache License 2.0](../LICENSE)
+[Apache Lisansı 2.0](../LICENSE)
 
 <br/>
 

@@ -66,7 +66,7 @@ xattr -dr com.apple.quarantine /Applications/Transrewrt.app
 
 전체 제품 문서(설치, API 키, 가이드, 설정, 문제 해결):
 
-**[https://wsj-br.github.io/transrewrt/docs/](https://wsj-br.github.io/transrewrt/docs/)**
+[https://wsj-br.github.io/transrewrt/docs/](https://wsj-br.github.io/transrewrt/docs/)
 
 - [API 키](https://wsj-br.github.io/transrewrt/docs/api-key/)
 - [구성](https://wsj-br.github.io/transrewrt/docs/configuration/)
@@ -97,7 +97,7 @@ xattr -dr com.apple.quarantine /Applications/Transrewrt.app
 
 저작권 © 2026 월더마르 스쿠델러 주니어.
 
-[Apache License 2.0](../LICENSE)
+[아파치 라이선스 2.0](../LICENSE)
 
 <br/>
 

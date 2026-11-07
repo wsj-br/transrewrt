@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { formatDecimal } from '../utils/misc/formatUtils';
 import { flipUiArrowsForRtl, getTextDirection } from "ai-i18n-tools/runtime";
 import { SOURCE_LOCALE } from '../i18n';
-import { providerSortKeyFromModelId } from '../utils/misc/modelIdUtils';
+import { filterEngineFromModelId, providerSortKeyFromModelId } from '../utils/misc/modelIdUtils';
 import PropTypes from 'prop-types';
 import {
   Cpu,
@@ -45,6 +45,7 @@ import {
   settingsTabPillIdle,
 } from "./settings/settingsLayoutClasses";
 import SelectFromPresetsModal from "./SelectFromPresetsModal";
+import { IndexSourcesHint, ModelScoreStats } from "./settings/ModelScoreStats";
 import {
   modelAction,
   modelCardClass,
@@ -129,6 +130,9 @@ const SettingsModelsTab = ({
   onToggleModelSelection,
   onDeselectAllModels,
   getModelName,
+  modelScores = {},
+  modelScoresLoading = false,
+  modelScoresError = "",
   presets = [],
   configuredCloudEngines = [],
   onLoadPresetModels,
@@ -146,15 +150,26 @@ const SettingsModelsTab = ({
 
   const sortedSelectedModelIds = useMemo(() => {
     const ids = Array.from(selectedModelIds);
-    const [sortType, sortDir] = (sortBy || 'model-asc').split('-');
+    const [sortType, sortDir] = (sortBy || 'index-desc').split('-');
     const ascending = sortDir === 'asc';
     const getModel = (id) => allModels.find((m) => m.id === id) || { id };
     const getCost = (model) => modelCostSortValue(model);
+    const indexValue = (model) => {
+      const n = modelScores[model.id]?.index;
+      return n != null && Number.isFinite(Number(n)) ? Number(n) : Number.NEGATIVE_INFINITY;
+    };
     return ids.slice().sort((idA, idB) => {
       const a = getModel(idA);
       const b = getModel(idB);
       let cmp;
-      if (sortType === 'cost') {
+      if (sortType === 'index') {
+        cmp = indexValue(a) - indexValue(b);
+        if (cmp === 0) {
+          cmp = (getModelName(a) || idA).trim().toLowerCase().localeCompare(
+            (getModelName(b) || idB).trim().toLowerCase(),
+          );
+        }
+      } else if (sortType === 'cost') {
         cmp = getCost(a) - getCost(b);
       } else if (sortType === 'provider') {
         const provA = providerSortKeyFromModelId(idA);
@@ -172,10 +187,11 @@ const SettingsModelsTab = ({
       }
       return ascending ? cmp : -cmp;
     });
-  }, [selectedModelIds, sortBy, allModels, getModelName]);
+  }, [selectedModelIds, sortBy, allModels, getModelName, modelScores]);
 
   const sortOptions = useMemo(
     () => [
+      { value: 'index-desc', label: flipUiArrowsForRtl(t('Index High to Low'), isRtl) },
       { value: 'cost-asc', label: flipUiArrowsForRtl(t('Cost Low to High'), isRtl) },
       { value: 'cost-desc', label: flipUiArrowsForRtl(t('Cost High to Low'), isRtl) },
       { value: 'model-asc', label: flipUiArrowsForRtl(t('Model A→Z'), isRtl) },
@@ -193,6 +209,9 @@ const SettingsModelsTab = ({
 
   const renderModelPricingLine = (model) => {
     if (!isPricingKnown(model)) {
+      if (filterEngineFromModelId(model.id) === "local") {
+        return t("no cost - local");
+      }
       return t("Cost not available");
     }
     const inCost = formatPricePer1M(model.pricing?.prompt);
@@ -219,7 +238,7 @@ const SettingsModelsTab = ({
               isBelowLg ? "mb-2.5 pb-1.5" : "shrink-0 border-b border-border pb-2.5",
             )}
           >
-            <div className={modelsAvailableTitle}>
+            <div className={cn(modelsAvailableTitle, "w-full")}>
               <Cpu size={18} strokeWidth={2} />
               <span className="font-semibold">{t('Available Models')}</span>
               {!isBelowLg && (
@@ -227,6 +246,7 @@ const SettingsModelsTab = ({
                   {allModels.length}
                 </Badge>
               )}
+              <IndexSourcesHint />
             </div>
             <div className={modelsHeaderSearch}>
               <div className="relative">
@@ -401,6 +421,7 @@ const SettingsModelsTab = ({
                                           <WandSparkles size={10} className="me-1" />{t('Free')}
                                         </Badge>
                                       )}
+                                      <ModelScoreStats score={modelScores[model.id]} />
                                     </div>
                                     <span className={cn(modelPrice, "text-muted-foreground")}>
                                       {renderModelPricingLine(model)}
@@ -456,6 +477,7 @@ const SettingsModelsTab = ({
                                 <WandSparkles size={10} className="me-1" />{t('Free')}
                               </Badge>
                             )}
+                            <ModelScoreStats score={modelScores[model.id]} />
                           </div>
                           <span className={cn(modelPrice, "text-muted-foreground")}>
                             {renderModelPricingLine(model)}
@@ -476,6 +498,12 @@ const SettingsModelsTab = ({
             )}
           </div>
           </div>
+          {modelScoresLoading && (
+            <p className="shrink-0 pt-1 text-xs text-muted-foreground">{t("Loading benchmark scores…")}</p>
+          )}
+          {modelScoresError && !modelScoresLoading && (
+            <p className="shrink-0 pt-1 text-xs text-destructive">{t("Benchmark scores could not be loaded.")}</p>
+          )}
     </div>
   );
 
@@ -556,6 +584,7 @@ const SettingsModelsTab = ({
                               <WandSparkles size={10} className="me-1" />{t('Free')}
                             </Badge>
                           )}
+                          <ModelScoreStats score={modelScores[modelId]} />
                         </div>
                         <span className={cn(modelPrice, "text-muted-foreground")}>
                           {renderModelPricingLine(model)}
@@ -679,6 +708,9 @@ SettingsModelsTab.propTypes = {
   onToggleModelSelection: PropTypes.func.isRequired,
   onDeselectAllModels: PropTypes.func.isRequired,
   getModelName: PropTypes.func.isRequired,
+  modelScores: PropTypes.object,
+  modelScoresLoading: PropTypes.bool,
+  modelScoresError: PropTypes.string,
   presets: PropTypes.array,
   configuredCloudEngines: PropTypes.arrayOf(PropTypes.string),
   onLoadPresetModels: PropTypes.func.isRequired,
