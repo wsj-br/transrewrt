@@ -25,7 +25,10 @@ build_timestamp
 *.backup.*
 
 # AI tools
-#.agents/
+.agents/
+.trae/
+.cursor/
+
 
 
 # Cache
