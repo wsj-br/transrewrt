@@ -21,7 +21,7 @@ description: 查看过去的翻译、重写和转换运行记录，包含完整�
 
 ## 如果历史记录缺失
 
-**保留执行历史**可能已关闭。在[设置 → 常规设置](/docs/settings/#general-settings)中启用它，除非管理员设置了`HISTORY_DISABLED` — 参见[配置](/docs/configuration/#privacy-mode)。
+**保留执行历史记录**可能已关闭。请在[设置 → 常规设置](/docs/settings/#general-settings)中启用它，除非管理员设置了 `HISTORY_DISABLED` — 参见[配置](/docs/configuration/#privacy-mode)。
 
 ## 后续步骤
 

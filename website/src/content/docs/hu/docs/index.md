@@ -21,9 +21,9 @@ Az Ön kulcsai, az Ön modelljei, az Ön hosztja – nincs Transrewrt felhőfió
 
 ![Fordítási munkaterület](/images/screenshots/hu/translate.png)
 
-- **Oldalsáv** – a fő navigáció: Fordítás, Átírás, Átalakítás, Irányítópult, Előzmények, Beállítások (és a bejelentkezett felhasználó a weben).
-- **Eszköztár** – az oldal címe, az **előbeállítás** (Egyszerű) vagy a **modell** (Haladó) választó, az **interfész nyelve** (földgömb ikon; nem változtatja meg a Fordítás innen/ide nyelvet), és a Súgó (**?**), amely ezekre a dokumentumokra mutat. Az előbeállítás/modell menüben lehetőség van az **Egyszerű/Haladó módra váltásra** is (a Beállítások megnyitása felett).
-- **Munkaterület** – a Bemeneti és Kimeneti panelek, számlálókkal, időzítéssel, TPS-sel és opcionális költséggel. Az akciósáv egy kis alkalmazás **verzió** linket (jobbra lent) mutat a GitHub Pages oldalra.
+- **Oldalsáv** — a fő navigáció: Fordítás, Átírás, Átalakítás, Irányítópult, Előzmények, Beállítások (és a bejelentkezett Felhasználó a weben).
+- **Eszköztár** — az oldal címe, az **Előbeállítás** (Egyszerű) vagy **Modell** (Haladó) választó, a **Felület nyelve** (földgömb ikon; nem módosítja a Fordítás innen/ide beállítást), valamint a Súgó (**?**), amely ezekre a dokumentumokra mutat. Az előbeállítás/modell menüben **Váltás Egyszerű/Haladó módra** is lehetséges (a Beállítások megnyitása felett).
+- **Munkaterület** — a Bemenet és Kimenet panelek, számlálókkal, időzítéssel, TPS-sel és opcionális Költséggel. A műveleti sávon egy kis alkalmazás **Verzió** hivatkozás látható (jobb alsó sarokban), amely a GitHub Pages oldalra mutat.
 
 Alapértelmezés szerint az alkalmazás **Egyszerű** módban fut: válasszon egy **előbeállítást** és egy **Szolgáltatót** a Beállításokban. Váltson **Haladó** módra a [Beállítások → Általános beállítások](/docs/settings/#general-settings) alatt a teljes modelllista megtekintéséhez, vagy használja az eszköztár előbeállítás/modell menüjében található kapcsolót.
 
@@ -46,4 +46,4 @@ Alapértelmezés szerint az alkalmazás **Egyszerű** módban fut: válasszon eg
 - [Beállítások](/docs/settings/)
 - [Gyakori problémák](/docs/common-issues/)
 
-[Download releases](https://github.com/wsj-br/transrewrt/releases) · [GitHub repository](https://github.com/wsj-br/transrewrt)
+[Kiadások letöltése](https://github.com/wsj-br/transrewrt/releases) · [GitHub Adattár](https://github.com/wsj-br/transrewrt)

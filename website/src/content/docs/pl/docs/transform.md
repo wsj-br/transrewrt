@@ -22,16 +22,16 @@ Użyj **Transform**, gdy chcesz, aby AI postępowała zgodnie z niestandardowymi
 
 [Przełącznik układu i skróty klawiaturowe](/docs/translate/#layout-and-keyboard) działają tak samo jak w Tłumaczeniu.
 
-## Załaduj przykładowe prompty
+## Załaduj przykładowe podpowiedzi
 
-Jeśli lista jest pusta, kliknij **Załaduj przykładowe prompty** w obszarze roboczym Transform (dostępne również w [Ustawienia → Transform](/docs/settings/#transform)). Przykłady są w języku angielskim; po załadowaniu edytuj prompt i użyj **Przetłumacz prompt**, jeśli to konieczne.
+Jeśli lista jest pusta, kliknij **Załaduj przykładowe podpowiedzi** w obszarze roboczym Transformacja (dostępne również w [Ustawienia → Transformacja](/docs/settings/#transform)). Przykłady są w języku angielskim; po załadowaniu edytuj monit i w razie potrzeby użyj **Przetłumacz monit**.
 
 ## Utwórz prompt
 
-1. Kliknij **Nowy prompt**.
-2. Kliknij **Generuj prompt**.
-3. Opisz, co ma robić prompt.
-4. Wybierz ustawienie wstępne (Łatwe) lub model (Zaawansowane).
+1. Kliknij **Nowy monit**.
+2. Kliknij **Generuj podpowiedź**.
+3. Opisz, co ma robić monit.
+4. Wybierz preset (Łatwy) lub model (Zaawansowany).
 5. Przejrzyj szkic i kliknij **Zapisz**.
 
 ## Edytuj prompt
@@ -42,15 +42,15 @@ Edytor znajduje się po lewej stronie; obszar testowy po prawej.
 
 Główne pola:
 
-- **Nazwa promptu** — wyświetlana na liście promptów
-- **Instrukcje promptu (opcjonalnie)** — krótka wskazówka podczas uruchamiania promptu
-- **Rola modelu** — ogólna rola dla AI
-- **Instrukcje modelu (jedna na wiersz)** — zasady do przestrzegania
-- **Opis wyjścia** — krótka etykieta dla wyniku (np. podsumowane)
-- **Temperatura (0.0 → 1.0)** — niższa jest stabilniejsza; wyższa jest bardziej zróżnicowana
-- **Zapytaj o język docelowy** — dodaje selektor języka podczas uruchamiania
+- **Nazwa podpowiedzi** — wyświetlana na liście monitów
+- **Instrukcje podpowiedzi (opcjonalne)** — krótka wskazówka podczas uruchamiania monitu
+- **Rola modelu** — ogólna rola dla sztucznej inteligencji
+- **Instrukcje modelu (po jednej w linii)** — zasady, których należy przestrzegać
+- **Opis wyjścia** — krótka etykieta wyniku (np. podsumowanie)
+- **Temperatura (0,0 → 1,0)** — niższa oznacza większą stabilność; wyższa oznacza większą różnorodność
+- **Pytaj o język docelowy** — dodaje selektor języka podczas uruchamiania
 
-Pomocnicy: **Generuj prompt**, **Ulepsz prompt**, **Przetłumacz prompt** (Łatwe używa ustawień wstępnych; Zaawansowane używa listy modeli).
+Pomocnicy: **Generuj podpowiedź**, **Ulepsz monit**, **Przetłumacz monit** (Łatwy korzysta z presetów; Zaawansowany korzysta z listy modeli).
 
 :::caution
 Kliknij **Zapisz** przed **Powrót do uruchomienia**. Powrót bez zapisywania spowoduje odrzucenie zmian.

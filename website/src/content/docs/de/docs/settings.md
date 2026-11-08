@@ -9,10 +9,10 @@ description: >-
 
 Öffnen Sie die **Einstellungen** über die Seitenleiste, um das Verhalten der App anzupassen.
 
-| Registerkarte | Desktop | Web (Admin) | Web (Benutzer) | Hinweise |
+| Tab | Desktop | Web (admin) | Web (user) | Notes |
 | --- | :---: | :---: | :---: | --- |
-| Allgemeine Einstellungen | ✓ | ✓ | ✓ | Beinhaltet **KI-Erfahrung** (Einfach / Erweitert) |
-| Modelle | ✓ | ✓ | ✓ | Nur wenn **KI-Erfahrung** **Erweitert** ist |
+| Allgemeine Einstellungen | ✓ | ✓ | ✓ | Beinhaltet **KI-Erlebnis** (Einfach / Erweitert) |
+| Modelle | ✓ | ✓ | ✓ | Voreingestellte Karten in „Einfach“, Modelltabelle in „Erweitert“ |
 | Sprachen | ✓ | ✓ | ✓ | |
 | Kostenverfolgung | ✓ | ✓ | — | |
 | Transformieren | ✓ | ✓ | ✓ | Massenimport/-export von Prompts |
@@ -21,7 +21,7 @@ description: >-
 | API-Konfiguration | ✓ | ✓ | — | |
 | Über | ✓ | ✓ | ✓ | |
 
-Im Modus **Einfach** wählen Sie die KI über Voreinstellungen in der Symbolleiste und den **Anbieter** in den Allgemeinen Einstellungen aus; die Registerkarte **Modelle** ist ausgeblendet.
+Im Modus **Einfach** wählen Sie die KI über Voreinstellungen in der Symbolleiste und den **Anbieter** in den Allgemeinen Einstellungen aus; die Registerkarte **Modelle** zeigt schreibgeschützte Voreinstellungskarten an.
 
 :::note
 In der Webversion hat jeder Benutzer seine eigene Konfiguration (KI-Erfahrung, Anbieter, Modelle/Voreinstellungen, Sprachen, Optionen, Prompts). Änderungen wirken sich nicht auf andere Benutzer aus.
@@ -31,7 +31,7 @@ In der Webversion hat jeder Benutzer seine eigene Konfiguration (KI-Erfahrung, A
 
 ![Registerkarte „Allgemeine Einstellungen“](/images/screenshots/de/settings-general.png)
 
-**KI-Erfahrung**
+**KI-Erlebnis**
 
 - **Einfach** (Standard): Wählen Sie einen **Anbieter**. Cloud-Anbieter verwenden Voreinstellungen der Symbolleiste. **Lokales LLM** listet stattdessen installierte lokale Modelle auf. **Voreinstellungskatalog aktualisieren** ruft die neueste Voreinstellungsliste aus dem Projekt-Repository ab.
   - **Kostenlos (OpenRouter)** – kostenlose Option, die an verfügbare kostenlose Modelle weitergeleitet wird; Qualität und Verfügbarkeit können variieren
@@ -44,7 +44,7 @@ Sie können auch zwischen Einfach ↔ Erweitert über das Voreinstellungs-/Model
 
 **Erscheinungsbild** – Design; **Kosteninformationen für Aktionen anzeigen**; **Kosten-Nachkommastellen**; Nur-Web-Rand um die App; **Schriftfamilie** und **Schriftgröße**.
 
-**Verhalten** – **Verhalten bei ENTER**; **Automatische Ausführung beim Einfügen**; **Ergebnis automatisch in die Zwischenablage kopieren**; **Echtzeitübersetzung während der Eingabe**; **Zeitüberschreitung (ms)**.
+**Verhalten** — **Verhalten für ENTER**; **Automatisch ausführen beim Einfügen**; **Ergebnis automatisch in die Zwischenablage kopieren**; **Echtzeit-Übersetzung während der Eingabe**; **Timeout (ms)**.
 
 **Verlauf**
 
@@ -61,17 +61,33 @@ Sicherungen können zwischen Desktop und Web verschoben werden; das Wiederherste
 
 ## Modelle
 
-Nur im Modus **Erweitert** verfügbar.
+Die Registerkarte **Modelle** ist immer aufgeführt. Ihr Umschalter **Einfach / Erweitert** schaltet die gesamte App zwischen den beiden [KI-Erfahrungen](#general-settings) um.
 
-- **Verfügbare Modelle** (links) und **Ausgewählte Modelle** (rechts)
-- Suche, **Anbieter**-Chips, **Nur kostenlos**, **Aktualisieren**, Alle erweitern/reduzieren
+- **Einfach** zeigt eine schreibgeschützte Karte pro Vorgabe an (zum Beispiel **Kostenlos (OpenRouter)** oder **Standard**). Jede Karte listet das Haupt- und Fallback-Modell der Vorgabe für jeden von Ihnen konfigurierten Anbieter auf. Die **Anbieter**-Chips filtern die Karten.
+- **Erweitert** zeigt eine Tabelle mit jedem Modell an, mit:
+  - einem Suchfeld, **Anbieter**-Chips, **Nur kostenlos**, **Nur ausgewählte** und **Aktualisieren**
+  - einem Sortiermenü; die Standardeinstellung ist **Index absteigend**
+  - einem Kontrollkästchen pro Modell, um es auszuwählen oder abzuwählen
+  - **Aus Voreinstellungen auswählen**, das die Haupt- und Fallback-Modelle einer Vorgabe für jeden konfigurierten Anbieter hinzufügt (**Alle laden** lädt jeden Anbieter)
+  - **Alle abwählen**, das zuerst eine Bestätigung anfordert
 - Modell-IDs verwenden ein Anbieterpräfix (`openrouter/…`, `openai/…`, `local/…`, …)
+
+Die Spalten für Bewertung und Preis:
+
+- **Index** – eine Qualitätsbewertung, die aus ChrF, Arena Score und Preis gemischt wird. Sie wird innerhalb jedes Anbieters eingestuft und ist daher nicht über Anbieter hinweg vergleichbar. Modelle ohne Index werden am Ende sortiert.
+- **ChrF** – mittlere Übersetzungsqualität von [languagebench](https://huggingface.co/spaces/fair-forward/languagebench) für die UI-Sprachen der App.
+- **Arena** – Arena Score von der [LMArena](https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset)-Bestenliste.
+- **Eingabe** / **Ausgabe** – Preis in USD pro 1 Mio. Token, aus dem Anbieterkatalog oder [models.dev](https://models.dev/). Ein geschätzter Preis ist mit einem Sternchen gekennzeichnet. Ein Bindestrich (—) bedeutet, dass der Preis unbekannt ist; lokale Modelle zeigen „kostenlos - lokal“ an.
+
+Fahren Sie mit der Maus über eine Spaltenüberschrift, um deren Datenquelle und Lizenz anzuzeigen. Die Modellauswahl in der Symbolleiste zeigt den Index jedes Modells als kleinen Chip an; fahren Sie mit der Maus darüber, um die ChrF- und Arena-Werte anzuzeigen.
+
+Die Bewertungen dienen nur als Richtlinie: Die Abdeckung ist unvollständig, und viele Modelle haben keinen ChrF- oder Arena-Score.
 
 :::tip
 Verwenden Sie OpenRouter **Body Builder** (`openrouter/bodybuilder`) nicht für Übersetzen, Umschreiben oder Transformieren – es gibt JSON-Anforderungs-Payloads zurück, nicht fertigen Text.
 :::
 
-Hinzufügen mit **Hinzufügen**; Entfernen mit **X**. Das kostenlose OpenRouter-Modell ist optional – ausgewählte Modelle können leer sein. Das Entfernen des letzten Modells aus der Symbolleiste öffnet **Einstellungen → Modelle**. Wenn das aktuelle Modell nicht verfügbar wird, wählt die App das nächste Modell in der Liste aus, anstatt das kostenlose Modell zu erzwingen.
+Aktivieren oder deaktivieren Sie ein Modell, um es auszuwählen oder abzuwählen. Das kostenlose OpenRouter-Modell ist optional – ausgewählte Modelle können leer sein. Das Entfernen des letzten Modells aus der Symbolleiste öffnet **Einstellungen → Modelle**. Wenn das aktuelle Modell nicht verfügbar wird, wählt die App das nächste Modell in der Liste aus, anstatt das kostenlose Modell zu erzwingen.
 
 ## Sprachen
 
@@ -110,8 +126,8 @@ Desktop speichert das Glossar lokal; Web speichert es pro Benutzer.
 Nur Web (Administratoren):
 
 - Benutzer hinzufügen, Details aktualisieren, Passwörter zurücksetzen, Konten löschen
-- **Sitzungs-Timeout** – wie lange ein Login dauert (1 Stunde bis 7 Tage); Änderungen gelten nur für neue Logins
-- **Sitzungen widerrufen** – einen Benutzer sofort von allen Geräten abmelden
+- **Sitzungstimeout** — wie lange eine Anmeldung gültig ist (1 Stunde bis 7 Tage); Änderungen gelten nur für neue Anmeldungen
+- **Sitzungen widerrufen** — einen Benutzer sofort von allen Geräten abmelden
 
 Jeder angemeldete Benutzer (einschließlich Nicht-Administratoren) kann sein eigenes Passwort ändern oder sich über das Benutzermenü am unteren Rand der Seitenleiste abmelden.
 

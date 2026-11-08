@@ -27,7 +27,7 @@ docker run -d \
 Apoi deschideți [http://localhost:5000](http://localhost:5000) și **schimbați parola de administrator implicită** înainte de a expune serviciul.
 
 :::tip
-În Docker, acreditările LLM sunt setate cu variabile de mediu (de exemplu, `PROVIDER_API_KEY`). Acestea **nu** sunt introduse în interfața web. Pe desktop, configurați cheile în **Settings → API Config**.
+În Docker, acreditările LLM sunt setate cu variabile de mediu (de exemplu `PROVIDER_API_KEY`). Acestea **nu** sunt introduse în interfața web. Pe desktop, configurați cheile în **Setări → Configurare API**.
 :::
 
 ### Docker Compose

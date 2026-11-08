@@ -11,8 +11,8 @@ Otevřete **Nastavení** z postranního panelu a přizpůsobte si chování apli
 
 | Karta | Desktop | Web (administrátor) | Web (uživatel) | Poznámky |
 | --- | :---: | :---: | :---: | --- |
-| Obecná nastavení | ✓ | ✓ | ✓ | Zahrnuje **AI prostředí** (jednoduché / pokročilé) |
-| Modely | ✓ | ✓ | ✓ | Pouze když je **AI prostředí** **pokročilé** |
+| Obecná nastavení | ✓ | ✓ | ✓ | Zahrnuje **Zkušenost s AI** (Snadné / Pokročilé) |
+| Modely | ✓ | ✓ | ✓ | Přednastavené karty v režimu Snadné, tabulka modelů v režimu Pokročilé |
 | Jazyky | ✓ | ✓ | ✓ | |
 | Sledování nákladů | ✓ | ✓ | — | |
 | Transformace | ✓ | ✓ | ✓ | Hromadný import/export výzev |
@@ -21,7 +21,7 @@ Otevřete **Nastavení** z postranního panelu a přizpůsobte si chování apli
 | Konfigurace API | ✓ | ✓ | — | |
 | O aplikaci | ✓ | ✓ | ✓ | |
 
-V režimu **Snadné** vyberte AI pomocí předvoleb na panelu nástrojů a **Poskytovatele** v Obecných nastaveních; karta **Modely** je skrytá.
+V režimu **Snadné** vyberte AI pomocí předvoleb na panelu nástrojů a **Poskytovatele** v Obecném nastavení; karta **Modely** zobrazuje karty předvoleb pouze pro čtení.
 
 :::note
 Ve webové verzi má každý uživatel svou vlastní konfiguraci (zkušenosti s AI, poskytovatel, modely/předvolby, jazyky, možnosti, prompty). Změny neovlivňují ostatní uživatele.
@@ -31,7 +31,7 @@ Ve webové verzi má každý uživatel svou vlastní konfiguraci (zkušenosti s 
 
 ![Karta Nastavení Obecná nastavení](/images/screenshots/cs/settings-general.png)
 
-**Zkušenosti s AI**
+**Zkušenost s AI**
 
 - **Snadné** (výchozí): vyberte **Poskytovatele**. Poskytovatelé cloudu používají předvolby panelu nástrojů. **Místní LLM** místo toho vypíše nainstalované místní modely. **Obnovit katalog předvoleb** načte nejnovější seznam předvoleb z repozitáře projektu.
   - **Zdarma (OpenRouter)** – bezplatná možnost směrovaná na dostupné bezplatné modely; kvalita a dostupnost se mohou lišit
@@ -44,7 +44,7 @@ Můžete také přepínat Snadné ↔ Pokročilé z nabídky předvoleb/modelů 
 
 **Vzhled** — motiv; **Zobrazit informace o nákladech u akcí**; **Počet desetinných míst u nákladů**; okraj kolem aplikace pouze na webu; **Rodina písma** a **Velikost**.
 
-**Chování** — **Chování pro ENTER**; **Automatické spuštění při vložení**; **Automatické kopírování výsledku do schránky**; **Překlad v reálném čase během psaní**; **Časový limit (ms)**.
+**Chování** — **Chování pro ENTER**; **Automaticky spustit při vložení**; **Automaticky kopírovat výsledek do schránky**; **Překlad v reálném čase během psaní**; **Časový limit (ms)**.
 
 **Historie**
 
@@ -61,17 +61,33 @@ Zálohy lze přesouvat mezi desktopem a webem; obnovení desktopové zálohy na 
 
 ## Modely
 
-Dostupné pouze v režimu **Pokročilé**.
+Karta **Modely** je vždy uvedena. Její přepínač **Snadné / Pokročilé** přepíná celou aplikaci mezi dvěma [prostředími AI](#general-settings).
 
-- **Dostupné modely** (vlevo) a **Vybrané modely** (vpravo)
-- Hledat, čipy **Poskytovatel**, **Pouze zdarma**, **Obnovit**, Rozbalit/Sbalit vše
+- **Snadné** zobrazuje jednu kartu pouze pro čtení pro každou předvolbu (například **Zdarma (OpenRouter)** nebo **Standardní**). Každá karta uvádí hlavní a záložní model předvolby pro každého nakonfigurovaného poskytovatele. Čipy **Poskytovatel** filtrují karty.
+- **Pokročilé** zobrazuje jednu tabulku všech modelů, s:
+  - vyhledávacím polem, čipy **Poskytovatel**, **Pouze zdarma**, **Pouze vybrané** a **Obnovit**
+  - nabídkou řazení; výchozí je **Index od nejvyššího po nejnižší**
+  - zaškrtávacím políčkem pro každý model pro jeho výběr nebo zrušení výběru
+  - **Vybrat z předvoleb**, což přidá hlavní a záložní modely předvolby pro každého nakonfigurovaného poskytovatele (**Načíst vše** načte všechny poskytovatele)
+  - **Zrušit výběr všech**, což nejprve požádá o potvrzení
 - ID modelů používají předponu poskytovatele (`openrouter/…`, `openai/…`, `local/…`, …)
+
+Sloupce skóre a ceny:
+
+- **Index** — skóre kvality složené z ChrF, Arena Score a ceny. Je hodnoceno v rámci každého poskytovatele, takže není srovnatelné napříč poskytovateli. Modely bez Indexu se řadí na konec.
+- **ChrF** — průměrná kvalita překladu z [languagebench](https://huggingface.co/spaces/fair-forward/languagebench) pro jazyky uživatelského rozhraní aplikace.
+- **Arena** — Arena Score z žebříčku [LMArena](https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset).
+- **Vstup** / **Výstup** — cena v USD za 1M tokenů, z katalogu poskytovatele nebo [models.dev](https://models.dev/). Odhadovaná cena je označena hvězdičkou. Pomlčka (—) znamená, že cena je neznámá; lokální modely zobrazují „bez nákladů – lokální“.
+
+Najeďte myší na záhlaví sloupce, abyste viděli jeho zdroj dat a licenci. Selektor modelu na panelu nástrojů zobrazuje Index každého modelu jako malý čip; najeďte na něj myší pro hodnoty ChrF a Arena.
+
+Skóre jsou pouze orientační: pokrytí je neúplné a mnoho modelů nemá skóre ChrF nebo Arena.
 
 :::tip
 Nepoužívejte OpenRouter **Body Builder** (`openrouter/bodybuilder`) pro překlad, přepis nebo transformaci – vrací datové části požadavků JSON, nikoli hotový text.
 :::
 
-Přidat pomocí **Přidat**; odebrat pomocí **X**. Bezplatný model OpenRouter je volitelný — vybrané modely mohou být prázdné. Odebrání posledního modelu z panelu nástrojů otevře **Nastavení → Modely**. Pokud se aktuální model stane nedostupným, aplikace vybere další model v seznamu namísto vynucení bezplatného modelu.
+Zaškrtněte nebo zrušte zaškrtnutí modelu pro jeho výběr nebo zrušení výběru. Bezplatný model OpenRouter je volitelný – vybrané modely mohou být prázdné. Odebrání posledního modelu z panelu nástrojů otevře **Nastavení → Modely**. Pokud se aktuální model stane nedostupným, aplikace vybere další model v seznamu namísto vynucení bezplatného modelu.
 
 ## Jazyky
 
@@ -117,7 +133,7 @@ Každý přihlášený uživatel (včetně neadministrátorů) si může změnit
 
 ## Konfigurace API
 
-Konfigurujte pouze poskytovatele, které používáte: OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, **Local LLM** (základní URL pro Ollama, LM Studio, llama.cpp nebo podobné) a volitelného vlastního poskytovatele kompatibilního s OpenAI.
+Nakonfigurujte pouze poskytovatele, které používáte: OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, **Místní LLM** (základní URL pro Ollama, LM Studio, llama.cpp nebo podobné) a volitelný vlastní poskytovatel kompatibilní s OpenAI.
 
 **Web (administrátor):** klíče pocházejí z proměnných prostředí – tato stránka ukazuje, které jsou nastaveny, a umožňuje vám **Testovat**. Po změně proměnných prostředí restartujte. Viz [Konfigurace](/docs/configuration/).
 

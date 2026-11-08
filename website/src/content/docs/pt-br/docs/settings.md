@@ -12,7 +12,7 @@ Abra **Configurações** na barra lateral para personalizar o comportamento do a
 | Guia | Desktop | Web (administrador) | Web (usuário) | Observações |
 | --- | :---: | :---: | :---: | --- |
 | Configurações Gerais | ✓ | ✓ | ✓ | Inclui **experiência de IA** (Fácil / Avançada) |
-| Modelos | ✓ | ✓ | ✓ | Somente quando a **experiência de IA** for **Avançada** |
+| Modelos | ✓ | ✓ | ✓ | Cartões predefinidos em Fácil, tabela de modelos em Avançado |
 | Idiomas | ✓ | ✓ | ✓ | |
 | Rastreamento de Custos | ✓ | ✓ | — | |
 | Transformar | ✓ | ✓ | ✓ | Importação/exportação em massa de prompts |
@@ -21,7 +21,7 @@ Abra **Configurações** na barra lateral para personalizar o comportamento do a
 | Configuração da API | ✓ | ✓ | — | |
 | Sobre | ✓ | ✓ | ✓ | |
 
-No modo **Fácil**, escolha a IA por meio de predefinições na barra de ferramentas e **Provedor** em Configurações Gerais; a guia **Modelos** fica oculta.
+No modo **Fácil**, escolha a IA por meio de predefinições na barra de ferramentas e o **Provedor** em Configurações Gerais; a guia **Modelos** mostra cartões predefinidos somente leitura.
 
 :::note
 Na versão web, cada usuário tem sua própria configuração (experiência de IA, provedor, modelos/predefinições, idiomas, opções, prompts). As alterações não afetam outros usuários.
@@ -44,34 +44,50 @@ Você também pode alternar Fácil ↔ Avançado no menu de predefinições/mode
 
 **Aparência** — Tema; **Mostrar informações de custo nas ações**; **Dígitos fracionários de custo**; margem somente para web ao redor do aplicativo; **Família da Fonte** e **Tamanho**.
 
-**Comportamento** — **Comportamento para ENTER**; **Execução automática ao colar**; **Copiar resultado automaticamente para a área de transferência**; **Tradução em tempo real enquanto digita**; **Tempo limite (ms)**.
+**Comportamento** — **Comportamento para ENTER**; **Executar automaticamente ao colar**; **Copiar automaticamente o resultado para a área de transferência**; **Tradução em tempo real ao digitar**; **Tempo limite (ms)**.
 
 **Histórico**
 
-- **Manter histórico de execução** — armazena entrada/saída para a visualização [Histórico](/docs/history/). Desativar pede confirmação e pode remover o texto armazenado. Se rotulado como *desativado pelo administrador*, `HISTORY_DISABLED` está definido — consulte [Configuração](/docs/configuration/#privacy-mode).
-- **Excluir dados do histórico** — remove o texto armazenado por idade ou limpa tudo. **Não** exclui os totais de custo (use o Rastreamento de Custos para isso).
+- **Manter o histórico de execução** — armazena entrada/saída para a visualização [Histórico](/docs/history/). Desativar pede confirmação e pode remover o texto armazenado. Se rotulado como *desabilitado pelo administrador*, `HISTORY_DISABLED` é definido — consulte [Configuração](/docs/configuration/#privacy-mode).
+- **Excluir dados do histórico** — remove o texto armazenado por idade ou limpa tudo. **Não** exclui os totais de custo (use Rastreamento de Custos para isso).
 
 **Backup de Configuração** (administradores de desktop e web)
 
 - Opcional **Incluir dados de uso no backup**
-- **Backup de configuração** — ZIP com configuração, estado, usuários, preferências, prompts e dados de uso opcionais
+- **Fazer backup da configuração** — ZIP com configuração, estado, usuários, preferências, prompts e dados de uso opcionais
 - **Restaurar do backup** — caixa de diálogo de confirmação com opções para restaurar e/ou limpar dados de uso
 
 Os backups podem ser movidos entre desktop e web; restaurar um backup de desktop na web aplica os dados ao usuário administrador.
 
 ## Modelos
 
-Disponível apenas no modo **Avançado**.
+A guia **Modelos** está sempre listada. Seu botão **Fácil / Avançado** alterna todo o aplicativo entre as duas [experiências de IA](#general-settings).
 
-- **Modelos Disponíveis** (esquerda) e **Modelos Selecionados** (direita)
-- Pesquisar, chips de **Provedor**, **Somente Grátis**, **Atualizar**, Expandir/Recolher Tudo
-- Os IDs dos modelos usam um prefixo de provedor (`openrouter/…`, `openai/…`, `local/…`, …)
+- **Fácil** mostra um cartão somente leitura por predefinição (por exemplo, **Gratuitos (OpenRouter)** ou **Padrão**). Cada cartão lista o modelo principal e de fallback da predefinição para cada provedor que você configurou. Os chips de **Provedor** filtram os cartões.
+- **Avançado** mostra uma tabela de cada modelo, com:
+  - uma caixa de pesquisa, chips de **Provedor**, **Apenas Gratuitos**, **Somente selecionados** e **Atualizar**
+  - um menu de classificação; o padrão é **Índice do maior para o menor**
+  - uma caixa de seleção por modelo para selecioná-lo ou desmarcá-lo
+  - **Selecionar a partir de predefinições**, que adiciona os modelos principal e de fallback de uma predefinição para cada provedor configurado (**Carregar tudo** carrega todos os provedores)
+  - **Desmarcar Todos**, que pede confirmação primeiro
+- Os IDs de modelo usam um prefixo de provedor (`openrouter/…`, `openai/…`, `local/…`, …)
+
+As colunas de pontuação e preço:
+
+- **Índice** — uma pontuação de qualidade combinada de ChrF, Arena Score e preço. É classificada dentro de cada provedor, portanto, não é comparável entre provedores. Modelos sem Índice são classificados para o final.
+- **ChrF** — qualidade média de tradução de [languagebench](https://huggingface.co/spaces/fair-forward/languagebench) para os idiomas da interface do usuário do aplicativo.
+- **Arena** — Arena Score da tabela de classificação [LMArena](https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset).
+- **Entrada** / **Saída** — preço em USD por 1M de tokens, do catálogo do provedor ou [models.dev](https://models.dev/). Um preço estimado é marcado com um asterisco. Um traço (—) significa que o preço é desconhecido; modelos locais mostram "sem custo - local".
+
+Passe o mouse sobre o cabeçalho de uma coluna para ver sua fonte de dados e licença. O seletor de modelo na barra de ferramentas mostra o Índice de cada modelo como um pequeno chip; passe o mouse sobre ele para ver os valores de ChrF e Arena.
+
+As pontuações são apenas um guia: a cobertura é incompleta e muitos modelos não têm pontuação ChrF ou Arena.
 
 :::tip
 Não use o **Body Builder** (`openrouter/bodybuilder`) do OpenRouter para Traduzir, Reescrever ou Transformar — ele retorna payloads de solicitação JSON, não texto finalizado.
 :::
 
-Adicione com **Adicionar**; remova com **X**. O modelo gratuito do OpenRouter é opcional — os modelos selecionados podem estar vazios. Remover o último modelo da barra de ferramentas abre **Configurações → Modelos**. Se o modelo atual ficar indisponível, o aplicativo seleciona o próximo modelo na lista em vez de forçar o modelo gratuito.
+Marque ou desmarque um modelo para selecioná-lo ou desmarcá-lo. O modelo gratuito do OpenRouter é opcional — os modelos selecionados podem estar vazios. A remoção do último modelo da barra de ferramentas abre **Configurações → Modelos**. Se o modelo atual ficar indisponível, o aplicativo seleciona o próximo modelo da lista em vez de forçar o modelo gratuito.
 
 ## Idiomas
 
@@ -81,8 +97,8 @@ Adicione com **Adicionar**; remova com **X**. O modelo gratuito do OpenRouter é
 ## Rastreamento de custos
 
 - **Custo Total**, **Copiar Valor**, **Redefinir Custo**
-- **Sincronizar com uso da chave de API** — alinhar com o uso da conta OpenRouter (somente OpenRouter)
-- **Uso da Chave de API** — detalhes do OpenRouter quando disponíveis
+- **Sincronizar com o uso da chave da API** — alinhar com o uso da conta OpenRouter (somente OpenRouter)
+- **Uso da Chave da API** — detalhes do OpenRouter quando disponíveis
 - **Excluir dados de custo** — todos os dados ou entradas mais antigas que uma data
 
 OpenRouter e xAI mostram o custo real faturado quando a API o retorna; outros provedores usam estimativas de preços de [models.dev](https://models.dev/). As estimativas não são faturas.
@@ -110,7 +126,7 @@ O Desktop armazena o glossário localmente; a web o armazena por usuário.
 Somente web (administradores):
 
 - Adicionar usuários, atualizar detalhes, redefinir senhas, excluir contas
-- **Tempo limite da sessão** — quanto tempo um login dura (1 hora a 7 dias); as alterações se aplicam apenas a novos logins
+- **Tempo de Sessão** — quanto tempo dura um login (1 hora a 7 dias); as alterações se aplicam apenas a novos logins
 - **Revogar sessões** — desconectar um usuário de todos os dispositivos imediatamente
 
 Todo usuário conectado (incluindo não-administradores) pode alterar sua própria senha ou sair do menu do usuário na parte inferior da barra lateral.

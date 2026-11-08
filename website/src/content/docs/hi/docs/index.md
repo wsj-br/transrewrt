@@ -46,4 +46,4 @@ description: >-
 - [सेटिंग्स](/docs/settings/)
 - [सामान्य समस्याएँ](/docs/common-issues/)
 
-[Download releases](https://github.com/wsj-br/transrewrt/releases) · [GitHub repository](https://github.com/wsj-br/transrewrt)
+[रिलीज़ डाउनलोड करें](https://github.com/wsj-br/transrewrt/releases) · [GitHub रिपॉजिटरी](https://github.com/wsj-br/transrewrt)

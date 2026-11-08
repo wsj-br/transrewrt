@@ -96,7 +96,6 @@ const SettingsPanel = ({ openToTab, onOpenToTabConsumed }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [filterEngine, setFilterEngine] = useState("");
   const [filterFree, setFilterFree] = useState(false);
-  const [expandedProviders, setExpandedProviders] = useState(new Set());
   const [selectedModelIds, setSelectedModelIds] = useState(new Set());
   const [sortBy, setSortBy] = useState("index-desc");
 
@@ -144,16 +143,12 @@ const SettingsPanel = ({ openToTab, onOpenToTabConsumed }) => {
         label: t("General Settings"),
         testId: "settings-tab-general",
       },
-      ...(experienceMode === "advanced"
-        ? [
-            {
-              id: "models",
-              icon: <Database size={15} />,
-              label: t("Models"),
-              testId: "settings-tab-models",
-            },
-          ]
-        : []),
+      {
+        id: "models",
+        icon: <Database size={15} />,
+        label: t("Models"),
+        testId: "settings-tab-models",
+      },
       { id: "languages", icon: <Globe size={15} />, label: t("Languages") },
       ...(canAccessCostTab
         ? [{ id: "cost", icon: <DollarSign size={15} />, label: t("Cost Tracking") }]
@@ -168,7 +163,7 @@ const SettingsPanel = ({ openToTab, onOpenToTabConsumed }) => {
         : []),
       { id: "about", icon: <Info size={15} />, label: t("About") },
     ],
-    [t, canAccessCostTab, canAccessUsersTab, canAccessApiTab, experienceMode],
+    [t, canAccessCostTab, canAccessUsersTab, canAccessApiTab],
   );
 
   const selectedTabMeta = useMemo(
@@ -216,15 +211,13 @@ const SettingsPanel = ({ openToTab, onOpenToTabConsumed }) => {
       setLocalSettings({ ...settings });
       setSelectedModelIds(new Set(settings.available_models || []));
       setSelectedLanguages(new Set(settings.top_languages || []));
-      const normalizeTab = (tab) => {
-        const exp = settings.mode === "advanced" ? "advanced" : "easy";
-        if (tab === "auth") return canAccessUsersTab ? "users" : "general";
-        if (tab === "api" && !canAccessApiTab) return "general";
-        if (tab === "users" && !canAccessUsersTab) return "general";
-        if (tab === "cost" && !canAccessCostTab) return "general";
-        if (tab === "models" && exp !== "advanced") return "general";
-        return tab || "general";
-      };
+        const normalizeTab = (tab) => {
+          if (tab === "auth") return canAccessUsersTab ? "users" : "general";
+          if (tab === "api" && !canAccessApiTab) return "general";
+          if (tab === "users" && !canAccessUsersTab) return "general";
+          if (tab === "cost" && !canAccessCostTab) return "general";
+          return tab || "general";
+        };
       // When openToTab is set (e.g. sidebar "User management"), always switch to that tab
       // so it works even if Settings is already open on another tab.
       if (openToTab) {
@@ -258,15 +251,6 @@ const SettingsPanel = ({ openToTab, onOpenToTabConsumed }) => {
       });
     }
   }, [activeTab, canAccessUsersTab, canAccessApiTab, setSetting]);
-
-  useEffect(() => {
-    if (experienceMode === "easy" && activeTab === "models") {
-      queueMicrotask(() => {
-        setActiveTab("general");
-        setSetting("settings_active_tab", "general");
-      });
-    }
-  }, [experienceMode, activeTab, setSetting]);
 
   useEffect(() => {
     if (allModels.length === 0) {
@@ -496,17 +480,6 @@ const SettingsPanel = ({ openToTab, onOpenToTabConsumed }) => {
     return { type: "flat", data: sorted };
   }, [filteredModels, groupedModels, sortBy, modelScores]);
 
-  const toggleProvider = (provider) => {
-    const newSet = new Set(expandedProviders);
-    if (newSet.has(provider)) newSet.delete(provider);
-    else newSet.add(provider);
-    setExpandedProviders(newSet);
-  };
-
-  const expandAll = () =>
-    setExpandedProviders(new Set(Object.keys(groupedModels)));
-  const collapseAll = () => setExpandedProviders(new Set());
-
   const deselectAllModels = () => {
     if (selectedModelIds.size === 0) return;
     setShowDeselectAllConfirm(true);
@@ -657,7 +630,6 @@ const SettingsPanel = ({ openToTab, onOpenToTabConsumed }) => {
             engineFilterOptions={engineFilterOptions}
             filterFree={filterFree}
             sortBy={sortBy}
-            expandedProviders={expandedProviders}
             sortedModelsData={sortedModelsData}
             modelsLoading={modelsLoading}
             modelsError={modelsError}
@@ -678,15 +650,19 @@ const SettingsPanel = ({ openToTab, onOpenToTabConsumed }) => {
                   setModelsLoading(false);
                 });
             }}
-            onToggleProvider={toggleProvider}
-            onExpandAll={expandAll}
-            onCollapseAll={collapseAll}
             onToggleModelSelection={toggleModelSelection}
             onDeselectAllModels={deselectAllModels}
             getModelName={getModelName}
             presets={presetsCatalog}
             configuredCloudEngines={configuredCloudEngines}
             onLoadPresetModels={loadPresetModels}
+            experienceMode={experienceMode}
+            onExperienceModeChange={(mode) => {
+              // Leftover Advanced-only filters would silently narrow the Easy provider cards.
+              setSearchTerm("");
+              setFilterFree(false);
+              handleSettingChange("mode", mode);
+            }}
           />
         )}
 

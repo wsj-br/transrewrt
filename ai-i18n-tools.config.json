@@ -1,26 +1,61 @@
 {
   "sourceLocale": "en-GB",
-  "targetLocales": [
-    "ar", "zh-Hans", "zh-Hant", "cs", "nl", "fr", "de", "el", "hi", "hu", "it", "ja",
-     "ko", "fa", "pl", "pt-BR", "ro", "ru", "sk", "es", "sv", "th", "tr", "uk", "vi"
+  "targetLocales": [ "ar", "zh-Hans", "zh-Hant", "cs", "nl","fr", "de",
+                     "el", "hi", "hu", "it", "ja", "ko", "fa", "pl", "pt-BR",
+                     "ro", "ru", "sk", "es", "sv", "th", "tr", "uk", "vi"     
   ],
   "concurrency": 8,
   "batchSize": 20,
   "maxBatchChars": 4096,
   "features": {
     "translateUIStrings": true,
-    "translateDocs": true
+    "translateDocs": true,
+    "translateJson": true
   },
-  "ui": {
-    "sourceRoots": [
-      "src/renderer/"
-    ],
-    "stringsJson": "src/renderer/locales/strings.json",
-    "flatOutputDir": "src/renderer/locales/",
-    "reactExtractor": {
-      "includeUiLanguageEnglishNames": true
+  "providers": {
+    "openrouter": {
+      "translationModels": [
+        "google/gemini-3.1-flash-lite-preview",
+        "google/gemini-2.5-flash",
+        "google/gemma-4-31b-it",
+        "deepseek/deepseek-v4-flash",
+        "deepseek/deepseek-chat-v3.1",
+        "deepseek/deepseek-v3.2-exp",
+        "google/gemma-3-27b-it",
+        "openai/gpt-5-mini",
+        "z-ai/glm-4.5-air",
+        "openai/gpt-oss-120b"
+      ],
+      "uiModels": [
+        "google/gemini-3.1-pro-preview",
+        "google/gemini-2.5-pro"
+      ]
     }
   },
+  "provider": "openrouter",
+  "ui": [
+    {
+      "description": "App (renderer)",
+      "sourceRoots": [
+        "src/renderer/"
+      ],
+      "stringsJson": "src/renderer/locales/strings.json",
+      "flatOutputDir": "src/renderer/locales/",
+      "reactExtractor": {
+        "includeUiLanguageEnglishNames": true
+      }
+    },
+    {
+      "description": "Website (marketing)",
+      "sourceRoots": [
+        "website/src/components/marketing/"
+      ],
+      "stringsJson": "website/src/i18n/strings.json",
+      "flatOutputDir": "website/src/i18n/locales/",
+      "languagesManifestPath": "website/src/i18n/ui-languages.json",
+      "uiGlossary": false
+    }
+  ],
   "glossary": {
     "userGlossary": "glossary-user.csv"
   },
@@ -49,31 +84,37 @@
           }
         }
       }
+    },
+    {
+      "description": "Website Starlight onboarding",
+      "contentPaths": [
+        "website/src/content/docs/docs/*.md"
+      ],
+      "outputDir": "website/src/content/docs/",
+      "addFrontmatter": false,
+      "docsOutput": {
+        "style": "astro-starlight",
+        "docsRoot": "website/src/content/docs",
+        "localePathLowercase": true,
+        "postProcessing": {
+          "regexAdjustments": [
+            {
+              "description": "Per-locale screenshot folders under public/",
+              "search": "images/screenshots/[^/]+/",
+              "replace": "images/screenshots/${translatedLocale}/"
+            }
+          ]
+        }
+      }
     }
   ],
-  "providers": {
-    "openrouter": {
-      "translationModels": [
-        "google/gemini-2.5-flash",
-        "meta-llama/llama-3.3-70b-instruct",
-        "openai/gpt-4o-mini",
-        "google/gemma-4-26b-a4b-it",
-        "~anthropic/claude-haiku-latest",
-        "z-ai/glm-5.2",
-        "google/gemini-3.5-flash",
-        "~anthropic/claude-sonnet-latest"
+  "json": [
+    {
+      "description": "Starlight docs sidebar group headings",
+      "contentPaths": [
+        "website/src/i18n/docs-sidebar-groups.json"
       ],
-      "uiModels": [
-        "~anthropic/claude-sonnet-latest",
-        "z-ai/glm-5.2"
-      ],
-      "localeModels": [
-        { "locale": "ja",      "models": [ "z-ai/glm-5.2", "minimax/minimax-m2.7" ] },
-        { "locale": "ko",      "models": [ "z-ai/glm-5.2", "minimax/minimax-m2.7" ] },
-        { "locale": "zh-Hans", "models": [ "z-ai/glm-5.2", "minimax/minimax-m2.7" ] },
-        { "locale": "zh-Hant", "models": [ "z-ai/glm-5.2", "minimax/minimax-m2.7" ] }
-      ]
+      "outputPathTemplate": "website/src/i18n/docs-sidebar-groups/{locale}.json"
     }
-  },
-  "provider": "openrouter"
+  ]
 }

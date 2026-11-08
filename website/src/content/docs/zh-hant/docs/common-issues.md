@@ -18,9 +18,9 @@ description: Transrewrt 的疑難排解與快速提示。
 
 ## 模型清單為空
 
-在 **Easy** 模式中，確認 **提供者** 已設定且金鑰/URL 已通過測試。若使用 **本機 LLM**，請確保本機伺服器正在執行且模型已載入。
+在**簡易**模式下，確認已設定**供應商**且金鑰/URL 已通過測試。對於**本地 LLM**，請確保您的本地伺服器正在執行且模型已載入。
 
-在 **Advanced** 模式中，選取的模型可能為空。開啟 **設定 → 模型**，點選 **重新整理**，然後將模型新增至 **已選取的模型**。可選擇開啟 **僅免費**。移除最後一個工具列模型也會開啟設定 → 模型。
+在**進階**模式下，選取的模型可能為空。開啟**設定 → 模型**，點擊**重新整理**，並勾選您想要的模型（或使用**從預設中選擇**）。您可選擇開啟**僅免費**。移除最後一個工具列模型也會開啟設定 → 模型。
 
 ## 太慢或太昂貴
 
@@ -50,17 +50,17 @@ description: Transrewrt 的疑難排解與快速提示。
 
 OpenRouter 與 xAI 會在 API 回傳時顯示實際支出。至於其他供應商，成本會根據 [models.dev](https://models.dev/) 的定價進行估算；若無符合的價格，成本會顯示為 **不可用**，且不會計入總額。
 
-## 總成本與我的供應商帳單不符
+## 總計費用與我的供應商帳單不符
 
-應用程式中的數據為**estimates for reference**，而非發票。對於 OpenRouter，請使用**Settings → Cost Tracking → Sync with API key usage**。
+應用程式中的數字為**參考估算值**，而非發票。對於 OpenRouter，請使用**設定 → 成本追蹤 → 與 API 金鑰使用量同步**。
 
 ## 側邊欄缺少歷史記錄頁面
 
-**Keep execution history**可能已關閉。請在一般設定中啟用它，除非管理員已停用歷史記錄（`HISTORY_DISABLED` — 請參閱[設定](/docs/configuration/#privacy-mode)）。
+**保留執行記錄** 可能為關閉狀態。除非記錄已被管理員停用，否則請在一般設定中啟用此功能（`HISTORY_DISABLED` — 請參閱[設定](/docs/configuration/#privacy-mode)）。
 
 ## Web：意外被重新導向至登入頁面
 
-您的工作階段可能已逾時。請重新登入。如果經常發生此情況，請要求管理員在[Settings → Users](/docs/settings/#users)下增加**Session Timeout**（管理員也可能已撤銷您的工作階段）。
+您的工作階段可能已逾時。請重新登入。如果經常發生此情況，請要求管理員在[設定 → 使用者](/docs/settings/#users)下增加**工作階段逾時**（管理員也可能已撤銷您的工作階段）。
 
 ## Web 管理員：忘記密碼
 
@@ -72,13 +72,13 @@ docker exec transrewrt reset-web-password '<username>' '<new-password>'
 
 預設管理員使用者名稱為`admin`。從原始碼 checkout：`pnpm run reset-web-password -- <username> <new-password>`。
 
-## 儀表板未顯示其他使用者的資料 (web)
+## 控制台顯示其他使用者無資料（網頁版）
 
 只有**administrators**可以透過**User**篩選器檢視其他使用者。一般使用者只能看到自己的活動。
 
 ## 變更了提示詞並遺失編輯內容
 
-在編輯 Transform 提示詞時，請在點擊**Back to Run**之前點擊**Save**。
+編輯轉換提示時，請在點擊**返回執行**之前點擊**儲存**。
 
 ## 快速提示
 
@@ -89,4 +89,4 @@ docker exec transrewrt reset-web-password '<username>' '<new-password>'
 - 如果您正在建立提示詞庫，請定期匯出提示詞
 - 使用[Dashboard](/docs/dashboard/)和[History](/docs/history/)來檢閱使用情況與過去的執行記錄
 
-[Report an issue](https://github.com/wsj-br/transrewrt/issues)
+[回報問題](https://github.com/wsj-br/transrewrt/issues)

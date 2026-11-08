@@ -18,9 +18,9 @@ Sprawdź, czy:
 
 ## Lista modeli jest pusta
 
-W trybie **Łatwym** upewnij się, że **Dostawca** jest ustawiony, a klucze/adresy URL zostały przetestowane. W przypadku **Lokalnego LLM** upewnij się, że serwer lokalny jest uruchomiony i modele są załadowane.
+W trybie **Łatwy** upewnij się, że **Dostawca** jest ustawiony, a klucze/adresy URL zostały przetestowane. W przypadku **Lokalny LLM** upewnij się, że lokalny serwer działa, a modele zostały załadowane.
 
-W trybie **Zaawansowanym** wybrane modele mogą być puste. Otwórz **Ustawienia → Modele**, kliknij **Odśwież** i dodaj modele do **Wybranych modeli**. Opcjonalnie włącz **Tylko darmowe**. Usunięcie ostatniego modelu z paska narzędzi również otwiera Ustawienia → Modele.
+W trybie **Zaawansowany** lista wybrane modele może być pusta. Otwórz **Ustawienia → Modele**, kliknij **Odśwież** i zaznacz modele, których chcesz używać (lub użyj **Wybierz z presetów**). Opcjonalnie włącz **Tylko darmowe**. Usunięcie ostatniego modelu z paska narzędzi również otwiera Ustawienia → Modele.
 
 ## Zbyt wolno lub zbyt drogo
 
@@ -60,7 +60,7 @@ Opcja **Zachowaj historię wykonania** może być wyłączona. Włącz ją w Ust
 
 ## Web: nieoczekiwane przekierowanie do logowania
 
-Twoja sesja mogła wygasnąć. Zaloguj się ponownie. Jeśli zdarza się to często, poproś administratora o zwiększenie **Limitu czasu sesji** w [Ustawieniach → Użytkownicy](/docs/settings/#users) (administrator mógł również unieważnić Twoje sesje).
+Twoja sesja mogła wygasnąć. Zaloguj się ponownie. Jeśli zdarza się to często, poproś administratora o zwiększenie **Limit czasu sesji** w sekcji [Ustawienia → Użytkownicy](/docs/settings/#users) (administrator mógł również unieważnić Twoje sesje).
 
 ## Administrator sieci: zapomniałem hasła
 
@@ -72,7 +72,7 @@ docker exec transrewrt reset-web-password '<username>' '<new-password>'
 
 Domyślna nazwa użytkownika administratora to `admin`. Z repozytorium źródłowego: `pnpm run reset-web-password -- <username> <new-password>`.
 
-## Pulpit nawigacyjny nie pokazuje danych dla innych użytkowników (web)
+## Panel pokazuje brak danych dla innych użytkowników (web)
 
 Tylko **administratorzy** mogą przeglądać innych użytkowników za pomocą filtra **Użytkownik**. Zwykli użytkownicy widzą tylko swoją własną aktywność.
 
@@ -89,4 +89,4 @@ Podczas edycji promptu Transform kliknij **Zapisz** przed **Powrót do uruchomie
 - Regularnie eksportuj prompty, jeśli budujesz bibliotekę promptów
 - Użyj [Pulpitu nawigacyjnego](/docs/dashboard/) i [Historii](/docs/history/), aby przeglądać użycie i poprzednie uruchomienia
 
-[Report an issue](https://github.com/wsj-br/transrewrt/issues)
+[Zgłoś problem](https://github.com/wsj-br/transrewrt/issues)

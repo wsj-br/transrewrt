@@ -32,9 +32,9 @@ Använd **Översätt** för att konvertera text från ett språk till ett annat.
 
 I [Inställningar → Allmänna inställningar](/docs/settings/#general-settings):
 
-- **Kör automatiskt vid inklistring** – körs så snart du klistrar in
-- **Kopiera resultat automatiskt till urklipp** – kopierar efter en lyckad körning
-- **Realtidsöversättning medan du skriver** – körs medan du skriver (kan öka kostnaden)
+- **Autokör vid inklistring** – körs så snart du klistrar in
+- **Autokopiera resultat till urklipp** – kopierar efter en lyckad körning
+- **Realtidsöversättning under inmatning** – körs medan du skriver (kan öka kostnaden)
 - **Tidsgräns (ms)** – vänta innan en realtidskörning
 - **Beteende för ENTER** – om Enter kör uppgiften eller infogar en ny rad
 
@@ -48,9 +48,9 @@ I [Inställningar → Allmänna inställningar](/docs/settings/#general-settings
 
 Efter en lyckad körning visas **Omformulera…** och en versionsrullgardinsmeny bredvid väljaren **Till:**:
 
-1. **Omformulera…** (inget val) – en annan fullständig översättning av samma indata. Upp till **fem** versioner; modellen ser tidigare versioner så formuleringen kan skilja sig. Klicka på **Stoppa översättning** för att avbryta en pågående omformulering.
-2. **Ordalternativ** – välj ord eller en kort fras, högerklicka sedan eller **Omformulera…**. Välj ett alternativ för att ersätta spannet (kan breddas något för grammatik). Vid fem versioner uppdateras endast version 5.
-3. Varje omformulering eller alternativförfrågan använder modellen igen och kan medföra kostnad.
+1. **Omformulera…** (inget val) – en annan fullständig översättning av samma inmatning. Upp till **fem** versioner; modellen ser tidigare versioner så formuleringen kan skilja sig. Klicka på **Stoppa översättning** för att avbryta en pågående omformulering.
+2. **Ord-alternativ** – välj ord eller en kort fras, högerklicka sedan eller välj **Omformulera…**. Välj ett alternativ för att ersätta spannet (kan breddas något för grammatik). Vid fem versioner uppdateras endast version 5.
+3. Varje omformulering eller alternativförfrågan använder modellen igen och kan medföra extra kostnad.
 
 ## Använd ordlistan
 

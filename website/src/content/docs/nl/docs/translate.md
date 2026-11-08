@@ -33,9 +33,9 @@ Gebruik **Vertalen** om tekst van de ene taal naar de andere te converteren.
 In [Instellingen → Algemene instellingen](/docs/settings/#general-settings):
 
 - **Automatisch uitvoeren bij plakken** — wordt uitgevoerd zodra u plakt
-- **Resultaat automatisch naar klembord kopiëren** — kopieert na een succesvolle uitvoering
-- **Realtime vertaling tijdens typen** — wordt uitgevoerd terwijl u typt (kan kosten verhogen)
-- **Time-out (ms)** — wachten voor een realtime uitvoering
+- **Automatisch resultaat naar klembord kopiëren** — kopieert na een succesvolle uitvoering
+- **Realtime vertaling tijdens het typen** — wordt uitgevoerd terwijl u typt (kan de kosten verhogen)
+- **Time-out (ms)** — wachten voordat een realtime uitvoering plaatsvindt
 - **Gedrag voor ENTER** — of Enter de taak uitvoert of een nieuwe regel invoegt
 
 ## Lay-out en toetsenbord

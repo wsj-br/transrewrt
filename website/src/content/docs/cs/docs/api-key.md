@@ -23,8 +23,8 @@ Funguje jakýkoli podporovaný poskytovatel. Pokud si nejste jisti, kterého vyb
 
 Přesné kroky se u jednotlivých poskytovatelů mírně liší, ale vzor je všude stejný:
 
-1. Zaregistrujte se nebo se přihlaste na webových stránkách poskytovatele. V Transrewrtu v **Nastavení → Konfigurace API** má každý poskytovatel odkaz **Otevřít webové stránky poskytovatele**, který vás zavede na správné místo.
-2. Najděte stránku **Klíče API** (někdy pod účtem, řídicím panelem nebo nastavením pro vývojáře) a vytvořte nový klíč. Někteří poskytovatelé vás požádají o pojmenování klíče nebo nastavení limitu útraty – obojí je volitelné.
+1. Zaregistrujte se nebo se přihlaste na webové stránce poskytovatele. V části **Nastavení → Konfigurace API** v Transrewrtu má každý poskytovatel odkaz **Otevřít webovou stránku poskytovatele**, který vás zavede na správné místo.
+2. Najděte stránku **API klíče** (někdy pod nastavením účtu, nástěnky nebo vývojáře) a vytvořte nový klíč. Někteří poskytovatelé vás požádají o pojmenování klíče nebo nastavení limitu útraty – obojí je volitelné.
 3. Zkopírujte klíč. Jedná se o dlouhý řetězec písmen a čísel, často začínající něčím jako `sk-`.
 
 :::note

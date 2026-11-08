@@ -20,7 +20,7 @@ Controleer of:
 
 Bevestig in de **Eenvoudige** modus dat de **Provider** is ingesteld en dat sleutels/URL's zijn getest. Zorg er voor **Lokale LLM** voor dat uw lokale server draait en modellen zijn geladen.
 
-In de **Geavanceerde** modus kunnen geselecteerde modellen leeg zijn. Open **Instellingen → Modellen**, klik op **Vernieuwen** en voeg modellen toe aan **Geselecteerde modellen**. Schakel optioneel **Alleen gratis** in. Het verwijderen van het laatste werkbalkmodel opent ook Instellingen → Modellen.
+In de **Geavanceerd**-modus kunnen geselecteerde modellen leeg zijn. Open **Instellingen → Modellen**, klik op **Vernieuwen** en vink de gewenste modellen aan (of gebruik **Selecteer uit voorinstellingen**). Schakel optioneel **Alleen gratis** in. Het verwijderen van het laatste model op de werkbalk opent ook Instellingen → Modellen.
 
 ## Te traag of te duur
 
@@ -44,7 +44,7 @@ Dit is normaal als:
 - u alleen **gratis modellen** gebruikt en u kijkt naar **kosten** (deze kunnen nul zijn); KPI's voor het aantal oproepen hebben nog steeds gegevens nodig voor de geselecteerde periode
 - het geselecteerde **tijdfilter** niet de periode dekt waarin oproepen zijn gedaan — probeer **Alles**
 
-Als KPI's na **Alles** nog steeds nul zijn, controleer dan [Geschiedenis](/docs/history/) of Dashboard → **Alle oproepen**.
+Als KPI's na **Alles** nog steeds nul zijn, controleer dan [Geschiedenis](/docs/history/) of Dashboard → **Alle gesprekken**.
 
 ## Kosten tonen "niet beschikbaar" of lijken verkeerd
 
@@ -52,7 +52,7 @@ OpenRouter en xAI tonen de werkelijke uitgaven wanneer de API deze retourneert. 
 
 ## Totale kosten komen niet overeen met mijn providerfactuur
 
-Cijfers in de app zijn **schattingen ter referentie**, geen facturen. Gebruik voor OpenRouter **Instellingen → Kosten bijhouden → Synchroniseren met API-sleutelgebruik**.
+Cijfers in de app zijn **schattingen ter referentie**, geen facturen. Voor OpenRouter gebruikt u **Instellingen → Kostenregistratie → Synchroniseren met API-sleutelgebruik**.
 
 ## Geschiedenispagina ontbreekt in de zijbalk
 
@@ -60,7 +60,7 @@ Cijfers in de app zijn **schattingen ter referentie**, geen facturen. Gebruik vo
 
 ## Web: onverwacht omgeleid naar inlogpagina
 
-Uw sessie is mogelijk verlopen. Log opnieuw in. Als dit vaak gebeurt, vraag dan een beheerder om de **Sessietime-out** te verhogen onder [Instellingen → Gebruikers](/docs/settings/#users) (een beheerder kan ook uw sessies hebben ingetrokken).
+Uw sessie is mogelijk verlopen. Meld u opnieuw aan. Als dit vaak gebeurt, vraag dan een beheerder om de **Sessie time-out** te verhogen onder [Instellingen → Gebruikers](/docs/settings/#users) (een beheerder kan ook uw sessies hebben ingetrokken).
 
 ## Webbeheerder: wachtwoord vergeten
 
@@ -89,4 +89,4 @@ Wanneer u een Transform-prompt bewerkt, klikt u op **Opslaan** voordat u op **Te
 - Exporteer regelmatig prompts als u een promptbibliotheek aan het opbouwen bent
 - Gebruik [Dashboard](/docs/dashboard/) en [Geschiedenis](/docs/history/) om het gebruik en eerdere uitvoeringen te bekijken
 
-[Report an issue](https://github.com/wsj-br/transrewrt/issues)
+[Een probleem melden](https://github.com/wsj-br/transrewrt/issues)

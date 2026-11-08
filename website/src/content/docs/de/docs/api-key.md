@@ -55,10 +55,10 @@ Wenn Sie Transrewrt in einem Browser verwenden, werden die Schlüssel von demjen
 
 ## Checkliste für die erste Ausführung
 
-1. Öffnen Sie die App und stellen Sie bei Bedarf die **Oberflächensprache** ein.
-2. Fügen Sie mindestens einen Anbieterschlüssel hinzu und testen Sie ihn – oder konfigurieren Sie ein lokales Modell (Desktop), oder bestätigen Sie, dass der Server Umgebungsschlüssel hat (Web).
-3. Im **einfachen** Modus wählen Sie einen **Anbieter** in den Allgemeinen Einstellungen; im **erweiterten** Modus fügen Sie Modelle unter **Einstellungen → Modelle** hinzu – siehe [Einstellungen](/docs/settings/#general-settings) für die beiden Modi.
-4. Unter **Übersetzen** wählen Sie eine Voreinstellung oder ein Modell aus und führen einen kurzen Test durch – siehe [Text übersetzen](/docs/translate/).
+1. Öffnen Sie die App und stellen Sie bei Bedarf die **Schnittstellensprache** ein.
+2. Fügen Sie mindestens einen Anbieterschlüssel hinzu und testen Sie ihn – oder konfigurieren Sie ein lokales Modell (Desktop), oder bestätigen Sie, dass der Server Umgebungsschlüssel (Web) hat.
+3. Wählen Sie im **Einfach**-Modus einen **Anbieter** in den Allgemeinen Einstellungen; im **Erweitert**-Modus fügen Sie Modelle unter **Einstellungen → Modelle** hinzu – siehe [Einstellungen](/docs/settings/#general-settings) für die beiden Modi.
+4. Wählen Sie unter **Übersetzen** eine Vorgabe oder ein Modell aus und führen Sie einen kurzen Test durch – siehe [Text übersetzen](/docs/translate/).
 
 ## Wenn etwas nicht funktioniert
 

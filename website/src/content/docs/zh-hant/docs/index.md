@@ -19,9 +19,9 @@ description: Transrewrt 的用途說明，以及如何找到安裝指南、設�
 
 ![翻譯工作區](/images/screenshots/zh-Hant/translate.png)
 
-- **Sidebar** — 主導航：翻譯、重寫、轉換、儀表板、歷史記錄、設定（以及網頁版已登入的使用者）。
-- **Toolbar** — 頁面標題、**preset**（簡易）或 **model**（進階）選擇器、**Interface language**（地球圖示；不會更改翻譯來源/目標），以及連結至此文件的說明（**?**）。預設/模型選單也可以 **Switch to Easy/Advanced mode**（在「開啟設定」上方）。
-- **Work area** — 輸入與輸出面板，包含計數、計時、TPS 以及可選的成本。操作列顯示一個小型應用程式 **version** 連結（右下角），指向 GitHub Pages 網站。
+- **側邊欄** — 主導航：翻譯、改寫、轉換、儀表板、歷史、設定（以及網頁版上已登入的使用者）。
+- **工具列** — 頁面標題、**預設**（簡易）或 **模型**（進階）選擇器、**介面語言**（地球圖示；不會更改翻譯來源/目標），以及連結至此文件的說明（**?**）。預設/模型選單也可以 **切換至簡易/進階模式**（在開啟設定上方）。
+- **工作區** — 輸入與輸出面板，包含計數、計時、TPS 及可選的成本。操作列顯示一個小型應用程式 **版本** 連結（右下角），指向 GitHub Pages 網站。
 
 應用程式預設以 **簡易模式**執行：在設定中選擇 **預設集** 和 **供應商**。在 [設定 → 一般設定](/docs/settings/#general-settings) 中切換至 **進階模式** 可取得完整模型清單，或使用工具列預設集/模型選單中的開關。
 
@@ -44,4 +44,4 @@ description: Transrewrt 的用途說明，以及如何找到安裝指南、設�
 - [設定](/docs/settings/)
 - [常見問題](/docs/common-issues/)
 
-[Download releases](https://github.com/wsj-br/transrewrt/releases) · [GitHub repository](https://github.com/wsj-br/transrewrt)
+[下載發行版本](https://github.com/wsj-br/transrewrt/releases) · [GitHub 儲存庫](https://github.com/wsj-br/transrewrt)

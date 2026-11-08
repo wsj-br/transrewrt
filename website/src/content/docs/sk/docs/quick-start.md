@@ -40,9 +40,9 @@ docker compose -f transrewrt.yml up -d
 
 ## Windows
 
-1. Stiahnite si najnovší súbor `Transrewrt Setup x.y.z.exe` z [vydaní](https://github.com/wsj-br/transrewrt/releases).
-2. Spustite inštalačný program.
-3. Otvorte aplikáciu a zadajte kľúče API v časti **Nastavenia → Konfigurácia rozhrania API**. Nakonfigurujte aspoň jedného poskytovateľa; OpenRouter je bežná voľba pre bezplatné modely.
+1. Stiahnite si najnovší `Transrewrt Setup x.y.z.exe` z [vydaní](https://github.com/wsj-br/transrewrt/releases).
+2. Spustite inštalátor.
+3. Otvorte aplikáciu a zadajte kľúče API v časti **Nastavenia → Konfigurácia API**. Nakonfigurujte aspoň jedného poskytovateľa; OpenRouter je bežnou voľbou pre voľné modely.
 
 :::note
 Systém Windows môže pri inštalácii aplikácie zobrazovať upozornenia UAC alebo SmartScreen. Inštalácia je bezpečná, ak si ju stiahnete z oficiálnej stránky GitHub Releases. Ak chcete nainštalovať, kliknite na „Viac informácií“ a „Spustiť aj tak“.
@@ -56,7 +56,7 @@ Stiahnite si súbor `.AppImage` pre váš procesor z [vydaní](https://github.co
 chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage
 ```
 
-Zadajte kľúče API v časti **Nastavenia → Konfigurácia rozhrania API**.
+Zadajte kľúče API v časti **Nastavenia → Konfigurácia API**.
 
 Ak Chromium tlačí chyby GPU / EGL, ale aplikácia funguje, môžete vypnúť hardvérovú akceleráciu:
 

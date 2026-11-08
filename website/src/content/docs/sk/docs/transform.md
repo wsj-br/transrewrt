@@ -22,9 +22,9 @@ Použite **Transformovať**, keď chcete, aby AI postupovala podľa vlastných p
 
 [Prepínanie rozloženia a klávesové skratky](/docs/translate/#layout-and-keyboard) fungujú rovnako ako v Preklade.
 
-## Načítajte vzorové výzvy
+## Načítať ukážkové prompty
 
-Ak je zoznam prázdny, kliknite na **Načítať vzorové výzvy** v pracovnom priestore Transform (dostupné aj pod [Nastavenia → Transformovať](/docs/settings/#transform)). Vzorky sú v angličtine; po načítaní upravte výzvu a v prípade potreby použite **Preložiť výzvu**.
+Ak je zoznam prázdny, kliknite na **Načítať ukážkové prompty** v pracovnom priestore Transformovať (dostupné aj v časti [Nastavenia → Transformovať](/docs/settings/#transform)). Ukážky sú v angličtine; po načítaní upravte výzvu a v prípade potreby použite **Preložiť výzvu**.
 
 ## Vytvorte výzvu
 
@@ -43,9 +43,9 @@ Editor je vľavo; testovacia oblasť je vpravo.
 Hlavné polia:
 
 - **Názov výzvy** — zobrazený v zozname výziev
-- **Pokyny k výzve (voliteľné)** — krátka nápoveda pri spúšťaní výzvy
+- **Pokyny pre výzvu (voliteľné)** — krátka nápoveda pri spúšťaní výzvy
 - **Rola modelu** — celková rola pre AI
-- **Pokyny modelu (jeden na riadok)** — pravidlá, ktoré treba dodržiavať
+- **Pokyny pre model (jeden na riadok)** — pravidlá, ktoré treba dodržiavať
 - **Popis výstupu** — krátky štítok pre výsledok (napr. zhrnutý)
 - **Teplota (0,0 → 1,0)** — nižšia je stabilnejšia; vyššia je rozmanitejšia
 - **Požiadať o cieľový jazyk** — pridá výber jazyka pri spúšťaní
@@ -53,7 +53,7 @@ Hlavné polia:
 Pomocníci: **Generovať výzvu**, **Vylepšiť výzvu**, **Preložiť výzvu** (Jednoduché používa predvoľby; Pokročilé používa zoznam modelov).
 
 :::caution
-Pred **Späť na spustenie** kliknite na **Uložiť**. Návrat bez uloženia zahodí úpravy.
+Pred **Späť na Spustiť** kliknite na **Uložiť**. Návrat bez uloženia zahodí úpravy.
 :::
 
 ## Testovanie pred každodenným používaním

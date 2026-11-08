@@ -122,5 +122,6 @@
   "Transrewrt history view listing past executions with input, output, and filters": "Transrewrtの履歴ビュー。入力、出力、フィルター付きで過去の実行を一覧表示",
   "Transrewrt — Translate, rewrite, and transform text with AI": "Transrewrt — AIでテキストを翻訳、リライト、変換",
   "Transrewrt is an open-source AI-powered text tool for translating between languages, rewriting in different styles, and transforming text with custom prompts. Desktop app or Docker web app — your keys, your models, your host.": "Transrewrtは、言語間の翻訳、異なるスタイルでの書き換え、カスタムプロンプトによるテキスト変換を行うオープンソースのAI搭載テキストツールです。デスクトップアプリまたはDocker Webアプリ — あなたのキー、あなたのモデル、あなたのホスト。",
-  "Open-source AI text tool for translation, rewriting, and custom transforms. Bring your own keys and models. Desktop or Docker.": "翻訳、書き換え、カスタム変換のためのオープンソースAIテキストツール。独自のキーとモデルを使用。デスクトップまたはDocker。"
+  "Open-source AI text tool for translation, rewriting, and custom transforms. Bring your own keys and models. Desktop or Docker.": "翻訳、書き換え、カスタム変換のためのオープンソースAIテキストツール。独自のキーとモデルを使用。デスクトップまたはDocker。",
+  "Translate text between languages, rewrite text in different styles, and transform text using AI.": "言語間でテキストを翻訳し、異なるスタイルで書き直し、AIを使ってテキストを変換します。"
 }

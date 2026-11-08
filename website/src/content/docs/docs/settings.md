@@ -8,7 +8,7 @@ Open **Settings** from the sidebar to customise how the app behaves.
 | Tab | Desktop | Web (admin) | Web (user) | Notes |
 | --- | :---: | :---: | :---: | --- |
 | General Settings | ✓ | ✓ | ✓ | Includes **AI experience** (Easy / Advanced) |
-| Models | ✓ | ✓ | ✓ | Only when **AI experience** is **Advanced** |
+| Models | ✓ | ✓ | ✓ | Preset cards in Easy, model table in Advanced |
 | Languages | ✓ | ✓ | ✓ | |
 | Cost Tracking | ✓ | ✓ | — | |
 | Transform | ✓ | ✓ | ✓ | Bulk import/export of prompts |
@@ -17,7 +17,7 @@ Open **Settings** from the sidebar to customise how the app behaves.
 | API Config | ✓ | ✓ | — | |
 | About | ✓ | ✓ | ✓ | |
 
-In **Easy** mode, pick AI via presets in the toolbar and **Provider** in General Settings; the **Models** tab is hidden.
+In **Easy** mode, pick AI via presets in the toolbar and **Provider** in General Settings; the **Models** tab shows read-only preset cards.
 
 :::note
 In the web version, each user has their own configuration (AI experience, provider, models/presets, languages, options, prompts). Changes do not affect other users.
@@ -57,17 +57,33 @@ Backups can move between desktop and web; restoring a desktop backup on web appl
 
 ## Models
 
-Available only in **Advanced** mode.
+The **Models** tab is always listed. Its **Easy / Advanced** toggle switches the whole app between the two [AI experiences](#general-settings).
 
-- **Available Models** (left) and **Selected Models** (right)
-- Search, **Provider** chips, **Free Only**, **Refresh**, Expand/Collapse All
+- **Easy** shows one read-only card per preset (for example **Free (OpenRouter)** or **Standard**). Each card lists the preset's main and fallback model for every provider you have configured. The **Provider** chips filter the cards.
+- **Advanced** shows one table of every model, with:
+  - a search box, **Provider** chips, **Free Only**, **Selected only**, and **Refresh**
+  - a sort menu; the default is **Index High to Low**
+  - a checkbox per model to select or deselect it
+  - **Select from presets**, which adds a preset's main and fallback models for each configured provider (**Load all** loads every provider)
+  - **Deselect All**, which asks for confirmation first
 - Model ids use a provider prefix (`openrouter/…`, `openai/…`, `local/…`, …)
+
+The score and price columns:
+
+- **Index** — a quality score blended from ChrF, Arena Score, and price. It is ranked within each provider, so it is not comparable across providers. Models with no Index sort to the bottom.
+- **ChrF** — mean translation quality from [languagebench](https://huggingface.co/spaces/fair-forward/languagebench) for the app's UI languages.
+- **Arena** — Arena Score from the [LMArena](https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset) leaderboard.
+- **Input** / **Output** — price in USD per 1M tokens, from the provider catalog or [models.dev](https://models.dev/). An estimated price is marked with an asterisk. A dash (—) means the price is unknown; local models show "no cost - local".
+
+Hover over a column heading to see its data source and licence. The model selector in the toolbar shows each model's Index as a small chip; hover over it for the ChrF and Arena values.
+
+Scores are a guide only: coverage is incomplete, and many models have no ChrF or Arena score.
 
 :::tip
 Do not use OpenRouter **Body Builder** (`openrouter/bodybuilder`) for Translate, Rewrite, or Transform — it returns JSON request payloads, not finished text.
 :::
 
-Add with **Add**; remove with **X**. The OpenRouter free model is optional — selected models may be empty. Removing the last model from the toolbar opens **Settings → Models**. If the current model becomes unavailable, the app selects the next model in the list instead of forcing the free model.
+Tick or untick a model to select or deselect it. The OpenRouter free model is optional — selected models may be empty. Removing the last model from the toolbar opens **Settings → Models**. If the current model becomes unavailable, the app selects the next model in the list instead of forcing the free model.
 
 ## Languages
 

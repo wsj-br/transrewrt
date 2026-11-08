@@ -32,10 +32,10 @@ Le **lingue principali** appaiono per prime negli elenchi — impostale in [Impo
 
 In [Impostazioni → Impostazioni generali](/docs/settings/#general-settings):
 
-- **Esecuzione automatica all'incolla** — si avvia non appena incolli
-- **Copia automatica del risultato negli appunti** — copia dopo un'esecuzione riuscita
-- **Traduzione in tempo reale durante la digitazione** — si avvia mentre digiti (potrebbe aumentare i costi)
-- **Timeout (ms)** — attesa prima di un'esecuzione in tempo reale
+- **Esegui automaticamente al copia-incolla** — esegue non appena incolli
+- **Copia automaticamente il risultato negli appunti** — copia dopo un'esecuzione riuscita
+- **Traduzione in tempo reale durante la digitazione** — esegue mentre digiti (potrebbe aumentare il costo)
+- **Timeout (ms)** — attende prima di un'esecuzione in tempo reale
 - **Comportamento per INVIO** — se Invio esegue l'attività o inserisce una nuova riga
 
 ## Layout e tastiera
@@ -49,7 +49,7 @@ In [Impostazioni → Impostazioni generali](/docs/settings/#general-settings):
 Dopo un'esecuzione riuscita, **Riformula…** e un menu a discesa delle versioni appaiono accanto al selettore **A:**:
 
 1. **Riformula…** (nessuna selezione) — un'altra traduzione completa dello stesso input. Fino a **cinque** versioni; il modello vede le versioni precedenti in modo che la formulazione possa differire. Fai clic su **Interrompi traduzione** per annullare una riformulazione in corso.
-2. **Alternative di parole** — seleziona parole o una breve frase, quindi fai clic con il tasto destro o su **Riformula…**. Scegli un'alternativa per sostituire l'intervallo (potrebbe allargarsi leggermente per la grammatica). A cinque versioni, solo la versione 5 viene aggiornata.
+2. **Alternative parole** — seleziona parole o una breve frase, quindi fai clic con il pulsante destro del mouse o su **Riformula…**. Scegli un'alternativa per sostituire l'intervallo (potrebbe allargarsi leggermente per la grammatica). A cinque versioni, viene aggiornata solo la versione 5.
 3. Ogni richiesta di riformulazione o di alternative utilizza nuovamente il modello e potrebbe aggiungere costi.
 
 ## Usa il glossario

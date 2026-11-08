@@ -46,4 +46,4 @@ description: >-
 - [Настройки](/docs/settings/)
 - [Распространенные проблемы](/docs/common-issues/)
 
-[Download releases](https://github.com/wsj-br/transrewrt/releases) · [GitHub repository](https://github.com/wsj-br/transrewrt)
+[Скачать релизы](https://github.com/wsj-br/transrewrt/releases) · [Репозиторий GitHub](https://github.com/wsj-br/transrewrt)

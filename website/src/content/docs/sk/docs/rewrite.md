@@ -13,19 +13,19 @@ Použite funkciu **Prepísať** na zlepšenie formulácie bez zmeny hlavného v�
 
 Režimy zahŕňajú:
 
-- **Kontrola pravopisu a gramatiky**
+- **Skontrolovať pravopis a gramatiku**
 - **Zlepšiť jasnosť**
 - **Alternatívne verzie** (niekoľko preformulovaní v jednom spustení)
-- **Urobiť formálnym** / **Urobiť neformálnym**
+- **Urobiť formálne** / **Urobiť neformálne**
 - **Skrátiť** / **Rozšíriť**
-- **Urobiť technickým**
+- **Urobiť technické**
 
 ## Prepísať text
 
 1. Otvorte **Prepísať**.
 2. Vyberte **Režim**.
-3. Voliteľne nastavte **Z** na jazyk vášho textu (alebo ponechajte **Rozpoznať jazyk**).
-4. Zadajte alebo prilepte text do **Vstup**.
+3. Voliteľne nastavte **Z** na jazyk vášho textu (alebo ponechajte **Zistiť jazyk**).
+4. Napíšte alebo vložte text do **Vstup**.
 5. Kliknite na **Prepísať**.
 6. Prečítajte si výsledok vo **Výstup**.
 

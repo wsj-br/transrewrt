@@ -46,4 +46,4 @@ Domyślnie aplikacja działa w trybie **Łatwym**: wybierz **preset** i **Dostaw
 - [Ustawienia](/docs/settings/)
 - [Częste problemy](/docs/common-issues/)
 
-[Download releases](https://github.com/wsj-br/transrewrt/releases) · [GitHub repository](https://github.com/wsj-br/transrewrt)
+[Pobierz wydania](https://github.com/wsj-br/transrewrt/releases) · [Repozytorium GitHub](https://github.com/wsj-br/transrewrt)

@@ -44,4 +44,4 @@ description: Transrewrt가 무엇인지와 설치 가이드, 설정 문서를 �
 - [설정](/docs/settings/)
 - [일반적인 문제](/docs/common-issues/)
 
-[Download releases](https://github.com/wsj-br/transrewrt/releases) · [GitHub repository](https://github.com/wsj-br/transrewrt)
+[릴리스 다운로드](https://github.com/wsj-br/transrewrt/releases) · [GitHub 리포지토리](https://github.com/wsj-br/transrewrt)

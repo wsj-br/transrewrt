@@ -23,7 +23,7 @@ Exporteer de gefilterde lijst als **JSON**, **CSV** of **XLSX**.
 
 ## Als Geschiedenis ontbreekt
 
-**Uitvoeringsgeschiedenis bijhouden** is mogelijk uitgeschakeld. Schakel dit in via [Instellingen → Algemene instellingen](/docs/settings/#general-settings), tenzij de beheerder `HISTORY_DISABLED` heeft ingesteld — zie [Configuratie](/docs/configuration/#privacy-mode).
+**Uitvoeringsgeschiedenis bewaren** kan uitgeschakeld zijn. Schakel dit in via [Instellingen → Algemene instellingen](/docs/settings/#general-settings), tenzij de beheerder `HISTORY_DISABLED` heeft ingesteld — zie [Configuratie](/docs/configuration/#privacy-mode).
 
 ## Volgende stappen
 

@@ -12,7 +12,7 @@ Open **Instellingen** vanuit de zijbalk om aan te passen hoe de app zich gedraag
 | Tabblad | Desktop | Web (beheerder) | Web (gebruiker) | Opmerkingen |
 | --- | :---: | :---: | :---: | --- |
 | Algemene instellingen | ✓ | ✓ | ✓ | Inclusief **AI-ervaring** (Eenvoudig / Geavanceerd) |
-| Modellen | ✓ | ✓ | ✓ | Alleen wanneer **AI-ervaring** **Geavanceerd** is |
+| Modellen | ✓ | ✓ | ✓ | Vooraf ingestelde kaarten in Eenvoudig, modeltabel in Geavanceerd |
 | Talen | ✓ | ✓ | ✓ | |
 | Kosten bijhouden | ✓ | ✓ | — | |
 | Transformeren | ✓ | ✓ | ✓ | Bulk import/export van prompts |
@@ -21,7 +21,7 @@ Open **Instellingen** vanuit de zijbalk om aan te passen hoe de app zich gedraag
 | API-configuratie | ✓ | ✓ | — | |
 | Over | ✓ | ✓ | ✓ | |
 
-In de modus **Eenvoudig** kiest u AI via voorinstellingen in de werkbalk en **Provider** in Algemene instellingen; het tabblad **Modellen** is verborgen.
+In de modus **Eenvoudig** kiest u AI via voorinstellingen in de werkbalk en **Provider** in Algemene instellingen; het tabblad **Modellen** toont alleen-lezen voorinstelkaarten.
 
 :::note
 In de webversie heeft elke gebruiker zijn eigen configuratie (AI-ervaring, provider, modellen/voorinstellingen, talen, opties, prompts). Wijzigingen hebben geen invloed op andere gebruikers.
@@ -44,46 +44,62 @@ U kunt ook schakelen tussen Eenvoudig ↔ Geavanceerd via het menu voorinstellin
 
 **Uiterlijk** — Thema; **Kosteninformatie weergeven bij de acties**; **Aantal decimalen voor kosten**; alleen-webmarge rond de app; **Lettertypefamilie** en **Grootte**.
 
-**Gedrag** — **Gedrag voor ENTER**; **Automatisch uitvoeren bij plakken**; **Resultaat automatisch naar klembord kopiëren**; **Realtime vertaling tijdens typen**; **Time-out (ms)**.
+**Gedrag** — **Gedrag voor ENTER**; **Automatisch uitvoeren bij plakken**; **Automatisch resultaat naar klembord kopiëren**; **Realtime vertaling tijdens typen**; **Time-out (ms)**.
 
 **Geschiedenis**
 
-- **Uitvoeringsgeschiedenis bijhouden** — slaat invoer/uitvoer op voor de [Geschiedenis](/docs/history/)-weergave. Uitschakelen vraagt om bevestiging en kan opgeslagen tekst verwijderen. Indien gelabeld als *uitgeschakeld door de beheerder*, is `HISTORY_DISABLED` ingesteld — zie [Configuratie](/docs/configuration/#privacy-mode).
-- **Geschiedenisgegevens verwijderen** — verwijdert opgeslagen tekst op basis van leeftijd of wist alles. Verwijdert **geen** kostentotalen (gebruik hiervoor Kosten bijhouden).
+- **Uitvoeringsgeschiedenis bewaren** — slaat invoer/uitvoer op voor de [Geschiedenis](/docs/history/) weergave. Uitschakelen vraagt om bevestiging en kan opgeslagen tekst verwijderen. Indien gelabeld als *uitgeschakeld door de beheerder*, is `HISTORY_DISABLED` ingesteld — zie [Configuratie](/docs/configuration/#privacy-mode).
+- **Geschiedenisgegevens verwijderen** — verwijdert opgeslagen tekst op leeftijd of wist alles. Verwijdert **niet** de totale kosten (gebruik hiervoor Kostenregistratie).
 
-**Configuratieback-up** (desktop- en webbeheerders)
+**Configuratie backup** (desktop- en webbeheerders)
 
-- Optioneel **Gebruiksgegevens opnemen in de back-up**
-- **Back-upconfiguratie** — ZIP met configuratie, status, gebruikers, voorkeuren, prompts en optionele gebruiksgegevens
-- **Herstellen vanaf back-up** — bevestigingsdialoogvenster met opties om gebruiksgegevens te herstellen en/of te wissen
+- Optioneel **Gebruiksgegevens opnemen in de backup**
+- **Configuratie backup** — ZIP met configuratie, status, gebruikers, voorkeuren, prompts en optionele gebruiksgegevens
+- **Herstellen vanuit backup** — bevestigingsdialoog met opties om gebruiksgegevens te herstellen en/of te wissen
 
 Back-ups kunnen worden verplaatst tussen desktop en web; het herstellen van een desktopback-up op het web past gegevens toe op de beheerdersgebruiker.
 
 ## Modellen
 
-Alleen beschikbaar in de modus **Geavanceerd**.
+Het tabblad **Modellen** wordt altijd weergegeven. De schakelaar **Eenvoudig / Geavanceerd** schakelt de hele app tussen de twee [AI-ervaringen](#general-settings).
 
-- **Beschikbare modellen** (links) en **Geselecteerde modellen** (rechts)
-- Zoeken, **Provider**-chips, **Alleen gratis**, **Vernieuwen**, Alles uitvouwen/samenvouwen
-- Model-ID's gebruiken een providervoorvoegsel (`openrouter/…`, `openai/…`, `local/…`, …)
+- **Eenvoudig** toont één alleen-lezen kaart per voorinstelling (bijvoorbeeld **Gratis (OpenRouter)** of **Standaard**). Elke kaart toont het hoofd- en reservemodel van de voorinstelling voor elke provider die u hebt geconfigureerd. De **Provider**-chips filteren de kaarten.
+- **Geavanceerd** toont één tabel van elk model, met:
+  - een zoekvak, **Provider**-chips, **Alleen gratis**, **Alleen geselecteerde** en **Vernieuwen**
+  - een sorteermenu; de standaard is **Index hoog naar laag**
+  - een selectievakje per model om het te selecteren of te deselecteren
+  - **Selecteer uit voorinstellingen**, die de hoofd- en reservemodellen van een voorinstelling toevoegt voor elke geconfigureerde provider (**Alles laden** laadt elke provider)
+  - **Alles deselecteren**, wat eerst om bevestiging vraagt
+- Model-ID's gebruiken een providerprefix (`openrouter/…`, `openai/…`, `local/…`, …)
+
+De score- en prijscolommen:
+
+- **Index** — een kwaliteitsscore samengesteld uit ChrF, Arena Score en prijs. Deze wordt binnen elke provider gerangschikt, dus is niet vergelijkbaar tussen providers. Modellen zonder Index worden onderaan gesorteerd.
+- **ChrF** — gemiddelde vertaalkwaliteit van [languagebench](https://huggingface.co/spaces/fair-forward/languagebench) voor de UI-talen van de app.
+- **Arena** — Arena Score van het [LMArena](https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset) klassement.
+- **Input** / **Output** — prijs in USD per 1M tokens, uit de providercatalogus of [models.dev](https://models.dev/). Een geschatte prijs is gemarkeerd met een asterisk. Een streepje (—) betekent dat de prijs onbekend is; lokale modellen tonen "geen kosten - lokaal".
+
+Beweeg de muisaanwijzer over een kolomkop om de gegevensbron en licentie te zien. De modelkiezer in de werkbalk toont de Index van elk model als een kleine chip; beweeg de muisaanwijzer eroverheen voor de ChrF- en Arena-waarden.
+
+Scores zijn slechts een richtlijn: de dekking is onvolledig en veel modellen hebben geen ChrF- of Arena-score.
 
 :::tip
 Gebruik OpenRouter **Body Builder** (`openrouter/bodybuilder`) niet voor Vertalen, Herscheven of Transformeren — het retourneert JSON-aanvraagpayloads, geen voltooide tekst.
 :::
 
-Toevoegen met **Toevoegen**; verwijderen met **X**. Het gratis OpenRouter-model is optioneel — geselecteerde modellen kunnen leeg zijn. Het verwijderen van het laatste model uit de werkbalk opent **Instellingen → Modellen**. Als het huidige model niet beschikbaar wordt, selecteert de app het volgende model in de lijst in plaats van het gratis model af te dwingen.
+Vink een model aan of uit om het te selecteren of te deselecteren. Het gratis OpenRouter-model is optioneel — geselecteerde modellen kunnen leeg zijn. Het verwijderen van het laatste model uit de werkbalk opent **Instellingen → Modellen**. Als het huidige model niet beschikbaar wordt, selecteert de app het volgende model in de lijst in plaats van het gratis model af te dwingen.
 
 ## Talen
 
 - **Top talen** — bovenaan vastgezet in taallijsten in Vertalen en Transformeren
 - **Aangepaste taal** — voeg een taal toe die ontbreekt in de ingebouwde lijst
 
-## Kosten bijhouden
+## Kostenregistratie
 
 - **Totale kosten**, **Waarde kopiëren**, **Kosten resetten**
 - **Synchroniseren met API-sleutelgebruik** — afstemmen op OpenRouter-accountgebruik (alleen OpenRouter)
 - **API-sleutelgebruik** — OpenRouter-details indien beschikbaar
-- **Kosten gegevens verwijderen** — alle gegevens of vermeldingen ouder dan een bepaalde datum
+- **Kostgegevens verwijderen** — alle gegevens of vermeldingen ouder dan een bepaalde datum
 
 OpenRouter en xAI tonen de werkelijk gefactureerde kosten wanneer de API deze retourneert; andere providers gebruiken schattingen van de prijzen van [models.dev](https://models.dev/). Schattingen zijn geen facturen.
 
@@ -109,8 +125,8 @@ Desktop slaat de woordenlijst lokaal op; web slaat deze per gebruiker op.
 
 Alleen web (beheerders):
 
-- Gebruikers toevoegen, gegevens bijwerken, wachtwoorden opnieuw instellen, accounts verwijderen
-- **Sessietime-out** — hoe lang een aanmelding duurt (1 uur tot 7 dagen); wijzigingen zijn alleen van toepassing op nieuwe aanmeldingen
+- Gebruikers toevoegen, details bijwerken, wachtwoorden opnieuw instellen, accounts verwijderen
+- **Sessie time-out** — hoe lang een aanmelding duurt (1 uur tot 7 dagen); wijzigingen gelden alleen voor nieuwe aanmeldingen
 - **Sessies intrekken** — een gebruiker onmiddellijk afmelden van alle apparaten
 
 Elke aangemelde gebruiker (inclusief niet-beheerders) kan zijn eigen wachtwoord wijzigen of zich afmelden via het gebruikersmenu onderaan de zijbalk.

@@ -18,7 +18,7 @@ Check that:
 
 In **Easy** mode, confirm **Provider** is set and keys/URLs are tested. For **Local LLM**, ensure your local server is running and models are loaded.
 
-In **Advanced** mode, selected models may be empty. Open **Settings → Models**, click **Refresh**, and add models to **Selected Models**. Optionally turn on **Free Only**. Removing the last toolbar model also opens Settings → Models.
+In **Advanced** mode, selected models may be empty. Open **Settings → Models**, click **Refresh**, and tick the models you want (or use **Select from presets**). Optionally turn on **Free Only**. Removing the last toolbar model also opens Settings → Models.
 
 ## Too slow or too expensive
 

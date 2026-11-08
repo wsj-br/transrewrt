@@ -22,9 +22,9 @@ Använd **Transformera** när du vill att AI:n ska följa anpassade instruktione
 
 [Växlingsknappen för layout och kortkommandon](/docs/translate/#layout-and-keyboard) fungerar på samma sätt som i Translate.
 
-## Ladda exempelprompter
+## Ladda exempeluppmaningar
 
-Om listan är tom, klicka på **Ladda exempelprompter** i Transformera-arbetsytan (finns även under [Inställningar → Transformera](/docs/settings/#transform)). Exemplen är på engelska; efter laddning, redigera en prompt och använd **Översätt prompt** vid behov.
+Om listan är tom klickar du på **Ladda exempeluppmaningar** i arbetsytan Transformera (finns även under [Inställningar → Transformera](/docs/settings/#transform)). Exemplen är på engelska; efter att du har laddat dem kan du redigera en prompt och använda **Översätt prompten** om det behövs.
 
 ## Skapa en prompt
 
@@ -46,11 +46,11 @@ Huvudfält:
 - **Promptinstruktioner (valfritt)** – kort tips när prompten körs
 - **Modellroll** – övergripande roll för AI:n
 - **Modellinstruktioner (en per rad)** – regler att följa
-- **Utdata beskrivning** – kort etikett för resultatet (t.ex. sammanfattat)
-- **Temperatur (0.0 → 1.0)** – lägre är stabilare; högre är mer varierat
-- **Fråga efter målspråk** – lägger till en språk väljare vid körning
+- **Utbeskrivning** – kort etikett för resultatet (t.ex. sammanfattat)
+- **Temperatur (0,0 → 1,0)** – lägre är stabilare; högre är mer varierat
+- **Fråga efter målspråk** – lägger till en språkval när du kör
 
-Hjälpmedel: **Generera prompt**, **Förbättra prompt**, **Översätt prompt** (Enkel använder förinställningar; Avancerad använder modelllistan).
+Hjälpmedel: **Generera prompt**, **Förbättra prompten**, **Översätt prompten** (Enkel använder förinställningar; Avancerad använder modellistan).
 
 :::caution
 Klicka på **Spara** innan **Tillbaka till Kör**. Att gå tillbaka utan att spara kasserar ändringar.

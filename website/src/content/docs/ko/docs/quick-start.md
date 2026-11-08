@@ -25,7 +25,7 @@ docker run -d \
 그 다음 [http://localhost:5000](http://localhost:5000)을 열고, 서비스를 노출하기 전에 **기본 관리자 비밀번호를 변경**하세요.
 
 :::tip
-Docker에서 LLM 자격 증명은 환경 변수(예: `PROVIDER_API_KEY`)로 설정됩니다. 웹 UI에 입력하지 **않습니다**. 데스크톱에서는 **Settings → API Config**에서 키를 구성합니다.
+Docker에서 LLM 자격 증명은 환경 변수(예: `PROVIDER_API_KEY`)로 설정됩니다. 웹 UI에 입력되지 **않습니다**. 데스크톱에서는 **설정 → API 구성**에서 키를 구성합니다.
 :::
 
 ### Docker Compose
@@ -69,7 +69,7 @@ Mac용 `.dmg`을 [Releases](https://github.com/wsj-br/transrewrt/releases)에서
 - **Apple Silicon** — `Transrewrt-x.y.z-arm64.dmg`
 - **Intel** — `Transrewrt-x.y.z-x64.dmg`
 
-디스크 이미지를 열고 Transrewrt를 응용 프로그램 폴더로 드래그하세요. **Settings → API Config**에서 API 키를 입력하세요.
+디스크 이미지를 열고 Transrewrt를 응용 프로그램으로 드래그하세요. **설정 → API 구성**에서 API 키를 입력하세요.
 
 :::note
 macOS 빌드는 서명되지 않았습니다(Apple 공증 없음). Gatekeeper가 첫 실행을 차단합니다. `Transrewrt.app`을 우클릭하고 **Open**을 선택한 다음, **Open**을 확인하세요.

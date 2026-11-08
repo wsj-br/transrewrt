@@ -65,7 +65,7 @@ Electron 使用本地配置文件。以下仅适用于 Web/Docker 服务器：
 
 ## 隐私模式
 
-在 Web/Docker 服务器进程和/或 Electron 主进程上将 `HISTORY_DISABLED` 设置为 `true` 或 `1`，可强制关闭历史记录，无论 `config.json` 或用户偏好如何。此操作会禁用输入/输出历史记录存储、锁定 **设置 → 通用设置 → 历史记录**，并阻止历史记录相关 API。
+在 web/Docker 服务器进程和/或 Electron 主进程上将 `HISTORY_DISABLED` 设置为 `true` 或 `1`，以强制关闭历史记录，而不受 `config.json` 或用户偏好的影响。这将禁用输入/输出历史记录的存储，锁定 **设置 → 常规设置 → 历史**，并阻止与历史记录相关的 API。
 
 ## Web 身份验证
 

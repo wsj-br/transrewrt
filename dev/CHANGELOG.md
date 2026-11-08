@@ -11,13 +11,17 @@ Use conventional types (Added, Changed, Fixed, etc.) and short descriptions.
 
 ## Unreleased
 
+- **Changed**: Consolidated the website's `ai-i18n-tools.config.json` into the root file (website UI, docs, and JSON blocks); website i18n scripts run the root config, and website translation cache merged into `.translation-cache/cache.db`.
+- **Added**: Settings > Models has an Easy/Advanced toggle; Easy shows one readonly card per Easy-mode preset (Free, Standard, …) with the preset's main and fallback models in a table carrying the Index, ChrF, Arena, and Input/Output cost columns, filtered by the provider chips; Advanced keeps the current selectable table.
+- **Changed**: Settings > Models is always visible, also in Easy mode; its Easy/Advanced toggle switches the app-wide experience mode.
+
+- **Added**: Model selectors show each model's quality index as a chip, including the main window and prompt dialogs.
+- **Changed**: Settings > Models replaces the side-by-side Available and Selected panes with a table-first workspace: one sortable, searchable list with checkboxes and Model, Index, ChrF, Arena, Input, and Output columns, provider filter chips, Free Only and Selected only filters, Select from presets and Deselect All actions in the toolbar, and source tooltips with licences on the column headers.
+- **Changed**: Settings > Models rows show input and output price columns; models with unknown pricing show a tooltipped "—" instead of the old "Cost not available" line (local models keep "no cost - local").
 - **Fixed**: Drop the bare `glob` pnpm override (`^13.0.6`) so the direct dependency stays on patched `glob` 14 and `@electron/asar` keeps glob 7 (GHSA-3g3m-2fjr-6pw4).
-- **Added**: Settings > Models cards show a quality index, languagebench ChrF, and Arena Score, using the ai-i18n-tools `suggest-models --quality` weights.
+- **Added**: Settings > Models scores (Index, ChrF, Arena) use the ai-i18n-tools `suggest-models --quality` weights.
 - **Added**: Settings > Models can sort by index, high to low. Models with no index stay at the bottom.
 - **Changed**: Settings > Models opens sorted by index, high to low.
-- **Changed**: Settings > Models keeps the index chip on the name row. Its tooltip shows the model's place in the list, plus ChrF and Arena as the model value over the list maximum.
-- **Changed**: The Creative Commons icon on Available Models names each score source, links to it, and links to its licence.
-- **Changed**: Local models on Settings > Models show "no cost - local" instead of "Cost not available".
 - **Fixed**: Model-card benchmark scores are calculated from the models already listed, instead of a second catalog fetch that could finish without scores.
 - **Changed**: A dated or batch route such as DeepSeek V4 Flash 0731 (batch) uses the published DeepSeek V4 Flash ChrF and Arena scores. A different size or generation stays unmatched.
 - **Added**: Dev script `scripts/hy-mt2-translate.js` to try Hy-MT2 translations through a local Ollama server, printing token count, tokens/second, and translation time.

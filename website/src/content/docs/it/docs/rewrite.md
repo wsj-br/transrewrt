@@ -43,9 +43,9 @@ Dopo una riscrittura, un interruttore **Mostra modifiche** (**Modifiche**) appar
 
 Dopo un'esecuzione riuscita, **Riformula…** e il menu a discesa delle versioni appaiono sul lato dell'output (stessa idea di [Traduci](/docs/translate/#refine-a-translation), ma il testo rimane nella stessa lingua e mantiene la **Modalità** corrente):
 
-1. **Riformula…** (nessuna selezione) — un'altra riscrittura completa con una formulazione diversa. Fino a cinque versioni. Fai clic su **Interrompi riscrittura** per annullare.
-2. **Alternative di parole** — seleziona il testo, quindi fai clic con il pulsante destro del mouse o **Riformula…**.
-3. Ogni richiesta può aggiungere costi di utilizzo.
+1. **Riformula…** (nessuna selezione) — una riscrittura completa con una formulazione diversa. Fino a cinque versioni. Fare clic su **Interrompi riscrittura** per annullare.
+2. **Alternative parole** — selezionare il testo, quindi fare clic con il pulsante destro del mouse o su **Riformula…**.
+3. Ogni richiesta può aggiungere un costo di utilizzo.
 
 ## Passaggi successivi
 

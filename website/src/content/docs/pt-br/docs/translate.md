@@ -33,7 +33,7 @@ Os **idiomas principais** aparecem primeiro nas listas — defina-os em [Configu
 Em [Configurações → Configurações Gerais](/docs/settings/#general-settings):
 
 - **Executar automaticamente ao colar** — executa assim que você cola
-- **Copiar resultado automaticamente para a área de transferência** — copia após uma execução bem-sucedida
+- **Copiar automaticamente o resultado para a área de transferência** — copia após uma execução bem-sucedida
 - **Tradução em tempo real enquanto digita** — executa enquanto você digita (pode aumentar o custo)
 - **Tempo limite (ms)** — aguarda antes de uma execução em tempo real
 - **Comportamento para ENTER** — se Enter executa a tarefa ou insere uma nova linha

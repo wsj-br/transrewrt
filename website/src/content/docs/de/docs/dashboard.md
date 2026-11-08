@@ -23,9 +23,9 @@ Der Filter **Benutzer** ist nur für Administratoren in der Webversion sichtbar;
 
 ## Registerkarten
 
-- **Zusammenfassung** – KPIs: Gesamtkosten, verwendete Modelle, Anrufanzahl und Kosten pro Modus, durchschnittliche Kosten pro Anruf, durchschnittliche TPS, Top-Modelle nach Anrufanzahl
-- **Nach Modell** – Anrufe, Kosten und TPS pro Modell; Zeile für eine Modusaufschlüsselung erweitern
-- **Alle Anrufe** – vollständiges Anrufprotokoll (paginiert oder als Karten) mit Export
+- **Zusammenfassung** – KPIs: Gesamtkosten, verwendete Modelle, Aufrufanalyse und Kosten pro Modus, durchschnittliche Kosten pro Aufruf, durchschnittliche TPS, Top-Modelle nach Aufrufanzahl
+- **Nach Modell** – Aufrufe, Kosten und TPS pro Modell; erweitern Sie eine Zeile für eine Aufschlüsselung nach Modus
+- **Alle Aufrufe** – vollständiges Aufrufprotokoll (paginiert oder als Karten) mit Exportfunktion
 
 ## Daten exportieren
 
@@ -33,7 +33,7 @@ Tabellen als **JSON**, **CSV** oder **XLSX** exportieren.
 
 ## Gespeicherte Datensätze für ein Modell löschen
 
-Verwenden Sie unter **Nach Modell** oder **Alle Anrufe** das Papierkorb-Symbol, um Datensätze für ein Modell zu entfernen.
+Verwenden Sie unter **Nach Modell** oder **Alle Aufrufe** das Papierkorbsymbol, um Datensätze für ein Modell zu entfernen.
 
 :::caution
 Das Löschen kann nicht rückgängig gemacht werden. Um nach Alter zu löschen oder alle Kostendaten zu löschen, verwenden Sie [Einstellungen → Kostenverfolgung](/docs/settings/#cost-tracking).

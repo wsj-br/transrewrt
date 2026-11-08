@@ -23,7 +23,7 @@ Exportera den filtrerade listan som **JSON**, **CSV** eller **XLSX**.
 
 ## Om historiken saknas
 
-**Behåll körningshistorik** kan vara avstängt. Aktivera det i [Inställningar → Allmänna inställningar](/docs/settings/#general-settings) om inte administratören har ställt in `HISTORY_DISABLED` – se [Konfiguration](/docs/configuration/#privacy-mode).
+**Behåll körhistorik** kan vara inaktiverat. Aktivera det i [Inställningar → Allmänna inställningar](/docs/settings/#general-settings) om inte administratören har ställt in `HISTORY_DISABLED` – se [Konfiguration](/docs/configuration/#privacy-mode).
 
 ## Nästa steg
 

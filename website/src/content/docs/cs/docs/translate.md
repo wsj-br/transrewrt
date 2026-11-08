@@ -32,8 +32,8 @@ Použijte **Přeložit** k převodu textu z jednoho jazyka do druhého.
 
 V [Nastavení → Obecná nastavení](/docs/settings/#general-settings):
 
-- **Automatické spuštění při vložení** – spustí se ihned po vložení
-- **Automatické kopírování výsledku do schránky** – zkopíruje se po úspěšném spuštění
+- **Automaticky spustit při vložení** – spustí se ihned po vložení
+- **Automaticky kopírovat výsledek do schránky** – zkopíruje se po úspěšném spuštění
 - **Překlad v reálném čase během psaní** – spustí se během psaní (může zvýšit náklady)
 - **Časový limit (ms)** – čekání před spuštěním v reálném čase
 - **Chování pro ENTER** – zda Enter spustí úlohu nebo vloží nový řádek
@@ -49,7 +49,7 @@ V [Nastavení → Obecná nastavení](/docs/settings/#general-settings):
 Po úspěšném spuštění se vedle selektoru **Do:** objeví **Přeformulovat…** a rozbalovací nabídka verzí:
 
 1. **Přeformulovat…** (bez výběru) – další úplný překlad stejného vstupu. Až **pět** verzí; model vidí předchozí verze, takže se formulace může lišit. Kliknutím na **Zastavit překlad** zrušíte probíhající přeformulování.
-2. **Alternativy slov** – vyberte slova nebo krátkou frázi, poté klikněte pravým tlačítkem nebo na **Přeformulovat…**. Vyberte alternativu, která nahradí rozsah (může se mírně rozšířit kvůli gramatice). U pěti verzí se aktualizuje pouze verze 5.
+2. **Náhradní slova** – vyberte slova nebo krátkou frázi, poté klikněte pravým tlačítkem nebo na **Přeformulovat…**. Vyberte alternativu, která nahradí rozsah (může se mírně rozšířit kvůli gramatice). U pěti verzí se aktualizuje pouze verze 5.
 3. Každé přeformulování nebo požadavek na alternativy znovu použije model a může zvýšit náklady.
 
 ## Použití glosáře
@@ -62,7 +62,7 @@ Po úspěšném spuštění se vedle selektoru **Do:** objeví **Přeformulovat�
 4. Spravujte všechny termíny v [Nastavení → Slovník](/docs/settings/#glossary).
 
 :::note
-Termíny slovníku jsou přiřazeny podle jazykového páru. Nelze je použít s **Rozpoznat jazyk** jako zdroj.
+Termíny slovníku jsou přiřazeny podle jazykového páru. Nelze je použít s **Detekovat jazyk** jako zdroj.
 :::
 
 ## Další kroky

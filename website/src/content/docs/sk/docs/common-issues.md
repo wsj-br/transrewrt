@@ -20,7 +20,7 @@ Skontrolujte, či:
 
 V režime **Jednoduché** potvrďte, že je nastavený **Poskytovateľ** a kľúče/URL sú otestované. Pre **Lokálny LLM** sa uistite, že váš lokálny server beží a modely sú načítané.
 
-V režime **Pokročilé** môžu byť vybrané modely prázdne. Otvorte **Nastavenia → Modely**, kliknite na **Obnoviť** a pridajte modely do **Vybraných modelov**. Voliteľne zapnite **Len bezplatné**. Odstránenie posledného modelu z panela nástrojov tiež otvorí Nastavenia → Modely.
+V režime **Pokročilé** môžu byť vybrané modely prázdne. Otvorte **Nastavenia → Modely**, kliknite na **Obnoviť** a začiarknite modely, ktoré chcete (alebo použite **Vybrať z predvolieb**). Voliteľne zapnite **Iba bezplatné**. Odstránenie posledného modelu z panela nástrojov tiež otvorí Nastavenia → Modely.
 
 ## Príliš pomalé alebo príliš drahé
 
@@ -44,7 +44,7 @@ To je normálne, ak:
 - používate iba **bezplatné modely** a pozeráte sa na údaje o **nákladoch** (môžu byť nulové); KPI počtu volaní stále potrebujú údaje za vybrané obdobie
 - vybraný **časový filter** nepokrýva čas, kedy boli volania uskutočnené – skúste **Všetky**
 
-Ak sú KPI po **Všetkých** stále nulové, skontrolujte [Históriu](/docs/history/) alebo Hlavný panel → **Všetky volania**.
+Ak sú KPI po **Všetko** stále nulové, skontrolujte [Históriu](/docs/history/) alebo Ovládací panel → **Všetky hovory**.
 
 ## Náklady ukazujú „nie sú k dispozícii“ alebo sa zdajú nesprávne
 
@@ -52,11 +52,11 @@ OpenRouter a xAI zobrazujú skutočné výdavky, keď ich API vráti. Pre ostatn
 
 ## Celkové náklady sa nezhodujú s mojím účtom od poskytovateľa
 
-Údaje v aplikácii sú **odhadmi pre referenciu**, nie faktúrami. Pre OpenRouter použite **Nastavenia → Sledovanie nákladov → Synchronizovať s používaním API kľúča**.
+Čísla v aplikácii sú **odhadmi pre referenciu**, nie faktúrami. Pre OpenRouter použite **Nastavenia → Sledovanie nákladov → Synchronizovať s využitím API kľúča**.
 
 ## Stránka História chýba v bočnom paneli
 
-Možno je vypnutá možnosť **Ponechať históriu vykonávania**. Povoľte ju vo Všeobecných nastaveniach, pokiaľ história nie je zakázaná administrátorom (`HISTORY_DISABLED` — pozrite [Konfigurácia](/docs/configuration/#privacy-mode)).
+**Uchovávať históriu vykonávania** môže byť vypnuté. Povoľte ho vo Všeobecných nastaveniach, pokiaľ história nie je zakázaná administrátorom (`HISTORY_DISABLED` — pozrite [Konfigurácia](/docs/configuration/#privacy-mode)).
 
 ## Web: neočakávané presmerovanie na prihlásenie
 
@@ -72,13 +72,13 @@ docker exec transrewrt reset-web-password '<username>' '<new-password>'
 
 Predvolené používateľské meno administrátora je `admin`. Z pôvodného úložiska: `pnpm run reset-web-password -- <username> <new-password>`.
 
-## Dashboard nezobrazuje žiadne údaje pre ostatných používateľov (web)
+## Ovládací panel nezobrazuje žiadne dáta pre ostatných používateľov (web)
 
 Iba **administrátori** môžu prezerať ostatných používateľov pomocou filtra **Používateľ**. Bežní používatelia vidia iba svoju vlastnú aktivitu.
 
 ## Zmenil som výzvu a stratil úpravy
 
-Pri úprave výzvy Transform kliknite na **Uložiť** pred **Späť na spustenie**.
+Pri úprave výzvy Transform prompt kliknite na **Uložiť** pred **Späť na Spustiť**.
 
 ## Rýchle tipy
 
@@ -89,4 +89,4 @@ Pri úprave výzvy Transform kliknite na **Uložiť** pred **Späť na spustenie
 - Pravidelne exportujte výzvy, ak vytvárate knižnicu výziev
 - Použite [Dashboard](/docs/dashboard/) a [Históriu](/docs/history/) na kontrolu používania a minulých spustení
 
-[Report an issue](https://github.com/wsj-br/transrewrt/issues)
+[Nahlásiť problém](https://github.com/wsj-br/transrewrt/issues)

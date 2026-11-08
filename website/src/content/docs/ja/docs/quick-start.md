@@ -25,7 +25,7 @@ docker run -d \
 次に、[http://localhost:5000](http://localhost:5000)を開き、サービスを公開する前に**デフォルトの管理者パスワードを変更**してください。
 
 :::tip
-Dockerでは、LLMの認証情報は環境変数（例えば `PROVIDER_API_KEY`）で設定します。これらはWeb UIには入力し**ません**。デスクトップ版では、**Settings → API Config**でキーを設定します。
+Dockerでは、LLMの認証情報は環境変数（例えば`PROVIDER_API_KEY`）で設定します。Web UIには**入力しません**。デスクトップ版では、**設定 → API 設定**でキーを構成します。
 :::
 
 ### Docker Compose
@@ -38,9 +38,9 @@ docker compose -f transrewrt.yml up -d
 
 ## Windows
 
-1. [Releases](https://github.com/wsj-br/transrewrt/releases)から最新の`Transrewrt Setup x.y.z.exe`をダウンロードします。
+1. [リリース](https://github.com/wsj-br/transrewrt/releases)から最新の`Transrewrt Setup x.y.z.exe`をダウンロードします。
 2. インストーラーを実行します。
-3. アプリを開き、**Settings → API Config**でAPIキーを入力します。少なくとも1つのプロバイダーを設定してください。OpenRouterは無料モデルの一般的な選択肢です。
+3. アプリを開き、**設定 → API 設定**でAPIキーを入力します。少なくとも1つのプロバイダーを構成してください。OpenRouterは無料モデルの一般的な選択肢です。
 
 :::note
 アプリのインストール時に、WindowsでUACまたはSmartScreenの警告が表示されることがあります。公式のGitHub Releasesページからダウンロードしたものであれば、安全にインストールできます。インストールするには、「詳細情報」をクリックし、「そのまま実行」を選択してください。
@@ -54,7 +54,7 @@ docker compose -f transrewrt.yml up -d
 chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage
 ```
 
-**Settings → API Config**でAPIキーを入力します。
+**設定 → API 設定**でAPIキーを入力します。
 
 ChromiumがGPU / EGLエラーを出力してもアプリが動作する場合は、ハードウェアアクセラレーションを無効にできます:
 
@@ -69,7 +69,7 @@ Mac用の`.dmg`を[リリース](https://github.com/wsj-br/transrewrt/releases)�
 - **Apple Silicon** — `Transrewrt-x.y.z-arm64.dmg`
 - **Intel** — `Transrewrt-x.y.z-x64.dmg`
 
-ディスクイメージを開き、Transrewrtをアプリケーションにドラッグします。**Settings → API Config**でAPIキーを入力します。
+ディスクイメージを開き、Transrewrtをアプリケーションにドラッグします。**設定 → API 設定**でAPIキーを入力します。
 
 :::note
 macOSビルドは署名されていません（Appleの公証なし）。Gatekeeperが初回起動をブロックします。`Transrewrt.app`を右クリックして**Open**を選択し、**Open**で確認します。

@@ -18,9 +18,9 @@ Wenn etwas nicht wie erwartet funktioniert, überprüfen Sie zuerst diese Punkte
 
 ## Die Modellliste ist leer
 
-Vergewissern Sie sich im Modus **Einfach**, dass der **Anbieter** eingestellt und die Schlüssel/URLs getestet wurden. Stellen Sie für **Lokale LLM** sicher, dass Ihr lokaler Server läuft und Modelle geladen sind.
+Vergewissern Sie sich im Modus **Einfach**, dass der **Anbieter** eingestellt und die Schlüssel/URLs getestet sind. Stellen Sie für **Lokales LLM** sicher, dass Ihr lokaler Server läuft und die Modelle geladen sind.
 
-Im Modus **Erweitert** können die ausgewählten Modelle leer sein. Öffnen Sie **Einstellungen → Modelle**, klicken Sie auf **Aktualisieren** und fügen Sie Modelle zu **Ausgewählte Modelle** hinzu. Aktivieren Sie optional **Nur kostenlos**. Das Entfernen des letzten Symbolleistenmodells öffnet ebenfalls Einstellungen → Modelle.
+Im Modus **Erweitert** können ausgewählte Modelle leer sein. Öffnen Sie **Einstellungen → Modelle**, klicken Sie auf **Aktualisieren** und aktivieren Sie die gewünschten Modelle (oder verwenden Sie **Aus Voreinstellungen auswählen**). Aktivieren Sie optional **Nur kostenlos**. Das Entfernen des letzten Symbolleistenmodells öffnet ebenfalls Einstellungen → Modelle.
 
 ## Zu langsam oder zu teuer
 
@@ -29,9 +29,9 @@ Im Modus **Erweitert** können die ausgewählten Modelle leer sein. Öffnen Sie 
 - Deaktivieren Sie **Echtzeitübersetzung während der Eingabe** in den Allgemeinen Einstellungen
 - Verwenden Sie kostenlose Modelle für einfache Aufgaben
 
-## Falsche Benutzeroberflächensprache
+## Falsche Schnittstellensprache
 
-Klicken Sie auf das Globus-Symbol in der Symbolleiste und wählen Sie Ihre **Oberflächensprache**.
+Klicken Sie auf das Globus-Symbol in der Symbolleiste und wählen Sie Ihre **Schnittstellensprache** aus.
 
 ## Text zu klein oder schwer lesbar
 
@@ -44,7 +44,7 @@ Dies ist normal, wenn:
 - Sie nur **kostenlose Modelle** verwenden und sich die **Kosten** ansehen (diese können null sein); die KPIs der Anrufanzahl benötigen noch Daten für den ausgewählten Zeitraum
 - der ausgewählte **Zeitfilter** nicht den Zeitraum abdeckt, in dem Anrufe getätigt wurden – versuchen Sie **Alle**
 
-Wenn die KPIs nach **Alle** immer noch null sind, überprüfen Sie [Verlauf](/docs/history/) oder Dashboard → **Alle Anrufe**.
+Wenn die KPIs nach **Alle** immer noch null sind, überprüfen Sie den [Verlauf](/docs/history/) oder Dashboard → **Alle Aufrufe**.
 
 ## Kosten werden als „nicht verfügbar“ angezeigt oder scheinen falsch zu sein
 
@@ -60,7 +60,7 @@ Die Angaben in der App sind **Schätzungen als Referenz**, keine Rechnungen. Fü
 
 ## Web: unerwartet zur Anmeldung umgeleitet
 
-Ihre Sitzung ist möglicherweise abgelaufen. Melden Sie sich erneut an. Wenn dies häufig vorkommt, bitten Sie einen Administrator, das **Sitzungs-Timeout** unter [Einstellungen → Benutzer](/docs/settings/#users) zu erhöhen (ein Administrator kann auch Ihre Sitzungen widerrufen haben).
+Ihre Sitzung ist möglicherweise abgelaufen. Melden Sie sich erneut an. Wenn dies häufig vorkommt, bitten Sie einen Administrator, das **Sitzungstimeout** unter [Einstellungen → Benutzer](/docs/settings/#users) zu erhöhen (ein Administrator kann auch Ihre Sitzungen widerrufen haben).
 
 ## Web-Admin: Passwort vergessen
 
@@ -78,7 +78,7 @@ Nur **Administratoren** können andere Benutzer über den Filter **Benutzer** an
 
 ## Eine Eingabeaufforderung geändert und Bearbeitungen verloren
 
-Klicken Sie beim Bearbeiten einer Transform-Eingabeaufforderung auf **Speichern**, bevor Sie auf **Zurück zum Ausführen** klicken.
+Klicken Sie beim Bearbeiten einer Transformationsaufforderung auf **Speichern**, bevor Sie auf **Zurück zu Ausführen** klicken.
 
 ## Kurze Tipps
 
@@ -89,4 +89,4 @@ Klicken Sie beim Bearbeiten einer Transform-Eingabeaufforderung auf **Speichern*
 - Exportieren Sie regelmäßig Eingabeaufforderungen, wenn Sie eine Eingabeaufforderungsbibliothek aufbauen
 - Verwenden Sie [Dashboard](/docs/dashboard/) und [Verlauf](/docs/history/), um die Nutzung und vergangene Ausführungen zu überprüfen
 
-[Report an issue](https://github.com/wsj-br/transrewrt/issues)
+[Ein Problem melden](https://github.com/wsj-br/transrewrt/issues)

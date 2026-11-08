@@ -12,15 +12,15 @@ Si quelque chose ne fonctionne pas comme prévu, vérifiez d'abord ces points.
 Vérifiez que :
 
 - vous avez sélectionné un **préréglage** (Facile) ou un **modèle** (Avancé) dans la barre d'outils
-- en mode **Facile**, **Paramètres → Paramètres généraux** a un **Fournisseur** avec une clé fonctionnelle (ou une URL LLM locale)
+- en mode **Facile**, **Paramètres → Paramètres généraux** a un **Fournisseur** avec une clé fonctionnelle (ou une URL LLM local)
 - en mode **Avancé**, un modèle est sélectionné dans la barre d'outils (une liste vide est autorisée, mais vous avez besoin d'au moins un modèle dans **Paramètres → Modèles** pour exécuter)
-- votre configuration d'API fonctionne (ordinateur de bureau : **Paramètres → Configuration API → Tester**)
+- votre configuration API fonctionne (bureau : **Paramètres → Config. API → Tester**)
 
 ## La liste des modèles est vide
 
 En mode **Facile**, confirmez que le **Fournisseur** est défini et que les clés/URL sont testées. Pour **LLM local**, assurez-vous que votre serveur local est en cours d'exécution et que les modèles sont chargés.
 
-En mode **Avancé**, les modèles sélectionnés peuvent être vides. Ouvrez **Paramètres → Modèles**, cliquez sur **Actualiser** et ajoutez des modèles à **Modèles sélectionnés**. Vous pouvez éventuellement activer **Gratuit uniquement**. La suppression du dernier modèle de la barre d'outils ouvre également Paramètres → Modèles.
+En mode **Avancé**, les modèles sélectionnés peuvent être vides. Ouvrez **Paramètres → Modèles**, cliquez sur **Actualiser** et cochez les modèles que vous souhaitez (ou utilisez **Sélectionner parmi les préréglages**). Activez éventuellement **Gratuit uniquement**. La suppression du dernier modèle de la barre d'outils ouvre également Paramètres → Modèles.
 
 ## Trop lent ou trop cher
 
@@ -29,9 +29,9 @@ En mode **Avancé**, les modèles sélectionnés peuvent être vides. Ouvrez **P
 - Désactivez la **Traduction en temps réel pendant la saisie** dans les Paramètres généraux
 - Utilisez des modèles gratuits pour les tâches simples
 
-## Langue d'interface incorrecte
+## Langue de l'interface incorrecte
 
-Cliquez sur l'icône du globe dans la barre d'outils et choisissez votre **Langue d'interface**.
+Cliquez sur l'icône en forme de globe dans la barre d'outils et choisissez votre **Langue de l'interface**.
 
 ## Texte trop petit ou difficile à lire
 
@@ -78,7 +78,7 @@ Seuls les **administrateurs** peuvent afficher d'autres utilisateurs via le filt
 
 ## J'ai modifié une invite et j'ai perdu mes modifications
 
-Lorsque vous modifiez une invite de transformation, cliquez sur **Enregistrer** avant de cliquer sur **Retour à l'exécution**.
+Lors de la modification d'une invite de transformation, cliquez sur **Enregistrer** avant **Retour à Exécuter**.
 
 ## Conseils rapides
 
@@ -89,4 +89,4 @@ Lorsque vous modifiez une invite de transformation, cliquez sur **Enregistrer** 
 - Exportez régulièrement les invites si vous créez une bibliothèque d'invites
 - Utilisez [Tableau de bord](/docs/dashboard/) et [Historique](/docs/history/) pour examiner l'utilisation et les exécutions passées
 
-[Report an issue](https://github.com/wsj-br/transrewrt/issues)
+[Signaler un problème](https://github.com/wsj-br/transrewrt/issues)

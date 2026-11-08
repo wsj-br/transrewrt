@@ -46,4 +46,4 @@ description: >-
 - [Ρυθμίσεις](/docs/settings/)
 - [Κοινά προβλήματα](/docs/common-issues/)
 
-[Download releases](https://github.com/wsj-br/transrewrt/releases) · [GitHub repository](https://github.com/wsj-br/transrewrt)
+[Λήψη εκδόσεων](https://github.com/wsj-br/transrewrt/releases) · [Αποθετήριο GitHub](https://github.com/wsj-br/transrewrt)

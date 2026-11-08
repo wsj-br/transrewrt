@@ -27,7 +27,7 @@ Remplacez `PROVIDER_API_KEY` par la variable de votre fournisseur (par exemple `
 Ouvrez ensuite [http://localhost:5000](http://localhost:5000) et **modifiez le mot de passe administrateur par défaut** avant d'exposer le service.
 
 :::tip
-Dans Docker, les identifiants LLM sont définis avec des variables d'environnement (par exemple `PROVIDER_API_KEY`). Ils ne sont **pas** saisis dans l'interface utilisateur web. Sur le bureau, vous configurez les clés dans **Paramètres → Configuration API**.
+Dans Docker, les identifiants LLM sont définis avec des variables d'environnement (par exemple `PROVIDER_API_KEY`). Ils ne sont **pas** saisis dans l'interface utilisateur web. Sur ordinateur de bureau, vous configurez les clés dans **Paramètres → Config. API**.
 :::
 
 ### Docker Compose
@@ -40,9 +40,9 @@ docker compose -f transrewrt.yml up -d
 
 ## Windows
 
-1. Téléchargez le dernier `Transrewrt Setup x.y.z.exe` depuis [Versions](https://github.com/wsj-br/transrewrt/releases).
+1. Téléchargez la dernière version de `Transrewrt Setup x.y.z.exe` depuis [Releases](https://github.com/wsj-br/transrewrt/releases).
 2. Exécutez le programme d'installation.
-3. Ouvrez l'application et saisissez les clés API dans **Paramètres → Configuration API**. Configurez au moins un fournisseur ; OpenRouter est un choix courant pour les modèles gratuits.
+3. Ouvrez l'application et saisissez les clés API dans **Paramètres → Config. API**. Configurez au moins un fournisseur ; OpenRouter est un choix courant pour les modèles gratuits.
 
 :::note
 Windows peut afficher des avertissements UAC ou SmartScreen lors de l'installation de l'application. Il est sûr de l'installer si vous la téléchargez depuis la page officielle des versions de GitHub. Cliquez sur « Plus d'informations » et « Exécuter quand même » pour l'installer.
@@ -56,7 +56,7 @@ Téléchargez le `.AppImage` pour votre CPU depuis [Versions](https://github.com
 chmod +x Transrewrt-x.y.z-x64.AppImage && ./Transrewrt-x.y.z-x64.AppImage
 ```
 
-Saisissez les clés API dans **Paramètres → Configuration API**.
+Saisissez les clés API dans **Paramètres → Config. API**.
 
 Si Chromium affiche des erreurs GPU / EGL mais que l'application fonctionne, vous pouvez désactiver l'accélération matérielle :
 
@@ -71,7 +71,7 @@ Téléchargez le `.dmg` pour votre Mac depuis [Versions](https://github.com/wsj-
 - **Apple Silicon** — `Transrewrt-x.y.z-arm64.dmg`
 - **Intel** — `Transrewrt-x.y.z-x64.dmg`
 
-Ouvrez l'image disque et faites glisser Transrewrt vers Applications. Saisissez les clés API dans **Paramètres → Configuration API**.
+Ouvrez l'image disque et faites glisser Transrewrt vers Applications. Saisissez les clés API dans **Paramètres → Config. API**.
 
 :::note
 La version macOS n'est pas signée (pas de notarisation Apple). Gatekeeper bloque le premier lancement. Faites un clic droit sur `Transrewrt.app` et choisissez **Ouvrir**, puis confirmez **Ouvrir**.

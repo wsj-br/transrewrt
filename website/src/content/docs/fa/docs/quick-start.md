@@ -71,7 +71,7 @@ TRANSREWRT_DISABLE_GPU=1 ./Transrewrt-x.y.z-arm64.AppImage
 - **Apple Silicon** — `Transrewrt-x.y.z-arm64.dmg`
 - **Intel** — `Transrewrt-x.y.z-x64.dmg`
 
-تصویر دیسک را باز کنید و Transrewrt را به Applications بکشید. کلیدهای API را در **Settings → API Config** وارد کنید.
+ایمیج دیسک را باز کنید و Transrewrt را به Applications بکشید. کلیدهای API را در **تنظیمات ← پیکربندی API** وارد کنید.
 
 :::note
 نسخه macOS امضا نشده است (بدون تأییدیه Apple). Gatekeeper اولین راه‌اندازی را مسدود می‌کند. روی `Transrewrt.app` راست کلیک کرده و **Open** را انتخاب کنید، سپس **Open** را تأیید کنید.

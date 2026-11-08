@@ -44,4 +44,4 @@ Theo mặc định, ứng dụng chạy ở chế độ **Dễ**: chọn một *
 - [Cài đặt](/docs/settings/)
 - [Các vấn đề thường gặp](/docs/common-issues/)
 
-[Download releases](https://github.com/wsj-br/transrewrt/releases) · [GitHub repository](https://github.com/wsj-br/transrewrt)
+[Tải xuống bản phát hành](https://github.com/wsj-br/transrewrt/releases) · [Kho lưu trữ GitHub](https://github.com/wsj-br/transrewrt)

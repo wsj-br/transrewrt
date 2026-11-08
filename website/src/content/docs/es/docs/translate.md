@@ -32,9 +32,9 @@ Los **idiomas principales** aparecen primero en las listas; configúrelos en [Co
 
 En [Configuración → Configuración general](/docs/settings/#general-settings):
 
-- **Ejecución automática al pegar** — se ejecuta tan pronto como pega
-- **Copia automática del resultado al portapapeles** — copia después de una ejecución exitosa
-- **Traducción en tiempo real mientras escribe** — se ejecuta mientras escribe (puede aumentar el costo)
+- **Ejecutar automáticamente al pegar** — se ejecuta tan pronto como pegas
+- **Copiar automáticamente el resultado al portapapeles** — copia después de una ejecución exitosa
+- **Traducción en tiempo real mientras escribes** — se ejecuta mientras escribes (puede aumentar el costo)
 - **Tiempo de espera (ms)** — espera antes de una ejecución en tiempo real
 - **Comportamiento para ENTER** — si Enter ejecuta la tarea o inserta una nueva línea
 

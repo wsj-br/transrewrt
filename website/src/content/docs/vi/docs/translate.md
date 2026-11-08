@@ -33,8 +33,8 @@ Sử dụng **Dịch** để chuyển đổi văn bản từ ngôn ngữ này sa
 Trong [Cài đặt → Cài đặt chung](/docs/settings/#general-settings):
 
 - **Tự động thực thi khi dán** — chạy ngay sau khi bạn dán
-- **Tự động sao chép kết quả vào khay nhớ tạm** — sao chép sau khi chạy thành công
-- **Dịch theo thời gian thực khi gõ** — chạy khi bạn gõ (có thể tăng chi phí)
+- **Tự động sao chép kết quả vào bộ nhớ tạm** — sao chép sau khi chạy thành công
+- **Dịch theo thời gian thực khi gõ** — chạy trong khi bạn gõ (có thể làm tăng chi phí)
 - **Thời gian chờ (ms)** — đợi trước khi chạy theo thời gian thực
 - **Hành vi cho ENTER** — liệu Enter có chạy tác vụ hay chèn một dòng mới
 
@@ -56,10 +56,10 @@ Sau khi chạy thành công, **Diễn giải lại…** và một menu thả xu�
 
 Một **bảng thuật ngữ** là các cặp thuật ngữ nguồn/đích cho một cặp ngôn ngữ. Khi được bật, các thuật ngữ khớp sẽ được gửi đến mô hình để cách diễn đạt ưu tiên vẫn nhất quán.
 
-1. Bật **Thuật ngữ** trong bảng nhập liệu.
-2. Dịch như bình thường — các thuật ngữ cho cặp **Từ** / **Đến** đó sẽ tự động được áp dụng.
-3. Nhấp vào **Thêm vào Thuật ngữ** (bên cạnh **Từ:**) để nhanh chóng thêm một cặp mới.
-4. Quản lý tất cả các thuật ngữ trong [Cài đặt → Thuật ngữ](/docs/settings/#glossary).
+1. Bật **Từ điển** trong bảng nhập.
+2. Dịch như bình thường — các thuật ngữ cho cặp **Từ** / **Đến** đó sẽ tự động áp dụng.
+3. Nhấp vào **Thêm vào Từ điển** (bên cạnh **Từ:**) để nhanh chóng thêm một cặp mới.
+4. Quản lý tất cả các thuật ngữ trong [Cài đặt → Từ điển](/docs/settings/#glossary).
 
 :::note
 Các thuật ngữ trong bảng thuật ngữ được khớp theo cặp ngôn ngữ. Chúng không thể được sử dụng với **Phát hiện ngôn ngữ** làm nguồn.

@@ -44,4 +44,4 @@ Predvolene aplikácia beží v režime **Jednoduché**: vyberte **predvoľbu** a
 - [Nastavenia](/docs/settings/)
 - [Časté problémy](/docs/common-issues/)
 
-[Download releases](https://github.com/wsj-br/transrewrt/releases) · [GitHub repository](https://github.com/wsj-br/transrewrt)
+[Stiahnuť vydania](https://github.com/wsj-br/transrewrt/releases) · [Repozitár GitHub](https://github.com/wsj-br/transrewrt)

@@ -48,9 +48,9 @@ Utilizați **Traducere** pentru a converti textul dintr-o limbă în alta.
 
 După o execuție reușită, **Reformulare…** și un meniu derulant de versiuni apar lângă selectorul **Către:**:
 
-1. **Reformulare…** (fără selecție) — o altă traducere completă a aceleiași intrări. Până la **cinci** versiuni; modelul vede versiunile anterioare, astfel încât formularea poate diferi. Faceți clic pe **Oprire traducere** pentru a anula o reformulare în curs.
-2. **Alternative de cuvinte** — selectați cuvinte sau o frază scurtă, apoi faceți clic dreapta sau **Reformulare…**. Alegeți o alternativă pentru a înlocui secțiunea (se poate extinde ușor pentru gramatică). La cinci versiuni, doar versiunea 5 este actualizată.
-3. Fiecare solicitare de reformulare sau de alternative utilizează din nou modelul și poate adăuga costuri.
+1. **Reformulează…** (fără selecție) — o altă traducere completă a aceleiași intrări. Până la **cinci** versiuni; modelul vede versiunile anterioare, astfel încât formularea poate diferi. Faceți clic pe **Oprește traducerea** pentru a anula o reformulare în curs.
+2. **Alternative cuvinte** — selectați cuvinte sau o frază scurtă, apoi faceți clic dreapta sau **Reformulează…**. Alegeți o alternativă pentru a înlocui secțiunea (se poate extinde ușor pentru gramatică). La cinci versiuni, doar versiunea 5 este actualizată.
+3. Fiecare cerere de reformulare sau de alternative utilizează din nou modelul și poate adăuga cost.
 
 ## Utilizați glosarul
 
@@ -62,7 +62,7 @@ Un **glosar** este o pereche de termeni sursă/țintă pentru o pereche de limbi
 4. Gestionați toți termenii în [Setări → Glosar](/docs/settings/#glossary).
 
 :::note
-Termenii din glosar sunt potriviți după perechea de limbi. Aceștia nu pot fi utilizați cu **Detectează limba** ca sursă.
+Termenii din glosar sunt potriviți după perechea de limbi. Aceștia nu pot fi utilizați cu **Detectare limbă** ca sursă.
 :::
 
 ## Pașii următori

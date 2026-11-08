@@ -23,9 +23,9 @@ Qualquer provedor suportado funciona. Se você não tiver certeza de qual escolh
 
 Os passos exatos variam ligeiramente por provedor, mas o padrão é o mesmo em todos os lugares:
 
-1. Cadastre-se ou faça login no site do provedor. Em **Configurações → Configuração de API** do Transrewrt, cada provedor tem um link **Abrir site do provedor** que o leva ao local certo.
-2. Encontre a página **Chaves de API** (às vezes em configurações de conta, painel ou desenvolvedor) e crie uma nova chave. Alguns provedores pedem para você nomear a chave ou definir um limite de gastos — ambos são opcionais.
-3. Copie a chave. É uma longa sequência de letras e números, muitas vezes começando com algo como `sk-`.
+1. Cadastre-se ou entre no site do provedor. Nas **Configurações → Configuração da API** do Transrewrt, cada provedor tem um link **Abrir site do provedor** que o leva ao lugar certo.
+2. Encontre a página de **chaves de API** (às vezes em configurações de conta, painel ou desenvolvedor) e crie uma nova chave. Alguns provedores pedem para você nomear a chave ou definir um limite de gastos — ambos são opcionais.
+3. Copie a chave. É uma longa sequência de letras e números, geralmente começando com algo como `sk-`.
 
 :::note
 Trate uma chave de API como uma senha: não a compartilhe, publique ou envie para ninguém. Se uma chave vazar, exclua-a no site do provedor e crie uma nova.
@@ -33,8 +33,8 @@ Trate uma chave de API como uma senha: não a compartilhe, publique ou envie par
 
 ## Passo 3 — Adicione e teste a chave (desktop)
 
-1. No Transrewrt, abra **Configurações → Configuração de API**.
-2. Cole a chave no campo do seu provedor (por exemplo, **Chave de API do Google Gemini**) e salve-a.
+1. No Transrewrt, abra **Configurações → Configuração da API**.
+2. Cole a chave no campo do seu provedor (por exemplo, **chave de API do Google Gemini**) e salve-a.
 3. Clique em **Testar** ao lado do campo para confirmar se a chave funciona.
 
 Assim que o teste for bem-sucedido, você estará pronto — escolha esse provedor na tela principal e comece a traduzir.
@@ -43,7 +43,7 @@ Assim que o teste for bem-sucedido, você estará pronto — escolha esse proved
 
 Você pode executar modelos em seu próprio computador com Ollama, LM Studio, llama.cpp ou outro servidor compatível com OpenAI (por exemplo, `google/gemma-4-e2b` via LM Studio). Nada sai da sua máquina e nenhuma chave de API é necessária.
 
-Para conectar um, defina a URL base do LLM Local para a base completa da API, incluindo o caminho — por exemplo, `http://localhost:11434/v1`. No desktop, defina isso em **Configurações → Configuração de API**; no Docker, defina a variável de ambiente `LOCAL_LLM_URL` em vez disso.
+Para conectar um, defina a URL base do LLM Local para a base completa da API, incluindo o caminho — por exemplo, `http://localhost:11434/v1`. No desktop, defina isso em **Configurações → Configuração da API**; no Docker, defina a variável de ambiente `LOCAL_LLM_URL` em vez disso.
 
 :::tip
 Se você usa um servidor LLM local de outro dispositivo ou contêiner, configure-o para permitir conexões externas (não apenas localhost).

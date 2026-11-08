@@ -11,16 +11,16 @@ Si algo no funciona como se espera, compruebe estos puntos primero.
 
 Compruebe que:
 
-- ha seleccionado un **ajuste preestablecido** (Fácil) o un **modelo** (Avanzado) en la barra de herramientas
-- en el modo **Fácil**, **Ajustes → Ajustes generales** tiene un **Proveedor** con una clave que funciona (o una URL de LLM local)
-- en el modo **Avanzado**, se selecciona un modelo en la barra de herramientas (se permite una lista vacía, pero necesita al menos un modelo en **Ajustes → Modelos** para ejecutar)
-- su configuración de API funciona (escritorio: **Ajustes → Configuración de API → Probar**)
+- ha seleccionado un **preajuste** (Fácil) o un **modelo** (Avanzado) en la barra de herramientas
+- en el modo **Fácil**, **Configuración → Configuración general** tiene un **Proveedor** con una clave que funciona (o una URL de LLM local)
+- en el modo **Avanzado**, se selecciona un modelo en la barra de herramientas (se permite una lista vacía, pero necesita al menos un modelo en **Configuración → Modelos** para ejecutar)
+- su configuración de API funciona (escritorio: **Configuración → Configuración de API → Probar**)
 
 ## La lista de modelos está vacía
 
 En el modo **Fácil**, confirme que el **Proveedor** está configurado y que las claves/URL están probadas. Para **LLM local**, asegúrese de que su servidor local esté en funcionamiento y de que los modelos estén cargados.
 
-En el modo **Avanzado**, los modelos seleccionados pueden estar vacíos. Abra **Ajustes → Modelos**, haga clic en **Actualizar** y añada modelos a **Modelos seleccionados**. Opcionalmente, active **Solo gratis**. Al eliminar el último modelo de la barra de herramientas también se abren Ajustes → Modelos.
+En el modo **Avanzado**, los modelos seleccionados pueden estar vacíos. Abra **Configuración → Modelos**, haga clic en **Actualizar** y marque los modelos que desee (o use **Seleccionar de los preajustes**). Opcionalmente, active **Solo gratis**. Al eliminar el último modelo de la barra de herramientas también se abre Configuración → Modelos.
 
 ## Demasiado lento o demasiado caro
 
@@ -35,7 +35,7 @@ Haga clic en el icono del globo terráqueo en la barra de herramientas y elija s
 
 ## Texto demasiado pequeño o difícil de leer
 
-**Ajustes → Ajustes generales** → cambie la **Familia de fuentes** y el **Tamaño**.
+**Configuración → Configuración general** → cambie la **Familia de fuentes** y el **Tamaño**.
 
 ## El Resumen del panel de control parece vacío
 
@@ -56,11 +56,11 @@ Las cifras en la aplicación son **estimaciones de referencia**, no facturas. Pa
 
 ## Falta la página de historial en la barra lateral
 
-Es posible que la opción **Mantener historial de ejecución** esté desactivada. Habilítela en la Configuración general a menos que el historial esté deshabilitado por el administrador (`HISTORY_DISABLED` — consulte [Configuración](/docs/configuration/#privacy-mode)).
+**Mantener el historial de ejecución** puede estar desactivado. Habilítelo en Configuración general a menos que el historial esté deshabilitado por el administrador (`HISTORY_DISABLED` — consulte [Configuración](/docs/configuration/#privacy-mode)).
 
 ## Web: redirigido al inicio de sesión inesperadamente
 
-Su sesión puede haber caducado. Inicie sesión de nuevo. Si sucede a menudo, pida a un administrador que aumente el **Tiempo de espera de la sesión** en [Configuración → Usuarios](/docs/settings/#users) (un administrador también puede haber revocado sus sesiones).
+Su sesión puede haber caducado. Vuelva a iniciar sesión. Si sucede a menudo, pida a un administrador que aumente el **Tiempo de espera de sesión** en [Configuración → Usuarios](/docs/settings/#users) (un administrador también puede haber revocado sus sesiones).
 
 ## Administrador web: olvidó la contraseña
 
@@ -72,7 +72,7 @@ docker exec transrewrt reset-web-password '<username>' '<new-password>'
 
 El nombre de usuario de administrador predeterminado es `admin`. Desde una extracción de origen: `pnpm run reset-web-password -- <username> <new-password>`.
 
-## El panel de control no muestra datos para otros usuarios (web)
+## El Panel de control muestra sin datos para otros usuarios (web)
 
 Solo los **administradores** pueden ver a otros usuarios a través del filtro **Usuario**. Los usuarios regulares solo ven su propia actividad.
 
@@ -89,4 +89,4 @@ Al editar un prompt de Transform, haga clic en **Guardar** antes de **Volver a e
 - Exporte prompts regularmente si está creando una biblioteca de prompts
 - Use [Panel de control](/docs/dashboard/) e [Historial](/docs/history/) para revisar el uso y las ejecuciones anteriores
 
-[Report an issue](https://github.com/wsj-br/transrewrt/issues)
+[Informar de un problema](https://github.com/wsj-br/transrewrt/issues)

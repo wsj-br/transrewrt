@@ -43,12 +43,12 @@ L'editor è a sinistra; un'area di test è a destra.
 Campi principali:
 
 - **Nome prompt** — mostrato nell'elenco dei prompt
-- **Istruzioni prompt (facoltativo)** — breve suggerimento durante l'esecuzione del prompt
-- **Ruolo modello** — ruolo generale per l'AI
-- **Istruzioni modello (una per riga)** — regole da seguire
-- **Descrizione output** — breve etichetta per il risultato (ad es. riassunto)
-- **Temperatura (0.0 → 1.0)** — più bassa è più stabile; più alta è più varia
-- **Chiedi lingua di destinazione** — aggiunge un selettore di lingua durante l'esecuzione
+- **Istruzioni prompt (opzionali)** — breve suggerimento quando si esegue il prompt
+- **Ruolo del modello** — ruolo generale per l'IA
+- **Istruzioni del modello (una per riga)** — regole da seguire
+- **Descrizione dell'output** — breve etichetta per il risultato (ad esempio, riassunto)
+- **Temperatura (0,0 → 1,0)** — più bassa è più stabile; più alta è più varia
+- **Chiedi la lingua di destinazione** — aggiunge un selettore di lingua durante l'esecuzione
 
 Aiuti: **Genera prompt**, **Migliora prompt**, **Traduci prompt** (Facile usa i preset; Avanzato usa l'elenco dei modelli).
 

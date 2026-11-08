@@ -9,10 +9,10 @@ description: >-
 
 Nyissa meg a **Beállítások** menüt az oldalsávon, hogy testre szabhassa az alkalmazás működését.
 
-| Lap | Asztali | Web (admin) | Web (felhasználó) | Megjegyzések |
+| Lap | Asztali | Web (Rendszergazda) | Web (Felhasználó) | Megjegyzések |
 | --- | :---: | :---: | :---: | --- |
-| Általános beállítások | ✓ | ✓ | ✓ | Tartalmazza az **AI élményt** (Egyszerű / Haladó) |
-| Modellek | ✓ | ✓ | ✓ | Csak akkor, ha az **AI élmény** **Haladó** |
+| Általános beállítások | ✓ | ✓ | ✓ | Tartalmazza az **AI-élmény** (Egyszerű / Haladó) beállítást |
+| Modellek | ✓ | ✓ | ✓ | Előre beállított kártyák az Egyszerű módban, modell táblázat a Haladó módban |
 | Nyelvek | ✓ | ✓ | ✓ | |
 | Költségkövetés | ✓ | ✓ | — | |
 | Átalakítás | ✓ | ✓ | ✓ | Promptok tömeges importálása/exportálása |
@@ -21,7 +21,7 @@ Nyissa meg a **Beállítások** menüt az oldalsávon, hogy testre szabhassa az 
 | API konfiguráció | ✓ | ✓ | — | |
 | Névjegy | ✓ | ✓ | ✓ | |
 
-**Egyszerű** módban válassza ki az AI-t az eszköztárban lévő előbeállítások és az Általános beállításokban lévő **Szolgáltató** segítségével; a **Modellek** lap rejtve van.
+**Egyszerű** módban válassza ki az AI-t az eszköztárban található előre beállítások és az Általános beállításokban található **Szolgáltató** segítségével; a **Modellek** lapon csak olvasható előre beállított kártyák láthatók.
 
 :::note
 A webes verzióban minden felhasználónak saját konfigurációja van (AI élmény, szolgáltató, modellek/előbeállítások, nyelvek, opciók, promptok). A változtatások nem érintik a többi felhasználót.
@@ -31,25 +31,25 @@ A webes verzióban minden felhasználónak saját konfigurációja van (AI élm�
 
 ![Beállítások Általános beállítások lap](/images/screenshots/hu/settings-general.png)
 
-**AI élmény**
+**AI-élmény**
 
-- **Egyszerű** (alapértelmezett): válasszon egy **Szolgáltatót**. A felhőszolgáltatók eszköztár-előbeállításokat használnak. A **Helyi LLM** a telepített helyi modelleket listázza. Az **Előbeállítások katalógusának frissítése** lekéri a legújabb előbeállítás-listát a projekt-tárból.
-  - **Ingyenes (OpenRouter)** — ingyenes opció, amely elérhető ingyenes modellekhez irányít; a minőség és az elérhetőség változhat
-  - **Standard** — könnyű és költséghatékony; a legjobb rövid szövegekhez, gyors vázlatokhoz és nagy volumenű használathoz
-  - **Haladó** — nagy pontosságú modell komplex vagy árnyalt tartalomhoz, magasabb költséggel
+- **Egyszerű** (alapértelmezett): válasszon egy **Szolgáltató**-t. A felhőszolgáltatók az eszköztár előbeállításait használják. A **Helyi LLM** ehelyett a telepített helyi modelleket sorolja fel. A **Sablonkatalógus frissítése** lekéri a legújabb előbeállítás-listát a projekt adattárából.
+  - **Ingyenes (OpenRouter)** — költségmentes opció, amely az elérhető ingyenes modellekre irányít; a minőség és a rendelkezésre állás változó lehet
+  - **Standard** — könnyű és költséghatékony; a legjobb rövid szövegekhez, gyors vázlatokhoz és nagy mennyiségű használathoz
+  - **Haladó** — nagy pontosságú modell összetett vagy árnyalt tartalomhoz, magasabb költséggel
   - **Technikai** — kódhoz, API-khoz, fejlesztői dokumentációkhoz és strukturált tartalomhoz hangolva; megőrzi a formázást és a terminológiát
-- **Haladó**: válasszon modelleket az eszköztáron; kezelje a listát a [Modellek](#models) alatt.
+- **Haladó**: válasszon modelleket az eszköztáron; kezelje a listát a(z) [Modellek](#models) alatt.
 
 Az Egyszerű ↔ Haladó mód között az eszköztár előbeállítás/modell menüjéből is válthat (**Váltás Egyszerű/Haladó módra**, a Beállítások megnyitása felett).
 
 **Megjelenés** — Téma; **Költséginformációk megjelenítése a műveleteken**; **Költségtörtrészek**; csak webes margó az alkalmazás körül; **Betűtípus** és **Méret**.
 
-**Viselkedés** — **ENTER viselkedése**; **Automatikus végrehajtás beillesztéskor**; **Eredmény automatikus másolása vágólapra**; **Valós idejű fordítás gépelés közben**; **Időtúllépés (ms)**.
+**Viselkedés** — **Viselkedés:** ENTER; **Automatikus végrehajtás beillesztéskor**; **Eredmény automatikus másolása a vágólapra**; **Valós idejű fordítás gépelés közben**; **Időkorlát (ms)**.
 
 **Előzmények**
 
-- **Végrehajtási előzmények megőrzése** — bemenet/kimenet tárolása az [Előzmények](/docs/history/) nézethez. Kikapcsoláskor megerősítést kér, és eltávolíthatja a tárolt szöveget. Ha *rendszergazda által letiltva* címkével van ellátva, az `HISTORY_DISABLED` be van állítva — lásd a [Konfigurációt](/docs/configuration/#privacy-mode).
-- **Előzményadatok törlése** — tárolt szöveg eltávolítása kor szerint vagy az összes törlése. **Nem** törli a teljes költségeket (ehhez használja a Költségkövetést).
+- **Végrehajtási előzmények megőrzése** — bemenet/kimenet tárolása az [Előzmények](/docs/history/) nézethez. A kikapcsolás megerősítést kér, és eltávolíthatja a tárolt szöveget. Ha a címke *letiltva a rendszergazda által*, a(z) `HISTORY_DISABLED` be van állítva – lásd: [Konfiguráció](/docs/configuration/#privacy-mode).
+- **Előzmények adatainak törlése** — tárolt szöveg eltávolítása kor szerint vagy az összes törlése. **Nem** törli a költségek összesítését (ehhez használja a Költségkövetés funkciót).
 
 **Konfiguráció biztonsági mentése** (asztali és webes rendszergazdák)
 
@@ -61,17 +61,33 @@ A biztonsági mentések mozgathatók asztali és webes környezetek között; as
 
 ## Modellek
 
-Csak **Haladó** módban érhető el.
+A **Modellek** lap mindig szerepel a listán. Az **Egyszerű / Haladó** kapcsoló az egész alkalmazást váltja a két [AI élmény](#general-settings) között.
 
-- **Elérhető modellek** (balra) és **Kiválasztott modellek** (jobbra)
-- Keresés, **Szolgáltató** chipek, **Csak ingyenes**, **Frissítés**, Összes kibontása/összecsukása
+- Az **Egyszerű** nézet előbeállításonként egy írásvédett kártyát jelenít meg (például **Ingyenes (OpenRouter)** vagy **Standard**). Minden kártya felsorolja az előbeállítás fő és tartalék modelljét minden konfigurált szolgáltatóhoz. A **Szolgáltató** chipek szűrik a kártyákat.
+- A **Haladó** nézet egy táblázatban mutatja az összes modellt, a következőkkel:
+  - keresőmező, **Szolgáltató** chipek, **Csak ingyenes**, **Csak a kijelöltek** és **Frissítés**
+  - rendezési menü; az alapértelmezett az **Index szerint csökkenő**
+  - jelölőnégyzet modellenként a kijelöléshez vagy a kijelölés megszüntetéséhez
+  - **Válasszon előbeállítások közül**, amely hozzáadja az előbeállítás fő és tartalék modelljét minden konfigurált szolgáltatóhoz (az **Összes betöltése** minden szolgáltatót betölt)
+  - **Összes törlése**, amely először megerősítést kér
 - A modellazonosítók szolgáltatói előtagot használnak (`openrouter/…`, `openai/…`, `local/…`, …)
+
+A pontszám és ár oszlopok:
+
+- **Index** — a ChrF, Arena Score és az ár alapján összeállított minőségi pontszám. Az egyes szolgáltatókon belül rangsorolt, így nem hasonlítható össze a szolgáltatók között. Az Index nélküli modellek a lista aljára kerülnek.
+- **ChrF** — átlagos fordítási minőség a [languagebench](https://huggingface.co/spaces/fair-forward/languagebench) alapján az alkalmazás felhasználói felületének nyelveihez.
+- **Arena** — Arena Score az [LMArena](https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset) ranglistáról.
+- **Bemenet** / **Kimenet** — ár USD-ben 1M tokenenként, a szolgáltatói katalógusból vagy a [models.dev](https://models.dev/) oldalról. A becsült árat csillag jelöli. A kötőjel (—) azt jelenti, hogy az ár ismeretlen; a helyi modellek „ingyenes – helyi” feliratot mutatnak.
+
+Vigye az egérmutatót egy oszlopfejléc fölé, hogy megtekinthesse az adatforrását és licencét. Az eszköztárban található modellválasztó minden modell Indexét kis chipként mutatja; vigye az egérmutatót fölé a ChrF és Arena értékek megtekintéséhez.
+
+A pontszámok csak tájékoztató jellegűek: a lefedettség hiányos, és sok modellnek nincs ChrF vagy Arena pontszáma.
 
 :::tip
 Ne használja az OpenRouter **Body Builder** (`openrouter/bodybuilder`) funkcióját fordításhoz, átíráshoz vagy átalakításhoz – az JSON kérés-adatcsomagokat ad vissza, nem kész szöveget.
 :::
 
-Hozzáadás a **Hozzáadás** gombbal; eltávolítás az **X** gombbal. Az OpenRouter ingyenes modellje opcionális – a kiválasztott modellek üresek is lehetnek. Az utolsó modell eltávolítása az eszköztárról megnyitja a **Beállítások → Modellek** menüt. Ha az aktuális modell elérhetetlenné válik, az alkalmazás a lista következő modelljét választja az ingyenes modell kényszerítése helyett.
+Jelöljön be vagy töröljön egy modellt a kiválasztáshoz vagy a kiválasztás megszüntetéséhez. Az OpenRouter ingyenes modellje opcionális – a kiválasztott modellek üresek lehetnek. Az utolsó modell eltávolítása az eszköztárból megnyitja a **Beállítások → Modellek** menüt. Ha az aktuális modell elérhetetlenné válik, az alkalmazás a lista következő modelljét választja az ingyenes modell kényszerítése helyett.
 
 ## Nyelvek
 
@@ -80,9 +96,9 @@ Hozzáadás a **Hozzáadás** gombbal; eltávolítás az **X** gombbal. Az OpenR
 
 ## Költségkövetés
 
-- **Összköltség**, **Érték másolása**, **Költség visszaállítása**
-- **Szinkronizálás API kulcs használattal** — igazítás az OpenRouter fiókhasználathoz (csak OpenRouter)
-- **API kulcs használat** — OpenRouter részletek, ha elérhetőek
+- **Teljes költség**, **Érték másolása**, **Költség visszaállítása**
+- **Szinkronizálás az API-kulcs használatával** — igazítás az OpenRouter fiókhasználathoz (csak OpenRouter esetén)
+- **API-kulcs használata** — OpenRouter részletek, ha elérhetőek
 - **Költségadatok törlése** — minden adat vagy egy adott dátumnál régebbi bejegyzések
 
 Az OpenRouter és az xAI a tényleges számlázott költséget mutatja, amikor az API visszaadja; más szolgáltatók a [models.dev](https://models.dev/) árazásából származó becsléseket használják. A becslések nem számlák.
@@ -110,12 +126,12 @@ Az asztali alkalmazás helyben tárolja a szószedetet; a webes alkalmazás felh
 Csak web (adminok):
 
 - Felhasználók hozzáadása, adatok frissítése, jelszavak visszaállítása, fiókok törlése
-- **Munkamenet időtúllépés** — meddig tart egy bejelentkezés (1 órától 7 napig); a változások csak az új bejelentkezésekre vonatkoznak
-- **Munkamenetek visszavonása** — egy felhasználó azonnali kijelentkeztetése az összes eszközről
+- **Munkamenet időkorlát** — mennyi ideig tart egy bejelentkezés (1 órától 7 nap-ig); a módosítások csak az új bejelentkezésekre vonatkoznak
+- **Munkamenetek visszavonása** — felhasználó kijelentkeztetése minden eszközről azonnal
 
 Minden bejelentkezett felhasználó (beleértve a nem adminokat is) megváltoztathatja saját jelszavát vagy kijelentkezhet az oldalsáv alján található felhasználói menüből.
 
-## API-konfiguráció
+## API konfiguráció
 
 Csak az Ön által használt szolgáltatókat konfigurálja: OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, **Helyi LLM** (alap URL Ollama, LM Studio, llama.cpp, vagy hasonló számára), és egy opcionális egyéni OpenAI-kompatibilis szolgáltató.
 

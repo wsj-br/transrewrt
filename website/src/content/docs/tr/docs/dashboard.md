@@ -23,9 +23,9 @@ Zaman aralığını değiştirmek için üstteki filtre düğmelerini kullanın.
 
 ## Sekmeler
 
-- **Özet** — KPI'lar: toplam maliyet, kullanılan modeller, mod başına çağrı sayıları ve maliyet, çağrı başına ortalama maliyet, ortalama TPS, çağrı sayısına göre en iyi modeller
-- **Modele Göre** — model başına çağrılar, maliyet ve TPS; mod dökümü için bir satırı genişletin
-- **Tüm Çağrılar** — dışa aktarma özellikli tam çağrı günlüğü (sayfalı veya kartlar)
+- **Özet** — KPI'lar: toplam maliyet, kullanılan modeller, mod başına arama sayısı ve maliyeti, arama başına ortalama maliyet, ortalama TPS, arama sayısına göre en iyi modeller
+- **Modele Göre** — model başına aramalar, maliyet ve TPS; mod dökümü için bir satırı genişletin
+- **Tüm Aramalar** — dışa aktarma özellikli tam arama günlüğü (sayfalandırılmış veya kartlar)
 
 ## Verileri dışa aktar
 
@@ -33,7 +33,7 @@ Tabloları **JSON**, **CSV** veya **XLSX** olarak dışa aktarın.
 
 ## Bir model için depolanan kayıtları sil
 
-**Modele Göre** veya **Tüm Çağrılar** bölümünde, bir modelin kayıtlarını kaldırmak için çöp kutusu simgesini kullanın.
+**Modele Göre** veya **Tüm Aramalar** bölümünde, bir modele ait kayıtları kaldırmak için çöp kutusu simgesini kullanın.
 
 :::caution
 Silme işlemi geri alınamaz. Yaşa göre silmek veya tüm maliyet verilerini temizlemek için [Ayarlar → Maliyet Takibi](/docs/settings/#cost-tracking) bölümünü kullanın.

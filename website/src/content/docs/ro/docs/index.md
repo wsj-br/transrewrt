@@ -46,4 +46,4 @@ Cheile tale, modelele tale, gazda ta — nu există un cont Transrewrt în cloud
 - [Setări](/docs/settings/)
 - [Probleme comune](/docs/common-issues/)
 
-[Download releases](https://github.com/wsj-br/transrewrt/releases) · [GitHub repository](https://github.com/wsj-br/transrewrt)
+[Descărcați versiunile](https://github.com/wsj-br/transrewrt/releases) · [Depozit GitHub](https://github.com/wsj-br/transrewrt)

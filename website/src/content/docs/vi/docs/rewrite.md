@@ -13,12 +13,12 @@ Sử dụng **Viết lại** để cải thiện cách diễn đạt mà không 
 
 Các chế độ bao gồm:
 
-- **Kiểm tra chính tả & ngữ pháp**
-- **Cải thiện độ rõ ràng**
+- **Kiểm tra Chính tả & Ngữ pháp**
+- **Cải thiện Rõ ràng**
 - **Các phiên bản thay thế** (một số cách diễn đạt lại trong một lần chạy)
-- **Làm cho trang trọng** / **Làm cho thân mật**
-- **Rút ngắn** / **Mở rộng**
-- **Làm cho mang tính kỹ thuật**
+- **Làm Chính thức** / **Làm Không chính thức**
+- **Rút gọn** / **Mở rộng**
+- **Làm Kỹ thuật**
 
 ## Viết lại văn bản
 
@@ -32,7 +32,7 @@ Các chế độ bao gồm:
 [Công tắc bố cục và phím tắt](/docs/translate/#layout-and-keyboard) hoạt động tương tự như trong Translate.
 
 :::tip
-Sau khi viết lại, một công tắc **Hiển thị thay đổi** (**Thay đổi**) xuất hiện bên cạnh **Sao chép** cho **mọi** chế độ viết lại. Chuyển đổi nó để hiển thị hoặc ẩn sự khác biệt giữa đầu vào và đầu ra.
+Sau khi chỉnh sửa lại, một nút chuyển đổi **Hiển thị các thay đổi** (**Thay đổi**) sẽ xuất hiện bên cạnh **Sao chép** cho **mọi** chế độ chỉnh sửa lại. Chuyển đổi nút này để hiển thị hoặc ẩn sự khác biệt giữa đầu vào và đầu ra.
 :::
 
 :::note

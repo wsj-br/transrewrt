@@ -122,5 +122,6 @@
   "Transrewrt history view listing past executions with input, output, and filters": "Khung nhìn lịch sử Transrewrt liệt kê các lượt thực thi trước đó với đầu vào, đầu ra và bộ lọc",
   "Transrewrt — Translate, rewrite, and transform text with AI": "Transrewrt — Dịch, viết lại và chuyển đổi văn bản bằng AI",
   "Transrewrt is an open-source AI-powered text tool for translating between languages, rewriting in different styles, and transforming text with custom prompts. Desktop app or Docker web app — your keys, your models, your host.": "Transrewrt là công cụ văn bản AI mã nguồn mở dùng để dịch giữa các ngôn ngữ, viết lại theo nhiều phong cách khác nhau và biến đổi văn bản bằng câu lệnh tùy chỉnh. Ứng dụng desktop hoặc ứng dụng web Docker — khóa API của bạn, mô hình của bạn, máy chủ của bạn.",
-  "Open-source AI text tool for translation, rewriting, and custom transforms. Bring your own keys and models. Desktop or Docker.": "Công cụ văn bản AI mã nguồn mở để dịch, viết lại và biến đổi tùy chỉnh. Dùng khóa API và mô hình của riêng bạn. Desktop hoặc Docker."
+  "Open-source AI text tool for translation, rewriting, and custom transforms. Bring your own keys and models. Desktop or Docker.": "Công cụ văn bản AI mã nguồn mở để dịch, viết lại và biến đổi tùy chỉnh. Dùng khóa API và mô hình của riêng bạn. Desktop hoặc Docker.",
+  "Translate text between languages, rewrite text in different styles, and transform text using AI.": "Dịch văn bản giữa các ngôn ngữ, viết lại văn bản theo nhiều phong cách khác nhau và biến đổi văn bản bằng AI."
 }

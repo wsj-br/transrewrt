@@ -23,8 +23,8 @@ Orice furnizor acceptat funcționează. Dacă nu sunteți sigur pe care să-l al
 
 Pașii exacți variază ușor în funcție de furnizor, dar modelul este același peste tot:
 
-1. Înregistrați-vă sau conectați-vă pe site-ul web al furnizorului. În **Settings → API Config** din Transrewrt, fiecare furnizor are un link **Open provider website** care vă duce la locul potrivit.
-2. Găsiți pagina **API keys** (uneori sub setările contului, tabloului de bord sau dezvoltatorului) și creați o cheie nouă. Unii furnizori vă cer să denumiți cheia sau să setați o limită de cheltuieli — ambele sunt opționale.
+1. Înregistrați-vă sau autentificați-vă pe site-ul furnizorului. În **Setări → Configurare API** din Transrewrt, fiecare furnizor are un link **Deschideți site-ul furnizorului** care vă duce la locul potrivit.
+2. Găsiți pagina **Chei API** (uneori sub setările contului, tabloului de bord sau dezvoltatorului) și creați o cheie nouă. Unii furnizori vă cer să denumiți cheia sau să setați o limită de cheltuieli — ambele sunt opționale.
 3. Copiați cheia. Este un șir lung de litere și numere, adesea începând cu ceva de genul `sk-`.
 
 :::note
@@ -33,8 +33,8 @@ Tratați o cheie API ca pe o parolă: nu o partajați, nu o postați și nu o tr
 
 ## Pasul 3 — Adăugați și testați cheia (desktop)
 
-1. În Transrewrt, deschideți **Settings → API Config**.
-2. Inserați cheia în câmpul pentru furnizorul dvs. (de exemplu **Google Gemini API key**) și salvați-o.
+1. În Transrewrt, deschideți **Setări → Configurare API**.
+2. Lipiți cheia în câmpul pentru furnizorul dvs. (de exemplu, **cheia API Google Gemini**) și salvați-o.
 3. Faceți clic pe **Test** lângă câmp pentru a confirma că cheia funcționează.
 
 Odată ce testul reușește, sunteți gata — alegeți acel furnizor pe ecranul principal și începeți să traduceți.
@@ -43,7 +43,7 @@ Odată ce testul reușește, sunteți gata — alegeți acel furnizor pe ecranul
 
 Puteți rula modele pe propriul computer cu Ollama, LM Studio, llama.cpp sau un alt server compatibil OpenAI (de exemplu `google/gemma-4-e2b` prin LM Studio). Nimic nu părăsește mașina dvs. și nu este necesară nicio cheie API.
 
-Pentru a conecta unul, setați URL-ul de bază Local LLM la baza API completă, inclusiv calea — de exemplu `http://localhost:11434/v1`. Pe desktop, setați acest lucru în **Settings → API Config**; pe Docker, setați în schimb variabila de mediu `LOCAL_LLM_URL`.
+Pentru a conecta unul, setați URL-ul de bază LLM local la baza API completă, inclusiv calea — de exemplu `http://localhost:11434/v1`. Pe desktop, setați acest lucru în **Setări → Configurare API**; pe Docker, setați în schimb variabila de mediu `LOCAL_LLM_URL`.
 
 :::tip
 Dacă utilizați un server LLM local de pe un alt dispozitiv sau container, configurați-l să permită conexiuni externe (nu doar localhost).
@@ -55,10 +55,10 @@ Dacă utilizați Transrewrt într-un browser, cheile sunt gestionate de cel care
 
 ## Lista de verificare pentru prima rulare
 
-1. Deschideți aplicația și setați **Interface language** dacă este necesar.
+1. Deschideți aplicația și setați **Limba interfeței** dacă este necesar.
 2. Adăugați și testați cel puțin o cheie de furnizor — sau configurați un model local (desktop), sau confirmați că serverul are chei de mediu (web).
-3. În modul **Easy**, alegeți un **Provider** în General Settings; în **Advanced**, adăugați modele sub **Settings → Models** — consultați [Settings](/docs/settings/#general-settings) pentru cele două moduri.
-4. Pe **Translate**, alegeți o presetare sau un model și rulați un test scurt — consultați [Translate text](/docs/translate/).
+3. În modul **Ușor**, alegeți un **Furnizor** în Setări generale; în **Avansat**, adăugați modele sub **Setări → Modele** — consultați [Setări](/docs/settings/#general-settings) pentru cele două moduri.
+4. Pe **Traducere**, alegeți o presetare sau un model și rulați un test scurt — consultați [Traducere text](/docs/translate/).
 
 ## Dacă ceva nu funcționează
 

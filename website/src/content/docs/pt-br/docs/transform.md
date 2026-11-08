@@ -47,7 +47,7 @@ Campos principais:
 - **Função do modelo** — função geral para a IA
 - **Instruções do modelo (uma por linha)** — regras a seguir
 - **Descrição da saída** — rótulo curto para o resultado (por exemplo, resumido)
-- **Temperatura (0.0 → 1.0)** — menor é mais estável; maior é mais variado
+- **Temperatura (0,0 → 1,0)** — menor é mais estável; maior é mais variado
 - **Pedir idioma de destino** — adiciona um seletor de idioma ao executar
 
 Ajudantes: **Gerar prompt**, **Melhorar prompt**, **Traduzir prompt** (Fácil usa predefinidos; Avançado usa a lista de modelos).

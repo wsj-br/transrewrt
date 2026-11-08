@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useEffect, useCallback, useMemo } from "react";
+import { createContext, useContext, useState, useEffect, useCallback, useMemo, useRef } from "react";
 import PropTypes from "prop-types";
 import configManager from "../utils/config/configManager";
 import apiService from "../services/apiService";
@@ -1603,15 +1603,15 @@ export const AppProvider = ({ children }) => {
     setNeedsLogin(true);
   };
 
-  const fetchModelScores = useCallback(async (refresh = false, models = null) => {
-    const list = Array.isArray(models) ? models : [];
-    if (!refresh && list.length === 0) return;
+  const fetchModelScores = useCallback(async (refresh = false, models = undefined) => {
+    const list = Array.isArray(models) ? models : null;
+    if (!refresh && list && list.length === 0) return;
     setModelScoresLoading(true);
     setModelScoresError("");
     try {
       const data = await apiService.getModelScores({
         refresh: refresh === true,
-        ...(list.length > 0 ? { models: list } : {}),
+        ...(list && list.length > 0 ? { models: list } : {}),
       });
       setModelScores(data?.scores && typeof data.scores === "object" ? data.scores : {});
       const warnings = Array.isArray(data?.warnings) ? data.warnings.filter(Boolean) : [];
@@ -1702,6 +1702,29 @@ export const AppProvider = ({ children }) => {
   // fetchModels is recreated each render; deps are the conditions that should trigger a fetch.
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [experienceMode, easyProvider, allModels.length]);
+
+  const modelScoresAutoloadRef = useRef(false);
+  useEffect(() => {
+    if (configLoading || needsLogin) return;
+    const wantsScores =
+      experienceMode === "advanced" ||
+      (experienceMode === "easy" && easyProvider === "local");
+    if (!wantsScores || modelScoresAutoloadRef.current) return;
+    if (modelScores && Object.keys(modelScores).length > 0) {
+      modelScoresAutoloadRef.current = true;
+      return;
+    }
+    modelScoresAutoloadRef.current = true;
+    fetchModelScores(false, allModels.length > 0 ? allModels : undefined);
+  }, [
+    configLoading,
+    needsLogin,
+    experienceMode,
+    easyProvider,
+    allModels,
+    modelScores,
+    fetchModelScores,
+  ]);
 
   // Electron: set currentUser from OS username (no login in Electron)
   useEffect(() => {

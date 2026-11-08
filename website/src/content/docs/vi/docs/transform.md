@@ -22,9 +22,9 @@ Sử dụng **Chuyển đổi** khi bạn muốn AI làm theo các hướng dẫ
 
 [Công tắc bố cục và phím tắt](/docs/translate/#layout-and-keyboard) hoạt động tương tự như trong Translate.
 
-## Tải lời nhắc mẫu
+## Tải mẫu lời nhắc
 
-Nếu danh sách trống, hãy nhấp vào **Tải lời nhắc mẫu** trong không gian làm việc Chuyển đổi (cũng có sẵn trong [Cài đặt → Chuyển đổi](/docs/settings/#transform)). Các mẫu bằng tiếng Anh; sau khi tải, hãy chỉnh sửa lời nhắc và sử dụng **Dịch lời nhắc** nếu cần.
+Nếu danh sách trống, hãy nhấp vào **Tải mẫu lời nhắc** trong không gian làm việc Chuyển đổi (cũng có sẵn trong [Cài đặt → Chuyển đổi](/docs/settings/#transform)). Các mẫu bằng tiếng Anh; sau khi tải, hãy chỉnh sửa một lời nhắc và sử dụng **Dịch lời nhắc** nếu cần.
 
 ## Tạo lời nhắc
 
@@ -45,9 +45,9 @@ Các trường chính:
 - **Tên lời nhắc** — hiển thị trong danh sách lời nhắc
 - **Hướng dẫn lời nhắc (tùy chọn)** — gợi ý ngắn khi chạy lời nhắc
 - **Vai trò mô hình** — vai trò tổng thể cho AI
-- **Hướng dẫn mô hình (một trên mỗi dòng)** — các quy tắc cần tuân theo
+- **Hướng dẫn mô hình (một dòng một)** — các quy tắc cần tuân theo
 - **Mô tả đầu ra** — nhãn ngắn cho kết quả (ví dụ: đã tóm tắt)
-- **Nhiệt độ (0.0 → 1.0)** — thấp hơn ổn định hơn; cao hơn đa dạng hơn
+- **Nhiệt độ (0,0 → 1,0)** — thấp hơn thì ổn định hơn; cao hơn thì đa dạng hơn
 - **Yêu cầu ngôn ngữ đích** — thêm bộ chọn ngôn ngữ khi chạy
 
 Trợ giúp: **Tạo lời nhắc**, **Cải thiện lời nhắc**, **Dịch lời nhắc** (Dễ sử dụng cài đặt trước; Nâng cao sử dụng danh sách mô hình).

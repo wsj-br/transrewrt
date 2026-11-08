@@ -44,4 +44,4 @@ description: ما هو Transrewrt وكيفية العثور على التثبي�
 - [الإعدادات](/docs/settings/)
 - [المشكلات الشائعة](/docs/common-issues/)
 
-[Download releases](https://github.com/wsj-br/transrewrt/releases) · [GitHub repository](https://github.com/wsj-br/transrewrt)
+[تنزيل الإصدارات](https://github.com/wsj-br/transrewrt/releases) · [مستودع GitHub](https://github.com/wsj-br/transrewrt)

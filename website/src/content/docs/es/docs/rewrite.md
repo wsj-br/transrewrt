@@ -14,7 +14,7 @@ Utilice **Reescribir** para mejorar la redacción sin cambiar el significado pri
 Los modos incluyen:
 
 - **Revisar ortografía y gramática**
-- **Mejorar la claridad**
+- **Mejorar claridad**
 - **Versiones alternativas** (varias reformulaciones en una sola ejecución)
 - **Hacer formal** / **Hacer informal**
 - **Acortar** / **Expandir**

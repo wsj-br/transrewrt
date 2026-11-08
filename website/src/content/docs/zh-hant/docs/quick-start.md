@@ -69,7 +69,7 @@ TRANSREWRT_DISABLE_GPU=1 ./Transrewrt-x.y.z-arm64.AppImage
 - **Apple Silicon** — `Transrewrt-x.y.z-arm64.dmg`
 - **Intel** — `Transrewrt-x.y.z-x64.dmg`
 
-打開磁碟映像檔，將 Transrewrt 拖曳至應用程式。在 **Settings → API Config** 中輸入 API 金鑰。
+打開磁碟映像檔，並將 Transrewrt 拖曳至應用程式。在 **設定 → API 設定** 中輸入 API 金鑰。
 
 :::note
 macOS 版本未經簽署（未經 Apple 公證）。Gatekeeper 會封鎖首次啟動。右鍵點擊 `Transrewrt.app` 並選擇 **Open**，然後確認 **Open**。

@@ -23,8 +23,8 @@ Funguje akýkoľvek podporovaný poskytovateľ. Ak si nie ste istí, ktorého si
 
 Presné kroky sa mierne líšia v závislosti od poskytovateľa, ale vzor je všade rovnaký:
 
-1. Zaregistrujte sa alebo sa prihláste na webovej stránke poskytovateľa. V Transrewrt v časti **Settings → API Config** má každý poskytovateľ odkaz **Open provider website**, ktorý vás presmeruje na správne miesto.
-2. Nájdite stránku **API keys** (niekedy pod nastaveniami účtu, ovládacieho panela alebo vývojára) a vytvorte nový kľúč. Niektorí poskytovatelia vás požiadajú o pomenovanie kľúča alebo nastavenie limitu výdavkov – oboje je voliteľné.
+1. Zaregistrujte sa alebo sa prihláste na webovej stránke poskytovateľa. V časti **Nastavenia → Konfigurácia API** v aplikácii Transrewrt má každý poskytovateľ odkaz **Otvoriť webovú stránku poskytovateľa**, ktorý vás presmeruje na správne miesto.
+2. Nájdite stránku **Kľúče API** (niekedy v nastaveniach účtu, ovládacieho panela alebo vývojára) a vytvorte nový kľúč. Niektorí poskytovatelia vás požiadajú o pomenovanie kľúča alebo nastavenie limitu výdavkov – obe sú voliteľné.
 3. Skopírujte kľúč. Je to dlhý reťazec písmen a číslic, často začínajúci niečím ako `sk-`.
 
 :::note
@@ -33,9 +33,9 @@ S kľúčom API zaobchádzajte ako s heslom: nezdieľajte ho, nezverejňujte ho 
 
 ## Krok 3 – Pridajte a otestujte kľúč (desktop)
 
-1. V Transrewrt otvorte **Settings → API Config**.
-2. Vložte kľúč do poľa pre vášho poskytovateľa (napríklad **Google Gemini API key**) a uložte ho.
-3. Kliknite na **Test** vedľa poľa, aby ste potvrdili, že kľúč funguje.
+1. V aplikácii Transrewrt otvorte **Nastavenia → Konfigurácia API**.
+2. Vložte kľúč do poľa pre vášho poskytovateľa (napríklad **Kľúč API Google Gemini**) a uložte ho.
+3. Kliknutím na **Testovať** vedľa poľa potvrďte, že kľúč funguje.
 
 Akonáhle test uspeje, ste pripravení – vyberte si tohto poskytovateľa na hlavnej obrazovke a začnite prekladať.
 
@@ -43,7 +43,7 @@ Akonáhle test uspeje, ste pripravení – vyberte si tohto poskytovateľa na hl
 
 Modely môžete spúšťať na vlastnom počítači pomocou Ollama, LM Studio, llama.cpp alebo iného servera kompatibilného s OpenAI (napríklad `google/gemma-4-e2b` cez LM Studio). Nič neopustí váš počítač a nie je potrebný žiadny kľúč API.
 
-Ak chcete pripojiť jeden, nastavte základnú URL lokálneho LLM na úplnú základnú URL API, vrátane cesty – napríklad `http://localhost:11434/v1`. Na desktope to nastavte v **Settings → API Config**; na Docker namiesto toho nastavte premennú prostredia `LOCAL_LLM_URL`.
+Ak chcete pripojiť jeden, nastavte Základnú URL adresu lokálneho LLM na úplnú základnú adresu API vrátane cesty – napríklad `http://localhost:11434/v1`. Na počítači to nastavte v časti **Nastavenia → Konfigurácia API**; v Docker namiesto toho nastavte premennú prostredia `LOCAL_LLM_URL`.
 
 :::tip
 Ak používate lokálny server LLM z iného zariadenia alebo kontajnera, nakonfigurujte ho tak, aby umožňoval externé pripojenia (nie iba localhost).
@@ -55,10 +55,10 @@ Ak používate Transrewrt v prehliadači, kľúče spravuje ten, kto prevádzkuj
 
 ## Kontrolný zoznam prvého spustenia
 
-1. Otvorte aplikáciu a v prípade potreby nastavte **Interface language**.
-2. Pridajte a otestujte aspoň jeden kľúč poskytovateľa – alebo nakonfigurujte lokálny model (desktop), alebo potvrďte, že server má kľúče prostredia (web).
-3. V režime **Easy** vyberte **Provider** v General Settings; v režime **Advanced** pridajte modely pod **Settings → Models** – pozrite si [Settings](/docs/settings/#general-settings) pre oba režimy.
-4. Na **Translate** vyberte predvoľbu alebo model a spustite krátky test – pozrite si [Translate text](/docs/translate/).
+1. Otvorte aplikáciu a v prípade potreby nastavte **Jazyk rozhrania**.
+2. Pridajte a otestujte aspoň jeden kľúč poskytovateľa – alebo nakonfigurujte lokálny model (počítač), alebo potvrďte, že server má kľúče prostredia (web).
+3. V režime **Jednoduché** vyberte **Poskytovateľa** vo Všeobecných nastaveniach; v režime **Pokročilé** pridajte modely v časti **Nastavenia → Modely** – pozrite si [Nastavenia](/docs/settings/#general-settings) pre oba režimy.
+4. Na karte **Preložiť** vyberte predvoľbu alebo model a spustite krátky test – pozrite si [Preložiť text](/docs/translate/).
 
 ## Ak niečo nefunguje
 

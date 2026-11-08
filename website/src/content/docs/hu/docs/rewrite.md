@@ -13,12 +13,12 @@ Az **Átírás** funkcióval javíthatja a megfogalmazást anélkül, hogy megv�
 
 Az üzemmódok a következők:
 
-- **Helyesírás és nyelvtan ellenőrzése**
-- **Tisztaság javítása**
-- **Alternatív változatok** (több átfogalmazás egy futtatásban)
-- **Formálisabbá tétel** / **Informálisabbá tétel**
+- **Helyesírás és nyelvhelyesség ellenőrzése**
+- **Érthetőség javítása**
+- **Alternatív változatok** (több átfogalmazás egy menetben)
+- **Formális stílus** / **Informális stílus**
 - **Rövidítés** / **Bővítés**
-- **Technikaibbá tétel**
+- **Szakmai stílus**
 
 ## Szöveg átírása
 

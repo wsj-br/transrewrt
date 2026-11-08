@@ -46,4 +46,4 @@ Per impostazione predefinita, l'app viene eseguita in modalità **Facile**: sceg
 - [Impostazioni](/docs/settings/)
 - [Problemi comuni](/docs/common-issues/)
 
-[Download releases](https://github.com/wsj-br/transrewrt/releases) · [GitHub repository](https://github.com/wsj-br/transrewrt)
+[Scarica le release](https://github.com/wsj-br/transrewrt/releases) · [Repository GitHub](https://github.com/wsj-br/transrewrt)

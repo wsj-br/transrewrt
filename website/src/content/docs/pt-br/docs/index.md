@@ -46,4 +46,4 @@ Por padrão, o aplicativo é executado no modo **Fácil**: escolha uma **predefi
 - [Configurações](/docs/settings/)
 - [Problemas comuns](/docs/common-issues/)
 
-[Download releases](https://github.com/wsj-br/transrewrt/releases) · [GitHub repository](https://github.com/wsj-br/transrewrt)
+[Baixar versões](https://github.com/wsj-br/transrewrt/releases) · [Repositório GitHub](https://github.com/wsj-br/transrewrt)

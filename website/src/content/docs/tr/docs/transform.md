@@ -22,13 +22,13 @@ Yapay zekanın özel talimatları takip etmesini istediğinizde **Dönüştür**
 
 [Düzen değiştirme ve klavye kısayolları](/docs/translate/#layout-and-keyboard) Çevir'deki gibi çalışır.
 
-## Örnek istemleri yükleme
+## Örnek komutları yükle
 
-Liste boşsa, Dönüştürme çalışma alanında **Örnek istemleri yükle**'ye tıklayın (ayrıca [Ayarlar → Dönüştür](/docs/settings/#transform) altında da mevcuttur). Örnekler İngilizcedir; yüklendikten sonra bir istemi düzenleyin ve gerekirse **İstemi çevir**'i kullanın.
+Liste boşsa, Dönüştür çalışma alanında (ayrıca [Ayarlar → Dönüştür](/docs/settings/#transform) altında da bulunur) **Örnek komutları yükle**'ye tıklayın. Örnekler İngilizcedir; yüklendikten sonra bir isteği düzenleyin ve gerekirse **İsteği çevir**'i kullanın.
 
 ## Bir istem oluşturma
 
-1. **Yeni istem**'e tıklayın.
+1. **Yeni istek**'e tıklayın.
 2. **İstem oluştur**'a tıklayın.
 3. İstemin ne yapmasını istediğinizi açıklayın.
 4. Bir ön ayar (Kolay) veya model (Gelişmiş) seçin.
@@ -45,12 +45,12 @@ Ana alanlar:
 - **İstem adı** — istem listesinde gösterilir
 - **İstem talimatları (isteğe bağlı)** — istemi çalıştırırken kısa ipucu
 - **Model Rolü** — yapay zeka için genel rol
-- **Model Talimatları (her satırda bir tane)** — takip edilecek kurallar
-- **Çıkış açıklaması** — sonuç için kısa etiket (örn. özetlenmiş)
-- **Sıcaklık (0.0 → 1.0)** — düşük daha istikrarlı; yüksek daha çeşitli
+- **Model Talimatları (her biri bir satır)** — uyulması gereken kurallar
+- **Çıktı açıklaması** — sonuç için kısa etiket (örn. özetlenmiş)
+- **Sıcaklık (0.0 → 1.0)** — düşük daha kararlı; yüksek daha çeşitli
 - **Hedef dil iste** — çalıştırırken bir dil seçici ekler
 
-Yardımcılar: **İstem oluştur**, **İstemi iyileştir**, **İstemi çevir** (Kolay ön ayarları kullanır; Gelişmiş model listesini kullanır).
+Yardımcılar: **İstem oluştur**, **İsteği geliştir**, **İsteği çevir** (Kolay ön ayarları kullanır; Gelişmiş model listesini kullanır).
 
 :::caution
 **Çalıştırmaya Geri Dön**'den önce **Kaydet**'e tıklayın. Kaydetmeden geri dönmek düzenlemeleri iptal eder.

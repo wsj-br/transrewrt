@@ -13,12 +13,12 @@ Použijte **Přepsat** ke zlepšení formulace beze změny hlavního významu. T
 
 Režimy zahrnují:
 
-- **Kontrola pravopisu a gramatiky**
+- **Zkontrolovat pravopis a gramatiku**
 - **Zlepšit srozumitelnost**
-- **Alternativní verze** (několik přeformulování v jednom běhu)
-- **Zformálnit** / **Zneformálnit**
+- **Alternativní verze** (několik přeformulování v jednom spuštění)
+- **Formální** / **Neformální**
 - **Zkrátit** / **Rozšířit**
-- **Ztechnizovat**
+- **Technický**
 
 ## Přepsat text
 
@@ -43,9 +43,9 @@ Po přepsání se vedle **Kopírovat** objeví přepínač **Zobrazit změny** (
 
 Po úspěšném spuštění se na výstupní straně objeví **Přeformulovat…** a rozbalovací nabídka verzí (stejný princip jako [Překlad](/docs/translate/#refine-a-translation), ale text zůstává ve stejném jazyce a zachovává aktuální **Režim**):
 
-1. **Přeformulovat…** (bez výběru) – další úplné přepsání s jinou formulací. Až pět verzí. Kliknutím na **Zastavit přepisování** zrušíte.
-2. **Alternativy slov** – vyberte text, poté klikněte pravým tlačítkem nebo **Přeformulovat…**.
-3. Každý požadavek může přidat náklady na použití.
+1. **Přepsat…** (bez výběru) – další kompletní přepis s jiným zněním. Až pět verzí. Kliknutím na **Zastavit přepis** zrušíte akci.
+2. **Náhradní slova** – vyberte text a poté klikněte pravým tlačítkem nebo na **Přepsat…**.
+3. Každý požadavek může zvýšit náklady na použití.
 
 ## Další kroky
 

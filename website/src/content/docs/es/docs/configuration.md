@@ -67,7 +67,7 @@ Las tres variables `CUSTOM_PROVIDER_*` son obligatorias cuando se utiliza un pun
 
 ## Modo de privacidad
 
-Establezca `HISTORY_DISABLED` en `true` o `1` en el proceso del servidor web/Docker y/o en el proceso principal de Electron para forzar la desactivación del historial, independientemente de `config.json` o las preferencias por usuario. Esto deshabilita el almacenamiento del historial de entrada/salida, bloquea **Configuración → Ajustes generales → Historial** y bloquea las API relacionadas con el historial.
+Establezca `HISTORY_DISABLED` en `true` o `1` en el proceso del servidor web/Docker y/o en el proceso principal de Electron para forzar la desactivación del historial, independientemente de `config.json` o de las preferencias de cada usuario. Esto deshabilita el almacenamiento del historial de entrada/salida, bloquea **Configuración → Configuración general → Historial** y bloquea las API relacionadas con el historial.
 
 ## Autenticación web
 

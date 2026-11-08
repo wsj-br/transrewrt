@@ -22,7 +22,7 @@ Ihre Schlüssel, Ihre Modelle, Ihr Host – es gibt kein Transrewrt-Cloud-Konto.
 ![Übersetzungsarbeitsbereich](/images/screenshots/de/translate.png)
 
 - **Seitenleiste** – die Hauptnavigation: Übersetzen, Umschreiben, Transformieren, Dashboard, Verlauf, Einstellungen (und der angemeldete Benutzer im Web).
-- **Symbolleiste** – der Seitentitel, die Auswahl für die **Voreinstellung** (Einfach) oder das **Modell** (Erweitert), die **Oberflächensprache** (Globus-Symbol; ändert nicht die Übersetzungsrichtung) und Hilfe (**?**), die auf diese Dokumentation verweist. Das Voreinstellungs-/Modellmenü kann auch **In den einfachen/erweiterten Modus wechseln** (über „Einstellungen öffnen“).
+- **Symbolleiste** – der Seitentitel, die Auswahl für die **Vorgabe** (Einfach) oder das **Modell** (Erweitert), die **Schnittstellensprache** (Globus-Symbol; ändert nicht Übersetzen von/nach) und Hilfe (**?**), die auf diese Dokumentation verweist. Das Vorgaben-/Modellmenü kann auch **Zum einfachen/erweiterten Modus wechseln** (über Einstellungen öffnen).
 - **Arbeitsbereich** – die Eingabe- und Ausgabebereiche mit Zählungen, Zeitangaben, TPS und optionalen Kosten. Die Aktionsleiste zeigt einen kleinen Link zur App-**Version** (unten rechts) zur GitHub Pages-Website.
 
 Standardmäßig läuft die App im Modus **Einfach**: Wählen Sie eine **Voreinstellung** und einen **Anbieter** in den Einstellungen. Wechseln Sie zu **Erweitert** unter [Einstellungen → Allgemeine Einstellungen](/docs/settings/#general-settings) für eine vollständige Modellliste oder verwenden Sie den Schalter im Voreinstellungs-/Modellmenü der Symbolleiste.
@@ -46,4 +46,4 @@ Standardmäßig läuft die App im Modus **Einfach**: Wählen Sie eine **Voreinst
 - [Einstellungen](/docs/settings/)
 - [Häufige Probleme](/docs/common-issues/)
 
-[Download releases](https://github.com/wsj-br/transrewrt/releases) · [GitHub repository](https://github.com/wsj-br/transrewrt)
+[Releases herunterladen](https://github.com/wsj-br/transrewrt/releases) · [GitHub Repository](https://github.com/wsj-br/transrewrt)

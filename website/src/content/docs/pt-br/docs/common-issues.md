@@ -20,7 +20,7 @@ Verifique se:
 
 No modo **Fácil**, confirme se o **Provedor** está configurado e as chaves/URLs foram testadas. Para **LLM Local**, certifique-se de que seu servidor local esteja em execução e os modelos estejam carregados.
 
-No modo **Avançado**, os modelos selecionados podem estar vazios. Abra **Configurações → Modelos**, clique em **Atualizar** e adicione modelos a **Modelos Selecionados**. Opcionalmente, ative **Somente Grátis**. Remover o último modelo da barra de ferramentas também abre Configurações → Modelos.
+No modo **Avançado**, os modelos selecionados podem estar vazios. Abra **Configurações → Modelos**, clique em **Atualizar** e marque os modelos desejados (ou use **Selecionar a partir de predefinições**). Opcionalmente, ative **Apenas Gratuitos**. A remoção do último modelo da barra de ferramentas também abre Configurações → Modelos.
 
 ## Muito lento ou muito caro
 
@@ -52,15 +52,15 @@ OpenRouter e xAI mostram o gasto real quando a API o retorna. Para outros Proved
 
 ## O custo total não corresponde à minha fatura do provedor
 
-Os valores no aplicativo são **estimativas para referência**, não faturas. Para o OpenRouter, use **Configurações → Rastreamento de Custos → Sincronizar com o uso da chave de API**.
+Os valores no aplicativo são **estimativas para referência**, não faturas. Para o OpenRouter, use **Configurações → Rastreamento de Custos → Sincronizar com o uso da chave da API**.
 
 ## Página de histórico ausente na barra lateral
 
-**Manter histórico de execução** pode estar desativado. Ative-o nas Configurações Gerais, a menos que o histórico esteja desativado pelo administrador (`HISTORY_DISABLED` — consulte [Configuração](/docs/configuration/#privacy-mode)).
+**Manter o histórico de execução** pode estar desativado. Ative-o em Configurações Gerais, a menos que o histórico esteja desabilitado pelo administrador (`HISTORY_DISABLED` — consulte [Configuração](/docs/configuration/#privacy-mode)).
 
 ## Web: redirecionado para o login inesperadamente
 
-Sua sessão pode ter expirado. Faça login novamente. Se isso acontecer com frequência, peça a um administrador para aumentar o **Tempo Limite da Sessão** em [Configurações → Usuários](/docs/settings/#users) (um administrador também pode ter revogado suas sessões).
+Sua sessão pode ter expirado. Faça o login novamente. Se isso acontecer com frequência, peça a um administrador para aumentar o **Tempo de Sessão** em [Configurações → Usuários](/docs/settings/#users) (um administrador também pode ter revogado suas sessões).
 
 ## Administrador web: esqueceu a senha
 
@@ -72,7 +72,7 @@ docker exec transrewrt reset-web-password '<username>' '<new-password>'
 
 O nome de usuário padrão do administrador é `admin`. A partir de um checkout de origem: `pnpm run reset-web-password -- <username> <new-password>`.
 
-## O painel não mostra dados para outros usuários (web)
+## O Painel mostra "Sem dados" para outros usuários (web)
 
 Somente **administradores** podem visualizar outros usuários através do filtro **Usuário**. Usuários comuns veem apenas suas próprias atividades.
 
@@ -89,4 +89,4 @@ Ao editar um prompt de Transformação, clique em **Salvar** antes de **Voltar p
 - Exporte prompts regularmente se estiver construindo uma biblioteca de prompts
 - Use [Painel](/docs/dashboard/) e [Histórico](/docs/history/) para revisar o uso e as execuções anteriores
 
-[Report an issue](https://github.com/wsj-br/transrewrt/issues)
+[Relatar um problema](https://github.com/wsj-br/transrewrt/issues)

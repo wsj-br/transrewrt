@@ -23,7 +23,7 @@ Exporte a lista filtrada como **JSON**, **CSV** ou **XLSX**.
 
 ## Se o Histórico estiver faltando
 
-**Manter histórico de execução** pode estar desativado. Habilite-o em [Configurações → Configurações Gerais](/docs/settings/#general-settings), a menos que o administrador tenha definido `HISTORY_DISABLED` — consulte [Configuração](/docs/configuration/#privacy-mode).
+A opção **Manter o histórico de execução** pode estar desativada. Ative-a em [Configurações → Configurações Gerais](/docs/settings/#general-settings), a menos que o administrador tenha definido `HISTORY_DISABLED` — consulte [Configuração](/docs/configuration/#privacy-mode).
 
 ## Próximos passos
 

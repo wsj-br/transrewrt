@@ -22,16 +22,16 @@ A **Transform** funkciót akkor használja, ha azt szeretné, hogy az AI egyéni
 
 Az [elrendezés váltó és a billentyűparancsok](/docs/translate/#layout-and-keyboard) ugyanúgy működnek, mint a Fordítás funkcióban.
 
-## Minta promptok betöltése
+## Mintapromptok betöltése
 
-Ha a lista üres, kattintson a **Minta promptok betöltése** gombra az Átalakítás munkaterületen (ez a [Beállítások → Átalakítás](/docs/settings/#transform) menüpont alatt is elérhető). A minták angol nyelvűek; betöltés után szerkessze a promptot, és szükség esetén használja a **Prompt fordítása** funkciót.
+Ha a lista üres, kattintson a **Mintapromptok betöltése** gombra az Átalakítás munkaterületen (elérhető a [Beállítások → Átalakítás](/docs/settings/#transform) menüpont alatt is). A minták angol nyelvűek; betöltés után szerkessze a kérést, és szükség esetén használja a **Kérés fordítása** funkciót.
 
 ## Prompt létrehozása
 
-1. Kattintson az **Új prompt** gombra.
+1. Kattintson az **Új kérés** gombra.
 2. Kattintson a **Prompt generálása** gombra.
-3. Írja le, mit szeretne, hogy a prompt tegyen.
-4. Válasszon egy előre beállított értéket (Egyszerű) vagy modellt (Haladó).
+3. Írja le, mit szeretne, hogy a kérés elvégezzen.
+4. Válasszon egy előbeállítást (Egyszerű) vagy modellt (Haladó).
 5. Tekintse át a vázlatot, majd kattintson a **Mentés** gombra.
 
 ## Prompt szerkesztése
@@ -46,11 +46,11 @@ Fő mezők:
 - **Prompt utasítások (opcionális)** – rövid tipp a prompt futtatásakor
 - **Modell szerepe** – az AI általános szerepe
 - **Modell utasítások (soronként egy)** – követendő szabályok
-- **Kimenet leírása** – rövid címke az eredményhez (pl. összefoglalva)
-- **Hőmérséklet (0.0 → 1.0)** – alacsonyabb érték stabilabb; magasabb érték változatosabb
-- **Célnyelv kérése** – nyelvi választót ad hozzá a futtatáskor
+- **Kimeneti leírás** — rövid címke az eredményhez (pl. összefoglalt)
+- **Hőmérséklet (0.0 → 1.0)** — az alacsonyabb érték stabilabb; a magasabb változatosabb
+- **Célnyelv kérése** — nyelvválasztót ad hozzá futtatáskor
 
-Segítők: **Prompt generálása**, **Prompt javítása**, **Prompt fordítása** (az Egyszerű előre beállított értékeket használ; a Haladó a modelllistát).
+Segédeszközök: **Prompt generálása**, **Kérés javítása**, **Kérés fordítása** (az Egyszerű az előbeállításokat, a Haladó a modell-listát használja).
 
 :::caution
 Kattintson a **Mentés** gombra, mielőtt visszatérne a **Vissza a futtatáshoz** opcióhoz. Mentés nélküli visszatérés esetén a szerkesztések elvesznek.

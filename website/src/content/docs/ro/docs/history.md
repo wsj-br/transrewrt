@@ -23,7 +23,7 @@ Exportați lista filtrată ca **JSON**, **CSV** sau **XLSX**.
 
 ## Dacă istoricul lipsește
 
-Este posibil ca opțiunea **Păstrați istoricul execuțiilor** să fie dezactivată. Activați-o în [Setări → Setări generale](/docs/settings/#general-settings), cu excepția cazului în care administratorul a setat `HISTORY_DISABLED` — consultați [Configurare](/docs/configuration/#privacy-mode).
+Opțiunea **Păstrează istoricul execuției** poate fi dezactivată. Activați-o în [Setări → Setări generale](/docs/settings/#general-settings), cu excepția cazului în care administratorul a setat `HISTORY_DISABLED` — consultați [Configurare](/docs/configuration/#privacy-mode).
 
 ## Pașii următori
 

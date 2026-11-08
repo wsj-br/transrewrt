@@ -32,10 +32,10 @@ A **Leggyakoribb nyelvek** jelennek meg először a listákban – ezeket a [Be�
 
 A [Beállítások → Általános beállítások](/docs/settings/#general-settings) menüpontban:
 
-- **Automatikus végrehajtás beillesztéskor** – azonnal fut, amint beilleszti
-- **Eredmény automatikus másolása vágólapra** – sikeres futtatás után másolja
-- **Valós idejű fordítás gépelés közben** – gépelés közben fut (növelheti a költségeket)
-- **Időtúllépés (ms)** – várakozás valós idejű futtatás előtt
+- **Automatikus végrehajtás beillesztéskor** — a beillesztés pillanatában fut le
+- **Eredmény automatikus másolása a vágólapra** — sikeres futtatás után másolja a tartalmat
+- **Valós idejű fordítás gépelés közben** — gépelés közben fut (növelheti a költséget)
+- **Időtúllépés (ms)** — várakozási idő a valós idejű futtatás előtt
 - **ENTER viselkedése** – az Enter futtatja-e a feladatot, vagy új sort szúr be
 
 ## Elrendezés és billentyűzet

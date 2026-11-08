@@ -21,9 +21,9 @@ Vos clés, vos modèles, votre hôte — il n'y a pas de compte cloud Transrewrt
 
 ![Espace de travail de traduction](/images/screenshots/fr/translate.png)
 
-- **Barre latérale** — la navigation principale : Traduire, Réécrire, Transformer, Tableau de bord, Historique, Paramètres (et l’utilisateur connecté sur le web).
-- **Barre d’outils** — le titre de la page, le sélecteur de **préréglage** (Facile) ou de **modèle** (Avancé), la **langue de l’interface** (icône de globe ; ne modifie pas Traduire de/vers), et l’aide (**?**) renvoyant à cette documentation. Le menu de préréglage/modèle peut également **Passer en mode Facile/Avancé** (au-dessus d’Ouvrir les paramètres).
-- **Zone de travail** — les panneaux d’entrée et de sortie, avec les décomptes, la durée, le TPS et le coût facultatif. La barre d’action affiche un petit lien de **version** de l’application (en bas à droite) vers le site GitHub Pages.
+- **Barre latérale** — la navigation principale : Traduire, Réécriture, Transformation, Tableau de bord, Historique, Paramètres (et l'utilisateur connecté sur le web).
+- **Barre d'outils** — le titre de la page, le sélecteur de **préréglage** (Facile) ou de **modèle** (Avancé), la **Langue de l'interface** (icône de globe ; ne modifie pas Traduire de/vers), et l'Aide (**?**) renvoyant à cette documentation. Le menu de préréglage/modèle peut également **Passer en mode Facile/Avancé** (au-dessus d'Ouvrir les paramètres).
+- **Zone de travail** — les panneaux Entrée et Sortie, avec les décomptes, le temps, le TPS et le coût facultatif. La barre d'action affiche un petit lien de **version** de l'application (en bas à droite) vers le site GitHub Pages.
 
 Par défaut, l'application s'exécute en mode **Facile** : choisissez un **préréglage** et un **fournisseur** dans les paramètres. Passez en mode **Avancé** sous [Paramètres → Paramètres généraux](/docs/settings/#general-settings) pour une liste complète des modèles, ou utilisez le commutateur dans le menu préréglage/modèle de la barre d'outils.
 
@@ -46,4 +46,4 @@ Par défaut, l'application s'exécute en mode **Facile** : choisissez un **pré
 - [Paramètres](/docs/settings/)
 - [Problèmes courants](/docs/common-issues/)
 
-[Download releases](https://github.com/wsj-br/transrewrt/releases) · [GitHub repository](https://github.com/wsj-br/transrewrt)
+[Télécharger les versions](https://github.com/wsj-br/transrewrt/releases) · [Dépôt GitHub](https://github.com/wsj-br/transrewrt)

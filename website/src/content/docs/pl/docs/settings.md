@@ -12,7 +12,7 @@ Otwórz **Ustawienia** z paska bocznego, aby dostosować zachowanie aplikacji.
 | Karta | Komputer stacjonarny | Sieć (administrator) | Sieć (użytkownik) | Uwagi |
 | --- | :---: | :---: | :---: | --- |
 | Ustawienia ogólne | ✓ | ✓ | ✓ | Obejmuje **doświadczenie AI** (łatwe / zaawansowane) |
-| Modele | ✓ | ✓ | ✓ | Tylko gdy **doświadczenie AI** jest **zaawansowane** |
+| Modele | ✓ | ✓ | ✓ | Gotowe karty w trybie Łatwym, tabela modeli w trybie Zaawansowanym |
 | Języki | ✓ | ✓ | ✓ | |
 | Śledzenie kosztów | ✓ | ✓ | — | |
 | Transformacja | ✓ | ✓ | ✓ | Masowy import/eksport promptów |
@@ -21,7 +21,7 @@ Otwórz **Ustawienia** z paska bocznego, aby dostosować zachowanie aplikacji.
 | Konfiguracja API | ✓ | ✓ | — | |
 | Informacje | ✓ | ✓ | ✓ | |
 
-W trybie **Łatwym** wybierz AI za pomocą ustawień wstępnych na pasku narzędzi i **Dostawcę** w Ustawieniach ogólnych; zakładka **Modele** jest ukryta.
+W trybie **Łatwym** wybierz AI za pomocą ustawień wstępnych na pasku narzędzi i **Dostawcę** w Ustawieniach ogólnych; zakładka **Modele** pokazuje karty ustawień wstępnych tylko do odczytu.
 
 :::note
 W wersji internetowej każdy użytkownik ma własną konfigurację (doświadczenie AI, dostawca, modele/ustawienia wstępne, języki, opcje, podpowiedzi). Zmiany nie wpływają na innych użytkowników.
@@ -33,12 +33,12 @@ W wersji internetowej każdy użytkownik ma własną konfigurację (doświadczen
 
 **Doświadczenie AI**
 
-- **Łatwy** (domyślny): wybierz **Dostawcę**. Dostawcy chmury używają predefiniowanych ustawień paska narzędzi. **Lokalny LLM** wyświetla listę zainstalowanych modeli lokalnych. **Odśwież katalog predefiniowanych ustawień** pobiera najnowszą listę predefiniowanych ustawień z repozytorium projektu.
-  - **Darmowy (OpenRouter)** — bezkosztowa opcja kierowana do dostępnych darmowych modeli; jakość i dostępność mogą się różnić
-  - **Standardowy** — lekki i ekonomiczny; najlepszy do krótkich tekstów, szybkich szkiców i zastosowań o dużej objętości
-  - **Zaawansowany** — model o wysokiej dokładności do złożonych lub niuansowych treści, za wyższą cenę
-  - **Techniczny** — dostosowany do kodu, interfejsów API, Dokumentacji deweloperskiej i treści strukturalnych; zachowuje formatowanie i terminologię
-- **Zaawansowany**: wybierz modele na pasku narzędzi; zarządzaj listą w [Modelach](#models).
+- **Łatwy** (domyślny): wybierz **Dostawca**. Dostawcy chmurowi używają presetów z paska narzędzi. **Lokalny LLM** wyświetla listę zainstalowanych modeli lokalnych. **Odśwież katalog ustawień wstępnych** pobiera najnowszą listę presetów z repozytorium projektu.
+  - **Free (OpenRouter)** — opcja bezpłatna kierująca zapytania do dostępnych darmowych modeli; jakość i dostępność mogą się różnić
+  - **Standard** — lekki i efektywny kosztowo; najlepszy do krótkich tekstów, szybkich szkiców i intensywnego użytkowania
+  - **Zaawansowany** — model o wysokiej dokładności do złożonych lub zniuansowanych treści, przy wyższym koszcie
+  - **Technical** — dostosowany do kodu, API, dokumentacji programistycznej i treści strukturalnych; zachowuje formatowanie i terminologię
+- **Zaawansowany**: wybieraj modele na pasku narzędzi; zarządzaj listą w sekcji [Modele](#models).
 
 Możesz również przełączać tryb Łatwy ↔ Zaawansowany z menu ustawień wstępnych/modeli na pasku narzędzi (**Przełącz na tryb Łatwy/Zaawansowany**, powyżej Otwórz Ustawienia).
 
@@ -53,30 +53,46 @@ Możesz również przełączać tryb Łatwy ↔ Zaawansowany z menu ustawień ws
 
 **Kopia zapasowa konfiguracji** (administratorzy desktopowi i webowi)
 
-- Opcjonalnie **Dołącz dane użycia do kopii zapasowej**
-- **Kopia zapasowa konfiguracji** — ZIP z konfiguracją, stanem, użytkownikami, preferencjami, promptami i opcjonalnymi danymi użycia
-- **Przywróć z kopii zapasowej** — okno dialogowe potwierdzenia z opcjami przywracania i/lub czyszczenia danych użycia
+- Opcjonalnie **Uwzględnij dane użytkowania w kopii zapasowej**
+- **Utwórz kopię zapasową konfiguracji** — plik ZIP z konfiguracją, stanem, użytkownikami, preferencjami, promptami i opcjonalnymi danymi użytkowania
+- **Przywróć z kopii zapasowej** — okno dialogowe z potwierdzeniem oraz opcjami przywrócenia i/lub wyczyszczenia danych użytkowania
 
 Kopie zapasowe mogą być przenoszone między wersją desktopową a webową; przywracanie kopii zapasowej z wersji desktopowej w wersji webowej stosuje dane do użytkownika administratora.
 
 ## Modele
 
-Dostępne tylko w trybie **Zaawansowanym**.
+Zakładka **Modele** jest zawsze widoczna. Jej przełącznik **Łatwy / Zaawansowany** przełącza całą aplikację między dwoma [doświadczeniami AI](#general-settings).
 
-- **Dostępne modele** (lewa strona) i **Wybrane modele** (prawa strona)
-- Wyszukiwanie, etykiety **Dostawca**, **Tylko darmowe**, **Odśwież**, Rozwiń/Zwiń wszystko
+- **Łatwy** wyświetla jedną kartę tylko do odczytu dla każdego presetu (na przykład **Free (OpenRouter)** lub **Standard**). Każda karta zawiera główny i zapasowy model presetu dla każdego skonfigurowanego dostawcy. Filtry **Dostawca** pozwalają filtrować karty.
+- **Zaawansowany** wyświetla tabelę wszystkich modeli, zawierającą:
+  - pole wyszukiwania, filtry **Dostawca**, **Tylko darmowe**, **Tylko wybrane** oraz **Odśwież**
+  - menu sortowania; domyślnie ustawione na **Indeks: od najwyższego do najniższego**
+  - pole wyboru przy każdym modelu, aby go zaznaczyć lub odznaczyć
+  - **Wybierz z presetów**, co dodaje główny i zapasowy model presetu dla każdego skonfigurowanego dostawcy (**Załaduj wszystko** ładuje każdego dostawcę)
+  - **Odznacz wszystko**, co wymaga wcześniejszego potwierdzenia
 - Identyfikatory modeli używają prefiksu dostawcy (`openrouter/…`, `openai/…`, `local/…`, …)
+
+Kolumny wyników i cen:
+
+- **Indeks** — wynik jakości połączony z ChrF, Arena Score i ceną. Jest on klasyfikowany w ramach każdego dostawcy, więc nie jest porównywalny między dostawcami. Modele bez Indeksu sortują się na dół.
+- **ChrF** — średnia jakość tłumaczenia z [languagebench](https://huggingface.co/spaces/fair-forward/languagebench) dla języków interfejsu użytkownika aplikacji.
+- **Arena** — Arena Score z tabeli liderów [LMArena](https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset).
+- **Wejście** / **Wyjście** — cena w USD za 1M tokenów, z katalogu dostawcy lub [models.dev](https://models.dev/). Szacunkowa cena jest oznaczona gwiazdką. Myślnik (—) oznacza, że cena jest nieznana; modele lokalne pokazują „brak kosztów - lokalne”.
+
+Najedź kursorem na nagłówek kolumny, aby zobaczyć jej źródło danych i licencję. Selektor modelu na pasku narzędzi pokazuje Indeks każdego modelu jako mały chip; najedź na niego, aby zobaczyć wartości ChrF i Arena.
+
+Wyniki są jedynie wskazówką: pokrycie jest niekompletne, a wiele modeli nie ma wyniku ChrF ani Arena.
 
 :::tip
 Nie używaj OpenRouter **Body Builder** (`openrouter/bodybuilder`) do tłumaczenia, przepisywania ani transformacji — zwraca on ładunki żądań JSON, a nie gotowy tekst.
 :::
 
-Dodaj za pomocą **Dodaj**; usuń za pomocą **X**. Darmowy model OpenRouter jest opcjonalny — wybrane modele mogą być puste. Usunięcie ostatniego modelu z paska narzędzi otwiera **Ustawienia → Modele**. Jeśli bieżący model stanie się niedostępny, aplikacja wybierze następny model z listy zamiast wymuszać darmowy model.
+Zaznacz lub odznacz model, aby go wybrać lub odznaczyć. Darmowy model OpenRouter jest opcjonalny — wybrane modele mogą być puste. Usunięcie ostatniego modelu z paska narzędzi otwiera **Ustawienia → Modele**. Jeśli bieżący model stanie się niedostępny, aplikacja wybierze następny model na liście zamiast wymuszać darmowy model.
 
 ## Języki
 
-- **Najpopularniejsze języki** — przypięte blisko góry list języków w Tłumaczeniu i Transformacji
-- **Język niestandardowy** — dodaj język brakujący na wbudowanej liście
+- **Najpopularniejsze języki** — przypięte na górze list języków w funkcjach Tłumacz i Transformacja
+- **Niestandardowy język** — dodaj język, którego brakuje na wbudowanej liście
 
 ## Śledzenie kosztów
 

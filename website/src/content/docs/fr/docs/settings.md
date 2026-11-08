@@ -12,7 +12,7 @@ Ouvrez les **Paramètres** depuis la barre latérale pour personnaliser le compo
 | Onglet | Ordinateur de bureau | Web (administrateur) | Web (utilisateur) | Remarques |
 | --- | :---: | :---: | :---: | --- |
 | Paramètres généraux | ✓ | ✓ | ✓ | Inclut l'**expérience IA** (Facile / Avancée) |
-| Modèles | ✓ | ✓ | ✓ | Uniquement lorsque l'**expérience IA** est **Avancée** |
+| Modèles | ✓ | ✓ | ✓ | Cartes prédéfinies en mode Facile, tableau des modèles en mode Avancé |
 | Langues | ✓ | ✓ | ✓ | |
 | Suivi des coûts | ✓ | ✓ | — | |
 | Transformer | ✓ | ✓ | ✓ | Importation/exportation en bloc des invites |
@@ -21,7 +21,7 @@ Ouvrez les **Paramètres** depuis la barre latérale pour personnaliser le compo
 | Configuration de l'API | ✓ | ✓ | — | |
 | À propos | ✓ | ✓ | ✓ | |
 
-En mode **Facile**, choisissez l'IA via les préréglages dans la barre d'outils et le **Fournisseur** dans les Paramètres généraux ; l'onglet **Modèles** est masqué.
+En mode **Facile**, choisissez l'IA via les préréglages dans la barre d'outils et le **Fournisseur** dans les Paramètres généraux ; l'onglet **Modèles** affiche des cartes de préréglages en lecture seule.
 
 :::note
 Dans la version web, chaque utilisateur a sa propre configuration (expérience IA, fournisseur, modèles/préréglages, langues, options, invites). Les modifications n'affectent pas les autres utilisateurs.
@@ -33,18 +33,18 @@ Dans la version web, chaque utilisateur a sa propre configuration (expérience I
 
 **Expérience IA**
 
-- **Facile** (par défaut) : choisissez un **Fournisseur**. Les fournisseurs de cloud utilisent des préréglages de barre d’outils. **LLM local** répertorie les modèles locaux installés. **Actualiser le catalogue de préréglages** récupère la dernière liste de préréglages du référentiel du projet.
-  - **Gratuit (OpenRouter)** — option sans frais acheminée vers les modèles gratuits disponibles ; la qualité et la disponibilité peuvent varier
-  - **Standard** — léger et économique ; idéal pour les textes courts, les brouillons rapides et une utilisation à volume élevé
-  - **Avancé** — modèle de haute précision pour le contenu complexe ou nuancé, à un coût plus élevé
-  - **Technique** — optimisé pour le code, les API, la Documentation des développeurs et le contenu structuré ; préserve le formatage et la terminologie
-- **Avancé** : choisissez des modèles dans la barre d’outils ; gérez la liste sous [Modèles](#models).
+- **Facile** (par défaut) : choisissez un **Fournisseur**. Les fournisseurs cloud utilisent les préréglages de la barre d’outils. **LLM local** répertorie les modèles locaux installés. **Actualiser le catalogue des paramètres prédéfinis** récupère la dernière liste de préréglages du dépôt du projet.
+  - **Gratuit (OpenRouter)** — option gratuite acheminée vers les modèles gratuits disponibles ; la qualité et la disponibilité peuvent varier
+  - **Standard** — léger et économique ; idéal pour les textes courts, les brouillons rapides et une utilisation à volume élevé
+  - **Avancé** — modèle de haute précision pour le contenu complexe ou nuancé, à un coût plus élevé
+  - **Technique** — optimisé pour le code, les API, la documentation des développeurs et le contenu structuré ; préserve le formatage et la terminologie
+- **Avancé** : choisissez les modèles dans la barre d’outils ; gérez la liste sous [Modèles](#models).
 
 Vous pouvez également basculer Facile ↔ Avancé depuis le menu préréglage/modèle de la barre d'outils (**Passer en mode Facile/Avancé**, au-dessus d'Ouvrir les paramètres).
 
 **Apparence** — Thème ; **Afficher les informations de coût sur les actions** ; **Chiffres fractionnaires du coût** ; marge web uniquement autour de l'application ; **Famille de polices** et **Taille**.
 
-**Comportement** — **Comportement pour ENTRÉE** ; **Exécution automatique au collage** ; **Copie automatique du résultat dans le presse-papiers** ; **Traduction en temps réel pendant la saisie** ; **Délai d'attente (ms)**.
+**Comportement** — **Comportement pour ENTRÉE** ; **Exécuter automatiquement lors du collage** ; **Copier automatiquement le résultat dans le presse-papiers** ; **Traduction en temps réel pendant la saisie** ; **Délai d’expiration (ms)**.
 
 **Historique**
 
@@ -53,25 +53,41 @@ Vous pouvez également basculer Facile ↔ Avancé depuis le menu préréglage/m
 
 **Sauvegarde de la configuration** (administrateurs de bureau et web)
 
-- Optionnel **Inclure les données d'utilisation dans la sauvegarde**
-- **Sauvegarder la configuration** — ZIP avec la configuration, l'état, les utilisateurs, les préférences, les invites et les données d'utilisation optionnelles
-- **Restaurer à partir de la sauvegarde** — boîte de dialogue de confirmation avec des options pour restaurer et/ou effacer les données d'utilisation
+- Facultatif **Inclure les données d'utilisation dans la sauvegarde**
+- **Sauvegarder la configuration** — ZIP avec la configuration, l'état, les utilisateurs, les préférences, les invites et les données d'utilisation facultatives
+- **Restaurer à partir d'une sauvegarde** — boîte de dialogue de confirmation avec des options pour restaurer et/ou effacer les données d'utilisation
 
 Les sauvegardes peuvent être déplacées entre le bureau et le web ; la restauration d'une sauvegarde de bureau sur le web applique les données à l'utilisateur administrateur.
 
 ## Modèles
 
-Disponible uniquement en mode **Avancé**.
+L'onglet **Modèles** est toujours affiché. Son bouton bascule **Facile / Avancé** fait passer toute l'application entre les deux [expériences IA](#general-settings).
 
-- **Modèles disponibles** (gauche) et **Modèles sélectionnés** (droite)
-- Recherche, puces **Fournisseur**, **Gratuit uniquement**, **Actualiser**, Développer/Réduire tout
-- Les identifiants de modèle utilisent un préfixe de fournisseur (`openrouter/…`, `openai/…`, `local/…`, …)
+- **Facile** affiche une carte en lecture seule par préréglage (par exemple **Gratuit (OpenRouter)** ou **Standard**). Chaque carte répertorie le modèle principal et le modèle de secours du préréglage pour chaque fournisseur que vous avez configuré. Les puces **Fournisseur** filtrent les cartes.
+- **Avancé** affiche un tableau de chaque modèle, avec :
+  - une zone de recherche, des puces **Fournisseur**, **Gratuit uniquement**, **Sélection uniquement** et **Actualiser**
+  - un menu de tri ; la valeur par défaut est **Indice décroissant**
+  - une case à cocher par modèle pour le sélectionner ou le désélectionner
+  - **Sélectionner parmi les préréglages**, qui ajoute les modèles principal et de secours d’un préréglage pour chaque fournisseur configuré (**Tout charger** charge tous les fournisseurs)
+  - **Désélectionner tout**, qui demande d’abord une confirmation
+- Les ID de modèle utilisent un préfixe de fournisseur (`openrouter/…`, `openai/…`, `local/…`, …)
+
+Les colonnes de score et de prix :
+
+- **Index** — un score de qualité combinant ChrF, Arena Score et le prix. Il est classé au sein de chaque fournisseur, il n'est donc pas comparable entre les fournisseurs. Les modèles sans Index sont triés en bas.
+- **ChrF** — qualité de traduction moyenne de [languagebench](https://huggingface.co/spaces/fair-forward/languagebench) pour les langues de l'interface utilisateur de l'application.
+- **Arena** — Arena Score du classement [LMArena](https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset).
+- **Entrée** / **Sortie** — prix en USD par million de jetons, provenant du catalogue du fournisseur ou de [models.dev](https://models.dev/). Un prix estimé est marqué d'un astérisque. Un tiret (—) signifie que le prix est inconnu ; les modèles locaux affichent « sans coût - local ».
+
+Passez la souris sur un en-tête de colonne pour voir sa source de données et sa licence. Le sélecteur de modèle dans la barre d'outils affiche l'Index de chaque modèle sous forme de petite puce ; passez la souris dessus pour les valeurs ChrF et Arena.
+
+Les scores ne sont qu'un guide : la couverture est incomplète et de nombreux modèles n'ont pas de score ChrF ou Arena.
 
 :::tip
 N'utilisez pas OpenRouter **Body Builder** (`openrouter/bodybuilder`) pour Traduire, Réécrire ou Transformer — il renvoie des charges utiles de requête JSON, pas du texte fini.
 :::
 
-Ajouter avec **Ajouter** ; supprimer avec **X**. Le modèle gratuit OpenRouter est facultatif — les modèles sélectionnés peuvent être vides. La suppression du dernier modèle de la barre d'outils ouvre **Paramètres → Modèles**. Si le modèle actuel devient indisponible, l'application sélectionne le modèle suivant dans la liste au lieu de forcer le modèle gratuit.
+Cochez ou décochez un modèle pour le sélectionner ou le désélectionner. Le modèle gratuit OpenRouter est facultatif — les modèles sélectionnés peuvent être vides. La suppression du dernier modèle de la barre d'outils ouvre **Paramètres → Modèles**. Si le modèle actuel devient indisponible, l'application sélectionne le modèle suivant dans la liste au lieu de forcer le modèle gratuit.
 
 ## Langues
 
@@ -115,7 +131,7 @@ Web uniquement (administrateurs) :
 
 Chaque utilisateur connecté (y compris les non-administrateurs) peut modifier son propre mot de passe ou se déconnecter à partir du menu utilisateur dans la barre latérale.
 
-## Configuration de l'API
+## Config. API
 
 Configurez uniquement les fournisseurs que vous utilisez : OpenRouter, OpenAI, Anthropic, Google Gemini, DeepSeek, Groq, Mistral, xAI, Cerebras, NVIDIA, Alibaba Cloud, apikey.fun, **LLM local** (URL de base pour Ollama, LM Studio, llama.cpp, ou similaire), et un fournisseur compatible OpenAI personnalisé facultatif.
 

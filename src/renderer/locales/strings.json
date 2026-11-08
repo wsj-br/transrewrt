@@ -460,7 +460,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 354
+        "line": 457
       }
     ]
   },
@@ -1275,7 +1275,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 194
+        "line": 109
       }
     ]
   },
@@ -2463,7 +2463,7 @@
       },
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 215
+        "line": 141
       },
       {
         "file": "src/renderer/utils/misc/formatUtils.ts",
@@ -3133,7 +3133,7 @@
       },
       {
         "file": "src/renderer/components/ModelSelector.tsx",
-        "line": 202
+        "line": 264
       },
       {
         "file": "src/renderer/components/SettingsApiTab.tsx",
@@ -3161,7 +3161,7 @@
       },
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 737
+        "line": 713
       },
       {
         "file": "src/renderer/components/SettingsTransformPromptsTab.tsx",
@@ -6239,6 +6239,10 @@
       {
         "file": "src/renderer/components/HistoryPage.tsx",
         "line": 230
+      },
+      {
+        "file": "src/renderer/components/SettingsModelsTab.tsx",
+        "line": 290
       }
     ]
   },
@@ -10247,15 +10251,7 @@
       },
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 421
-      },
-      {
-        "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 477
-      },
-      {
-        "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 584
+        "line": 249
       }
     ]
   },
@@ -11641,7 +11637,7 @@
       },
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 161
+        "line": 156
       },
       {
         "file": "src/renderer/components/Sidebar.tsx",
@@ -13326,7 +13322,7 @@
       },
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 222
+        "line": 278
       },
       {
         "file": "src/renderer/components/workspace/RewriteWorkspace.tsx",
@@ -13439,7 +13435,7 @@
       },
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 222
+        "line": 281
       },
       {
         "file": "src/renderer/components/TransformTestPanel.tsx",
@@ -15648,11 +15644,15 @@
       },
       {
         "file": "src/renderer/components/ModelSelector.tsx",
-        "line": 160
+        "line": 222
       },
       {
         "file": "src/renderer/components/PresetSelector.tsx",
         "line": 111
+      },
+      {
+        "file": "src/renderer/components/SettingsModelsTab.tsx",
+        "line": 337
       }
     ]
   },
@@ -15875,11 +15875,15 @@
       },
       {
         "file": "src/renderer/components/ModelSelector.tsx",
-        "line": 161
+        "line": 223
       },
       {
         "file": "src/renderer/components/PresetSelector.tsx",
         "line": 112
+      },
+      {
+        "file": "src/renderer/components/SettingsModelsTab.tsx",
+        "line": 323
       }
     ]
   },
@@ -15976,7 +15980,212 @@
       },
       {
         "file": "src/renderer/components/ModelSelector.tsx",
-        "line": 94
+        "line": 155
+      }
+    ]
+  },
+  "88fa71f0": {
+    "source": "Index",
+    "translated": {
+      "nl": "Index",
+      "de": "Index",
+      "ar": "المؤشر",
+      "el": "Δείκτης",
+      "cs": "Index",
+      "zh-Hant": "指數",
+      "fr": "Indice",
+      "zh-Hans": "指数",
+      "it": "Indice",
+      "ja": "インデックス",
+      "hu": "Index",
+      "hi": "सूचकांक",
+      "pt-BR": "Índice",
+      "fa": "شاخص",
+      "ko": "지수",
+      "pl": "Wskaźnik",
+      "ru": "Индекс",
+      "ro": "Indice",
+      "tr": "Endeks",
+      "sv": "Index",
+      "sk": "Index",
+      "th": "ดัชนี",
+      "uk": "Індекс",
+      "es": "Índice",
+      "vi": "Chỉ số"
+    },
+    "models": {
+      "nl": "~anthropic/claude-sonnet-latest",
+      "de": "~anthropic/claude-sonnet-latest",
+      "ar": "~anthropic/claude-sonnet-latest",
+      "el": "~anthropic/claude-sonnet-latest",
+      "cs": "~anthropic/claude-sonnet-latest",
+      "zh-Hant": "z-ai/glm-5.2",
+      "fr": "~anthropic/claude-sonnet-latest",
+      "zh-Hans": "z-ai/glm-5.2",
+      "it": "~anthropic/claude-sonnet-latest",
+      "ja": "z-ai/glm-5.2",
+      "hu": "~anthropic/claude-sonnet-latest",
+      "hi": "~anthropic/claude-sonnet-latest",
+      "pt-BR": "~anthropic/claude-sonnet-latest",
+      "fa": "~anthropic/claude-sonnet-latest",
+      "ko": "z-ai/glm-5.2",
+      "pl": "~anthropic/claude-sonnet-latest",
+      "ru": "~anthropic/claude-sonnet-latest",
+      "ro": "~anthropic/claude-sonnet-latest",
+      "tr": "~anthropic/claude-sonnet-latest",
+      "sv": "~anthropic/claude-sonnet-latest",
+      "sk": "~anthropic/claude-sonnet-latest",
+      "th": "~anthropic/claude-sonnet-latest",
+      "uk": "~anthropic/claude-sonnet-latest",
+      "es": "~anthropic/claude-sonnet-latest",
+      "vi": "~anthropic/claude-sonnet-latest"
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/ModelSelector.tsx",
+        "line": 46
+      },
+      {
+        "file": "src/renderer/components/SettingsModelsTab.tsx",
+        "line": 269
+      }
+    ]
+  },
+  "dd740d3f": {
+    "source": "ChrF",
+    "translated": {
+      "nl": "ChrF",
+      "de": "ChrF",
+      "ar": "ChrF",
+      "el": "ChrF",
+      "cs": "ChrF",
+      "zh-Hant": "ChrF",
+      "fr": "ChrF",
+      "zh-Hans": "ChrF",
+      "it": "ChrF",
+      "ja": "ChrF",
+      "hu": "ChrF",
+      "hi": "ChrF",
+      "pt-BR": "ChrF",
+      "fa": "ChrF",
+      "ko": "ChrF",
+      "pl": "ChrF",
+      "ru": "ChrF",
+      "ro": "ChrF",
+      "tr": "ChrF",
+      "sv": "ChrF",
+      "sk": "ChrF",
+      "th": "ChrF",
+      "uk": "ChrF",
+      "es": "ChrF",
+      "vi": "ChrF"
+    },
+    "models": {
+      "nl": "~anthropic/claude-sonnet-latest",
+      "de": "~anthropic/claude-sonnet-latest",
+      "ar": "~anthropic/claude-sonnet-latest",
+      "el": "~anthropic/claude-sonnet-latest",
+      "cs": "~anthropic/claude-sonnet-latest",
+      "zh-Hant": "z-ai/glm-5.2",
+      "fr": "~anthropic/claude-sonnet-latest",
+      "zh-Hans": "z-ai/glm-5.2",
+      "it": "~anthropic/claude-sonnet-latest",
+      "ja": "z-ai/glm-5.2",
+      "hu": "~anthropic/claude-sonnet-latest",
+      "hi": "~anthropic/claude-sonnet-latest",
+      "pt-BR": "~anthropic/claude-sonnet-latest",
+      "fa": "~anthropic/claude-sonnet-latest",
+      "ko": "z-ai/glm-5.2",
+      "pl": "~anthropic/claude-sonnet-latest",
+      "ru": "~anthropic/claude-sonnet-latest",
+      "ro": "~anthropic/claude-sonnet-latest",
+      "tr": "~anthropic/claude-sonnet-latest",
+      "sv": "~anthropic/claude-sonnet-latest",
+      "sk": "~anthropic/claude-sonnet-latest",
+      "th": "~anthropic/claude-sonnet-latest",
+      "uk": "~anthropic/claude-sonnet-latest",
+      "es": "~anthropic/claude-sonnet-latest",
+      "vi": "~anthropic/claude-sonnet-latest"
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/ModelSelector.tsx",
+        "line": 53
+      },
+      {
+        "file": "src/renderer/components/SettingsModelsTab.tsx",
+        "line": 272
+      },
+      {
+        "file": "src/renderer/components/settings/ModelScoreStats.tsx",
+        "line": 39
+      }
+    ]
+  },
+  "83cc7ca8": {
+    "source": "Arena Score",
+    "translated": {
+      "zh-Hans": "竞技场得分",
+      "de": "Arena-Wertung",
+      "fr": "Score Arena",
+      "el": "Βαθμολογία Arena",
+      "cs": "Skóre arény",
+      "ar": "نتيجة الساحة",
+      "nl": "Arena-score",
+      "zh-Hant": "競技場分數",
+      "hu": "Aréna pontszám",
+      "it": "Punteggio Arena",
+      "pl": "Wynik Areny",
+      "fa": "امتیاز آرنا",
+      "pt-BR": "Pontuação da Arena",
+      "hi": "एरेना स्कोर",
+      "ko": "아레나 점수",
+      "ja": "アリーナスコア",
+      "ru": "Рейтинг Arena",
+      "tr": "Arena Puanı",
+      "sk": "Skóre arény",
+      "uk": "Рейтинг Arena",
+      "es": "Puntuación de Arena",
+      "ro": "Scor Arena",
+      "sv": "Arenapoäng",
+      "th": "คะแนน Arena",
+      "vi": "Điểm Arena"
+    },
+    "models": {
+      "zh-Hans": "z-ai/glm-5.2",
+      "de": "~anthropic/claude-sonnet-latest",
+      "fr": "~anthropic/claude-sonnet-latest",
+      "el": "~anthropic/claude-sonnet-latest",
+      "cs": "~anthropic/claude-sonnet-latest",
+      "ar": "~anthropic/claude-sonnet-latest",
+      "nl": "~anthropic/claude-sonnet-latest",
+      "zh-Hant": "z-ai/glm-5.2",
+      "hu": "~anthropic/claude-sonnet-latest",
+      "it": "~anthropic/claude-sonnet-latest",
+      "pl": "~anthropic/claude-sonnet-latest",
+      "fa": "~anthropic/claude-sonnet-latest",
+      "pt-BR": "~anthropic/claude-sonnet-latest",
+      "hi": "~anthropic/claude-sonnet-latest",
+      "ko": "z-ai/glm-5.2",
+      "ja": "z-ai/glm-5.2",
+      "ru": "~anthropic/claude-sonnet-latest",
+      "tr": "~anthropic/claude-sonnet-latest",
+      "sk": "~anthropic/claude-sonnet-latest",
+      "uk": "~anthropic/claude-sonnet-latest",
+      "es": "~anthropic/claude-sonnet-latest",
+      "ro": "~anthropic/claude-sonnet-latest",
+      "sv": "~anthropic/claude-sonnet-latest",
+      "th": "~anthropic/claude-sonnet-latest",
+      "vi": "~anthropic/claude-sonnet-latest"
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/ModelSelector.tsx",
+        "line": 61
+      },
+      {
+        "file": "src/renderer/components/settings/ModelScoreStats.tsx",
+        "line": 48
       }
     ]
   },
@@ -16069,7 +16278,7 @@
     "locations": [
       {
         "file": "src/renderer/components/ModelSelector.tsx",
-        "line": 107
+        "line": 168
       }
     ]
   },
@@ -16162,7 +16371,7 @@
     "locations": [
       {
         "file": "src/renderer/components/ModelSelector.tsx",
-        "line": 183
+        "line": 245
       }
     ]
   },
@@ -16255,7 +16464,7 @@
     "locations": [
       {
         "file": "src/renderer/components/ModelSelector.tsx",
-        "line": 184
+        "line": 246
       }
     ]
   },
@@ -16348,11 +16557,7 @@
     "locations": [
       {
         "file": "src/renderer/components/ModelSelector.tsx",
-        "line": 191
-      },
-      {
-        "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 597
+        "line": 253
       }
     ]
   },
@@ -16415,7 +16620,7 @@
     "locations": [
       {
         "file": "src/renderer/components/ModelSelector.tsx",
-        "line": 194
+        "line": 256
       }
     ]
   },
@@ -16508,7 +16713,7 @@
     "locations": [
       {
         "file": "src/renderer/components/ModelSelector.tsx",
-        "line": 197
+        "line": 259
       }
     ]
   },
@@ -16601,7 +16806,7 @@
     "locations": [
       {
         "file": "src/renderer/components/ModelSelector.tsx",
-        "line": 201
+        "line": 263
       }
     ]
   },
@@ -16791,7 +16996,7 @@
       },
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 540
+        "line": 438
       }
     ]
   },
@@ -16885,6 +17090,10 @@
       {
         "file": "src/renderer/components/SelectFromPresetsModal.tsx",
         "line": 130
+      },
+      {
+        "file": "src/renderer/components/SettingsModelsTab.tsx",
+        "line": 473
       }
     ]
   },
@@ -17370,6 +17579,10 @@
       {
         "file": "src/renderer/components/SelectFromPresetsModal.tsx",
         "line": 207
+      },
+      {
+        "file": "src/renderer/components/SettingsModelsTab.tsx",
+        "line": 518
       }
     ]
   },
@@ -17463,6 +17676,10 @@
       {
         "file": "src/renderer/components/SelectFromPresetsModal.tsx",
         "line": 212
+      },
+      {
+        "file": "src/renderer/components/SettingsModelsTab.tsx",
+        "line": 518
       }
     ]
   },
@@ -17757,7 +17974,7 @@
       },
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 169
+        "line": 164
       }
     ]
   },
@@ -22573,7 +22790,7 @@
       },
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 159
+        "line": 154
       }
     ]
   },
@@ -25703,6 +25920,10 @@
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
         "line": 293
+      },
+      {
+        "file": "src/renderer/components/SettingsModelsTab.tsx",
+        "line": 331
       }
     ]
   },
@@ -25889,6 +26110,10 @@
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
         "line": 309
+      },
+      {
+        "file": "src/renderer/components/SettingsModelsTab.tsx",
+        "line": 345
       }
     ]
   },
@@ -26075,10 +26300,6 @@
       {
         "file": "src/renderer/components/SettingsGeneralTab.tsx",
         "line": 318
-      },
-      {
-        "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 282
       }
     ]
   },
@@ -32636,7 +32857,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 195
+        "line": 110
       }
     ]
   },
@@ -32729,7 +32950,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 196
+        "line": 111
       }
     ]
   },
@@ -32822,7 +33043,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 197
+        "line": 112
       }
     ]
   },
@@ -32915,7 +33136,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 198
+        "line": 113
       }
     ]
   },
@@ -33008,7 +33229,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 199
+        "line": 114
       }
     ]
   },
@@ -33101,7 +33322,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 200
+        "line": 115
       }
     ]
   },
@@ -33164,7 +33385,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 213
+        "line": 140
       }
     ]
   },
@@ -33257,53 +33478,53 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 219
+        "line": 150
       }
     ]
   },
-  "25d7186f": {
-    "source": "tokens",
+  "a2d46748": {
+    "source": "All providers",
     "translated": {
-      "pt-BR": "tokens",
-      "ca": "tokens",
-      "ar": "رموز",
-      "bn": "টোকেন",
-      "zh-TW": "tokens",
-      "hr": "tokeni",
-      "cs": "tokeny",
-      "zh-CN": "令牌",
-      "en-US": "tokens",
-      "fr": "jetons",
-      "tl": "token",
-      "nl": "tokens",
-      "de": "Token",
-      "hu": "tokenek",
-      "hi": "टोकन",
-      "el": "tokens",
-      "ms": "token",
-      "ko": "토큰",
-      "ja": "トークン",
-      "it": "token",
-      "pt": "tokens",
-      "pl": "tokeny",
-      "pa": "ਟੋਕਨ",
-      "fa": "توکن‌ها",
-      "es": "tokens",
-      "ru": "токены",
-      "ro": "jetoane",
-      "sk": "tokeny",
-      "sv": "tokens",
-      "th": "โทเค็น",
-      "sw": "alama",
-      "te": "టోకెన్లు",
-      "vi": "token",
-      "tr": "belirteçler",
-      "uk": "токени",
-      "jv": "token",
-      "zh-Hans": "令牌",
-      "zh-Hant": "個 token",
-      "pa-PK": "ٹوکنز",
-      "hi-Latn": "tokens"
+      "pt-BR": "Todos os provedores",
+      "ca": "Tots els proveïdors",
+      "ar": "جميع المزودين",
+      "bn": "সকল প্রদানকারী",
+      "zh-TW": "所有提供者",
+      "hr": "Svi pružatelji",
+      "cs": "Všichni poskytovatelé",
+      "zh-CN": "所有提供商",
+      "en-US": "All providers",
+      "fr": "Tous les fournisseurs",
+      "tl": "Lahat ng mga provider",
+      "nl": "Alle providers",
+      "de": "Alle Anbieter",
+      "hu": "Minden szolgáltató",
+      "hi": "सभी प्रदाता",
+      "el": "Όλοι οι πάροχοι",
+      "ms": "Semua pembekal",
+      "ko": "모든 공급업체",
+      "ja": "すべてのプロバイダ",
+      "it": "Tutti i provider",
+      "pt": "Todos os provedores",
+      "pl": "Wszyscy dostawcy",
+      "pa": "ਸਾਰੇ ਪ੍ਰਦਾਤਾ",
+      "fa": "همه ارائه‌دهندگان",
+      "es": "Todos los proveedores",
+      "ru": "Все поставщики",
+      "ro": "Toți furnizorii",
+      "sk": "Všetci poskytovatelia",
+      "sv": "Alla leverantörer",
+      "th": "ผู้ให้บริการทั้งหมด",
+      "sw": "Watoa huduma wote",
+      "te": "అన్ని ప్రదాతలు",
+      "vi": "Tất cả nhà cung cấp",
+      "tr": "Tüm sağlayıcılar",
+      "uk": "Усі постачальники",
+      "jv": "Semua penyedia",
+      "zh-Hans": "所有提供商",
+      "zh-Hant": "所有供應商",
+      "pa-PK": "سارے پرووائیڈر",
+      "hi-Latn": "Sabhi pradata"
     },
     "models": {
       "pt-BR": "anthropic/claude-3-haiku",
@@ -33350,332 +33571,246 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 222
+        "line": 170
+      },
+      {
+        "file": "src/renderer/components/SettingsPanel.tsx",
+        "line": 346
       }
     ]
   },
-  "d7663c08": {
-    "source": "Available Models",
+  "6068db66": {
+    "source": "Select {{model}}",
     "translated": {
-      "pt-BR": "Modelos Disponíveis",
-      "ca": "Models disponibles",
-      "ar": "النماذج المتاحة",
-      "bn": "উপলব্ধ মডেলগুলি",
-      "zh-TW": "可用模型",
-      "hr": "Dostupni modeli",
-      "cs": "Dostupné modely",
-      "zh-CN": "可用模型",
-      "en-US": "Available Models",
-      "fr": "Modèles disponibles",
-      "tl": "Mga Available na Model",
-      "nl": "Beschikbare modellen",
-      "de": "Verfügbare Modelle",
-      "hu": "Elérhető modellek",
-      "hi": "उपलब्ध मॉडल",
-      "el": "Διαθέσιμα Μοντέλα",
-      "ms": "Model Tersedia",
-      "ko": "사용 가능한 모델",
-      "ja": "利用可能なモデル",
-      "it": "Modelli disponibili",
-      "pt": "Modelos Disponíveis",
-      "pl": "Dostępne modele",
-      "pa": "ਉਪਲਬਧ ਮਾਡਲ",
-      "fa": "مدل‌های موجود",
-      "es": "Modelos disponibles",
-      "ru": "Доступные модели",
-      "ro": "Modele disponibile",
-      "sk": "Dostupné modely",
-      "sv": "Tillgängliga modeller",
-      "th": "โมเดลที่มีให้ใช้งาน",
-      "sw": "Modeli Zilizopo",
-      "te": "అందుబాటులో ఉన్న మోడళ్లు",
-      "vi": "Mô hình có sẵn",
-      "tr": "Mevcut Modeller",
-      "uk": "Доступні моделі",
-      "jv": "Model Sing Cumawis",
-      "zh-Hans": "可用模型",
-      "zh-Hant": "可用模型",
-      "pa-PK": "دستیاب ماڈلز",
-      "hi-Latn": "Uplabdh Models"
+      "ar": "اختيار {{model}}",
+      "nl": "Selecteer {{model}}",
+      "cs": "Vybrat {{model}}",
+      "fr": "Sélectionner {{model}}",
+      "el": "Επιλογή {{model}}",
+      "de": "{{model}} auswählen",
+      "zh-Hans": "选择 {{model}}",
+      "zh-Hant": "選擇 {{model}}",
+      "pl": "Wybierz {{model}}",
+      "fa": "انتخاب {{model}}",
+      "it": "Seleziona {{model}}",
+      "pt-BR": "Selecionar {{model}}",
+      "hi": "{{model}} चुनें",
+      "hu": "{{model}} kiválasztása",
+      "ja": "{{model}}を選択",
+      "ko": "{{model}} 선택",
+      "tr": "{{model}} seçin",
+      "ru": "Выбрать {{model}}",
+      "uk": "Вибрати {{model}}",
+      "ro": "Selectați {{model}}",
+      "th": "เลือก {{model}}",
+      "sk": "Vybrať {{model}}",
+      "es": "Seleccionar {{model}}",
+      "sv": "Välj {{model}}",
+      "vi": "Chọn {{model}}"
     },
     "models": {
-      "pt-BR": "anthropic/claude-3-haiku",
-      "ca": "anthropic/claude-3-haiku",
-      "ar": "anthropic/claude-3-haiku",
-      "bn": "anthropic/claude-3-haiku",
-      "zh-TW": "anthropic/claude-3-haiku",
-      "hr": "anthropic/claude-3-haiku",
-      "cs": "anthropic/claude-3-haiku",
-      "zh-CN": "anthropic/claude-3-haiku",
-      "en-US": "anthropic/claude-3-haiku",
-      "fr": "anthropic/claude-3-haiku",
-      "tl": "anthropic/claude-3-haiku",
-      "nl": "anthropic/claude-3-haiku",
-      "de": "anthropic/claude-3-haiku",
-      "hu": "anthropic/claude-3-haiku",
-      "hi": "anthropic/claude-3-haiku",
-      "el": "anthropic/claude-3-haiku",
-      "ms": "anthropic/claude-3-haiku",
-      "ko": "anthropic/claude-3-haiku",
-      "ja": "anthropic/claude-3-haiku",
-      "it": "anthropic/claude-3-haiku",
-      "pt": "anthropic/claude-3-haiku",
-      "pl": "anthropic/claude-3-haiku",
-      "pa": "anthropic/claude-3-haiku",
-      "fa": "anthropic/claude-3-haiku",
-      "es": "anthropic/claude-3-haiku",
-      "ru": "anthropic/claude-3-haiku",
-      "ro": "anthropic/claude-3-haiku",
-      "sk": "anthropic/claude-3-haiku",
-      "sv": "anthropic/claude-3-haiku",
-      "th": "anthropic/claude-3-haiku",
-      "sw": "anthropic/claude-3-haiku",
-      "te": "anthropic/claude-3-haiku",
-      "vi": "anthropic/claude-3-haiku",
-      "tr": "anthropic/claude-3-haiku",
-      "uk": "anthropic/claude-3-haiku",
-      "jv": "anthropic/claude-3-haiku",
-      "zh-Hans": "google/gemini-2.5-flash-lite",
-      "zh-Hant": "google/gemini-2.5-flash-lite",
-      "pa-PK": "google/gemini-2.5-flash",
-      "hi-Latn": "google/gemini-2.5-flash"
+      "ar": "~anthropic/claude-sonnet-latest",
+      "nl": "~anthropic/claude-sonnet-latest",
+      "cs": "~anthropic/claude-sonnet-latest",
+      "fr": "~anthropic/claude-sonnet-latest",
+      "el": "~anthropic/claude-sonnet-latest",
+      "de": "~anthropic/claude-sonnet-latest",
+      "zh-Hans": "z-ai/glm-5.2",
+      "zh-Hant": "z-ai/glm-5.2",
+      "pl": "~anthropic/claude-sonnet-latest",
+      "fa": "~anthropic/claude-sonnet-latest",
+      "it": "~anthropic/claude-sonnet-latest",
+      "pt-BR": "~anthropic/claude-sonnet-latest",
+      "hi": "~anthropic/claude-sonnet-latest",
+      "hu": "~anthropic/claude-sonnet-latest",
+      "ja": "z-ai/glm-5.2",
+      "ko": "z-ai/glm-5.2",
+      "tr": "~anthropic/claude-sonnet-latest",
+      "ru": "~anthropic/claude-sonnet-latest",
+      "uk": "~anthropic/claude-sonnet-latest",
+      "ro": "~anthropic/claude-sonnet-latest",
+      "th": "~anthropic/claude-sonnet-latest",
+      "sk": "~anthropic/claude-sonnet-latest",
+      "es": "~anthropic/claude-sonnet-latest",
+      "sv": "~anthropic/claude-sonnet-latest",
+      "vi": "~anthropic/claude-sonnet-latest"
     },
     "locations": [
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 243
+        "line": 226
       }
     ]
   },
-  "55f44765": {
-    "source": "Search models...",
+  "f23d902e": {
+    "source": "below floor",
     "translated": {
-      "pt-BR": "Pesquisar modelos...",
-      "ca": "Cerca de models...",
-      "ar": "ابحث عن النماذج...",
-      "bn": "মডেলগুলি অনুসন্ধান করুন...",
-      "zh-TW": "搜索模型...",
-      "hr": "Pretraži modele...",
-      "cs": "Hledat modely...",
-      "zh-CN": "搜索模型...",
-      "en-US": "Search models...",
-      "fr": "Rechercher des modèles...",
-      "tl": "Maghanap ng mga model...",
-      "nl": "Zoek modellen...",
-      "de": "Modelle suchen...",
-      "hu": "Modellek keresése...",
-      "hi": "मॉडल खोजें...",
-      "el": "Αναζήτηση μοντέλων...",
-      "ms": "Cari model...",
-      "ko": "모델 검색...",
-      "ja": "モデルを検索...",
-      "it": "Cerca modelli...",
-      "pt": "Pesquisar modelos...",
-      "pl": "Szukaj modeli...",
-      "pa": "ਮਾਡਲ ਖੋਜੋ...",
-      "fa": "جستجوی مدل‌ها...",
-      "es": "Buscar modelos...",
-      "ru": "Поиск моделей...",
-      "ro": "Caută modele...",
-      "sk": "Vyhľadávanie modelov...",
-      "sv": "Sök modeller...",
-      "th": "ค้นหาโมเดล...",
-      "sw": "Tafuta modeli...",
-      "te": "మోడళ్లను శోధించండి...",
-      "vi": "Tìm kiếm mô hình...",
-      "tr": "Modelleri ara...",
-      "uk": "Пошук моделей...",
-      "jv": "Goleki model...",
-      "zh-Hans": "搜索模型...",
-      "zh-Hant": "搜尋模型...",
-      "pa-PK": "ماڈلز تلاش کرو...",
-      "hi-Latn": "Models khojein..."
+      "ar": "أقل من الحد الأدنى",
+      "nl": "onder minimum",
+      "cs": "pod minimem",
+      "fr": "sous le plancher",
+      "el": "κάτω από το κατώτατο όριο",
+      "de": "unter dem Mindestwert",
+      "zh-Hans": "低于下限",
+      "zh-Hant": "低於下限",
+      "pl": "poniżej minimum",
+      "fa": "زیر کف مجاز",
+      "it": "sotto il minimo",
+      "pt-BR": "abaixo do piso",
+      "hi": "न्यूनतम सीमा से नीचे",
+      "hu": "minimum alatt",
+      "ja": "床の下",
+      "ko": "최소 미만",
+      "tr": "tabanın altında",
+      "ru": "ниже минимума",
+      "uk": "нижче мінімуму",
+      "ro": "sub minim",
+      "th": "ต่ำกว่าขั้นต่ำ",
+      "sk": "pod minimom",
+      "es": "por debajo del mínimo",
+      "sv": "under golvet",
+      "vi": "dưới mức sàn"
     },
     "models": {
-      "pt-BR": "anthropic/claude-3-haiku",
-      "ca": "anthropic/claude-3-haiku",
-      "ar": "anthropic/claude-3-haiku",
-      "bn": "anthropic/claude-3-haiku",
-      "zh-TW": "anthropic/claude-3-haiku",
-      "hr": "anthropic/claude-3-haiku",
-      "cs": "anthropic/claude-3-haiku",
-      "zh-CN": "anthropic/claude-3-haiku",
-      "en-US": "anthropic/claude-3-haiku",
-      "fr": "anthropic/claude-3-haiku",
-      "tl": "anthropic/claude-3-haiku",
-      "nl": "anthropic/claude-3-haiku",
-      "de": "anthropic/claude-3-haiku",
-      "hu": "anthropic/claude-3-haiku",
-      "hi": "anthropic/claude-3-haiku",
-      "el": "anthropic/claude-3-haiku",
-      "ms": "anthropic/claude-3-haiku",
-      "ko": "anthropic/claude-3-haiku",
-      "ja": "anthropic/claude-3-haiku",
-      "it": "anthropic/claude-3-haiku",
-      "pt": "anthropic/claude-3-haiku",
-      "pl": "anthropic/claude-3-haiku",
-      "pa": "anthropic/claude-3-haiku",
-      "fa": "anthropic/claude-3-haiku",
-      "es": "anthropic/claude-3-haiku",
-      "ru": "anthropic/claude-3-haiku",
-      "ro": "anthropic/claude-3-haiku",
-      "sk": "anthropic/claude-3-haiku",
-      "sv": "anthropic/claude-3-haiku",
-      "th": "anthropic/claude-3-haiku",
-      "sw": "anthropic/claude-3-haiku",
-      "te": "anthropic/claude-3-haiku",
-      "vi": "anthropic/claude-3-haiku",
-      "tr": "anthropic/claude-3-haiku",
-      "uk": "anthropic/claude-3-haiku",
-      "jv": "anthropic/claude-3-haiku",
-      "zh-Hans": "google/gemini-2.5-flash-lite",
-      "zh-Hant": "google/gemini-2.5-flash-lite",
-      "pa-PK": "google/gemini-2.5-flash",
-      "hi-Latn": "google/gemini-2.5-flash"
+      "ar": "~anthropic/claude-sonnet-latest",
+      "nl": "~anthropic/claude-sonnet-latest",
+      "cs": "~anthropic/claude-sonnet-latest",
+      "fr": "~anthropic/claude-sonnet-latest",
+      "el": "~anthropic/claude-sonnet-latest",
+      "de": "~anthropic/claude-sonnet-latest",
+      "zh-Hans": "z-ai/glm-5.2",
+      "zh-Hant": "z-ai/glm-5.2",
+      "pl": "~anthropic/claude-sonnet-latest",
+      "fa": "~anthropic/claude-sonnet-latest",
+      "it": "~anthropic/claude-sonnet-latest",
+      "pt-BR": "~anthropic/claude-sonnet-latest",
+      "hi": "~anthropic/claude-sonnet-latest",
+      "hu": "~anthropic/claude-sonnet-latest",
+      "ja": "z-ai/glm-5.2",
+      "ko": "z-ai/glm-5.2",
+      "tr": "~anthropic/claude-sonnet-latest",
+      "ru": "~anthropic/claude-sonnet-latest",
+      "uk": "~anthropic/claude-sonnet-latest",
+      "ro": "~anthropic/claude-sonnet-latest",
+      "th": "~anthropic/claude-sonnet-latest",
+      "sk": "~anthropic/claude-sonnet-latest",
+      "es": "~anthropic/claude-sonnet-latest",
+      "sv": "~anthropic/claude-sonnet-latest",
+      "vi": "~anthropic/claude-sonnet-latest"
     },
     "locations": [
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 256
+        "line": 253
       }
     ]
   },
-  "63a6a88c": {
-    "source": "Refresh",
+  "6fa3f3da": {
+    "source": "Arena",
     "translated": {
-      "pt-BR": "Atualizar",
-      "ca": "Actualitza",
-      "ar": "تحديث",
-      "bn": "রিফ্রেশ করুন",
-      "zh-TW": "刷新",
-      "hr": "Osvježi",
-      "cs": "Obnovit",
-      "zh-CN": "刷新",
-      "en-US": "Refresh",
-      "fr": "Actualiser",
-      "tl": "I-refresh",
-      "nl": "Vernieuwen",
-      "de": "Aktualisieren",
-      "hu": "Frissítés",
-      "hi": "ताज़ा करें",
-      "el": "Ανανέωση",
-      "ms": "Segarkan",
-      "ko": "새로 고침",
-      "ja": "更新",
-      "it": "Aggiorna",
-      "pt": "Atualizar",
-      "pl": "Odśwież",
-      "pa": "ਤਾਜ਼ਾ ਕਰੋ",
-      "fa": "تازه‌سازی",
-      "es": "Actualizar",
-      "ru": "Обновить",
-      "ro": "Reîmprospătare",
-      "sk": "Obnoviť",
-      "sv": "Uppdatera",
-      "th": "รีเฟรช",
-      "sw": "Onyesha upya",
-      "te": "రిఫ్రెష్ చేయండి",
-      "vi": "Làm mới",
-      "tr": "Yenile",
-      "uk": "Оновити",
-      "jv": "Anyari",
-      "zh-Hans": "刷新",
-      "zh-Hant": "重新整理",
-      "pa-PK": "ریفریش کرو",
-      "hi-Latn": "Refresh karein"
+      "nl": "Arena",
+      "de": "Arena",
+      "ar": "Arena",
+      "el": "Arena",
+      "cs": "Arena",
+      "zh-Hant": "Arena",
+      "fr": "Arena",
+      "zh-Hans": "Arena",
+      "it": "Arena",
+      "ja": "Arena",
+      "hu": "Arena",
+      "hi": "Arena",
+      "pt-BR": "Arena",
+      "fa": "Arena",
+      "ko": "Arena",
+      "pl": "Arena",
+      "ru": "Arena",
+      "ro": "Arena",
+      "tr": "Arena",
+      "sv": "Arena",
+      "sk": "Arena",
+      "th": "Arena",
+      "uk": "Arena",
+      "es": "Arena",
+      "vi": "Arena"
     },
     "models": {
-      "pt-BR": "anthropic/claude-3-haiku",
-      "ca": "anthropic/claude-3-haiku",
-      "ar": "anthropic/claude-3-haiku",
-      "bn": "anthropic/claude-3-haiku",
-      "zh-TW": "anthropic/claude-3-haiku",
-      "hr": "anthropic/claude-3-haiku",
-      "cs": "anthropic/claude-3-haiku",
-      "zh-CN": "anthropic/claude-3-haiku",
-      "en-US": "anthropic/claude-3-haiku",
-      "fr": "anthropic/claude-3-haiku",
-      "tl": "anthropic/claude-3-haiku",
-      "nl": "anthropic/claude-3-haiku",
-      "de": "anthropic/claude-3-haiku",
-      "hu": "anthropic/claude-3-haiku",
-      "hi": "anthropic/claude-3-haiku",
-      "el": "anthropic/claude-3-haiku",
-      "ms": "anthropic/claude-3-haiku",
-      "ko": "anthropic/claude-3-haiku",
-      "ja": "anthropic/claude-3-haiku",
-      "it": "anthropic/claude-3-haiku",
-      "pt": "anthropic/claude-3-haiku",
-      "pl": "anthropic/claude-3-haiku",
-      "pa": "anthropic/claude-3-haiku",
-      "fa": "anthropic/claude-3-haiku",
-      "es": "anthropic/claude-3-haiku",
-      "ru": "anthropic/claude-3-haiku",
-      "ro": "anthropic/claude-3-haiku",
-      "sk": "anthropic/claude-3-haiku",
-      "sv": "anthropic/claude-3-haiku",
-      "th": "anthropic/claude-3-haiku",
-      "sw": "anthropic/claude-3-haiku",
-      "te": "anthropic/claude-3-haiku",
-      "vi": "anthropic/claude-3-haiku",
-      "tr": "anthropic/claude-3-haiku",
-      "uk": "anthropic/claude-3-haiku",
-      "jv": "anthropic/claude-3-haiku",
-      "zh-Hans": "google/gemini-2.5-flash-lite",
-      "zh-Hant": "google/gemini-2.5-flash-lite",
-      "pa-PK": "google/gemini-2.5-flash",
-      "hi-Latn": "google/gemini-2.5-flash"
+      "nl": "~anthropic/claude-sonnet-latest",
+      "de": "~anthropic/claude-sonnet-latest",
+      "ar": "~anthropic/claude-sonnet-latest",
+      "el": "~anthropic/claude-sonnet-latest",
+      "cs": "~anthropic/claude-sonnet-latest",
+      "zh-Hant": "z-ai/glm-5.2",
+      "fr": "~anthropic/claude-sonnet-latest",
+      "zh-Hans": "z-ai/glm-5.2",
+      "it": "~anthropic/claude-sonnet-latest",
+      "ja": "z-ai/glm-5.2",
+      "hu": "~anthropic/claude-sonnet-latest",
+      "hi": "~anthropic/claude-sonnet-latest",
+      "pt-BR": "~anthropic/claude-sonnet-latest",
+      "fa": "~anthropic/claude-sonnet-latest",
+      "ko": "z-ai/glm-5.2",
+      "pl": "~anthropic/claude-sonnet-latest",
+      "ru": "~anthropic/claude-sonnet-latest",
+      "ro": "~anthropic/claude-sonnet-latest",
+      "tr": "~anthropic/claude-sonnet-latest",
+      "sv": "~anthropic/claude-sonnet-latest",
+      "sk": "~anthropic/claude-sonnet-latest",
+      "th": "~anthropic/claude-sonnet-latest",
+      "uk": "~anthropic/claude-sonnet-latest",
+      "es": "~anthropic/claude-sonnet-latest",
+      "vi": "~anthropic/claude-sonnet-latest"
     },
     "locations": [
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 305
+        "line": 275
       }
     ]
   },
-  "5ffd7a33": {
-    "source": "Expand All",
+  "25ac429f": {
+    "source": "Models",
     "translated": {
-      "pt-BR": "Expandir Tudo",
-      "ca": "Expandeix-ho tot",
-      "ar": "توسيع الكل",
-      "bn": "সবগুলি বিস্তৃত করুন",
-      "zh-TW": "全部展開",
-      "hr": "Proširi sve",
-      "cs": "Rozbalit vše",
-      "zh-CN": "全部展开",
-      "en-US": "Expand All",
-      "fr": "Développer tout",
-      "tl": "I-expand Lahat",
-      "nl": "Alles uitvouwen",
-      "de": "Alle erweitern",
-      "hu": "Összes kibontása",
-      "hi": "सभी विस्तृत करें",
-      "el": "Ανάπτυξη Όλων",
-      "ms": "Kembangkan Semua",
-      "ko": "모두 펼치기",
-      "ja": "すべて展開",
-      "it": "Espandi tutto",
-      "pt": "Expandir Tudo",
-      "pl": "Rozwiń wszystko",
-      "pa": "ਸਭ ਖੋਲ੍ਹੋ",
-      "fa": "باز کردن همه",
-      "es": "Expandir todo",
-      "ru": "Развернуть все",
-      "ro": "Extinde tot",
-      "sk": "Rozbaliť všetko",
-      "sv": "Expandera alla",
-      "th": "ขยายทั้งหมด",
-      "sw": "Panua Yote",
-      "te": "అన్నింటినీ విస్తరించండి",
-      "vi": "Mở rộng tất cả",
-      "tr": "Tümünü Genişlet",
-      "uk": "Розгорнути все",
-      "jv": "Mbukak Kabeh",
-      "zh-Hans": "全部展开",
-      "zh-Hant": "全部展開",
-      "pa-PK": "سارے پھیلاؤ",
-      "hi-Latn": "Sabhi ko Expand karein"
+      "pt-BR": "Modelos",
+      "ca": "Models",
+      "ar": "النماذج",
+      "bn": "মডেলগুলি",
+      "zh-TW": "模型",
+      "hr": "Modeli",
+      "zh-CN": "模型",
+      "cs": "Modely",
+      "en-US": "Models",
+      "fr": "Modèles",
+      "tl": "Mga Modelo",
+      "nl": "Modellen",
+      "de": "Modelle",
+      "hu": "Modellek",
+      "hi": "मॉडल",
+      "el": "Μοντέλα",
+      "ms": "Model",
+      "ko": "모델",
+      "ja": "モデル",
+      "it": "Modelli",
+      "pt": "Modelos",
+      "pl": "Modele",
+      "pa": "ਮਾਡਲ",
+      "fa": "مدل‌ها",
+      "es": "Modelos",
+      "ru": "Модели",
+      "ro": "Modele",
+      "sk": "Modely",
+      "sv": "Modeller",
+      "th": "โมเดล",
+      "sw": "Modeli",
+      "te": "మాడల్స్",
+      "vi": "Mô hình",
+      "tr": "Modeller",
+      "uk": "Моделі",
+      "jv": "Model",
+      "zh-Hans": "模型",
+      "zh-Hant": "模型",
+      "pa-PK": "ماڈل",
+      "hi-Latn": "Models"
     },
     "models": {
       "pt-BR": "anthropic/claude-3-haiku",
@@ -33684,8 +33819,8 @@
       "bn": "anthropic/claude-3-haiku",
       "zh-TW": "anthropic/claude-3-haiku",
       "hr": "anthropic/claude-3-haiku",
-      "cs": "anthropic/claude-3-haiku",
       "zh-CN": "anthropic/claude-3-haiku",
+      "cs": "anthropic/claude-3-haiku",
       "en-US": "anthropic/claude-3-haiku",
       "fr": "anthropic/claude-3-haiku",
       "tl": "anthropic/claude-3-haiku",
@@ -33723,657 +33858,10 @@
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
         "line": 311
-      }
-    ]
-  },
-  "b56c3bda": {
-    "source": "Collapse All",
-    "translated": {
-      "pt-BR": "Recolher Tudo",
-      "ca": "Replega-ho tot",
-      "ar": "طي الكل",
-      "bn": "সবগুলি সঙ্কুচিত করুন",
-      "zh-TW": "全部折疊",
-      "hr": "Sažmi sve",
-      "cs": "Sbalit vše",
-      "zh-CN": "全部折叠",
-      "en-US": "Collapse All",
-      "fr": "Réduire tout",
-      "tl": "I-collapse Lahat",
-      "nl": "Alles samenvouwen",
-      "de": "Alle reduzieren",
-      "hu": "Összes összecsukása",
-      "hi": "सभी संक्षिप्त करें",
-      "el": "Σύμπτυξη Όλων",
-      "ms": "Runtuhkan Semua",
-      "ko": "모두 접기",
-      "ja": "すべて折りたたむ",
-      "it": "Comprimi tutto",
-      "pt": "Recolher Tudo",
-      "pl": "Zwiń wszystko",
-      "pa": "ਸਭ ਬੰਦ ਕਰੋ",
-      "fa": "بستن همه",
-      "es": "Contraer todo",
-      "ru": "Свернуть все",
-      "ro": "Restrânge tot",
-      "sk": "Zbaliť všetko",
-      "sv": "Komprimera alla",
-      "th": "ยุบทั้งหมด",
-      "sw": "Kunja Yote",
-      "te": "అన్నింటినీ కుదించండి",
-      "vi": "Thu gọn tất cả",
-      "tr": "Tümünü Daralt",
-      "uk": "Згорнути все",
-      "jv": "Tutup Kabeh",
-      "zh-Hans": "全部折叠",
-      "zh-Hant": "全部摺疊",
-      "pa-PK": "سارے سکیڑو",
-      "hi-Latn": "Sabhi ko Collapse karein"
-    },
-    "models": {
-      "pt-BR": "anthropic/claude-3-haiku",
-      "ca": "anthropic/claude-3-haiku",
-      "ar": "anthropic/claude-3-haiku",
-      "bn": "anthropic/claude-3-haiku",
-      "zh-TW": "anthropic/claude-3-haiku",
-      "hr": "anthropic/claude-3-haiku",
-      "cs": "anthropic/claude-3-haiku",
-      "zh-CN": "anthropic/claude-3-haiku",
-      "en-US": "anthropic/claude-3-haiku",
-      "fr": "anthropic/claude-3-haiku",
-      "tl": "anthropic/claude-3-haiku",
-      "nl": "anthropic/claude-3-haiku",
-      "de": "anthropic/claude-3-haiku",
-      "hu": "anthropic/claude-3-haiku",
-      "hi": "anthropic/claude-3-haiku",
-      "el": "anthropic/claude-3-haiku",
-      "ms": "anthropic/claude-3-haiku",
-      "ko": "anthropic/claude-3-haiku",
-      "ja": "anthropic/claude-3-haiku",
-      "it": "anthropic/claude-3-haiku",
-      "pt": "anthropic/claude-3-haiku",
-      "pl": "anthropic/claude-3-haiku",
-      "pa": "anthropic/claude-3-haiku",
-      "fa": "anthropic/claude-3-haiku",
-      "es": "anthropic/claude-3-haiku",
-      "ru": "anthropic/claude-3-haiku",
-      "ro": "anthropic/claude-3-haiku",
-      "sk": "anthropic/claude-3-haiku",
-      "sv": "anthropic/claude-3-haiku",
-      "th": "anthropic/claude-3-haiku",
-      "sw": "anthropic/claude-3-haiku",
-      "te": "anthropic/claude-3-haiku",
-      "vi": "anthropic/claude-3-haiku",
-      "tr": "anthropic/claude-3-haiku",
-      "uk": "anthropic/claude-3-haiku",
-      "jv": "anthropic/claude-3-haiku",
-      "zh-Hans": "google/gemini-2.5-flash-lite",
-      "zh-Hant": "google/gemini-2.5-flash-lite",
-      "pa-PK": "google/gemini-2.5-flash",
-      "hi-Latn": "google/gemini-2.5-flash"
-    },
-    "locations": [
+      },
       {
-        "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 314
-      }
-    ]
-  },
-  "09f3aa52": {
-    "source": "Free Only",
-    "translated": {
-      "pt-BR": "Apenas Gratuitos",
-      "ca": "Només gratuït",
-      "ar": "مجاني فقط",
-      "bn": "শুধুমাত্র বিনামূল্যের",
-      "zh-TW": "僅免費",
-      "hr": "Samo besplatno",
-      "cs": "Pouze zdarma",
-      "zh-CN": "仅免费",
-      "en-US": "Free Only",
-      "fr": "Gratuit uniquement",
-      "tl": "Libre Lang",
-      "nl": "Alleen gratis",
-      "de": "Nur kostenlos",
-      "hu": "Csak ingyenes",
-      "hi": "केवल मुफ्त",
-      "el": "Μόνο Δωρεάν",
-      "ms": "Percuma Sahaja",
-      "ko": "무료만",
-      "ja": "無料のみ",
-      "it": "Solo gratuiti",
-      "pt": "Apenas Gratuito",
-      "pl": "Tylko darmowe",
-      "pa": "ਸਿਰਫ਼ ਮੁਫ਼ਤ",
-      "fa": "فقط رایگان",
-      "es": "Solo gratis",
-      "ru": "Только бесплатные",
-      "ro": "Doar gratuit",
-      "sk": "Iba bezplatné",
-      "sv": "Endast gratis",
-      "th": "ฟรีเท่านั้น",
-      "sw": "Bure tu",
-      "te": "ఉచితం మాత్రమే",
-      "vi": "Chỉ miễn phí",
-      "tr": "Yalnızca Ücretsiz",
-      "uk": "Тільки безкоштовні",
-      "jv": "Mung Gratis",
-      "zh-Hans": "仅免费",
-      "zh-Hant": "僅免費",
-      "pa-PK": "صرف مفت",
-      "hi-Latn": "Sirf Free"
-    },
-    "models": {
-      "pt-BR": "anthropic/claude-3-haiku",
-      "ca": "anthropic/claude-3-haiku",
-      "ar": "anthropic/claude-3-haiku",
-      "bn": "anthropic/claude-3-haiku",
-      "zh-TW": "anthropic/claude-3-haiku",
-      "hr": "anthropic/claude-3-haiku",
-      "cs": "anthropic/claude-3-haiku",
-      "zh-CN": "anthropic/claude-3-haiku",
-      "en-US": "anthropic/claude-3-haiku",
-      "fr": "anthropic/claude-3-haiku",
-      "tl": "anthropic/claude-3-haiku",
-      "nl": "anthropic/claude-3-haiku",
-      "de": "anthropic/claude-3-haiku",
-      "hu": "anthropic/claude-3-haiku",
-      "hi": "anthropic/claude-3-haiku",
-      "el": "anthropic/claude-3-haiku",
-      "ms": "anthropic/claude-3-haiku",
-      "ko": "anthropic/claude-3-haiku",
-      "ja": "anthropic/claude-3-haiku",
-      "it": "anthropic/claude-3-haiku",
-      "pt": "anthropic/claude-3-haiku",
-      "pl": "anthropic/claude-3-haiku",
-      "pa": "anthropic/claude-3-haiku",
-      "fa": "anthropic/claude-3-haiku",
-      "es": "anthropic/claude-3-haiku",
-      "ru": "anthropic/claude-3-haiku",
-      "ro": "anthropic/claude-3-haiku",
-      "sk": "anthropic/claude-3-haiku",
-      "sv": "anthropic/claude-3-haiku",
-      "th": "anthropic/claude-3-haiku",
-      "sw": "anthropic/claude-3-haiku",
-      "te": "anthropic/claude-3-haiku",
-      "vi": "anthropic/claude-3-haiku",
-      "tr": "anthropic/claude-3-haiku",
-      "uk": "anthropic/claude-3-haiku",
-      "jv": "anthropic/claude-3-haiku",
-      "zh-Hans": "google/gemini-2.5-flash-lite",
-      "zh-Hant": "google/gemini-2.5-flash-lite",
-      "pa-PK": "google/gemini-2.5-flash",
-      "hi-Latn": "google/gemini-2.5-flash"
-    },
-    "locations": [
-      {
-        "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 338
-      }
-    ]
-  },
-  "cd719d3b": {
-    "source": "Please wait while we fetch available models",
-    "translated": {
-      "pt-BR": "Aguarde enquanto buscamos os modelos disponíveis",
-      "ca": "Espereu mentre obtenim els models disponibles",
-      "ar": "يرجى الانتظار بينما نجلب النماذج المتاحة",
-      "bn": "উপলব্ধ মডেলগুলি আনার জন্য অপেক্ষা করুন",
-      "zh-TW": "請稍候,我們正在獲取可用的模型",
-      "hr": "Molimo pričekajte dok dohvaćamo dostupne modele",
-      "cs": "Počkejte, než načteme dostupné modely",
-      "zh-CN": "请等待我们获取可用模型",
-      "en-US": "Please wait while we fetch available models",
-      "fr": "Veuillez patienter pendant que nous récupérons les modèles disponibles",
-      "tl": "Mangyaring maghintay habang kinukuha namin ang mga available na model",
-      "nl": "Even geduld terwijl we de beschikbare modellen ophalen",
-      "de": "Bitte warten Sie, während wir die verfügbaren Modelle abrufen",
-      "hu": "Kérjük, várjon, amíg lekérjük az elérhető modelleket",
-      "hi": "कृपया प्रतीक्षा करें जबतक हम उपलब्ध मॉडल प्राप्त करते हैं",
-      "el": "Παρακαλώ περιμένετε ενώ ανακτούμε τα διαθέσιμα μοντέλα",
-      "ms": "Sila tunggu semasa kami mendapatkan model yang tersedia",
-      "ko": "사용 가능한 모델을 가져오는 동안 기다려 주세요",
-      "ja": "利用可能なモデルを取得しています。しばらくお待ちください",
-      "it": "Attendere mentre recuperiamo i modelli disponibili",
-      "pt": "Aguarde enquanto buscamos os modelos disponíveis",
-      "pl": "Proszę czekać, aż pobierzemy dostępne modele",
-      "pa": "ਕਿਰਪਾ ਕਰਕੇ ਉਪਲਬਧ ਮਾਡਲ ਲੈਣ ਲਈ ਉਡੀਕ ਕਰੋ",
-      "fa": "لطفاً منتظر بمانید تا مدل‌های موجود را دریافت کنیم",
-      "es": "Espere mientras obtenemos los modelos disponibles",
-      "ru": "Пожалуйста, подождите, пока мы получим доступные модели",
-      "ro": "Vă rugăm să așteptați în timp ce extragem modelele disponibile",
-      "sk": "Počkajte, kým načítame dostupné modely",
-      "sv": "Vänta medan vi hämtar tillgängliga modeller",
-      "th": "โปรดรอขณะเราดึงโมเดลที่มีให้ใช้งาน",
-      "sw": "Tafadhali subiri wakati tunapata modeli zilizopo",
-      "te": "అందుబాటులో ఉన్న మోడళ్లను పొందడానికి కాసేపు వేచి ఉండండి",
-      "vi": "Vui lòng chờ trong khi chúng tôi lấy các mô hình có sẵn",
-      "tr": "Lütfen mevcut modelleri getirirken bekleyin",
-      "uk": "Зачекайте, поки ми отримаємо доступні моделі",
-      "jv": "Mangga nunggu nalika kita njupuk model sing cumawis",
-      "zh-Hans": "请稍候，我们正在获取可用模型",
-      "zh-Hant": "請稍候，我們正在擷取可用模型",
-      "pa-PK": "مہربانی کر کے انتظار کرو جدوں اسیں دستیاب ماڈلز حاصل کردے آں",
-      "hi-Latn": "Kripya intezaar karein jab tak hum uplabdh models fetch karte hain"
-    },
-    "models": {
-      "pt-BR": "anthropic/claude-3-haiku",
-      "ca": "anthropic/claude-3-haiku",
-      "ar": "anthropic/claude-3-haiku",
-      "bn": "anthropic/claude-3-haiku",
-      "zh-TW": "anthropic/claude-3-haiku",
-      "hr": "anthropic/claude-3-haiku",
-      "cs": "anthropic/claude-3-haiku",
-      "zh-CN": "anthropic/claude-3-haiku",
-      "en-US": "anthropic/claude-3-haiku",
-      "fr": "anthropic/claude-3-haiku",
-      "tl": "anthropic/claude-3-haiku",
-      "nl": "anthropic/claude-3-haiku",
-      "de": "anthropic/claude-3-haiku",
-      "hu": "anthropic/claude-3-haiku",
-      "hi": "anthropic/claude-3-haiku",
-      "el": "anthropic/claude-3-haiku",
-      "ms": "anthropic/claude-3-haiku",
-      "ko": "anthropic/claude-3-haiku",
-      "ja": "anthropic/claude-3-haiku",
-      "it": "anthropic/claude-3-haiku",
-      "pt": "anthropic/claude-3-haiku",
-      "pl": "anthropic/claude-3-haiku",
-      "pa": "anthropic/claude-3-haiku",
-      "fa": "anthropic/claude-3-haiku",
-      "es": "anthropic/claude-3-haiku",
-      "ru": "anthropic/claude-3-haiku",
-      "ro": "anthropic/claude-3-haiku",
-      "sk": "anthropic/claude-3-haiku",
-      "sv": "anthropic/claude-3-haiku",
-      "th": "anthropic/claude-3-haiku",
-      "sw": "anthropic/claude-3-haiku",
-      "te": "anthropic/claude-3-haiku",
-      "vi": "anthropic/claude-3-haiku",
-      "tr": "anthropic/claude-3-haiku",
-      "uk": "anthropic/claude-3-haiku",
-      "jv": "anthropic/claude-3-haiku",
-      "zh-Hans": "google/gemini-2.5-flash-lite",
-      "zh-Hant": "google/gemini-2.5-flash-lite",
-      "pa-PK": "google/gemini-2.5-flash",
-      "hi-Latn": "google/gemini-2.5-flash"
-    },
-    "locations": [
-      {
-        "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 355
-      }
-    ]
-  },
-  "bd981cca": {
-    "source": "Error loading models",
-    "translated": {
-      "pt-BR": "Erro ao carregar modelos",
-      "ca": "Error en carregar els models",
-      "ar": "خطأ في تحميل النماذج",
-      "bn": "মডেল লোড করতে ত্রুটি",
-      "zh-TW": "載入模型時發生錯誤",
-      "hr": "Pogreška pri učitavanju modela",
-      "cs": "Chyba při načítání modelů",
-      "zh-CN": "模型加载错误",
-      "en-US": "Error loading models",
-      "fr": "Erreur de chargement des modèles",
-      "tl": "Error sa pag-load ng mga modelo",
-      "nl": "Fout bij het laden van modellen",
-      "de": "Fehler beim Laden der Modelle",
-      "hu": "Modellek betöltésének hibája",
-      "hi": "मॉडल लोड करने में त्रुटि",
-      "el": "Σφάλμα φόρτωσης μοντέλων",
-      "ms": "Ralat memuatkan model",
-      "ko": "모델 로드 오류",
-      "ja": "モデルの読み込みエラー",
-      "it": "Errore durante il caricamento dei modelli",
-      "pt": "Erro ao carregar modelos",
-      "pl": "Błąd ładowania modeli",
-      "pa": "ਮਾਡਲਾਂ ਲੋਡ ਕਰਨ ਵਿੱਚ ਗਲਤੀ",
-      "fa": "خطا در بارگذاری مدل‌ها",
-      "es": "Error al cargar los modelos",
-      "ru": "Ошибка загрузки моделей",
-      "ro": "Eroare la încărcarea modelelor",
-      "sk": "Chyba pri načítaní modelov",
-      "sv": "Fel vid inläsning av modeller",
-      "th": "เกิดข้อผิดพลาดในการโหลดโมเดล",
-      "sw": "Hitilafu ya kupakia modeli",
-      "te": "మాడల్స్ లోడ్ చేయడంలో లోపం",
-      "vi": "Lỗi khi tải mô hình",
-      "tr": "Modellerin yüklenmesi hatası",
-      "uk": "Помилка завантаження моделей",
-      "jv": "Gagal memuat model",
-      "zh-Hans": "加载模型时出错",
-      "zh-Hant": "載入模型時發生錯誤",
-      "pa-PK": "ماڈل لوڈ کرن وچ خرابی",
-      "hi-Latn": "Model load karne mein error"
-    },
-    "models": {
-      "pt-BR": "anthropic/claude-3-haiku",
-      "ca": "anthropic/claude-3-haiku",
-      "ar": "anthropic/claude-3-haiku",
-      "bn": "anthropic/claude-3-haiku",
-      "zh-TW": "anthropic/claude-3-haiku",
-      "hr": "anthropic/claude-3-haiku",
-      "cs": "anthropic/claude-3-haiku",
-      "zh-CN": "anthropic/claude-3-haiku",
-      "en-US": "anthropic/claude-3-haiku",
-      "fr": "anthropic/claude-3-haiku",
-      "tl": "anthropic/claude-3-haiku",
-      "nl": "anthropic/claude-3-haiku",
-      "de": "anthropic/claude-3-haiku",
-      "hu": "anthropic/claude-3-haiku",
-      "hi": "anthropic/claude-3-haiku",
-      "el": "anthropic/claude-3-haiku",
-      "ms": "anthropic/claude-3-haiku",
-      "ko": "anthropic/claude-3-haiku",
-      "ja": "anthropic/claude-3-haiku",
-      "it": "anthropic/claude-3-haiku",
-      "pt": "anthropic/claude-3-haiku",
-      "pl": "anthropic/claude-3-haiku",
-      "pa": "anthropic/claude-3-haiku",
-      "fa": "anthropic/claude-3-haiku",
-      "es": "anthropic/claude-3-haiku",
-      "ru": "anthropic/claude-3-haiku",
-      "ro": "anthropic/claude-3-haiku",
-      "sk": "anthropic/claude-3-haiku",
-      "sv": "anthropic/claude-3-haiku",
-      "th": "anthropic/claude-3-haiku",
-      "sw": "anthropic/claude-3-haiku",
-      "te": "anthropic/claude-3-haiku",
-      "vi": "anthropic/claude-3-haiku",
-      "tr": "anthropic/claude-3-haiku",
-      "uk": "anthropic/claude-3-haiku",
-      "jv": "anthropic/claude-3-haiku",
-      "zh-Hans": "google/gemini-2.5-flash-lite",
-      "zh-Hant": "google/gemini-2.5-flash-lite",
-      "pa-PK": "google/gemini-2.5-flash",
-      "hi-Latn": "google/gemini-2.5-flash"
-    },
-    "locations": [
-      {
-        "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 360
-      }
-    ]
-  },
-  "6327b4e5": {
-    "source": "Retry",
-    "translated": {
-      "pt-BR": "Tentar novamente",
-      "ca": "Torna-ho a provar",
-      "ar": "إعادة المحاولة",
-      "bn": "পুনঃচেষ্টা করুন",
-      "zh-TW": "重試",
-      "hr": "Pokušaj ponovno",
-      "cs": "Zkusit znovu",
-      "zh-CN": "重试",
-      "en-US": "Retry",
-      "fr": "Réessayer",
-      "tl": "Subukan muli",
-      "nl": "Opnieuw proberen",
-      "de": "Wiederholen",
-      "hu": "Újrapróbálás",
-      "hi": "पुनः प्रयास करें",
-      "el": "Επανάληψη",
-      "ms": "Cuba lagi",
-      "ko": "다시 시도",
-      "ja": "再試行",
-      "it": "Riprova",
-      "pt": "Tentar novamente",
-      "pl": "Ponów próbę",
-      "pa": "ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ",
-      "fa": "تلاش مجدد",
-      "es": "Reintentar",
-      "ru": "Повторить",
-      "ro": "Reîncercare",
-      "sk": "Skúsiť znova",
-      "sv": "Försök igen",
-      "th": "ลองอีกครั้ง",
-      "sw": "Jaribu tena",
-      "te": "మళ్లీ ప్రయత్నించు",
-      "vi": "Thử lại",
-      "tr": "Yeniden dene",
-      "uk": "Повторити",
-      "jv": "Coba lagi",
-      "zh-Hans": "重试",
-      "zh-Hant": "重試",
-      "pa-PK": "دوبارہ کوشش کرو",
-      "hi-Latn": "Phir se koshish karein"
-    },
-    "models": {
-      "pt-BR": "anthropic/claude-3-haiku",
-      "ca": "anthropic/claude-3-haiku",
-      "ar": "anthropic/claude-3-haiku",
-      "bn": "anthropic/claude-3-haiku",
-      "zh-TW": "anthropic/claude-3-haiku",
-      "hr": "anthropic/claude-3-haiku",
-      "cs": "anthropic/claude-3-haiku",
-      "zh-CN": "anthropic/claude-3-haiku",
-      "en-US": "anthropic/claude-3-haiku",
-      "fr": "anthropic/claude-3-haiku",
-      "tl": "anthropic/claude-3-haiku",
-      "nl": "anthropic/claude-3-haiku",
-      "de": "anthropic/claude-3-haiku",
-      "hu": "anthropic/claude-3-haiku",
-      "hi": "anthropic/claude-3-haiku",
-      "el": "anthropic/claude-3-haiku",
-      "ms": "anthropic/claude-3-haiku",
-      "ko": "anthropic/claude-3-haiku",
-      "ja": "anthropic/claude-3-haiku",
-      "it": "anthropic/claude-3-haiku",
-      "pt": "anthropic/claude-3-haiku",
-      "pl": "anthropic/claude-3-haiku",
-      "pa": "anthropic/claude-3-haiku",
-      "fa": "anthropic/claude-3-haiku",
-      "es": "anthropic/claude-3-haiku",
-      "ru": "anthropic/claude-3-haiku",
-      "ro": "anthropic/claude-3-haiku",
-      "sk": "anthropic/claude-3-haiku",
-      "sv": "anthropic/claude-3-haiku",
-      "th": "anthropic/claude-3-haiku",
-      "sw": "anthropic/claude-3-haiku",
-      "te": "anthropic/claude-3-haiku",
-      "vi": "anthropic/claude-3-haiku",
-      "tr": "anthropic/claude-3-haiku",
-      "uk": "anthropic/claude-3-haiku",
-      "jv": "anthropic/claude-3-haiku",
-      "zh-Hans": "google/gemini-2.5-flash-lite",
-      "zh-Hant": "google/gemini-2.5-flash-lite",
-      "pa-PK": "google/gemini-2.5-flash",
-      "hi-Latn": "google/gemini-2.5-flash"
-    },
-    "locations": [
-      {
-        "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 363
-      }
-    ]
-  },
-  "20f35e63": {
-    "source": "model",
-    "translated": {
-      "pt-BR": "modelo",
-      "ca": "model",
-      "ar": "نموذج",
-      "bn": "মডেল",
-      "zh-TW": "模型",
-      "hr": "model",
-      "cs": "model",
-      "zh-CN": "模型",
-      "en-US": "model",
-      "fr": "modèle",
-      "tl": "modelo",
-      "nl": "model",
-      "de": "Modell",
-      "hu": "modell",
-      "hi": "मॉडल",
-      "el": "μοντέλο",
-      "ms": "model",
-      "ko": "모델",
-      "ja": "モデル",
-      "it": "modello",
-      "pt": "modelo",
-      "pl": "model",
-      "pa": "ਮਾਡਲ",
-      "fa": "مدل",
-      "es": "modelo",
-      "ru": "модель",
-      "ro": "model",
-      "sk": "model",
-      "sv": "modell",
-      "th": "โมเดล",
-      "sw": "modeli",
-      "te": "మాడల్",
-      "vi": "mô hình",
-      "tr": "model",
-      "uk": "модель",
-      "jv": "model",
-      "zh-Hans": "模型",
-      "zh-Hant": "模型",
-      "pa-PK": "ماڈل",
-      "hi-Latn": "model"
-    },
-    "models": {
-      "pt-BR": "anthropic/claude-3-haiku",
-      "ca": "anthropic/claude-3-haiku",
-      "ar": "anthropic/claude-3-haiku",
-      "bn": "anthropic/claude-3-haiku",
-      "zh-TW": "anthropic/claude-3-haiku",
-      "hr": "anthropic/claude-3-haiku",
-      "cs": "anthropic/claude-3-haiku",
-      "zh-CN": "anthropic/claude-3-haiku",
-      "en-US": "anthropic/claude-3-haiku",
-      "fr": "anthropic/claude-3-haiku",
-      "tl": "anthropic/claude-3-haiku",
-      "nl": "anthropic/claude-3-haiku",
-      "de": "anthropic/claude-3-haiku",
-      "hu": "anthropic/claude-3-haiku",
-      "hi": "anthropic/claude-3-haiku",
-      "el": "anthropic/claude-3-haiku",
-      "ms": "anthropic/claude-3-haiku",
-      "ko": "anthropic/claude-3-haiku",
-      "ja": "anthropic/claude-3-haiku",
-      "it": "anthropic/claude-3-haiku",
-      "pt": "anthropic/claude-3-haiku",
-      "pl": "anthropic/claude-3-haiku",
-      "pa": "anthropic/claude-3-haiku",
-      "fa": "anthropic/claude-3-haiku",
-      "es": "anthropic/claude-3-haiku",
-      "ru": "anthropic/claude-3-haiku",
-      "ro": "anthropic/claude-3-haiku",
-      "sk": "anthropic/claude-3-haiku",
-      "sv": "anthropic/claude-3-haiku",
-      "th": "anthropic/claude-3-haiku",
-      "sw": "anthropic/claude-3-haiku",
-      "te": "anthropic/claude-3-haiku",
-      "vi": "anthropic/claude-3-haiku",
-      "tr": "anthropic/claude-3-haiku",
-      "uk": "anthropic/claude-3-haiku",
-      "jv": "anthropic/claude-3-haiku",
-      "zh-Hans": "google/gemini-2.5-flash-lite",
-      "zh-Hant": "google/gemini-2.5-flash-lite",
-      "pa-PK": "google/gemini-2.5-flash",
-      "hi-Latn": "google/gemini-2.5-flash"
-    },
-    "locations": [
-      {
-        "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 385
-      }
-    ]
-  },
-  "ac5552fd": {
-    "source": "models",
-    "translated": {
-      "pt-BR": "modelos",
-      "ca": "models",
-      "ar": "نماذج",
-      "bn": "মডেলগুলি",
-      "zh-TW": "模型",
-      "hr": "modeli",
-      "cs": "modely",
-      "zh-CN": "模型",
-      "en-US": "models",
-      "fr": "modèles",
-      "tl": "mga modelo",
-      "nl": "modellen",
-      "de": "Modelle",
-      "hu": "modellek",
-      "hi": "मॉडल",
-      "el": "μοντέλα",
-      "ms": "model-model",
-      "ko": "모델들",
-      "ja": "モデル",
-      "it": "modelli",
-      "pt": "modelos",
-      "pl": "modele",
-      "pa": "ਮਾਡਲਾਂ",
-      "fa": "مدل‌ها",
-      "es": "modelos",
-      "ru": "модели",
-      "ro": "modele",
-      "sk": "modely",
-      "sv": "modeller",
-      "th": "โมเดล",
-      "sw": "modeli",
-      "te": "మాడల్స్",
-      "vi": "các mô hình",
-      "tr": "modeller",
-      "uk": "моделі",
-      "jv": "model-model",
-      "zh-Hans": "模型",
-      "zh-Hant": "模型",
-      "pa-PK": "ماڈل",
-      "hi-Latn": "models"
-    },
-    "models": {
-      "pt-BR": "anthropic/claude-3-haiku",
-      "ca": "anthropic/claude-3-haiku",
-      "ar": "anthropic/claude-3-haiku",
-      "bn": "anthropic/claude-3-haiku",
-      "zh-TW": "anthropic/claude-3-haiku",
-      "hr": "anthropic/claude-3-haiku",
-      "cs": "anthropic/claude-3-haiku",
-      "zh-CN": "anthropic/claude-3-haiku",
-      "en-US": "anthropic/claude-3-haiku",
-      "fr": "anthropic/claude-3-haiku",
-      "tl": "anthropic/claude-3-haiku",
-      "nl": "anthropic/claude-3-haiku",
-      "de": "anthropic/claude-3-haiku",
-      "hu": "anthropic/claude-3-haiku",
-      "hi": "anthropic/claude-3-haiku",
-      "el": "anthropic/claude-3-haiku",
-      "ms": "anthropic/claude-3-haiku",
-      "ko": "anthropic/claude-3-haiku",
-      "ja": "anthropic/claude-3-haiku",
-      "it": "anthropic/claude-3-haiku",
-      "pt": "anthropic/claude-3-haiku",
-      "pl": "anthropic/claude-3-haiku",
-      "pa": "anthropic/claude-3-haiku",
-      "fa": "anthropic/claude-3-haiku",
-      "es": "anthropic/claude-3-haiku",
-      "ru": "anthropic/claude-3-haiku",
-      "ro": "anthropic/claude-3-haiku",
-      "sk": "anthropic/claude-3-haiku",
-      "sv": "anthropic/claude-3-haiku",
-      "th": "anthropic/claude-3-haiku",
-      "sw": "anthropic/claude-3-haiku",
-      "te": "anthropic/claude-3-haiku",
-      "vi": "anthropic/claude-3-haiku",
-      "tr": "anthropic/claude-3-haiku",
-      "uk": "anthropic/claude-3-haiku",
-      "jv": "anthropic/claude-3-haiku",
-      "zh-Hans": "google/gemini-2.5-flash-lite",
-      "zh-Hant": "google/gemini-2.5-flash-lite",
-      "pa-PK": "google/gemini-2.5-flash",
-      "hi-Latn": "google/gemini-2.5-flash"
-    },
-    "locations": [
-      {
-        "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 385
+        "file": "src/renderer/components/SettingsPanel.tsx",
+        "line": 149
       }
     ]
   },
@@ -34466,53 +33954,53 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 389
+        "line": 316
       }
     ]
   },
-  "91b442d3": {
-    "source": "Selected",
+  "55f44765": {
+    "source": "Search models...",
     "translated": {
-      "pt-BR": "Selecionado",
-      "ca": "Seleccionat",
-      "ar": "المحدد",
-      "bn": "নির্বাচিত",
-      "zh-TW": "已選擇",
-      "hr": "Odabrano",
-      "cs": "Vybrané",
-      "zh-CN": "已选择",
-      "en-US": "Selected",
-      "fr": "Sélectionné",
-      "tl": "Napili",
-      "nl": "Geselecteerd",
-      "de": "Ausgewählt",
-      "hu": "Kiválasztva",
-      "hi": "चयनित",
-      "el": "Επιλεγμένο",
-      "ms": "Dipilih",
-      "ko": "선택됨",
-      "ja": "選択済み",
-      "it": "Selezionato",
-      "pt": "Selecionado",
-      "pl": "Wybrane",
-      "pa": "ਚੁਣਿਆ",
-      "fa": "انتخاب شده",
-      "es": "Seleccionado",
-      "ru": "Выбранный",
-      "ro": "Selectat",
-      "sk": "Vybraný",
-      "sv": "Vald",
-      "th": "ที่เลือก",
-      "sw": "Iliyochaguliwa",
-      "te": "ఎంచుకున్నవి",
-      "vi": "Đã chọn",
-      "tr": "Seçildi",
-      "uk": "Вибрано",
-      "jv": "Dipilih",
-      "zh-Hans": "已选择",
-      "zh-Hant": "已選取",
-      "pa-PK": "چُنیا گیا",
-      "hi-Latn": "Chuna gaya"
+      "pt-BR": "Pesquisar modelos...",
+      "ca": "Cerca de models...",
+      "ar": "ابحث عن النماذج...",
+      "bn": "মডেলগুলি অনুসন্ধান করুন...",
+      "zh-TW": "搜索模型...",
+      "hr": "Pretraži modele...",
+      "cs": "Hledat modely...",
+      "zh-CN": "搜索模型...",
+      "en-US": "Search models...",
+      "fr": "Rechercher des modèles...",
+      "tl": "Maghanap ng mga model...",
+      "nl": "Zoek modellen...",
+      "de": "Modelle suchen...",
+      "hu": "Modellek keresése...",
+      "hi": "मॉडल खोजें...",
+      "el": "Αναζήτηση μοντέλων...",
+      "ms": "Cari model...",
+      "ko": "모델 검색...",
+      "ja": "モデルを検索...",
+      "it": "Cerca modelli...",
+      "pt": "Pesquisar modelos...",
+      "pl": "Szukaj modeli...",
+      "pa": "ਮਾਡਲ ਖੋਜੋ...",
+      "fa": "جستجوی مدل‌ها...",
+      "es": "Buscar modelos...",
+      "ru": "Поиск моделей...",
+      "ro": "Caută modele...",
+      "sk": "Vyhľadávanie modelov...",
+      "sv": "Sök modeller...",
+      "th": "ค้นหาโมเดล...",
+      "sw": "Tafuta modeli...",
+      "te": "మోడళ్లను శోధించండి...",
+      "vi": "Tìm kiếm mô hình...",
+      "tr": "Modelleri ara...",
+      "uk": "Пошук моделей...",
+      "jv": "Goleki model...",
+      "zh-Hans": "搜索模型...",
+      "zh-Hant": "搜尋模型...",
+      "pa-PK": "ماڈلز تلاش کرو...",
+      "hi-Latn": "Models khojein..."
     },
     "models": {
       "pt-BR": "anthropic/claude-3-haiku",
@@ -34559,61 +34047,53 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 432
-      },
-      {
-        "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 488
-      },
-      {
-        "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 662
+        "line": 356
       }
     ]
   },
-  "ec211f7c": {
-    "source": "Add",
+  "63a6a88c": {
+    "source": "Refresh",
     "translated": {
-      "pt-BR": "Adicionar",
-      "ca": "Afegir",
-      "ar": "إضافة",
-      "bn": "যুক্ত করুন",
-      "zh-TW": "新增",
-      "hr": "Dodaj",
-      "cs": "Přidat",
-      "zh-CN": "添加",
-      "en-US": "Add",
-      "fr": "Ajouter",
-      "tl": "Magdagdag",
-      "nl": "Toevoegen",
-      "de": "Hinzufügen",
-      "hu": "Hozzáadás",
-      "hi": "जोड़ें",
-      "el": "Προσθήκη",
-      "ms": "Tambah",
-      "ko": "추가",
-      "ja": "追加",
-      "it": "Aggiungi",
-      "pt": "Adicionar",
-      "pl": "Dodaj",
-      "pa": "ਜੋੜੋ",
-      "fa": "افزودن",
-      "es": "Agregar",
-      "ru": "Добавить",
-      "ro": "Adăugare",
-      "sk": "Pridať",
-      "sv": "Lägg till",
-      "th": "เพิ่ม",
-      "sw": "Ongeza",
-      "te": "జోడించు",
-      "vi": "Thêm",
-      "tr": "Ekle",
-      "uk": "Додати",
-      "jv": "Tambah",
-      "zh-Hans": "添加",
-      "zh-Hant": "新增",
-      "pa-PK": "شامل کرو",
-      "hi-Latn": "Jodein"
+      "pt-BR": "Atualizar",
+      "ca": "Actualitza",
+      "ar": "تحديث",
+      "bn": "রিফ্রেশ করুন",
+      "zh-TW": "刷新",
+      "hr": "Osvježi",
+      "cs": "Obnovit",
+      "zh-CN": "刷新",
+      "en-US": "Refresh",
+      "fr": "Actualiser",
+      "tl": "I-refresh",
+      "nl": "Vernieuwen",
+      "de": "Aktualisieren",
+      "hu": "Frissítés",
+      "hi": "ताज़ा करें",
+      "el": "Ανανέωση",
+      "ms": "Segarkan",
+      "ko": "새로 고침",
+      "ja": "更新",
+      "it": "Aggiorna",
+      "pt": "Atualizar",
+      "pl": "Odśwież",
+      "pa": "ਤਾਜ਼ਾ ਕਰੋ",
+      "fa": "تازه‌سازی",
+      "es": "Actualizar",
+      "ru": "Обновить",
+      "ro": "Reîmprospătare",
+      "sk": "Obnoviť",
+      "sv": "Uppdatera",
+      "th": "รีเฟรช",
+      "sw": "Onyesha upya",
+      "te": "రిఫ్రెష్ చేయండి",
+      "vi": "Làm mới",
+      "tr": "Yenile",
+      "uk": "Оновити",
+      "jv": "Anyari",
+      "zh-Hans": "刷新",
+      "zh-Hant": "重新整理",
+      "pa-PK": "ریفریش کرو",
+      "hi-Latn": "Refresh karein"
     },
     "models": {
       "pt-BR": "anthropic/claude-3-haiku",
@@ -34660,66 +34140,155 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 434
-      },
-      {
-        "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 490
+        "line": 395
       }
     ]
   },
-  "f886af65": {
-    "source": "Loading benchmark scores…",
+  "09f3aa52": {
+    "source": "Free Only",
     "translated": {
-      "fr": "Chargement des scores de référence…",
-      "cs": "Načítání výsledků benchmarku…",
-      "de": "Benchmark-Ergebnisse werden geladen …",
-      "nl": "Benchmarkscores laden…",
-      "el": "Φόρτωση βαθμολογιών δοκιμών απόδοσης…",
-      "ar": "جارٍ تحميل نتائج الاختبار المرجعي…",
-      "zh-Hant": "正在載入基準測試分數…",
-      "zh-Hans": "正在加载基准测试分数…",
-      "hi": "बेंचमार्क स्कोर लोड हो रहे हैं…",
-      "pt-BR": "Carregando pontuações de benchmark…",
-      "fa": "در حال بارگذاری امتیازهای محک…",
-      "hu": "Teljesítménymutatók betöltése…",
-      "ja": "ベンチマークスコアを読み込み中…",
-      "pl": "Wczytywanie wyników testów porównawczych…",
-      "ko": "벤치마크 점수 불러오는 중…",
-      "it": "Caricamento dei punteggi benchmark…",
-      "uk": "Завантаження результатів тестування…",
-      "ro": "Se încarcă scorurile de benchmark…",
-      "sk": "Načítavajú sa výsledky benchmarku…",
-      "tr": "Kıyaslama puanları yükleniyor…",
-      "ru": "Загрузка результатов тестирования…",
-      "th": "กำลังโหลดคะแนนเบนช์มาร์ก…",
-      "es": "Cargando puntuaciones de referencia…",
-      "sv": "Läser in benchmarkresultat…",
-      "vi": "Đang tải điểm chuẩn…"
+      "pt-BR": "Apenas Gratuitos",
+      "ca": "Només gratuït",
+      "ar": "مجاني فقط",
+      "bn": "শুধুমাত্র বিনামূল্যের",
+      "zh-TW": "僅免費",
+      "hr": "Samo besplatno",
+      "cs": "Pouze zdarma",
+      "zh-CN": "仅免费",
+      "en-US": "Free Only",
+      "fr": "Gratuit uniquement",
+      "tl": "Libre Lang",
+      "nl": "Alleen gratis",
+      "de": "Nur kostenlos",
+      "hu": "Csak ingyenes",
+      "hi": "केवल मुफ्त",
+      "el": "Μόνο Δωρεάν",
+      "ms": "Percuma Sahaja",
+      "ko": "무료만",
+      "ja": "無料のみ",
+      "it": "Solo gratuiti",
+      "pt": "Apenas Gratuito",
+      "pl": "Tylko darmowe",
+      "pa": "ਸਿਰਫ਼ ਮੁਫ਼ਤ",
+      "fa": "فقط رایگان",
+      "es": "Solo gratis",
+      "ru": "Только бесплатные",
+      "ro": "Doar gratuit",
+      "sk": "Iba bezplatné",
+      "sv": "Endast gratis",
+      "th": "ฟรีเท่านั้น",
+      "sw": "Bure tu",
+      "te": "ఉచితం మాత్రమే",
+      "vi": "Chỉ miễn phí",
+      "tr": "Yalnızca Ücretsiz",
+      "uk": "Тільки безкоштовні",
+      "jv": "Mung Gratis",
+      "zh-Hans": "仅免费",
+      "zh-Hant": "僅免費",
+      "pa-PK": "صرف مفت",
+      "hi-Latn": "Sirf Free"
     },
     "models": {
-      "fr": "~anthropic/claude-sonnet-latest",
-      "cs": "~anthropic/claude-sonnet-latest",
-      "de": "~anthropic/claude-sonnet-latest",
-      "nl": "~anthropic/claude-sonnet-latest",
-      "el": "~anthropic/claude-sonnet-latest",
+      "pt-BR": "anthropic/claude-3-haiku",
+      "ca": "anthropic/claude-3-haiku",
+      "ar": "anthropic/claude-3-haiku",
+      "bn": "anthropic/claude-3-haiku",
+      "zh-TW": "anthropic/claude-3-haiku",
+      "hr": "anthropic/claude-3-haiku",
+      "cs": "anthropic/claude-3-haiku",
+      "zh-CN": "anthropic/claude-3-haiku",
+      "en-US": "anthropic/claude-3-haiku",
+      "fr": "anthropic/claude-3-haiku",
+      "tl": "anthropic/claude-3-haiku",
+      "nl": "anthropic/claude-3-haiku",
+      "de": "anthropic/claude-3-haiku",
+      "hu": "anthropic/claude-3-haiku",
+      "hi": "anthropic/claude-3-haiku",
+      "el": "anthropic/claude-3-haiku",
+      "ms": "anthropic/claude-3-haiku",
+      "ko": "anthropic/claude-3-haiku",
+      "ja": "anthropic/claude-3-haiku",
+      "it": "anthropic/claude-3-haiku",
+      "pt": "anthropic/claude-3-haiku",
+      "pl": "anthropic/claude-3-haiku",
+      "pa": "anthropic/claude-3-haiku",
+      "fa": "anthropic/claude-3-haiku",
+      "es": "anthropic/claude-3-haiku",
+      "ru": "anthropic/claude-3-haiku",
+      "ro": "anthropic/claude-3-haiku",
+      "sk": "anthropic/claude-3-haiku",
+      "sv": "anthropic/claude-3-haiku",
+      "th": "anthropic/claude-3-haiku",
+      "sw": "anthropic/claude-3-haiku",
+      "te": "anthropic/claude-3-haiku",
+      "vi": "anthropic/claude-3-haiku",
+      "tr": "anthropic/claude-3-haiku",
+      "uk": "anthropic/claude-3-haiku",
+      "jv": "anthropic/claude-3-haiku",
+      "zh-Hans": "google/gemini-2.5-flash-lite",
+      "zh-Hant": "google/gemini-2.5-flash-lite",
+      "pa-PK": "google/gemini-2.5-flash",
+      "hi-Latn": "google/gemini-2.5-flash"
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/SettingsModelsTab.tsx",
+        "line": 416
+      }
+    ]
+  },
+  "904ab901": {
+    "source": "Selected only",
+    "translated": {
+      "ar": "المحدد فقط",
+      "nl": "Alleen geselecteerde",
+      "cs": "Pouze vybrané",
+      "fr": "Sélection uniquement",
+      "el": "Μόνο τα επιλεγμένα",
+      "de": "Nur ausgewählte",
+      "zh-Hans": "仅选中",
+      "zh-Hant": "僅選取項",
+      "pl": "Tylko wybrane",
+      "fa": "فقط انتخاب‌شده‌ها",
+      "it": "Solo selezionati",
+      "pt-BR": "Somente selecionados",
+      "hi": "केवल चयनित",
+      "hu": "Csak a kijelöltek",
+      "ja": "選択のみ",
+      "ko": "선택 항목만",
+      "tr": "Yalnızca seçilenler",
+      "ru": "Только выбранные",
+      "uk": "Лише вибрані",
+      "ro": "Doar selectate",
+      "th": "เฉพาะที่เลือก",
+      "sk": "Iba vybrané",
+      "es": "Solo seleccionados",
+      "sv": "Endast valda",
+      "vi": "Chỉ mục đã chọn"
+    },
+    "models": {
       "ar": "~anthropic/claude-sonnet-latest",
-      "zh-Hant": "z-ai/glm-5.2",
+      "nl": "~anthropic/claude-sonnet-latest",
+      "cs": "~anthropic/claude-sonnet-latest",
+      "fr": "~anthropic/claude-sonnet-latest",
+      "el": "~anthropic/claude-sonnet-latest",
+      "de": "~anthropic/claude-sonnet-latest",
       "zh-Hans": "z-ai/glm-5.2",
-      "hi": "~anthropic/claude-sonnet-latest",
-      "pt-BR": "~anthropic/claude-sonnet-latest",
-      "fa": "~anthropic/claude-sonnet-latest",
-      "hu": "~anthropic/claude-sonnet-latest",
-      "ja": "minimax/minimax-m2.7",
+      "zh-Hant": "z-ai/glm-5.2",
       "pl": "~anthropic/claude-sonnet-latest",
-      "ko": "z-ai/glm-5.2",
+      "fa": "~anthropic/claude-sonnet-latest",
       "it": "~anthropic/claude-sonnet-latest",
-      "uk": "~anthropic/claude-sonnet-latest",
-      "ro": "~anthropic/claude-sonnet-latest",
-      "sk": "~anthropic/claude-sonnet-latest",
+      "pt-BR": "~anthropic/claude-sonnet-latest",
+      "hi": "~anthropic/claude-sonnet-latest",
+      "hu": "~anthropic/claude-sonnet-latest",
+      "ja": "z-ai/glm-5.2",
+      "ko": "z-ai/glm-5.2",
       "tr": "~anthropic/claude-sonnet-latest",
       "ru": "~anthropic/claude-sonnet-latest",
+      "uk": "~anthropic/claude-sonnet-latest",
+      "ro": "~anthropic/claude-sonnet-latest",
       "th": "~anthropic/claude-sonnet-latest",
+      "sk": "~anthropic/claude-sonnet-latest",
       "es": "~anthropic/claude-sonnet-latest",
       "sv": "~anthropic/claude-sonnet-latest",
       "vi": "~anthropic/claude-sonnet-latest"
@@ -34727,163 +34296,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 502
-      }
-    ]
-  },
-  "a900d0d2": {
-    "source": "Benchmark scores could not be loaded.",
-    "translated": {
-      "fr": "Impossible de charger les scores de référence.",
-      "cs": "Výsledky benchmarku se nepodařilo načíst.",
-      "de": "Die Benchmark-Ergebnisse konnten nicht geladen werden.",
-      "nl": "Benchmarkscores kunnen niet worden geladen.",
-      "el": "Δεν ήταν δυνατή η φόρτωση των βαθμολογιών δοκιμών απόδοσης.",
-      "ar": "تعذر تحميل نتائج الاختبار المرجعي.",
-      "zh-Hant": "無法載入基準測試分數。",
-      "zh-Hans": "无法加载基准测试分数。",
-      "hi": "बेंचमार्क स्कोर लोड नहीं किए जा सके।",
-      "pt-BR": "Não foi possível carregar as pontuações de benchmark.",
-      "fa": "بارگذاری امتیازهای محک امکان‌پذیر نبود.",
-      "hu": "A teljesítménymutatókat nem sikerült betölteni.",
-      "ja": "ベンチマークスコアを読み込めませんでした。",
-      "pl": "Nie udało się wczytać wyników testów porównawczych.",
-      "ko": "벤치마크 점수를 불러올 수 없습니다.",
-      "it": "Impossibile caricare i punteggi benchmark.",
-      "uk": "Не вдалося завантажити результати тестування.",
-      "ro": "Scorurile de benchmark nu au putut fi încărcate.",
-      "sk": "Výsledky benchmarku sa nepodarilo načítať.",
-      "tr": "Kıyaslama puanları yüklenemedi.",
-      "ru": "Не удалось загрузить результаты тестирования.",
-      "th": "ไม่สามารถโหลดคะแนนเบนช์มาร์กได้",
-      "es": "No se pudieron cargar las puntuaciones de referencia.",
-      "sv": "Det gick inte att läsa in benchmarkresultaten.",
-      "vi": "Không thể tải điểm chuẩn."
-    },
-    "models": {
-      "fr": "~anthropic/claude-sonnet-latest",
-      "cs": "~anthropic/claude-sonnet-latest",
-      "de": "~anthropic/claude-sonnet-latest",
-      "nl": "~anthropic/claude-sonnet-latest",
-      "el": "~anthropic/claude-sonnet-latest",
-      "ar": "~anthropic/claude-sonnet-latest",
-      "zh-Hant": "z-ai/glm-5.2",
-      "zh-Hans": "z-ai/glm-5.2",
-      "hi": "~anthropic/claude-sonnet-latest",
-      "pt-BR": "~anthropic/claude-sonnet-latest",
-      "fa": "~anthropic/claude-sonnet-latest",
-      "hu": "~anthropic/claude-sonnet-latest",
-      "ja": "minimax/minimax-m2.7",
-      "pl": "~anthropic/claude-sonnet-latest",
-      "ko": "z-ai/glm-5.2",
-      "it": "~anthropic/claude-sonnet-latest",
-      "uk": "~anthropic/claude-sonnet-latest",
-      "ro": "~anthropic/claude-sonnet-latest",
-      "sk": "~anthropic/claude-sonnet-latest",
-      "tr": "~anthropic/claude-sonnet-latest",
-      "ru": "~anthropic/claude-sonnet-latest",
-      "th": "~anthropic/claude-sonnet-latest",
-      "es": "~anthropic/claude-sonnet-latest",
-      "sv": "~anthropic/claude-sonnet-latest",
-      "vi": "~anthropic/claude-sonnet-latest"
-    },
-    "locations": [
-      {
-        "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 505
-      }
-    ]
-  },
-  "4cbb7640": {
-    "source": "Selected Models",
-    "translated": {
-      "pt-BR": "Modelos Selecionados",
-      "ca": "Models seleccionats",
-      "ar": "النماذج المحددة",
-      "bn": "নির্বাচিত মডেলগুলি",
-      "zh-TW": "已選擇的模型",
-      "hr": "Odabrani modeli",
-      "cs": "Vybrané modely",
-      "zh-CN": "已选择的模型",
-      "en-US": "Selected Models",
-      "fr": "Modèles sélectionnés",
-      "tl": "Mga Napiling Modelo",
-      "nl": "Geselecteerde modellen",
-      "de": "Ausgewählte Modelle",
-      "hu": "Kiválasztott modellek",
-      "hi": "चयनित मॉडल",
-      "el": "Επιλεγμένα Μοντέλα",
-      "ms": "Model Dipilih",
-      "ko": "선택된 모델",
-      "ja": "選択済みのモデル",
-      "it": "Modelli selezionati",
-      "pt": "Modelos Selecionados",
-      "pl": "Wybrane modele",
-      "pa": "ਚੁਣੇ ਗਏ ਮਾਡਲ",
-      "fa": "مدل‌های انتخاب شده",
-      "es": "Modelos seleccionados",
-      "ru": "Выбранные модели",
-      "ro": "Modele selectate",
-      "sk": "Vybrané modely",
-      "sv": "Valda modeller",
-      "th": "โมเดลที่เลือก",
-      "sw": "Modeli Zilizochaguliwa",
-      "te": "ఎంచుకున్న మాడల్స్",
-      "vi": "Các mô hình đã chọn",
-      "tr": "Seçilen Modeller",
-      "uk": "Вибрані моделі",
-      "jv": "Model Terpilih",
-      "zh-Hans": "已选模型",
-      "zh-Hant": "已選取的模型",
-      "pa-PK": "چُنے گئے ماڈل",
-      "hi-Latn": "Chune gaye Models"
-    },
-    "models": {
-      "pt-BR": "anthropic/claude-3-haiku",
-      "ca": "anthropic/claude-3-haiku",
-      "ar": "anthropic/claude-3-haiku",
-      "bn": "anthropic/claude-3-haiku",
-      "zh-TW": "anthropic/claude-3-haiku",
-      "hr": "anthropic/claude-3-haiku",
-      "cs": "anthropic/claude-3-haiku",
-      "zh-CN": "anthropic/claude-3-haiku",
-      "en-US": "anthropic/claude-3-haiku",
-      "fr": "anthropic/claude-3-haiku",
-      "tl": "anthropic/claude-3-haiku",
-      "nl": "anthropic/claude-3-haiku",
-      "de": "anthropic/claude-3-haiku",
-      "hu": "anthropic/claude-3-haiku",
-      "hi": "anthropic/claude-3-haiku",
-      "el": "anthropic/claude-3-haiku",
-      "ms": "anthropic/claude-3-haiku",
-      "ko": "anthropic/claude-3-haiku",
-      "ja": "anthropic/claude-3-haiku",
-      "it": "anthropic/claude-3-haiku",
-      "pt": "anthropic/claude-3-haiku",
-      "pl": "anthropic/claude-3-haiku",
-      "pa": "anthropic/claude-3-haiku",
-      "fa": "anthropic/claude-3-haiku",
-      "es": "anthropic/claude-3-haiku",
-      "ru": "anthropic/claude-3-haiku",
-      "ro": "anthropic/claude-3-haiku",
-      "sk": "anthropic/claude-3-haiku",
-      "sv": "anthropic/claude-3-haiku",
-      "th": "anthropic/claude-3-haiku",
-      "sw": "anthropic/claude-3-haiku",
-      "te": "anthropic/claude-3-haiku",
-      "vi": "anthropic/claude-3-haiku",
-      "tr": "anthropic/claude-3-haiku",
-      "uk": "anthropic/claude-3-haiku",
-      "jv": "anthropic/claude-3-haiku",
-      "zh-Hans": "google/gemini-2.5-flash-lite",
-      "zh-Hant": "google/gemini-2.5-flash-lite",
-      "pa-PK": "google/gemini-2.5-flash",
-      "hi-Latn": "google/gemini-2.5-flash"
-    },
-    "locations": [
-      {
-        "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 526
+        "line": 427
       }
     ]
   },
@@ -34976,95 +34389,95 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 543
+        "line": 446
       },
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 736
+        "line": 712
       }
     ]
   },
-  "818fbcaa": {
-    "source": "Choose models view",
+  "cd719d3b": {
+    "source": "Please wait while we fetch available models",
     "translated": {
-      "pt-BR": "Escolher visualização de modelos",
-      "ar": "اختر عرض النماذج",
-      "ca": "Tria la vista de models",
-      "bn": "মডেল দৃশ্য নির্বাচন করুন",
-      "zh-CN": "选择模型视图",
-      "zh-TW": "選擇模型檢視",
-      "cs": "Zvolit zobrazení modelů",
-      "hr": "Odaberite prikaz modela",
-      "tl": "Pumili ng view ng mga modelo",
-      "en-US": "Choose models view",
-      "fr": "Choisir l'affichage des modèles",
-      "nl": "Kies modelweergave",
-      "de": "Modellansicht auswählen",
-      "hi": "मॉडल दृश्य चुनें",
-      "el": "Επιλέξτε προβολή μοντέλων",
-      "hu": "Modellek nézet választása",
-      "ja": "モデルビューを選択",
-      "it": "Scegli la visualizzazione dei modelli",
-      "ms": "Pilih paparan model",
-      "ko": "모델 보기 선택",
-      "pt": "Escolher visualização de modelos",
-      "jv": "Pilih tampilan model",
-      "fa": "انتخاب نمایش مدل",
-      "pl": "Wybierz widok modeli",
-      "ru": "Выбрать вид моделей",
-      "ro": "Alegeți vizualizarea modelelor",
-      "sk": "Zvoľte zobrazenie modelov",
-      "pa": "ਮਾਡਲਾਂ ਦੇ ਦ੍ਰਿਸ਼ ਨੂੰ ਚੁਣੋ",
-      "es": "Elegir vista de modelos",
-      "sw": "Chagua mtazamo wa modeli",
-      "sv": "Välj modellvy",
-      "te": "మాడల్స్ వీక్షణను ఎంచుకోండి",
-      "th": "เลือกมุมมองโมเดล",
-      "vi": "Chọn chế độ xem mô hình",
-      "tr": "Model görünümünü seç",
-      "uk": "Вибрати вигляд моделей",
-      "zh-Hans": "选择模型视图",
-      "zh-Hant": "選擇模型檢視",
-      "pa-PK": "ماڈل وِکھاؤ چُنو",
-      "hi-Latn": "Models view chunein"
+      "pt-BR": "Aguarde enquanto buscamos os modelos disponíveis",
+      "ca": "Espereu mentre obtenim els models disponibles",
+      "ar": "يرجى الانتظار بينما نجلب النماذج المتاحة",
+      "bn": "উপলব্ধ মডেলগুলি আনার জন্য অপেক্ষা করুন",
+      "zh-TW": "請稍候,我們正在獲取可用的模型",
+      "hr": "Molimo pričekajte dok dohvaćamo dostupne modele",
+      "cs": "Počkejte, než načteme dostupné modely",
+      "zh-CN": "请等待我们获取可用模型",
+      "en-US": "Please wait while we fetch available models",
+      "fr": "Veuillez patienter pendant que nous récupérons les modèles disponibles",
+      "tl": "Mangyaring maghintay habang kinukuha namin ang mga available na model",
+      "nl": "Even geduld terwijl we de beschikbare modellen ophalen",
+      "de": "Bitte warten Sie, während wir die verfügbaren Modelle abrufen",
+      "hu": "Kérjük, várjon, amíg lekérjük az elérhető modelleket",
+      "hi": "कृपया प्रतीक्षा करें जबतक हम उपलब्ध मॉडल प्राप्त करते हैं",
+      "el": "Παρακαλώ περιμένετε ενώ ανακτούμε τα διαθέσιμα μοντέλα",
+      "ms": "Sila tunggu semasa kami mendapatkan model yang tersedia",
+      "ko": "사용 가능한 모델을 가져오는 동안 기다려 주세요",
+      "ja": "利用可能なモデルを取得しています。しばらくお待ちください",
+      "it": "Attendere mentre recuperiamo i modelli disponibili",
+      "pt": "Aguarde enquanto buscamos os modelos disponíveis",
+      "pl": "Proszę czekać, aż pobierzemy dostępne modele",
+      "pa": "ਕਿਰਪਾ ਕਰਕੇ ਉਪਲਬਧ ਮਾਡਲ ਲੈਣ ਲਈ ਉਡੀਕ ਕਰੋ",
+      "fa": "لطفاً منتظر بمانید تا مدل‌های موجود را دریافت کنیم",
+      "es": "Espere mientras obtenemos los modelos disponibles",
+      "ru": "Пожалуйста, подождите, пока мы получим доступные модели",
+      "ro": "Vă rugăm să așteptați în timp ce extragem modelele disponibile",
+      "sk": "Počkajte, kým načítame dostupné modely",
+      "sv": "Vänta medan vi hämtar tillgängliga modeller",
+      "th": "โปรดรอขณะเราดึงโมเดลที่มีให้ใช้งาน",
+      "sw": "Tafadhali subiri wakati tunapata modeli zilizopo",
+      "te": "అందుబాటులో ఉన్న మోడళ్లను పొందడానికి కాసేపు వేచి ఉండండి",
+      "vi": "Vui lòng chờ trong khi chúng tôi lấy các mô hình có sẵn",
+      "tr": "Lütfen mevcut modelleri getirirken bekleyin",
+      "uk": "Зачекайте, поки ми отримаємо доступні моделі",
+      "jv": "Mangga nunggu nalika kita njupuk model sing cumawis",
+      "zh-Hans": "请稍候，我们正在获取可用模型",
+      "zh-Hant": "請稍候，我們正在擷取可用模型",
+      "pa-PK": "مہربانی کر کے انتظار کرو جدوں اسیں دستیاب ماڈلز حاصل کردے آں",
+      "hi-Latn": "Kripya intezaar karein jab tak hum uplabdh models fetch karte hain"
     },
     "models": {
       "pt-BR": "anthropic/claude-3-haiku",
-      "ar": "anthropic/claude-3-haiku",
       "ca": "anthropic/claude-3-haiku",
+      "ar": "anthropic/claude-3-haiku",
       "bn": "anthropic/claude-3-haiku",
-      "zh-CN": "anthropic/claude-3-haiku",
       "zh-TW": "anthropic/claude-3-haiku",
-      "cs": "anthropic/claude-3-haiku",
       "hr": "anthropic/claude-3-haiku",
-      "tl": "anthropic/claude-3-haiku",
+      "cs": "anthropic/claude-3-haiku",
+      "zh-CN": "anthropic/claude-3-haiku",
       "en-US": "anthropic/claude-3-haiku",
       "fr": "anthropic/claude-3-haiku",
+      "tl": "anthropic/claude-3-haiku",
       "nl": "anthropic/claude-3-haiku",
       "de": "anthropic/claude-3-haiku",
+      "hu": "anthropic/claude-3-haiku",
       "hi": "anthropic/claude-3-haiku",
       "el": "anthropic/claude-3-haiku",
-      "hu": "anthropic/claude-3-haiku",
-      "ja": "anthropic/claude-3-haiku",
-      "it": "anthropic/claude-3-haiku",
       "ms": "anthropic/claude-3-haiku",
       "ko": "anthropic/claude-3-haiku",
+      "ja": "anthropic/claude-3-haiku",
+      "it": "anthropic/claude-3-haiku",
       "pt": "anthropic/claude-3-haiku",
-      "jv": "anthropic/claude-3-haiku",
-      "fa": "anthropic/claude-3-haiku",
       "pl": "anthropic/claude-3-haiku",
+      "pa": "anthropic/claude-3-haiku",
+      "fa": "anthropic/claude-3-haiku",
+      "es": "anthropic/claude-3-haiku",
       "ru": "anthropic/claude-3-haiku",
       "ro": "anthropic/claude-3-haiku",
       "sk": "anthropic/claude-3-haiku",
-      "pa": "anthropic/claude-3-haiku",
-      "es": "anthropic/claude-3-haiku",
-      "sw": "anthropic/claude-3-haiku",
       "sv": "anthropic/claude-3-haiku",
-      "te": "anthropic/claude-3-haiku",
       "th": "anthropic/claude-3-haiku",
+      "sw": "anthropic/claude-3-haiku",
+      "te": "anthropic/claude-3-haiku",
       "vi": "anthropic/claude-3-haiku",
       "tr": "anthropic/claude-3-haiku",
       "uk": "anthropic/claude-3-haiku",
+      "jv": "anthropic/claude-3-haiku",
       "zh-Hans": "google/gemini-2.5-flash-lite",
       "zh-Hant": "google/gemini-2.5-flash-lite",
       "pa-PK": "google/gemini-2.5-flash",
@@ -35073,91 +34486,91 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 626
+        "line": 458
       }
     ]
   },
-  "78945de8": {
-    "source": "Available",
+  "bd981cca": {
+    "source": "Error loading models",
     "translated": {
-      "pt-BR": "Disponível",
-      "ar": "متاح",
-      "ca": "Disponible",
-      "bn": "উপলব্ধ",
-      "zh-CN": "可用",
-      "zh-TW": "可用",
-      "cs": "Dostupné",
-      "hr": "Dostupno",
-      "tl": "Available",
-      "en-US": "Available",
-      "fr": "Disponible",
-      "nl": "Beschikbaar",
-      "de": "Verfügbar",
-      "hi": "उपलब्ध",
-      "el": "Διαθέσιμο",
-      "hu": "Elérhető",
-      "ja": "利用可能",
-      "it": "Disponibile",
-      "ms": "Tersedia",
-      "ko": "사용 가능",
-      "pt": "Disponível",
-      "jv": "Tersedia",
-      "fa": "موجود",
-      "pl": "Dostępne",
-      "ru": "Доступно",
-      "ro": "Disponibil",
-      "sk": "Dostupné",
-      "pa": "ਉਪਲਬਧ",
-      "es": "Disponible",
-      "sw": "Inapatikana",
-      "sv": "Tillgängliga",
-      "te": "అందుబాటులో ఉన్నవి",
-      "th": "ที่มี",
-      "vi": "Có sẵn",
-      "tr": "Mevcut",
-      "uk": "Доступні",
-      "zh-Hans": "可用",
-      "zh-Hant": "可用",
-      "pa-PK": "دستیاب",
-      "hi-Latn": "Uplabdh"
+      "pt-BR": "Erro ao carregar modelos",
+      "ca": "Error en carregar els models",
+      "ar": "خطأ في تحميل النماذج",
+      "bn": "মডেল লোড করতে ত্রুটি",
+      "zh-TW": "載入模型時發生錯誤",
+      "hr": "Pogreška pri učitavanju modela",
+      "cs": "Chyba při načítání modelů",
+      "zh-CN": "模型加载错误",
+      "en-US": "Error loading models",
+      "fr": "Erreur de chargement des modèles",
+      "tl": "Error sa pag-load ng mga modelo",
+      "nl": "Fout bij het laden van modellen",
+      "de": "Fehler beim Laden der Modelle",
+      "hu": "Modellek betöltésének hibája",
+      "hi": "मॉडल लोड करने में त्रुटि",
+      "el": "Σφάλμα φόρτωσης μοντέλων",
+      "ms": "Ralat memuatkan model",
+      "ko": "모델 로드 오류",
+      "ja": "モデルの読み込みエラー",
+      "it": "Errore durante il caricamento dei modelli",
+      "pt": "Erro ao carregar modelos",
+      "pl": "Błąd ładowania modeli",
+      "pa": "ਮਾਡਲਾਂ ਲੋਡ ਕਰਨ ਵਿੱਚ ਗਲਤੀ",
+      "fa": "خطا در بارگذاری مدل‌ها",
+      "es": "Error al cargar los modelos",
+      "ru": "Ошибка загрузки моделей",
+      "ro": "Eroare la încărcarea modelelor",
+      "sk": "Chyba pri načítaní modelov",
+      "sv": "Fel vid inläsning av modeller",
+      "th": "เกิดข้อผิดพลาดในการโหลดโมเดล",
+      "sw": "Hitilafu ya kupakia modeli",
+      "te": "మాడల్స్ లోడ్ చేయడంలో లోపం",
+      "vi": "Lỗi khi tải mô hình",
+      "tr": "Modellerin yüklenmesi hatası",
+      "uk": "Помилка завантаження моделей",
+      "jv": "Gagal memuat model",
+      "zh-Hans": "加载模型时出错",
+      "zh-Hant": "載入模型時發生錯誤",
+      "pa-PK": "ماڈل لوڈ کرن وچ خرابی",
+      "hi-Latn": "Model load karne mein error"
     },
     "models": {
       "pt-BR": "anthropic/claude-3-haiku",
-      "ar": "anthropic/claude-3-haiku",
       "ca": "anthropic/claude-3-haiku",
+      "ar": "anthropic/claude-3-haiku",
       "bn": "anthropic/claude-3-haiku",
-      "zh-CN": "anthropic/claude-3-haiku",
       "zh-TW": "anthropic/claude-3-haiku",
-      "cs": "anthropic/claude-3-haiku",
       "hr": "anthropic/claude-3-haiku",
-      "tl": "anthropic/claude-3-haiku",
+      "cs": "anthropic/claude-3-haiku",
+      "zh-CN": "anthropic/claude-3-haiku",
       "en-US": "anthropic/claude-3-haiku",
       "fr": "anthropic/claude-3-haiku",
+      "tl": "anthropic/claude-3-haiku",
       "nl": "anthropic/claude-3-haiku",
       "de": "anthropic/claude-3-haiku",
+      "hu": "anthropic/claude-3-haiku",
       "hi": "anthropic/claude-3-haiku",
       "el": "anthropic/claude-3-haiku",
-      "hu": "anthropic/claude-3-haiku",
-      "ja": "anthropic/claude-3-haiku",
-      "it": "anthropic/claude-3-haiku",
       "ms": "anthropic/claude-3-haiku",
       "ko": "anthropic/claude-3-haiku",
+      "ja": "anthropic/claude-3-haiku",
+      "it": "anthropic/claude-3-haiku",
       "pt": "anthropic/claude-3-haiku",
-      "jv": "anthropic/claude-3-haiku",
-      "fa": "anthropic/claude-3-haiku",
       "pl": "anthropic/claude-3-haiku",
+      "pa": "anthropic/claude-3-haiku",
+      "fa": "anthropic/claude-3-haiku",
+      "es": "anthropic/claude-3-haiku",
       "ru": "anthropic/claude-3-haiku",
       "ro": "anthropic/claude-3-haiku",
       "sk": "anthropic/claude-3-haiku",
-      "pa": "anthropic/claude-3-haiku",
-      "es": "anthropic/claude-3-haiku",
-      "sw": "anthropic/claude-3-haiku",
       "sv": "anthropic/claude-3-haiku",
-      "te": "anthropic/claude-3-haiku",
       "th": "anthropic/claude-3-haiku",
+      "sw": "anthropic/claude-3-haiku",
+      "te": "anthropic/claude-3-haiku",
       "vi": "anthropic/claude-3-haiku",
       "tr": "anthropic/claude-3-haiku",
       "uk": "anthropic/claude-3-haiku",
+      "jv": "anthropic/claude-3-haiku",
       "zh-Hans": "google/gemini-2.5-flash-lite",
       "zh-Hant": "google/gemini-2.5-flash-lite",
       "pa-PK": "google/gemini-2.5-flash",
@@ -35166,7 +34579,289 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsModelsTab.tsx",
-        "line": 643
+        "line": 463
+      }
+    ]
+  },
+  "6327b4e5": {
+    "source": "Retry",
+    "translated": {
+      "pt-BR": "Tentar novamente",
+      "ca": "Torna-ho a provar",
+      "ar": "إعادة المحاولة",
+      "bn": "পুনঃচেষ্টা করুন",
+      "zh-TW": "重試",
+      "hr": "Pokušaj ponovno",
+      "cs": "Zkusit znovu",
+      "zh-CN": "重试",
+      "en-US": "Retry",
+      "fr": "Réessayer",
+      "tl": "Subukan muli",
+      "nl": "Opnieuw proberen",
+      "de": "Wiederholen",
+      "hu": "Újrapróbálás",
+      "hi": "पुनः प्रयास करें",
+      "el": "Επανάληψη",
+      "ms": "Cuba lagi",
+      "ko": "다시 시도",
+      "ja": "再試行",
+      "it": "Riprova",
+      "pt": "Tentar novamente",
+      "pl": "Ponów próbę",
+      "pa": "ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ",
+      "fa": "تلاش مجدد",
+      "es": "Reintentar",
+      "ru": "Повторить",
+      "ro": "Reîncercare",
+      "sk": "Skúsiť znova",
+      "sv": "Försök igen",
+      "th": "ลองอีกครั้ง",
+      "sw": "Jaribu tena",
+      "te": "మళ్లీ ప్రయత్నించు",
+      "vi": "Thử lại",
+      "tr": "Yeniden dene",
+      "uk": "Повторити",
+      "jv": "Coba lagi",
+      "zh-Hans": "重试",
+      "zh-Hant": "重試",
+      "pa-PK": "دوبارہ کوشش کرو",
+      "hi-Latn": "Phir se koshish karein"
+    },
+    "models": {
+      "pt-BR": "anthropic/claude-3-haiku",
+      "ca": "anthropic/claude-3-haiku",
+      "ar": "anthropic/claude-3-haiku",
+      "bn": "anthropic/claude-3-haiku",
+      "zh-TW": "anthropic/claude-3-haiku",
+      "hr": "anthropic/claude-3-haiku",
+      "cs": "anthropic/claude-3-haiku",
+      "zh-CN": "anthropic/claude-3-haiku",
+      "en-US": "anthropic/claude-3-haiku",
+      "fr": "anthropic/claude-3-haiku",
+      "tl": "anthropic/claude-3-haiku",
+      "nl": "anthropic/claude-3-haiku",
+      "de": "anthropic/claude-3-haiku",
+      "hu": "anthropic/claude-3-haiku",
+      "hi": "anthropic/claude-3-haiku",
+      "el": "anthropic/claude-3-haiku",
+      "ms": "anthropic/claude-3-haiku",
+      "ko": "anthropic/claude-3-haiku",
+      "ja": "anthropic/claude-3-haiku",
+      "it": "anthropic/claude-3-haiku",
+      "pt": "anthropic/claude-3-haiku",
+      "pl": "anthropic/claude-3-haiku",
+      "pa": "anthropic/claude-3-haiku",
+      "fa": "anthropic/claude-3-haiku",
+      "es": "anthropic/claude-3-haiku",
+      "ru": "anthropic/claude-3-haiku",
+      "ro": "anthropic/claude-3-haiku",
+      "sk": "anthropic/claude-3-haiku",
+      "sv": "anthropic/claude-3-haiku",
+      "th": "anthropic/claude-3-haiku",
+      "sw": "anthropic/claude-3-haiku",
+      "te": "anthropic/claude-3-haiku",
+      "vi": "anthropic/claude-3-haiku",
+      "tr": "anthropic/claude-3-haiku",
+      "uk": "anthropic/claude-3-haiku",
+      "jv": "anthropic/claude-3-haiku",
+      "zh-Hans": "google/gemini-2.5-flash-lite",
+      "zh-Hant": "google/gemini-2.5-flash-lite",
+      "pa-PK": "google/gemini-2.5-flash",
+      "hi-Latn": "google/gemini-2.5-flash"
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/SettingsModelsTab.tsx",
+        "line": 466
+      }
+    ]
+  },
+  "852d9cd7": {
+    "source": "No models match your filters",
+    "translated": {
+      "ar": "لا توجد نماذج تطابق عوامل التصفية",
+      "nl": "Geen modellen komen overeen met je filters",
+      "cs": "Vašim filtrům neodpovídají žádné modely",
+      "fr": "Aucun modèle ne correspond à vos filtres",
+      "el": "Κανένα μοντέλο δεν ταιριάζει με τα φίλτρα σας",
+      "de": "Keine Modelle entsprechen Ihren Filtern",
+      "zh-Hans": "没有模型与您的筛选条件匹配",
+      "zh-Hant": "沒有模型符合您的篩選條件",
+      "pl": "Brak modeli pasujących do filtrów",
+      "fa": "هیچ مدلی با فیلترهای شما مطابقت ندارد",
+      "it": "Nessun modello corrisponde ai filtri",
+      "pt-BR": "Nenhum modelo corresponde aos seus filtros",
+      "hi": "कोई मॉडल आपके फ़िल्टर से मेल नहीं खाता",
+      "hu": "Egy modell sem felel meg a szűrőknek",
+      "ja": "フィルターに一致するモデルはありません",
+      "ko": "필터와 일치하는 모델이 없습니다",
+      "tr": "Filtrelerinizle eşleşen model yok",
+      "ru": "Нет моделей, соответствующих фильтрам",
+      "uk": "Немає моделей, що відповідають фільтрам",
+      "ro": "Niciun model nu corespunde filtrelor",
+      "th": "ไม่มีโมเดลที่ตรงกับตัวกรองของคุณ",
+      "sk": "Vašim filtrom nezodpovedajú žiadne modely",
+      "es": "Ningún modelo coincide con los filtros",
+      "sv": "Inga modeller matchar dina filter",
+      "vi": "Không có mô hình nào khớp với bộ lọc của bạn"
+    },
+    "models": {
+      "ar": "~anthropic/claude-sonnet-latest",
+      "nl": "~anthropic/claude-sonnet-latest",
+      "cs": "~anthropic/claude-sonnet-latest",
+      "fr": "~anthropic/claude-sonnet-latest",
+      "el": "~anthropic/claude-sonnet-latest",
+      "de": "~anthropic/claude-sonnet-latest",
+      "zh-Hans": "z-ai/glm-5.2",
+      "zh-Hant": "z-ai/glm-5.2",
+      "pl": "~anthropic/claude-sonnet-latest",
+      "fa": "~anthropic/claude-sonnet-latest",
+      "it": "~anthropic/claude-sonnet-latest",
+      "pt-BR": "~anthropic/claude-sonnet-latest",
+      "hi": "~anthropic/claude-sonnet-latest",
+      "hu": "~anthropic/claude-sonnet-latest",
+      "ja": "z-ai/glm-5.2",
+      "ko": "z-ai/glm-5.2",
+      "tr": "~anthropic/claude-sonnet-latest",
+      "ru": "~anthropic/claude-sonnet-latest",
+      "uk": "~anthropic/claude-sonnet-latest",
+      "ro": "~anthropic/claude-sonnet-latest",
+      "th": "~anthropic/claude-sonnet-latest",
+      "sk": "~anthropic/claude-sonnet-latest",
+      "es": "~anthropic/claude-sonnet-latest",
+      "sv": "~anthropic/claude-sonnet-latest",
+      "vi": "~anthropic/claude-sonnet-latest"
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/SettingsModelsTab.tsx",
+        "line": 546
+      }
+    ]
+  },
+  "f886af65": {
+    "source": "Loading benchmark scores…",
+    "translated": {
+      "fr": "Chargement des scores de référence…",
+      "cs": "Načítání výsledků benchmarku…",
+      "de": "Benchmark-Ergebnisse werden geladen …",
+      "nl": "Benchmarkscores laden…",
+      "el": "Φόρτωση βαθμολογιών δοκιμών απόδοσης…",
+      "ar": "جارٍ تحميل نتائج الاختبار المرجعي…",
+      "zh-Hant": "正在載入基準測試分數…",
+      "zh-Hans": "正在加载基准测试分数…",
+      "hi": "बेंचमार्क स्कोर लोड हो रहे हैं…",
+      "pt-BR": "Carregando pontuações de benchmark…",
+      "fa": "در حال بارگذاری امتیازهای محک…",
+      "hu": "Teljesítménymutatók betöltése…",
+      "ja": "ベンチマークスコアを読み込み中…",
+      "pl": "Wczytywanie wyników testów porównawczych…",
+      "ko": "벤치마크 점수 불러오는 중…",
+      "it": "Caricamento dei punteggi benchmark…",
+      "uk": "Завантаження результатів тестування…",
+      "ro": "Se încarcă scorurile de benchmark…",
+      "sk": "Načítavajú sa výsledky benchmarku…",
+      "tr": "Kıyaslama puanları yükleniyor…",
+      "ru": "Загрузка результатов тестирования…",
+      "th": "กำลังโหลดคะแนนเบนช์มาร์ก…",
+      "es": "Cargando puntuaciones de referencia…",
+      "sv": "Läser in benchmarkresultat…",
+      "vi": "Đang tải điểm chuẩn…"
+    },
+    "models": {
+      "fr": "~anthropic/claude-sonnet-latest",
+      "cs": "~anthropic/claude-sonnet-latest",
+      "de": "~anthropic/claude-sonnet-latest",
+      "nl": "~anthropic/claude-sonnet-latest",
+      "el": "~anthropic/claude-sonnet-latest",
+      "ar": "~anthropic/claude-sonnet-latest",
+      "zh-Hant": "z-ai/glm-5.2",
+      "zh-Hans": "z-ai/glm-5.2",
+      "hi": "~anthropic/claude-sonnet-latest",
+      "pt-BR": "~anthropic/claude-sonnet-latest",
+      "fa": "~anthropic/claude-sonnet-latest",
+      "hu": "~anthropic/claude-sonnet-latest",
+      "ja": "minimax/minimax-m2.7",
+      "pl": "~anthropic/claude-sonnet-latest",
+      "ko": "z-ai/glm-5.2",
+      "it": "~anthropic/claude-sonnet-latest",
+      "uk": "~anthropic/claude-sonnet-latest",
+      "ro": "~anthropic/claude-sonnet-latest",
+      "sk": "~anthropic/claude-sonnet-latest",
+      "tr": "~anthropic/claude-sonnet-latest",
+      "ru": "~anthropic/claude-sonnet-latest",
+      "th": "~anthropic/claude-sonnet-latest",
+      "es": "~anthropic/claude-sonnet-latest",
+      "sv": "~anthropic/claude-sonnet-latest",
+      "vi": "~anthropic/claude-sonnet-latest"
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/SettingsModelsTab.tsx",
+        "line": 559
+      }
+    ]
+  },
+  "a900d0d2": {
+    "source": "Benchmark scores could not be loaded.",
+    "translated": {
+      "fr": "Impossible de charger les scores de référence.",
+      "cs": "Výsledky benchmarku se nepodařilo načíst.",
+      "de": "Die Benchmark-Ergebnisse konnten nicht geladen werden.",
+      "nl": "Benchmarkscores kunnen niet worden geladen.",
+      "el": "Δεν ήταν δυνατή η φόρτωση των βαθμολογιών δοκιμών απόδοσης.",
+      "ar": "تعذر تحميل نتائج الاختبار المرجعي.",
+      "zh-Hant": "無法載入基準測試分數。",
+      "zh-Hans": "无法加载基准测试分数。",
+      "hi": "बेंचमार्क स्कोर लोड नहीं किए जा सके।",
+      "pt-BR": "Não foi possível carregar as pontuações de benchmark.",
+      "fa": "بارگذاری امتیازهای محک امکان‌پذیر نبود.",
+      "hu": "A teljesítménymutatókat nem sikerült betölteni.",
+      "ja": "ベンチマークスコアを読み込めませんでした。",
+      "pl": "Nie udało się wczytać wyników testów porównawczych.",
+      "ko": "벤치마크 점수를 불러올 수 없습니다.",
+      "it": "Impossibile caricare i punteggi benchmark.",
+      "uk": "Не вдалося завантажити результати тестування.",
+      "ro": "Scorurile de benchmark nu au putut fi încărcate.",
+      "sk": "Výsledky benchmarku sa nepodarilo načítať.",
+      "tr": "Kıyaslama puanları yüklenemedi.",
+      "ru": "Не удалось загрузить результаты тестирования.",
+      "th": "ไม่สามารถโหลดคะแนนเบนช์มาร์กได้",
+      "es": "No se pudieron cargar las puntuaciones de referencia.",
+      "sv": "Det gick inte att läsa in benchmarkresultaten.",
+      "vi": "Không thể tải điểm chuẩn."
+    },
+    "models": {
+      "fr": "~anthropic/claude-sonnet-latest",
+      "cs": "~anthropic/claude-sonnet-latest",
+      "de": "~anthropic/claude-sonnet-latest",
+      "nl": "~anthropic/claude-sonnet-latest",
+      "el": "~anthropic/claude-sonnet-latest",
+      "ar": "~anthropic/claude-sonnet-latest",
+      "zh-Hant": "z-ai/glm-5.2",
+      "zh-Hans": "z-ai/glm-5.2",
+      "hi": "~anthropic/claude-sonnet-latest",
+      "pt-BR": "~anthropic/claude-sonnet-latest",
+      "fa": "~anthropic/claude-sonnet-latest",
+      "hu": "~anthropic/claude-sonnet-latest",
+      "ja": "minimax/minimax-m2.7",
+      "pl": "~anthropic/claude-sonnet-latest",
+      "ko": "z-ai/glm-5.2",
+      "it": "~anthropic/claude-sonnet-latest",
+      "uk": "~anthropic/claude-sonnet-latest",
+      "ro": "~anthropic/claude-sonnet-latest",
+      "sk": "~anthropic/claude-sonnet-latest",
+      "tr": "~anthropic/claude-sonnet-latest",
+      "ru": "~anthropic/claude-sonnet-latest",
+      "th": "~anthropic/claude-sonnet-latest",
+      "es": "~anthropic/claude-sonnet-latest",
+      "sv": "~anthropic/claude-sonnet-latest",
+      "vi": "~anthropic/claude-sonnet-latest"
+    },
+    "locations": [
+      {
+        "file": "src/renderer/components/SettingsModelsTab.tsx",
+        "line": 562
       }
     ]
   },
@@ -35259,100 +34954,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 144
-      }
-    ]
-  },
-  "25ac429f": {
-    "source": "Models",
-    "translated": {
-      "pt-BR": "Modelos",
-      "ca": "Models",
-      "ar": "النماذج",
-      "bn": "মডেলগুলি",
-      "zh-TW": "模型",
-      "hr": "Modeli",
-      "zh-CN": "模型",
-      "cs": "Modely",
-      "en-US": "Models",
-      "fr": "Modèles",
-      "tl": "Mga Modelo",
-      "nl": "Modellen",
-      "de": "Modelle",
-      "hu": "Modellek",
-      "hi": "मॉडल",
-      "el": "Μοντέλα",
-      "ms": "Model",
-      "ko": "모델",
-      "ja": "モデル",
-      "it": "Modelli",
-      "pt": "Modelos",
-      "pl": "Modele",
-      "pa": "ਮਾਡਲ",
-      "fa": "مدل‌ها",
-      "es": "Modelos",
-      "ru": "Модели",
-      "ro": "Modele",
-      "sk": "Modely",
-      "sv": "Modeller",
-      "th": "โมเดล",
-      "sw": "Modeli",
-      "te": "మాడల్స్",
-      "vi": "Mô hình",
-      "tr": "Modeller",
-      "uk": "Моделі",
-      "jv": "Model",
-      "zh-Hans": "模型",
-      "zh-Hant": "模型",
-      "pa-PK": "ماڈل",
-      "hi-Latn": "Models"
-    },
-    "models": {
-      "pt-BR": "anthropic/claude-3-haiku",
-      "ca": "anthropic/claude-3-haiku",
-      "ar": "anthropic/claude-3-haiku",
-      "bn": "anthropic/claude-3-haiku",
-      "zh-TW": "anthropic/claude-3-haiku",
-      "hr": "anthropic/claude-3-haiku",
-      "zh-CN": "anthropic/claude-3-haiku",
-      "cs": "anthropic/claude-3-haiku",
-      "en-US": "anthropic/claude-3-haiku",
-      "fr": "anthropic/claude-3-haiku",
-      "tl": "anthropic/claude-3-haiku",
-      "nl": "anthropic/claude-3-haiku",
-      "de": "anthropic/claude-3-haiku",
-      "hu": "anthropic/claude-3-haiku",
-      "hi": "anthropic/claude-3-haiku",
-      "el": "anthropic/claude-3-haiku",
-      "ms": "anthropic/claude-3-haiku",
-      "ko": "anthropic/claude-3-haiku",
-      "ja": "anthropic/claude-3-haiku",
-      "it": "anthropic/claude-3-haiku",
-      "pt": "anthropic/claude-3-haiku",
-      "pl": "anthropic/claude-3-haiku",
-      "pa": "anthropic/claude-3-haiku",
-      "fa": "anthropic/claude-3-haiku",
-      "es": "anthropic/claude-3-haiku",
-      "ru": "anthropic/claude-3-haiku",
-      "ro": "anthropic/claude-3-haiku",
-      "sk": "anthropic/claude-3-haiku",
-      "sv": "anthropic/claude-3-haiku",
-      "th": "anthropic/claude-3-haiku",
-      "sw": "anthropic/claude-3-haiku",
-      "te": "anthropic/claude-3-haiku",
-      "vi": "anthropic/claude-3-haiku",
-      "tr": "anthropic/claude-3-haiku",
-      "uk": "anthropic/claude-3-haiku",
-      "jv": "anthropic/claude-3-haiku",
-      "zh-Hans": "google/gemini-2.5-flash-lite",
-      "zh-Hant": "google/gemini-2.5-flash-lite",
-      "pa-PK": "google/gemini-2.5-flash",
-      "hi-Latn": "google/gemini-2.5-flash"
-    },
-    "locations": [
-      {
-        "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 152
+        "line": 143
       }
     ]
   },
@@ -35445,7 +35047,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 157
+        "line": 152
       }
     ]
   },
@@ -35538,7 +35140,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 162
+        "line": 157
       },
       {
         "file": "src/renderer/components/workspace/TranslateWorkspace.tsx",
@@ -35639,7 +35241,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 164
+        "line": 159
       }
     ]
   },
@@ -35732,7 +35334,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 167
+        "line": 162
       }
     ]
   },
@@ -35825,7 +35427,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 347
+        "line": 331
       }
     ]
   },
@@ -35918,7 +35520,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 348
+        "line": 332
       }
     ]
   },
@@ -36011,7 +35613,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 349
+        "line": 333
       }
     ]
   },
@@ -36104,7 +35706,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 350
+        "line": 334
       }
     ]
   },
@@ -36197,7 +35799,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 351
+        "line": 335
       }
     ]
   },
@@ -36290,7 +35892,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 352
+        "line": 336
       }
     ]
   },
@@ -36383,7 +35985,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 353
+        "line": 337
       }
     ]
   },
@@ -36476,7 +36078,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 354
+        "line": 338
       }
     ]
   },
@@ -36539,7 +36141,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 355
+        "line": 339
       }
     ]
   },
@@ -36632,7 +36234,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 356
+        "line": 340
       }
     ]
   },
@@ -36719,7 +36321,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 357
+        "line": 341
       }
     ]
   },
@@ -36806,7 +36408,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 358
+        "line": 342
       }
     ]
   },
@@ -36893,100 +36495,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 359
-      }
-    ]
-  },
-  "a2d46748": {
-    "source": "All providers",
-    "translated": {
-      "pt-BR": "Todos os provedores",
-      "ca": "Tots els proveïdors",
-      "ar": "جميع المزودين",
-      "bn": "সকল প্রদানকারী",
-      "zh-TW": "所有提供者",
-      "hr": "Svi pružatelji",
-      "cs": "Všichni poskytovatelé",
-      "zh-CN": "所有提供商",
-      "en-US": "All providers",
-      "fr": "Tous les fournisseurs",
-      "tl": "Lahat ng mga provider",
-      "nl": "Alle providers",
-      "de": "Alle Anbieter",
-      "hu": "Minden szolgáltató",
-      "hi": "सभी प्रदाता",
-      "el": "Όλοι οι πάροχοι",
-      "ms": "Semua pembekal",
-      "ko": "모든 공급업체",
-      "ja": "すべてのプロバイダ",
-      "it": "Tutti i provider",
-      "pt": "Todos os provedores",
-      "pl": "Wszyscy dostawcy",
-      "pa": "ਸਾਰੇ ਪ੍ਰਦਾਤਾ",
-      "fa": "همه ارائه‌دهندگان",
-      "es": "Todos los proveedores",
-      "ru": "Все поставщики",
-      "ro": "Toți furnizorii",
-      "sk": "Všetci poskytovatelia",
-      "sv": "Alla leverantörer",
-      "th": "ผู้ให้บริการทั้งหมด",
-      "sw": "Watoa huduma wote",
-      "te": "అన్ని ప్రదాతలు",
-      "vi": "Tất cả nhà cung cấp",
-      "tr": "Tüm sağlayıcılar",
-      "uk": "Усі постачальники",
-      "jv": "Semua penyedia",
-      "zh-Hans": "所有提供商",
-      "zh-Hant": "所有供應商",
-      "pa-PK": "سارے پرووائیڈر",
-      "hi-Latn": "Sabhi pradata"
-    },
-    "models": {
-      "pt-BR": "anthropic/claude-3-haiku",
-      "ca": "anthropic/claude-3-haiku",
-      "ar": "anthropic/claude-3-haiku",
-      "bn": "anthropic/claude-3-haiku",
-      "zh-TW": "anthropic/claude-3-haiku",
-      "hr": "anthropic/claude-3-haiku",
-      "cs": "anthropic/claude-3-haiku",
-      "zh-CN": "anthropic/claude-3-haiku",
-      "en-US": "anthropic/claude-3-haiku",
-      "fr": "anthropic/claude-3-haiku",
-      "tl": "anthropic/claude-3-haiku",
-      "nl": "anthropic/claude-3-haiku",
-      "de": "anthropic/claude-3-haiku",
-      "hu": "anthropic/claude-3-haiku",
-      "hi": "anthropic/claude-3-haiku",
-      "el": "anthropic/claude-3-haiku",
-      "ms": "anthropic/claude-3-haiku",
-      "ko": "anthropic/claude-3-haiku",
-      "ja": "anthropic/claude-3-haiku",
-      "it": "anthropic/claude-3-haiku",
-      "pt": "anthropic/claude-3-haiku",
-      "pl": "anthropic/claude-3-haiku",
-      "pa": "anthropic/claude-3-haiku",
-      "fa": "anthropic/claude-3-haiku",
-      "es": "anthropic/claude-3-haiku",
-      "ru": "anthropic/claude-3-haiku",
-      "ro": "anthropic/claude-3-haiku",
-      "sk": "anthropic/claude-3-haiku",
-      "sv": "anthropic/claude-3-haiku",
-      "th": "anthropic/claude-3-haiku",
-      "sw": "anthropic/claude-3-haiku",
-      "te": "anthropic/claude-3-haiku",
-      "vi": "anthropic/claude-3-haiku",
-      "tr": "anthropic/claude-3-haiku",
-      "uk": "anthropic/claude-3-haiku",
-      "jv": "anthropic/claude-3-haiku",
-      "zh-Hans": "google/gemini-2.5-flash-lite",
-      "zh-Hant": "google/gemini-2.5-flash-lite",
-      "pa-PK": "google/gemini-2.5-flash",
-      "hi-Latn": "google/gemini-2.5-flash"
-    },
-    "locations": [
-      {
-        "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 362
+        "line": 343
       }
     ]
   },
@@ -37079,7 +36588,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 535
+        "line": 508
       },
       {
         "file": "src/renderer/components/Sidebar.tsx",
@@ -37176,11 +36685,11 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 556
+        "line": 529
       },
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 558
+        "line": 531
       }
     ]
   },
@@ -37273,7 +36782,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 593
+        "line": 566
       }
     ]
   },
@@ -37366,7 +36875,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 633
+        "line": 606
       }
     ]
   },
@@ -37459,7 +36968,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 732
+        "line": 708
       }
     ]
   },
@@ -37522,7 +37031,7 @@
     "locations": [
       {
         "file": "src/renderer/components/SettingsPanel.tsx",
-        "line": 733
+        "line": 709
       }
     ]
   },
@@ -51099,199 +50608,6 @@
       }
     ]
   },
-  "dd740d3f": {
-    "source": "ChrF",
-    "translated": {
-      "nl": "ChrF",
-      "de": "ChrF",
-      "ar": "ChrF",
-      "el": "ChrF",
-      "cs": "ChrF",
-      "zh-Hant": "ChrF",
-      "fr": "ChrF",
-      "zh-Hans": "ChrF",
-      "it": "ChrF",
-      "ja": "ChrF",
-      "hu": "ChrF",
-      "hi": "ChrF",
-      "pt-BR": "ChrF",
-      "fa": "ChrF",
-      "ko": "ChrF",
-      "pl": "ChrF",
-      "ru": "ChrF",
-      "ro": "ChrF",
-      "tr": "ChrF",
-      "sv": "ChrF",
-      "sk": "ChrF",
-      "th": "ChrF",
-      "uk": "ChrF",
-      "es": "ChrF",
-      "vi": "ChrF"
-    },
-    "models": {
-      "nl": "~anthropic/claude-sonnet-latest",
-      "de": "~anthropic/claude-sonnet-latest",
-      "ar": "~anthropic/claude-sonnet-latest",
-      "el": "~anthropic/claude-sonnet-latest",
-      "cs": "~anthropic/claude-sonnet-latest",
-      "zh-Hant": "z-ai/glm-5.2",
-      "fr": "~anthropic/claude-sonnet-latest",
-      "zh-Hans": "z-ai/glm-5.2",
-      "it": "~anthropic/claude-sonnet-latest",
-      "ja": "z-ai/glm-5.2",
-      "hu": "~anthropic/claude-sonnet-latest",
-      "hi": "~anthropic/claude-sonnet-latest",
-      "pt-BR": "~anthropic/claude-sonnet-latest",
-      "fa": "~anthropic/claude-sonnet-latest",
-      "ko": "z-ai/glm-5.2",
-      "pl": "~anthropic/claude-sonnet-latest",
-      "ru": "~anthropic/claude-sonnet-latest",
-      "ro": "~anthropic/claude-sonnet-latest",
-      "tr": "~anthropic/claude-sonnet-latest",
-      "sv": "~anthropic/claude-sonnet-latest",
-      "sk": "~anthropic/claude-sonnet-latest",
-      "th": "~anthropic/claude-sonnet-latest",
-      "uk": "~anthropic/claude-sonnet-latest",
-      "es": "~anthropic/claude-sonnet-latest",
-      "vi": "~anthropic/claude-sonnet-latest"
-    },
-    "locations": [
-      {
-        "file": "src/renderer/components/settings/ModelScoreStats.tsx",
-        "line": 95
-      },
-      {
-        "file": "src/renderer/components/settings/ModelScoreStats.tsx",
-        "line": 136
-      }
-    ]
-  },
-  "6fa3f3da": {
-    "source": "Arena",
-    "translated": {
-      "nl": "Arena",
-      "de": "Arena",
-      "ar": "Arena",
-      "el": "Arena",
-      "cs": "Arena",
-      "zh-Hant": "Arena",
-      "fr": "Arena",
-      "zh-Hans": "Arena",
-      "it": "Arena",
-      "ja": "Arena",
-      "hu": "Arena",
-      "hi": "Arena",
-      "pt-BR": "Arena",
-      "fa": "Arena",
-      "ko": "Arena",
-      "pl": "Arena",
-      "ru": "Arena",
-      "ro": "Arena",
-      "tr": "Arena",
-      "sv": "Arena",
-      "sk": "Arena",
-      "th": "Arena",
-      "uk": "Arena",
-      "es": "Arena",
-      "vi": "Arena"
-    },
-    "models": {
-      "nl": "~anthropic/claude-sonnet-latest",
-      "de": "~anthropic/claude-sonnet-latest",
-      "ar": "~anthropic/claude-sonnet-latest",
-      "el": "~anthropic/claude-sonnet-latest",
-      "cs": "~anthropic/claude-sonnet-latest",
-      "zh-Hant": "z-ai/glm-5.2",
-      "fr": "~anthropic/claude-sonnet-latest",
-      "zh-Hans": "z-ai/glm-5.2",
-      "it": "~anthropic/claude-sonnet-latest",
-      "ja": "z-ai/glm-5.2",
-      "hu": "~anthropic/claude-sonnet-latest",
-      "hi": "~anthropic/claude-sonnet-latest",
-      "pt-BR": "~anthropic/claude-sonnet-latest",
-      "fa": "~anthropic/claude-sonnet-latest",
-      "ko": "z-ai/glm-5.2",
-      "pl": "~anthropic/claude-sonnet-latest",
-      "ru": "~anthropic/claude-sonnet-latest",
-      "ro": "~anthropic/claude-sonnet-latest",
-      "tr": "~anthropic/claude-sonnet-latest",
-      "sv": "~anthropic/claude-sonnet-latest",
-      "sk": "~anthropic/claude-sonnet-latest",
-      "th": "~anthropic/claude-sonnet-latest",
-      "uk": "~anthropic/claude-sonnet-latest",
-      "es": "~anthropic/claude-sonnet-latest",
-      "vi": "~anthropic/claude-sonnet-latest"
-    },
-    "locations": [
-      {
-        "file": "src/renderer/components/settings/ModelScoreStats.tsx",
-        "line": 98
-      }
-    ]
-  },
-  "88fa71f0": {
-    "source": "Index",
-    "translated": {
-      "nl": "Index",
-      "de": "Index",
-      "ar": "المؤشر",
-      "el": "Δείκτης",
-      "cs": "Index",
-      "zh-Hant": "指數",
-      "fr": "Indice",
-      "zh-Hans": "指数",
-      "it": "Indice",
-      "ja": "インデックス",
-      "hu": "Index",
-      "hi": "सूचकांक",
-      "pt-BR": "Índice",
-      "fa": "شاخص",
-      "ko": "지수",
-      "pl": "Wskaźnik",
-      "ru": "Индекс",
-      "ro": "Indice",
-      "tr": "Endeks",
-      "sv": "Index",
-      "sk": "Index",
-      "th": "ดัชนี",
-      "uk": "Індекс",
-      "es": "Índice",
-      "vi": "Chỉ số"
-    },
-    "models": {
-      "nl": "~anthropic/claude-sonnet-latest",
-      "de": "~anthropic/claude-sonnet-latest",
-      "ar": "~anthropic/claude-sonnet-latest",
-      "el": "~anthropic/claude-sonnet-latest",
-      "cs": "~anthropic/claude-sonnet-latest",
-      "zh-Hant": "z-ai/glm-5.2",
-      "fr": "~anthropic/claude-sonnet-latest",
-      "zh-Hans": "z-ai/glm-5.2",
-      "it": "~anthropic/claude-sonnet-latest",
-      "ja": "z-ai/glm-5.2",
-      "hu": "~anthropic/claude-sonnet-latest",
-      "hi": "~anthropic/claude-sonnet-latest",
-      "pt-BR": "~anthropic/claude-sonnet-latest",
-      "fa": "~anthropic/claude-sonnet-latest",
-      "ko": "z-ai/glm-5.2",
-      "pl": "~anthropic/claude-sonnet-latest",
-      "ru": "~anthropic/claude-sonnet-latest",
-      "ro": "~anthropic/claude-sonnet-latest",
-      "tr": "~anthropic/claude-sonnet-latest",
-      "sv": "~anthropic/claude-sonnet-latest",
-      "sk": "~anthropic/claude-sonnet-latest",
-      "th": "~anthropic/claude-sonnet-latest",
-      "uk": "~anthropic/claude-sonnet-latest",
-      "es": "~anthropic/claude-sonnet-latest",
-      "vi": "~anthropic/claude-sonnet-latest"
-    },
-    "locations": [
-      {
-        "file": "src/renderer/components/settings/ModelScoreStats.tsx",
-        "line": 107
-      }
-    ]
-  },
   "b027480b": {
     "source": "Index blends languagebench ChrF, Arena Score, and price.",
     "translated": {
@@ -51351,74 +50667,7 @@
     "locations": [
       {
         "file": "src/renderer/components/settings/ModelScoreStats.tsx",
-        "line": 127
-      },
-      {
-        "file": "src/renderer/components/settings/ModelScoreStats.tsx",
-        "line": 134
-      }
-    ]
-  },
-  "83cc7ca8": {
-    "source": "Arena Score",
-    "translated": {
-      "zh-Hans": "竞技场得分",
-      "de": "Arena-Wertung",
-      "fr": "Score Arena",
-      "el": "Βαθμολογία Arena",
-      "cs": "Skóre arény",
-      "ar": "نتيجة الساحة",
-      "nl": "Arena-score",
-      "zh-Hant": "競技場分數",
-      "hu": "Aréna pontszám",
-      "it": "Punteggio Arena",
-      "pl": "Wynik Areny",
-      "fa": "امتیاز آرنا",
-      "pt-BR": "Pontuação da Arena",
-      "hi": "एरेना स्कोर",
-      "ko": "아레나 점수",
-      "ja": "アリーナスコア",
-      "ru": "Рейтинг Arena",
-      "tr": "Arena Puanı",
-      "sk": "Skóre arény",
-      "uk": "Рейтинг Arena",
-      "es": "Puntuación de Arena",
-      "ro": "Scor Arena",
-      "sv": "Arenapoäng",
-      "th": "คะแนน Arena",
-      "vi": "Điểm Arena"
-    },
-    "models": {
-      "zh-Hans": "z-ai/glm-5.2",
-      "de": "~anthropic/claude-sonnet-latest",
-      "fr": "~anthropic/claude-sonnet-latest",
-      "el": "~anthropic/claude-sonnet-latest",
-      "cs": "~anthropic/claude-sonnet-latest",
-      "ar": "~anthropic/claude-sonnet-latest",
-      "nl": "~anthropic/claude-sonnet-latest",
-      "zh-Hant": "z-ai/glm-5.2",
-      "hu": "~anthropic/claude-sonnet-latest",
-      "it": "~anthropic/claude-sonnet-latest",
-      "pl": "~anthropic/claude-sonnet-latest",
-      "fa": "~anthropic/claude-sonnet-latest",
-      "pt-BR": "~anthropic/claude-sonnet-latest",
-      "hi": "~anthropic/claude-sonnet-latest",
-      "ko": "z-ai/glm-5.2",
-      "ja": "z-ai/glm-5.2",
-      "ru": "~anthropic/claude-sonnet-latest",
-      "tr": "~anthropic/claude-sonnet-latest",
-      "sk": "~anthropic/claude-sonnet-latest",
-      "uk": "~anthropic/claude-sonnet-latest",
-      "es": "~anthropic/claude-sonnet-latest",
-      "ro": "~anthropic/claude-sonnet-latest",
-      "sv": "~anthropic/claude-sonnet-latest",
-      "th": "~anthropic/claude-sonnet-latest",
-      "vi": "~anthropic/claude-sonnet-latest"
-    },
-    "locations": [
-      {
-        "file": "src/renderer/components/settings/ModelScoreStats.tsx",
-        "line": 142
+        "line": 35
       }
     ]
   },
@@ -51481,7 +50730,7 @@
     "locations": [
       {
         "file": "src/renderer/components/settings/ModelScoreStats.tsx",
-        "line": 148
+        "line": 57
       }
     ]
   },
@@ -51544,7 +50793,7 @@
     "locations": [
       {
         "file": "src/renderer/components/settings/ModelScoreStats.tsx",
-        "line": 148
+        "line": 57
       }
     ]
   },

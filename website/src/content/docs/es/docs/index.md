@@ -46,4 +46,4 @@ Por defecto, la aplicación se ejecuta en modo **Fácil**: elija un **preajuste*
 - [Configuración](/docs/settings/)
 - [Problemas comunes](/docs/common-issues/)
 
-[Download releases](https://github.com/wsj-br/transrewrt/releases) · [GitHub repository](https://github.com/wsj-br/transrewrt)
+[Descargar versiones](https://github.com/wsj-br/transrewrt/releases) · [Repositorio de GitHub](https://github.com/wsj-br/transrewrt)

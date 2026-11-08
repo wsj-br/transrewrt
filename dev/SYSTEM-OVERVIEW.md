@@ -225,8 +225,8 @@ Translate and Rewrite share the same refinement UI and version-cap behaviour; on
 
 | Mode | Config `mode` | Toolbar | Settings |
 |------|---------------|---------|----------|
-| **Easy** (default) | `"easy"` or unset | **Preset** selector (**Free (OpenRouter)**, **Standard**, **Advanced**, **Technical**; provider-dependent) | **General** → **Provider** + presets catalog refresh; **Models** tab hidden |
-| **Advanced** | `"advanced"` | **Model** selector from `available_models` (may be empty) | **Models** tab for selected models list |
+| **Easy** (default) | `"easy"` or unset | **Preset** selector (**Free (OpenRouter)**, **Standard**, **Advanced**, **Technical**; provider-dependent) | **General** → **Provider** + presets catalog refresh; **Models** tab shows read-only preset cards (main and fallback per configured provider, with score and price columns) |
+| **Advanced** | `"advanced"` | **Model** selector from `available_models` (may be empty) | **Models** tab: one table of all models (checkboxes, sort, filters, **Select from presets**, **Deselect All**) |
 
 Built-in presets in [easy-mode-config/presets.json](../easy-mode-config/presets.json):
 
@@ -288,7 +288,7 @@ Not shipped in production builds. Maintainers edit the canonical catalog with **
 
 ## Settings UI
 
-Implemented in [SettingsPanel.tsx](../src/renderer/components/SettingsPanel.tsx) as horizontal tabs: **General** (behaviour, appearance, **AI experience** Easy/Advanced, **Provider** and presets catalog refresh in Easy mode, execution history), **Models** (only when `mode` is **Advanced**; selected list may be empty; free model optional), **Languages**, **Glossary**, **Cost tracking** (web: **admin-only**), **Transform prompts**, **Users** (web: admin), **API** (provider keys / tests; **admin-only** on web, per-provider layout on Electron), **About**. Tab visibility uses `canAccessApiTab`, `canAccessCostTab`, `canAccessUsersTab`, and experience mode (Models hidden in Easy). The **header** language selector ([HeaderLanguageSelector](../src/renderer/components/HeaderLanguageSelector.tsx)) and Help (**?**) control are outside the panel; language persists `ui_locale`. End-user behaviour is described in the [website Settings docs](https://wsj-br.github.io/transrewrt/docs/settings/).
+Implemented in [SettingsPanel.tsx](../src/renderer/components/SettingsPanel.tsx) as horizontal tabs: **General** (behaviour, appearance, **AI experience** Easy/Advanced, **Provider** and presets catalog refresh in Easy mode, execution history), **Models** (always listed; the tab's Easy/Advanced toggle sets `mode`; Easy shows read-only preset cards, Advanced a selectable model table that may have no selected models; free model optional), **Languages**, **Glossary**, **Cost tracking** (web: **admin-only**), **Transform prompts**, **Users** (web: admin), **API** (provider keys / tests; **admin-only** on web, per-provider layout on Electron), **About**. Tab visibility uses `canAccessApiTab`, `canAccessCostTab`, `canAccessUsersTab`, and experience mode (the Models tab is not hidden in Easy; it renders preset cards instead of the model table). The **header** language selector ([HeaderLanguageSelector](../src/renderer/components/HeaderLanguageSelector.tsx)) and Help (**?**) control are outside the panel; language persists `ui_locale`. End-user behaviour is described in the [website Settings docs](https://wsj-br.github.io/transrewrt/docs/settings/).
 
 ---
 

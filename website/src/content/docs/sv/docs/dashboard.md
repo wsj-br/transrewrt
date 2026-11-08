@@ -23,8 +23,8 @@ Filtret **Användare** är endast synligt för administratörer i webbversionen;
 
 ## Flikar
 
-- **Sammanfattning** – KPI:er: total kostnad, använda modeller, samtalsantal och kostnad per läge, genomsnittlig kostnad per samtal, genomsnittlig TPS, toppmodeller efter samtalsantal
-- **Per modell** – samtal, kostnad och TPS per modell; expandera en rad för en lägesuppdelning
+- **Sammanfattning** – KPI:er: totalkostnad, använda modeller, samtalsantal och kostnad per läge, genomsnittlig kostnad per samtal, genomsnittlig TPS, toppmodeller efter samtalsantal
+- **Efter modell** – samtal, kostnad och TPS per modell; utöka en rad för en lägesuppdelning
 - **Alla samtal** – fullständig samtalslogg (paginerad eller kort) med export
 
 ## Exportera data
@@ -33,7 +33,7 @@ Exportera tabeller som **JSON**, **CSV** eller **XLSX**.
 
 ## Ta bort lagrade poster för en modell
 
-I **Per modell** eller **Alla samtal**, använd papperskorgsikonen för att ta bort poster för en modell.
+I **Efter modell** eller **Alla samtal** använder du papperskorgsikonen för att ta bort poster för en modell.
 
 :::caution
 Borttagning kan inte ångras. För att ta bort efter ålder eller rensa all kostnadsdata, använd [Inställningar → Kostnadsspårning](/docs/settings/#cost-tracking).

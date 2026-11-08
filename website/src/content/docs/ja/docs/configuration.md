@@ -65,7 +65,7 @@ Electronはローカルの設定ファイルを使用します。Web/Dockerサ�
 
 ## プライバシーモード
 
-Web/Dockerサーバープロセスおよび/またはElectronメインプロセスで`HISTORY_DISABLED`を`true`または`1`に設定すると、`config.json`やユーザーごとの設定に関係なく、履歴を強制的にオフにします。これにより、入出力履歴の保存が無効になり、**Settings → General Settings → History**がロックされ、履歴関連のAPIがブロックされます。
+web/Dockerサーバープロセスおよび/またはElectronメインプロセスで`HISTORY_DISABLED`を`true`または`1`に設定すると、`config.json`やユーザーごとの設定に関わらず履歴を強制的にオフにできます。これにより、入出力履歴の保存が無効化され、**設定 → 一般設定 → 履歴**がロックされ、履歴関連のAPIがブロックされます。
 
 ## Web認証
 

@@ -13,12 +13,12 @@ Ana anlamı değiştirmeden ifadeyi iyileştirmek için **Yeniden Yaz**'ı kulla
 
 Modlar şunları içerir:
 
-- **Yazım ve Dil Bilgisini Kontrol Et**
-- **Netliği İyileştir**
-- **Alternatif sürümler** (tek çalıştırmada birkaç yeniden formülasyon)
-- **Resmileştir** / **Gayri Resmileştir**
+- **Yazım ve Dilbilgisi Denetimi**
+- **Netliği Geliştir**
+- **Alternatif sürümler** (tek çalıştırmada birkaç yeniden düzenleme)
+- **Resmi Yap** / **Resmi Olmayan Yap**
 - **Kısalt** / **Genişlet**
-- **Teknikleştir**
+- **Teknik Yap**
 
 ## Metni yeniden yaz
 

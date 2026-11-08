@@ -46,4 +46,4 @@ Varsayılan olarak uygulama **Kolay** modda çalışır: bir **ön ayar** ve Aya
 - [Ayarlar](/docs/settings/)
 - [Yaygın sorunlar](/docs/common-issues/)
 
-[Download releases](https://github.com/wsj-br/transrewrt/releases) · [GitHub repository](https://github.com/wsj-br/transrewrt)
+[Sürümleri indir](https://github.com/wsj-br/transrewrt/releases) · [GitHub deposu](https://github.com/wsj-br/transrewrt)

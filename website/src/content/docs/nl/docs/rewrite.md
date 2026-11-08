@@ -13,12 +13,12 @@ Gebruik **Herschrijven** om de formulering te verbeteren zonder de hoofdbetekeni
 
 Modi omvatten:
 
-- **Spelling en grammatica controleren**
-- **Duidelijkheid verbeteren**
+- **Controleer spelling en grammatica**
+- **Verbeter duidelijkheid**
 - **Alternatieve versies** (meerdere herformuleringen in één keer)
-- **Formeel maken** / **Informeel maken**
-- **Inkorten** / **Uitbreiden**
-- **Technisch maken**
+- **Maak formeel** / **Maak informeel**
+- **Verkort** / **Breid uit**
+- **Maak technisch**
 
 ## Tekst herschrijven
 

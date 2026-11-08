@@ -32,10 +32,10 @@ Les **langues principales** apparaissent en premier dans les listes — définis
 
 Dans [Paramètres → Paramètres généraux](/docs/settings/#general-settings) :
 
-- **Exécution automatique au collage** — s'exécute dès que vous collez
-- **Copie automatique du résultat dans le presse-papiers** — copie après une exécution réussie
-- **Traduction en temps réel pendant la saisie** — s'exécute pendant que vous tapez (peut augmenter les coûts)
-- **Délai d'attente (ms)** — attente avant une exécution en temps réel
+- **Exécuter automatiquement lors du collage** — s’exécute dès que vous collez
+- **Copier automatiquement le résultat dans le presse-papiers** — copie après une exécution réussie
+- **Traduction en temps réel pendant la saisie** — s’exécute pendant que vous tapez (peut augmenter le coût)
+- **Délai d’expiration (ms)** — attente avant une exécution en temps réel
 - **Comportement pour ENTRÉE** — si Entrée exécute la tâche ou insère une nouvelle ligne
 
 ## Disposition et clavier
@@ -62,7 +62,7 @@ Un **glossaire** est une paire de termes source/cible pour une paire de langues.
 4. Gérez tous les termes dans [Paramètres → Glossaire](/docs/settings/#glossary).
 
 :::note
-Les termes du glossaire sont mis en correspondance par paire de langues. Ils ne peuvent pas être utilisés avec la **Détection de la langue** comme source.
+Les termes du glossaire sont mis en correspondance par paire de langues. Ils ne peuvent pas être utilisés avec **Détecter la langue** comme source.
 :::
 
 ## Prochaines étapes

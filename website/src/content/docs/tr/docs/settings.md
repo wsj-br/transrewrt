@@ -11,8 +11,8 @@ Uygulamanın nasıl davrandığını özelleştirmek için kenar çubuğundan **
 
 | Sekme | Masaüstü | Web (yönetici) | Web (kullanıcı) | Notlar |
 | --- | :---: | :---: | :---: | --- |
-| Genel Ayarlar | ✓ | ✓ | ✓ | **Yapay zeka deneyimi** (Kolay / Gelişmiş) içerir |
-| Modeller | ✓ | ✓ | ✓ | Yalnızca **Yapay zeka deneyimi** **Gelişmiş** olduğunda |
+| Genel Ayarlar | ✓ | ✓ | ✓ | **AI deneyimi** (Kolay / Gelişmiş) içerir |
+| Modeller | ✓ | ✓ | ✓ | Kolay'da ön ayarlı kartlar, Gelişmiş'te model tablosu |
 | Diller | ✓ | ✓ | ✓ | |
 | Maliyet Takibi | ✓ | ✓ | — | |
 | Dönüştür | ✓ | ✓ | ✓ | İstemlerin toplu içe/dışa aktarımı |
@@ -21,7 +21,7 @@ Uygulamanın nasıl davrandığını özelleştirmek için kenar çubuğundan **
 | API Yapılandırması | ✓ | ✓ | — | |
 | Hakkında | ✓ | ✓ | ✓ | |
 
-**Kolay** modda, araç çubuğundaki ön ayarlar aracılığıyla yapay zekayı ve Genel Ayarlar'da **Sağlayıcı**'yı seçin; **Modeller** sekmesi gizlidir.
+**Kolay** modda, araç çubuğundaki ön ayarlardan ve Genel Ayarlar'daki **Sağlayıcı**'dan yapay zekayı seçin; **Modeller** sekmesi salt okunur ön ayarlı kartları gösterir.
 
 :::note
 Web sürümünde, her kullanıcının kendi yapılandırması (yapay zeka deneyimi, sağlayıcı, modeller/ön ayarlar, diller, seçenekler, istemler) vardır. Yapılan değişiklikler diğer kullanıcıları etkilemez.
@@ -31,20 +31,20 @@ Web sürümünde, her kullanıcının kendi yapılandırması (yapay zeka deneyi
 
 ![Ayarlar Genel Ayarlar sekmesi](/images/screenshots/tr/settings-general.png)
 
-**Yapay zeka deneyimi**
+**AI deneyimi**
 
-- **Kolay** (varsayılan): Bir **Sağlayıcı** seçin. Bulut sağlayıcıları araç çubuğu ön ayarlarını kullanır. **Yerel LLM**, bunun yerine yüklü yerel modelleri listeler. **Ön ayar kataloğunu yenile**, projenin deposundan en son ön ayar listesini getirir.
+- **Kolay** (varsayılan): bir **Sağlayıcı** seçin. Bulut sağlayıcıları araç çubuğu ön ayarlarını kullanır. **Yerel LLM** bunun yerine yüklü yerel modelleri listeler. **Ayarlar kataloğunu yenile** proje deposundan en son ön ayar listesini getirir.
   - **Ücretsiz (OpenRouter)** — mevcut ücretsiz modellere yönlendirilen sıfır maliyetli seçenek; kalite ve kullanılabilirlik değişebilir
   - **Standart** — hafif ve uygun maliyetli; kısa metinler, hızlı taslaklar ve yüksek hacimli kullanım için en iyisi
-  - **Gelişmiş** — karmaşık veya incelikli içerik için yüksek doğruluklu model, daha yüksek maliyetle
-  - **Teknik** — kod, API'ler, geliştirici Belgeler ve yapılandırılmış içerik için ayarlanmıştır; biçimlendirmeyi ve terminolojiyi korur
+  - **Gelişmiş** — daha yüksek maliyetle karmaşık veya incelikli içerik için yüksek doğruluklu model
+  - **Teknik** — kod, API'ler, geliştirici belgeleri ve yapılandırılmış içerik için ayarlanmıştır; biçimlendirmeyi ve terminolojiyi korur
 - **Gelişmiş**: araç çubuğundan modelleri seçin; listeyi [Modeller](#models) altında yönetin.
 
 Araç çubuğu ön ayar/model menüsünden de Kolay ↔ Gelişmiş arasında geçiş yapabilirsiniz (**Kolay/Gelişmiş moda geç**, Ayarları Aç'ın üstünde).
 
 **Görünüm** — Tema; **Eylemlerde maliyet bilgilerini göster**; **Maliyet kesir basamakları**; uygulama çevresindeki yalnızca web kenar boşluğu; **Yazı Tipi Ailesi** ve **Boyutu**.
 
-**Davranış** — **ENTER için davranış**; **Yapıştırmada otomatik yürütme**; **Sonucu panoya otomatik kopyala**; **Yazarken gerçek zamanlı çeviri**; **Zaman aşımı (ms)**.
+**Davranış** — **Davranış: ENTER**; **Yapıştırırken otomatik yürüt**; **Sonucu panoya otomatik kopyala**; **Yazarken gerçek zamanlı çeviri**; **Zaman aşımı (ms)**.
 
 **Geçmiş**
 
@@ -55,23 +55,39 @@ Araç çubuğu ön ayar/model menüsünden de Kolay ↔ Gelişmiş arasında ge�
 
 - İsteğe bağlı **Yedeklemeye kullanım verilerini dahil et**
 - **Yapılandırmayı yedekle** — yapılandırma, durum, kullanıcılar, tercihler, istemler ve isteğe bağlı kullanım verileri içeren ZIP
-- **Yedeklemeden geri yükle** — kullanım verilerini geri yükleme ve/veya temizleme seçenekleriyle onay iletişim kutusu
+- **Yedekten geri yükle** — kullanım verilerini geri yükleme ve/veya temizleme seçenekleriyle onay iletişim kutusu
 
 Yedeklemeler masaüstü ve web arasında taşınabilir; web'de bir masaüstü yedeklemesini geri yüklemek, verileri yönetici kullanıcısına uygular.
 
 ## Modeller
 
-Yalnızca **Gelişmiş** modda kullanılabilir.
+**Modeller** sekmesi her zaman listelenir. **Kolay / Gelişmiş** geçiş düğmesi, uygulamanın tamamını iki [yapay zeka deneyimi](#general-settings) arasında değiştirir.
 
-- **Mevcut Modeller** (sol) ve **Seçilen Modeller** (sağ)
-- Ara, **Sağlayıcı** çipleri, **Yalnızca Ücretsiz**, **Yenile**, Tümünü Genişlet/Daralt
+- **Kolay**, ön ayar başına bir salt okunur kart gösterir (örneğin **Ücretsiz (OpenRouter)** veya **Standart**). Her kart, yapılandırdığınız her sağlayıcı için ön ayarın ana ve yedek modelini listeler. **Sağlayıcı** çipleri kartları filtreler.
+- **Gelişmiş**, her modelin bir tablosunu gösterir, şunlarla birlikte:
+  - bir arama kutusu, **Sağlayıcı** çipleri, **Yalnızca Ücretsiz**, **Yalnızca seçilenler** ve **Yenile**
+  - bir sıralama menüsü; varsayılan **Endeks: Yüksekten Düşüğe**'dir
+  - her model için seçmek veya seçimini kaldırmak için bir onay kutusu
+  - **Ön ayarlardan seçin**, bu, yapılandırılan her sağlayıcı için bir ön ayarın ana ve yedek modellerini ekler (**Tümünü yükle** her sağlayıcıyı yükler)
+  - Önce onay isteyen **Tümünü Kaldır**
 - Model kimlikleri bir sağlayıcı öneki kullanır (`openrouter/…`, `openai/…`, `local/…`, …)
+
+Puan ve fiyat sütunları:
+
+- **Dizin** — ChrF, Arena Puanı ve fiyattan harmanlanmış bir kalite puanı. Her sağlayıcı içinde sıralanır, bu nedenle sağlayıcılar arasında karşılaştırılamaz. Dizini olmayan modeller en alta sıralanır.
+- **ChrF** — uygulamanın kullanıcı arayüzü dilleri için [languagebench](https://huggingface.co/spaces/fair-forward/languagebench)'ten ortalama çeviri kalitesi.
+- **Arena** — [LMArena](https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset) liderlik tablosundan Arena Puanı.
+- **Giriş** / **Çıkış** — sağlayıcı kataloğundan veya [models.dev](https://models.dev/)'den 1 milyon jeton başına USD cinsinden fiyat. Tahmini bir fiyat yıldız işaretiyle işaretlenir. Bir çizgi (—) fiyatın bilinmediği anlamına gelir; yerel modeller "maliyetsiz - yerel" gösterir.
+
+Veri kaynağını ve lisansını görmek için bir sütun başlığının üzerine gelin. Araç çubuğundaki model seçici, her modelin Dizinini küçük bir çip olarak gösterir; ChrF ve Arena değerleri için üzerine gelin.
+
+Puanlar yalnızca bir rehberdir: kapsam eksiktir ve birçok modelin ChrF veya Arena puanı yoktur.
 
 :::tip
 Çeviri, Yeniden Yazma veya Dönüştürme için OpenRouter **Body Builder** (`openrouter/bodybuilder`) kullanmayın; bitmiş metin değil, JSON istek yükleri döndürür.
 :::
 
-**Ekle** ile ekleyin; **X** ile kaldırın. OpenRouter ücretsiz modeli isteğe bağlıdır — seçilen modeller boş olabilir. Araç çubuğundan son modeli kaldırmak **Ayarlar → Modeller**'i açar. Mevcut model kullanılamaz hale gelirse, uygulama ücretsiz modeli zorlamak yerine listedeki bir sonraki modeli seçer.
+Bir modeli seçmek veya seçimini kaldırmak için işaretleyin veya işaretini kaldırın. OpenRouter ücretsiz modeli isteğe bağlıdır — seçili modeller boş olabilir. Araç çubuğundan son modeli kaldırmak **Ayarlar → Modeller**'i açar. Mevcut model kullanılamaz hale gelirse, uygulama ücretsiz modeli zorlamak yerine listedeki bir sonraki modeli seçer.
 
 ## Diller
 

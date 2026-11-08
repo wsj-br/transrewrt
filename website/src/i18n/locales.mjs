@@ -1,6 +1,6 @@
 /**
  * Locale list for Starlight / Astro.
- * Keep in sync with website/ai-i18n-tools.config.json → targetLocales
+ * Keep in sync with the root ai-i18n-tools.config.json → targetLocales
  * and website/src/i18n/ui-languages.json (via `pnpm run i18n:locales`).
  *
  * Starlight route/folder keys are lowercase (`pt-br`, `zh-hans`) because the

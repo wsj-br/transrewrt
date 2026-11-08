@@ -22,14 +22,14 @@ Utilizați **Transform** atunci când doriți ca AI-ul să urmeze instrucțiuni 
 
 [Comutatorul de aspect și scurtăturile de la tastatură](/docs/translate/#layout-and-keyboard) funcționează la fel ca în Traducere.
 
-## Încărcați prompturi eșantion
+## Încarcă exemple de prompt-uri
 
-Dacă lista este goală, faceți clic pe **Încărcați prompturi eșantion** în spațiul de lucru Transform (disponibil și sub [Setări → Transform](/docs/settings/#transform)). Eșantioanele sunt în engleză; după încărcare, editați un prompt și utilizați **Traduceți promptul** dacă este necesar.
+Dacă lista este goală, faceți clic pe **Încarcă exemple de prompt-uri** în spațiul de lucru Transformare (disponibil și sub [Setări → Transformare](/docs/settings/#transform)). Exemplele sunt în engleză; după încărcare, editați un prompt și utilizați **Traduce promptul** dacă este necesar.
 
 ## Creați un prompt
 
 1. Faceți clic pe **Prompt nou**.
-2. Faceți clic pe **Generați prompt**.
+2. Faceți clic pe **Generează prompt**.
 3. Descrieți ce doriți să facă promptul.
 4. Alegeți o presetare (Ușor) sau un model (Avansat).
 5. Examinați schița și faceți clic pe **Salvați**.
@@ -42,15 +42,15 @@ Editorul este în stânga; o zonă de testare este în dreapta.
 
 Câmpuri principale:
 
-- **Nume prompt** — afișat în lista de prompturi
+- **Nume prompt** — afișat în lista de prompt-uri
 - **Instrucțiuni prompt (opțional)** — scurt indiciu la rularea promptului
 - **Rol model** — rolul general pentru AI
-- **Instrucțiuni model (una pe linie)** — reguli de urmat
-- **Descriere ieșire** — etichetă scurtă pentru rezultat (ex: rezumat)
-- **Temperatură (0.0 → 1.0)** — mai mică înseamnă mai stabilă; mai mare înseamnă mai variată
+- **Instrucțiuni model (câte una pe linie)** — reguli de urmat
+- **Descrierea ieșirii** — etichetă scurtă pentru rezultat (de exemplu, rezumat)
+- **Temperatură (0,0 → 1,0)** — mai mică înseamnă mai stabilă; mai mare înseamnă mai variată
 - **Solicitați limba țintă** — adaugă un selector de limbă la rulare
 
-Ajutoare: **Generați prompt**, **Îmbunătățiți prompt**, **Traduceți prompt** (Ușor utilizează presetări; Avansat utilizează lista de modele).
+Asistenți: **Generează prompt**, **Îmbunătățește promptul**, **Traduce promptul** (Ușor utilizează presetări; Avansat utilizează lista de modele).
 
 :::caution
 Faceți clic pe **Salvați** înainte de **Înapoi la Rulare**. Revenirea fără salvare anulează modificările.

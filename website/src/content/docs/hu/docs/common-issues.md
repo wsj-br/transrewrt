@@ -20,7 +20,7 @@ Ellenőrizze, hogy:
 
 **Egyszerű** módban ellenőrizze, hogy a **Szolgáltató** be van-e állítva, és a kulcsok/URL-ek tesztelve vannak-e. **Helyi LLM** esetén győződjön meg arról, hogy a helyi szerver fut, és a modellek be vannak töltve.
 
-**Haladó** módban a kiválasztott modellek üresek lehetnek. Nyissa meg a **Beállítások → Modellek** menüt, kattintson a **Frissítés** gombra, és adja hozzá a modelleket a **Kiválasztott modellek**hez. Opcionálisan kapcsolja be a **Csak ingyenes** opciót. Az utolsó eszköztári modell eltávolítása szintén megnyitja a Beállítások → Modellek menüt.
+**Haladó** módban a kiválasztott modellek üresek lehetnek. Nyissa meg a **Beállítások → Modellek** menüpontot, kattintson a **Frissítés** gombra, és jelölje be a kívánt modelleket (vagy használja a **Válasszon előbeállítások közül** lehetőséget). Opcionálisan kapcsolja be a **Csak ingyenes** opciót. Az utolsó eszköztármodell eltávolítása szintén megnyitja a Beállítások → Modellek oldalt.
 
 ## Túl lassú vagy túl drága
 
@@ -29,9 +29,9 @@ Ellenőrizze, hogy:
 - Kapcsolja ki a **Valós idejű fordítás gépelés közben** opciót az Általános beállításokban
 - Használjon ingyenes modelleket egyszerű feladatokhoz
 
-## Rossz felületnyelv
+## Hibás felület nyelve
 
-Kattintson a földgömb ikonra az eszköztáron, és válassza ki a **Felület nyelvét**.
+Kattintson az eszköztárban található földgömb ikonra, és válassza ki a **Felület nyelve** beállítást.
 
 ## Túl kicsi vagy nehezen olvasható szöveg
 
@@ -52,7 +52,7 @@ Az OpenRouter és az xAI a tényleges költést mutatja, ha az API visszaadja az
 
 ## A teljes költség nem egyezik a szolgáltatói számlámmal
 
-Az alkalmazásban szereplő adatok **becsült értékek, tájékoztató jellegűek**, nem számlák. Az OpenRouter esetében használja a **Beállítások → Költségkövetés → Szinkronizálás API kulcs használatával** lehetőséget.
+Az alkalmazásban látható számok **tájékoztató jellegű becslések**, nem számlák. Az OpenRouter esetében használja a **Beállítások → Költségkövetés → Szinkronizálás az API-kulcs használatával** lehetőséget.
 
 ## Hiányzik az előzmények oldal az oldalsávból
 
@@ -60,7 +60,7 @@ Lehet, hogy a **Végrehajtási előzmények megőrzése** ki van kapcsolva. Enge
 
 ## Web: váratlanul átirányított a bejelentkezésre
 
-Lehet, hogy a munkamenet lejárt. Jelentkezzen be újra. Ha ez gyakran előfordul, kérjen meg egy adminisztrátort, hogy növelje a **Munkamenet időtúllépése** értékét a [Beállítások → Felhasználók](/docs/settings/#users) alatt (egy adminisztrátor visszavonhatta a munkameneteit is).
+Lehet, hogy a munkamenet időkorlátja lejárt. Jelentkezzen be újra. Ha ez gyakran előfordul, kérje meg a rendszergazdát, hogy növelje a **Munkamenet időkorlát** értékét a [Beállítások → Felhasználók](/docs/settings/#users) menüpont alatt (a rendszergazda visszavonhatta a munkameneteket is).
 
 ## Web admin: elfelejtett jelszó
 
@@ -72,7 +72,7 @@ docker exec transrewrt reset-web-password '<username>' '<new-password>'
 
 Az alapértelmezett adminisztrátori felhasználónév `admin`. Forráskód ellenőrzésből: `pnpm run reset-web-password -- <username> <new-password>`.
 
-## A műszerfal nem mutat adatokat más felhasználók számára (web)
+## Az irányítópulton más felhasználók számára nincs adat (web)
 
 Csak az **adminisztrátorok** tekinthetik meg más felhasználókat a **Felhasználó** szűrőn keresztül. A normál felhasználók csak a saját tevékenységüket látják.
 
@@ -89,4 +89,4 @@ Amikor egy Transform promptot szerkeszt, kattintson a **Mentés** gombra, mielő
 - Exportálja a promptokat rendszeresen, ha promptkönyvtárat épít
 - Használja a [Műszerfal](/docs/dashboard/) és az [Előzmények](/docs/history/) funkciót a használat és a korábbi futtatások áttekintéséhez
 
-[Report an issue](https://github.com/wsj-br/transrewrt/issues)
+[Probléma bejelentése](https://github.com/wsj-br/transrewrt/issues)

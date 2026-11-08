@@ -12,7 +12,7 @@ Apri le **Impostazioni** dalla barra laterale per personalizzare il comportament
 | Tab | Desktop | Web (admin) | Web (user) | Note |
 | --- | :---: | :---: | :---: | --- |
 | Impostazioni generali | ✓ | ✓ | ✓ | Include **esperienza AI** (Facile / Avanzata) |
-| Modelli | ✓ | ✓ | ✓ | Solo quando l'**esperienza AI** è **Avanzata** |
+| Modelli | ✓ | ✓ | ✓ | Schede preimpostate in Facile, tabella dei modelli in Avanzate |
 | Lingue | ✓ | ✓ | ✓ | |
 | Monitoraggio costi | ✓ | ✓ | — | |
 | Trasforma | ✓ | ✓ | ✓ | Importazione/esportazione in blocco di prompt |
@@ -21,7 +21,7 @@ Apri le **Impostazioni** dalla barra laterale per personalizzare il comportament
 | Configurazione API | ✓ | ✓ | — | |
 | Informazioni | ✓ | ✓ | ✓ | |
 
-In modalità **Facile**, scegli l'IA tramite i preset nella barra degli strumenti e il **Provider** nelle Impostazioni generali; la scheda **Modelli** è nascosta.
+In modalità **Facile**, scegli l'IA tramite i preset nella barra degli strumenti e il **Fornitore** in Impostazioni generali; la scheda **Modelli** mostra schede preset di sola lettura.
 
 :::note
 Nella versione web, ogni utente ha la propria configurazione (esperienza AI, provider, modelli/preset, lingue, opzioni, prompt). Le modifiche non influiscono sugli altri utenti.
@@ -44,46 +44,62 @@ Puoi anche passare da Facile ↔ Avanzato dal menu preset/modello della barra de
 
 **Aspetto** — Tema; **Mostra informazioni sui costi nelle azioni**; **Cifre decimali del costo**; margine solo web intorno all'app; **Famiglia di caratteri** e **Dimensione**.
 
-**Comportamento** — **Comportamento per INVIO**; **Esecuzione automatica all'incolla**; **Copia automatica del risultato negli appunti**; **Traduzione in tempo reale durante la digitazione**; **Timeout (ms)**.
+**Comportamento** — **Comportamento per INVIO**; **Esegui automaticamente al copia-incolla**; **Copia automaticamente il risultato negli appunti**; **Traduzione in tempo reale durante la digitazione**; **Timeout (ms)**.
 
 **Cronologia**
 
-- **Mantieni cronologia esecuzioni** — memorizza input/output per la vista [Cronologia](/docs/history/). Disattivando, viene richiesta una conferma e il testo memorizzato può essere rimosso. Se etichettato *disabilitato dall'amministratore*, `HISTORY_DISABLED` è impostato — vedi [Configurazione](/docs/configuration/#privacy-mode).
-- **Elimina dati cronologia** — rimuove il testo memorizzato per età o cancella tutto. **Non** elimina i totali dei costi (usa Monitoraggio costi per questo).
+- **Mantieni la cronologia di esecuzione** — memorizza input/output per la vista [Cronologia](/docs/history/). Disattivando questa opzione viene richiesta una conferma e si può rimuovere il testo memorizzato. Se etichettato come *disabilitato dall'amministratore*, `HISTORY_DISABLED` è impostato — vedi [Configurazione](/docs/configuration/#privacy-mode).
+- **Elimina i dati della cronologia** — rimuove il testo memorizzato per età o cancella tutto. **Non** elimina i totali dei costi (usa Tracciamento dei costi per questo).
 
-**Backup configurazione** (amministratori desktop e web)
+**Backup della configurazione** (amministratori desktop e web)
 
-- Opzionale **Includi dati di utilizzo nel backup**
-- **Backup configurazione** — ZIP con configurazione, stato, utenti, preferenze, prompt e dati di utilizzo opzionali
-- **Ripristina da backup** — finestra di dialogo di conferma con opzioni per ripristinare e/o cancellare i dati di utilizzo
+- Opzionale **Includi i dati di utilizzo nel backup**
+- **Esegui backup della configurazione** — ZIP con configurazione, stato, utenti, preferenze, prompt e dati di utilizzo opzionali
+- **Ripristina dal backup** — finestra di dialogo di conferma con opzioni per ripristinare e/o cancellare i dati di utilizzo
 
 I backup possono essere spostati tra desktop e web; il ripristino di un backup desktop sul web applica i dati all'utente amministratore.
 
 ## Modelli
 
-Disponibile solo in modalità **Avanzata**.
+La scheda **Modelli** è sempre elencata. Il suo interruttore **Facile / Avanzate** cambia l'intera app tra le due [esperienze IA](#general-settings).
 
-- **Modelli disponibili** (sinistra) e **Modelli selezionati** (destra)
-- Ricerca, chip **Provider**, **Solo gratuiti**, **Aggiorna**, Espandi/Comprimi tutto
-- Gli ID dei modelli utilizzano un prefisso del provider (`openrouter/…`, `openai/…`, `local/…`, …)
+- **Facile** mostra una scheda di sola lettura per ogni preset (ad esempio **Gratuito (OpenRouter)** o **Standard**). Ogni scheda elenca il modello principale e di fallback del preset per ogni provider configurato. I chip **Provider** filtrano le schede.
+- **Avanzato** mostra una tabella di ogni modello, con:
+  - una casella di ricerca, chip **Provider**, **Solo gratuiti**, **Solo selezionati** e **Aggiorna**
+  - un menu di ordinamento; l'impostazione predefinita è **Indice dal più alto al più basso**
+  - una casella di controllo per ogni modello per selezionarlo o deselezionarlo
+  - **Seleziona da preset**, che aggiunge i modelli principali e di fallback di un preset per ogni provider configurato (**Carica tutto** carica ogni provider)
+  - **Deseleziona tutto**, che chiede prima una conferma
+- Gli ID del modello utilizzano un prefisso del provider (`openrouter/…`, `openai/…`, `local/…`, …)
+
+Le colonne punteggio e prezzo:
+
+- **Indice** — un punteggio di qualità combinato da ChrF, Arena Score e prezzo. È classificato all'interno di ogni fornitore, quindi non è comparabile tra i fornitori. I modelli senza Indice vengono ordinati in fondo.
+- **ChrF** — qualità media della traduzione da [languagebench](https://huggingface.co/spaces/fair-forward/languagebench) per le lingue dell'interfaccia utente dell'app.
+- **Arena** — Arena Score dalla classifica [LMArena](https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset).
+- **Input** / **Output** — prezzo in USD per 1M di token, dal catalogo del fornitore o da [models.dev](https://models.dev/). Un prezzo stimato è contrassegnato da un asterisco. Un trattino (—) significa che il prezzo è sconosciuto; i modelli locali mostrano "nessun costo - locale".
+
+Passa il mouse su un'intestazione di colonna per visualizzare la sua fonte di dati e licenza. Il selettore del modello nella barra degli strumenti mostra l'Indice di ogni modello come un piccolo chip; passaci sopra il mouse per i valori ChrF e Arena.
+
+I punteggi sono solo una guida: la copertura è incompleta e molti modelli non hanno un punteggio ChrF o Arena.
 
 :::tip
 Non usare OpenRouter **Body Builder** (`openrouter/bodybuilder`) per Traduci, Riscrivi o Trasforma: restituisce payload di richieste JSON, non testo finito.
 :::
 
-Aggiungi con **Aggiungi**; rimuovi con **X**. Il modello gratuito di OpenRouter è opzionale — i modelli selezionati possono essere vuoti. La rimozione dell'ultimo modello dalla barra degli strumenti apre **Impostazioni → Modelli**. Se il modello corrente diventa non disponibile, l'app seleziona il modello successivo nell'elenco invece di forzare il modello gratuito.
+Seleziona o deseleziona un modello. Il modello gratuito OpenRouter è opzionale — i modelli selezionati possono essere vuoti. La rimozione dell'ultimo modello dalla barra degli strumenti apre **Impostazioni → Modelli**. Se il modello corrente diventa non disponibile, l'app seleziona il modello successivo nell'elenco invece di forzare il modello gratuito.
 
 ## Lingue
 
 - **Lingue principali** — bloccate vicino all'inizio degli elenchi di lingue in Traduci e Trasforma
 - **Lingua personalizzata** — aggiungi una lingua mancante dall'elenco predefinito
 
-## Monitoraggio costi
+## Tracciamento dei costi
 
 - **Costo totale**, **Copia valore**, **Reimposta costo**
 - **Sincronizza con l'utilizzo della chiave API** — allinea con l'utilizzo dell'account OpenRouter (solo OpenRouter)
-- **Utilizzo chiave API** — dettagli OpenRouter quando disponibili
-- **Elimina dati costi** — tutti i dati o le voci più vecchie di una data
+- **Utilizzo della chiave API** — dettagli OpenRouter quando disponibili
+- **Elimina dati sui costi** — tutti i dati o le voci più vecchie di una data
 
 OpenRouter e xAI mostrano il costo effettivo fatturato quando l'API lo restituisce; altri fornitori utilizzano stime basate sui prezzi di [models.dev](https://models.dev/). Le stime non sono fatture.
 

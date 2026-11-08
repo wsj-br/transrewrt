@@ -46,4 +46,4 @@ Som standard körs appen i **Enkelt** läge: välj en **förinställning** och e
 - [Inställningar](/docs/settings/)
 - [Vanliga problem](/docs/common-issues/)
 
-[Download releases](https://github.com/wsj-br/transrewrt/releases) · [GitHub repository](https://github.com/wsj-br/transrewrt)
+[Ladda ned versioner](https://github.com/wsj-br/transrewrt/releases) · [GitHub-förråd](https://github.com/wsj-br/transrewrt)

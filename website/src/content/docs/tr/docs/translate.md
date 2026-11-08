@@ -32,9 +32,9 @@ Listelerde ilk olarak **En çok kullanılan diller** görünür — bunları [Ay
 
 [Ayarlar → Genel Ayarlar](/docs/settings/#general-settings) bölümünde:
 
-- **Yapıştırmada otomatik yürütme** — yapıştırdığınız anda çalışır
+- **Yapıştırırken otomatik yürüt** — yapıştırdığınız anda çalışır
 - **Sonucu panoya otomatik kopyala** — başarılı bir çalıştırmadan sonra kopyalar
-- **Yazarken gerçek zamanlı çeviri** — yazarken çalışır (maliyeti artırabilir)
+- **Yazarken gerçek zamanlı çeviri** — siz yazarken çalışır (maliyeti artırabilir)
 - **Zaman aşımı (ms)** — gerçek zamanlı çalıştırmadan önce bekleme süresi
 - **ENTER davranışı** — Enter tuşunun görevi mi çalıştıracağı yoksa yeni bir satır mı ekleyeceği
 

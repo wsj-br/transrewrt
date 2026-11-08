@@ -20,7 +20,7 @@ Kiểm tra rằng:
 
 Ở chế độ **Dễ**, xác nhận **Nhà cung cấp** đã được đặt và các khóa/URL đã được kiểm tra. Đối với **LLM cục bộ**, đảm bảo máy chủ cục bộ của bạn đang chạy và các mô hình đã được tải.
 
-Ở chế độ **Nâng cao**, các mô hình đã chọn có thể trống. Mở **Cài đặt → Mô hình**, nhấp vào **Làm mới** và thêm các mô hình vào **Mô hình đã chọn**. Tùy chọn bật **Chỉ miễn phí**. Xóa mô hình thanh công cụ cuối cùng cũng mở Cài đặt → Mô hình.
+Ở chế độ **Nâng cao**, các mô hình đã chọn có thể trống. Mở **Cài đặt → Mô hình**, nhấp vào **Làm mới** và đánh dấu các mô hình bạn muốn (hoặc sử dụng **Chọn từ cài đặt sẵn**). Tùy chọn bật **Chỉ miễn phí**. Xóa mô hình cuối cùng trên thanh công cụ cũng sẽ mở Cài đặt → Mô hình.
 
 ## Quá chậm hoặc quá đắt
 
@@ -52,7 +52,7 @@ OpenRouter và xAI hiển thị chi phí thực tế khi API trả về. Đối 
 
 ## Tổng chi phí không khớp với hóa đơn của nhà cung cấp
 
-Các số liệu trong ứng dụng là **ước tính để tham khảo**, không phải hóa đơn. Đối với OpenRouter, hãy sử dụng **Cài đặt → Theo dõi chi phí → Đồng bộ hóa với mức sử dụng khóa API**.
+Các số liệu trong ứng dụng là **ước tính để tham khảo**, không phải hóa đơn. Đối với OpenRouter, hãy sử dụng **Cài đặt → Theo dõi Chi phí → Đồng bộ với sử dụng API key**.
 
 ## Trang Lịch sử bị thiếu trên thanh bên
 
@@ -72,7 +72,7 @@ docker exec transrewrt reset-web-password '<username>' '<new-password>'
 
 Tên người dùng quản trị viên mặc định là `admin`. Từ một bản sao nguồn: `pnpm run reset-web-password -- <username> <new-password>`.
 
-## Bảng điều khiển không hiển thị dữ liệu cho người dùng khác (web)
+## Bảng điều khiển hiển thị không có dữ liệu cho người dùng khác (web)
 
 Chỉ **quản trị viên** mới có thể xem người dùng khác thông qua bộ lọc **Người dùng**. Người dùng thông thường chỉ thấy hoạt động của riêng họ.
 
@@ -89,4 +89,4 @@ Khi chỉnh sửa lời nhắc Chuyển đổi, hãy nhấp vào **Lưu** trư�
 - Xuất lời nhắc thường xuyên nếu bạn đang xây dựng một thư viện lời nhắc
 - Sử dụng [Bảng điều khiển](/docs/dashboard/) và [Lịch sử](/docs/history/) để xem lại mức sử dụng và các lần chạy trước đây
 
-[Report an issue](https://github.com/wsj-br/transrewrt/issues)
+[Báo cáo sự cố](https://github.com/wsj-br/transrewrt/issues)

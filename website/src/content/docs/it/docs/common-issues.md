@@ -20,7 +20,7 @@ Verifica che:
 
 In modalità **Facile**, conferma che il **Provider** sia impostato e che chiavi/URL siano stati testati. Per **LLM locale**, assicurati che il tuo server locale sia in esecuzione e che i modelli siano caricati.
 
-In modalità **Avanzata**, i modelli selezionati potrebbero essere vuoti. Apri **Impostazioni → Modelli**, fai clic su **Aggiorna** e aggiungi i modelli a **Modelli selezionati**. Facoltativamente, attiva **Solo gratuiti**. La rimozione dell'ultimo modello dalla barra degli strumenti apre anche Impostazioni → Modelli.
+In modalità **Avanzato**, i modelli selezionati potrebbero essere vuoti. Apri **Impostazioni → Modelli**, fai clic su **Aggiorna** e seleziona i modelli desiderati (o usa **Seleziona da preset**). Facoltativamente, attiva **Solo gratuiti**. La rimozione dell'ultimo modello dalla barra degli strumenti apre anche Impostazioni → Modelli.
 
 ## Troppo lento o troppo costoso
 
@@ -52,11 +52,11 @@ OpenRouter e xAI mostrano la spesa effettiva quando l'API la restituisce. Per gl
 
 ## Il costo totale non corrisponde alla fattura del mio provider
 
-I dati nell'app sono **stime di riferimento**, non fatture. Per OpenRouter, usa **Impostazioni → Monitoraggio costi → Sincronizza con l'utilizzo della chiave API**.
+Le cifre nell'app sono **stime di riferimento**, non fatture. Per OpenRouter, usa **Impostazioni → Tracciamento dei costi → Sincronizza con l'utilizzo della chiave API**.
 
 ## Pagina Cronologia mancante dalla barra laterale
 
-**Mantieni cronologia esecuzioni** potrebbe essere disattivato. Abilitalo in Impostazioni generali a meno che la cronologia non sia disabilitata dall'amministratore (`HISTORY_DISABLED` — vedi [Configurazione](/docs/configuration/#privacy-mode)).
+**Mantieni la cronologia di esecuzione** potrebbe essere disattivato. Abilitalo in Impostazioni generali a meno che la cronologia non sia disabilitata dall'amministratore (`HISTORY_DISABLED` — vedi [Configurazione](/docs/configuration/#privacy-mode)).
 
 ## Web: reindirizzato al login inaspettatamente
 
@@ -72,7 +72,7 @@ docker exec transrewrt reset-web-password '<username>' '<new-password>'
 
 Il nome utente predefinito dell'amministratore è `admin`. Da un checkout di origine: `pnpm run reset-web-password -- <username> <new-password>`.
 
-## La Dashboard non mostra dati per altri utenti (web)
+## La Dashboard mostra "Nessun dato" per gli altri utenti (web)
 
 Solo gli **amministratori** possono visualizzare altri utenti tramite il filtro **Utente**. Gli utenti normali vedono solo la propria attività.
 
@@ -89,4 +89,4 @@ Quando modifichi un prompt di Trasformazione, fai clic su **Salva** prima di **T
 - Esporta regolarmente i prompt se stai creando una libreria di prompt
 - Usa [Dashboard](/docs/dashboard/) e [Cronologia](/docs/history/) per rivedere l'utilizzo e le esecuzioni passate
 
-[Report an issue](https://github.com/wsj-br/transrewrt/issues)
+[Segnala un problema](https://github.com/wsj-br/transrewrt/issues)

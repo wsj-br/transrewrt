@@ -23,9 +23,9 @@ Het filter **Gebruiker** is alleen zichtbaar voor beheerders in de webversie; he
 
 ## Tabs
 
-- **Overzicht** — KPI's: totale kosten, gebruikte modellen, aantal oproepen en kosten per modus, gemiddelde kosten per oproep, gemiddelde TPS, topmodellen op aantal oproepen
-- **Per model** — oproepen, kosten en TPS per model; vouw een rij uit voor een modusoverzicht
-- **Alle oproepen** — volledig oproeplogboek (gepaginiseerd of kaarten) met export
+- **Samenvatting** — KPI's: totale kosten, gebruikte modellen, oproepaantallen en kosten per modus, gemiddelde kosten per oproep, gemiddelde TPS, topmodellen op oproepaantal
+- **Per model** — oproepen, kosten en TPS per model; vouw een rij uit voor een uitsplitsing per modus
+- **Alle gesprekken** — volledig oproeplogboek (gepaginiseerd of kaarten) met export
 
 ## Gegevens exporteren
 
@@ -33,7 +33,7 @@ Exporteer tabellen als **JSON**, **CSV** of **XLSX**.
 
 ## Opgeslagen records voor een model verwijderen
 
-Gebruik in **Per model** of **Alle oproepen** het prullenbakpictogram om records voor een model te verwijderen.
+Gebruik in **Per model** of **Alle gesprekken** het prullenbakpictogram om records voor een model te verwijderen.
 
 :::caution
 Verwijdering kan niet ongedaan worden gemaakt. Om te verwijderen op leeftijd of alle kostengegevens te wissen, gebruikt u [Instellingen → Kosten bijhouden](/docs/settings/#cost-tracking).

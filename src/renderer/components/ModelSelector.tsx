@@ -6,6 +6,9 @@ import ConfirmModal from "./ConfirmModal";
 import ProviderIcon from "./ProviderIcon";
 import { modelHeaderDisplayId, providerSortKeyFromModelId } from "../utils/misc/modelIdUtils";
 import { modelRouteBadgeProps } from "../utils/misc/modelRouteBadge";
+import { formatDecimal } from "../utils/misc/formatUtils";
+import { useAppContext } from "../contexts/AppContext";
+import { SOURCE_LOCALE } from "../i18n";
 import { flipUiArrowsForRtl, getTextDirection } from "ai-i18n-tools/runtime";
 import {
   DropdownMenu,
@@ -15,6 +18,63 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { cn } from "@/lib/utils";
+
+type ModelScore = {
+  index?: number;
+  chrf?: number | null;
+  arena?: number | null;
+  maxChrf?: number | null;
+  maxArena?: number | null;
+};
+
+function formatScoreValue(value: number, locale: string, digits: number) {
+  return formatDecimal(value, locale, {
+    minimumFractionDigits: digits,
+    maximumFractionDigits: digits,
+  });
+}
+
+function ModelIndexChip({ modelId }: { modelId: string }) {
+  const { t, i18n } = useTranslation();
+  const { modelScores } = useAppContext();
+  const score = (modelScores as Record<string, ModelScore> | undefined)?.[modelId];
+  const index = score?.index;
+  if (index == null || !Number.isFinite(Number(index))) return null;
+
+  const locale = i18n.language || SOURCE_LOCALE;
+  const label = formatScoreValue(Number(index), locale, 1);
+  const lines = [t("Index")];
+  if (score?.chrf != null && Number.isFinite(Number(score.chrf))) {
+    const value = formatScoreValue(Number(score.chrf), locale, 3);
+    const max =
+      score.maxChrf != null && Number.isFinite(Number(score.maxChrf))
+        ? ` / ${formatScoreValue(Number(score.maxChrf), locale, 3)}`
+        : "";
+    lines.push(`${t("ChrF")} ${value}${max}`);
+  }
+  if (score?.arena != null && Number.isFinite(Number(score.arena))) {
+    const value = formatScoreValue(Number(score.arena), locale, 0);
+    const max =
+      score.maxArena != null && Number.isFinite(Number(score.maxArena))
+        ? ` / ${formatScoreValue(Number(score.maxArena), locale, 0)}`
+        : "";
+    lines.push(`${t("Arena Score")} ${value}${max}`);
+  }
+
+  return (
+    <span
+      className="shrink-0 rounded border border-border px-1.5 py-0.5 text-[10px] font-medium tabular-nums leading-none text-muted-foreground"
+      title={lines.join("\n")}
+      data-testid="model-index-chip"
+    >
+      {label}
+    </span>
+  );
+}
+
+ModelIndexChip.propTypes = {
+  modelId: PropTypes.string.isRequired,
+};
 
 function ModelPickerRow({ modelId, t, iconSize = 16, showIcon = true }) {
   const displayId = modelHeaderDisplayId(modelId);
@@ -33,7 +93,8 @@ function ModelPickerRow({ modelId, t, iconSize = 16, showIcon = true }) {
       <span className="min-w-0 truncate text-sm font-medium leading-snug">
         {displayId}
       </span>
-      <span className="flex justify-end items-center">
+      <span className="flex items-center justify-end gap-1">
+        <ModelIndexChip modelId={modelId} />
         <span className={cn(
           "text-xs px-1.5 py-0.5 rounded border font-medium shrink-0",
           route.color === "success" ? "border-green-500/50 text-green-500" :
@@ -117,6 +178,7 @@ const ModelSelector = ({
             <span className="min-w-0 flex-1 truncate font-mono text-xs text-muted-foreground">
               {displayModel ? modelHeaderDisplayId(displayModel) : ""}
             </span>
+            {displayModel ? <ModelIndexChip modelId={displayModel} /> : null}
             <ChevronDown className="h-3 w-3 shrink-0 text-muted-foreground/50" aria-hidden />
           </button>
         </DropdownMenuTrigger>

@@ -19,9 +19,9 @@ Použite funkciu **Preložiť** na preklad textu z jedného jazyka do druhého.
 ## Preložiť text
 
 1. Otvorte **Preložiť** na bočnom paneli.
-2. Vyberte jazyk v poli **Z** (alebo **Rozpoznať jazyk**).
-3. Vyberte jazyk v poli **Do**.
-4. Vyberte predvoľbu alebo model v paneli nástrojov.
+2. Vyberte jazyk v časti **Z** (alebo **Zistiť jazyk**).
+3. Vyberte jazyk v časti **Do**.
+4. Vyberte predvoľbu alebo model na paneli nástrojov.
 5. Zadajte alebo prilepte text do poľa **Vstup**.
 6. Kliknite na **Preložiť**.
 7. Prečítajte si výsledok v poli **Výstup** a v prípade potreby ho skopírujte.
@@ -32,10 +32,10 @@ Použite funkciu **Preložiť** na preklad textu z jedného jazyka do druhého.
 
 V časti [Nastavenia → Všeobecné nastavenia](/docs/settings/#general-settings):
 
-- **Automatické spustenie po prilepení** — spustí sa hneď po prilepení
-- **Automatické kopírovanie výsledku do schránky** — skopíruje sa po úspešnom spustení
-- **Preklad v reálnom čase počas písania** — spustí sa počas písania (môže zvýšiť náklady)
-- **Časový limit (ms)** — počkajte pred spustením v reálnom čase
+- **Automaticky spustiť pri vložení** – spustí sa hneď po vložení
+- **Automaticky skopírovať výsledok do schránky** – skopíruje po úspešnom spustení
+- **Preklad v reálnom čase počas písania** – spustí sa počas písania (môže zvýšiť náklady)
+- **Časový limit (ms)** – počká pred spustením v reálnom čase
 - **Správanie pre ENTER** — či kláves Enter spustí úlohu alebo vloží nový riadok
 
 ## Rozloženie a klávesnica
@@ -56,13 +56,13 @@ Po úspešnom spustení sa vedľa selektora **Do:** zobrazí **Preformulovať…
 
 **Glosár** sú páry zdrojových/cieľových výrazov pre jazykový pár. Keď je povolený, zodpovedajúce výrazy sa odošlú do modelu, aby sa zachovala konzistentnosť preferovanej formulácie.
 
-1. Zapnite **Glosár** na vstupnom paneli.
+1. Zapnite **Slovník** na vstupnom paneli.
 2. Prekladajte ako zvyčajne – termíny pre daný pár **Z** / **Do** sa použijú automaticky.
-3. Kliknite na **Pridať do glosára** (vedľa **Z:**), aby ste rýchlo zachytili nový pár.
-4. Spravujte všetky termíny v [Nastavenia → Glosár](/docs/settings/#glossary).
+3. Kliknite na **Pridať do slovníka** (vedľa **Z:**), aby ste rýchlo zachytili nový pár.
+4. Spravujte všetky termíny v [Nastavenia → Slovník](/docs/settings/#glossary).
 
 :::note
-Termíny glosára sa zhodujú podľa jazykového páru. Nemôžu byť použité s **Rozpoznať jazyk** ako zdroj.
+Termíny v slovníku sa zhodujú podľa jazykového páru. Nemožno ich použiť s **Zistiť jazyk** ako zdrojom.
 :::
 
 ## Ďalšie kroky

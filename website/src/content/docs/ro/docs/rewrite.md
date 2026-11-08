@@ -22,10 +22,10 @@ Modurile includ:
 
 ## Rescrie textul
 
-1. Deschide **Rescrie**.
+1. Deschide **Reescriere**.
 2. Alege un **Mod**.
-3. Opțional, setează **De la** la limba textului tău (sau lasă **Detectează limba**).
-4. Tastează sau lipește textul în **Intrare**.
+3. Opțional, setează **De la** la limba textului tău (sau lasă **Detectare limbă**).
+4. Tastează sau lipește text în **Intrare**.
 5. Apasă **Rescrie**.
 6. Citește rezultatul în **Ieșire**.
 
@@ -36,15 +36,15 @@ După o rescriere, un comutator **Afișează modificările** (**Modificări**) a
 :::
 
 :::note
-**Versiunile alternative** returnează mai multe reformulări într-o **singură** rulare, separate prin `----`. Aceasta diferă de **Reformulează…**, care construiește un istoric al versiunilor în timp.
+**Versiuni alternative** returnează mai multe reformulări într-o **singură** rulare, separate prin `----`. Aceasta diferă de **Reformulează…**, care construiește un istoric al versiunilor în timp.
 :::
 
 ## Rafinează o rescriere
 
 După o rulare reușită, **Reformulează…** și meniul derulant pentru versiuni apar în partea de ieșire (aceeași idee ca la [Traducere](/docs/translate/#refine-a-translation), dar textul rămâne în aceeași limbă și păstrează **Modul** curent):
 
-1. **Reformulează…** (fără selecție) — o altă rescriere completă cu o formulare diferită. Până la cinci versiuni. Apasă **Oprește rescrierea** pentru a anula.
-2. **Alternative de cuvinte** — selectează textul, apoi fă clic dreapta sau **Reformulează…**.
+1. **Reformulează…** (fără selecție) — o altă reescriere completă cu o formulare diferită. Până la cinci versiuni. Apasă **Oprește reescrierea** pentru a anula.
+2. **Alternative cuvinte** — selectează text, apoi dă clic dreapta sau **Reformulează…**.
 3. Fiecare solicitare poate adăuga costuri de utilizare.
 
 ## Pașii următori

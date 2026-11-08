@@ -1,5 +1,5 @@
 ---
-title: API kulcs
+title: API-kulcs
 description: >-
   Csatlakoztassa a Transrewrt-t egy tetszőleges AI-szolgáltatóhoz egy API-kulcs
   hozzáadásával, vagy használjon helyi modellt.
@@ -23,9 +23,9 @@ Bármely támogatott szolgáltató működik. Ha nem biztos benne, melyiket vál
 
 A pontos lépések szolgáltatónként kissé eltérnek, de a minta mindenhol ugyanaz:
 
-1. Regisztráljon vagy jelentkezzen be a szolgáltató weboldalán. A Transrewrt **Beállítások → API konfiguráció** menüjében minden szolgáltatóhoz tartozik egy **Szolgáltató weboldalának megnyitása** link, amely a megfelelő helyre viszi.
-2. Keresse meg az **API-kulcsok** oldalt (néha a fiók, irányítópult vagy fejlesztői beállítások alatt), és hozzon létre egy új kulcsot. Néhány szolgáltató megkérdezi, hogy nevezze el a kulcsot, vagy állítson be költési korlátot – mindkettő opcionális.
-3. Másolja ki a kulcsot. Ez egy hosszú betű- és számsorozat, gyakran valami olyasmivel kezdődik, mint `sk-`.
+1. Regisztráljon vagy jelentkezzen be a szolgáltató weboldalán. A Transrewrt **Beállítások → API konfiguráció** menüpontjában minden szolgáltatóhoz tartozik egy **Szolgáltató weboldal megnyitása** hivatkozás, amely a megfelelő helyre viszi.
+2. Keresse meg az **API-kulcsok** oldalt (néha a fiók, irányítópult vagy fejlesztői beállítások alatt található), és hozzon létre egy új kulcsot. Egyes szolgáltatók megkérhetik, hogy nevezze el a kulcsot, vagy állítson be költési korlátot – mindkettő opcionális.
+3. Másolja ki a kulcsot. Ez egy hosszú betű- és számsorozat, amely gyakran valami olyasmivel kezdődik, mint `sk-`.
 
 :::note
 Az API-kulcsot jelszóként kell kezelni: ne ossza meg, ne tegye közzé, és ne küldje el senkinek. Ha egy kulcs kiszivárog, törölje a szolgáltató webhelyén, és hozzon létre egy újat.
@@ -33,9 +33,9 @@ Az API-kulcsot jelszóként kell kezelni: ne ossza meg, ne tegye közzé, és ne
 
 ## 3. lépés – A kulcs hozzáadása és tesztelése (asztali)
 
-1. A Transrewrt-ben nyissa meg a **Beállítások → API konfiguráció** menüpontot.
-2. Illessze be a kulcsot a szolgáltatójának megfelelő mezőbe (például **Google Gemini API kulcs**), és mentse el.
-3. Kattintson a mező melletti **Teszt** gombra a kulcs működésének ellenőrzéséhez.
+1. A Transrewrtben nyissa meg a **Beállítások → API konfiguráció** menüpontot.
+2. Illessze be a kulcsot a szolgáltatójához tartozó mezőbe (például **Google Gemini API-kulcs**), és mentse el.
+3. Kattintson a mező melletti **Teszt** gombra a kulcs működésének megerősítéséhez.
 
 Amint a teszt sikeres, készen áll – válassza ki azt a szolgáltatót a főképernyőn, és kezdje el a fordítást.
 
@@ -55,10 +55,10 @@ Ha böngészőben használja a Transrewrt-t, a kulcsokat az kezeli, aki a szerve
 
 ## Első futtatás ellenőrzőlista
 
-1. Nyissa meg az alkalmazást, és szükség esetén állítsa be az **Interfész nyelvét**.
-2. Adjon hozzá és teszteljen legalább egy szolgáltatói kulcsot – vagy konfiguráljon egy helyi modellt (asztali), vagy ellenőrizze, hogy a szerveren vannak-e környezeti kulcsok (web).
-3. **Egyszerű** módban válasszon egy **Szolgáltatót** az Általános beállításokban; **Haladó** módban adjon hozzá modelleket a **Beállítások → Modellek** alatt – lásd a [Beállítások](/docs/settings/#general-settings) részt a két módhoz.
-4. A **Fordítás** oldalon válasszon egy előbeállítást vagy modellt, és futtasson egy rövid tesztet – lásd: [Szöveg fordítása](/docs/translate/).
+1. Nyissa meg az alkalmazást, és szükség esetén állítsa be a **Felület nyelve** opciót.
+2. Adjon hozzá és teszteljen legalább egy szolgáltatói kulcsot – vagy konfiguráljon egy helyi modellt (asztali), vagy ellenőrizze, hogy a szerver rendelkezik-e környezeti kulcsokkal (web).
+3. **Egyszerű** módban válasszon egy **Szolgáltatót** az Általános beállításokban; **Haladó** módban adjon hozzá modelleket a **Beállítások → Modellek** menüpont alatt – lásd a [Beállítások](/docs/settings/#general-settings) részt a két módhoz.
+4. A **Fordítás** oldalon válasszon egy előbeállítást vagy modellt, és futtasson egy rövid tesztet – lásd a [Szöveg fordítása](/docs/translate/) részt.
 
 ## Ha valami nem működik
 

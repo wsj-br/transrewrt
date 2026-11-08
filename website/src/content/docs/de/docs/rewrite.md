@@ -15,10 +15,10 @@ Modi umfassen:
 
 - **Rechtschreibung & Grammatik prüfen**
 - **Klarheit verbessern**
-- **Alternative Versionen** (mehrere Umformulierungen in einem Durchgang)
-- **Formalisieren** / **Informalisieren**
+- **Alternative Versionen** (mehrere Umformulierungen in einem Durchlauf)
+- **Förmlich machen** / **Informell machen**
 - **Kürzen** / **Erweitern**
-- **Technisch formulieren**
+- **Technisch machen**
 
 ## Text umschreiben
 

@@ -23,9 +23,9 @@ Filtr **Uživatel** je viditelný pouze pro administrátory ve webové verzi; ne
 
 ## Karty
 
-- **Souhrn** – KPI: celkové náklady, použité modely, počet volání a náklady na režim, průměrné náklady na volání, průměrné TPS, nejlepší modely podle počtu volání
-- **Podle modelu** – volání, náklady a TPS na model; rozbalte řádek pro rozpis režimu
-- **Všechna volání** – úplný protokol volání (stránkovaný nebo karty) s exportem
+- **Souhrn** – KPI: celkové náklady, použité modely, počet hovorů a náklady podle režimu, průměrné náklady na hovor, průměrné TPS, nejlepší modely podle počtu hovorů
+- **Podle modelu** – hovory, náklady a TPS podle modelu; rozbalením řádku zobrazíte rozpis podle režimu
+- **Všechny hovory** – úplný protokol hovorů (stránkovaný nebo karty) s exportem
 
 ## Export dat
 
@@ -33,7 +33,7 @@ Exportujte tabulky jako **JSON**, **CSV** nebo **XLSX**.
 
 ## Odstranění uložených záznamů pro model
 
-V části **Podle modelu** nebo **Všechna volání** použijte ikonu koše k odstranění záznamů pro model.
+V části **Podle modelu** nebo **Všechny hovory** použijte ikonu koše k odebrání záznamů pro model.
 
 :::caution
 Odstranění nelze vrátit zpět. Chcete-li odstranit podle stáří nebo vymazat všechna data o nákladech, použijte [Nastavení → Sledování nákladů](/docs/settings/#cost-tracking).

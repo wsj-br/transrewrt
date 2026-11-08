@@ -20,7 +20,7 @@ description: Transrewrt 的故障排除与快速提示。
 
 在 **简单**模式下，确认已设置 **提供商** 并且密钥/URL 已通过测试。对于 **本地 LLM**，请确保本地服务器正在运行且模型已加载。
 
-在 **高级**模式下，所选模型可能为空。打开 **设置 → 模型**，点击 **刷新**，然后将模型添加到 **已选模型** 中。可选择开启 **仅免费**。移除工具栏中的最后一个模型也会打开“设置 → 模型”。
+在**高级**模式下，所选模型可能为空。打开**设置 → 模型**，点击**刷新**，勾选你想要的模型（或使用**从预设中选择**）。可选择开启**仅免费**。移除工具栏上的最后一个模型也会打开设置 → 模型。
 
 ## 速度太慢或费用太高
 
@@ -52,11 +52,11 @@ description: Transrewrt 的故障排除与快速提示。
 
 ## 总费用与我的提供商账单不一致
 
-应用中的数据为**仅供参考的估算**，并非发票。对于 OpenRouter，请使用**设置 → 费用跟踪 → 与 API 密钥用量同步**。
+应用中的数据为**参考估算值**，而非发票。对于 OpenRouter，请使用**设置 → 成本跟踪 → 与 API 密钥使用情况同步**。
 
 ## 侧边栏缺少历史记录页面
 
-**保留执行历史**可能已关闭。请在通用设置中启用它，除非管理员已禁用历史记录（`HISTORY_DISABLED` — 参见[配置](/docs/configuration/#privacy-mode)）。
+**保留执行历史记录**可能已关闭。请在常规设置中启用它，除非历史记录已被管理员禁用（`HISTORY_DISABLED` — 参见[配置](/docs/configuration/#privacy-mode)）。
 
 ## Web：意外重定向到登录页
 
@@ -72,7 +72,7 @@ docker exec transrewrt reset-web-password '<username>' '<new-password>'
 
 默认管理员用户名为`admin`。从源码检出：`pnpm run reset-web-password -- <username> <new-password>`。
 
-## 仪表板未显示其他用户的数据（Web）
+## 仪表板对其他用户显示无数据 (web)
 
 只有**管理员**可以通过**用户**筛选器查看其他用户。普通用户只能看到自己的活动。
 
@@ -89,4 +89,4 @@ docker exec transrewrt reset-web-password '<username>' '<new-password>'
 - 如果您正在构建提示词库，请定期导出提示词
 - 使用[仪表板](/docs/dashboard/)和[历史记录](/docs/history/)查看用量和过往运行
 
-[Report an issue](https://github.com/wsj-br/transrewrt/issues)
+[报告问题](https://github.com/wsj-br/transrewrt/issues)

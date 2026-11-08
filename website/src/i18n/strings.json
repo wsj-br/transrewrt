@@ -57,7 +57,7 @@
     },
     "locations": [
       {
-        "file": "src/components/marketing/GetStarted.tsx",
+        "file": "website/src/components/marketing/GetStarted.tsx",
         "line": 106
       }
     ]
@@ -120,11 +120,11 @@
     },
     "locations": [
       {
-        "file": "src/components/marketing/LanguagePicker.tsx",
+        "file": "website/src/components/marketing/LanguagePicker.tsx",
         "line": 46
       },
       {
-        "file": "src/components/marketing/LanguagePicker.tsx",
+        "file": "website/src/components/marketing/LanguagePicker.tsx",
         "line": 60
       }
     ]
@@ -187,15 +187,15 @@
     },
     "locations": [
       {
-        "file": "src/components/marketing/Footer.tsx",
+        "file": "website/src/components/marketing/Footer.tsx",
         "line": 16
       },
       {
-        "file": "src/components/marketing/Nav.tsx",
+        "file": "website/src/components/marketing/Nav.tsx",
         "line": 42
       },
       {
-        "file": "src/components/marketing/OpenSource.tsx",
+        "file": "website/src/components/marketing/OpenSource.tsx",
         "line": 18
       }
     ]
@@ -258,7 +258,7 @@
     },
     "locations": [
       {
-        "file": "src/components/marketing/Footer.tsx",
+        "file": "website/src/components/marketing/Footer.tsx",
         "line": 23
       }
     ]
@@ -321,7 +321,7 @@
     },
     "locations": [
       {
-        "file": "src/components/marketing/Footer.tsx",
+        "file": "website/src/components/marketing/Footer.tsx",
         "line": 32
       }
     ]
@@ -384,7 +384,7 @@
     },
     "locations": [
       {
-        "file": "src/components/marketing/Footer.tsx",
+        "file": "website/src/components/marketing/Footer.tsx",
         "line": 42
       }
     ]
@@ -447,11 +447,11 @@
     },
     "locations": [
       {
-        "file": "src/components/marketing/Footer.tsx",
+        "file": "website/src/components/marketing/Footer.tsx",
         "line": 47
       },
       {
-        "file": "src/components/marketing/Nav.tsx",
+        "file": "website/src/components/marketing/Nav.tsx",
         "line": 15
       }
     ]
@@ -514,19 +514,19 @@
     },
     "locations": [
       {
-        "file": "src/components/marketing/Footer.tsx",
+        "file": "website/src/components/marketing/Footer.tsx",
         "line": 52
       },
       {
-        "file": "src/components/marketing/GetStarted.tsx",
+        "file": "website/src/components/marketing/GetStarted.tsx",
         "line": 103
       },
       {
-        "file": "src/components/marketing/Hero.tsx",
+        "file": "website/src/components/marketing/Hero.tsx",
         "line": 68
       },
       {
-        "file": "src/components/marketing/Nav.tsx",
+        "file": "website/src/components/marketing/Nav.tsx",
         "line": 18
       }
     ]
@@ -589,11 +589,11 @@
     },
     "locations": [
       {
-        "file": "src/components/marketing/Footer.tsx",
+        "file": "website/src/components/marketing/Footer.tsx",
         "line": 57
       },
       {
-        "file": "src/components/marketing/Nav.tsx",
+        "file": "website/src/components/marketing/Nav.tsx",
         "line": 19
       }
     ]
@@ -656,7 +656,7 @@
     },
     "locations": [
       {
-        "file": "src/components/marketing/Footer.tsx",
+        "file": "website/src/components/marketing/Footer.tsx",
         "line": 65
       }
     ]
@@ -719,11 +719,11 @@
     },
     "locations": [
       {
-        "file": "src/components/marketing/Footer.tsx",
+        "file": "website/src/components/marketing/Footer.tsx",
         "line": 75
       },
       {
-        "file": "src/components/marketing/Hero.tsx",
+        "file": "website/src/components/marketing/Hero.tsx",
         "line": 84
       }
     ]
@@ -786,27 +786,27 @@
     },
     "locations": [
       {
-        "file": "src/components/marketing/Footer.tsx",
+        "file": "website/src/components/marketing/Footer.tsx",
         "line": 83
       },
       {
-        "file": "src/components/marketing/Hero.tsx",
+        "file": "website/src/components/marketing/Hero.tsx",
         "line": 75
       },
       {
-        "file": "src/components/marketing/Nav.tsx",
+        "file": "website/src/components/marketing/Nav.tsx",
         "line": 20
       },
       {
-        "file": "src/components/marketing/Nav.tsx",
+        "file": "website/src/components/marketing/Nav.tsx",
         "line": 116
       },
       {
-        "file": "src/components/marketing/OpenSource.tsx",
+        "file": "website/src/components/marketing/OpenSource.tsx",
         "line": 48
       },
       {
-        "file": "src/components/marketing/OpenSource.tsx",
+        "file": "website/src/components/marketing/OpenSource.tsx",
         "line": 66
       }
     ]
@@ -869,11 +869,11 @@
     },
     "locations": [
       {
-        "file": "src/components/marketing/Footer.tsx",
+        "file": "website/src/components/marketing/Footer.tsx",
         "line": 93
       },
       {
-        "file": "src/components/marketing/OpenSource.tsx",
+        "file": "website/src/components/marketing/OpenSource.tsx",
         "line": 74
       }
     ]
@@ -936,7 +936,7 @@
     },
     "locations": [
       {
-        "file": "src/components/marketing/Footer.tsx",
+        "file": "website/src/components/marketing/Footer.tsx",
         "line": 98
       }
     ]
@@ -999,7 +999,7 @@
     },
     "locations": [
       {
-        "file": "src/components/marketing/Footer.tsx",
+        "file": "website/src/components/marketing/Footer.tsx",
         "line": 107
       }
     ]
@@ -1062,7 +1062,7 @@
     },
     "locations": [
       {
-        "file": "src/components/marketing/Footer.tsx",
+        "file": "website/src/components/marketing/Footer.tsx",
         "line": 108
       }
     ]
@@ -1125,7 +1125,7 @@
     },
     "locations": [
       {
-        "file": "src/components/marketing/Footer.tsx",
+        "file": "website/src/components/marketing/Footer.tsx",
         "line": 113
       }
     ]
@@ -1188,7 +1188,7 @@
     },
     "locations": [
       {
-        "file": "src/components/marketing/Footer.tsx",
+        "file": "website/src/components/marketing/Footer.tsx",
         "line": 124
       }
     ]
@@ -1251,7 +1251,7 @@
     },
     "locations": [
       {
-        "file": "src/components/marketing/GetStarted.tsx",
+        "file": "website/src/components/marketing/GetStarted.tsx",
         "line": 39
       }
     ]
@@ -1314,7 +1314,7 @@
     },
     "locations": [
       {
-        "file": "src/components/marketing/GetStarted.tsx",
+        "file": "website/src/components/marketing/GetStarted.tsx",
         "line": 39
       }
     ]
@@ -1377,7 +1377,7 @@
     },
     "locations": [
       {
-        "file": "src/components/marketing/GetStarted.tsx",
+        "file": "website/src/components/marketing/GetStarted.tsx",
         "line": 55
       }
     ]
@@ -1440,7 +1440,7 @@
     },
     "locations": [
       {
-        "file": "src/components/marketing/GetStarted.tsx",
+        "file": "website/src/components/marketing/GetStarted.tsx",
         "line": 56
       }
     ]
@@ -1503,7 +1503,7 @@
     },
     "locations": [
       {
-        "file": "src/components/marketing/GetStarted.tsx",
+        "file": "website/src/components/marketing/GetStarted.tsx",
         "line": 59
       }
     ]
@@ -1566,7 +1566,7 @@
     },
     "locations": [
       {
-        "file": "src/components/marketing/GetStarted.tsx",
+        "file": "website/src/components/marketing/GetStarted.tsx",
         "line": 65
       }
     ]
@@ -1629,7 +1629,7 @@
     },
     "locations": [
       {
-        "file": "src/components/marketing/GetStarted.tsx",
+        "file": "website/src/components/marketing/GetStarted.tsx",
         "line": 66
       }
     ]
@@ -1692,7 +1692,7 @@
     },
     "locations": [
       {
-        "file": "src/components/marketing/GetStarted.tsx",
+        "file": "website/src/components/marketing/GetStarted.tsx",
         "line": 69
       }
     ]
@@ -1755,7 +1755,7 @@
     },
     "locations": [
       {
-        "file": "src/components/marketing/GetStarted.tsx",
+        "file": "website/src/components/marketing/GetStarted.tsx",
         "line": 75
       }
     ]
@@ -1818,7 +1818,7 @@
     },
     "locations": [
       {
-        "file": "src/components/marketing/GetStarted.tsx",
+        "file": "website/src/components/marketing/GetStarted.tsx",
         "line": 76
       }
     ]
@@ -1881,7 +1881,7 @@
     },
     "locations": [
       {
-        "file": "src/components/marketing/GetStarted.tsx",
+        "file": "website/src/components/marketing/GetStarted.tsx",
         "line": 79
       }
     ]
@@ -1944,7 +1944,7 @@
     },
     "locations": [
       {
-        "file": "src/components/marketing/GetStarted.tsx",
+        "file": "website/src/components/marketing/GetStarted.tsx",
         "line": 85
       }
     ]
@@ -2007,7 +2007,7 @@
     },
     "locations": [
       {
-        "file": "src/components/marketing/GetStarted.tsx",
+        "file": "website/src/components/marketing/GetStarted.tsx",
         "line": 86
       }
     ]
@@ -2070,7 +2070,7 @@
     },
     "locations": [
       {
-        "file": "src/components/marketing/GetStarted.tsx",
+        "file": "website/src/components/marketing/GetStarted.tsx",
         "line": 89
       }
     ]
@@ -2133,7 +2133,7 @@
     },
     "locations": [
       {
-        "file": "src/components/marketing/GetStarted.tsx",
+        "file": "website/src/components/marketing/GetStarted.tsx",
         "line": 109
       }
     ]
@@ -2196,7 +2196,7 @@
     },
     "locations": [
       {
-        "file": "src/components/marketing/GetStarted.tsx",
+        "file": "website/src/components/marketing/GetStarted.tsx",
         "line": 157
       }
     ]
@@ -2259,7 +2259,7 @@
     },
     "locations": [
       {
-        "file": "src/components/marketing/GetStarted.tsx",
+        "file": "website/src/components/marketing/GetStarted.tsx",
         "line": 161
       }
     ]
@@ -2322,7 +2322,7 @@
     },
     "locations": [
       {
-        "file": "src/components/marketing/GetStarted.tsx",
+        "file": "website/src/components/marketing/GetStarted.tsx",
         "line": 165
       }
     ]
@@ -2385,7 +2385,7 @@
     },
     "locations": [
       {
-        "file": "src/components/marketing/Hero.tsx",
+        "file": "website/src/components/marketing/Hero.tsx",
         "line": 25
       }
     ]
@@ -2448,7 +2448,7 @@
     },
     "locations": [
       {
-        "file": "src/components/marketing/Hero.tsx",
+        "file": "website/src/components/marketing/Hero.tsx",
         "line": 32
       }
     ]
@@ -2511,7 +2511,7 @@
     },
     "locations": [
       {
-        "file": "src/components/marketing/Hero.tsx",
+        "file": "website/src/components/marketing/Hero.tsx",
         "line": 33
       }
     ]
@@ -2574,7 +2574,7 @@
     },
     "locations": [
       {
-        "file": "src/components/marketing/Hero.tsx",
+        "file": "website/src/components/marketing/Hero.tsx",
         "line": 35
       }
     ]
@@ -2637,7 +2637,7 @@
     },
     "locations": [
       {
-        "file": "src/components/marketing/Hero.tsx",
+        "file": "website/src/components/marketing/Hero.tsx",
         "line": 37
       }
     ]
@@ -2700,7 +2700,7 @@
     },
     "locations": [
       {
-        "file": "src/components/marketing/Hero.tsx",
+        "file": "website/src/components/marketing/Hero.tsx",
         "line": 44
       }
     ]
@@ -2763,15 +2763,15 @@
     },
     "locations": [
       {
-        "file": "src/components/marketing/Hero.tsx",
+        "file": "website/src/components/marketing/Hero.tsx",
         "line": 60
       },
       {
-        "file": "src/components/marketing/Nav.tsx",
+        "file": "website/src/components/marketing/Nav.tsx",
         "line": 80
       },
       {
-        "file": "src/components/marketing/Nav.tsx",
+        "file": "website/src/components/marketing/Nav.tsx",
         "line": 124
       }
     ]
@@ -2834,7 +2834,7 @@
     },
     "locations": [
       {
-        "file": "src/components/marketing/Hero.tsx",
+        "file": "website/src/components/marketing/Hero.tsx",
         "line": 92
       }
     ]
@@ -2897,7 +2897,7 @@
     },
     "locations": [
       {
-        "file": "src/components/marketing/Hero.tsx",
+        "file": "website/src/components/marketing/Hero.tsx",
         "line": 94
       }
     ]
@@ -2960,7 +2960,7 @@
     },
     "locations": [
       {
-        "file": "src/components/marketing/Hero.tsx",
+        "file": "website/src/components/marketing/Hero.tsx",
         "line": 96
       }
     ]
@@ -3023,7 +3023,7 @@
     },
     "locations": [
       {
-        "file": "src/components/marketing/Hero.tsx",
+        "file": "website/src/components/marketing/Hero.tsx",
         "line": 111
       }
     ]
@@ -3086,7 +3086,7 @@
     },
     "locations": [
       {
-        "file": "src/components/marketing/Hero.tsx",
+        "file": "website/src/components/marketing/Hero.tsx",
         "line": 116
       }
     ]
@@ -3149,11 +3149,11 @@
     },
     "locations": [
       {
-        "file": "src/components/marketing/Nav.tsx",
+        "file": "website/src/components/marketing/Nav.tsx",
         "line": 16
       },
       {
-        "file": "src/components/marketing/Why.tsx",
+        "file": "website/src/components/marketing/Why.tsx",
         "line": 60
       }
     ]
@@ -3216,11 +3216,11 @@
     },
     "locations": [
       {
-        "file": "src/components/marketing/Nav.tsx",
+        "file": "website/src/components/marketing/Nav.tsx",
         "line": 17
       },
       {
-        "file": "src/components/marketing/Providers.tsx",
+        "file": "website/src/components/marketing/Providers.tsx",
         "line": 12
       }
     ]
@@ -3283,11 +3283,11 @@
     },
     "locations": [
       {
-        "file": "src/components/marketing/Nav.tsx",
+        "file": "website/src/components/marketing/Nav.tsx",
         "line": 21
       },
       {
-        "file": "src/components/marketing/OpenSource.tsx",
+        "file": "website/src/components/marketing/OpenSource.tsx",
         "line": 20
       }
     ]
@@ -3350,7 +3350,7 @@
     },
     "locations": [
       {
-        "file": "src/components/marketing/Nav.tsx",
+        "file": "website/src/components/marketing/Nav.tsx",
         "line": 72
       }
     ]
@@ -3413,7 +3413,7 @@
     },
     "locations": [
       {
-        "file": "src/components/marketing/Nav.tsx",
+        "file": "website/src/components/marketing/Nav.tsx",
         "line": 88
       }
     ]
@@ -3476,7 +3476,7 @@
     },
     "locations": [
       {
-        "file": "src/components/marketing/OpenSource.tsx",
+        "file": "website/src/components/marketing/OpenSource.tsx",
         "line": 23
       }
     ]
@@ -3539,7 +3539,7 @@
     },
     "locations": [
       {
-        "file": "src/components/marketing/OpenSource.tsx",
+        "file": "website/src/components/marketing/OpenSource.tsx",
         "line": 26
       }
     ]
@@ -3602,7 +3602,7 @@
     },
     "locations": [
       {
-        "file": "src/components/marketing/OpenSource.tsx",
+        "file": "website/src/components/marketing/OpenSource.tsx",
         "line": 26
       }
     ]
@@ -3665,7 +3665,7 @@
     },
     "locations": [
       {
-        "file": "src/components/marketing/OpenSource.tsx",
+        "file": "website/src/components/marketing/OpenSource.tsx",
         "line": 27
       }
     ]
@@ -3728,7 +3728,7 @@
     },
     "locations": [
       {
-        "file": "src/components/marketing/OpenSource.tsx",
+        "file": "website/src/components/marketing/OpenSource.tsx",
         "line": 41
       }
     ]
@@ -3791,7 +3791,7 @@
     },
     "locations": [
       {
-        "file": "src/components/marketing/OpenSource.tsx",
+        "file": "website/src/components/marketing/OpenSource.tsx",
         "line": 57
       }
     ]
@@ -3854,7 +3854,7 @@
     },
     "locations": [
       {
-        "file": "src/components/marketing/OpenSource.tsx",
+        "file": "website/src/components/marketing/OpenSource.tsx",
         "line": 82
       }
     ]
@@ -3917,7 +3917,7 @@
     },
     "locations": [
       {
-        "file": "src/components/marketing/Pillars.tsx",
+        "file": "website/src/components/marketing/Pillars.tsx",
         "line": 13
       }
     ]
@@ -3980,7 +3980,7 @@
     },
     "locations": [
       {
-        "file": "src/components/marketing/Pillars.tsx",
+        "file": "website/src/components/marketing/Pillars.tsx",
         "line": 15
       }
     ]
@@ -4043,7 +4043,7 @@
     },
     "locations": [
       {
-        "file": "src/components/marketing/Pillars.tsx",
+        "file": "website/src/components/marketing/Pillars.tsx",
         "line": 19
       }
     ]
@@ -4106,7 +4106,7 @@
     },
     "locations": [
       {
-        "file": "src/components/marketing/Pillars.tsx",
+        "file": "website/src/components/marketing/Pillars.tsx",
         "line": 20
       }
     ]
@@ -4169,7 +4169,7 @@
     },
     "locations": [
       {
-        "file": "src/components/marketing/Pillars.tsx",
+        "file": "website/src/components/marketing/Pillars.tsx",
         "line": 21
       }
     ]
@@ -4232,7 +4232,7 @@
     },
     "locations": [
       {
-        "file": "src/components/marketing/Pillars.tsx",
+        "file": "website/src/components/marketing/Pillars.tsx",
         "line": 22
       }
     ]
@@ -4295,7 +4295,7 @@
     },
     "locations": [
       {
-        "file": "src/components/marketing/Pillars.tsx",
+        "file": "website/src/components/marketing/Pillars.tsx",
         "line": 23
       }
     ]
@@ -4358,7 +4358,7 @@
     },
     "locations": [
       {
-        "file": "src/components/marketing/Pillars.tsx",
+        "file": "website/src/components/marketing/Pillars.tsx",
         "line": 26
       }
     ]
@@ -4421,7 +4421,7 @@
     },
     "locations": [
       {
-        "file": "src/components/marketing/Pillars.tsx",
+        "file": "website/src/components/marketing/Pillars.tsx",
         "line": 33
       }
     ]
@@ -4484,7 +4484,7 @@
     },
     "locations": [
       {
-        "file": "src/components/marketing/Pillars.tsx",
+        "file": "website/src/components/marketing/Pillars.tsx",
         "line": 35
       }
     ]
@@ -4547,7 +4547,7 @@
     },
     "locations": [
       {
-        "file": "src/components/marketing/Pillars.tsx",
+        "file": "website/src/components/marketing/Pillars.tsx",
         "line": 39
       }
     ]
@@ -4610,7 +4610,7 @@
     },
     "locations": [
       {
-        "file": "src/components/marketing/Pillars.tsx",
+        "file": "website/src/components/marketing/Pillars.tsx",
         "line": 40
       }
     ]
@@ -4673,7 +4673,7 @@
     },
     "locations": [
       {
-        "file": "src/components/marketing/Pillars.tsx",
+        "file": "website/src/components/marketing/Pillars.tsx",
         "line": 41
       }
     ]
@@ -4736,7 +4736,7 @@
     },
     "locations": [
       {
-        "file": "src/components/marketing/Pillars.tsx",
+        "file": "website/src/components/marketing/Pillars.tsx",
         "line": 42
       }
     ]
@@ -4799,7 +4799,7 @@
     },
     "locations": [
       {
-        "file": "src/components/marketing/Pillars.tsx",
+        "file": "website/src/components/marketing/Pillars.tsx",
         "line": 43
       }
     ]
@@ -4862,7 +4862,7 @@
     },
     "locations": [
       {
-        "file": "src/components/marketing/Pillars.tsx",
+        "file": "website/src/components/marketing/Pillars.tsx",
         "line": 46
       }
     ]
@@ -4925,7 +4925,7 @@
     },
     "locations": [
       {
-        "file": "src/components/marketing/Pillars.tsx",
+        "file": "website/src/components/marketing/Pillars.tsx",
         "line": 53
       }
     ]
@@ -4988,7 +4988,7 @@
     },
     "locations": [
       {
-        "file": "src/components/marketing/Pillars.tsx",
+        "file": "website/src/components/marketing/Pillars.tsx",
         "line": 55
       }
     ]
@@ -5051,7 +5051,7 @@
     },
     "locations": [
       {
-        "file": "src/components/marketing/Pillars.tsx",
+        "file": "website/src/components/marketing/Pillars.tsx",
         "line": 59
       }
     ]
@@ -5114,7 +5114,7 @@
     },
     "locations": [
       {
-        "file": "src/components/marketing/Pillars.tsx",
+        "file": "website/src/components/marketing/Pillars.tsx",
         "line": 60
       }
     ]
@@ -5177,7 +5177,7 @@
     },
     "locations": [
       {
-        "file": "src/components/marketing/Pillars.tsx",
+        "file": "website/src/components/marketing/Pillars.tsx",
         "line": 61
       }
     ]
@@ -5240,7 +5240,7 @@
     },
     "locations": [
       {
-        "file": "src/components/marketing/Pillars.tsx",
+        "file": "website/src/components/marketing/Pillars.tsx",
         "line": 62
       }
     ]
@@ -5303,7 +5303,7 @@
     },
     "locations": [
       {
-        "file": "src/components/marketing/Pillars.tsx",
+        "file": "website/src/components/marketing/Pillars.tsx",
         "line": 63
       }
     ]
@@ -5366,7 +5366,7 @@
     },
     "locations": [
       {
-        "file": "src/components/marketing/Pillars.tsx",
+        "file": "website/src/components/marketing/Pillars.tsx",
         "line": 66
       }
     ]
@@ -5429,7 +5429,7 @@
     },
     "locations": [
       {
-        "file": "src/components/marketing/Pillars.tsx",
+        "file": "website/src/components/marketing/Pillars.tsx",
         "line": 75
       }
     ]
@@ -5492,7 +5492,7 @@
     },
     "locations": [
       {
-        "file": "src/components/marketing/Pillars.tsx",
+        "file": "website/src/components/marketing/Pillars.tsx",
         "line": 78
       }
     ]
@@ -5555,7 +5555,7 @@
     },
     "locations": [
       {
-        "file": "src/components/marketing/Pillars.tsx",
+        "file": "website/src/components/marketing/Pillars.tsx",
         "line": 81
       }
     ]
@@ -5618,7 +5618,7 @@
     },
     "locations": [
       {
-        "file": "src/components/marketing/Providers.tsx",
+        "file": "website/src/components/marketing/Providers.tsx",
         "line": 15
       }
     ]
@@ -5681,7 +5681,7 @@
     },
     "locations": [
       {
-        "file": "src/components/marketing/Providers.tsx",
+        "file": "website/src/components/marketing/Providers.tsx",
         "line": 18
       }
     ]
@@ -5744,7 +5744,7 @@
     },
     "locations": [
       {
-        "file": "src/components/marketing/Providers.tsx",
+        "file": "website/src/components/marketing/Providers.tsx",
         "line": 36
       }
     ]
@@ -5807,7 +5807,7 @@
     },
     "locations": [
       {
-        "file": "src/components/marketing/SelfHost.tsx",
+        "file": "website/src/components/marketing/SelfHost.tsx",
         "line": 12
       }
     ]
@@ -5870,7 +5870,7 @@
     },
     "locations": [
       {
-        "file": "src/components/marketing/SelfHost.tsx",
+        "file": "website/src/components/marketing/SelfHost.tsx",
         "line": 13
       }
     ]
@@ -5933,7 +5933,7 @@
     },
     "locations": [
       {
-        "file": "src/components/marketing/SelfHost.tsx",
+        "file": "website/src/components/marketing/SelfHost.tsx",
         "line": 19
       }
     ]
@@ -5996,7 +5996,7 @@
     },
     "locations": [
       {
-        "file": "src/components/marketing/SelfHost.tsx",
+        "file": "website/src/components/marketing/SelfHost.tsx",
         "line": 20
       }
     ]
@@ -6059,7 +6059,7 @@
     },
     "locations": [
       {
-        "file": "src/components/marketing/SelfHost.tsx",
+        "file": "website/src/components/marketing/SelfHost.tsx",
         "line": 26
       }
     ]
@@ -6122,7 +6122,7 @@
     },
     "locations": [
       {
-        "file": "src/components/marketing/SelfHost.tsx",
+        "file": "website/src/components/marketing/SelfHost.tsx",
         "line": 27
       }
     ]
@@ -6185,7 +6185,7 @@
     },
     "locations": [
       {
-        "file": "src/components/marketing/SelfHost.tsx",
+        "file": "website/src/components/marketing/SelfHost.tsx",
         "line": 33
       }
     ]
@@ -6248,7 +6248,7 @@
     },
     "locations": [
       {
-        "file": "src/components/marketing/SelfHost.tsx",
+        "file": "website/src/components/marketing/SelfHost.tsx",
         "line": 34
       }
     ]
@@ -6311,7 +6311,7 @@
     },
     "locations": [
       {
-        "file": "src/components/marketing/SelfHost.tsx",
+        "file": "website/src/components/marketing/SelfHost.tsx",
         "line": 47
       }
     ]
@@ -6374,7 +6374,7 @@
     },
     "locations": [
       {
-        "file": "src/components/marketing/SelfHost.tsx",
+        "file": "website/src/components/marketing/SelfHost.tsx",
         "line": 50
       }
     ]
@@ -6437,7 +6437,7 @@
     },
     "locations": [
       {
-        "file": "src/components/marketing/SelfHost.tsx",
+        "file": "website/src/components/marketing/SelfHost.tsx",
         "line": 53
       }
     ]
@@ -6500,7 +6500,7 @@
     },
     "locations": [
       {
-        "file": "src/components/marketing/SelfHost.tsx",
+        "file": "website/src/components/marketing/SelfHost.tsx",
         "line": 79
       }
     ]
@@ -6563,7 +6563,7 @@
     },
     "locations": [
       {
-        "file": "src/components/marketing/SelfHost.tsx",
+        "file": "website/src/components/marketing/SelfHost.tsx",
         "line": 90
       }
     ]
@@ -6626,7 +6626,7 @@
     },
     "locations": [
       {
-        "file": "src/components/marketing/Why.tsx",
+        "file": "website/src/components/marketing/Why.tsx",
         "line": 12
       }
     ]
@@ -6689,7 +6689,7 @@
     },
     "locations": [
       {
-        "file": "src/components/marketing/Why.tsx",
+        "file": "website/src/components/marketing/Why.tsx",
         "line": 13
       }
     ]
@@ -6752,7 +6752,7 @@
     },
     "locations": [
       {
-        "file": "src/components/marketing/Why.tsx",
+        "file": "website/src/components/marketing/Why.tsx",
         "line": 19
       }
     ]
@@ -6815,7 +6815,7 @@
     },
     "locations": [
       {
-        "file": "src/components/marketing/Why.tsx",
+        "file": "website/src/components/marketing/Why.tsx",
         "line": 20
       }
     ]
@@ -6878,7 +6878,7 @@
     },
     "locations": [
       {
-        "file": "src/components/marketing/Why.tsx",
+        "file": "website/src/components/marketing/Why.tsx",
         "line": 26
       }
     ]
@@ -6941,7 +6941,7 @@
     },
     "locations": [
       {
-        "file": "src/components/marketing/Why.tsx",
+        "file": "website/src/components/marketing/Why.tsx",
         "line": 27
       }
     ]
@@ -7004,7 +7004,7 @@
     },
     "locations": [
       {
-        "file": "src/components/marketing/Why.tsx",
+        "file": "website/src/components/marketing/Why.tsx",
         "line": 33
       }
     ]
@@ -7067,7 +7067,7 @@
     },
     "locations": [
       {
-        "file": "src/components/marketing/Why.tsx",
+        "file": "website/src/components/marketing/Why.tsx",
         "line": 34
       }
     ]
@@ -7130,7 +7130,7 @@
     },
     "locations": [
       {
-        "file": "src/components/marketing/Why.tsx",
+        "file": "website/src/components/marketing/Why.tsx",
         "line": 40
       }
     ]
@@ -7193,7 +7193,7 @@
     },
     "locations": [
       {
-        "file": "src/components/marketing/Why.tsx",
+        "file": "website/src/components/marketing/Why.tsx",
         "line": 41
       }
     ]
@@ -7256,7 +7256,7 @@
     },
     "locations": [
       {
-        "file": "src/components/marketing/Why.tsx",
+        "file": "website/src/components/marketing/Why.tsx",
         "line": 47
       }
     ]
@@ -7319,7 +7319,7 @@
     },
     "locations": [
       {
-        "file": "src/components/marketing/Why.tsx",
+        "file": "website/src/components/marketing/Why.tsx",
         "line": 48
       }
     ]
@@ -7382,7 +7382,7 @@
     },
     "locations": [
       {
-        "file": "src/components/marketing/Why.tsx",
+        "file": "website/src/components/marketing/Why.tsx",
         "line": 63
       }
     ]
@@ -7445,7 +7445,7 @@
     },
     "locations": [
       {
-        "file": "src/components/marketing/Why.tsx",
+        "file": "website/src/components/marketing/Why.tsx",
         "line": 66
       }
     ]
@@ -7508,7 +7508,7 @@
     },
     "locations": [
       {
-        "file": "src/components/marketing/Why.tsx",
+        "file": "website/src/components/marketing/Why.tsx",
         "line": 93
       }
     ]
@@ -7571,7 +7571,7 @@
     },
     "locations": [
       {
-        "file": "src/components/marketing/Why.tsx",
+        "file": "website/src/components/marketing/Why.tsx",
         "line": 96
       }
     ]
@@ -7634,7 +7634,7 @@
     },
     "locations": [
       {
-        "file": "src/components/marketing/Why.tsx",
+        "file": "website/src/components/marketing/Why.tsx",
         "line": 105
       }
     ]
@@ -7697,7 +7697,7 @@
     },
     "locations": [
       {
-        "file": "src/components/marketing/Why.tsx",
+        "file": "website/src/components/marketing/Why.tsx",
         "line": 116
       }
     ]
@@ -7760,7 +7760,7 @@
     },
     "locations": [
       {
-        "file": "src/components/marketing/pageMeta.ts",
+        "file": "website/src/components/marketing/pageMeta.ts",
         "line": 5
       }
     ]
@@ -7823,7 +7823,7 @@
     },
     "locations": [
       {
-        "file": "src/components/marketing/pageMeta.ts",
+        "file": "website/src/components/marketing/pageMeta.ts",
         "line": 6
       }
     ]
@@ -7886,8 +7886,71 @@
     },
     "locations": [
       {
-        "file": "src/components/marketing/pageMeta.ts",
+        "file": "website/src/components/marketing/pageMeta.ts",
         "line": 9
+      }
+    ]
+  },
+  "b31c9733": {
+    "source": "Translate text between languages, rewrite text in different styles, and transform text using AI.",
+    "translated": {
+      "zh-Hans": "在语言之间翻译文本，以不同风格改写文本，并使用 AI 转换文本。",
+      "fr": "Traduisez du texte d'une langue à une autre, reformulez du texte dans différents styles et transformez du texte grâce à l'IA.",
+      "el": "Μεταφράστε κείμενο μεταξύ γλωσσών, αναδιατυπώστε κείμενο σε διαφορετικά στιλ και μετασχηματίστε κείμενο με τη χρήση τεχνητής νοημοσύνης.",
+      "nl": "Vertaal tekst tussen talen, herschrijf tekst in verschillende stijlen en transformeer tekst met AI.",
+      "de": "Text zwischen Sprachen übersetzen, Texte in verschiedenen Stilen umschreiben und Texte mithilfe von KI umwandeln.",
+      "ar": "ترجمة النصوص بين اللغات، وإعادة صياغتها بأساليب مختلفة، وتحويلها باستخدام الذكاء الاصطناعي.",
+      "cs": "Překládejte text mezi jazyky, přepisujte text v různých stylech a upravujte text pomocí AI.",
+      "zh-Hant": "使用 AI 在不同語言之間翻譯文字、以不同風格改寫文字，以及轉換文字。",
+      "ja": "言語間でテキストを翻訳し、異なるスタイルで書き直し、AIを使ってテキストを変換します。",
+      "pt-BR": "Traduza texto entre idiomas, reescreva textos em diferentes estilos e transforme textos usando IA.",
+      "it": "Traduci testo tra lingue diverse, riscrivilo in stili differenti e trasformalo con l'IA.",
+      "fa": "ترجمه متن بین زبان‌ها، بازنویسی متن با سبک‌های مختلف و تبدیل متن با استفاده از هوش مصنوعی.",
+      "hi": "भाषाओं के बीच टेक्स्ट का अनुवाद करें, टेक्स्ट को अलग-अलग शैलियों में दोबारा लिखें और AI की मदद से टेक्स्ट को रूपांतरित करें।",
+      "pl": "Tłumacz tekst między językami, przepisuj go w różnych stylach i przekształcaj za pomocą AI.",
+      "hu": "Fordíthat szöveget nyelvek között, átírhatja a szöveget különböző stílusokban, és átalakíthatja a szöveget mesterséges intelligenciával.",
+      "ko": "언어 간 텍스트 번역, 다양한 스타일로 텍스트 재작성, AI를 사용한 텍스트 변환",
+      "sk": "Prekladajte text medzi jazykmi, prepisujte text v rôznych štýloch a upravujte text pomocou AI.",
+      "ro": "Traduceți text între limbi, rescrieți textul în stiluri diferite și transformați textul folosind AI.",
+      "ru": "Переводите текст между языками, переписывайте его в разных стилях и преобразуйте с помощью ИИ.",
+      "uk": "Перекладайте текст між мовами, переписуйте текст в різних стилях і перетворюйте його за допомогою ШІ.",
+      "tr": "Metinleri diller arasında çevirin, metinleri farklı üsluplarda yeniden yazın ve yapay zekâ ile metinleri dönüştürün.",
+      "es": "Traduce texto entre idiomas, reescribe texto en diferentes estilos y transfórmalo con IA.",
+      "th": "แปลข้อความระหว่างภาษาต่างๆ เขียนข้อความใหม่ในสไตล์ที่แตกต่างกัน และแปลงข้อความด้วย AI",
+      "sv": "Översätt text mellan olika språk, skriv om text i olika stilar och omvandla text med AI.",
+      "vi": "Dịch văn bản giữa các ngôn ngữ, viết lại văn bản theo nhiều phong cách khác nhau và biến đổi văn bản bằng AI."
+    },
+    "models": {
+      "zh-Hans": "z-ai/glm-5.2",
+      "fr": "~anthropic/claude-sonnet-latest",
+      "el": "~anthropic/claude-sonnet-latest",
+      "nl": "~anthropic/claude-sonnet-latest",
+      "de": "~anthropic/claude-sonnet-latest",
+      "ar": "~anthropic/claude-sonnet-latest",
+      "cs": "~anthropic/claude-sonnet-latest",
+      "zh-Hant": "minimax/minimax-m2.7",
+      "ja": "z-ai/glm-5.2",
+      "pt-BR": "~anthropic/claude-sonnet-latest",
+      "it": "~anthropic/claude-sonnet-latest",
+      "fa": "~anthropic/claude-sonnet-latest",
+      "hi": "~anthropic/claude-sonnet-latest",
+      "pl": "~anthropic/claude-sonnet-latest",
+      "hu": "~anthropic/claude-sonnet-latest",
+      "ko": "minimax/minimax-m2.7",
+      "sk": "~anthropic/claude-sonnet-latest",
+      "ro": "~anthropic/claude-sonnet-latest",
+      "ru": "~anthropic/claude-sonnet-latest",
+      "uk": "~anthropic/claude-sonnet-latest",
+      "tr": "~anthropic/claude-sonnet-latest",
+      "es": "~anthropic/claude-sonnet-latest",
+      "th": "~anthropic/claude-sonnet-latest",
+      "sv": "~anthropic/claude-sonnet-latest",
+      "vi": "~anthropic/claude-sonnet-latest"
+    },
+    "locations": [
+      {
+        "file": "package.json",
+        "line": 4
       }
     ]
   }

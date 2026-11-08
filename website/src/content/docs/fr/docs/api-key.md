@@ -23,7 +23,7 @@ N'importe quel fournisseur pris en charge fonctionne. Si vous ne savez pas leque
 
 Les étapes exactes varient légèrement selon le fournisseur, mais le schéma est le même partout :
 
-1. Inscrivez-vous ou connectez-vous sur le site web du fournisseur. Dans **Paramètres → Configuration API** de Transrewrt, chaque fournisseur a un lien **Ouvrir le site web du fournisseur** qui vous mène au bon endroit.
+1. Inscrivez-vous ou connectez-vous sur le site web du fournisseur. Dans **Paramètres → Config. API** de Transrewrt, chaque fournisseur dispose d'un lien **Ouvrir le site web du fournisseur** qui vous mène au bon endroit.
 2. Trouvez la page **Clés API** (parfois sous les paramètres de compte, de tableau de bord ou de développeur) et créez une nouvelle clé. Certains fournisseurs vous demandent de nommer la clé ou de définir une limite de dépenses — les deux sont facultatifs.
 3. Copiez la clé. C'est une longue chaîne de lettres et de chiffres, commençant souvent par quelque chose comme `sk-`.
 
@@ -33,7 +33,7 @@ Traitez une clé API comme un mot de passe : ne la partagez pas, ne la publiez p
 
 ## Étape 3 — Ajouter et tester la clé (ordinateur de bureau)
 
-1. Dans Transrewrt, ouvrez **Paramètres → Configuration API**.
+1. Dans Transrewrt, ouvrez **Paramètres → Config. API**.
 2. Collez la clé dans le champ de votre fournisseur (par exemple **Clé API Google Gemini**) et enregistrez-la.
 3. Cliquez sur **Tester** à côté du champ pour confirmer que la clé fonctionne.
 
@@ -43,7 +43,7 @@ Une fois le test réussi, vous êtes prêt — choisissez ce fournisseur sur l'�
 
 Vous pouvez exécuter des modèles sur votre propre ordinateur avec Ollama, LM Studio, llama.cpp ou un autre serveur compatible OpenAI (par exemple `google/gemma-4-e2b` via LM Studio). Rien ne quitte votre machine et aucune clé API n'est nécessaire.
 
-Pour en connecter un, définissez l'URL de base du LLM local sur l'API de base complète, y compris le chemin — par exemple `http://localhost:11434/v1`. Sur un ordinateur de bureau, définissez cela dans **Paramètres → Configuration API** ; sur Docker, définissez plutôt la variable d'environnement `LOCAL_LLM_URL`.
+Pour en connecter un, définissez l'URL de base du LLM local sur l'URL de base complète de l'API, y compris le chemin — par exemple `http://localhost:11434/v1`. Sur ordinateur, définissez-le dans **Paramètres → Config. API** ; sur Docker, définissez plutôt la variable d'environnement `LOCAL_LLM_URL`.
 
 :::tip
 Si vous utilisez un serveur LLM local depuis un autre appareil ou conteneur, configurez-le pour autoriser les connexions externes (pas uniquement localhost).
@@ -62,8 +62,8 @@ Si vous utilisez Transrewrt dans un navigateur, les clés sont gérées par celu
 
 ## Si quelque chose ne fonctionne pas
 
-- **L'authentification échoue** : vérifiez que la clé a été copiée entièrement (sans espaces avant ou après) et qu'elle n'a pas été supprimée ou désactivée sur le site web du fournisseur.
-- **Les traductions échouent avec une erreur de quota ou de crédit** : les offres gratuites ont des limites quotidiennes ou mensuelles ; attendez, passez à un autre fournisseur gratuit ou ajoutez du crédit.
-- **Aucun fournisseur n'apparaît en mode Facile** : ouvrez **Paramètres → Configuration de l'API** et vérifiez qu'au moins une clé (ou l'URL LLM locale) est configurée et testée.
+- **Le test de la clé échoue** : vérifiez que la clé a été copiée entièrement (pas d'espaces avant ou après) et qu'elle n'a pas été supprimée ou désactivée sur le site web du fournisseur.
+- **Les traductions échouent avec une erreur de quota ou de crédit** : les niveaux gratuits ont des limites quotidiennes ou mensuelles ; attendez, passez à un autre fournisseur gratuit ou ajoutez du crédit.
+- **Aucun fournisseur n'apparaît en mode Facile** : ouvrez **Paramètres → Config. API** et confirmez qu'au moins une clé (ou l'URL du LLM local) est configurée et testée.
 
 Plus d'aide : [Problèmes courants](/docs/common-issues/).

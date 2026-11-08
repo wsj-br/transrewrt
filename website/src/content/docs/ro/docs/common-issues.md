@@ -20,7 +20,7 @@ Verificați dacă:
 
 În modul **Ușor**, confirmați că **Furnizorul** este setat și cheile/URL-urile sunt testate. Pentru **LLM local**, asigurați-vă că serverul dvs. local rulează și că modelele sunt încărcate.
 
-În modul **Avansat**, modelele selectate pot fi goale. Deschideți **Setări → Modele**, faceți clic pe **Reîmprospătare** și adăugați modele la **Modele selectate**. Opțional, activați **Doar gratuit**. Eliminarea ultimului model din bara de instrumente deschide, de asemenea, Setări → Modele.
+În modul **Avansat**, modelele selectate pot fi goale. Deschideți **Setări → Modele**, faceți clic pe **Reîmprospătare** și bifați modelele dorite (sau utilizați **Selectați din preseturi**). Opțional, activați **Doar gratuit**. Eliminarea ultimului model din bara de instrumente deschide, de asemenea, Setări → Modele.
 
 ## Prea lent sau prea scump
 
@@ -29,7 +29,7 @@ Verificați dacă:
 - Dezactivați **Traducere în timp real în timpul tastării** în Setări generale
 - Utilizați modele gratuite pentru sarcini simple
 
-## Limbă interfață greșită
+## Limba interfeței greșită
 
 Faceți clic pe pictograma globului din bara de instrumente și alegeți **Limba interfeței**.
 
@@ -52,15 +52,15 @@ OpenRouter și xAI afișează cheltuielile reale atunci când API-ul le returnea
 
 ## Costul total nu se potrivește cu factura furnizorului meu
 
-Cifrele din aplicație sunt **estimări de referință**, nu facturi. Pentru OpenRouter, utilizați **Setări → Urmărire costuri → Sincronizare cu utilizarea cheii API**.
+Cifrele din aplicație sunt **estimări de referință**, nu facturi. Pentru OpenRouter, utilizați **Setări → Urmărirea costurilor → Sincronizează cu utilizarea cheii API**.
 
 ## Pagina Istoric lipsește din bara laterală
 
-Este posibil ca opțiunea **Păstrare istoric execuție** să fie dezactivată. Activați-o în Setări generale, cu excepția cazului în care istoricul este dezactivat de administrator (`HISTORY_DISABLED` — consultați [Configurare](/docs/configuration/#privacy-mode)).
+**Păstrează istoricul execuției** poate fi dezactivat. Activați-l în Setări generale, cu excepția cazului în care istoricul este dezactivat de administrator (`HISTORY_DISABLED` — consultați [Configurare](/docs/configuration/#privacy-mode)).
 
 ## Web: redirecționat la autentificare în mod neașteptat
 
-Sesiunea dvs. ar fi putut expira. Conectați-vă din nou. Dacă acest lucru se întâmplă des, cereți unui administrator să mărească **Timpul de expirare a sesiunii** sub [Setări → Utilizatori](/docs/settings/#users) (un administrator ar fi putut, de asemenea, să vă revoce sesiunile).
+Sesiunea dvs. ar fi putut expira. Autentificați-vă din nou. Dacă se întâmplă des, cereți unui administrator să mărească **Expirarea sesiunii** sub [Setări → Utilizatori](/docs/settings/#users) (un administrator ar fi putut, de asemenea, să vă revoce sesiunile).
 
 ## Administrator web: am uitat parola
 
@@ -72,7 +72,7 @@ docker exec transrewrt reset-web-password '<username>' '<new-password>'
 
 Numele de utilizator implicit al administratorului este `admin`. Dintr-o verificare a sursei: `pnpm run reset-web-password -- <username> <new-password>`.
 
-## Tabloul de bord nu afișează date pentru alți utilizatori (web)
+## Tabloul de bord afișează fără date pentru alți utilizatori (web)
 
 Doar **administratorii** pot vizualiza alți utilizatori prin filtrul **Utilizator**. Utilizatorii obișnuiți văd doar propria activitate.
 
@@ -89,4 +89,4 @@ Când editați o solicitare de transformare, faceți clic pe **Salvare** înaint
 - Exportați solicitările în mod regulat dacă construiți o bibliotecă de solicitări
 - Utilizați [Tabloul de bord](/docs/dashboard/) și [Istoric](/docs/history/) pentru a revizui utilizarea și rulările anterioare
 
-[Report an issue](https://github.com/wsj-br/transrewrt/issues)
+[Raportați o problemă](https://github.com/wsj-br/transrewrt/issues)

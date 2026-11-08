@@ -20,7 +20,7 @@ Zkontrolujte, zda:
 
 V režimu **Snadné** potvrďte, že je nastaven **Poskytovatel** a klíče/URL jsou otestovány. Pro **Místní LLM** se ujistěte, že je spuštěn váš lokální server a modely jsou načteny.
 
-V režimu **Pokročilé** mohou být vybrané modely prázdné. Otevřete **Nastavení → Modely**, klikněte na **Obnovit** a přidejte modely do **Vybraných modelů**. Volitelně zapněte **Pouze zdarma**. Odebrání posledního modelu z panelu nástrojů také otevře Nastavení → Modely.
+V režimu **Pokročilé** mohou být vybrané modely prázdné. Otevřete **Nastavení → Modely**, klikněte na **Obnovit** a zaškrtněte modely, které chcete (nebo použijte **Vybrat z předvoleb**). Volitelně zapněte **Pouze zdarma**. Odebrání posledního modelu z panelu nástrojů také otevře Nastavení → Modely.
 
 ## Příliš pomalé nebo příliš drahé
 
@@ -44,7 +44,7 @@ To je normální, pokud:
 - používáte pouze **bezplatné modely** a díváte se na údaje o **nákladech** (mohou být nulové); KPI počtu volání stále potřebují data pro vybrané období
 - vybraný **časový filtr** nepokrývá dobu, kdy byla volání provedena – zkuste **Vše**
 
-Pokud jsou KPI po **Vše** stále nulové, zkontrolujte [Historii](/docs/history/) nebo Panel → **Všechna volání**.
+Pokud jsou KPI po **Vše** stále nulové, zkontrolujte [Historii](/docs/history/) nebo Nástěnka → **Všechny hovory**.
 
 ## Náklady ukazují „není k dispozici“ nebo se zdají být chybné
 
@@ -56,7 +56,7 @@ OpenRouter a xAI zobrazují skutečné výdaje, když je API vrátí. U ostatní
 
 ## Stránka Historie chybí v postranním panelu
 
-Možná je vypnuta možnost **Uchovat historii spuštění**. Povolte ji v obecných nastaveních, pokud historie není zakázána administrátorem (`HISTORY_DISABLED` – viz [Konfigurace](/docs/configuration/#privacy-mode)).
+**Uchovávat historii spuštění** může být vypnuto. Povolte jej v Obecných nastaveních, pokud historie není zakázána administrátorem (`HISTORY_DISABLED` – viz [Konfigurace](/docs/configuration/#privacy-mode)).
 
 ## Web: neočekávaně přesměrováno na přihlášení
 
@@ -72,13 +72,13 @@ docker exec transrewrt reset-web-password '<username>' '<new-password>'
 
 Výchozí uživatelské jméno administrátora je `admin`. Z výchozího umístění: `pnpm run reset-web-password -- <username> <new-password>`.
 
-## Dashboard nezobrazuje data pro ostatní uživatele (web)
+## Nástěnka nezobrazuje žádná data pro ostatní uživatele (web)
 
 Pouze **administrátoři** mohou zobrazit ostatní uživatele pomocí filtru **Uživatel**. Běžní uživatelé vidí pouze svou vlastní aktivitu.
 
 ## Změnil jsem výzvu a ztratil úpravy
 
-Při úpravě výzvy Transform klikněte na **Uložit** před **Zpět na spuštění**.
+Při úpravě výzvy k transformaci klikněte na **Uložit** před **Zpět ke spuštění**.
 
 ## Rychlé tipy
 
@@ -89,4 +89,4 @@ Při úpravě výzvy Transform klikněte na **Uložit** před **Zpět na spušt�
 - Pravidelně exportujte výzvy, pokud vytváříte knihovnu výzev
 - Použijte [Dashboard](/docs/dashboard/) a [Historii](/docs/history/) k přezkoumání využití a minulých spuštění
 
-[Report an issue](https://github.com/wsj-br/transrewrt/issues)
+[Nahlásit problém](https://github.com/wsj-br/transrewrt/issues)

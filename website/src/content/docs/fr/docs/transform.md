@@ -22,9 +22,9 @@ Utilisez **Transformer** lorsque vous souhaitez que l'IA suive des instructions 
 
 Le [basculement de la mise en page et les raccourcis clavier](/docs/translate/#layout-and-keyboard) fonctionnent de la même manière que dans Traduire.
 
-## Charger des exemples d'invites
+## Charger les exemples de requêtes
 
-Si la liste est vide, cliquez sur **Charger des exemples d'invites** dans l'espace de travail Transformer (également disponible sous [Paramètres → Transformer](/docs/settings/#transform)). Les exemples sont en anglais ; après le chargement, modifiez une invite et utilisez **Traduire l'invite** si nécessaire.
+Si la liste est vide, cliquez sur **Charger les exemples de requêtes** dans l'espace de travail Transformation (également disponible sous [Paramètres → Transformation](/docs/settings/#transform)). Les exemples sont en anglais ; après le chargement, modifiez une invite et utilisez **Traduire l'invite** si nécessaire.
 
 ## Créer une invite
 
@@ -53,7 +53,7 @@ Champs principaux :
 Aides : **Générer l'invite**, **Améliorer l'invite**, **Traduire l'invite** (Facile utilise des préréglages ; Avancé utilise la liste des modèles).
 
 :::caution
-Cliquez sur **Enregistrer** avant de cliquer sur **Retour à l'exécution**. Revenir en arrière sans enregistrer annule les modifications.
+Cliquez sur **Enregistrer** avant **Retour à Exécuter**. Revenir en arrière sans enregistrer annule les modifications.
 :::
 
 ## Tester avant l'utilisation quotidienne

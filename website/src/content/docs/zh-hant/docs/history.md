@@ -21,7 +21,7 @@ description: 檢閱過去的翻譯、改寫與轉換執行，包含完整的輸�
 
 ## 如果歷史紀錄遺失
 
-**保留執行歷史** 可能已關閉。請在 [設定 → 一般設定](/docs/settings/#general-settings) 中啟用它，除非管理員設定了 `HISTORY_DISABLED` — 請參閱 [配置](/docs/configuration/#privacy-mode)。
+**保留執行記錄** 可能已關閉。請在[設定 → 一般設定](/docs/settings/#general-settings)中啟用它，除非管理員設定了 `HISTORY_DISABLED` — 請參閱[組態](/docs/configuration/#privacy-mode)。
 
 ## 後續步驟
 

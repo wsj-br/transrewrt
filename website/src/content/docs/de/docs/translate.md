@@ -32,9 +32,9 @@ Verwenden Sie **Übersetzen**, um Text von einer Sprache in eine andere zu konve
 
 Unter [Einstellungen → Allgemeine Einstellungen](/docs/settings/#general-settings):
 
-- **Automatische Ausführung beim Einfügen** – wird sofort nach dem Einfügen ausgeführt
-- **Ergebnis automatisch in die Zwischenablage kopieren** – kopiert nach erfolgreicher Ausführung
-- **Echtzeit-Übersetzung während der Eingabe** – wird während der Eingabe ausgeführt (kann Kosten erhöhen)
+- **Automatisch ausführen beim Einfügen** – wird ausgeführt, sobald Sie etwas einfügen
+- **Ergebnis automatisch in die Zwischenablage kopieren** – kopiert nach einer erfolgreichen Ausführung
+- **Echtzeit-Übersetzung während der Eingabe** – wird während der Eingabe ausgeführt (kann die Kosten erhöhen)
 - **Timeout (ms)** – Wartezeit vor einer Echtzeit-Ausführung
 - **Verhalten für ENTER** – ob Enter die Aufgabe ausführt oder eine neue Zeile einfügt
 

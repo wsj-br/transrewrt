@@ -12,7 +12,7 @@ description: >-
 | Flik | Skrivbord | Webb (admin) | Webb (användare) | Anteckningar |
 | --- | :---: | :---: | :---: | --- |
 | Allmänna inställningar | ✓ | ✓ | ✓ | Inkluderar **AI-upplevelse** (Enkel / Avancerad) |
-| Modeller | ✓ | ✓ | ✓ | Endast när **AI-upplevelsen** är **Avancerad** |
+| Modeller | ✓ | ✓ | ✓ | Förinställda kort i Enkelt, modelltabell i Avancerat |
 | Språk | ✓ | ✓ | ✓ | |
 | Kostnadsspårning | ✓ | ✓ | — | |
 | Transformera | ✓ | ✓ | ✓ | Massimport/export av prompter |
@@ -21,7 +21,7 @@ description: >-
 | API-konfiguration | ✓ | ✓ | — | |
 | Om | ✓ | ✓ | ✓ | |
 
-I **Enkelt** läge väljer du AI via förinställningar i verktygsfältet och **Leverantör** i Allmänna inställningar; fliken **Modeller** är dold.
+I läget **Enkelt** väljer du AI via förinställningar i verktygsfältet och **Leverantör** i Allmänna inställningar; fliken **Modeller** visar skrivskyddade förinställda kort.
 
 :::note
 I webbversionen har varje användare sin egen konfiguration (AI-upplevelse, leverantör, modeller/förinställningar, språk, alternativ, prompter). Ändringar påverkar inte andra användare.
@@ -33,23 +33,23 @@ I webbversionen har varje användare sin egen konfiguration (AI-upplevelse, leve
 
 **AI-upplevelse**
 
-- **Enkel** (standard): välj en **Leverantör**. Molnleverantörer använder förinställningar i verktygsfältet. **Lokal LLM** listar installerade lokala modeller istället. **Uppdatera förinställningskatalog** hämtar den senaste förinställningslistan från projektets databas.
-  - **Gratis (OpenRouter)** — kostnadsfritt alternativ som dirigeras till tillgängliga gratismolnmodeller; kvalitet och tillgänglighet kan variera
-  - **Standard** — lättviktig och kostnadseffektiv; bäst för korta texter, snabba utkast och högvolymanvändning
-  - **Avancerad** — modell med hög noggrannhet för komplext eller nyanserat innehåll, till en högre kostnad
-  - **Teknisk** — anpassad för kod, API:er, utvecklardokumentation och strukturerat innehåll; bevarar formatering och terminologi
+- **Enkel** (standard): välj en **Leverantör**. Molnleverantörer använder förinställningar i verktygsfältet. **Lokal LLM** listar installerade lokala modeller istället. **Uppdatera förvalskatalog** hämtar den senaste förvalslistan från projektets förråd.
+  - **Gratis (OpenRouter)** – kostnadsfritt alternativ som dirigeras till tillgängliga gratismodeller; kvalitet och tillgänglighet kan variera
+  - **Standard** – lättviktig och kostnadseffektiv; bäst för korta texter, snabba utkast och högvolymanvändning
+  - **Avancerad** – modell med hög noggrannhet för komplext eller nyanserat innehåll, till en högre kostnad
+  - **Teknisk** – anpassad för kod, API:er, utvecklardokumentation och strukturerat innehåll; bevarar formatering och terminologi
 - **Avancerad**: välj modeller i verktygsfältet; hantera listan under [Modeller](#models).
 
 Du kan också växla Enkel ↔ Avancerad från verktygsfältets förinställnings-/modellmeny (**Växla till Enkelt/Avancerat läge**, ovanför Öppna inställningar).
 
 **Utseende** — Tema; **Visa kostnadsinformation om åtgärderna**; **Antal decimaler för kostnad**; endast webbmarginal runt appen; **Teckensnittsfamilj** och **Storlek**.
 
-**Beteende** — **Beteende för ENTER**; **Kör automatiskt vid inklistring**; **Kopiera resultat automatiskt till urklipp**; **Realtidsöversättning under skrivning**; **Tidsgräns (ms)**.
+**Beteende** – **Beteende för ENTER**; **Autokör vid inklistring**; **Autokopiera resultat till urklipp**; **Realtidsöversättning under skrivning**; **Tidsgräns (ms)**.
 
 **Historik**
 
-- **Behåll körningshistorik** — lagra indata/utdata för vyn [Historik](/docs/history/). Att stänga av frågar om bekräftelse och kan ta bort lagrad text. Om den är märkt *inaktiverad av administratören* är `HISTORY_DISABLED` inställd — se [Konfiguration](/docs/configuration/#privacy-mode).
-- **Ta bort historikdata** — ta bort lagrad text efter ålder eller rensa allt. Tar **inte** bort totala kostnader (använd Kostnadsspårning för det).
+- **Behåll körhistorik** – lagra inmatning/utdata för vyn [Historik](/docs/history/). Att stänga av frågar om bekräftelse och kan ta bort lagrad text. Om märkt *inaktiverad av administratören*, är `HISTORY_DISABLED` inställt – se [Konfiguration](/docs/configuration/#privacy-mode).
+- **Ta bort historikdata** – ta bort lagrad text efter ålder eller rensa allt. Tar **inte** bort kostnadstotaler (använd Kostnadsspårning för det).
 
 **Konfigurationssäkerhetskopiering** (skrivbords- och webbadministratörer)
 
@@ -61,17 +61,33 @@ Säkerhetskopior kan flyttas mellan skrivbord och webb; att återställa en skri
 
 ## Modeller
 
-Endast tillgänglig i **Avancerat** läge.
+Fliken **Modeller** visas alltid. Dess växlingsknapp **Enkelt / Avancerat** växlar hela appen mellan de två [AI-upplevelserna](#general-settings).
 
-- **Tillgängliga modeller** (vänster) och **Valda modeller** (höger)
-- Sök, **Leverantörs**-taggar, **Endast gratis**, **Uppdatera**, Expandera/Fäll ihop alla
-- Modell-ID använder ett leverantörsprefix (`openrouter/…`, `openai/…`, `local/…`, …)
+- **Enkel** visar ett skrivskyddat kort per förinställning (till exempel **Gratis (OpenRouter)** eller **Standard**). Varje kort listar förinställningens huvud- och reservmodell för varje leverantör du har konfigurerat. **Leverantör**-chipsen filtrerar korten.
+- **Avancerad** visar en tabell över varje modell, med:
+  - en sökruta, **Leverantör**-chips, **Endast gratis**, **Endast valda** och **Uppdatera**
+  - en sorteringsmeny; standard är **Index, högt till lågt**
+  - en kryssruta per modell för att välja eller avmarkera den
+  - **Välj bland förinställningar**, som lägger till en förinställnings huvud- och reservmodeller för varje konfigurerad leverantör (**Ladda alla** laddar varje leverantör)
+  - **Avmarkera alla**, som först ber om bekräftelse
+- Modell-ID:n använder ett leverantörsprefix (`openrouter/…`, `openai/…`, `local/…`, …)
+
+Kolumnerna för poäng och pris:
+
+- **Index** — en kvalitetspoäng som blandar ChrF, Arena Score och pris. Den rankas inom varje leverantör, så den är inte jämförbar mellan leverantörer. Modeller utan index sorteras längst ner.
+- **ChrF** — genomsnittlig översättningskvalitet från [languagebench](https://huggingface.co/spaces/fair-forward/languagebench) för appens UI-språk.
+- **Arena** — Arena Score från [LMArena](https://huggingface.co/datasets/lmarena-ai/leaderboard-dataset) topplistan.
+- **Input** / **Output** — pris i USD per 1 miljon tokens, från leverantörskatalogen eller [models.dev](https://models.dev/). Ett uppskattat pris markeras med en asterisk. Ett streck (—) betyder att priset är okänt; lokala modeller visar "ingen kostnad - lokal".
+
+Håll muspekaren över en kolumnrubrik för att se dess datakälla och licens. Modellväljaren i verktygsfältet visar varje modells index som ett litet chipp; håll muspekaren över det för ChrF- och Arena-värdena.
+
+Poängen är endast en vägledning: täckningen är ofullständig, och många modeller har ingen ChrF- eller Arena-poäng.
 
 :::tip
 Använd inte OpenRouter **Body Builder** (`openrouter/bodybuilder`) för Översätt, Skriv om eller Transformera – den returnerar JSON-begäransnyttolaster, inte färdig text.
 :::
 
-Lägg till med **Lägg till**; ta bort med **X**. Den kostnadsfria OpenRouter-modellen är valfri — valda modeller kan vara tomma. Att ta bort den sista modellen från verktygsfältet öppnar **Inställningar → Modeller**. Om den aktuella modellen blir otillgänglig väljer appen nästa modell i listan istället för att tvinga fram den kostnadsfria modellen.
+Markera eller avmarkera en modell för att välja eller avmarkera den. OpenRouter-gratismodellen är valfri – valda modeller kan vara tomma. Om du tar bort den sista modellen från verktygsfältet öppnas **Inställningar → Modeller**. Om den aktuella modellen blir otillgänglig väljer appen nästa modell i listan istället för att tvinga fram gratismodellen.
 
 ## Språk
 
@@ -80,10 +96,10 @@ Lägg till med **Lägg till**; ta bort med **X**. Den kostnadsfria OpenRouter-mo
 
 ## Kostnadsspårning
 
-- **Total kostnad**, **Kopiera värde**, **Återställ kostnad**
-- **Synkronisera med API-nyckelanvändning** — anpassa till OpenRouter-kontots användning (endast OpenRouter)
-- **API-nyckelanvändning** — OpenRouter-detaljer när tillgängliga
-- **Ta bort kostnadsdata** — all data eller poster äldre än ett visst datum
+- **Totalkostnad**, **Kopiera värde**, **Återställ kostnad**
+- **Synkronisera med API-nyckelanvändning** – anpassa till OpenRouter-kontots användning (endast OpenRouter)
+- **API-nyckelanvändning** – OpenRouter-detaljer när tillgängliga
+- **Ta bort kostnadsdata** – all data eller poster äldre än ett visst datum
 
 OpenRouter och xAI visar den faktiska debiterade kostnaden när API:et returnerar den; andra leverantörer använder uppskattningar från [models.dev](https://models.dev/)-prissättning. Uppskattningar är inte fakturor.
 
@@ -109,9 +125,9 @@ Skrivbordsversionen lagrar ordlistan lokalt; webbversionen lagrar den per använ
 
 Endast webb (administratörer):
 
-- Lägg till användare, uppdatera detaljer, återställ lösenord, radera konton
-- **Session Timeout** — hur länge en inloggning varar (1 timme till 7 dagar); ändringar gäller endast för nya inloggningar
-- **Revoke sessions** — logga ut en användare från alla enheter omedelbart
+- Lägg till användare, uppdatera detaljer, återställ lösenord, ta bort konton
+- **Sessionsutloggning** – hur länge en inloggning varar (1 timme till 7 dagar); ändringar gäller endast nya inloggningar
+- **Återkalla sessioner** – logga ut en användare från alla enheter omedelbart
 
 Varje inloggad användare (inklusive icke-administratörer) kan ändra sitt eget lösenord eller logga ut från användarmenyn längst ner i sidofältet.
 

@@ -20,7 +20,7 @@ Kontrollera att:
 
 I **Enkelt** läge, bekräfta att **Leverantör** är inställd och att nycklar/URL:er är testade. För **Lokal LLM**, se till att din lokala server körs och att modeller är laddade.
 
-I **Avancerat** läge kan valda modeller vara tomma. Öppna **Inställningar → Modeller**, klicka på **Uppdatera** och lägg till modeller i **Valda modeller**. Du kan också aktivera **Endast gratis**. Om du tar bort den sista modellen i verktygsfältet öppnas också Inställningar → Modeller.
+I läget **Avancerad** kan valda modeller vara tomma. Öppna **Inställningar → Modeller**, klicka på **Uppdatera** och markera de modeller du vill ha (eller använd **Välj bland förinställningar**). Aktivera eventuellt **Endast gratis**. Om du tar bort den sista modellverktygsfältet öppnas också Inställningar → Modeller.
 
 ## För långsamt eller för dyrt
 
@@ -50,17 +50,17 @@ Om KPI:er fortfarande är noll efter **Alla**, kontrollera [Historik](/docs/hist
 
 OpenRouter och xAI visar faktisk kostnad när API:et returnerar den. För andra leverantörer uppskattas kostnaden från [models.dev](https://models.dev/)-prissättning; om inget pris matchar visas kostnaden som **inte tillgänglig** och läggs inte till i totalsumman.
 
-## Total kostnad matchar inte min leverantörsfaktura
+## Totalkostnaden matchar inte min leverantörsfaktura
 
 Siffrorna i appen är **uppskattningar för referens**, inte fakturor. För OpenRouter, använd **Inställningar → Kostnadsspårning → Synkronisera med API-nyckelanvändning**.
 
 ## Historiksidan saknas i sidofältet
 
-**Behåll körningshistorik** kan vara avstängd. Aktivera den i Allmänna inställningar om inte historik är inaktiverad av administratören (`HISTORY_DISABLED` – se [Konfiguration](/docs/configuration/#privacy-mode)).
+**Behåll körhistorik** kan vara avstängd. Aktivera den i Allmänna inställningar om inte historiken är inaktiverad av administratören (`HISTORY_DISABLED` – se [Konfiguration](/docs/configuration/#privacy-mode)).
 
 ## Webb: omdirigerad till inloggning oväntat
 
-Din session kan ha löpt ut. Logga in igen. Om det händer ofta, be en administratör att öka **Session Timeout** under [Inställningar → Användare](/docs/settings/#users) (en administratör kan också ha återkallat dina sessioner).
+Din session kan ha gått ut. Logga in igen. Om det händer ofta, be en administratör att öka **Sessionsutloggning** under [Inställningar → Användare](/docs/settings/#users) (en administratör kan också ha återkallat dina sessioner).
 
 ## Webbadmin: glömt lösenord
 
@@ -89,4 +89,4 @@ När du redigerar en Transform-prompt, klicka på **Spara** innan **Tillbaka til
 - Exportera prompter regelbundet om du bygger ett promptbibliotek
 - Använd [Kontrollpanelen](/docs/dashboard/) och [Historik](/docs/history/) för att granska användning och tidigare körningar
 
-[Report an issue](https://github.com/wsj-br/transrewrt/issues)
+[Rapportera ett problem](https://github.com/wsj-br/transrewrt/issues)

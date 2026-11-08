@@ -23,9 +23,9 @@ Qualsiasi provider supportato funziona. Se non sai quale scegliere:
 
 I passaggi esatti variano leggermente a seconda del provider, ma il modello è lo stesso ovunque:
 
-1. Registrati o accedi al sito web del provider. Nelle **Impostazioni → Configurazione API** di Transrewrt, ogni provider ha un link **Apri sito web del provider** che ti porta al posto giusto.
-2. Trova la pagina **Chiavi API** (a volte sotto account, dashboard o impostazioni sviluppatore) e crea una nuova chiave. Alcuni provider ti chiedono di dare un nome alla chiave o di impostare un limite di spesa — entrambi sono opzionali.
-3. Copia la chiave. È una lunga stringa di lettere e numeri, spesso che inizia con qualcosa come `sk-`.
+1. Registrati o accedi sul sito web del provider. In Transrewrt, vai su **Impostazioni → Configurazione API**: per ciascun provider è presente il link **Apri sito web del fornitore**, che ti porta nella pagina giusta.
+2. Trova la pagina **API keys** (a volte si trova in account, dashboard o impostazioni per sviluppatori) e crea una nuova chiave. Alcuni provider ti chiedono di assegnare un nome alla chiave o di impostare un limite di spesa: entrambe le opzioni sono facoltative.
+3. Copia la chiave. Si tratta di una lunga stringa di lettere e numeri, spesso che inizia con qualcosa come `sk-`.
 
 :::note
 Tratta una chiave API come una password: non condividerla, pubblicarla o inviarla a nessuno. Se una chiave viene divulgata, eliminala sul sito web del provider e creane una nuova.

@@ -23,7 +23,7 @@ Exportujte filtrovaný seznam jako **JSON**, **CSV** nebo **XLSX**.
 
 ## Pokud historie chybí
 
-**Udržovat historii spuštění** může být vypnuto. Povolte ji v [Nastavení → Obecná nastavení]({{URL_0}), pokud administrátor nenastavil `HISTORY_DISABLED` – viz [Konfigurace](/docs/configuration/#privacy-mode).
+**Uchovávat historii spuštění** může být vypnuto. Povolte jej v [Nastavení → Obecná nastavení](/docs/settings/#general-settings), pokud administrátor nenastavil `HISTORY_DISABLED` – viz [Konfigurace](/docs/configuration/#privacy-mode).
 
 ## Další kroky
 

@@ -20,7 +20,7 @@ Bir şeyler beklendiği gibi çalışmazsa, önce bu noktaları kontrol edin.
 
 **Kolay** modda, **Sağlayıcı**'nın ayarlandığını ve anahtarların/URL'lerin test edildiğini onaylayın. **Yerel LLM** için, yerel sunucunuzun çalıştığından ve modellerin yüklendiğinden emin olun.
 
-**Gelişmiş** modda, seçilen modeller boş olabilir. **Ayarlar → Modeller**'i açın, **Yenile**'ye tıklayın ve **Seçilen Modeller**'e modeller ekleyin. İsteğe bağlı olarak **Yalnızca Ücretsiz**'i açın. Son araç çubuğu modelini kaldırmak da Ayarlar → Modeller'i açar.
+**Gelişmiş** modda, seçilen modeller boş olabilir. **Ayarlar → Modeller**'i açın, **Yenile**'ye tıklayın ve istediğiniz modelleri işaretleyin (veya **Ön ayarlardan seçin**'i kullanın). İsteğe bağlı olarak **Yalnızca Ücretsiz**'i açın. Son araç çubuğu modelini kaldırmak da Ayarlar → Modeller'i açar.
 
 ## Çok yavaş veya çok pahalı
 
@@ -44,7 +44,7 @@ Bu normaldir eğer:
 - yalnızca **ücretsiz modeller** kullanıyorsanız ve **maliyet** rakamlarına bakıyorsanız (sıfır olabilirler); çağrı sayısı KPI'ları yine de seçilen dönem için verilere ihtiyaç duyar
 - seçilen **zaman filtresi** çağrıların yapıldığı zamanı kapsamıyorsa — **Tümü**'nü deneyin
 
-**Tümü**'nden sonra KPI'lar hala sıfırsa, [Geçmiş](/docs/history/) veya Kontrol Paneli → **Tüm Çağrılar**'ı kontrol edin.
+KPI'lar **Tümü**'nden sonra hala sıfırsa, [Geçmiş](/docs/history/) veya Pano → **Tüm Aramalar**'ı kontrol edin.
 
 ## Maliyet "mevcut değil" gösteriyor veya yanlış görünüyor
 
@@ -72,7 +72,7 @@ docker exec transrewrt reset-web-password '<username>' '<new-password>'
 
 Varsayılan yönetici kullanıcı adı `admin`'dır. Bir kaynak kontrolünden: `pnpm run reset-web-password -- <username> <new-password>`.
 
-## Kontrol Paneli diğer kullanıcılar için veri göstermiyor (web)
+## Gösterge paneli diğer kullanıcılar için veri yok (web)
 
 Yalnızca **yöneticiler** **Kullanıcı** filtresi aracılığıyla diğer kullanıcıları görüntüleyebilir. Normal kullanıcılar yalnızca kendi etkinliklerini görür.
 
@@ -89,4 +89,4 @@ Bir Dönüştürme istemini düzenlerken, **Çalıştırmaya Geri Dön**'den ön
 - Bir istem kitaplığı oluşturuyorsanız istemleri düzenli olarak dışa aktarın
 - Kullanımı ve geçmiş çalıştırmaları gözden geçirmek için [Kontrol Paneli](/docs/dashboard/) ve [Geçmiş](/docs/history/) kullanın
 
-[Report an issue](https://github.com/wsj-br/transrewrt/issues)
+[Bir sorun bildirin](https://github.com/wsj-br/transrewrt/issues)

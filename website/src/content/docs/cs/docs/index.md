@@ -44,4 +44,4 @@ Ve výchozím nastavení aplikace běží v režimu **Snadné**: vyberte **před
 - [Nastavení](/docs/settings/)
 - [Časté problémy](/docs/common-issues/)
 
-[Download releases](https://github.com/wsj-br/transrewrt/releases) · [GitHub repository](https://github.com/wsj-br/transrewrt)
+[Stáhnout vydání](https://github.com/wsj-br/transrewrt/releases) · [Úložiště GitHub](https://github.com/wsj-br/transrewrt)

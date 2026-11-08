@@ -46,4 +46,4 @@ Standaard draait de app in de modus **Eenvoudig**: kies een **preset** en een **
 - [Instellingen](/docs/settings/)
 - [Veelvoorkomende problemen](/docs/common-issues/)
 
-[Download releases](https://github.com/wsj-br/transrewrt/releases) · [GitHub repository](https://github.com/wsj-br/transrewrt)
+[Releases downloaden](https://github.com/wsj-br/transrewrt/releases) · [GitHub-opslagplaats](https://github.com/wsj-br/transrewrt)

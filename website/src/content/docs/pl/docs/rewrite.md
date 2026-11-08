@@ -14,8 +14,8 @@ Użyj funkcji **Przepisz**, aby poprawić sformułowanie bez zmiany głównego z
 Tryby obejmują:
 
 - **Sprawdź pisownię i gramatykę**
-- **Popraw przejrzystość**
-- **Wersje alternatywne** (kilka przeformułowań w jednym przebiegu)
+- **Popraw jasność**
+- **Alternatywne wersje** (kilka przeformułowań w jednym przebiegu)
 - **Uczyń formalnym** / **Uczyń nieformalnym**
 - **Skróć** / **Rozwiń**
 - **Uczyń technicznym**
@@ -36,7 +36,7 @@ Po przepisaniu, obok przycisku **Kopiuj** dla **każdego** trybu przepisywania p
 :::
 
 :::note
-**Wersje alternatywne** zwracają kilka przeformułowań w **jednym** przebiegu, oddzielonych `----`. Różni się to od **Przeformułuj…**, które buduje historię wersji w czasie.
+**Alternatywne wersje** zwracają kilka przeformułowań w **pojedynczym** uruchomieniu, rozdzielonych za pomocą `----`. Różni się to od **Rephrase…**, które buduje historię wersji w czasie.
 :::
 
 ## Dopracuj przepisanie

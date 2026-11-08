@@ -17,7 +17,7 @@ minimumReleaseAgeExclude:
   - lucide-react@1.17.0 || 1.21.0 || 1.41.0 || 1.70.0
   - webpack-cli@7.0.3
   - electron@42.4.1 || 43.1.1 || 44.2.0
-  - ai-i18n-tools@1.6.1 || 1.7.1 || 1.8.2 || 1.8.3 || 1.8.4
+  - ai-i18n-tools@1.6.1 || 1.7.1 || 1.8.2 || 1.8.3 || 1.8.4 || 1.13.3
   - "@ai-sdk/openai-compatible@3.0.10 || 3.0.63 || 3.0.86"
   - "@ai-sdk/provider-utils@5.0.10 || 5.0.54"
   - "@ai-sdk/gateway@4.0.20 || 4.0.28 || 4.0.74 || 4.0.104 || 4.0.137"
@@ -87,6 +87,7 @@ minimumReleaseAgeExclude:
   - "@tailwindcss/postcss@4.3.5"
   - tailwindcss@4.3.5
   - glob@14.0.4
+  - hyparquet@1.33.0
 
 # GHSA-64mm-vxmg-q3vj (http-proxy-middleware router host+path bypass) is fixed
 # upstream in 2.0.10, 3.0.6 and 4.1.0. webpack-dev-server@5 calls the v2

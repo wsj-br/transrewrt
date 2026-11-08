@@ -22,9 +22,9 @@ Gebruik **Transformeren** wanneer u wilt dat de AI aangepaste instructies volgt 
 
 De [lay-outschakelaar en sneltoetsen](/docs/translate/#layout-and-keyboard) werken hetzelfde als in Vertalen.
 
-## Voorbeeldprompts laden
+## Voorbeeldpromoties laden
 
-Als de lijst leeg is, klikt u op **Voorbeeldprompts laden** in de Transformeer-werkruimte (ook beschikbaar onder [Instellingen → Transformeren](/docs/settings/#transform)). Voorbeelden zijn in het Engels; na het laden bewerkt u een prompt en gebruikt u **Prompt vertalen** indien nodig.
+Als de lijst leeg is, klikt u op **Voorbeeldpromoties laden** in de Transform-werkruimte (ook beschikbaar onder [Instellingen → Transformeren](/docs/settings/#transform)). Voorbeelden zijn in het Engels; na het laden bewerkt u een prompt en gebruikt u **Vertaal prompt** indien nodig.
 
 ## Een prompt maken
 
@@ -42,15 +42,15 @@ De editor bevindt zich aan de linkerkant; een testgebied bevindt zich aan de rec
 
 Hoofdvelden:
 
-- **Promptnaam** — wordt weergegeven in de promptlijst
-- **Promptinstructies (optioneel)** — korte hint bij het uitvoeren van de prompt
-- **Modelrol** — algemene rol voor de AI
-- **Modelinstructies (één per regel)** — regels die moeten worden gevolgd
+- **Prompt-naam** — weergegeven in de promptlijst
+- **Prompt-instructies (optioneel)** — korte hint bij het uitvoeren van de prompt
+- **Model-rol** — algemene rol voor de AI
+- **Model-instructies (één per regel)** — regels die moeten worden gevolgd
 - **Uitvoerbeschrijving** — kort label voor het resultaat (bijv. samengevat)
 - **Temperatuur (0,0 → 1,0)** — lager is stabieler; hoger is gevarieerder
 - **Vragen om doeltaal** — voegt een taalkiezer toe bij het uitvoeren
 
-Hulpmiddelen: **Prompt genereren**, **Prompt verbeteren**, **Prompt vertalen** (Eenvoudig gebruikt voorinstellingen; Geavanceerd gebruikt de modellijst).
+Hulpmiddelen: **Prompt genereren**, **Verbeter prompt**, **Vertaal prompt** (Eenvoudig gebruikt voorinstellingen; Geavanceerd gebruikt de modellijst).
 
 :::caution
 Klik op **Opslaan** voordat u teruggaat naar **Terug naar uitvoeren**. Teruggaan zonder op te slaan, negeert bewerkingen.
