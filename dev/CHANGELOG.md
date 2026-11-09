@@ -11,6 +11,9 @@ Use conventional types (Added, Changed, Fixed, etc.) and short descriptions.
 
 ## Unreleased
 
+## [1.7.0] - 2026-11-09
+
+- **Fixed**: `generate-test-data` declares `nativeDb` without an unused initial value so `pnpm lint` passes.
 - **Fixed**: Docker web image includes `ui-languages.json` so model scores can load the UI locale list at startup.
 - **Fixed**: `take-screenshots` accepts the header language label (for example "English (UK)") as a successful switch to that locale code.
 - **Changed**: `take-screenshots` prefixes fatal errors with `Error:`.
@@ -21,7 +24,6 @@ Use conventional types (Added, Changed, Fixed, etc.) and short descriptions.
 - **Changed**: Consolidated the website's `ai-i18n-tools.config.json` into the root file (website UI, docs, and JSON blocks); website i18n scripts run the root config, and website translation cache merged into `.translation-cache/cache.db`.
 - **Added**: Settings > Models has an Easy/Advanced toggle; Easy shows one readonly card per Easy-mode preset (Free, Standard, …) with the preset's main and fallback models in a table carrying the Index, ChrF, Arena, and Input/Output cost columns, filtered by the provider chips; Advanced keeps the current selectable table.
 - **Changed**: Settings > Models is always visible, also in Easy mode; its Easy/Advanced toggle switches the app-wide experience mode.
-
 - **Added**: Model selectors show each model's quality index as a chip, including the main window and prompt dialogs.
 - **Changed**: Settings > Models replaces the side-by-side Available and Selected panes with a table-first workspace: one sortable, searchable list with checkboxes and Model, Index, ChrF, Arena, Input, and Output columns, provider filter chips, Free Only and Selected only filters, Select from presets and Deselect All actions in the toolbar, and source tooltips with licences on the column headers.
 - **Changed**: Settings > Models rows show input and output price columns; models with unknown pricing show a tooltipped "—" instead of the old "Cost not available" line (local models keep "no cost - local").

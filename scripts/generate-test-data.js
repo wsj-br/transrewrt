@@ -718,7 +718,7 @@ async function main() {
   const { config, models, languages } = loadConfig(configPath);
   const transformPromptNames = numTransforms > 0 ? loadTransformPrompts() : [];
 
-  let nativeDb = null;
+  let nativeDb;
   try {
     nativeDb = openNativeDb(dbPath);
   } catch (err) {
