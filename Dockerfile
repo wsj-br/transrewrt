@@ -62,6 +62,10 @@ COPY easy-mode-config ./easy-mode-config
 COPY src/server/ ./server/
 COPY src/shared/ ./shared/
 
+# modelScores.js requires ../../renderer/locales/ui-languages.json
+# (/app/renderer/locales from /app/shared/modelBenchmarks).
+COPY src/renderer/locales/ui-languages.json ./renderer/locales/ui-languages.json
+
 # Copy the LICENSE file
 COPY LICENSE ./LICENSE
 

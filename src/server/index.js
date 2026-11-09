@@ -90,6 +90,19 @@ function resolveThirdPartyNoticesPath() {
   return null;
 }
 
+/** Docker: /app/server → /app/dist. Dev: src/server → repo-root dist (two levels up). */
+function resolveDistPath() {
+  const oneUp = path.resolve(__dirname, "..", "dist");
+  const twoUp = path.resolve(__dirname, "..", "..", "dist");
+  if (fs.existsSync(path.join(twoUp, "index.html"))) return twoUp;
+  if (fs.existsSync(path.join(oneUp, "index.html"))) return oneUp;
+  if (fs.existsSync(twoUp)) return twoUp;
+  if (fs.existsSync(oneUp)) return oneUp;
+  if (fs.existsSync(path.join(__dirname, "..", "package.json"))) return oneUp;
+  return twoUp;
+}
+const distPath = resolveDistPath();
+
 const DEV_WEB = process.env.DEV_WEB === "true";
 const DEV_WEB_APP_PORT = Number(process.env.DEV_WEB_APP_PORT) || 5500;
 const DEV_WEB_APP_URL = `http://localhost:${DEV_WEB_APP_PORT}`;
@@ -114,6 +127,9 @@ if (buildTimestamp) {
   log.info(`[SERVER] Build: ${buildTimestamp}`);
 }
 log.info(`[SERVER] Port: ${PORT}`);
+if (!DEV_WEB) {
+  log.info(`[SERVER] Static app path: ${distPath}`);
+}
 if (DEV_WEB) {
   log.info(
     `[SERVER] DEV_WEB mode: only API on this port; use ${DEV_WEB_APP_URL} for the app`,
@@ -207,9 +223,6 @@ app.use(
 );
 app.use("/api", createGlossaryRouter(appDb.getDb, auth.setSessionRefreshCookie, log));
 app.use("/api/presets", createPresetsRouter(PRESETS_PATH, DEFAULT_PRESETS_PATH, log, appDb));
-
-// One level up: dev has src/server → project root; Docker has /app/server → /app
-const distPath = path.resolve(path.join(__dirname, "..", "dist"));
 
 app.get("/NOTICES", (req, res) => {
   const noticesPath = resolveThirdPartyNoticesPath();

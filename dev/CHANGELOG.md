@@ -11,6 +11,13 @@ Use conventional types (Added, Changed, Fixed, etc.) and short descriptions.
 
 ## Unreleased
 
+- **Fixed**: Docker web image includes `ui-languages.json` so model scores can load the UI locale list at startup.
+- **Fixed**: `take-screenshots` accepts the header language label (for example "English (UK)") as a successful switch to that locale code.
+- **Changed**: `take-screenshots` prefixes fatal errors with `Error:`.
+- **Changed**: `take-screenshots` probes `http://localhost:5000` (`pnpm serve`) then `:5500` (`pnpm dev:web`) unless `BASE_URL` is set.
+- **Fixed**: `generate-test-data` uses `better-sqlite3` when it can, so seeding while `pnpm serve` is running no longer overwrites the WAL database and blank the dashboard.
+- **Fixed**: `generate-test-data` treats leftover WAL files as leftover files, not a running server; lock errors list the PIDs that still have the database open.
+- **Fixed**: `pnpm serve` serves the webpack `dist/` at the repo root instead of looking in `src/dist` (Docker still uses `/app/dist`).
 - **Changed**: Consolidated the website's `ai-i18n-tools.config.json` into the root file (website UI, docs, and JSON blocks); website i18n scripts run the root config, and website translation cache merged into `.translation-cache/cache.db`.
 - **Added**: Settings > Models has an Easy/Advanced toggle; Easy shows one readonly card per Easy-mode preset (Free, Standard, …) with the preset's main and fallback models in a table carrying the Index, ChrF, Arena, and Input/Output cost columns, filtered by the provider chips; Advanced keeps the current selectable table.
 - **Changed**: Settings > Models is always visible, also in Easy mode; its Easy/Advanced toggle switches the app-wide experience mode.

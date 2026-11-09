@@ -555,7 +555,7 @@ Commit the updated `.ico` files (and remove any accidental `*.ico.old` backups b
 - **Electron:** `pnpm build-renderer && pnpm start`
 - **Web:** `pnpm serve` then open [http://localhost:5000](http://localhost:5000)
 
-Optional: `pnpm generate-test-data -- --web` or `pnpm generate-test-data -- --app` to seed the cost dashboard (`--web` and `--app` choose the database; exactly one is required). For **Transform** mode, use “Load sample prompts” in the UI to import prompts from `src/config-defaults/transform-prompts.json`, or manage prompts in **Settings → Transform prompts**. The **History** sidebar view lists execution history when **Keep execution history** is enabled (**Settings → General**); web mode loads rows via `/api/calls/history` ([src/server/routes/calls.js](../src/server/routes/calls.js)).
+Optional: `pnpm generate-test-data --web` or `pnpm generate-test-data --app` to seed the cost dashboard (`--web` and `--app` choose the database; exactly one is required). The script uses native SQLite when possible so it can run while `pnpm serve` is up; if native bindings are missing, stop the server first (or run `node scripts/node-rebuild.js`) so it does not overwrite a WAL database. For **Transform** mode, use “Load sample prompts” in the UI to import prompts from `src/config-defaults/transform-prompts.json`, or manage prompts in **Settings → Transform prompts**. The **History** sidebar view lists execution history when **Keep execution history** is enabled (**Settings → General**); web mode loads rows via `/api/calls/history` ([src/server/routes/calls.js](../src/server/routes/calls.js)).
 
 **Easy mode:** Default `mode` is `"easy"` ([config_default.json](../src/config-defaults/config_default.json)). Test skill selection in the toolbar and **Settings → General** (Provider, catalog version/refresh). Switch to **Advanced** with the toggle on **Settings → Models** to exercise the model table. Edit the catalog with `pnpm run presets-editor` (see [Presets catalog editor](#presets-catalog-editor-development)).
 
@@ -780,9 +780,9 @@ Models and fallbacks: `providers.openrouter.translationModels` in [ai-i18n-tools
 
 | Command                        | Purpose                                                                                                                                  |
 |--------------------------------|------------------------------------------------------------------------------------------------------------------------------------------|
-| `pnpm generate-test-data -- --web` or `-- --app` | Seed SQLite with sample API/history rows (exactly one of `--web` or `--app`) |
+| `pnpm generate-test-data --web` or `--app` | Seed SQLite with sample API/history rows (exactly one of `--web` or `--app`) |
 | `pnpm pricing:update` | Refresh `src/shared/llm/modelsDevPricing.snapshot.json` from [models.dev](https://models.dev/) (`api.json`) |
-| `pnpm take-screenshots`        | Use Puppeteer to capture UI screenshots into `images/screenshots/` (copy into `website/public/images/screenshots/` for the site) |
+| `pnpm take-screenshots`        | Use Puppeteer to capture UI screenshots into `images/screenshots/` (app on **:5000** from `pnpm serve` or **:5500** from `pnpm dev:web`; override with `BASE_URL`). Copy into `website/public/images/screenshots/` for the site |
 | `pnpm generate-banner`         | Write `images/transrewrt_banner.svg` and `.png`                                                                                          |
 | `./scripts/trim-ico-sizes.sh`  | Normalize provider `.ico` files under `src/renderer/assets/` to 16×16 + 32×32 only (ImageMagick; see [Provider icons](#provider-icons-trim-ico-sizes)) |
 | `pnpm reset-web-password`      | In web multi-user mode, set a password in SQLite (`[username] <password>`; default is `admin`; uses `CONFIG_PATH` or `data/config.json`) |

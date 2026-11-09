@@ -5,7 +5,8 @@
  * Cost: each model gets a random cost per 1M tokens ($0.5–$15; $0 if model name contains "free").
  * Transaction cost = (prompt_tokens + completion_tokens) / 1e6 * cost_per_1M for that model.
  * If a users table exists, assigns each entry a random username from it; otherwise username is null.
- * Uses sql.js so it runs without native better-sqlite3 bindings.
+ * Prefers native better-sqlite3 (safe while the web server has the DB open in WAL mode).
+ * Falls back to sql.js only when native bindings are unavailable and no WAL sidecars exist.
  *
  * Schema matches src/shared/db/appSchema.js (including input/output text stats columns).
  *
@@ -17,7 +18,18 @@
 
 const path = require("path");
 const fs = require("fs");
-const { sql } = require("../src/shared/db/appSchema.js");
+const { execFileSync } = require("child_process");
+const initSqlJs = require("sql.js");
+const { sql, applyAppSchema } = require("../src/shared/db/appSchema.js");
+
+const NATIVE_BUSY_MS = 5000;
+
+let BetterSqlite3 = null;
+try {
+  BetterSqlite3 = require("better-sqlite3");
+} catch {
+  BetterSqlite3 = null;
+}
 
 function loadTranslationModels() {
   const configPath = path.join(__dirname, "..", "ai-i18n-tools.config.json");
@@ -157,7 +169,9 @@ Reads languages from data/config.json (or CONFIG_PATH for --app). Models from
 ai-i18n-tools.config.json (providers.openrouter.translationModels).
 Transform prompt names from src/config-defaults/transform-prompts.json.
 When the DB has a users table, entries get a random username from it.
-Drops action_content, clears api_calls, recreates action_content (FK), then inserts rows.`);
+Clears api_calls (and linked action_content), then inserts rows.
+Uses better-sqlite3 when native bindings load so it can run while pnpm serve is up.
+A bare "--" from "pnpm generate-test-data -- --web" is ignored.`);
 }
 
 function loadConfig(configPath) {
@@ -204,6 +218,9 @@ function parseArgs() {
 
   for (let i = 0; i < argv.length; i++) {
     const arg = argv[i];
+    if (arg === "--") {
+      continue;
+    }
     if (arg.startsWith("-")) {
       if (arg === "--web") {
         mode = "web";
@@ -430,28 +447,166 @@ function generateRows(models, languages, numTranslations, numRewrites, numTransf
   return rows;
 }
 
-async function main() {
-  const { mode, numTranslations, numRewrites, numTransforms } = parseArgs();
-  const dataDir = getDataDir(mode);
-  const configPath = process.env.CONFIG_PATH || path.join(dataDir, "config.json");
-  const dbPath = path.join(dataDir, "transrewrt.db");
+function callInsertParams(row) {
+  return [
+    row.timestamp,
+    row.type,
+    row.model,
+    row.source_lang,
+    row.target_lang,
+    row.rewrite_mode,
+    row.transform_prompt,
+    row.prompt_tokens,
+    row.completion_tokens,
+    row.duration_ms,
+    row.cost,
+    row.tps,
+    row.username,
+    row.input_chars,
+    row.input_words,
+    row.input_paragraphs,
+    row.output_chars,
+    row.output_words,
+    row.output_paragraphs,
+  ];
+}
 
-  console.log(`[generate-test-data] Using database: ${dbPath}`);
+function walSidecars(dbPath) {
+  return [`${dbPath}-wal`, `${dbPath}-shm`].filter((p) => fs.existsSync(p));
+}
 
-  if (!fs.existsSync(dataDir)) {
-    fs.mkdirSync(dataDir, { recursive: true });
+function isSqliteBusy(err) {
+  return err?.code === "SQLITE_BUSY" || /database is locked/i.test(String(err?.message || ""));
+}
+
+function isNativeBindingError(err) {
+  return /NODE_MODULE_VERSION|Could not locate the bindings|compiled against a different Node\.js/i.test(
+    String(err?.message || ""),
+  );
+}
+
+/** PIDs other than this process that have the DB or WAL/SHM open. Empty if lsof is missing. */
+function listDbLockers(dbPath) {
+  const paths = [dbPath, `${dbPath}-wal`, `${dbPath}-shm`].filter((p) => fs.existsSync(p));
+  if (paths.length === 0) return [];
+  try {
+    const out = execFileSync("lsof", ["-t", ...paths], {
+      encoding: "utf8",
+      stdio: ["ignore", "pipe", "ignore"],
+    });
+    return [...new Set(out.trim().split(/\n/).filter(Boolean))].filter(
+      (pid) => pid && pid !== String(process.pid),
+    );
+  } catch {
+    return [];
+  }
+}
+
+function formatLockerLines(pids) {
+  return pids.map((pid) => {
+    try {
+      const args = execFileSync("ps", ["-p", pid, "-o", "args="], {
+        encoding: "utf8",
+        stdio: ["ignore", "pipe", "ignore"],
+      }).trim();
+      return `  PID ${pid}${args ? `: ${args}` : ""}`;
+    } catch {
+      return `  PID ${pid}`;
+    }
+  });
+}
+
+function printNativeOpenFailure(err, dbPath) {
+  console.error(RED + `[generate-test-data] better-sqlite3 failed: ${err.message}` + RESET);
+  if (isNativeBindingError(err)) {
+    console.error(RED + "Rebuild native modules for this Node: node scripts/node-rebuild.js" + RESET);
+    return;
+  }
+  const lockers = listDbLockers(dbPath);
+  if (lockers.length > 0) {
+    console.error(RED + "These processes still have the database open:" + RESET);
+    for (const line of formatLockerLines(lockers)) {
+      console.error(RED + line + RESET);
+    }
+    return;
+  }
+  if (isSqliteBusy(err)) {
+    console.error(
+      RED +
+        "SQLite reported the database as locked, but no process currently has the file open. " +
+        "Retry in a moment; if it persists, remove leftover " +
+        path.basename(dbPath) +
+        "-wal / -shm only when you are sure nothing is using the DB." +
+        RESET,
+    );
+  }
+}
+
+function openNativeDb(dbPath) {
+  if (!BetterSqlite3) return null;
+  const db = new BetterSqlite3(dbPath, { timeout: NATIVE_BUSY_MS });
+  db.pragma(`busy_timeout = ${NATIVE_BUSY_MS}`);
+  db.pragma("journal_mode = WAL");
+  db.pragma("synchronous = NORMAL");
+  applyAppSchema(db);
+  return db;
+}
+
+function listUsernamesNative(db) {
+  try {
+    const table = db.prepare(
+      "SELECT name FROM sqlite_master WHERE type='table' AND name='users'",
+    ).get();
+    if (!table) return [];
+    return db.prepare("SELECT username FROM users").all().map((row) => row.username);
+  } catch {
+    return [];
+  }
+}
+
+function insertRowsNative(db, rows) {
+  db.exec("DELETE FROM action_content");
+  db.exec("DELETE FROM api_calls");
+  try {
+    db.exec("DELETE FROM sqlite_sequence WHERE name = 'api_calls'");
+  } catch { /* ignore */ }
+  const insertCall = db.prepare(sql.INSERT_API_CALL);
+  const insertContent = db.prepare(sql.INSERT_ACTION_CONTENT);
+  const insertAll = db.transaction((batch) => {
+    for (const row of batch) {
+      const info = insertCall.run(...callInsertParams(row));
+      insertContent.run(info.lastInsertRowid, SAMPLE_INPUT_TEXT, SAMPLE_OUTPUT_TEXT);
+    }
+  });
+  insertAll(rows);
+}
+
+async function writeRowsSqlJs(dbPath, buildRows) {
+  const lockers = listDbLockers(dbPath);
+  if (lockers.length > 0) {
+    console.error(
+      RED +
+        "[generate-test-data] Cannot overwrite the database with sql.js while another process has it open:" +
+        RESET,
+    );
+    for (const line of formatLockerLines(lockers)) {
+      console.error(RED + line + RESET);
+    }
+    process.exit(1);
+  }
+  const sidecars = walSidecars(dbPath);
+  for (const p of sidecars) {
+    try {
+      fs.unlinkSync(p);
+    } catch {
+      /* ignore */
+    }
   }
 
-  const { config, models, languages } = loadConfig(configPath);
-  const transformPromptNames = numTransforms > 0 ? loadTransformPrompts() : [];
-
-  const initSqlJs = require("sql.js");
   const SQL = await initSqlJs();
-
   let db;
   if (fs.existsSync(dbPath)) {
-    const buf = fs.readFileSync(dbPath);
-    db = new SQL.Database(buf);
+    db = new SQL.Database(fs.readFileSync(dbPath));
   } else {
     db = new SQL.Database();
   }
@@ -525,16 +680,8 @@ async function main() {
       }
     }
   } catch { /* ignore */ }
-  if (usernames.length > 0) {
-    console.log(`Using ${usernames.length} existing user(s) for test data: ${usernames.join(", ")}`);
-  }
 
-  const rows = generateRows(models, languages, numTranslations, numRewrites, numTransforms, transformPromptNames, usernames);
-  const totalCost = Math.round(
-    rows.reduce((sum, row) => sum + (Number(row.cost) || 0), 0) * 1e6,
-  ) / 1e6;
-  const insertSql = sql.INSERT_API_CALL;
-  const insertContentSql = sql.INSERT_ACTION_CONTENT;
+  const rows = buildRows(usernames);
 
   function readLastInsertRowid() {
     const r = db.exec("SELECT last_insert_rowid() AS id");
@@ -543,38 +690,68 @@ async function main() {
   }
 
   for (const row of rows) {
-    db.run(insertSql, [
-      row.timestamp,
-      row.type,
-      row.model,
-      row.source_lang,
-      row.target_lang,
-      row.rewrite_mode,
-      row.transform_prompt,
-      row.prompt_tokens,
-      row.completion_tokens,
-      row.duration_ms,
-      row.cost,
-      row.tps,
-      row.username,
-      row.input_chars,
-      row.input_words,
-      row.input_paragraphs,
-      row.output_chars,
-      row.output_words,
-      row.output_paragraphs,
-    ]);
+    db.run(sql.INSERT_API_CALL, callInsertParams(row));
     const apiCallId = readLastInsertRowid();
     if (apiCallId == null) {
       throw new Error("last_insert_rowid() missing after INSERT INTO api_calls");
     }
-    db.run(insertContentSql, [apiCallId, SAMPLE_INPUT_TEXT, SAMPLE_OUTPUT_TEXT]);
+    db.run(sql.INSERT_ACTION_CONTENT, [apiCallId, SAMPLE_INPUT_TEXT, SAMPLE_OUTPUT_TEXT]);
   }
 
-  const data = db.export();
-  const buffer = Buffer.from(data);
-  fs.writeFileSync(dbPath, buffer);
+  fs.writeFileSync(dbPath, Buffer.from(db.export()));
   db.close();
+  return { rows, usernames };
+}
+
+async function main() {
+  const { mode, numTranslations, numRewrites, numTransforms } = parseArgs();
+  const dataDir = getDataDir(mode);
+  const configPath = process.env.CONFIG_PATH || path.join(dataDir, "config.json");
+  const dbPath = path.join(dataDir, "transrewrt.db");
+
+  console.log(`[generate-test-data] Using database: ${dbPath}`);
+
+  if (!fs.existsSync(dataDir)) {
+    fs.mkdirSync(dataDir, { recursive: true });
+  }
+
+  const { config, models, languages } = loadConfig(configPath);
+  const transformPromptNames = numTransforms > 0 ? loadTransformPrompts() : [];
+
+  let nativeDb = null;
+  try {
+    nativeDb = openNativeDb(dbPath);
+  } catch (err) {
+    printNativeOpenFailure(err, dbPath);
+    if (isSqliteBusy(err) || /malformed/i.test(String(err.message || ""))) {
+      process.exit(1);
+    }
+    nativeDb = null;
+  }
+
+  let rows;
+  if (nativeDb) {
+    const usernames = listUsernamesNative(nativeDb);
+    if (usernames.length > 0) {
+      console.log(`Using ${usernames.length} existing user(s) for test data: ${usernames.join(", ")}`);
+    }
+    rows = generateRows(models, languages, numTranslations, numRewrites, numTransforms, transformPromptNames, usernames);
+    insertRowsNative(nativeDb, rows);
+    nativeDb.close();
+    console.log("[generate-test-data] Wrote rows via better-sqlite3 (WAL-safe).");
+  } else {
+    const written = await writeRowsSqlJs(dbPath, (usernames) => {
+      if (usernames.length > 0) {
+        console.log(`Using ${usernames.length} existing user(s) for test data: ${usernames.join(", ")}`);
+      }
+      return generateRows(models, languages, numTranslations, numRewrites, numTransforms, transformPromptNames, usernames);
+    });
+    rows = written.rows;
+  }
+
+  const totalCost = Math.round(
+    rows.reduce((sum, row) => sum + (Number(row.cost) || 0), 0) * 1e6,
+  ) / 1e6;
   saveTotalCost(configPath, config, totalCost);
 
   const translations = rows.filter((r) => r.type === "translate").length;

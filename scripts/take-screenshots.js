@@ -5,14 +5,14 @@
  * and saves them to images/screenshots/.
  *
  * Prerequisites:
- * - Web app running (e.g. pnpm run dev:web → http://localhost:5500).
+ * - Web app running: `pnpm serve` → http://localhost:5000, or `pnpm run dev:web` → http://localhost:5500.
  * - Set ADMIN_USERNAME and ADMIN_PASSWORD in the environment (required; script exits if missing).
  *
  * Usage: pnpm run take-screenshots [--screenshot=NAME[,NAME...]] [--locale=CODE[,CODE...]]
  *   Unknown flags, invalid `--screenshot=` names, and `--locale` filters that match nothing are rejected at startup (before config/DB/server/browser).
  *   --screenshot=…  (or --screen=…)  One or more sets, comma- or space-separated (e.g. --screenshot=translate,rewrite).
  *   --locale=CODE      (comma- or space-separated) Only run for these locale(s). On PowerShell, quote commas: '--locale=pt-BR,es' or use spaces: --locale=pt-BR es.
- * Env: BASE_URL (default http://localhost:5500), ADMIN_USERNAME, ADMIN_PASSWORD, HEADLESS (default true; set to false to see browser).
+ * Env: BASE_URL (optional; otherwise probe :5000 then :5500), ADMIN_USERNAME, ADMIN_PASSWORD, HEADLESS (default true; set to false to see browser).
  *       HISTORY_DISABLED must not be true/1 (checked after CLI validation): exit so the History screenshot can work (match the web server env, e.g. `.env`).
  *       PUPPETEER_EXECUTABLE_PATH: path to Chrome/Chromium (use on Linux ARM / Raspberry Pi where the bundled binary is x64 only).
  *
@@ -44,7 +44,9 @@ const {
 } = require("../src/shared/db/appSchema.js");
 const { isHistoryDisabledByEnv } = require("../src/shared/historyEnv.js");
 
-const BASE_URL = process.env.BASE_URL || "http://localhost:5500";
+/** Production `pnpm serve` / Docker, then webpack `pnpm dev:web`. Override with BASE_URL. */
+const DEFAULT_BASE_URLS = ["http://localhost:5000", "http://localhost:5500"];
+let BASE_URL = (process.env.BASE_URL || "").trim() || null;
 
 /** Transform screenshot flows select this prompt; seeded into custom_prompts if missing. */
 const DICTIONARY_ENTRY_PROMPT_NAME = "Dictionary Entry";
@@ -55,6 +57,20 @@ const UI_LANGUAGES_PATH = path.join(__dirname, "..", "src", "renderer", "locales
 function loadUILanguages() {
   const raw = JSON.parse(fs.readFileSync(UI_LANGUAGES_PATH, "utf8"));
   return Array.isArray(raw) ? raw : [];
+}
+
+/** Header trigger shows `label` (for example "English (UK)"), not the locale code. */
+function languageLabelForCode(targetCode) {
+  const lang = loadUILanguages().find((entry) => entry.code === targetCode);
+  return lang && lang.label ? String(lang.label).replace(/\s+/g, " ").trim() : "";
+}
+
+function headerShowsLanguage(triggerText, targetCode) {
+  const text = String(triggerText || "").replace(/\s+/g, " ").trim();
+  if (!text) return false;
+  if (text === targetCode) return true;
+  const label = languageLabelForCode(targetCode);
+  return Boolean(label) && text === label;
 }
 
 /** Loads `ui-languages.json` and applies `--locale=` filter when set. */
@@ -103,7 +119,7 @@ function parseArgs() {
 }
 
 function printHelp(availableScreenshotNames) {
-  const baseUrl = process.env.BASE_URL || "http://localhost:5500";
+  const baseUrl = (process.env.BASE_URL || "").trim() || "http://localhost:5000 or http://localhost:5500";
   const setList =
     availableScreenshotNames && availableScreenshotNames.length > 0
       ? availableScreenshotNames.map((n) => `    ${n}`).join("\n")
@@ -113,7 +129,7 @@ Take screenshots of the Transrewrt web app (Translate, Rewrite, Transform, etc.)
 and save them to images/screenshots/<locale>/.
 
 Prerequisites:
-  - Web app running (e.g. pnpm run dev:web → ${baseUrl}).
+  - Web app running (pnpm serve → :5000, or pnpm run dev:web → :5500).
   - ADMIN_USERNAME and ADMIN_PASSWORD set in the environment (required; script exits if missing).
 
 Usage:
@@ -131,7 +147,7 @@ Configured screenshot sets (${availableScreenshotNames?.length ?? 0}):
 ${setList}
 
 Environment:
-  BASE_URL                   Base URL of the web app (default: ${baseUrl}).
+  BASE_URL                   Base URL of the web app (default: probe ${baseUrl}).
   ADMIN_USERNAME             Admin username for web login.
   ADMIN_PASSWORD             Admin password for web login.
   HEADLESS                   Set to "false" to see the browser (default: true).
@@ -504,17 +520,28 @@ function getChromeExecutablePath() {
   return null;
 }
 
-async function checkAppResponding() {
+async function urlResponds(url) {
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), 5000);
   try {
-    const res = await fetch(BASE_URL, { signal: controller.signal });
+    const res = await fetch(url, { signal: controller.signal });
     clearTimeout(timeout);
     return res.ok || res.status < 500;
   } catch {
     clearTimeout(timeout);
     return false;
   }
+}
+
+async function resolveBaseUrl() {
+  const candidates = BASE_URL ? [BASE_URL] : DEFAULT_BASE_URLS;
+  for (const url of candidates) {
+    if (await urlResponds(url)) {
+      BASE_URL = url;
+      return url;
+    }
+  }
+  return null;
 }
 const HEADLESS = process.env.HEADLESS !== "false";
 const MAX_RETRIES = 3;
@@ -727,7 +754,7 @@ async function setUILanguage(page, targetCode, options = {}) {
       || document.querySelector("[data-testid=\"language-selector-trigger\"]");
     return btn ? String(btn.textContent || "").trim() : "";
   });
-  if (triggerText && triggerText !== targetCode) {
+  if (triggerText && !headerShowsLanguage(triggerText, targetCode)) {
     // One retry when the menu interaction did not apply.
     await page.keyboard.press("Escape");
     await wait(100);
@@ -746,8 +773,11 @@ async function setUILanguage(page, targetCode, options = {}) {
       || document.querySelector("[data-testid=\"language-selector-trigger\"]");
     return btn ? String(btn.textContent || "").trim() : "";
   });
-  if (finalTriggerText && finalTriggerText !== targetCode) {
-    throw new Error(`UI language did not switch to ${targetCode} (current: ${finalTriggerText})`);
+  if (finalTriggerText && !headerShowsLanguage(finalTriggerText, targetCode)) {
+    const expected = languageLabelForCode(targetCode) || targetCode;
+    throw new Error(
+      `UI language did not switch to ${targetCode} (current: ${finalTriggerText}, expected: ${expected})`,
+    );
   }
   log("Selected %s via %s (header now: %s).", targetCode, optionSelectorUsed, finalTriggerText || "(unknown)", { indent: 2 });
 }
@@ -1266,14 +1296,16 @@ async function main() {
   ensureHistorySampleForScreenshots();
   applyScreenshotConfigConsistency();
 
-  log("Checking if server is online at %s...", BASE_URL);
-  if (!(await checkAppResponding())) {
-    log("The application is not responding at %s.", BASE_URL, { red: true });
-    log("Start it first with: pnpm run dev:web", { red: true });
+  const urlsToTry = BASE_URL ? [BASE_URL] : DEFAULT_BASE_URLS;
+  log("Checking if a web app is online (%s)...", urlsToTry.join(", "));
+  if (!(await resolveBaseUrl())) {
+    log("The application is not responding at %s.", urlsToTry.join(" or "), { red: true });
+    log("Start it first with: pnpm serve (port 5000) or pnpm run dev:web (port 5500).", { red: true });
+    log("Or set BASE_URL to the URL that is already running.", { red: true });
     if (logStream) logStream.end();
     process.exit(1);
   }
-  log("Server is responding.");
+  log("Server is responding at %s.", BASE_URL);
   log("Output directory: %s", OUT_DIR);
 
   const executablePath = getChromeExecutablePath();
@@ -1305,7 +1337,7 @@ async function main() {
     await page.goto(BASE_URL, { waitUntil: "networkidle2", timeout: 20000 });
   } catch (e) {
     log("Failed to load %s: %s", BASE_URL, e.message);
-    log("Ensure the web app is running (e.g. pnpm run dev:web).");
+    log("Ensure the web app is running (pnpm serve or pnpm run dev:web).");
     await browser.close();
     if (logStream) logStream.end();
     process.exit(1);
@@ -1423,7 +1455,7 @@ async function main() {
 
 main().catch((err) => {
   const ts = getTimestamp();
-  const line = `${ts} - ${err && err.message ? err.message : String(err)}`;
+  const line = `${ts} - Error: ${err && err.message ? err.message : String(err)}`;
   console.error(line);
   if (logStream && logStream.writable) {
     logStream.write(line + "\n");
