@@ -11,6 +11,8 @@ Use conventional types (Added, Changed, Fixed, etc.) and short descriptions.
 
 ## Unreleased
 
+## [1.7.1] - 2026-11-13
+
 - **Changed**: Screenshots live only in `website/public/images/screenshots`. `take-screenshots` writes there, and the README image uses the GitHub Pages URL.
 - **Added**: Dependency upgrade scripts bump the supercronic pin in `Dockerfile.presets-check` to the latest GitHub release and refresh the amd64 and arm64 SHA1 sums.
 - **Fixed**: presets-check no longer crashes with `Cannot access 'engine' before initialization` when it starts checking a preset group.
