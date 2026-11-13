@@ -2,7 +2,7 @@
 
 /**
  * Takes screenshots of the Transrewrt web app (Translate, Rewrite, Transform, History, etc.)
- * and saves them to images/screenshots/.
+ * and saves them to website/public/images/screenshots/.
  *
  * Prerequisites:
  * - Web app running: `pnpm serve` → http://localhost:5000, or `pnpm run dev:web` → http://localhost:5500.
@@ -24,7 +24,7 @@
  * correctly when system Chromium lacks those scripts (Geist only covers Latin).
  *
  * Screenshots are taken in every UI language from src/renderer/locales/ui-languages.json and saved
- * under images/screenshots/LANGCODE/ (e.g. images/screenshots/pt-BR/rewrite.png). Session logs are written
+ * under website/public/images/screenshots/LANGCODE/ (e.g. website/public/images/screenshots/pt-BR/rewrite.png). Session logs are written
  * to dev/take-screenshots-YYYYMMDD-HHMMSS.log. Navigation/setup runs once per screenshot type in en-GB;
  * then the UI language is cycled and each capture is saved in that language's folder.
  */
@@ -126,7 +126,7 @@ function printHelp(availableScreenshotNames) {
       : "    (none configured)";
   console.log(BLUE + `
 Take screenshots of the Transrewrt web app (Translate, Rewrite, Transform, etc.)
-and save them to images/screenshots/<locale>/.
+and save them to website/public/images/screenshots/<locale>/.
 
 Prerequisites:
   - Web app running (pnpm serve → :5000, or pnpm run dev:web → :5500).
@@ -154,7 +154,7 @@ Environment:
   PUPPETEER_EXECUTABLE_PATH  Path to Chrome/Chromium (e.g. on Linux ARM if bundled binary is x64 only).
 
 Screenshots are taken per UI language from src/renderer/locales/ui-languages.json and saved under
-images/screenshots/<code>/ (e.g. images/screenshots/pt-BR/rewrite.png). A session log file is written to
+website/public/images/screenshots/<code>/ (e.g. website/public/images/screenshots/pt-BR/rewrite.png). A session log file is written to
 dev/take-screenshots-YYYYMMDD-HHMMSS.log.
 
 Examples:
@@ -449,7 +449,7 @@ function ensureHistorySampleForScreenshots() {
   db.close();
 }
 
-const OUT_DIR = path.join(__dirname, "..", "images", "screenshots");
+const OUT_DIR = path.join(__dirname, "..", "website", "public", "images", "screenshots");
 const LOG_DIR = path.join(__dirname, "..", "dev");
 let logStream = null;
 /** When inside a screenshot set loop, prepended to log lines (e.g. "  "). Deeper indent for "Selected"/"Saved" uses 5 spaces. */

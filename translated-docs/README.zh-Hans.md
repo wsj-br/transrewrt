@@ -22,7 +22,7 @@ AI 驱动的文本工具，支持通过自定义提示词进行**翻译**、**�
 | **部署** | Electron 桌面版或 Docker Web 版（amd64 和 arm64） |
 | **密钥** | 你的提供商，你的主机 —— 简易预设或高级模型列表 |
 
-![翻译](../images/screenshots/zh-Hans/translate.png)
+![翻译](https://wsj-br.github.io/transrewrt/images/screenshots/zh-Hans/translate.png)
 
 <small>**以其他语言阅读：** </small>
 <small id="lang-list">[English (UK)](../README.md) · [العربية](./README.ar.md) · [简体中文](./README.zh-Hans.md) · [繁體中文](./README.zh-Hant.md) · [Čeština](./README.cs.md) · [Nederlands](./README.nl.md) · [Français](./README.fr.md) · [Deutsch](./README.de.md) · [Ελληνικά](./README.el.md) · [हिन्दी](./README.hi.md) · [Magyar](./README.hu.md) · [Italiano](./README.it.md) · [日本語](./README.ja.md) · [한국어](./README.ko.md) · [فارسی](./README.fa.md) · [Polski](./README.pl.md) · [Português (Brasil)](./README.pt-BR.md) · [Română](./README.ro.md) · [Русский](./README.ru.md) · [Slovenčina](./README.sk.md) · [Español](./README.es.md) · [Svenska](./README.sv.md) · [ไทย](./README.th.md) · [Türkçe](./README.tr.md) · [Українська](./README.uk.md) · [Tiếng Việt](./README.vi.md)</small>

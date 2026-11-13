@@ -43,7 +43,7 @@
           <button type="button" id="btn-presets-main" class="btn secondary">Presets</button>
           <button type="button" id="btn-performance" class="btn secondary">Performance</button>
           <button type="button" id="btn-translate-benchmark" class="btn secondary">Benchmark</button>
-          <button type="button" id="btn-ai-suggest" class="btn">AI Suggestion</button>
+          <button type="button" id="btn-ai-suggest" class="btn">Suggest models</button>
           <button type="button" id="btn-save-catalog" class="btn primary">Save catalog</button>
         </div>
       </div>
@@ -109,6 +109,7 @@
                   >prompt_hint
                   <textarea id="field-prompt-hint" rows="4"></textarea>
                 </label>
+                <div class="span-2 suggestion-policy-block" id="suggestion-policy-host"></div>
                 <div class="span-2 provider-models-block">
                   <div class="provider-models-heading">
                     <strong>model_ids</strong>
@@ -141,64 +142,41 @@
       >
         <div class="ai-suggest-flow-inner">
           <div class="ai-suggest-flow-header">
-            <h2 id="ai-suggest-setup-title">AI Suggestion — choose models</h2>
+            <h2 id="ai-suggest-setup-title">Suggest models</h2>
             <p class="muted ai-suggest-flow-note">
-              Select the OpenRouter models used to suggest <code>model_ids</code> (stored as
-              <code>suggestion_model</code> and <code>suggestion_model_fallback</code> in
-              presets.json). Provider catalogs are loaded at startup before the editor is shown.
+              Rank each preset’s existing providers from languagebench ChrF and Arena Score.
+              The cost cap and profile are stored on the preset as <code>suggestion</code> and
+              used again by presets-check. No model call is made.
             </p>
-          </div>
-          <div class="ai-suggest-setup-models">
-            <div class="header-model-group">
-              <span class="header-model-label">Suggestion model (primary)</span>
-              <div class="header-model-row">
-                <code id="display-suggestion-model" class="header-model-display"></code>
-                <button type="button" id="btn-pick-suggestion-model" class="btn secondary sm">
-                  Choose…
-                </button>
-              </div>
-            </div>
-            <div class="header-model-group">
-              <span class="header-model-label">Suggestion model — Fallback</span>
-              <div class="header-model-row">
-                <code id="display-suggestion-model-fallback" class="header-model-display"></code>
-                <button
-                  type="button"
-                  id="btn-pick-suggestion-model-fallback"
-                  class="btn secondary sm"
-                >
-                  Choose…
-                </button>
-              </div>
-            </div>
           </div>
           <div class="ai-suggest-setup-presets">
             <div class="ai-suggest-setup-presets-header">
-              <span class="header-model-label">Presets to suggest</span>
+              <span class="header-model-label">All presets</span>
             </div>
             <p class="muted ai-suggest-setup-presets-note">
-              Choose which presets receive new <code>model_ids</code> suggestions (<code>free-router</code> is
-              never included).
+              <strong>Index gap</strong> is the smallest difference, in index points, between the
+              primary and the fallback. The index runs from 0 to 100.               The default is 1, which prefers a fallback at least 1.0 index points away. If every
+              other model is closer than that, or costs more than the cap, it is still used. A
+              provider with only one model gets a primary and no fallback. The cap is blended USD
+              per 1M tokens and applies to the primary; leave it blank for no cap. Free stays at $0.
+              Weights and the quality floor are on the preset form.
             </p>
             <div
               id="ai-suggest-presets-checkboxes"
               class="ai-suggest-presets-checkboxes"
               role="group"
-              aria-label="Presets to include in AI suggestion"
+              aria-label="Preset ranking policy"
             ></div>
           </div>
           <div class="ai-suggest-setup-options">
             <label class="ai-suggest-live-timing-check">
-              <input type="checkbox" id="ai-suggest-live-timing" checked />
-              <span>
-                Live timing for fast/standard presets (time top shortlist candidates with a real
-                translate call; pick the two fastest as primary and fallback)
-              </span>
+              <input type="checkbox" id="ai-suggest-refresh-benchmarks" />
+              <span>Refresh benchmark cache before ranking (languagebench, Arena, models.dev)</span>
             </label>
             <p class="muted ai-suggest-setup-presets-note">
-              Suggestions are constrained to a deterministic shortlist from languagebench (translation
-              ChrF), Arena Score (capability), OpenRouter endpoint speed, and catalog/models.dev
-              pricing.
+              The index is ChrF and Arena only. Price is the blended cap
+              <code>(3 × input + output) / 4</code> USD per 1M tokens, then a Pareto frontier on the
+              price profile.
             </p>
           </div>
           <div class="ai-suggest-flow-footer">
@@ -224,7 +202,7 @@
       >
         <div class="ai-suggest-flow-inner">
           <div class="ai-suggest-flow-header">
-            <h2 id="ai-suggest-run-title">AI Suggestion — running</h2>
+            <h2 id="ai-suggest-run-title">Suggest models — running</h2>
             <p id="ai-suggest-run-summary" class="muted ai-suggest-run-summary"></p>
           </div>
           <div id="ai-suggest-run-log" class="ai-suggest-run-log" aria-live="polite"></div>
@@ -243,18 +221,18 @@
       >
         <div class="ai-suggest-review-inner">
           <div class="ai-suggest-review-header">
-            <h2 id="ai-suggest-review-title">AI model suggestions</h2>
+            <h2 id="ai-suggest-review-title">Suggested models</h2>
             <p class="muted ai-suggest-review-note">
-              Review suggested <code>model_ids</code> per provider. For each primary and fallback, choose
-              <em>Keep current</em> or <em>Use suggested</em>. Web search was used via OpenRouter (extra
-              cost may apply). Saving here updates the in-memory catalog only — use
-              <strong>Save catalog</strong> to write files.
+              Primary, then fallback, for each provider. Rank is the model’s place in that provider’s
+              list. Index is ChrF and Arena. Blended is USD per 1M tokens,
+              <code>(3 × input + output) / 4</code>.
+              <strong>Save catalog</strong> writes these primary and fallback ids, plus the ranking
+              policy, then returns to the preset list.
             </p>
           </div>
           <div id="ai-suggest-review-host" class="ai-suggest-review-host"></div>
           <div class="ai-suggest-review-footer">
-            <button type="button" id="btn-ai-suggest-save" class="btn primary">Save to catalog</button>
-            <button type="button" id="btn-ai-suggest-cancel" class="btn secondary">Cancel</button>
+            <button type="button" id="btn-ai-suggest-cancel" class="btn primary">Save catalog</button>
           </div>
         </div>
       </section>

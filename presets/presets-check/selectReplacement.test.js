@@ -4,6 +4,7 @@ const {
   sameFamily,
   selectSlotReplacement,
   selectReplacementPair,
+  selectPolicyPair,
   resolveVerifiedChoice,
 } = require("./selectReplacement.js");
 const { evaluateCircuitBreaker } = require("./circuitBreaker.js");
@@ -201,6 +202,73 @@ describe("selectReplacement", () => {
     );
     assert.equal(verified.status, "unresolved");
     assert.equal(verified.verifyFailed, true);
+  });
+});
+
+describe("selectPolicyPair", () => {
+  const scored = (id, index, price) => ({
+    id,
+    index,
+    chrf: index,
+    arenaScore: index,
+    blendedPerMTokens: price,
+    belowFloor: false,
+    aliasOf: null,
+  });
+
+  it("upgrades when a higher ranked model is under the cap", () => {
+    const pair = selectPolicyPair({
+      primaryId: "openai/old",
+      fallbackId: "openai/older",
+      primaryUnavailable: false,
+      fallbackUnavailable: false,
+      suggestion: { maxPrice: 8 },
+      ranked: [scored("openai/new", 90, 2), scored("openai/old", 70, 2), scored("openai/older", 60, 2)],
+      selected: [scored("openai/new", 90, 2), scored("openai/mid", 80, 2)],
+    });
+    assert.equal(pair.primary.status, "replacement");
+    assert.equal(pair.primary.source, "upgrade");
+    assert.equal(pair.primary.newId, "openai/new");
+    assert.equal(pair.fallback.newId, "openai/mid");
+  });
+
+  it("keeps the current id when it is already first", () => {
+    const pair = selectPolicyPair({
+      primaryId: "openai/new",
+      primaryUnavailable: false,
+      suggestion: { maxPrice: 8 },
+      ranked: [scored("openai/new", 90, 2)],
+      selected: [scored("openai/new", 90, 2)],
+    });
+    assert.equal(pair.primary.status, "ok");
+    assert.equal(pair.primary.newId, null);
+  });
+
+  it("replaces an over-cap model and does not replace a scored id with an unscored one", () => {
+    const unscored = { id: "openai/blank", index: 40, chrf: null, arenaScore: null, blendedPerMTokens: 1 };
+    const current = scored("openai/dear", 80, 20);
+    const pair = selectPolicyPair({
+      primaryId: "openai/dear",
+      primaryUnavailable: false,
+      suggestion: { maxPrice: 8 },
+      ranked: [current, unscored],
+      selected: [unscored],
+    });
+    assert.equal(pair.primary.status, "unresolved");
+    assert.equal(pair.primary.newId, null);
+  });
+
+  it("fills an unavailable slot with an unscored model", () => {
+    const unscored = { id: "openai/blank", index: 40, chrf: null, arenaScore: null, blendedPerMTokens: 1 };
+    const pair = selectPolicyPair({
+      primaryId: "openai/gone",
+      primaryUnavailable: true,
+      suggestion: { maxPrice: 8 },
+      ranked: [],
+      selected: [unscored],
+    });
+    assert.equal(pair.primary.newId, "openai/blank");
+    assert.equal(pair.primary.source, "unavailable");
   });
 });
 

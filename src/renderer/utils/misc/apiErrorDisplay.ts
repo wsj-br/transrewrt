@@ -1,3 +1,4 @@
+import type { TFunction } from "i18next";
 import {
   isOpenRouterKeyAuthFailureMessage,
   normalizeOpenRouterKeyErrorMessage,
@@ -153,7 +154,7 @@ export function classifyActionError(
  */
 export function formatActionErrorMessage(
   classified: ClassifiedActionError,
-  t: (key: string, options?: Record<string, unknown>) => string,
+  t: TFunction,
 ): string {
   if (classified.bodyText) {
     return t(classified.bodyText);
@@ -205,7 +206,7 @@ export type EmptyResultKind = "translate" | "rewrite" | "transform" | "rephrase"
 
 function actionErrorTitle(
   action: ActionErrorAction,
-  t: (key: string, options?: Record<string, unknown>) => string,
+  t: TFunction,
 ): string {
   switch (action) {
     case "translate":
@@ -228,7 +229,7 @@ function actionErrorTitle(
 export function buildActionErrorAlert(
   action: ActionErrorAction,
   rawMessage: string | null | undefined,
-  t: (key: string, options?: Record<string, unknown>) => string,
+  t: TFunction,
   status?: number | null,
 ): { title: string; message: string } {
   const classified = classifyActionError(rawMessage, status);
@@ -244,7 +245,7 @@ export function buildActionErrorAlert(
  */
 export function buildEmptyResultAlert(
   kind: EmptyResultKind,
-  t: (key: string, options?: Record<string, unknown>) => string,
+  t: TFunction,
   parentAction: ActionErrorAction = "translate",
 ): { title: string; message: string } {
   if (kind === "rephrase") {
@@ -293,7 +294,7 @@ export function buildEmptyResultAlert(
  */
 export function buildIncompleteRequestAlert(
   action: ActionErrorAction,
-  t: (key: string, options?: Record<string, unknown>) => string,
+  t: TFunction,
 ): { title: string; message: string } {
   return {
     title: actionErrorTitle(action, t),

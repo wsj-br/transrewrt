@@ -22,7 +22,7 @@ AI 驅動的文字工具，支援 **翻譯**、**改寫**與 **轉換**，可使
 | **部署** | Electron 桌面版或 Docker 網頁版（amd64 與 arm64） |
 | **金鑰** | 您的提供者、您的主機 — 簡易預設或進階模型清單 |
 
-![翻譯](../images/screenshots/zh-Hant/translate.png)
+![翻譯](https://wsj-br.github.io/transrewrt/images/screenshots/zh-Hant/translate.png)
 
 <small>**以其他語言閱讀：** </small>
 <small id="lang-list">[English (UK)](../README.md) · [العربية](./README.ar.md) · [简体中文](./README.zh-Hans.md) · [繁體中文](./README.zh-Hant.md) · [Čeština](./README.cs.md) · [Nederlands](./README.nl.md) · [Français](./README.fr.md) · [Deutsch](./README.de.md) · [Ελληνικά](./README.el.md) · [हिन्दी](./README.hi.md) · [Magyar](./README.hu.md) · [Italiano](./README.it.md) · [日本語](./README.ja.md) · [한국어](./README.ko.md) · [فارسی](./README.fa.md) · [Polski](./README.pl.md) · [Português (Brasil)](./README.pt-BR.md) · [Română](./README.ro.md) · [Русский](./README.ru.md) · [Slovenčina](./README.sk.md) · [Español](./README.es.md) · [Svenska](./README.sv.md) · [ไทย](./README.th.md) · [Türkçe](./README.tr.md) · [Українська](./README.uk.md) · [Tiếng Việt](./README.vi.md)</small>

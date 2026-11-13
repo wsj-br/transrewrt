@@ -12,7 +12,7 @@ const SOURCE_SHOT_LOCALE = 'en-GB';
 
 /**
  * Per-locale screenshot URL (Pattern B: `images/screenshots/<locale>/<name>.png`).
- * Assets are served from the repo `images/screenshots/` tree via public symlink.
+ * Assets are the PNGs in `website/public/images/screenshots/`.
  */
 export const SHOT = (name: string, locale = SOURCE_SHOT_LOCALE) =>
   withBase(`/images/screenshots/${locale || SOURCE_SHOT_LOCALE}/${name}.png`);

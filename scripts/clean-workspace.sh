@@ -45,8 +45,8 @@ done < <(find "$ROOT_DIR" \
     -o -type f -name '*.log' -print0)
 
 for cache in \
-    "dev/presets-check/provider-catalogs-cache.json" \
-    "dev/presets-check/presets-check.log" \
+    "presets/presets-check/provider-catalogs-cache.json" \
+    "presets/presets-check/presets-check.log" \
     "presets-editor-provider-catalogs.json" \
     "presets-editor-openrouter-cache.json"
 do

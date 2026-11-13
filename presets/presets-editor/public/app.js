@@ -278,12 +278,8 @@
   var presetSelectListBulkSync = false;
   var KEY_TRANSLATION_MODEL = "translation_model";
   var KEY_TRANSLATION_FALLBACK = "translation_model_fallback";
-  var KEY_SUGGESTION_MODEL = "suggestion_model";
-  var KEY_SUGGESTION_FALLBACK = "suggestion_model_fallback";
   var PRESET_PROVIDER_PICKER_PREFIX = "preset_provider:";
   var PRESET_PROVIDER_FALLBACK_PICKER_PREFIX = "preset_provider_fb:";
-  var AI_SUGGEST_PICKER_PREFIX = "ai_suggest:";
-
   var DIRECT_LLM_ENGINES = new Set([
     "openrouter",
     "openai",
@@ -299,6 +295,10 @@
 
   var providers = [];
   var modelsByEngine = {};
+  /** @type {Record<string, Record<string, { rank: number, index: number }>>} */
+  var modelRanksCache = {};
+  /** @type {Record<string, boolean>} */
+  var modelRanksPending = {};
   var modelsCatalogPrefetchPromise = null;
   /** @type {"idle"|"loading"|"ready"|"error"} */
   var modelsCatalogPrefetchState = "idle";
@@ -306,18 +306,12 @@
   var aiSuggestRunInFlight = false;
   /** @type {AbortController | null} */
   var aiSuggestAbortController = null;
-  /** @type {Record<string, Record<string, { model_id: string, reason?: string, warning?: string }>>} */
+  /** @type {Record<string, Record<string, { primary?: object, fallback?: object }>>} */
   var aiSuggestStaging = {};
-  /** @type {Record<string, Record<string, string>>} */
-  var aiSuggestSnapshot = {};
-  /** @type {Record<string, Record<string, { primary?: string, fallback?: string }>>} */
-  var aiSuggestChoice = {};
   var serverSessionErrorCount = 0;
   var serverLogAlertShown = false;
 
   function pickerEngineFromTarget(target) {
-    const ai = parseAiSuggestPickerTarget(target);
-    if (ai) return ai.engine;
     const t = target || "";
     if (t.startsWith(PRESET_PROVIDER_FALLBACK_PICKER_PREFIX)) {
       return t.slice(PRESET_PROVIDER_FALLBACK_PICKER_PREFIX.length) || null;
@@ -326,32 +320,6 @@
       return t.slice(PRESET_PROVIDER_PICKER_PREFIX.length) || null;
     }
     return null;
-  }
-
-  function parseAiSuggestPickerTarget(target) {
-    const t = target || "";
-    if (!t.startsWith(AI_SUGGEST_PICKER_PREFIX)) return null;
-    const rest = t.slice(AI_SUGGEST_PICKER_PREFIX.length);
-    const parts = rest.split(":");
-    if (parts.length < 2) return null;
-    if (parts[parts.length - 1] === "fallback") {
-      if (parts.length < 3) return null;
-      return {
-        presetId: parts.slice(0, -2).join(":"),
-        engine: parts[parts.length - 2],
-        role: "fallback",
-      };
-    }
-    return {
-      presetId: parts.slice(0, -1).join(":"),
-      engine: parts[parts.length - 1],
-      role: "primary",
-    };
-  }
-
-  function aiSuggestPickerTarget(presetId, engine, role) {
-    const suffix = role === "fallback" ? ":fallback" : "";
-    return AI_SUGGEST_PICKER_PREFIX + presetId + ":" + engine + suffix;
   }
 
   function presetProviderPickerTarget(engine, role) {
@@ -476,6 +444,8 @@
 
   function normalizeCatalogModelIds() {
     (catalog.presets || []).forEach(normalizePresetModelIds);
+    delete catalog.suggestion_model;
+    delete catalog.suggestion_model_fallback;
   }
 
   function providersForPreset(preset) {
@@ -489,13 +459,6 @@
   }
 
   function getSelectedModelIdForPicker() {
-    const aiPick = parseAiSuggestPickerTarget(modelPickerTarget);
-    if (aiPick) {
-      const st = aiSuggestStaging[aiPick.presetId];
-      const row = st && st[aiPick.engine];
-      if (!row) return "";
-      return aiPick.role === "fallback" ? row.fallback_id || "" : row.model_id || "";
-    }
     const eng = pickerEngineFromTarget(modelPickerTarget);
     if (eng && isPresetProviderPickerTarget(modelPickerTarget)) {
       const preset = getSelectedPreset();
@@ -513,12 +476,6 @@
     }
     if (modelPickerTarget === "translation_model_fallback") {
       return String(catalog[KEY_TRANSLATION_FALLBACK] || "").trim();
-    }
-    if (modelPickerTarget === "suggestion_model") {
-      return String(catalog[KEY_SUGGESTION_MODEL] || "").trim();
-    }
-    if (modelPickerTarget === "suggestion_model_fallback") {
-      return String(catalog[KEY_SUGGESTION_FALLBACK] || "").trim();
     }
     return "";
   }
@@ -608,17 +565,10 @@
     updateAiSuggestBar();
   }
 
-  function openrouterProviderConfigured() {
-    return providers.some(function (p) {
-      return p.engine === "openrouter" && p.configured;
-    });
-  }
-
   function updateAiSuggestBar() {
     const btn = document.getElementById("btn-ai-suggest");
     if (!btn) return;
-    btn.disabled =
-      aiSuggestRunInFlight || translateRunInFlight || !openrouterProviderConfigured();
+    btn.disabled = aiSuggestRunInFlight || translateRunInFlight || modelsCatalogPrefetchState !== "ready";
     updateAiSuggestContinueButton();
   }
 
@@ -666,8 +616,6 @@
   /** Topbar Presets: leave Performance / Benchmark / AI Suggestion and show the catalog list + detail. */
   function showPresetsMainPage() {
     aiSuggestStaging = {};
-    aiSuggestSnapshot = {};
-    aiSuggestChoice = {};
     aiSuggestRunInFlight = false;
     hideEditorMainPanels();
     showEditorMainPanels();
@@ -680,11 +628,117 @@
     if (translateRow) translateRow.classList.toggle("hidden", !visible);
   }
 
-  function syncSuggestionModelsDisplay() {
-    const el1 = document.getElementById("display-suggestion-model");
-    const el2 = document.getElementById("display-suggestion-model-fallback");
-    if (el1) el1.textContent = displayIdForCatalogModel(catalog[KEY_SUGGESTION_MODEL]);
-    if (el2) el2.textContent = displayIdForCatalogModel(catalog[KEY_SUGGESTION_FALLBACK]);
+  function defaultSuggestionFloor(profile) {
+    if (profile === "price") return 0.6;
+    if (profile === "free") return 0;
+    return 0.7;
+  }
+
+  function ensurePresetSuggestion(preset) {
+    if (!preset.suggestion || typeof preset.suggestion !== "object") preset.suggestion = {};
+    const suggestion = preset.suggestion;
+    if (suggestion.profile !== "quality" && suggestion.profile !== "price" && suggestion.profile !== "free") {
+      suggestion.profile = preset.id === "free-router" ? "free" : "quality";
+    }
+    if (suggestion.profile === "free") suggestion.max_price = 0;
+    if (suggestion.min_delta == null || suggestion.min_delta === "") suggestion.min_delta = 1;
+    if (suggestion.chrf_weight == null || suggestion.chrf_weight === "") suggestion.chrf_weight = 0.55;
+    if (suggestion.arena_weight == null || suggestion.arena_weight === "") suggestion.arena_weight = 0.45;
+    if (suggestion.quality_floor == null || suggestion.quality_floor === "") {
+      suggestion.quality_floor = defaultSuggestionFloor(suggestion.profile);
+    }
+    return suggestion;
+  }
+
+  function suggestionProblem(preset) {
+    const suggestion = ensurePresetSuggestion(preset);
+    const chrf = Number(suggestion.chrf_weight);
+    const arena = Number(suggestion.arena_weight);
+    if (!Number.isFinite(chrf) || !Number.isFinite(arena) || chrf + arena <= 0) {
+      return "ChrF and Arena weights must sum to more than 0.";
+    }
+    if (chrf < 0 || arena < 0) return "Weights cannot be negative.";
+    const floor = Number(suggestion.quality_floor);
+    if (!Number.isFinite(floor) || floor < 0) return "Quality floor must be 0 or greater.";
+    const delta = Number(suggestion.min_delta);
+    if (!Number.isFinite(delta) || delta < 0) return "Index gap must be 0 or greater.";
+    if (suggestion.profile === "free") return "";
+    if (suggestion.max_price == null || suggestion.max_price === "") return "";
+    const cap = Number(suggestion.max_price);
+    if (!Number.isFinite(cap) || cap < 0) return "Cost cap must be blank or a number ≥ 0.";
+    if (cap === 0) return "A $0 cap is only valid on the free profile.";
+    return "";
+  }
+
+  function completePresetSuggestions() {
+    (catalog.presets || []).forEach(function (preset) {
+      if (!preset) return;
+      const suggestion = ensurePresetSuggestion(preset);
+      const cap =
+        suggestion.profile === "free"
+          ? 0
+          : suggestion.max_price == null || suggestion.max_price === ""
+            ? null
+            : Number(suggestion.max_price);
+      preset.suggestion = {
+        profile: suggestion.profile,
+        max_price: cap,
+        min_delta: Number.isFinite(Number(suggestion.min_delta)) ? Number(suggestion.min_delta) : 1,
+        chrf_weight: Number(suggestion.chrf_weight),
+        arena_weight: Number(suggestion.arena_weight),
+        quality_floor: Number(suggestion.quality_floor),
+      };
+    });
+  }
+
+  function readOptionalNumber(raw) {
+    const text = String(raw == null ? "" : raw).trim();
+    if (!text) return null;
+    const n = Number(text);
+    return Number.isFinite(n) ? n : Number.NaN;
+  }
+
+  function suggestionCapValue(suggestion) {
+    if (!suggestion || suggestion.profile === "free") return "0";
+    if (suggestion.max_price == null || suggestion.max_price === "") return "";
+    return String(suggestion.max_price);
+  }
+
+  function bindSuggestionInputs(preset, root, onChange) {
+    const suggestion = ensurePresetSuggestion(preset);
+    const profile = root.querySelector("[data-suggestion-field='profile']");
+    const cap = root.querySelector("[data-suggestion-field='max_price']");
+    const delta = root.querySelector("[data-suggestion-field='min_delta']");
+    const chrf = root.querySelector("[data-suggestion-field='chrf_weight']");
+    const arena = root.querySelector("[data-suggestion-field='arena_weight']");
+    const floor = root.querySelector("[data-suggestion-field='quality_floor']");
+    if (profile) profile.value = suggestion.profile;
+    if (cap) {
+      cap.value = suggestionCapValue(suggestion);
+      cap.disabled = suggestion.profile === "free";
+    }
+    if (delta) delta.value = String(suggestion.min_delta);
+    if (chrf) chrf.value = String(Math.round(Number(suggestion.chrf_weight) * 1000) / 10);
+    if (arena) arena.value = String(Math.round(Number(suggestion.arena_weight) * 1000) / 10);
+    if (floor) floor.value = String(suggestion.quality_floor);
+    function apply() {
+      suggestion.profile = profile ? profile.value : suggestion.profile;
+      if (suggestion.profile === "free") suggestion.max_price = 0;
+      else if (cap) suggestion.max_price = readOptionalNumber(cap.value);
+      if (delta) suggestion.min_delta = Number(delta.value);
+      if (chrf) suggestion.chrf_weight = Number(chrf.value) / 100;
+      if (arena) suggestion.arena_weight = Number(arena.value) / 100;
+      if (floor) suggestion.quality_floor = Number(floor.value);
+      if (cap) {
+        cap.disabled = suggestion.profile === "free";
+        if (suggestion.profile === "free") cap.value = "0";
+      }
+      if (typeof onChange === "function") onChange();
+    }
+    root.querySelectorAll("[data-suggestion-field]").forEach(function (el) {
+      el.addEventListener("input", apply);
+      el.addEventListener("change", apply);
+    });
   }
 
   function providerLabelForEngine(engine) {
@@ -858,39 +912,67 @@
   }
 
   function getSelectedAiSuggestPresetIds() {
-    return getSelectedPresetIdsFromHost("ai-suggest-presets-checkboxes");
+    return (catalog.presets || [])
+      .map(function (preset) {
+        return preset && preset.id;
+      })
+      .filter(Boolean);
   }
 
   function renderAiSuggestPresetCheckboxes() {
-    renderPresetSelectList("ai-suggest-presets-checkboxes", {
-      includeFreeRouter: false,
-      onChange: updateAiSuggestContinueButton,
-      emptyMessage: "No presets available (add presets besides free-router).",
-      ariaLabel: "Toggle all presets for AI suggestion",
+    const host = document.getElementById("ai-suggest-presets-checkboxes");
+    if (!host) return;
+    const presets = catalog.presets || [];
+    host.innerHTML = "";
+    if (!presets.length) {
+      host.innerHTML = '<p class="muted ai-suggest-setup-presets-note">No presets available.</p>';
+      updateAiSuggestContinueButton();
+      return;
+    }
+    presets.forEach(function (preset) {
+      if (!preset || !preset.id) return;
+      const block = document.createElement("section");
+      block.className = "ai-suggest-preset-policy";
+      block.innerHTML =
+        '<div class="ai-suggest-preset-policy-name"><strong>' +
+        escapeHtml(preset.name || preset.id) +
+        '</strong><span class="ai-suggest-presets-check-meta">' +
+        escapeHtml(preset.id) +
+        "</span></div>" +
+        '<div class="ai-suggest-policy-row">' +
+        "<label>Profile <select data-suggestion-field='profile'>" +
+        "<option value='quality'>Quality</option>" +
+        "<option value='price'>Price</option>" +
+        "<option value='free'>Free</option>" +
+        "</select></label>" +
+        "<label>Cap $/1M <input data-suggestion-field='max_price' type='number' min='0' step='0.01' /></label>" +
+        "<label>Index gap <input data-suggestion-field='min_delta' type='number' min='0' step='0.1' title='Minimum index points between the primary and the fallback. 0 keeps the next model. 1 skips models within 1.0 points of the one already kept.' /></label>" +
+        "</div>";
+      host.appendChild(block);
+      bindSuggestionInputs(preset, block, updateAiSuggestContinueButton);
     });
+    updateAiSuggestContinueButton();
   }
 
   function updateAiSuggestContinueButton() {
     const btn = document.getElementById("btn-ai-suggest-continue");
     if (!btn) return;
-    const primary = String(catalog[KEY_SUGGESTION_MODEL] || "").trim();
-    const selectedCount = getSelectedAiSuggestPresetIds().length;
-    btn.disabled =
-      aiSuggestRunInFlight ||
-      !primary.startsWith("openrouter/") ||
-      !openrouterProviderConfigured() ||
-      selectedCount === 0;
-    updateAiSuggestSetupContinueHint(primary, selectedCount);
+    const presets = (catalog.presets || []).filter(Boolean);
+    const problem = presets.map(suggestionProblem).find(Boolean) || "";
+    btn.disabled = aiSuggestRunInFlight || modelsCatalogPrefetchState !== "ready" || presets.length === 0 || Boolean(problem);
+    updateAiSuggestSetupContinueHint(problem, presets.length);
   }
 
-  function updateAiSuggestSetupContinueHint(primary, selectedCount) {
+  function updateAiSuggestSetupContinueHint(problem, selectedCount) {
     const el = document.getElementById("ai-suggest-setup-continue-hint");
     if (!el) return;
     let msg = "";
-    if (!primary.startsWith("openrouter/")) {
-      msg = "Choose a primary suggestion model to continue.";
+    if (modelsCatalogPrefetchState !== "ready") {
+      msg = "Wait for provider catalogs to finish loading.";
     } else if (selectedCount === 0) {
-      msg = "Select at least one preset to continue.";
+      msg = "Add a preset before ranking.";
+    } else if (problem) {
+      msg = problem;
     }
     el.textContent = msg;
     el.classList.toggle("hidden", !msg);
@@ -1040,7 +1122,6 @@
     setTopbarTranslateRowVisible(false);
     const setup = document.getElementById("ai-suggest-setup-panel");
     if (setup) setup.classList.remove("hidden");
-    syncSuggestionModelsDisplay();
     renderAiSuggestPresetCheckboxes();
   }
 
@@ -1053,12 +1134,7 @@
     const cancelBtn = document.getElementById("btn-ai-suggest-run-cancel");
     if (run) run.classList.remove("hidden");
     if (log) log.innerHTML = "";
-    if (summary) {
-      summary.textContent =
-        "Using " +
-        displayIdForCatalogModel(catalog[KEY_SUGGESTION_MODEL]) +
-        " (web search enabled). Extra search cost may apply (~$0.02 per request max at default settings).";
-    }
+    if (summary) summary.textContent = "Ranking selected presets from published scores. No model call.";
     // Enabled while a run is in flight so the user can abort.
     if (cancelBtn) cancelBtn.disabled = false;
   }
@@ -1073,8 +1149,6 @@
       aiSuggestAbortController = null;
     }
     aiSuggestStaging = {};
-    aiSuggestSnapshot = {};
-    aiSuggestChoice = {};
     showEditorMainPanels();
     const setup = document.getElementById("ai-suggest-setup-panel");
     const run = document.getElementById("ai-suggest-run-panel");
@@ -1095,336 +1169,151 @@
     renderAiSuggestReview();
   }
 
-  function hideAiSuggestReview() {
-    exitAiSuggestFlow();
+  function suggestMeasure(value, digits) {
+    return typeof value === "number" && Number.isFinite(value) ? value.toFixed(digits) : "—";
   }
 
-  function snapshotEntryForPreset(preset) {
-    if (!preset) return null;
-    const snap = aiSuggestSnapshot[preset.id];
-    if (!snap) return null;
-    if (snap.model_ids || snap.fallback_ids) return snap;
-    return { model_ids: snap, fallback_ids: {} };
+  function suggestUsd(value) {
+    return typeof value === "number" && Number.isFinite(value) ? "$" + value.toFixed(3) : "—";
   }
 
-  function snapshotModelIdForPreset(preset, engine) {
-    if (!preset) return "";
-    const snap = snapshotEntryForPreset(preset);
-    if (snap && snap.model_ids && snap.model_ids[engine]) return snap.model_ids[engine];
-    return presetModelId(preset, engine);
-  }
-
-  function snapshotFallbackModelIdForPreset(preset, engine) {
-    if (!preset) return "";
-    const snap = snapshotEntryForPreset(preset);
-    if (snap && snap.fallback_ids && snap.fallback_ids[engine]) return snap.fallback_ids[engine];
-    return presetFallbackId(preset, engine);
-  }
-
-  function setAiSuggestStagingModel(presetId, engine, modelId) {
-    if (!aiSuggestStaging[presetId]) aiSuggestStaging[presetId] = {};
-    const trimmed = String(modelId || "").trim();
-    if (!trimmed) {
-      delete aiSuggestStaging[presetId][engine];
-      return;
-    }
-    const prev = aiSuggestStaging[presetId][engine] || {};
-    aiSuggestStaging[presetId][engine] = {
-      model_id: canonicalForEngine(engine, trimmed),
-      reason: prev.reason || "",
-      fallback_id: prev.fallback_id || "",
-      fallback_reason: prev.fallback_reason || "",
-      warning: prev.warning,
-    };
-    setAiSuggestChoice(presetId, engine, "primary", "suggested");
-  }
-
-  function setAiSuggestStagingFallbackModel(presetId, engine, modelId) {
-    if (!aiSuggestStaging[presetId]) aiSuggestStaging[presetId] = {};
-    const trimmed = String(modelId || "").trim();
-    const prev = aiSuggestStaging[presetId][engine] || {};
-    if (!trimmed) {
-      if (!prev.model_id) {
-        delete aiSuggestStaging[presetId][engine];
-        return;
-      }
-      aiSuggestStaging[presetId][engine] = {
-        model_id: prev.model_id,
-        reason: prev.reason || "",
-        fallback_id: "",
-        fallback_reason: "",
-        warning: prev.warning,
-      };
-      return;
-    }
-    aiSuggestStaging[presetId][engine] = {
-      model_id: prev.model_id || "",
-      reason: prev.reason || "",
-      fallback_id: canonicalForEngine(engine, trimmed),
-      fallback_reason: prev.fallback_reason || "",
-      warning: prev.warning,
-    };
-    setAiSuggestChoice(presetId, engine, "fallback", "suggested");
-  }
-
-  function aiSuggestChoiceField(role) {
-    return role === "fallback" ? "fallback" : "primary";
-  }
-
-  function defaultAiSuggestChoiceValue(currentId, suggestedId) {
-    const suggested = String(suggestedId || "").trim();
-    if (!suggested) return "current";
-    const current = String(currentId || "").trim();
-    if (current === suggested) return "current";
-    return "suggested";
-  }
-
-  function getAiSuggestChoice(presetId, engine, role, preset, staging) {
-    const field = aiSuggestChoiceField(role);
-    const row = aiSuggestChoice[presetId] && aiSuggestChoice[presetId][engine];
-    if (row && row[field]) return row[field];
-    const current =
-      role === "fallback"
-        ? snapshotFallbackModelIdForPreset(preset, engine)
-        : snapshotModelIdForPreset(preset, engine);
-    const suggested =
-      role === "fallback"
-        ? staging && staging.fallback_id
-          ? staging.fallback_id
-          : ""
-        : staging && staging.model_id
-          ? staging.model_id
-          : "";
-    return defaultAiSuggestChoiceValue(current, suggested);
-  }
-
-  function setAiSuggestChoice(presetId, engine, role, value) {
-    if (!aiSuggestChoice[presetId]) aiSuggestChoice[presetId] = {};
-    if (!aiSuggestChoice[presetId][engine]) aiSuggestChoice[presetId][engine] = {};
-    aiSuggestChoice[presetId][engine][aiSuggestChoiceField(role)] = value;
-  }
-
-  function buildAiSuggestChoiceSelect(presetId, engine, role, preset, staging) {
-    const suggested =
-      role === "fallback"
-        ? staging && staging.fallback_id
-          ? staging.fallback_id
-          : ""
-        : staging && staging.model_id
-          ? staging.model_id
-          : "";
-    const hasSuggested = Boolean(String(suggested || "").trim());
-    const sel = document.createElement("select");
-    sel.className = "ai-suggest-choice-select";
-    sel.setAttribute(
-      "aria-label",
-      (role === "fallback" ? "Fallback" : "Primary") + " model — keep current or use suggested",
+  function suggestFrontier(row) {
+    if (!row || typeof row.frontierLayer !== "number" || !Number.isFinite(row.frontierLayer)) return "—";
+    const text = String(row.frontierLayer);
+    if (!row.dominatedBy) return escapeHtml(text);
+    return (
+      '<span title="Dominated by ' +
+      escapeHtml(row.dominatedBy) +
+      '">' +
+      escapeHtml(text) +
+      "</span>"
     );
+  }
 
-    const optCurrent = document.createElement("option");
-    optCurrent.value = "current";
-    optCurrent.textContent = "Keep current";
-    sel.appendChild(optCurrent);
+  function suggestProfileLabel(preset) {
+    const profile = preset && preset.suggestion && preset.suggestion.profile;
+    if (profile === "price") return "Price";
+    if (profile === "free") return "Free";
+    return "Quality";
+  }
 
-    const optSuggested = document.createElement("option");
-    optSuggested.value = "suggested";
-    optSuggested.textContent = "Use suggested";
-    optSuggested.disabled = !hasSuggested;
-    sel.appendChild(optSuggested);
-
-    sel.value = hasSuggested ? getAiSuggestChoice(presetId, engine, role, preset, staging) : "current";
-    sel.addEventListener("change", function () {
-      setAiSuggestChoice(presetId, engine, role, sel.value);
-      renderAiSuggestReview();
-    });
-    return sel;
+  function suggestCapLabel(preset) {
+    const suggestion = preset && preset.suggestion;
+    if (!suggestion || suggestion.profile === "free") return "$0/1M";
+    if (suggestion.max_price == null || suggestion.max_price === "") return "no cap";
+    return "$" + suggestion.max_price + "/1M";
   }
 
   function renderAiSuggestReview() {
     const host = document.getElementById("ai-suggest-review-host");
     if (!host) return;
-    host.innerHTML = "";
-    const presetIds = Object.keys(aiSuggestStaging).sort();
+    const order = (catalog.presets || []).map(function (preset) {
+      return preset && preset.id;
+    });
+    const presetIds = Object.keys(aiSuggestStaging).sort(function (a, b) {
+      const ia = order.indexOf(a);
+      const ib = order.indexOf(b);
+      if (ia < 0 && ib < 0) return a.localeCompare(b);
+      if (ia < 0) return 1;
+      if (ib < 0) return -1;
+      return ia - ib;
+    });
     if (!presetIds.length) {
-      host.innerHTML = '<p class="muted">No suggestions to review.</p>';
+      host.innerHTML = '<p class="muted">No ranked models.</p>';
       return;
     }
-    presetIds.forEach(function (presetId) {
-      const preset = catalog.presets.find(function (s) {
-        return s && s.id === presetId;
-      });
-      const section = document.createElement("section");
-      section.className = "ai-suggest-preset-block";
-      const title = document.createElement("h3");
-      title.textContent = (preset && preset.name) || presetId;
-      section.appendChild(title);
-      const meta = document.createElement("p");
-      meta.className = "muted ai-suggest-preset-id";
-      meta.textContent = presetId;
-      section.appendChild(meta);
-
-      const table = document.createElement("table");
-      table.className = "ai-suggest-table";
-      table.innerHTML =
-        "<thead><tr><th>Provider</th><th>Primary (current)</th><th>Primary (suggested)</th><th>Apply</th><th></th><th>Fallback (current)</th><th>Fallback (suggested)</th><th>Apply</th><th></th></tr></thead>";
-      const tbody = document.createElement("tbody");
-
-      const provList = preset ? providersForPreset(preset) : providers;
-      provList.forEach(function (prov) {
-        const engine = prov.engine;
-        const staging = aiSuggestStaging[presetId] && aiSuggestStaging[presetId][engine];
-        const currentPrimary = snapshotModelIdForPreset(preset, engine);
-        const currentFallback = snapshotFallbackModelIdForPreset(preset, engine);
-        const suggestedPrimary = staging ? staging.model_id : "";
-        const suggestedFallback = staging ? staging.fallback_id : "";
-        const primaryChoice = getAiSuggestChoice(presetId, engine, "primary", preset, staging);
-        const fallbackChoice = getAiSuggestChoice(presetId, engine, "fallback", preset, staging);
-
-        function cellCurrent(raw) {
-          return raw
-            ? escapeHtml(displayIdForCatalogModel(raw))
-            : '<span class="muted">(blank)</span>';
-        }
-
-        function cellSuggested(raw, reason, warn) {
-          let html = raw
-            ? "<code>" + escapeHtml(displayIdForCatalogModel(raw)) + "</code>"
-            : '<span class="muted">(none)</span>';
-          if (reason) {
-            html += '<div class="ai-suggest-reason muted">' + escapeHtml(reason) + "</div>";
-          }
-          if (warn === "not_in_catalog") {
-            html += ' <span class="ai-suggest-warn-badge">not in catalog</span>';
-          }
-          return html;
-        }
-
-        const tr = document.createElement("tr");
-        const suggestedPrimaryMuted = primaryChoice === "current" ? " ai-suggest-suggested-muted" : "";
-        const suggestedFallbackMuted = fallbackChoice === "current" ? " ai-suggest-suggested-muted" : "";
-        tr.innerHTML =
-          "<td>" +
-          escapeHtml(prov.label || engine) +
-          "</td><td>" +
-          cellCurrent(currentPrimary) +
-          '</td><td class="ai-suggest-suggested-cell' +
-          suggestedPrimaryMuted +
-          '">' +
-          cellSuggested(suggestedPrimary, staging && staging.reason, staging && staging.warning) +
-          "</td><td></td><td></td><td>" +
-          cellCurrent(currentFallback) +
-          '</td><td class="ai-suggest-suggested-cell' +
-          suggestedFallbackMuted +
-          '">' +
-          cellSuggested(
-            suggestedFallback,
-            staging && staging.fallback_reason,
-            staging && staging.warning,
-          ) +
-          "</td><td></td><td></td>";
-
-        const actionCells = tr.querySelectorAll("td");
-        const primaryChoiceCell = actionCells[3];
-        const primaryActions = actionCells[4];
-        const fallbackChoiceCell = actionCells[7];
-        const fallbackActions = actionCells[8];
-
-        primaryChoiceCell.className = "ai-suggest-choice-cell";
-        primaryChoiceCell.appendChild(
-          buildAiSuggestChoiceSelect(presetId, engine, "primary", preset, staging),
-        );
-        fallbackChoiceCell.className = "ai-suggest-choice-cell";
-        fallbackChoiceCell.appendChild(
-          buildAiSuggestChoiceSelect(presetId, engine, "fallback", preset, staging),
-        );
-
-        const btnChangePrimary = document.createElement("button");
-        btnChangePrimary.type = "button";
-        btnChangePrimary.className = "btn secondary sm";
-        btnChangePrimary.textContent = "Change";
-        btnChangePrimary.addEventListener("click", function () {
-          openModelPicker(aiSuggestPickerTarget(presetId, engine, "primary"));
+    host.innerHTML = presetIds
+      .map(function (presetId) {
+        const preset = (catalog.presets || []).find(function (item) {
+          return item && item.id === presetId;
         });
-        primaryActions.className = "ai-suggest-actions";
-        primaryActions.appendChild(btnChangePrimary);
-
-        const btnChangeFallback = document.createElement("button");
-        btnChangeFallback.type = "button";
-        btnChangeFallback.className = "btn secondary sm";
-        btnChangeFallback.textContent = "Change";
-        btnChangeFallback.addEventListener("click", function () {
-          openModelPicker(aiSuggestPickerTarget(presetId, engine, "fallback"));
+        const staging = aiSuggestStaging[presetId] || {};
+        const engines = Object.keys(staging);
+        const rows = [];
+        engines.forEach(function (engine) {
+          const slot = staging[engine];
+          if (!slot) return;
+          const prov = providers.find(function (item) {
+            return item.engine === engine;
+          });
+          const label = (prov && prov.label) || engine;
+          if (slot.primary) rows.push({ label: label, type: "Primary", row: slot.primary });
+          if (slot.fallback) rows.push({ label: label, type: "Fallback", row: slot.fallback });
         });
-        fallbackActions.className = "ai-suggest-actions";
-        fallbackActions.appendChild(btnChangeFallback);
-
-        tbody.appendChild(tr);
-      });
-      table.appendChild(tbody);
-      section.appendChild(table);
-      host.appendChild(section);
-    });
-  }
-
-  function applyAiSuggestStagingToCatalog() {
-    Object.keys(aiSuggestStaging).forEach(function (presetId) {
-      const preset = catalog.presets.find(function (s) {
-        return s && s.id === presetId;
-      });
-      if (!preset) return;
-      const staging = aiSuggestStaging[presetId];
-      if (!staging) return;
-      Object.keys(staging).forEach(function (engine) {
-        const row = staging[engine];
-        if (!row) return;
-        const stagingRow = aiSuggestStaging[presetId] && aiSuggestStaging[presetId][engine];
-        if (
-          getAiSuggestChoice(presetId, engine, "primary", preset, stagingRow) === "suggested" &&
-          row.model_id
-        ) {
-          setPresetModelId(preset, engine, row.model_id);
-        }
-        if (getAiSuggestChoice(presetId, engine, "fallback", preset, stagingRow) === "suggested") {
-          setPresetFallbackId(preset, engine, row.fallback_id || "");
-        }
-      });
-      normalizePresetModelIds(preset);
-    });
-    aiSuggestStaging = {};
-    aiSuggestSnapshot = {};
-    aiSuggestChoice = {};
-    hideAiSuggestReview();
-    renderPresetList();
-    renderDetail();
-    setStatus("Applied AI suggestions to catalog (save to persist)", true);
-  }
-
-  function cancelAiSuggestReview() {
-    aiSuggestStaging = {};
-    aiSuggestSnapshot = {};
-    aiSuggestChoice = {};
-    exitAiSuggestFlow();
+        const body = rows.length
+          ? rows
+              .map(function (item) {
+                const row = item.row;
+                return (
+                  "<tr><td>" +
+                  escapeHtml(item.label) +
+                  "</td><td>" +
+                  escapeHtml(item.type) +
+                  "</td><td><code>" +
+                  escapeHtml(displayIdForCatalogModel(row.id)) +
+                  "</code></td><td class=\"num\">" +
+                  (row.rank != null ? escapeHtml(String(row.rank)) : "—") +
+                  "</td><td class=\"num\">" +
+                  suggestMeasure(row.index, 1) +
+                  "</td><td class=\"num\">" +
+                  suggestMeasure(row.chrf, 3) +
+                  "</td><td class=\"num\">" +
+                  suggestMeasure(row.arenaScore, 1) +
+                  "</td><td class=\"num\">" +
+                  suggestUsd(row.blendedPerMTokens) +
+                  "</td><td class=\"num\">" +
+                  suggestFrontier(row) +
+                  "</td></tr>"
+                );
+              })
+              .join("")
+          : '<tr><td colspan="9" class="muted">No ranked model for the providers on this preset.</td></tr>';
+        return (
+          '<section class="ai-suggest-preset-block"><h3>' +
+          escapeHtml((preset && preset.name) || presetId) +
+          "</h3><p class=\"muted ai-suggest-preset-id\">" +
+          escapeHtml(suggestProfileLabel(preset) + " · " + suggestCapLabel(preset)) +
+          "</p><table class=\"ai-suggest-table\"><thead><tr>" +
+          "<th>Provider</th><th>Type</th><th>Model</th>" +
+          '<th title="Place in this provider’s ranked list.">Rank</th>' +
+          '<th title="ChrF and Arena, 0–100. Higher is better.">Index</th>' +
+          '<th title="Mean languagebench ChrF for the app languages. Higher is better.">ChrF</th>' +
+          '<th title="LMArena text score. Higher is better.">Arena</th>' +
+          '<th title="USD per 1M tokens, (3 × input + output) / 4.">Blended</th>' +
+          '<th title="Pareto tier. Tier 1 is not beaten by a cheaper, higher-index model.">Frontier</th>' +
+          "</tr></thead><tbody>" +
+          body +
+          "</tbody></table></section>"
+        );
+      })
+      .join("");
   }
 
   function openAiSuggestFlow() {
-    if (!openrouterProviderConfigured()) {
-      alert("OPENROUTER_API_KEY is required for AI Suggestion.");
+    if (modelsCatalogPrefetchState !== "ready") {
+      alert("Wait for provider catalogs to finish loading.");
       return;
     }
     showAiSuggestSetupPage();
   }
 
   async function continueAiSuggestFromSetup() {
-    const primary = String(catalog[KEY_SUGGESTION_MODEL] || "").trim();
-    if (!primary.startsWith("openrouter/")) {
-      alert("Choose a primary suggestion model (suggestion_model).");
-      return;
-    }
     const presetIds = getSelectedAiSuggestPresetIds();
     if (!presetIds.length) {
-      alert("Select at least one preset to suggest models for.");
+      alert("Add a preset before ranking.");
       return;
     }
+    const problem = (catalog.presets || [])
+      .filter(function (preset) {
+        return preset && presetIds.indexOf(preset.id) >= 0;
+      })
+      .map(suggestionProblem)
+      .find(Boolean);
+    if (problem) {
+      alert(problem);
+      return;
+    }
+    completePresetSuggestions();
     await executeAiSuggestRun(presetIds);
   }
 
@@ -1450,25 +1339,15 @@
     let planned = 0;
     let openedReview = false;
 
-    appendAiSuggestRunLog("Starting AI model suggestion run…");
-    appendAiSuggestRunLog(
-      "Suggestion model: " + displayIdForCatalogModel(catalog[KEY_SUGGESTION_MODEL]),
-    );
-    const fb = String(catalog[KEY_SUGGESTION_FALLBACK] || "").trim();
-    if (fb) {
-      appendAiSuggestRunLog("Fallback: " + displayIdForCatalogModel(fb));
-    }
+    appendAiSuggestRunLog("Starting deterministic model ranking…");
     appendAiSuggestRunLog(
       "Presets selected: " + selectedPresetIds.length + " (" + selectedPresetIds.join(", ") + ")",
     );
-    const liveTimingEl = document.getElementById("ai-suggest-live-timing");
-    const liveTiming = !liveTimingEl || Boolean(liveTimingEl.checked);
+    const refreshEl = document.getElementById("ai-suggest-refresh-benchmarks");
+    const refreshBenchmarks = Boolean(refreshEl && refreshEl.checked);
     appendAiSuggestRunLog(
-      liveTiming
-        ? "Live timing: on (standard/fast presets will time shortlist candidates)."
-        : "Live timing: off.",
+      refreshBenchmarks ? "Benchmark cache: refresh." : "Benchmark cache: use the saved copy when it is fresh.",
     );
-    appendAiSuggestRunLog("Cancel is available — click Cancel to abort the run.");
 
     try {
       const res = await fetch("/api/presets/suggest-models?stream=1", {
@@ -1477,7 +1356,7 @@
         body: JSON.stringify({
           catalog: catalog,
           preset_ids: selectedPresetIds,
-          live_timing: liveTiming,
+          refresh_benchmarks: refreshBenchmarks,
         }),
         signal: runSignal,
       });
@@ -1525,13 +1404,10 @@
               aiSuggestStaging[rec.presetId] = {};
               Object.keys(rec.suggestions).forEach(function (eng) {
                 const row = rec.suggestions[eng];
-                if (row && row.model_id) {
+                if (row && (row.primary || row.model_id)) {
                   aiSuggestStaging[rec.presetId][eng] = {
-                    model_id: row.model_id,
-                    reason: row.reason || "",
-                    fallback_id: row.fallback_id || "",
-                    fallback_reason: row.fallback_reason || "",
-                    warning: row.warning,
+                    primary: row.primary || { id: row.model_id },
+                    fallback: row.fallback || null,
                   };
                 }
               });
@@ -1550,11 +1426,7 @@
             return;
           }
           if (rec.ok) {
-            if (rec.snapshot) aiSuggestSnapshot = rec.snapshot;
-            if (summaryEl) {
-              summaryEl.textContent =
-                "Finished. Review suggestions, then Save to catalog or Cancel.";
-            }
+            if (summaryEl) summaryEl.textContent = "Finished.";
             if (rec.errors && rec.errors.length) {
               rec.errors.forEach(function (errLine) {
                 appendAiSuggestRunLog(errLine, true);
@@ -1729,9 +1601,7 @@
     return (
       modelPickerTarget === "preset" ||
       modelPickerTarget === "translation_model" ||
-      modelPickerTarget === KEY_TRANSLATION_FALLBACK ||
-      modelPickerTarget === KEY_SUGGESTION_MODEL ||
-      modelPickerTarget === KEY_SUGGESTION_FALLBACK
+      modelPickerTarget === KEY_TRANSLATION_FALLBACK
     );
   }
 
@@ -1753,6 +1623,100 @@
       parts.push("TPS P90 " + Number(stats.throughput_p90).toFixed(1));
     }
     return parts.length ? " · " + parts.join(" · ") : "";
+  }
+
+  function pickerRankEngine() {
+    const eng = pickerEngineFromTarget(modelPickerTarget);
+    if (eng) return eng;
+    if (
+      modelPickerTarget === "preset" ||
+      modelPickerTarget === "translation_model" ||
+      modelPickerTarget === KEY_TRANSLATION_FALLBACK
+    ) {
+      return "openrouter";
+    }
+    return "";
+  }
+
+  function pickerRankingSuggestion() {
+    const preset = getSelectedPreset();
+    const eng = pickerEngineFromTarget(modelPickerTarget);
+    if (preset && (modelPickerTarget === "preset" || (eng && isPresetProviderPickerTarget(modelPickerTarget)))) {
+      return ensurePresetSuggestion(preset);
+    }
+    return {
+      profile: "quality",
+      max_price: null,
+      min_delta: 1,
+      chrf_weight: 0.55,
+      arena_weight: 0.45,
+      quality_floor: 0.7,
+    };
+  }
+
+  function pickerRankKey(engine, suggestion) {
+    return (
+      engine +
+      "|" +
+      JSON.stringify({
+        profile: suggestion.profile,
+        max_price: suggestion.max_price == null ? null : suggestion.max_price,
+        min_delta: suggestion.min_delta,
+        chrf_weight: suggestion.chrf_weight,
+        arena_weight: suggestion.arena_weight,
+        quality_floor: suggestion.quality_floor,
+      })
+    );
+  }
+
+  function queueModelRanks(engine) {
+    if (!engine) return;
+    const suggestion = pickerRankingSuggestion();
+    const key = pickerRankKey(engine, suggestion);
+    if (modelRanksCache[key] || modelRanksPending[key]) return;
+    modelRanksPending[key] = true;
+    const preset = getSelectedPreset();
+    fetch("/api/presets/model-ranks", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        engine: engine,
+        preset_id: preset && preset.id ? preset.id : "",
+        suggestion: suggestion,
+      }),
+    })
+      .then(function (res) {
+        return res.json().then(function (json) {
+          if (!res.ok) throw new Error(json.error || "HTTP " + res.status);
+          return json;
+        });
+      })
+      .then(function (json) {
+        const map = {};
+        (json.ranks || []).forEach(function (row) {
+          if (row && row.id) map[row.id] = { rank: row.rank, index: row.index };
+        });
+        modelRanksCache[key] = map;
+        renderModelList();
+      })
+      .catch(function () {
+        modelRanksCache[key] = {};
+        renderModelList();
+      })
+      .finally(function () {
+        delete modelRanksPending[key];
+      });
+  }
+
+  function modelRankLabel(m, engine) {
+    const suggestion = pickerRankingSuggestion();
+    const key = pickerRankKey(engine, suggestion);
+    if (!Object.prototype.hasOwnProperty.call(modelRanksCache, key)) return "";
+    const info = modelRanksCache[key][m.id];
+    if (!info || !Number.isFinite(Number(info.rank))) return "Rank — · Index —";
+    const index =
+      typeof info.index === "number" && Number.isFinite(info.index) ? info.index.toFixed(1) : "—";
+    return "Rank " + info.rank + " · Index " + index;
   }
 
   function modelPickerPriceLine(m) {
@@ -1864,39 +1828,18 @@
         })
       : null;
     if (title) {
-      const aiPickTitle = parseAiSuggestPickerTarget(modelPickerTarget);
-      if (aiPickTitle) {
-        const roleLabel = aiPickTitle.role === "fallback" ? "fallback" : "primary";
-        title.textContent =
-          "Suggested " + roleLabel + " model — " + aiPickTitle.presetId;
-      } else if (isPresetProviderFallbackPickerTarget(modelPickerTarget)) {
+      if (isPresetProviderFallbackPickerTarget(modelPickerTarget)) {
         title.textContent = ((prov && prov.label) || eng) + " — Fallback";
       } else if (eng) title.textContent = (prov && prov.label) || eng;
       else if (modelPickerTarget === "preset") title.textContent = "Preset model";
       else if (modelPickerTarget === "translation_model") title.textContent = "Translation model";
-      else if (modelPickerTarget === "suggestion_model") title.textContent = "Suggestion model";
-      else if (modelPickerTarget === "suggestion_model_fallback") {
-        title.textContent = "Suggestion model — Fallback";
-      } else if (modelPickerTarget === "translation_model_fallback") {
+      else if (modelPickerTarget === "translation_model_fallback") {
         title.textContent = "Translation model — Fallback";
       } else title.textContent = "Select model";
     }
     updateModelPickerCurrentSelection();
     if (hint) {
-      const aiPick = parseAiSuggestPickerTarget(modelPickerTarget);
-      if (aiPick) {
-        const roleLabel = aiPick.role === "fallback" ? "fallback" : "primary";
-        hint.textContent =
-          "Override suggested " +
-          roleLabel +
-          " model for preset " +
-          aiPick.presetId +
-          " (" +
-          (prov ? prov.label : aiPick.engine) +
-          "). Stored under " +
-          (aiPick.role === "fallback" ? "fallback_ids" : "model_ids") +
-          ".";
-      } else if (isPresetProviderFallbackPickerTarget(modelPickerTarget)) {
+      if (isPresetProviderFallbackPickerTarget(modelPickerTarget)) {
         hint.textContent = prov && prov.configured
           ? "Choose a fallback model for this provider. Stored under fallback_ids." +
             eng +
@@ -1916,12 +1859,6 @@
       } else if (modelPickerTarget === "translation_model") {
         hint.textContent =
           "Used for “Translate missing”, stored as translation_model. On failure, the server retries with translation_model_fallback when that field is set.";
-      } else if (modelPickerTarget === "suggestion_model") {
-        hint.textContent =
-          "Used for AI Suggestion (OpenRouter web search). Stored as suggestion_model in presets.json.";
-      } else if (modelPickerTarget === "suggestion_model_fallback") {
-        hint.textContent =
-          "Optional retry when the primary suggestion model fails. Stored as suggestion_model_fallback.";
       } else if (modelPickerTarget === "translation_model_fallback") {
         hint.textContent =
           "Optional retry model when the primary translation model errors. Stored as translation_model_fallback.";
@@ -1957,15 +1894,12 @@
 
   async function openModelPicker(target) {
     const t = target || "preset";
-    const aiPick = parseAiSuggestPickerTarget(t);
     const eng = pickerEngineFromTarget(t);
     const silentLoad = isAiSuggestFlowVisible();
-    if (!aiPick && (t === "preset" || (eng && isPresetProviderPickerTarget(t))) && !getSelectedPreset()) {
+    if ((t === "preset" || (eng && isPresetProviderPickerTarget(t))) && !getSelectedPreset()) {
       return;
     }
     const needsOpenRouterList =
-      t === "suggestion_model" ||
-      t === "suggestion_model_fallback" ||
       t === "translation_model" ||
       t === KEY_TRANSLATION_FALLBACK ||
       t === "preset";
@@ -2028,6 +1962,8 @@
     if (!container) return;
     const selectedModelId = getSelectedModelIdForPicker();
     const q = modelSearch.trim().toLowerCase();
+    const rankEngine = pickerRankEngine();
+    queueModelRanks(rankEngine);
 
     const pickerModels = getPickerModels();
     const filtered = pickerModels.filter(function (m) {
@@ -2074,6 +2010,12 @@
         list
           .slice()
           .sort(function (a, b) {
+            const suggestion = pickerRankingSuggestion();
+            const key = pickerRankKey(rankEngine, suggestion);
+            const map = modelRanksCache[key] || {};
+            const rankA = map[a.id] && Number.isFinite(Number(map[a.id].rank)) ? Number(map[a.id].rank) : Infinity;
+            const rankB = map[b.id] && Number.isFinite(Number(map[b.id].rank)) ? Number(map[b.id].rank) : Infinity;
+            if (rankA !== rankB) return rankA - rankB;
             return (a.name || a.id).localeCompare(b.name || b.id);
           })
           .forEach(function (m) {
@@ -2081,24 +2023,18 @@
             row.type = "button";
             row.className = "model-row";
             if (m.id === selectedModelId) row.classList.add("selected");
+            const rankLabel = modelRankLabel(m, rankEngine);
             row.innerHTML =
               '<span class="model-id">' +
               escapeHtml(modelPickerDisplay(m)) +
               '</span><span class="model-name">' +
               escapeHtml(m.name || "") +
-              '</span><span class="model-price">' +
+              "</span>" +
+              (rankLabel ? '<span class="model-rank">' + escapeHtml(rankLabel) + "</span>" : "") +
+              '<span class="model-price">' +
               escapeHtml(modelPickerPriceLine(m)) +
               "</span>";
             row.addEventListener("click", function () {
-              const aiPick = parseAiSuggestPickerTarget(modelPickerTarget);
-              if (aiPick) {
-                if (aiPick.role === "fallback") {
-                  setAiSuggestStagingFallbackModel(aiPick.presetId, aiPick.engine, m.id);
-                } else {
-                  setAiSuggestStagingModel(aiPick.presetId, aiPick.engine, m.id);
-                }
-                renderAiSuggestReview();
-              } else {
               const eng = pickerEngineFromTarget(modelPickerTarget);
               if ((eng && isPresetProviderPickerTarget(modelPickerTarget)) || modelPickerTarget === "preset") {
                 const preset = getSelectedPreset();
@@ -2116,15 +2052,6 @@
               } else if (modelPickerTarget === "translation_model_fallback") {
                 catalog[KEY_TRANSLATION_FALLBACK] = m.id;
                 syncHeaderTranslationModelsDisplay();
-              } else if (modelPickerTarget === "suggestion_model") {
-                catalog[KEY_SUGGESTION_MODEL] = m.id;
-                syncSuggestionModelsDisplay();
-                updateAiSuggestContinueButton();
-              } else if (modelPickerTarget === "suggestion_model_fallback") {
-                catalog[KEY_SUGGESTION_FALLBACK] = m.id;
-                syncSuggestionModelsDisplay();
-                updateAiSuggestContinueButton();
-              }
               }
               if (isModelPickerOpen()) closeModelPicker();
               else renderModelList();
@@ -2341,9 +2268,34 @@
     document.getElementById("field-description").value = preset.description || "";
     document.getElementById("field-prompt-hint").value = preset.prompt_hint || "";
 
+    renderSuggestionPolicy(preset);
     renderProviderModels();
     renderTranslations();
     updateTranslateBar();
+  }
+
+  function renderSuggestionPolicy(preset) {
+    const host = document.getElementById("suggestion-policy-host");
+    if (!host) return;
+    if (!preset) {
+      host.innerHTML = "";
+      return;
+    }
+    host.innerHTML =
+      "<div class='provider-models-heading'><strong>suggestion</strong> " +
+      "<span class='muted provider-models-note'>Ranking policy written into presets.json. " +
+      "ChrF and Arena are percents of the index. Cap is blended USD per 1M tokens; leave it blank for no cap.</span></div>" +
+      "<div class='suggestion-policy-grid'>" +
+      "<label>Profile <select data-suggestion-field='profile'>" +
+      "<option value='quality'>Quality</option><option value='price'>Price</option><option value='free'>Free</option>" +
+      "</select></label>" +
+      "<label>Cap $/1M <input data-suggestion-field='max_price' type='number' min='0' step='0.01' /></label>" +
+      "<label>Index gap <input data-suggestion-field='min_delta' type='number' min='0' step='0.1' /></label>" +
+      "<label>ChrF % <input data-suggestion-field='chrf_weight' type='number' min='0' step='1' /></label>" +
+      "<label>Arena % <input data-suggestion-field='arena_weight' type='number' min='0' step='1' /></label>" +
+      "<label>Quality floor <input data-suggestion-field='quality_floor' type='number' min='0' max='1' step='0.05' /></label>" +
+      "</div>";
+    bindSuggestionInputs(preset, host, function () {});
   }
 
   async function parsePresetsFetchError(sRes) {
@@ -2432,8 +2384,9 @@
       }
 
       migrateCatalogTranslationKeys();
+      delete catalog.suggestion_model;
+      delete catalog.suggestion_model_fallback;
       syncHeaderTranslationModelsDisplay();
-      syncSuggestionModelsDisplay();
       if (selectedId && !catalog.presets.some(function (s) { return s.id === selectedId; })) {
         selectedId = null;
       }
@@ -2466,6 +2419,12 @@
   async function saveCatalog() {
     setStatus("Saving…", null);
     normalizeCatalogModelIds();
+    const problem = (catalog.presets || []).map(suggestionProblem).find(Boolean);
+    if (problem) {
+      setStatus(problem, false);
+      return false;
+    }
+    completePresetSuggestions();
     try {
       const res = await fetch("/api/presets", {
         method: "PUT",
@@ -2482,10 +2441,11 @@
       renderPresetList();
       renderDetail();
       syncHeaderTranslationModelsDisplay();
-      syncSuggestionModelsDisplay();
       updateTranslateBar();
+      return true;
     } catch (e) {
       setStatus(e.message || String(e), false);
+      return false;
     }
   }
 
@@ -2881,30 +2841,36 @@
     });
   }
 
-  const btnPickSuggestion = document.getElementById("btn-pick-suggestion-model");
-  if (btnPickSuggestion) {
-    btnPickSuggestion.addEventListener("click", function () {
-      openModelPicker("suggestion_model");
-    });
-  }
-  const btnPickSuggestionFb = document.getElementById("btn-pick-suggestion-model-fallback");
-  if (btnPickSuggestionFb) {
-    btnPickSuggestionFb.addEventListener("click", function () {
-      openModelPicker("suggestion_model_fallback");
-    });
-  }
-
-  const btnAiSuggestSave = document.getElementById("btn-ai-suggest-save");
-  if (btnAiSuggestSave) {
-    btnAiSuggestSave.addEventListener("click", function () {
-      applyAiSuggestStagingToCatalog();
+  function applyAiSuggestModelsToCatalog() {
+    Object.keys(aiSuggestStaging).forEach(function (presetId) {
+      const preset = (catalog.presets || []).find(function (item) {
+        return item && item.id === presetId;
+      });
+      const byEngine = aiSuggestStaging[presetId];
+      if (!preset || !byEngine) return;
+      Object.keys(byEngine).forEach(function (engine) {
+        const slot = byEngine[engine];
+        const primaryId = slot && slot.primary && slot.primary.id ? String(slot.primary.id).trim() : "";
+        const fallbackId = slot && slot.fallback && slot.fallback.id ? String(slot.fallback.id).trim() : "";
+        if (primaryId) setPresetModelId(preset, engine, primaryId);
+        if (fallbackId && fallbackId !== primaryId) {
+          setPresetFallbackId(preset, engine, fallbackId);
+        } else if (primaryId && presetFallbackId(preset, engine) === primaryId) {
+          setPresetFallbackId(preset, engine, "");
+        }
+      });
+      normalizePresetModelIds(preset);
     });
   }
 
   const btnAiSuggestCancel = document.getElementById("btn-ai-suggest-cancel");
   if (btnAiSuggestCancel) {
-    btnAiSuggestCancel.addEventListener("click", function () {
-      cancelAiSuggestReview();
+    btnAiSuggestCancel.addEventListener("click", async function () {
+      btnAiSuggestCancel.disabled = true;
+      applyAiSuggestModelsToCatalog();
+      const saved = await saveCatalog();
+      btnAiSuggestCancel.disabled = false;
+      if (saved) exitAiSuggestFlow();
     });
   }
 

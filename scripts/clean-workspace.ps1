@@ -74,8 +74,8 @@ foreach ($logFile in $logFiles) {
 }
 
 $devCaches = @(
-    'dev/presets-check/provider-catalogs-cache.json',
-    'dev/presets-check/presets-check.log',
+    'presets/presets-check/provider-catalogs-cache.json',
+    'presets/presets-check/presets-check.log',
     'presets-editor-provider-catalogs.json',
     'presets-editor-openrouter-cache.json'
 )

@@ -17,7 +17,7 @@ Setup, build, test, and deploy instructions for the Transrewrt application (Elec
 - [Setup](#setup)
 - [Development Workflow](#development-workflow)
   - [Presets catalog editor (development)](#presets-catalog-editor-development)
-  - [Skill-check cron (development)](#skill-check-cron-development)
+  - [Presets-check (development and Docker)](#presets-check-development-and-docker)
   - [Cleaning the workspace](#cleaning-the-workspace)
   - [Upgrading Node and dependencies (nvm)](#upgrading-node-and-dependencies-nvm)
 - [Build](#build)
@@ -102,7 +102,7 @@ Setup, build, test, and deploy instructions for the Transrewrt application (Elec
 
   - If Build Tools is installed but the check returns `False`, re-run the Option A winget command (with `--force`) to add the missing workload. See [node-gyp on Windows](https://github.com/nodejs/node-gyp#on-windows).
 
-4. **Developer Mode**: Turn on Developer Mode (Settings → System → Developer Mode **On**) so pnpm can create symlinks under `node_modules`. Without it, `pnpm install` may copy packages instead of linking them, or fail on symlink creation. Website screenshots are ordinary files — see [Website screenshots](#website-screenshots).
+4. **Developer Mode**: Turn on Developer Mode (Settings → System → Developer Mode **On**) so pnpm can create symlinks under `node_modules`. Without it, `pnpm install` may copy packages instead of linking them, or fail on symlink creation.
 
    ```powershell
    pnpm install
@@ -296,12 +296,7 @@ xdg-open https://example.com
 
 ### Website screenshots
 
-Screenshot PNGs are committed as two ordinary directories (not a git symlink):
-
-- [images/screenshots/](../images/screenshots/) — README images and the output of `pnpm take-screenshots`
-- [website/public/images/screenshots/](../website/public/images/screenshots/) — the copy Astro serves at `/images/screenshots/…`
-
-`pnpm take-screenshots` writes only the first tree. After a capture, copy new or updated files into `website/public/images/screenshots/` before `pnpm website:build` or `pnpm website:dev`, or the site keeps the previous PNGs.
+Screenshot PNGs live only in [website/public/images/screenshots/](../website/public/images/screenshots/). `pnpm take-screenshots` writes that tree. Astro serves it at `/images/screenshots/…` (published as `https://wsj-br.github.io/transrewrt/images/screenshots/…`). The root README links to that published URL instead of a file in the repo.
 
 ---
 
@@ -341,7 +336,7 @@ Maintainers edit the Easy-mode catalog with a small local tool (not packaged in 
 pnpm run presets-editor
 ```
 
-Opens [http://127.0.0.1:8765/](http://127.0.0.1:8765/) by default (or the port in the terminal). Full behaviour, env vars (`OPENROUTER_API_KEY`, `PRESETS_EDITOR_PORT`, `PRESETS_EDITOR_HOST`, `PRESETS_EDITOR_NO_OPEN`, …), and API notes: [dev/presets-editor/README.md](presets-editor/README.md).
+Opens [http://127.0.0.1:8765/](http://127.0.0.1:8765/) by default (or the port in the terminal). Full behaviour, env vars (`OPENROUTER_API_KEY`, `PRESETS_EDITOR_PORT`, `PRESETS_EDITOR_HOST`, `PRESETS_EDITOR_NO_OPEN`, …), and API notes: [presets/presets-editor/README.md](../presets/presets-editor/README.md).
 
 | Topic | Detail |
 |-------|--------|
@@ -353,15 +348,15 @@ Opens [http://127.0.0.1:8765/](http://127.0.0.1:8765/) by default (or the port i
 | **OpenRouter cache** | `presets-editor-openrouter-cache.json` at repo root (gitignored, 6 h TTL for models, pricing, and endpoint performance) |
 | **Server log** | `presets-editor.log` at repo root (previous run rotated to `presets-editor-<timestamp>.log` on startup); logs and both caches are removed by [clean-workspace](#cleaning-the-workspace) scripts |
 
-Architecture and runtime sync (6 h GitHub pull, Easy-only Electron sync, `POST /api/presets/sync` on web): **[SYSTEM-OVERVIEW.md](SYSTEM-OVERVIEW.md#easy-mode-and-presets-catalog)**.
+Architecture and runtime sync (6 h GitHub pull, Easy-only Electron sync, `POST /api/presets/sync` on web): [**SYSTEM-OVERVIEW.md**](SYSTEM-OVERVIEW.md#easy-mode-and-presets-catalog).
 
-### Skill-check cron (development)
+### Presets-check (development and Docker)
 
-Cron-friendly CLI that validates model ids in [easy-mode-config/presets.json](../easy-mode-config/presets.json), replaces unavailable models via fuzzy matching, commits only that file to GitHub, and notifies via [NTFY](https://docs.ntfy.sh/). Use an isolated runtime directory on a server so cron never touches your dev checkout. Full behaviour, CLI flags, and exit codes: **[dev/presets-check/README.md](presets-check/README.md)**.
+Cron-friendly CLI that validates model ids in [easy-mode-config/presets.json](../easy-mode-config/presets.json), realigns them to each preset’s deterministic `suggestion` policy, commits only that file to GitHub, and notifies via [ntfy](https://docs.ntfy.sh/). Full setup, CLI flags, and exit codes: [**presets/presets-check/README.md**](../presets/presets-check/README.md).
 
 **Local development** (from the repository root):
 
-The `presets-check` npm script already passes `--local` (monorepo `easy-mode-config/presets.json`, no git).
+The `presets-check` npm script passes `--local` (reads `easy-mode-config/presets.json` in the repo, skips git, and needs no `config.json`):
 
 ```bash
 # Preview (no file write)
@@ -371,48 +366,26 @@ pnpm run presets-check -- --dry-run
 pnpm run presets-check
 ```
 
-Copy [dev/presets-check/config.example.json](presets-check/config.example.json) to `dev/presets-check/config.json` and set `ntfy.topic` for notifications.
+Optional: copy [presets/presets-check/config.example.json](../presets/presets-check/config.example.json) to `presets/presets-check/config.json` only if you want to test ntfy notifications or override checker thresholds locally. Local logs and caches (`presets/presets-check/presets-check.log`, `presets/presets-check/provider-catalogs-cache.json`) are gitignored and cleared by the [clean-workspace](#cleaning-the-workspace) scripts.
 
-**Production install** (isolated runtime for cron):
-
-```bash
-pnpm run presets-check:install -- --target /opt/transrewrt-presets-check
-```
-
-Configure `config.json` (set `ntfy.topic`) and create `/opt/transrewrt-presets-check/.env` with secrets (`run.sh` sources it):
+**Production install (standalone Docker server — no repo clone needed)** — runs `ghcr.io/wsj-br/transrewrt-presets-check:latest` with [Supercronic](https://github.com/aptible/supercronic) on `PRESET_CHECK_CRON` (default `0 6 * * *`, `TZ=Europe/London`). On first start, the container clones the repo into its `/data` volume automatically. Step-by-step guide: [presets/presets-check/README.md](../presets/presets-check/README.md#production-install-standalone-docker-server).
 
 ```bash
-# /opt/transrewrt-presets-check/.env
-GITHUB_TOKEN=ghp_…
-PRESET_CHECK_NTFY_TOPIC=your-topic
-OPENROUTER_API_KEY=sk-or-…
-# … other provider keys as needed
+mkdir -p ~/presets-check && cd ~/presets-check
+curl -fsSLO https://raw.githubusercontent.com/wsj-br/transrewrt/main/presets/presets-check/docker-compose.yml
+curl -fsSL https://raw.githubusercontent.com/wsj-br/transrewrt/main/presets/presets-check/docker.env.example -o presets-check.env
+chmod 600 presets-check.env
+# Edit presets-check.env — set GITHUB_TOKEN, PRESET_CHECK_NTFY_TOPIC, and optional provider keys
+docker compose pull
+docker compose run --rm presets-check check --dry-run
+docker compose up -d
 ```
 
-If `github.useSsh` is `true` in `config.json`, git uses SSH instead of `GITHUB_TOKEN`; ensure the cron user can use the deploy key (see [presets-check/README.md](presets-check/README.md)).
+To build and test [Dockerfile.presets-check](../Dockerfile.presets-check) from a local repo checkout instead, copy `presets/presets-check/docker.env.example` to `<repo>/presets-check.env` and use `pnpm docker:presets-check:up` ([docker-compose.presets-check.yml](../docker-compose.presets-check.yml)).
 
-Test before scheduling:
+`GITHUB_TOKEN` is a fine-grained personal access token (`wsj-br/transrewrt`, `Contents: Read and write`), read on demand via `GIT_ASKPASS` (never stored in `.git/config`, and separate from the Actions token that pushes images to GHCR). If `GITHUB_TOKEN` or `PRESET_CHECK_NTFY_TOPIC` is empty, the container prints `Missing required setting` and exits without cloning or scheduling.
 
-```bash
-cd /opt/transrewrt-presets-check
-PRESET_CHECK_DRY_RUN=1 ./run.sh
-```
-
-Add a crontab entry (daily at 06:00 in this example):
-
-```bash
-crontab -e
-```
-
-```cron
-0 6 * * * /opt/transrewrt-presets-check/run.sh >> /opt/transrewrt-presets-check/presets-check-cron.log 2>&1
-```
-
-Adjust the schedule as needed. Logs go to `presets-check-cron.log` (stdout/stderr) and `presets-check.log` (JSON-lines from the checker).
-
-**Local repo checkout:** `dev/presets-check/presets-check.log` and `dev/presets-check/provider-catalogs-cache.json` (provider catalog snapshot for checks) are gitignored. Remove them with the [clean-workspace](#cleaning-the-workspace) scripts when you want a fresh checker run or to drop stale catalog data.
-
-Upgrade an installed runtime after pulling a newer checker: `pnpm run presets-check:install -- --target /opt/transrewrt-presets-check --force`.
+Logs: `docker compose logs -f` (or `pnpm docker:presets-check:logs` locally) and `/data/presets-check.log` on the volume. Upgrade on the server with `docker compose pull && docker compose up -d`, which preserves `/data/repo` and `/data/config.json`. Hosts that cannot run Docker can still use `pnpm run presets-check:install -- --target /opt/transrewrt-presets-check [--force]`.
 
 ### Cleaning the workspace
 
@@ -425,11 +398,11 @@ Use these scripts for a full local reset: dev logs and caches first, then build 
 
 **Logs and dev caches (both scripts):**
 
-- All `*.log` files anywhere in the repository, except under `node_modules`, `.git`, `dist`, `release`, and `documentation/node_modules`. Examples: `presets-editor.log`, `presets-editor-*.log`, `data/server.log`, `dev/presets-check/presets-check.log`, screenshot logs under `dev/`.
+- All `*.log` files anywhere in the repository, except under `node_modules`, `.git`, `dist`, `release`, and `documentation/node_modules`. Examples: `presets-editor.log`, `presets-editor-*.log`, `data/server.log`, `presets/presets-check/presets-check.log`, screenshot logs under `dev/`.
 - `presets-editor-provider-catalogs.json` (repo root)
 - `presets-editor-openrouter-cache.json` (repo root)
-- `dev/presets-check/provider-catalogs-cache.json`
-- `dev/presets-check/presets-check.log` (also matched by the `*.log` sweep)
+- `presets/presets-check/provider-catalogs-cache.json`
+- `presets/presets-check/presets-check.log` (also matched by the `*.log` sweep)
 
 Both scripts also remove build artifacts (including `pnpm-lock.yaml`), prune the pnpm store, and run Docker `builder` / `system` prune — use only when you intend to clear those globally.
 
@@ -437,7 +410,7 @@ Both scripts also remove build artifacts (including `pnpm-lock.yaml`), prune the
 
 ### Upgrading Node and dependencies (nvm)
 
-These scripts install or switch to the **latest Node LTS** via nvm, then install/update global CLI tools (`pnpm`, `npm-check-updates`, `doctoc`). [upgrade-dependencies.sh](../scripts/upgrade-dependencies.sh) / [upgrade-dependencies.ps1](../scripts/upgrade-dependencies.ps1) also run build-safe `ncu --doctor` per workspace package, reconcile the lockfile, update browserslist, then `audit` / `audit fix` (with optional force-upgrade of vulnerable direct deps that doctor had to revert).
+These scripts install or switch to the **latest Node LTS** via nvm, then install/update global CLI tools (`pnpm`, `npm-check-updates`, `doctoc`). [upgrade-dependencies.sh](../scripts/upgrade-dependencies.sh) / [upgrade-dependencies.ps1](../scripts/upgrade-dependencies.ps1) also run build-safe `ncu --doctor` per workspace package, reconcile the lockfile, update browserslist, then `audit` / `audit fix` (with optional force-upgrade of vulnerable direct deps that doctor had to revert). When [Dockerfile.presets-check](../Dockerfile.presets-check) is present, they bump its supercronic pin to the latest [aptible/supercronic](https://github.com/aptible/supercronic/releases) release and refresh the amd64 and arm64 SHA1 sums.
 
 | Environment              | Command                                                                                                                                                                                                                                         |
 |--------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -450,7 +423,7 @@ These scripts install or switch to the **latest Node LTS** via nvm, then install
 # Tools only: refresh nvm (if ~/.nvm is a git clone), install LTS Node, upgrade pnpm / ncu / doctoc
 source ./scripts/upgrade-tools.sh
 
-# Full dependency upgrade: tools + ncu --doctor per workspace package, install, audits
+# Full dependency upgrade: tools + ncu --doctor per workspace package, install, audits, supercronic pin
 source ./scripts/upgrade-dependencies.sh
 ```
 
@@ -475,6 +448,7 @@ Before doctor upgrades, the dependency script checks whether the latest React ES
 | **Electron (Linux arm64 AppImage)** | `pnpm package-arm64`                  | `release/` - Linux **arm64** AppImage only (`build/electron-builder.linux-arm64.cjs`)                              |
 | **Electron (macOS DMG)**            | `pnpm package-mac`                    | `release/` - unsigned `.dmg` for the host arch (`Transrewrt-<version>-<arch>.dmg`)                                 |
 | **Docker image**                    | `docker build -t transrewrt-web .`    | Multi-stage build (Node 24 Alpine); run with `docker run -p 5000:5000 -v transrewrt-data:/app/data transrewrt-web` |
+| **Presets-check image**             | `pnpm docker:presets-check`           | `Dockerfile.presets-check`; run with [docker-compose.presets-check.yml](../docker-compose.presets-check.yml) |
 
 
 ### UI translations and documentation (ai-i18n-tools)
@@ -502,7 +476,7 @@ OpenRouter model ids (default and fallback order) live under `providers.openrout
 
 **Documentation translation:** The `docs` array lists content paths (for example `README.md`), `outputDir` (`translated-docs/`), and post-processing (screenshot paths, language-list block). Outputs are typically `basename.<locale>.md`. The config does not set `cacheDir`; the tool default is `.translation-cache`. That cache is not compatible with a legacy custom cache under `translated-docs/.cache` — archive or remove old caches when migrating.
 
-Screenshots follow Pattern B (per-locale folder): `images/screenshots/<locale>/<name>.png`. The `take-screenshots.js` script writes PNG files for all locales; `translate-docs` rewrites the locale segment via `docsOutput.postProcessing.regexAdjustments`. See the [ai-i18n-tools locale assets guide](https://github.com/wsj-br/ai-i18n-tools/blob/main/docs/locale-assets.md).
+Screenshots follow Pattern B (per-locale folder): `website/public/images/screenshots/<locale>/<name>.png`. The root README links to `https://wsj-br.github.io/transrewrt/images/screenshots/en-GB/…`. `translate-docs` rewrites that locale segment via `docsOutput.postProcessing.regexAdjustments`. See the [ai-i18n-tools locale assets guide](https://github.com/wsj-br/ai-i18n-tools/blob/main/docs/locale-assets.md).
 
 **Glossaries:** Optional [glossary-user.csv](../glossary-user.csv) is `glossary.userGlossary`. The UI catalog [src/renderer/locales/strings.json](../src/renderer/locales/strings.json) is a doc-hint source by default (`ui.uiGlossary`, default `true`). Do not set `glossary.uiGlossary` — that key is rejected.
 
@@ -656,7 +630,7 @@ After `main` contains the release commit(s), check out `main` locally at the com
 
 The script creates an annotated tag **`v<version>`** at **HEAD**, pushes it to **`origin`**, and runs `gh release create` with title **`v<version>`** and body from **`release-notes/RELEASE_NOTES_<version>.md`**. If that tag or a GitHub release for it already exists, the script deletes them and recreates the tag at the current **HEAD** so you can fix a mistaken tag or add follow-up commits before releasing again.
 
-That GitHub release triggers `[.github/workflows/release.yml](../.github/workflows/release.yml)`, which builds Windows and Linux installers and unsigned macOS DMGs, pushes the Docker image to GHCR, and deploys `website/` to GitHub Pages (`https://wsj-br.github.io/transrewrt/`). Check the **Actions** tab on https://github.com/wsj-br/transrewrt for progress. To redeploy the site without an app release, run `pnpm website:publish` (see [website/README.md](../website/README.md)).
+That GitHub release triggers `[.github/workflows/release.yml](../.github/workflows/release.yml)`, which builds Windows and Linux installers and unsigned macOS DMGs, pushes the web and presets-check Docker images to GHCR, and deploys `website/` to GitHub Pages (`https://wsj-br.github.io/transrewrt/`). Check the **Actions** tab on https://github.com/wsj-br/transrewrt for progress. To redeploy the site without an app release, run `pnpm website:publish` (see [website/README.md](../website/README.md)).
 
 **Manual alternative:** you can still create a release from the GitHub **Releases** UI (**Draft a new release** → tag `vX.Y.Z` targeting `main` → paste notes → **Publish release**). Prefer the script so the tag, title, and notes stay aligned with `package.json` and `release-notes/RELEASE_NOTES_<version>.md`.
 
@@ -672,7 +646,7 @@ That GitHub release triggers `[.github/workflows/release.yml](../.github/workflo
   | Linux | `Transrewrt-X.Y.Z-x64.AppImage`, `Transrewrt-X.Y.Z-arm64.AppImage` | `ubuntu-latest`, `ubuntu-24.04-arm` |
   | macOS (unsigned) | `Transrewrt-X.Y.Z-arm64.dmg` (Apple Silicon), `Transrewrt-X.Y.Z-x64.dmg` (Intel) | `macos-latest`, `macos-15-intel` |
 
-  The **container image** is `ghcr.io/wsj-br/transrewrt:X.Y.Z` (and `:latest` when this release is the newest tag or when using manual workflow options as documented in the workflow file).
+  The **web image** is `ghcr.io/wsj-br/transrewrt:X.Y.Z` and the **presets-check image** is `ghcr.io/wsj-br/transrewrt-presets-check:X.Y.Z` (both also get `:latest` when this release is the newest tag or when using manual workflow options as documented in the workflow file). The first presets-check push creates a second GHCR package, which the org must allow.
 - **Manual workflow run**: From the **Actions** tab you can run the Release workflow without publishing a release (**workflow_dispatch**); it builds installers, DMGs, and Docker images but does **not** attach files to a GitHub Release. Use the `tag_as_latest` input if you need the Docker `latest` tag on that manual run. The **macOS DMG** workflow builds only the two DMGs.
 
 ---
@@ -731,9 +705,9 @@ All npm scripts defined in [package.json](../package.json) are listed below (gro
 | `pnpm run postinstall`               | Rebuild native addons for Electron (`scripts/electron-rebuild.js`); also runs automatically after `pnpm install`.                                           |
 | `pnpm dev`                           | Electron development: runs Webpack on **:4030**, enables hot reload, and performs native rebuild for Electron.                                              |
 | `pnpm dev:web`                       | Web development: `scripts/node-rebuild.js`, then Webpack on **:5500** and API server on **:4030** (proxied as `/api`).                                      |
-| `pnpm run presets-editor`         | Dev-only Easy-mode catalog editor on **:8765** (see [presets-editor/README.md](presets-editor/README.md)).                                                    |
-| `pnpm run presets-check`               | Validate/replace Easy-mode model ids against the local catalog (`--local` is already in the script; add `-- --dry-run` to preview). See [Skill-check cron](#skill-check-cron-development) |
-| `pnpm run presets-check:install`       | Install isolated presets-check runtime for cron (e.g. `-- --target /opt/transrewrt-presets-check`)                                                              |
+| `pnpm run presets-editor`         | Dev-only Easy-mode catalog editor on **:8765** (see [presets-editor/README.md](../presets/presets-editor/README.md)).                                                    |
+| `pnpm run presets-check`               | Validate/replace Easy-mode model ids against the local catalog (`--local` is already in the script; add `-- --dry-run` to preview). See [Presets-check](#presets-check-development-and-docker) |
+| `pnpm run presets-check:install`       | Host-only presets-check runtime for a machine that cannot run Docker (e.g. `-- --target /opt/transrewrt-presets-check`). Production install is the container |
 | `pnpm build` / `pnpm build-renderer` | Creates a production Webpack build in the `dist/` directory.                                                                                                |
 | `pnpm run build:main`                | Webpack build of Electron main/preload → `dist-main/` (included in `package` / `package-arm64` / `package-mac`).                                            |
 | `pnpm start`                         | Runs Electron using the current `dist/` (run `build-renderer` first if needed).                                                                             |
@@ -782,7 +756,7 @@ Models and fallbacks: `providers.openrouter.translationModels` in [ai-i18n-tools
 |--------------------------------|------------------------------------------------------------------------------------------------------------------------------------------|
 | `pnpm generate-test-data --web` or `--app` | Seed SQLite with sample API/history rows (exactly one of `--web` or `--app`) |
 | `pnpm pricing:update` | Refresh `src/shared/llm/modelsDevPricing.snapshot.json` from [models.dev](https://models.dev/) (`api.json`) |
-| `pnpm take-screenshots`        | Use Puppeteer to capture UI screenshots into `images/screenshots/` (app on **:5000** from `pnpm serve` or **:5500** from `pnpm dev:web`; override with `BASE_URL`). Copy into `website/public/images/screenshots/` for the site |
+| `pnpm take-screenshots`        | Use Puppeteer to capture UI screenshots into `website/public/images/screenshots/` (app on **:5000** from `pnpm serve` or **:5500** from `pnpm dev:web`; override with `BASE_URL`) |
 | `pnpm generate-banner`         | Write `images/transrewrt_banner.svg` and `.png`                                                                                          |
 | `./scripts/trim-ico-sizes.sh`  | Normalize provider `.ico` files under `src/renderer/assets/` to 16×16 + 32×32 only (ImageMagick; see [Provider icons](#provider-icons-trim-ico-sizes)) |
 | `pnpm reset-web-password`      | In web multi-user mode, set a password in SQLite (`[username] <password>`; default is `admin`; uses `CONFIG_PATH` or `data/config.json`) |
@@ -809,6 +783,10 @@ Models and fallbacks: `providers.openrouter.translationModels` in [ai-i18n-tools
 | `pnpm docker:devel`                | Build image tagged `wsj-br/transrewrt:devel`                                                        |
 | `pnpm docker:logs`                 | Logs from container `transrewrt` (see [docker-compose.yml](../docker-compose.yml) `container_name`) |
 | `pnpm docker:shell`                | Shell into running container `transrewrt`                                                           |
+| `pnpm docker:presets-check`        | Build `wsj-br/transrewrt-presets-check:devel` from [Dockerfile.presets-check](../Dockerfile.presets-check) |
+| `pnpm docker:presets-check:up`     | `docker compose -f docker-compose.presets-check.yml up --build -d`                                  |
+| `pnpm docker:presets-check:down`   | Stop the presets-check compose stack                                                                |
+| `pnpm docker:presets-check:logs`   | Logs from the presets-check compose service                                                         |
 
 ### Release
 
@@ -829,7 +807,7 @@ See [Upgrading Node and dependencies (nvm)](#upgrading-node-and-dependencies-nvm
 | `.\scripts\clean-workspace.ps1`          | Same as Bash on Windows; optional `-RemovePrerequisites` ([Cleaning the workspace](#cleaning-the-workspace))                                                                                                                                                                              |
 | `source ./scripts/upgrade-tools.sh`        | **Bash.** Refresh nvm (git checkout latest tag if `~/.nvm` is a clone), `nvm install --lts` / `nvm use`, then global package manager / `npm-check-updates` / `doctoc`. Must be **sourced** (not `./…`; or `CI=1` / `UPGRADE_ALLOW_EXEC=1`).                                              |
 | `. .\scripts\upgrade-tools.ps1`            | **PowerShell.** Same flow via nvm-windows (`nvm install lts` / `nvm use`) and [upgrade-common.ps1](../scripts/upgrade-common.ps1). **Dot-source** (`. …`) so `nvm use` applies to this session.                                                                                           |
-| `source ./scripts/upgrade-dependencies.sh` | **Bash.** Sources [upgrade-tools.sh](../scripts/upgrade-tools.sh), ESLint peer gate, `ncu --doctor` per workspace package, lockfile reconcile, browserslist update, audit / audit fix, peer check, summary.                                                                              |
+| `source ./scripts/upgrade-dependencies.sh` | **Bash.** Sources [upgrade-tools.sh](../scripts/upgrade-tools.sh), ESLint peer gate, supercronic pin in `Dockerfile.presets-check`, `ncu --doctor` per workspace package, lockfile reconcile, browserslist update, audit / audit fix, peer check, summary. |
 | `. .\scripts\upgrade-dependencies.ps1`     | **PowerShell.** Same as Bash via [upgrade-tools.ps1](../scripts/upgrade-tools.ps1) / [upgrade-common.ps1](../scripts/upgrade-common.ps1). **Must** be dot-sourced (not `.\…`, unless `CI=1` / `UPGRADE_ALLOW_EXEC=1`).                                                                   |
 
 
@@ -849,7 +827,6 @@ See [Upgrading Node and dependencies (nvm)](#upgrading-node-and-dependencies-nvm
 
   After adding the override, verify with `pnpm audit` - it should report no vulnerabilities.
 - **pnpm symlink errors on Windows:** Turn on Developer Mode so pnpm can create symlinks under `node_modules`, then run `pnpm install` again.
-- **Website screenshots missing or stale:** `pnpm take-screenshots` writes [images/screenshots/](../images/screenshots/) only. Copy updated PNGs into [website/public/images/screenshots/](../website/public/images/screenshots/) — see [Website screenshots](#website-screenshots).
 - **Node not found (nvm):** Restart the IDE/terminal so it picks up nvm's PATH, or add the nvm Node path to your user PATH.
 
 ---
@@ -857,7 +834,7 @@ See [Upgrading Node and dependencies (nvm)](#upgrading-node-and-dependencies-nvm
 ## Related documentation
 
 - **[SYSTEM-OVERVIEW.md](SYSTEM-OVERVIEW.md)** — Product and **runtime architecture** (Electron IPC `llm:`* vs web `/api/llm/stream` SSE), **Vercel AI SDK** LLM layer and supported providers (including **Local LLM** full OpenAI-compatible base URL), **Easy mode / presets catalog** (sync, `model_ids`, providers), **Translate/Rewrite rephrase** (shared controls, version history, word alternatives), **config/state** (desktop `config.json` + encryption; web global config vs `user_preferences` / `transrewrt.db`), **security** (sanitized IPC, Argon2, cookies), settings UI summary, native modules.
-- **[presets-editor/README.md](presets-editor/README.md)** — Development catalog editor (`pnpm run presets-editor`), env vars, mirror paths, AI Suggestion / translate-missing APIs.
+- **[presets-editor/README.md](../presets/presets-editor/README.md)** — Catalog editor (`pnpm run presets-editor`), env vars, mirror paths, Suggest models / translate-missing APIs.
 - [ai-i18n-tools-context.md](ai-i18n-tools-context.md) — UI strings: extract/translate workflow, key-as-default, RTL, native `t(key, vars)` interpolation, and the current `ai-i18n-tools` config shape.
 - **[https://wsj-br.github.io/transrewrt/docs/](https://wsj-br.github.io/transrewrt/docs/)** — End-user docs (install, guides, settings, troubleshooting).
 - **[release-new-version-prompt.md](release-new-version-prompt.md)** — Cursor prompt to draft `release-notes/RELEASE_NOTES_<version>.md` and update the changelog before a release.
@@ -891,7 +868,7 @@ See [Upgrading Node and dependencies (nvm)](#upgrading-node-and-dependencies-nvm
 | [src/main/ipc/presetsIpc.js](../src/main/ipc/presetsIpc.js)                                   | Electron `presets:read`, `presets:syncState`, `presets:updateFromRemote`                                      |
 | [src/server/routes/presets.js](../src/server/routes/presets.js)                               | Web `GET /api/presets`, `POST /api/presets/sync`, periodic server sync                                          |
 | [src/renderer/utils/presets/presetsManager.ts](../src/renderer/utils/presets/presetsManager.ts) | Renderer load/resolve skills for Easy mode                                                                 |
-| [dev/presets-editor/README.md](presets-editor/README.md)                                      | Dev catalog editor (`pnpm run presets-editor`)                                                             |
+| [presets/presets-editor/README.md](../presets/presets-editor/README.md)                                      | Dev catalog editor (`pnpm run presets-editor`)                                                             |
 | [Dockerfile](../Dockerfile)                                                                 | Multi-stage Docker build; copies `easy-mode-config/`                                                          |
 | [docker-compose.yml](../docker-compose.yml)                                                 | Compose for local web run                                                                                     |
 | [src/config-defaults/transform-prompts.json](../src/config-defaults/transform-prompts.json) | Sample transform prompts (used by "Load sample prompts")                                                      |

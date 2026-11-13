@@ -22,7 +22,7 @@ AI-powered text tool for **translate**, **rewrite**, and **transform** with cust
 | **Deploy** | Electron desktop or Docker web (amd64 & arm64) |
 | **Keys** | Your providers, your host — Easy presets or Advanced model list |
 
-![Translate](images/screenshots/en-GB/translate.png)
+![Translate](https://wsj-br.github.io/transrewrt/images/screenshots/en-GB/translate.png)
 
 <small>**Read in other languages:** </small>
 <small id="lang-list">[English (UK)](./README.md) · [العربية](./translated-docs/README.ar.md) · [简体中文](./translated-docs/README.zh-Hans.md) · [繁體中文](./translated-docs/README.zh-Hant.md) · [Čeština](./translated-docs/README.cs.md) · [Nederlands](./translated-docs/README.nl.md) · [Français](./translated-docs/README.fr.md) · [Deutsch](./translated-docs/README.de.md) · [Ελληνικά](./translated-docs/README.el.md) · [हिन्दी](./translated-docs/README.hi.md) · [Magyar](./translated-docs/README.hu.md) · [Italiano](./translated-docs/README.it.md) · [日本語](./translated-docs/README.ja.md) · [한국어](./translated-docs/README.ko.md) · [فارسی](./translated-docs/README.fa.md) · [Polski](./translated-docs/README.pl.md) · [Português (Brasil)](./translated-docs/README.pt-BR.md) · [Română](./translated-docs/README.ro.md) · [Русский](./translated-docs/README.ru.md) · [Slovenčina](./translated-docs/README.sk.md) · [Español](./translated-docs/README.es.md) · [Svenska](./translated-docs/README.sv.md) · [ไทย](./translated-docs/README.th.md) · [Türkçe](./translated-docs/README.tr.md) · [Українська](./translated-docs/README.uk.md) · [Tiếng Việt](./translated-docs/README.vi.md)</small>

@@ -54,13 +54,12 @@ describe("catalog sanity", () => {
 });
 
 describe("model refs", () => {
-  it("includes preset slots and top-level translation and suggestion models", () => {
+  it("includes preset slots and top-level translation models", () => {
     const refs = collectModelRefs(
       {
         translation_model: "openrouter/~anthropic/claude-sonnet-latest",
         translation_model_fallback: "openrouter/~anthropic/claude-haiku-latest",
-        suggestion_model: "openrouter/openai/gpt-4o",
-        suggestion_model_fallback: "",
+        suggestion_model_removed: "ignored",
         presets: [
           {
             id: "standard",
@@ -76,7 +75,7 @@ describe("model refs", () => {
     assert.ok(paths.includes("presets[0].fallback_ids.openai"));
     assert.ok(paths.includes("translation_model"));
     assert.ok(paths.includes("translation_model_fallback"));
-    assert.ok(paths.includes("suggestion_model"));
+    assert.equal(paths.includes("suggestion_model"), false);
     assert.equal(paths.includes("suggestion_model_fallback"), false);
     assert.equal(
       refs.filter((ref) => ref.kind === "toplevel").every((ref) => ref.successorOnly),

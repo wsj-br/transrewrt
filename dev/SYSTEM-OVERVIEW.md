@@ -156,8 +156,11 @@ All application source lives under `src/`: main (Electron), renderer (React), se
 ```text/plain
 ├── easy-mode-config/
 │   └── presets.json        # Canonical Easy-mode presets catalog (version, model_ids, translations)
-├── dev/
-│   └── presets-editor/     # Dev-only catalog editor (not shipped in Electron/Docker)
+├── presets/
+│   ├── presets-editor/     # Catalog editor (not shipped in Electron/Docker)
+│   ├── presets-check/      # Model-availability checker for cron
+│   └── presets-shared/     # Ranking and benchmark helpers shared by the two tools
+├── dev/                    # Development documentation
 ├── src/
 │   ├── main/              # Electron only
 │   │   ├── main.js        # Main process, IPC, config path, appDb
@@ -247,7 +250,7 @@ Web **Provider** options use `configuredEngines` from `GET /api/status` (server 
 
 | Artifact | Role |
 |----------|------|
-| [easy-mode-config/presets.json](../easy-mode-config/presets.json) | **Canonical** catalog in the repo (`version`, `updated_at`, `presets[]`, editor-only `translation_model` / `suggestion_model`, …) |
+| [easy-mode-config/presets.json](../easy-mode-config/presets.json) | **Canonical** catalog in the repo (`version`, `updated_at`, `presets[]`, per-preset `suggestion`, editor-only `translation_model`, …) |
 | User / data `presets.json` | **Runtime** copy beside `config.json` (Electron) or `data/presets.json` (web/Docker) |
 | Packaged Electron | `config/presets.json` copied from `easy-mode-config/presets.json` at build ([package.json](../package.json) `extraFiles`) |
 | Remote | [shared/presetsCatalog.js](../src/shared/presetsCatalog.js) `PRESETS_REMOTE_URL` → `main` branch `easy-mode-config/presets.json` on GitHub |
@@ -264,7 +267,7 @@ Renderer loads the catalog via `window.electronAPI.readPresets()` or `GET /api/p
 
 ### Development presets editor
 
-Not shipped in production builds. Maintainers edit the canonical catalog with **`pnpm run presets-editor`** ([dev/presets-editor/README.md](presets-editor/README.md)): saves `easy-mode-config/presets.json`, mirrors to `data/presets.json` for local web dev, per-provider `model_ids`, translation/suggestion model pickers, **Test**, **Translate missing**, and **AI Suggestion** flows. AI Suggestion uses a hybrid shortlist (languagebench ChrF + Arena Score + optional live timing); see [ai-suggestion-model-selection.md](ai-suggestion-model-selection.md). Broader editor notes: [DEVELOPMENT.md](DEVELOPMENT.md#presets-catalog-editor-development).
+Not shipped in production builds. Maintainers edit the canonical catalog with **`pnpm run presets-editor`** ([presets/presets-editor/README.md](../presets/presets-editor/README.md)): saves `easy-mode-config/presets.json`, mirrors to `data/presets.json` for local web dev, per-provider `model_ids`, a per-preset `suggestion` cost cap, **Test**, **Translate missing**, and **Suggest models**. Suggest models ranks ChrF and Arena with no LLM call. The same ranking runs from `presets/presets-check`. Broader editor notes: [DEVELOPMENT.md](DEVELOPMENT.md#presets-catalog-editor-development).
 
 ---
 

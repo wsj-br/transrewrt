@@ -11,6 +11,24 @@ Use conventional types (Added, Changed, Fixed, etc.) and short descriptions.
 
 ## Unreleased
 
+- **Changed**: Screenshots live only in `website/public/images/screenshots`. `take-screenshots` writes there, and the README image uses the GitHub Pages URL.
+- **Added**: Dependency upgrade scripts bump the supercronic pin in `Dockerfile.presets-check` to the latest GitHub release and refresh the amd64 and arm64 SHA1 sums.
+- **Fixed**: presets-check no longer crashes with `Cannot access 'engine' before initialization` when it starts checking a preset group.
+- **Changed**: Presets-check production install is a long-running Docker image (`ghcr.io/wsj-br/transrewrt-presets-check`) with in-container cron and a standalone `presets/presets-check/docker-compose.yml` for servers without a repository clone. HTTPS git auth uses `GIT_ASKPASS`, so the token is not stored in the remote URL.
+- **Removed**: The presets-check container no longer accepts an SSH deploy key. GitHub auth in the image is the fine-grained token only.
+- **Changed**: The presets-check container exits before cloning or scheduling when `GITHUB_TOKEN` or `PRESET_CHECK_NTFY_TOPIC` is empty.
+- **Changed**: presets-check Compose leaves `TZ`, `PRESET_CHECK_RUNTIME`, and `PRESET_CHECK_LIB` to the image defaults.
+- **Changed**: Presets editor, presets-check, and their shared helpers live under `presets/` so `dev/` stays documentation.
+- **Changed**: Suggest models ranks each preset from ChrF and Arena with the preset’s blended cost cap, and presets-check realigns those ids when a scored model launches or a price change moves the rank. No suggestion LLM call.
+- **Changed**: Suggest models shows the ranked primary and fallback in a table. It no longer asks to keep or apply each id.
+- **Changed**: Suggest models explains the index gap as the minimum index-point distance between the primary and the fallback.
+- **Changed**: Suggest models ranks every preset. The preset checkboxes are gone.
+- **Changed**: The default index gap is 1, so the fallback is at least one index point away from the primary.
+- **Changed**: Suggest models replaces Close with Save catalog, which writes the suggested primary and fallback ids and returns to the preset list.
+- **Changed**: A provider with more than one model always gets a fallback, even above the cost cap or inside the index gap. One available model stays primary only.
+- **Changed**: The preset editor model picker shows each model’s rank and index.
+- **Changed**: `i18next` 27 so it matches the `react-i18next` 18 peer.
+
 ## [1.7.0] - 2026-11-09
 
 - **Fixed**: `generate-test-data` declares `nativeDb` without an unused initial value so `pnpm lint` passes.

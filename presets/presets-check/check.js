@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
  * Presets model availability checker — validates easy-mode-config/presets.json model ids,
- * replaces unavailable models from benchmark shortlists (no LLM), optionally commits/pushes,
+ * realigns preset model ids with the deterministic ranking (no LLM), optionally commits/pushes,
  * and notifies via NTFY.
  *
  * Usage:
@@ -22,7 +22,7 @@ const {
 } = require("./gitSync.js");
 const { acquireRunLock } = require("./lock.js");
 const { collectModelRefs, getModelValue, setModelValue, groupRefsByPair } = require("./modelRefs.js");
-const { selectReplacementPair, resolveVerifiedChoice } = require("./selectReplacement.js");
+const { selectReplacementPair, selectPolicyPair, resolveVerifiedChoice } = require("./selectReplacement.js");
 const { readLastGoodCounts, writeLastGoodCounts, evaluateCatalogSanity } = require("./catalogSanity.js");
 const { evaluateCircuitBreaker } = require("./circuitBreaker.js");
 
@@ -40,10 +40,12 @@ const {
   buildIdSets,
 } = sharedRequire("presetsProviderCatalog.js");
 const {
-  buildBenchmarkShortlists,
-  blendedPriceFromModelsDev,
-  defaultBenchmarkCachePath,
-} = presetsSharedRequire("benchmark-scores.js");
+  loadPresetBenchmarks,
+  presetsBenchmarkCachePath,
+  suggestPresetModels,
+  rankEngineModels,
+  normalizeSuggestion,
+} = presetsSharedRequire("suggestModels.js");
 const {
   runCandidateTimingBenchmark,
   BENCHMARK_DEFAULT_SAMPLE_TEXT_PT,
@@ -65,16 +67,18 @@ Usage:
 Options:
   --dry-run       Check and report only; do not write presets.json or push
   --local         Use monorepo easy-mode-config/presets.json; skip git operations
-  --config <path> Config JSON (default: dev/presets-check/config.json)
+  --config <path> Config JSON (default: presets/presets-check/config.json)
   --explain       Print candidate scores and the chosen source for each unavailable id
   --preset <id>   Only check this preset (repeatable). Skips top-level model fields
   --engine <id>   Only check this provider (repeatable)
-  --no-benchmark  Do not use benchmark shortlists; guarded fuzzy match only
+  --no-benchmark  Do not rank from benchmarks; guarded fuzzy match only
   --no-verify     Do not smoke-test replacement ids
   --help, -h      Show this help
 
 Env:
-  PRESET_CHECK_RUNTIME, PRESET_CHECK_DRY_RUN, PRESET_CHECK_NTFY_TOPIC, GITHUB_TOKEN,
+  PRESET_CHECK_RUNTIME, PRESET_CHECK_LIB, PRESET_CHECK_DRY_RUN, PRESET_CHECK_NTFY_TOPIC,
+  PRESET_CHECK_CRON,
+  GITHUB_TOKEN (HTTPS via GIT_ASKPASS; not stored in the git remote),
   OPENROUTER_API_KEY, OPENAI_API_KEY, … (provider keys for non-OpenRouter catalogs)
 `);
 }
@@ -169,22 +173,16 @@ function refAllowed(ref, args) {
   return true;
 }
 
-function loadOpenRouterPerformance(config) {
-  if (!config.openRouterSpeed) return {};
-  const cachePath = path.join(config.runtimeRoot, "presets-editor-openrouter-cache.json");
+function readSuggestionLocales(uiLanguagesPath) {
   try {
-    const parsed = JSON.parse(fs.readFileSync(cachePath, "utf8"));
-    const perf = parsed?.performanceByPath;
-    if (perf && typeof perf === "object") {
-      console.log(
-        `[presets-check] OpenRouter speed axis: ${Object.keys(perf).length} model(s) from cache`,
-      );
-      return perf;
+    const list = JSON.parse(fs.readFileSync(uiLanguagesPath, "utf8"));
+    if (Array.isArray(list)) {
+      return list.map((row) => (row && row.code ? String(row.code) : "")).filter(Boolean);
     }
   } catch (e) {
-    console.warn(`[presets-check] OpenRouter speed cache unavailable: ${e.message}`);
+    console.warn(`[presets-check] Could not read UI languages: ${e.message}`);
   }
-  return {};
+  return ["en-GB"];
 }
 
 function printExplain(row) {
@@ -366,54 +364,54 @@ async function main() {
   const groups = groupRefsByPair(allRefs);
 
   const useBenchmark = !args.noBenchmark;
-  const openRouterPerformance = useBenchmark ? loadOpenRouterPerformance(config) : {};
-  const benchmarkCachePath =
-    config.localMode && !process.env.PRESET_CHECK_RUNTIME
-      ? defaultBenchmarkCachePath(getMonorepoRoot())
-      : path.join(stateDir, "presets-editor-benchmark-cache.json");
-  const uiLanguagesPath = path.join(config.repoDir, "src", "renderer", "locales", "ui-languages.json");
+  const benchmarkCachePath = presetsBenchmarkCachePath(config.runtimeRoot);
   const timingCachePath = path.join(stateDir, "presets-editor-timing-cache.json");
+  const locales = readSuggestionLocales(path.join(config.repoDir, "src", "renderer", "locales", "ui-languages.json"));
+
+  /** @type {object|null} */
+  let benchmarks = null;
+  if (useBenchmark) {
+    try {
+      console.log("[presets-check] Loading benchmark cache (languagebench + Arena Score + models.dev)…");
+      benchmarks = await loadPresetBenchmarks(benchmarkCachePath, {});
+      console.log(`[presets-check] Benchmark cache ready (${benchmarkCachePath})`);
+    } catch (e) {
+      console.warn(`[presets-check] Benchmark cache unavailable: ${e.message}. Upgrades skipped.`);
+    }
+  }
 
   /** @type {Map<string, object>} */
-  const benchByPreset = new Map();
-  /** @type {object|null} */
-  let benchForTopLevel = null;
-  if (useBenchmark) {
-    const presets = Array.isArray(catalog.presets) ? catalog.presets : [];
-    const wanted = new Set(
-      allRefs.filter((ref) => ref.kind === "preset").map((ref) => ref.presetId),
-    );
-    for (const preset of presets) {
-      if (!preset || !wanted.has(preset.id)) continue;
-      const result = await buildBenchmarkShortlists({
-        root: config.runtimeRoot,
-        preset,
-        catalogsByEngine,
-        cachePath: benchmarkCachePath,
-        uiLanguagesPath,
-        openRouterPerformance,
-        log: (msg) => console.log(`[presets-check] ${msg}`),
-      });
-      benchByPreset.set(preset.id, result);
-      if (!result.ok) {
-        console.warn(`[presets-check] Benchmark shortlist unavailable for "${preset.id}": ${result.error}`);
-      } else {
-        console.log(
-          `[presets-check] Benchmark profile for "${preset.id}": ${result.profile} (${Object.keys(result.shortlists || {}).length} provider shortlist(s))`,
-        );
-      }
+  const suggestionByPreset = new Map();
+  function suggestionFor(preset) {
+    if (!benchmarks || !preset) return null;
+    if (!suggestionByPreset.has(preset.id)) {
+      suggestionByPreset.set(
+        preset.id,
+        suggestPresetModels({ preset, catalogsByEngine, benchmarks, locales }),
+      );
     }
-    if (allRefs.some((ref) => ref.kind === "toplevel")) {
-      benchForTopLevel = await buildBenchmarkShortlists({
-        root: config.runtimeRoot,
-        preset: { id: "advanced", name: "Advanced", description: "quality" },
-        profile: "advanced",
-        catalogsByEngine,
-        cachePath: benchmarkCachePath,
-        uiLanguagesPath,
-        openRouterPerformance,
-      });
-    }
+    return suggestionByPreset.get(preset.id);
+  }
+
+  let topLevelRanked = [];
+  if (benchmarks && allRefs.some((ref) => ref.kind === "toplevel")) {
+    topLevelRanked = rankEngineModels({
+      provider: "openrouter",
+      catalog: catalogsByEngine.openrouter || [],
+      benchmarks,
+      suggestion: normalizeSuggestion({
+        id: "advanced",
+        suggestion: { profile: "quality", max_price: null },
+      }),
+      locales,
+    }).map((row) => ({
+      model_id: row.id,
+      score: row.index,
+      below_floor: row.belowFloor,
+      chrf: row.chrf,
+      arena_score: row.arenaScore,
+      blended_price_per_1m: row.blendedPerMTokens,
+    }));
   }
 
   /** @type {Array<object>} */
@@ -423,11 +421,11 @@ async function main() {
     const sample = refs[0];
     const preset =
       sample.kind === "preset" ? catalog.presets?.[sample.presetIndex] : null;
-    const bench =
-      sample.kind === "toplevel" ? benchForTopLevel : benchByPreset.get(sample.presetId);
+    const engine = sample.engine;
+    const rankedSuggestion = sample.kind === "preset" ? suggestionFor(preset) : null;
+    const enginePick = rankedSuggestion?.byEngine?.[engine] || null;
     const primaryRef = refs.find((ref) => ref.slot === "primary") || null;
     const fallbackRef = refs.find((ref) => ref.slot === "fallback") || null;
-    const engine = sample.engine;
     const sanity = sanityByEngine[engine];
     const idSet = idSets[engine];
 
@@ -470,25 +468,37 @@ async function main() {
       console.log(`[presets-check]  Checking preset: "${sample.presetId}" (${engine})`);
     }
 
-    const pair = selectReplacementPair({
-      engine,
-      primaryId: primaryState.canonical,
-      fallbackId: fallbackState.canonical,
-      primaryUnavailable: primaryState.unavailable,
-      fallbackUnavailable: fallbackState.unavailable,
-      ranked: bench?.rankedByEngine?.[engine] || [],
-      shortlist: bench?.shortlists?.[engine] || [],
-      catalogModels: catalogsByEngine[engine] || [],
-      benchmarkOk: Boolean(bench?.ok),
-      useBenchmark,
-      successorOnly: Boolean(sample.successorOnly),
-      freeOnly: bench?.profile === "free" || sample.presetId === "free-router",
-      maxPriceRatio: config.maxPriceRatio,
-      minMatchScore: config.minMatchScore,
-      priceForId: (id) => blendedPriceFromModelsDev(bench?.modelsDevPricing, id),
-    });
+    const usePolicy = Boolean(enginePick) && !sample.successorOnly;
+    const pair = usePolicy
+      ? selectPolicyPair({
+          primaryId: primaryState.canonical,
+          fallbackId: fallbackState.canonical,
+          primaryUnavailable: primaryState.unavailable,
+          fallbackUnavailable: fallbackState.unavailable,
+          selected: enginePick.selected || [],
+          ranked: enginePick.ranked || [],
+          suggestion: rankedSuggestion.suggestion,
+        })
+      : selectReplacementPair({
+          engine,
+          primaryId: primaryState.canonical,
+          fallbackId: fallbackState.canonical,
+          primaryUnavailable: primaryState.unavailable,
+          fallbackUnavailable: fallbackState.unavailable,
+          ranked: sample.kind === "toplevel" ? topLevelRanked : [],
+          shortlist: [],
+          catalogModels: catalogsByEngine[engine] || [],
+          benchmarkOk: topLevelRanked.length > 0,
+          useBenchmark,
+          successorOnly: Boolean(sample.successorOnly),
+          freeOnly: sample.presetId === "free-router",
+          maxPriceRatio: config.maxPriceRatio,
+          minMatchScore: config.minMatchScore,
+          priceForId: () => null,
+        });
 
-    const wantsVerify = primaryState.unavailable || fallbackState.unavailable;
+    const wantsVerify =
+      pair.primary?.status === "replacement" || pair.fallback?.status === "replacement";
     const verifyEnabled =
       wantsVerify &&
       !args.noVerify &&
@@ -502,8 +512,14 @@ async function main() {
           smokeTestModel(engine, modelId, keysMap, preset?.prompt_hint, timingCachePath)
       : null;
     const exclude = new Set();
-    const verifiedPrimary = await resolveVerifiedChoice(pair.primary, exclude, verifyFn);
-    const verifiedFallback = await resolveVerifiedChoice(pair.fallback, exclude, verifyFn);
+    function settleKept(decision) {
+      if (decision && decision.newId && decision.newId === decision.oldId) {
+        return { ...decision, status: "ok", newId: null, source: null };
+      }
+      return decision;
+    }
+    const verifiedPrimary = settleKept(await resolveVerifiedChoice(pair.primary, exclude, verifyFn));
+    const verifiedFallback = settleKept(await resolveVerifiedChoice(pair.fallback, exclude, verifyFn));
 
     function pushDecision(ref, state, decision) {
       if (!ref || !decision) return;
@@ -535,9 +551,10 @@ async function main() {
     pushDecision(fallbackRef, fallbackState, verifiedFallback);
   }
 
-  const replacements = results.filter((row) => row.status === "replacement" && row.newId);
-  const unresolved = results.filter((row) => row.status === "unresolved");
-  const breaker = evaluateCircuitBreaker(replacements, {
+  const countsTowardBreaker = (row) => row.source === "fuzzy" || row.source === "successor";
+  let replacements = results.filter((row) => row.status === "replacement" && row.newId);
+  const guarded = replacements.filter(countsTowardBreaker);
+  const breaker = evaluateCircuitBreaker(guarded, {
     maxPerRun: config.maxReplacementsPerRun,
     maxPerEngine: config.maxReplacementsPerEngine,
   });
@@ -547,11 +564,19 @@ async function main() {
   if (breaker.tripped) {
     breakerMessage =
       breaker.reason === "engine"
-        ? `Circuit breaker: ${breaker.count} replacements for ${breaker.engine} (max ${breaker.max}); nothing written`
-        : `Circuit breaker: ${breaker.count} replacements (max ${breaker.max}); nothing written`;
+        ? `Circuit breaker: ${breaker.count} fuzzy or successor replacements for ${breaker.engine} (max ${breaker.max}); those were not written`
+        : `Circuit breaker: ${breaker.count} fuzzy or successor replacements (max ${breaker.max}); those were not written`;
     console.error(`[presets-check] ${breakerMessage}`);
     appendLog(config.logPath, { event: "circuit_breaker", ...breaker, dryRun });
-  } else if (replacements.length && !dryRun) {
+    for (const row of guarded) {
+      row.status = "skipped";
+      row.reason = "circuit_breaker";
+      row.newId = null;
+    }
+    replacements = replacements.filter((row) => !countsTowardBreaker(row));
+  }
+  const unresolved = results.filter((row) => row.status === "unresolved");
+  if (replacements.length && !dryRun) {
     for (const row of replacements) setModelValue(catalog, row, row.newId);
     catalog.version = bumpPatchVersion(catalog.version, readAppVersion(config.repoDir));
     catalog.updated_at = new Date().toISOString();

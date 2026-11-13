@@ -5,6 +5,8 @@
 #   2. Build-safe upgrades: ncu --doctor per workspace package.
 #   3. Security: audit + audit fix; force-apply safe versions for vulnerable
 #      direct deps that doctor had to revert (and report build breakage).
+#   4. Supercronic: when Dockerfile.presets-check is present, bump the pinned
+#      aptible/supercronic release and refresh the amd64 and arm64 SHA1 sums.
 #
 # nvm-windows only affects the current PowerShell session. Dot-source so PATH
 # changes apply:
@@ -110,6 +112,10 @@ function New-UpgradeSnapshot {
         if (Test-Path -LiteralPath $src) {
             Copy-Item -LiteralPath $src -Destination (Join-Path $dir $lf)
         }
+    }
+    $dockerfile = Join-Path $script:UpgradeRepoRoot 'Dockerfile.presets-check'
+    if (Test-Path -LiteralPath $dockerfile) {
+        Copy-Item -LiteralPath $dockerfile -Destination (Join-Path $dir 'Dockerfile.presets-check')
     }
     return $dir
 }
@@ -649,6 +655,151 @@ function Invoke-PeersPhase {
     }
 }
 
+function Update-SupercronicPin {
+    $df = Join-Path $script:UpgradeRepoRoot 'Dockerfile.presets-check'
+    if (-not (Test-Path -LiteralPath $df)) { return }
+
+    Write-UpgradeLog '⏱  Checking supercronic in Dockerfile.presets-check...'
+    $env:DF = $df
+    try {
+        $out = node -e @'
+'use strict';
+const fs = require('fs');
+const crypto = require('crypto');
+
+const file = process.env.DF;
+const ARCHES = ['amd64', 'arm64'];
+
+function fail(msg) {
+  console.error(msg);
+  process.exit(1);
+}
+
+let text;
+try { text = fs.readFileSync(file, 'utf8'); }
+catch (e) { fail('cannot read Dockerfile: ' + e.message); }
+
+const cur = text.match(/releases\/download\/(v[^/"'\s]+)\/\$\{SUPERCRONIC\}/);
+if (!cur) fail('Dockerfile.presets-check has no supercronic download URL');
+const from = cur[1];
+
+async function shaFromNotes(body, arch) {
+  const re = new RegExp(
+    'SUPERCRONIC_SHA1SUM=([0-9a-fA-F]{40})[\\s\\\\]*SUPERCRONIC=supercronic-linux-' + arch + '\\b'
+  );
+  const m = String(body || '').match(re);
+  return m ? m[1].toLowerCase() : '';
+}
+
+async function shaFromDownload(tag, arch) {
+  const name = 'supercronic-linux-' + arch;
+  const url = 'https://github.com/aptible/supercronic/releases/download/' + tag + '/' + name;
+  console.error('release notes omitted ' + arch + ' SHA1; downloading ' + name);
+  let res;
+  try {
+    res = await fetch(url, { signal: AbortSignal.timeout(120000) });
+  } catch (e) {
+    fail('download ' + name + ' failed: ' + e.message);
+  }
+  if (!res.ok) fail('download ' + name + ' HTTP ' + res.status);
+  const buf = Buffer.from(await res.arrayBuffer());
+  return crypto.createHash('sha1').update(buf).digest('hex');
+}
+
+async function main() {
+  let release;
+  try {
+    const res = await fetch('https://api.github.com/repos/aptible/supercronic/releases/latest', {
+      headers: {
+        'User-Agent': 'transrewrt-upgrade-dependencies',
+        'Accept': 'application/vnd.github+json',
+      },
+      signal: AbortSignal.timeout(30000),
+    });
+    if (!res.ok) fail('GitHub API HTTP ' + res.status);
+    release = await res.json();
+  } catch (e) {
+    fail('supercronic release lookup failed: ' + (e && e.message ? e.message : e));
+  }
+
+  const tag = release && release.tag_name;
+  if (!tag || !/^v[0-9]/.test(tag)) fail('unexpected supercronic tag: ' + tag);
+
+  const sums = {};
+  for (const arch of ARCHES) {
+    sums[arch] = await shaFromNotes(release.body, arch);
+    if (!sums[arch]) sums[arch] = await shaFromDownload(tag, arch);
+  }
+
+  let same = from === tag;
+  for (const arch of ARCHES) {
+    const lineRe = new RegExp(
+      'SUPERCRONIC_SHA1SUM=([0-9a-fA-F]{40});\\s*SUPERCRONIC=supercronic-linux-' + arch + '\\b'
+    );
+    const m = text.match(lineRe);
+    if (!m) fail('Dockerfile missing ' + arch + ' SUPERCRONIC_SHA1SUM line');
+    if (m[1].toLowerCase() !== sums[arch]) same = false;
+  }
+  if (same) {
+    process.stdout.write('current\t' + from + '\t' + tag + '\n');
+    return;
+  }
+
+  let next = text;
+  for (const arch of ARCHES) {
+    const lineRe = new RegExp(
+      '(SUPERCRONIC_SHA1SUM=)[0-9a-fA-F]{40}(;\\s*SUPERCRONIC=supercronic-linux-' + arch + '\\b)'
+    );
+    if (!lineRe.test(next)) fail('Dockerfile missing ' + arch + ' SUPERCRONIC_SHA1SUM line');
+    next = next.replace(lineRe, '$1' + sums[arch] + '$2');
+  }
+  const tagUrl = 'https://github.com/aptible/supercronic/releases/tag/' + tag;
+  const dlPrefix = 'https://github.com/aptible/supercronic/releases/download/' + tag + '/';
+  next = next.replace(
+    /https:\/\/github\.com\/aptible\/supercronic\/releases\/tag\/v[^ \n"'\\]+/g,
+    tagUrl
+  );
+  next = next.replace(
+    /https:\/\/github\.com\/aptible\/supercronic\/releases\/download\/v[^/"'\s]+\//g,
+    dlPrefix
+  );
+  if (!next.includes(tagUrl) || !next.includes(dlPrefix)) {
+    fail('could not rewrite supercronic version URLs');
+  }
+  fs.writeFileSync(file, next);
+  process.stdout.write('updated\t' + from + '\t' + tag + '\n');
+}
+
+main().catch((e) => fail(e && e.message ? e.message : String(e)));
+'@
+        $code = $LASTEXITCODE
+    }
+    finally {
+        Remove-Item Env:DF -ErrorAction SilentlyContinue
+    }
+
+    if ($code -ne 0) {
+        Write-UpgradeWarn '   ↳ supercronic check failed; Dockerfile.presets-check left unchanged.'
+        $script:SupercronicSummary = 'check failed (Dockerfile.presets-check unchanged)'
+        return
+    }
+
+    $text = if ($out -is [System.Array]) { ($out -join "`n").Trim() } else { "$out".Trim() }
+    $parts = @($text -split "`t")
+    if ($parts.Count -ge 3 -and $parts[0] -eq 'current') {
+        Write-UpgradeOk "   ↳ supercronic already at $($parts[2])"
+        $script:SupercronicSummary = "already at $($parts[2])"
+    }
+    elseif ($parts.Count -ge 3 -and $parts[0] -eq 'updated') {
+        Write-UpgradeOk "   ↳ supercronic $($parts[1]) -> $($parts[2]) (amd64 and arm64 SHA1 sums refreshed)"
+        $script:SupercronicSummary = "$($parts[1]) -> $($parts[2]) in Dockerfile.presets-check"
+    }
+    else {
+        Write-UpgradeWarn '   ↳ supercronic check returned unexpected output; Dockerfile left unchanged.'
+        $script:SupercronicSummary = 'check failed (Dockerfile.presets-check unchanged)'
+    }
+}
+
 function Write-UpgradeSummary {
     Write-Host ''
     Write-Host '================================'
@@ -726,6 +877,11 @@ function Write-UpgradeSummary {
         Write-UpgradeOk 'Peer dependencies: no issues.'
     }
 
+    if ($script:SupercronicSummary) {
+        Write-Host ''
+        Write-UpgradeLog "Supercronic: $($script:SupercronicSummary)"
+    }
+
     Write-Host ''
     Write-UpgradeLog "Manifest snapshot (restore if needed): $($script:SnapshotDir)"
     Write-Host ''
@@ -746,6 +902,7 @@ function Invoke-UpgradeDependencies {
     $script:SecVerifyFailed = $false
     $script:PeerIssues = ''
     $script:DoctorBlocked = @()
+    $script:SupercronicSummary = ''
 
     Write-Host ''
     Write-Host '--------------------------------'
@@ -763,6 +920,7 @@ function Invoke-UpgradeDependencies {
 
     $script:SnapshotDir = New-UpgradeSnapshot
     Set-EslintReject
+    Update-SupercronicPin
 
     if (-not $env:UPGRADE_SKIP_PREFLIGHT) {
         if (-not (Invoke-PreflightVerify)) {

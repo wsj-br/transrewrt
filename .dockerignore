@@ -13,6 +13,7 @@ dist
 
 # Environment and config files
 .env
+presets-check.env
 config.json
 data/
 
@@ -61,7 +62,11 @@ DEPLOY.md
 
 # Docker files (not needed inside container)
 Dockerfile
+Dockerfile.presets-check
 docker-compose.yml
+docker-compose.presets-check.yml
+production.yml
+presets/presets-check/docker-compose.yml
 .dockerignore
 
 # IDE files

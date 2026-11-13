@@ -22,7 +22,7 @@
 | **ปรับใช้** | เดสก์ท็อป Electron หรือเว็บ Docker (amd64 & arm64) |
 | **คีย์** | ผู้ให้บริการของคุณ, โฮสต์ของคุณ — ค่าที่ตั้งไว้ล่วงหน้าแบบง่าย หรือรายการโมเดลขั้นสูง |
 
-![แปล](../images/screenshots/th/translate.png)
+![แปล](https://wsj-br.github.io/transrewrt/images/screenshots/th/translate.png)
 
 <small>**อ่านเป็นภาษาอื่น:** </small>
 <small id="lang-list">[English (UK)](../README.md) · [العربية](./README.ar.md) · [简体中文](./README.zh-Hans.md) · [繁體中文](./README.zh-Hant.md) · [Čeština](./README.cs.md) · [Nederlands](./README.nl.md) · [Français](./README.fr.md) · [Deutsch](./README.de.md) · [Ελληνικά](./README.el.md) · [हिन्दी](./README.hi.md) · [Magyar](./README.hu.md) · [Italiano](./README.it.md) · [日本語](./README.ja.md) · [한국어](./README.ko.md) · [فارسی](./README.fa.md) · [Polski](./README.pl.md) · [Português (Brasil)](./README.pt-BR.md) · [Română](./README.ro.md) · [Русский](./README.ru.md) · [Slovenčina](./README.sk.md) · [Español](./README.es.md) · [Svenska](./README.sv.md) · [ไทย](./README.th.md) · [Türkçe](./README.tr.md) · [Українська](./README.uk.md) · [Tiếng Việt](./README.vi.md)</small>

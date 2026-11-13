@@ -1,0 +1,22 @@
+# Local development Docker Compose file for building and testing presets-check
+# from a repository checkout (used by `pnpm docker:presets-check:*`).
+# For standalone servers without a repository clone, use presets/presets-check/docker-compose.yml.
+#
+# Fill presets-check.env first (cp presets/presets-check/docker.env.example presets-check.env).
+# GITHUB_TOKEN and PRESET_CHECK_NTFY_TOPIC are required; the container exits if either is empty.
+# TZ, PRESET_CHECK_RUNTIME, and PRESET_CHECK_LIB come from Dockerfile.presets-check.
+services:
+  presets-check:
+    image: wsj-br/transrewrt-presets-check:devel
+    container_name: presets-check
+    build:
+      context: .
+      dockerfile: Dockerfile.presets-check
+    restart: unless-stopped
+    env_file:
+      - presets-check.env
+    volumes:
+      - presets-check-data:/data
+
+volumes:
+  presets-check-data:

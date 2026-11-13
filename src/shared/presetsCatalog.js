@@ -167,8 +167,6 @@ const PRESETS_CATALOG_HEADER_KEYS = [
   "updated_at",
   "translation_model",
   "translation_model_fallback",
-  "suggestion_model",
-  "suggestion_model_fallback",
 ];
 
 /**

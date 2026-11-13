@@ -22,7 +22,7 @@ AI 기반 텍스트 도구로 **번역**, **다시 쓰기**, **변환**을 사�
 | **배포** | Electron 데스크톱 또는 Docker 웹(amd64 & arm64) |
 | **키** | 자체 공급자, 자체 호스트 — 쉬움 프리셋 또는 고급 모델 목록 |
 
-![번역](../images/screenshots/ko/translate.png)
+![번역](https://wsj-br.github.io/transrewrt/images/screenshots/ko/translate.png)
 
 <small>**다른 언어로 읽기:** </small>
 <small id="lang-list">[English (UK)](../README.md) · [العربية](./README.ar.md) · [简体中文](./README.zh-Hans.md) · [繁體中文](./README.zh-Hant.md) · [Čeština](./README.cs.md) · [Nederlands](./README.nl.md) · [Français](./README.fr.md) · [Deutsch](./README.de.md) · [Ελληνικά](./README.el.md) · [हिन्दी](./README.hi.md) · [Magyar](./README.hu.md) · [Italiano](./README.it.md) · [日本語](./README.ja.md) · [한국어](./README.ko.md) · [فارسی](./README.fa.md) · [Polski](./README.pl.md) · [Português (Brasil)](./README.pt-BR.md) · [Română](./README.ro.md) · [Русский](./README.ru.md) · [Slovenčina](./README.sk.md) · [Español](./README.es.md) · [Svenska](./README.sv.md) · [ไทย](./README.th.md) · [Türkçe](./README.tr.md) · [Українська](./README.uk.md) · [Tiếng Việt](./README.vi.md)</small>

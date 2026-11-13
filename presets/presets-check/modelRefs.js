@@ -2,10 +2,7 @@
  * Model id references in easy-mode presets.json: per-preset slots and top-level fields.
  */
 
-const TOP_LEVEL_PAIRS = [
-  ["translation_model", "translation_model_fallback", "translation"],
-  ["suggestion_model", "suggestion_model_fallback", "suggestion"],
-];
+const TOP_LEVEL_PAIRS = [["translation_model", "translation_model_fallback", "translation"]];
 
 /**
  * @param {object} catalog

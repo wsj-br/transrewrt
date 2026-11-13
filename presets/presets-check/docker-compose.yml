@@ -1,0 +1,22 @@
+# Standalone production Docker Compose file for Transrewrt presets-check.
+# Runs on any server with Docker installed — no git clone of the repository needed.
+#
+# Quick setup on a server:
+#   mkdir -p ~/presets-check && cd ~/presets-check
+#   curl -fsSLO https://raw.githubusercontent.com/wsj-br/transrewrt/main/presets/presets-check/docker-compose.yml
+#   curl -fsSL https://raw.githubusercontent.com/wsj-br/transrewrt/main/presets/presets-check/docker.env.example -o presets-check.env
+#   chmod 600 presets-check.env
+#   # Edit presets-check.env (set GITHUB_TOKEN and PRESET_CHECK_NTFY_TOPIC)
+#   docker compose up -d
+services:
+  presets-check:
+    image: ghcr.io/wsj-br/transrewrt-presets-check:latest
+    container_name: presets-check
+    restart: unless-stopped
+    env_file:
+      - presets-check.env
+    volumes:
+      - presets-check-data:/data
+
+volumes:
+  presets-check-data:

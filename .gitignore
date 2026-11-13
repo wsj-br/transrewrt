@@ -59,14 +59,16 @@ presets-editor-benchmark-cache.json
 presets-editor-timing-cache.json
 presets-editor.log
 presets-editor-*.log
+presets-model-benchmarks.json
 
-# dev presets-check (local config + log)
-dev/presets-check/config.json
-dev/presets-check/presets-check.log
-dev/presets-check/presets-check.lock
-dev/presets-check/provider-catalogs-cache.json
-dev/presets-check/catalog-sanity.json
-dev/presets-check/presets-editor-timing-cache.json
+# presets-check (local config + log)
+presets-check.env
+presets/presets-check/config.json
+presets/presets-check/presets-check.log
+presets/presets-check/presets-check.lock
+presets/presets-check/provider-catalogs-cache.json
+presets/presets-check/catalog-sanity.json
+presets/presets-check/presets-editor-timing-cache.json
 
 
 

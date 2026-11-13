@@ -84,6 +84,10 @@ function loadConfig(configPath) {
   if (process.env.GITHUB_TOKEN) {
     config.github = { ...config.github, token: process.env.GITHUB_TOKEN };
   }
+  // The container image has no SSH client. A volume config cannot turn it back on.
+  if (process.env.PRESET_CHECK_LIB) {
+    config.github = { ...config.github, useSsh: false };
+  }
 
   const runtimeRoot = process.env.PRESET_CHECK_RUNTIME
     ? path.resolve(process.env.PRESET_CHECK_RUNTIME)

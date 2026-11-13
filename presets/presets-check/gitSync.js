@@ -5,6 +5,24 @@
 const { spawnSync } = require("child_process");
 const path = require("path");
 
+const ASKPASS_PATH = path.join(__dirname, "git-askpass.sh");
+
+/**
+ * Point git at the askpass helper for HTTPS.
+ * The token stays in the environment; it is not written into the remote URL.
+ * Host installs with github.useSsh keep using the ssh-agent started by run.sh.
+ * @param {object} [github]
+ */
+function ensureGitAuth(github = {}) {
+  if (github.useSsh) return;
+
+  const token = String(github.token || process.env.GITHUB_TOKEN || "").trim();
+  if (!token) return;
+  if (!process.env.GITHUB_TOKEN) process.env.GITHUB_TOKEN = token;
+  if (!process.env.GIT_ASKPASS) process.env.GIT_ASKPASS = ASKPASS_PATH;
+  if (!process.env.GIT_TERMINAL_PROMPT) process.env.GIT_TERMINAL_PROMPT = "0";
+}
+
 function git(cwd, args, opts = {}) {
   const timeout = typeof opts.timeout === "number" ? opts.timeout : 120000;
   const r = spawnSync("git", args, {
@@ -32,14 +50,11 @@ function githubRemoteUrl(github) {
   if (github.useSsh) {
     return `git@github.com:${owner}/${repo}.git`;
   }
-  const token = (github.token || process.env.GITHUB_TOKEN || "").trim();
-  if (token) {
-    return `https://x-access-token:${token}@github.com/${owner}/${repo}.git`;
-  }
   return `https://github.com/${owner}/${repo}.git`;
 }
 
 function configureGitRemote(repoDir, github) {
+  ensureGitAuth(github);
   const url = githubRemoteUrl(github);
   git(repoDir, ["remote", "set-url", "origin", url], { allowFail: false });
 }
@@ -131,6 +146,7 @@ function commitAndPushPresetsFile(repoDir, opts = {}) {
 }
 
 function cloneRepo(targetRepoDir, github) {
+  ensureGitAuth(github);
   const url = githubRemoteUrl(github);
   const branch = github.branch || "main";
   const parent = path.dirname(targetRepoDir);
@@ -147,6 +163,7 @@ function cloneRepo(targetRepoDir, github) {
 module.exports = {
   git,
   githubRemoteUrl,
+  ensureGitAuth,
   configureGitRemote,
   fetchLatestPresetsFile,
   hasPresetsFileChanges,

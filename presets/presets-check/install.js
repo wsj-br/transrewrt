@@ -29,12 +29,12 @@ const PRESET_CHECK_SCRIPTS = [
   "circuitBreaker.js",
   "lock.js",
   "modelRefs.js",
+  "git-askpass.sh",
 ];
 
 const PRESETS_SHARED_FILES = [
   "paths.js",
-  "benchmark-scores.js",
-  "fetchArenaLeaderboard.mjs",
+  "suggestModels.js",
   "timingCache.js",
   "translatePresetsBenchmark.js",
 ];
@@ -51,6 +51,8 @@ const SHARED_FILES = [
   "llm/modelsDevPricing.snapshot.json",
   "llm/collapseAliasedModels.js",
   "llm/streamDeltaContent.js",
+  "modelBenchmarks/matchKeys.js",
+  "modelBenchmarks/benchmarkCache.js",
 ];
 
 /** Runtime deps mirrored from the monorepo (Vercel AI SDK stack + Arena parquet reader). */
@@ -69,6 +71,9 @@ function parseInstallArgs(argv) {
 
 function printHelp() {
   console.log(`Install Transrewrt presets-check runtime
+
+The documented production install is the Docker image. See presets/presets-check/README.md.
+This command remains for a host that cannot run Docker.
 
 Usage:
   pnpm run presets-check:install -- --target <directory> [--force]
@@ -163,10 +168,15 @@ ssh-add ~/.ssh/id-git
 set -e
 cd "$(dirname "$0")"
 
-# Source secrets: PRESET_CHECK_NTFY_TOPIC, OPENROUTER_API_KEY, PRESET_CHECK_DRY_RUN, …
+# Source secrets: PRESET_CHECK_NTFY_TOPIC, OPENROUTER_API_KEY, GITHUB_TOKEN, …
 source .env
 
 export PRESET_CHECK_RUNTIME="$(pwd)"
+# HTTPS push reads GITHUB_TOKEN via askpass. The token is not stored in the remote URL.
+if [ -n "\${GITHUB_TOKEN:-}" ]; then
+  export GIT_ASKPASS="$(pwd)/lib/git-askpass.sh"
+  export GIT_TERMINAL_PROMPT=0
+fi
 exec node lib/check.js "$@"
 `;
   fs.writeFileSync(p, script, "utf8");
@@ -209,7 +219,8 @@ function main() {
     fs.rmSync(libDir, { recursive: true, force: true });
   }
   copyDirFiles(__dirname, libDir, PRESET_CHECK_SCRIPTS);
-  copyDirFiles(path.join(MONOREPO_ROOT, "dev", "presets-shared"), path.join(libDir, "presets-shared"), PRESETS_SHARED_FILES);
+  fs.chmodSync(path.join(libDir, "git-askpass.sh"), 0o755);
+  copyDirFiles(path.join(MONOREPO_ROOT, "presets", "presets-shared"), path.join(libDir, "presets-shared"), PRESETS_SHARED_FILES);
   copyDirFiles(path.join(MONOREPO_ROOT, "src", "shared"), sharedDir, SHARED_FILES);
   copyFile(
     path.join(MONOREPO_ROOT, "src", "config-defaults", "prompts.json"),

@@ -4,7 +4,8 @@
  * No LLM call.
  */
 
-const { sharedRequire } = require("./paths.js");
+const { sharedRequire, presetsSharedRequire } = require("./paths.js");
+const { allowsScoreReplacement, roundMoney } = presetsSharedRequire("suggestModels.js");
 const { isTransrewrtWorkflowModel } = sharedRequire("presetsProviderCatalog.js");
 const {
   modelFamilyKey,
@@ -279,11 +280,131 @@ async function resolveVerifiedChoice(decision, excludeIds, verifyFn) {
   };
 }
 
+function rowCandidate(row, source) {
+  return {
+    id: row.id,
+    source: source || "ranked",
+    score: row.index,
+    metrics: {
+      chrf: row.chrf ?? null,
+      arena_score: row.arenaScore ?? null,
+      blended_price_per_1m: row.blendedPerMTokens ?? null,
+      score: row.index ?? null,
+    },
+  };
+}
+
+/**
+ * Realign a preset's primary and fallback to the deterministic #1 / #2.
+ * Does not delete a slot when nothing qualifies.
+ * @param {object} opts
+ */
+function selectPolicyPair(opts) {
+  const selected = Array.isArray(opts.selected) ? opts.selected : [];
+  const ranked = Array.isArray(opts.ranked) ? opts.ranked : [];
+  const byId = new Map(ranked.map((row) => [row.id, row]));
+  const maxPrice = opts.suggestion ? opts.suggestion.maxPrice : null;
+  const primaryId = opts.primaryId ? String(opts.primaryId).trim() : "";
+  const fallbackId = opts.fallbackId ? String(opts.fallbackId).trim() : "";
+
+  function priceOf(id) {
+    const row = byId.get(id);
+    return row ? roundMoney(row.blendedPerMTokens) : null;
+  }
+
+  function overCap(id) {
+    if (maxPrice == null) return false;
+    const price = priceOf(id);
+    return price != null && price > roundMoney(maxPrice);
+  }
+
+  function decide(currentId, unavailable, exclude) {
+    if (!currentId) return null;
+    const current = byId.get(currentId) || null;
+    const desired = selected.find((row) => row && row.id && !exclude.has(row.id)) || null;
+    let kind;
+    if (unavailable) kind = "unavailable";
+    else if (desired && desired.id === currentId) {
+      return {
+        status: "ok",
+        oldId: currentId,
+        newId: null,
+        source: null,
+        score: current?.index ?? null,
+        candidates: [],
+      };
+    } else if (overCap(currentId)) kind = "over_cap";
+    else if (!desired) {
+      return {
+        status: "ok",
+        oldId: currentId,
+        newId: null,
+        source: null,
+        score: current?.index ?? null,
+        candidates: [],
+      };
+    } else {
+      kind = "upgrade";
+    }
+
+    const candidates = [];
+    for (const row of selected) {
+      if (!row || !row.id || row.id === currentId || exclude.has(row.id)) continue;
+      if (!allowsScoreReplacement(current, row, kind)) continue;
+      candidates.push(rowCandidate(row, kind));
+    }
+    if (kind === "upgrade" && !unavailable && !overCap(currentId)) {
+      candidates.push({ id: currentId, source: "keep", score: current?.index ?? null, metrics: null });
+    }
+    if (!candidates.length || candidates[0].source === "keep") {
+      if (kind === "upgrade" || candidates[0]?.source === "keep") {
+        return {
+          status: "ok",
+          oldId: currentId,
+          newId: null,
+          source: null,
+          score: current?.index ?? null,
+          candidates: [],
+        };
+      }
+      return {
+        status: "unresolved",
+        oldId: currentId,
+        newId: null,
+        source: null,
+        score: null,
+        candidates,
+      };
+    }
+    const top = candidates[0];
+    return {
+      status: "replacement",
+      oldId: currentId,
+      newId: top.id,
+      source: kind,
+      score: top.score,
+      candidates,
+    };
+  }
+
+  const exclude = new Set();
+  let primary = null;
+  if (primaryId) {
+    primary = decide(primaryId, Boolean(opts.primaryUnavailable), exclude);
+    if (primary?.oldId) exclude.add(primary.oldId);
+    if (primary?.newId) exclude.add(primary.newId);
+  }
+  let fallback = null;
+  if (fallbackId) fallback = decide(fallbackId, Boolean(opts.fallbackUnavailable), exclude);
+  return { primary, fallback };
+}
+
 module.exports = {
   catalogBlendedPer1M,
   isFreeModel,
   sameFamily,
   selectSlotReplacement,
   selectReplacementPair,
+  selectPolicyPair,
   resolveVerifiedChoice,
 };

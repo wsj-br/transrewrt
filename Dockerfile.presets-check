@@ -1,0 +1,96 @@
+# Presets-check: long-running checker. Code is in the image; the git clone,
+# config, and logs stay on /data. Supercronic is PID 1 so provider keys and
+# GITHUB_TOKEN from the container environment reach each run.
+FROM node:24-alpine
+
+RUN apk add --no-cache git ca-certificates curl tzdata
+
+# https://github.com/aptible/supercronic/releases/tag/v0.2.51
+ARG TARGETARCH
+RUN case "$TARGETARCH" in \
+      amd64) SUPERCRONIC_SHA1SUM=1692066e350a88ff4d7d6474fe3c7a6c41ec5e89; SUPERCRONIC=supercronic-linux-amd64 ;; \
+      arm64) SUPERCRONIC_SHA1SUM=9d4c2000493215a1898502b2fc2dada3e8ea8c7a; SUPERCRONIC=supercronic-linux-arm64 ;; \
+      *) echo "unsupported architecture: $TARGETARCH" >&2; exit 1 ;; \
+    esac \
+ && curl -fsSL -o "/tmp/${SUPERCRONIC}" \
+      "https://github.com/aptible/supercronic/releases/download/v0.2.51/${SUPERCRONIC}" \
+ && echo "${SUPERCRONIC_SHA1SUM}  /tmp/${SUPERCRONIC}" | sha1sum -c - \
+ && chmod +x "/tmp/${SUPERCRONIC}" \
+ && mv "/tmp/${SUPERCRONIC}" /usr/local/bin/supercronic
+
+WORKDIR /app
+
+# Runtime deps only (same three packages as presets-check/install.js). Versions
+# come from the monorepo package.json so the image stays in step with the app.
+COPY package.json /tmp/transrewrt-package.json
+RUN node -e 'const fs=require("fs"); const root=JSON.parse(fs.readFileSync("/tmp/transrewrt-package.json","utf8")); const from={...(root.dependencies||{}),...(root.devDependencies||{})}; const names=["ai","@ai-sdk/openai-compatible","hyparquet"]; const dependencies={}; for (const name of names){ const ver=from[name]; if(!ver||typeof ver!=="string"){ console.error("Missing dependency "+name); process.exit(1);} dependencies[name]=ver;} fs.writeFileSync("/app/package.json", JSON.stringify({name:"transrewrt-presets-check-runtime",private:true,type:"commonjs",engines:{node:">=24.0.0"},dependencies},null,2)+"\n");' \
+ && npm install --omit=dev \
+ && npm cache clean --force \
+ && rm -f /tmp/transrewrt-package.json
+
+COPY presets/presets-check/check.js \
+     presets/presets-check/config.js \
+     presets/presets-check/fuzzyMatch.js \
+     presets/presets-check/gitSync.js \
+     presets/presets-check/log.js \
+     presets/presets-check/ntfy.js \
+     presets/presets-check/paths.js \
+     presets/presets-check/selectReplacement.js \
+     presets/presets-check/catalogSanity.js \
+     presets/presets-check/circuitBreaker.js \
+     presets/presets-check/lock.js \
+     presets/presets-check/modelRefs.js \
+     presets/presets-check/git-askpass.sh \
+     presets/presets-check/prepareRuntime.js \
+     presets/presets-check/config.example.json \
+     /app/lib/
+
+COPY presets/presets-shared/paths.js \
+     presets/presets-shared/suggestModels.js \
+     presets/presets-shared/timingCache.js \
+     presets/presets-shared/translatePresetsBenchmark.js \
+     /app/lib/presets-shared/
+
+COPY src/shared/apiErrorMessage.js \
+     src/shared/presetModelIdUtils.js \
+     src/shared/presetsCatalog.js \
+     src/shared/presetsProviderCatalog.js \
+     src/shared/openRouterProviderRouting.js \
+     /app/lib/shared/
+
+COPY src/shared/llm/index.js \
+     src/shared/llm/estimateMaxTokens.js \
+     src/shared/llm/modelsDevPricing.js \
+     src/shared/llm/modelsDevPricing.snapshot.json \
+     src/shared/llm/collapseAliasedModels.js \
+     src/shared/llm/streamDeltaContent.js \
+     /app/lib/shared/llm/
+
+COPY src/shared/modelBenchmarks/matchKeys.js \
+     src/shared/modelBenchmarks/benchmarkCache.js \
+     /app/lib/shared/modelBenchmarks/
+
+COPY src/config-defaults/prompts.json /app/lib/config-defaults/prompts.json
+
+COPY presets/presets-check/docker-entrypoint.sh /app/docker-entrypoint.sh
+RUN chmod 755 /app/docker-entrypoint.sh /app/lib/git-askpass.sh
+
+ENV PRESET_CHECK_RUNTIME=/data \
+    PRESET_CHECK_LIB=/app/lib \
+    PRESET_CHECK_CRON="0 6 * * *" \
+    PRESET_CHECK_GIT_NAME=presets-check \
+    PRESET_CHECK_GIT_EMAIL=presets-check@users.noreply.github.com \
+    GIT_TERMINAL_PROMPT=0 \
+    TZ=Europe/London \
+    NODE_ENV=production
+
+RUN mkdir -p /data
+
+LABEL org.opencontainers.image.source=https://github.com/wsj-br/transrewrt
+LABEL org.opencontainers.image.description="Transrewrt presets-check"
+LABEL org.opencontainers.image.licenses=Apache-2.0
+
+VOLUME ["/data"]
+
+ENTRYPOINT ["/app/docker-entrypoint.sh"]
+CMD ["supercronic"]

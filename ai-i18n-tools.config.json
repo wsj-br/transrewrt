@@ -1,9 +1,9 @@
 {
   "sourceLocale": "en-GB",
-  "targetLocales": [ "ar", "zh-Hans", "zh-Hant", "cs", "nl","fr", "de",
-                     "el", "hi", "hu", "it", "ja", "ko", "fa", "pl", "pt-BR",
-                     "ro", "ru", "sk", "es", "sv", "th", "tr", "uk", "vi"     
-  ],
+  "targetLocales": [    "ar",    "zh-Hans",    "zh-Hant",    "cs",    "nl",    "fr",    "de",      "el",
+                        "hi",    "hu",    "it",    "ja",    "ko",    "fa",    "pl",    "pt-BR",    "ro",
+                        "ru",    "sk",    "es",    "sv",    "th",    "tr",    "uk",    "vi"  
+                   ],
   "concurrency": 8,
   "batchSize": 20,
   "maxBatchChars": 4096,
@@ -17,18 +17,14 @@
       "translationModels": [
         "google/gemini-3.1-flash-lite-preview",
         "google/gemini-2.5-flash",
+        "google/gemini-2.5-pro",
+        "anthropic/claude-sonnet-4.6",
+        "openai/gpt-5.4",
         "google/gemma-4-31b-it",
+        "openai/gpt-5.1",
         "deepseek/deepseek-v4-flash",
-        "deepseek/deepseek-chat-v3.1",
         "deepseek/deepseek-v3.2-exp",
-        "google/gemma-3-27b-it",
-        "openai/gpt-5-mini",
-        "z-ai/glm-4.5-air",
-        "openai/gpt-oss-120b"
-      ],
-      "uiModels": [
-        "google/gemini-3.1-pro-preview",
-        "google/gemini-2.5-pro"
+        "google/gemma-3-27b-it"
       ]
     }
   },
@@ -72,7 +68,7 @@
         "postProcessing": {
           "regexAdjustments": [
             {
-              "description": "Per-locale screenshot folders",
+              "description": "Per-locale screenshot folders in the GitHub Pages image URL",
               "search": "images/screenshots/[^/]+/",
               "replace": "images/screenshots/${translatedLocale}/"
             }

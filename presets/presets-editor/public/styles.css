@@ -810,6 +810,12 @@ table.trans-table {
   font-size: 0.85rem;
 }
 
+.model-rank {
+  font-size: 0.75rem;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
 .model-price {
   font-size: 0.75rem;
   color: var(--muted);
@@ -1125,6 +1131,31 @@ table.trans-table {
   flex-direction: column;
 }
 
+.suggestion-policy-grid,
+.ai-suggest-policy-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+  margin-top: 8px;
+}
+
+.suggestion-policy-grid label,
+.ai-suggest-policy-row label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 0.82rem;
+  min-width: 7rem;
+}
+
+.suggestion-policy-grid input,
+.suggestion-policy-grid select,
+.ai-suggest-policy-row input,
+.ai-suggest-policy-row select {
+  font: inherit;
+  padding: 4px 6px;
+}
+
 .ai-suggest-flow-inner {
   display: flex;
   flex-direction: column;
@@ -1252,6 +1283,46 @@ table.trans-table {
   border: 1px solid var(--border);
   border-radius: 8px;
   background: var(--bg);
+}
+
+/* Suggest models: the preset list grows with its rows. The page scrolls, not the card. */
+#ai-suggest-setup-panel.ai-suggest-flow-panel {
+  overflow: auto;
+}
+
+#ai-suggest-setup-panel .ai-suggest-flow-inner {
+  flex: 0 0 auto;
+  min-height: auto;
+}
+
+#ai-suggest-setup-panel .ai-suggest-presets-checkboxes {
+  max-height: none;
+  overflow: visible;
+}
+
+#ai-suggest-setup-panel .ai-suggest-preset-policy {
+  padding: 12px 16px 16px;
+  border-top: 1px solid var(--border);
+}
+
+#ai-suggest-setup-panel .ai-suggest-preset-policy:first-child {
+  border-top: none;
+}
+
+#ai-suggest-setup-panel .ai-suggest-preset-policy-name {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 8px;
+}
+
+#ai-suggest-setup-panel .ai-suggest-policy-row {
+  margin: 10px 0 0;
+}
+
+#ai-suggest-setup-panel .ai-suggest-presets-check.preset-select-master-row {
+  position: static;
+  box-shadow: none;
 }
 
 .ai-suggest-presets-check {
@@ -1390,9 +1461,16 @@ table.trans-table {
 .ai-suggest-table th,
 .ai-suggest-table td {
   border: 1px solid var(--border);
-  padding: 8px 10px;
-  vertical-align: top;
+  padding: 6px 8px;
+  vertical-align: middle;
   text-align: left;
+  white-space: nowrap;
+}
+
+.ai-suggest-table td.num,
+.ai-suggest-table th:nth-child(n + 4) {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
 }
 
 .ai-suggest-table th {
