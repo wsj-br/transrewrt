@@ -1,6 +1,6 @@
 {
-  "version": "1.7.38",
-  "updated_at": "2026-11-12T23:22:56.080Z",
+  "version": "1.7.39",
+  "updated_at": "2026-11-14T06:00:08.341Z",
   "translation_model": "openrouter/~anthropic/claude-sonnet-latest",
   "translation_model_fallback": "openrouter/~anthropic/claude-haiku-latest",
   "presets": [
@@ -135,7 +135,7 @@
         "cerebras": "cerebras/gpt-oss-120b"
       },
       "fallback_ids": {
-        "openrouter": "openrouter/openai/gpt-oss-20b:batch",
+        "openrouter": "openrouter/openai/gpt-oss-20b",
         "openai": "openai/gpt-5-mini-2025-08-07",
         "anthropic": "anthropic/claude-sonnet-4-5-20250929",
         "google": "google/gemini-3.1-flash-lite",
