@@ -11,6 +11,8 @@ Use conventional types (Added, Changed, Fixed, etc.) and short descriptions.
 
 ## Unreleased
 
+## [1.7.2] - 2026-11-14
+
 - **Changed**: Escape in Translate, Rewrite, and Transform clears the boxes and moves the cursor to the input box.
 - **Changed**: Presets editor and presets-check ignore provider batch routes (`:batch`, names ending in `(batch)`) and keep the standard chat model.
 
