@@ -11,6 +11,9 @@ Use conventional types (Added, Changed, Fixed, etc.) and short descriptions.
 
 ## Unreleased
 
+- **Changed**: Escape in Translate, Rewrite, and Transform clears the boxes and moves the cursor to the input box.
+- **Changed**: Presets editor and presets-check ignore provider batch routes (`:batch`, names ending in `(batch)`) and keep the standard chat model.
+
 ## [1.7.1] - 2026-11-13
 
 - **Changed**: Screenshots live only in `website/public/images/screenshots`. `take-screenshots` writes there, and the README image uses the GitHub Pages URL.

@@ -73,6 +73,28 @@ describe("selectReplacement", () => {
     assert.equal(picked.newId, "openai/gpt-4o-mini-2024-07-18");
   });
 
+  it("does not replace an unavailable id with a batch route", () => {
+    const picked = selectSlotReplacement({
+      engine: "openrouter",
+      unavailableId: "openrouter/openai/gpt-oss-20b-retired",
+      benchmarkOk: true,
+      ranked: [
+        { model_id: "openrouter/openai/gpt-oss-20b:batch", score: 0.99, below_floor: false },
+        { model_id: "openrouter/openai/gpt-oss-20b", score: 0.7, below_floor: false },
+      ],
+      shortlist: [
+        { model_id: "openrouter/openai/gpt-oss-20b:batch", score: 0.99 },
+        { model_id: "openrouter/openai/gpt-oss-20b", score: 0.7 },
+      ],
+      catalogModels: [
+        model("openrouter/openai/gpt-oss-20b:batch", 0.05),
+        model("openrouter/openai/gpt-oss-20b", 0.1),
+      ],
+    });
+    assert.equal(picked.status, "replacement");
+    assert.equal(picked.newId, "openrouter/openai/gpt-oss-20b");
+  });
+
   it("keeps free presets on zero-price models", () => {
     const picked = selectSlotReplacement({
       engine: "openai",

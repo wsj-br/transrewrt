@@ -138,7 +138,7 @@ export function getTransformPanels({ common, input, output, options }) {
   const modelId = lastRunModel ? modelFooterDisplayId(lastRunModel) : "";
 
   const leftPanel = (
-    <div className="flex flex-col h-full gap-2">
+    <div className="flex flex-col h-full gap-2" data-panel="input">
       <div className="w-full min-w-0">
         <TransformPromptSelector
           prompts={transformPrompts}

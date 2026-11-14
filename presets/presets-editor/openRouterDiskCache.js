@@ -14,6 +14,7 @@ const { summarizeEndpointPerformance } = require("../../src/shared/openRouterEnd
 const {
   FREE_MODEL_ID,
   isTransrewrtWorkflowModel,
+  omitBatchProviderModels,
   openRouterCanonicalFromApiModelId,
   openRouterPickerDisplayId,
 } = require("../../src/shared/presetsProviderCatalog.js");
@@ -58,7 +59,7 @@ function readDiskCache(cachePath) {
     if (!Array.isArray(parsed?.catalogRows)) return null;
     return {
       lastUpdated: lastUpdated.toISOString(),
-      models: parsed.models,
+      models: omitBatchProviderModels(parsed.models),
       catalogRows: parsed.catalogRows,
       performanceByPath:
         parsed.performanceByPath && typeof parsed.performanceByPath === "object"

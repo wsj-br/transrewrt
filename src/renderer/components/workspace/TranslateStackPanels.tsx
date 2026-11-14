@@ -119,7 +119,7 @@ export function getTranslateStackPanels({
   const modelId = lastRunModel ? modelFooterDisplayId(lastRunModel) : "";
 
   const leftPanel = (
-    <div className="flex min-h-0 flex-1 flex-col gap-2">
+    <div className="flex min-h-0 flex-1 flex-col gap-2" data-panel="input">
       <div className="flex min-h-10 flex-wrap items-center gap-2">
         <LanguageSelector
           label={t("From:")}

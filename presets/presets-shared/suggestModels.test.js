@@ -239,6 +239,28 @@ describe("rankEngineModels", () => {
     assert.deepEqual(selected.map((row) => row.id), ["deepseek/only"]);
   });
 
+  it("ignores batch routes and keeps the standard model", () => {
+    const benchmarks = benchmarksFor([
+      { benchId: "gpt-oss-20b", chrfByLang: { en: 70 }, arena: 70, arenaName: "gpt-oss-20b" },
+    ]);
+    const ranked = rankEngineModels({
+      provider: "openrouter",
+      catalog: [
+        priced("openrouter/openai/gpt-oss-20b:batch", 0.05),
+        priced("openrouter/openai/gpt-oss-20b", 0.1),
+        {
+          id: "openrouter/openai/named-only",
+          name: "Named Only (batch)",
+          pricing: { prompt: "0.0000001", completion: "0.0000001" },
+        },
+      ],
+      benchmarks,
+      suggestion: quality,
+      locales: ["en-GB"],
+    });
+    assert.deepEqual(ranked.map((row) => row.id), ["openrouter/openai/gpt-oss-20b"]);
+  });
+
   it("leaves free routes out of a paid profile and ranks them for free", () => {
     const benchmarks = benchmarksFor([
       { benchId: "paid", chrfByLang: { en: 50 }, arena: 50, arenaName: "paid" },

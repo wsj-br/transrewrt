@@ -131,7 +131,7 @@ export function getRewritePanels({ common, input, output, options }) {
   );
 
   const leftPanel = (
-    <div className="flex flex-col h-full gap-2">
+    <div className="flex flex-col h-full gap-2" data-panel="input">
       <div className="flex-1 min-h-0">
         <TextPanel
           title={t("Input")}

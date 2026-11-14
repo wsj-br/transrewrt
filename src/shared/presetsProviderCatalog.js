@@ -56,16 +56,39 @@ function resolveCachePath(opts = {}) {
   return opts.cachePath || defaultCachePath || path.join(process.cwd(), "presets-editor-provider-catalogs.json");
 }
 
+/**
+ * OpenRouter and some provider lists publish a `:batch` id (name ending in
+ * `(batch)`). That id is the async Batch API price, not a chat model.
+ * @param {string | { id?: string, displayId?: string, name?: string } | null | undefined} model
+ * @returns {boolean}
+ */
+function isBatchProviderModel(model) {
+  const row = typeof model === "string" ? { id: model } : model || {};
+  const id = String(row.id || "").trim();
+  const displayId = String(row.displayId || "").trim();
+  const name = String(row.name || "").trim();
+  return /:batch$/i.test(id) || /:batch$/i.test(displayId) || /\(batch\)\s*$/i.test(name);
+}
+
+/**
+ * @param {Array<{ id?: string, displayId?: string, name?: string }> | null | undefined} models
+ */
+function omitBatchProviderModels(models) {
+  return (Array.isArray(models) ? models : []).filter((m) => !isBatchProviderModel(m));
+}
+
 function modelsForEngineFromCatalog(allModels, engine) {
   const prefix = `${engine}/`;
-  return (Array.isArray(allModels) ? allModels : [])
-    .filter((m) => m && typeof m.id === "string" && m.id.startsWith(prefix))
-    .map((m) => ({
-      id: m.id,
-      displayId: m.id.slice(prefix.length),
-      name: m.name || m.id,
-      pricing: m.pricing || { prompt: 0, completion: 0 },
-    }));
+  return omitBatchProviderModels(
+    (Array.isArray(allModels) ? allModels : [])
+      .filter((m) => m && typeof m.id === "string" && m.id.startsWith(prefix))
+      .map((m) => ({
+        id: m.id,
+        displayId: m.id.slice(prefix.length),
+        name: m.name || m.id,
+        pricing: m.pricing || { prompt: 0, completion: 0 },
+      })),
+  );
 }
 
 function openRouterPickerDisplayId(canonicalId) {
@@ -87,7 +110,7 @@ function topProviderStringFromRow(row) {
 }
 
 function filterOpenRouterModels(models) {
-  const list = Array.isArray(models) ? models : [];
+  const list = omitBatchProviderModels(models);
   const out = list.filter((m) => m && typeof m.id === "string" && m.id.startsWith("openrouter/"));
   const ids = new Set(out.map((m) => m.id));
   if (!ids.has(FREE_MODEL_ID)) {
@@ -173,7 +196,7 @@ async function fetchOpenRouterPublicModelsList(keysMap) {
   for (const row of rows) {
     if (!row || typeof row.id !== "string") continue;
     const canonical = openRouterCanonicalFromApiModelId(row.id);
-    if (!canonical) continue;
+    if (!canonical || isBatchProviderModel({ id: canonical, name: row.name })) continue;
     const p = parseFloat(row.pricing?.prompt);
     const c = parseFloat(row.pricing?.completion);
     byId.set(canonical, {
@@ -228,7 +251,7 @@ function hydrateEngineCatalogCacheFromDisk(catalogsByEngine) {
   engineCatalogCache.clear();
   for (const { id: engine } of EASY_CLOUD_ENGINES) {
     const raw = catalogsByEngine[engine];
-    const list = Array.isArray(raw) ? raw : [];
+    const list = omitBatchProviderModels(Array.isArray(raw) ? raw : []);
     engineCatalogCache.set(engine, list);
   }
 }
@@ -237,7 +260,7 @@ function collectEngineCatalogsFromMemory() {
   /** @type {Record<string, Array<{ id: string, name?: string }>>} */
   const catalogsByEngine = {};
   for (const { id: engine } of EASY_CLOUD_ENGINES) {
-    catalogsByEngine[engine] = engineCatalogCache.get(engine) || [];
+    catalogsByEngine[engine] = omitBatchProviderModels(engineCatalogCache.get(engine) || []);
   }
   return catalogsByEngine;
 }
@@ -364,15 +387,15 @@ async function loadEngineModelsCatalog(engine, keysMap, opts = {}) {
   const force = Boolean(opts.force);
   if (force) {
     await ensureProviderCatalogDiskCache(keysMap, { ...opts, force: true });
-    return engineCatalogCache.get(engine) || [];
+    return omitBatchProviderModels(engineCatalogCache.get(engine) || []);
   }
 
   await ensureProviderCatalogDiskCache(keysMap, opts);
   if (engineCatalogCache.has(engine)) {
-    return engineCatalogCache.get(engine);
+    return omitBatchProviderModels(engineCatalogCache.get(engine));
   }
 
-  const list = await fetchEngineCatalogFromProviders(engine, keysMap);
+  const list = omitBatchProviderModels(await fetchEngineCatalogFromProviders(engine, keysMap));
   engineCatalogCache.set(engine, list);
   writeCatalogDiskCache(collectEngineCatalogsFromMemory(), resolveCachePath(opts));
   return list;
@@ -389,6 +412,7 @@ function modelIdTail(id) {
  * @param {{ id?: string, displayId?: string, name?: string }} m
  */
 function isTransrewrtWorkflowModel(m) {
+  if (isBatchProviderModel(m)) return false;
   const tail = modelIdTail(m?.id || m?.displayId);
   const name = String(m?.name || "").toLowerCase();
   const hay = `${tail} ${name}`;
@@ -436,7 +460,7 @@ function buildIdSets(catalogsByEngine) {
   const idSets = {};
   for (const { id: engine } of EASY_CLOUD_ENGINES) {
     const list = catalogsByEngine[engine] || [];
-    idSets[engine] = new Set(list.map((m) => m.id));
+    idSets[engine] = new Set(omitBatchProviderModels(list).map((m) => m.id));
   }
   return idSets;
 }
@@ -457,6 +481,8 @@ module.exports = {
   EASY_CLOUD_ENGINES,
   FREE_MODEL_ID,
   configureProviderCatalog,
+  isBatchProviderModel,
+  omitBatchProviderModels,
   modelsForEngineFromCatalog,
   filterOpenRouterModels,
   openRouterPickerDisplayId,

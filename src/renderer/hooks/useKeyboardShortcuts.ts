@@ -1,8 +1,20 @@
 import { useEffect } from "react";
 
+const WORKSPACE_INPUT_SELECTOR = '[data-panel="input"] textarea';
+
+/** Place the caret in the workspace input after Escape clears it. */
+function focusWorkspaceInput() {
+  const input = document.querySelector(WORKSPACE_INPUT_SELECTOR);
+  if (!(input instanceof HTMLTextAreaElement) || input.disabled) return;
+  input.focus();
+  const end = input.value.length;
+  input.setSelectionRange(end, end);
+}
+
 /**
  * Registers keyboard shortcuts: Execute = Enter runs translate/rewrite,
- * Shift-Execute = Shift+Enter runs translate/rewrite. Escape clears input.
+ * Shift-Execute = Shift+Enter runs translate/rewrite. Escape clears input
+ * and moves the caret to the input box.
  * Only active when currentView === "workspace" so Settings navigation doesn't trigger run/stop.
  */
 export function useKeyboardShortcuts(
@@ -24,6 +36,8 @@ export function useKeyboardShortcuts(
             return;
           }
           clearInput();
+          focusWorkspaceInput();
+          requestAnimationFrame(focusWorkspaceInput);
         }
         return;
       }
